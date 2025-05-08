@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Crake Test';
+    src: url('Crake-SemiBold.woff2') format('woff2'),
+        url('Crake-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crake Test';
+    src: url('Crake-Bold.woff2') format('woff2'),
+        url('Crake-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crake Test';
+    src: url('Crake-Medium.woff2') format('woff2'),
+        url('Crake-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crake Test';
+    src: url('Crake-Regular.woff2') format('woff2'),
+        url('Crake-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crake Test';
+    src: url('Crake-Light.woff2') format('woff2'),
+        url('Crake-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,11 @@
+.copyright{
+  padding: 0;
+    display: flex;
+    list-style: none;
+    margin-bottom: 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media(max-width:991px){
+      display: block;
+    }
+}

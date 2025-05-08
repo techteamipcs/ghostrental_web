@@ -1,0 +1,80 @@
+<section class="position-relative hero d-flex align-items-center justify-content-center">
+  @if (isBrowser) {
+  <div class="swiper bannerSwiper">
+    <div class="swiper-wrapper text-center">
+      @for (bannerdata of bannerData; track bannerdata) {
+      @if (bannerdata && bannerdata.media_data[0]?.file_type === 'video') {
+      <div class="swiper-slide ">
+        <video width="100%" autoplay loop playsinline muted="true">
+          <source src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" type="video/mp4" />
+          <source src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      } @else {
+      <div class="swiper-slide">
+        <img src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" alt="Banner Image" class="img-fluid"
+          width="1482" height="584" />
+      </div>
+      }
+      }
+    </div>
+    <!-- <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div> -->
+  </div>
+  }
+</section>
+<section class="trending">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-9 col-md-11 col-sm-11 col-11 mx-auto">
+        <div class="text-center py-5">
+          <h2 class="fw-bold fs-2">Trending Now</h2>
+          <p class="mx-auto" style="max-width: 600px;">
+            Explore Our Most Sought-After Epoxy Tables, Loved By Customers For Their Exceptional Craftsmanship And
+            Timeless
+            Appeal. Bring Home A Masterpiece Today.
+          </p>
+        </div>
+      </div>
+      <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-11 mx-auto position-relative">
+        <div class="swiper-button-next trend-button-next"></div>
+        <div class="swiper-button-prev trend-button-prev"></div>
+        <div class="swiper trendSwiper px-3">
+          <!-- Navigation -->
+
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Closeup Chair" />
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Full Chair" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Closeup Chair" />
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Full Chair" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Add more slides as needed -->
+          </div>
+          <!-- Pagination -->
+          <div class="swiper-pagination trend-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="vh-100"></section>

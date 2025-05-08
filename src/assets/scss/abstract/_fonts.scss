@@ -1,0 +1,221 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+// Font 1
+
+@font-face {
+  font-family: 'crake-semibold';
+  src: url('../../fonts/crake-fonts/Crake-SemiBold.woff2') format('woff2'),
+      url('../../fonts/crake-fonts/Crake-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'crake-bold';
+  src: url('../../fonts/crake-fonts/Crake-Bold.woff2') format('woff2'),
+      url('../../fonts/crake-fonts/Crake-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'crake-medium';
+  src: url('../../fonts/crake-fonts/Crake-Medium.woff2') format('woff2'),
+      url('../../fonts/crake-fonts/Crake-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'crake-regular';
+  src: url('../../fonts/crake-fonts/Crake-Regular.woff2') format('woff2'),
+      url('../../fonts/crake-fonts/Crake-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'crake-light';
+  src: url('../../fonts/crake-fonts/Crake-Light.woff') format('woff2'),
+      url('../../fonts/crake-fonts/Crake-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+// [Font2]
+
+@font-face {
+  font-family: 'Lufga-thin';
+  src: url('../../fonts/lufga-font/Lufga-Thin.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-thinitalic';
+  src: url('../../fonts/lufga-font/Lufga-ThinItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-ThinItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-semibolditalic';
+  src: url('../../fonts/lufga-font/Lufga-SemiBoldItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-semibold';
+  src: url('../../fonts/lufga-font/Lufga-SemiBold.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-regular';
+  src: url('../../fonts/lufga-font/Lufga-Regular.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-medium';
+  src: url('../../fonts/lufga-font/Lufga-Medium.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-mediumitalic';
+  src: url('../../fonts/lufga-font/Lufga-MediumItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-lightitalic';
+  src: url('../../fonts/lufga-font/Lufga-LightItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-light';
+  src: url('../../fonts/lufga-font/Lufga-Light.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-italic';
+  src: url('../../fonts/lufga-font/Lufga-Italic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-extralightitalic';
+  src: url('../../fonts/lufga-font/Lufga-ExtraLightItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-ExtraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-extralight';
+  src: url('../../fonts/lufga-font/Lufga-ExtraLight.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-extrabolditalic';
+  src: url('../../fonts/lufga-font/Lufga-ExtraBoldItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-ExtraBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-bolditalic';
+  src: url('../../fonts/lufga-font/Lufga-BoldItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-extrabold';
+  src: url('../../fonts/lufga-font/Lufga-ExtraBold.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-blackitalic';
+  src: url('../../fonts/lufga-font/Lufga-BlackItalic.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-black';
+  src: url('../../fonts/lufga-font/Lufga-Black.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lufga-bold';
+  src: url('../../fonts/lufga-font/Lufga-Bold.woff2') format('woff2'),
+      url('../../fonts/lufga-font/Lufga-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
