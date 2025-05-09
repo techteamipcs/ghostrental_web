@@ -1,80 +1,249 @@
-<section class="position-relative hero d-flex align-items-center justify-content-center">
-  @if (isBrowser) {
-  <div class="swiper bannerSwiper">
-    <div class="swiper-wrapper text-center">
-      @for (bannerdata of bannerData; track bannerdata) {
-      @if (bannerdata && bannerdata.media_data[0]?.file_type === 'video') {
-      <div class="swiper-slide ">
-        <video width="100%" autoplay loop playsinline muted="true">
-          <source src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" type="video/mp4" />
-          <source src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" type="video/ogg" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      } @else {
-      <div class="swiper-slide">
-        <img src="{{ imagePath }}/banner/{{ bannerdata.media_data[0].src }}" alt="Banner Image" class="img-fluid"
-          width="1482" height="584" />
-      </div>
-      }
-      }
+<section class="home">
+  <div class="container-fluid position-relative">
+    <img src="assets/images/home_banner.png" alt="home" class="w-100" />
+
+    <div class="content">
+      <h1 class="size89 performa-thin">Drive <br />Your Dream</h1>
+      <p class="size20 redhat-regular">
+        Welcome to our limousine rental website, we offer luxury transportation
+        services for any occasion, from weddings and proms to corporate events
+        and airport transferes.
+      </p>
+      <button class="size18 redhat-bold">Book Now</button>
     </div>
-    <!-- <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div> -->
-  </div>
-  }
-</section>
-<section class="trending">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-10 col-lg-9 col-md-11 col-sm-11 col-11 mx-auto">
-        <div class="text-center py-5">
-          <h2 class="fw-bold fs-2">Trending Now</h2>
-          <p class="mx-auto" style="max-width: 600px;">
-            Explore Our Most Sought-After Epoxy Tables, Loved By Customers For Their Exceptional Craftsmanship And
-            Timeless
-            Appeal. Bring Home A Masterpiece Today.
-          </p>
-        </div>
-      </div>
-      <div class="col-xl-10 col-lg-10 col-md-11 col-sm-11 col-11 mx-auto position-relative">
-        <div class="swiper-button-next trend-button-next"></div>
-        <div class="swiper-button-prev trend-button-prev"></div>
-        <div class="swiper trendSwiper px-3">
-          <!-- Navigation -->
+    <div class="form-content">
+      <form
+        [formGroup]="reservationForm"
+        class="quick-reservation-form"
+        (ngSubmit)="onSubmit()"
+      >
+        <h2 class="text-center mb-4 size28 redhat-bold text-black">
+          Quick Reservation
+        </h2>
 
-          <div class="swiper-wrapper">
-            <!-- Slide 1 -->
-            <div class="swiper-slide">
-              <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-8">
-                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Closeup Chair" />
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Full Chair" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide">
-              <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-8">
-                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Closeup Chair" />
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <img src="{{baseUrl}}/assets/images/career.png" class="img-fluid rounded-0" alt="Full Chair" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Add more slides as needed -->
+        <!-- Vehicle Type Toggle -->
+        <div class="d-flex justify-content-center mb-4">
+          <div class="vehicle-switch-container">
+            <label class="vehicle-switch-label">
+              <span class="vehicle-switch-text">CARS</span>
+              <input
+                type="radio"
+                name="vehicleType"
+                formControlName="vehicleType"
+                value="Car"
+                class="vehicle-switch-input"
+                (change)="toggleVehicleType()"
+              />
+              <span class="vehicle-switch-slider"></span>
+              <span class="vehicle-switch-text">Yachts</span>
+            </label>
           </div>
-          <!-- Pagination -->
-          <div class="swiper-pagination trend-pagination"></div>
         </div>
+
+        <!-- Car Form -->
+        <div *ngIf="isCar" class="car-form">
+          <div class="row">
+            <div class="mb-4 col-6">
+              <label for="carType" class="form-label size18 redhat-bold"
+                >Type</label
+              >
+              <select class="form-select" formControlName="type">
+                <option value="">Select Type</option>
+                <option *ngFor="let type of carTypes" [value]="type.name">
+                  {{ type.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="carModel" class="form-label size18 redhat-bold"
+                >Model</label
+              >
+              <select class="form-select" formControlName="model">
+                <option value="">Select Model</option>
+                <option *ngFor="let model of carTypes" [value]="model.name">
+                  {{ model.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="pickupDate" class="form-label size18 redhat-bold"
+                >Pickup Date</label
+              >
+              <input
+                type="date"
+                class="form-input"
+                formControlName="pickupDate"
+                [min]="today"
+                [max]="maxDate"
+              />
+              <div class="row mb-2">
+                <div class="col-6">
+                  <input
+                    type="time"
+                    class="form-input"
+                    formControlName="pickupTime"
+                  />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                formControlName="pickupLocation"
+                placeholder="Enter pickup location"
+              />
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="returnDate" class="form-label size18 redhat-bold"
+                >Return Date</label
+              >
+              <input
+                type="date"
+                class="form-input"
+                formControlName="returnDate"
+                [min]="reservationForm.get('pickupDate').value"
+                [max]="maxDate"
+              />
+              <div class="row mb-2">
+                <div class="col-6">
+                  <input
+                    type="time"
+                    class="form-input"
+                    formControlName="returnTime"
+                  />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                formControlName="returnLocation"
+                placeholder="Enter return location"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="book-now-btn">Book Now</button>
+        </div>
+
+        <!-- Yacht Form -->
+        <div *ngIf="!isCar" class="yacht-form">
+          <div class="row">
+            <div class="mb-4 col-6">
+              <label for="yachtType" class="form-label size18 redhat-bold"
+                >Type</label
+              >
+              <select class="form-select" formControlName="type">
+                <option value="">Select Type</option>
+                <option *ngFor="let type of yachtTypes" [value]="type">
+                  {{ type }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="yachtSize" class="form-label size18 redhat-bold"
+                >Size</label
+              >
+              <select class="form-select" formControlName="model">
+                <option value="">Select Size</option>
+                <option *ngFor="let size of yachtSizes" [value]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="departureDate" class="form-label size18 redhat-bold"
+                >Departure Date</label
+              >
+              <input
+                type="date"
+                class="form-input"
+                formControlName="departureDate"
+                [min]="today"
+                [max]="maxDate"
+              />
+              <div class="row mb-2">
+                <div class="col-6">
+                  <input
+                    type="time"
+                    class="form-input"
+                    formControlName="departureTime"
+                  />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                formControlName="departureMarina"
+                placeholder="Enter departure marina"
+              />
+            </div>
+
+            <div class="mb-4 col-6">
+              <label for="returnDate" class="form-label size18 redhat-bold"
+                >Return Date</label
+              >
+              <input
+                type="date"
+                class="form-input"
+                formControlName="returnDate"
+                [min]="reservationForm.get('departureDate').value"
+                [max]="maxDate"
+              />
+              <div class="row mb-2">
+                <div class="col-6">
+                  <input
+                    type="time"
+                    class="form-input"
+                    formControlName="returnTime"
+                  />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                formControlName="returnMarina"
+                placeholder="Enter return marina"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="book-now-btn">Book Now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="car-types-section">
+  <h3 class="text-center mb-3 size22 redhat-bold">Browse by Car Type</h3>
+  <div class="container-fluid" style="padding: 0 195px">
+    <div class="d-flex justify-content-between align-items-center gap-4">
+      <div *ngFor="let car of carTypes" class="car-icon">
+        <img [src]="getCarImageUrl(car)" [alt]="car.name" />
+        <p class="size18 redhat-semibold text-center position-relative">
+          {{ car.name }}
+        </p>
       </div>
     </div>
   </div>
-<section class="vh-100"></section>
+</section>
+
+<!-- services section -->
+<section>
+  <div class="container">
+    <div class="">
+      <h3 class="size22 redhat-bold">Services</h3>
+      <h2 class="size60 performa-light">Drive Your Dream</h2>
+      <p class="size20 redhat-regular">
+        Welcome to our limousine rental website, we offer luxury transportation
+        services for any occasion, from weddings and proms to corporate events
+        and airport transfers.
+      </p>
+      <button class="size18 redhat-bold">view all</button>
+    </div>
+  </div>
+</section>

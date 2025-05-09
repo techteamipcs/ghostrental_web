@@ -1,172 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
-@import "./assets/scss/common";
 
-[appFadeInOnScroll] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+body{
+  padding: 28px;
+  background-color: #FFFFFF;
 }
-
-.fade-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+.performa-thin {
+  font-family: "Performa thin";
 }
-
-.card {
-  @include flex-center;
+.performa-light {
+  font-family: "Performa Light";
 }
-
-// ================================= Important text headings ========================
-//Main headings use for h1 per page
-.text-h1 {
-  font-size: 60px;
-  @media (max-width: 1440px) {
-    font-size: 52px;
-  }
+.performa-regular {
+  font-family: "Performa Regular";
 }
-
-//Section titles used each section title
-.text-h2 {
+.performa-medium {
+  font-family: "Performa Medium";
 }
-
-//Sub-sections or blocks
-.text-h3 {
+.performa-semibold {
+  font-family: "Performa SemiBold";
 }
-
-// Secondary headings	Under titles
-.text-subtitle {
+.performa-bold {
+  font-family: "Performa Bold";
 }
-
-// Intro/lead content	Just below headings
-.text-lead {
+.redhat-thin {
+  font-family: "RedHatDisplay";
+  font-weight: 200;
 }
-
-// Captions, footnotes
-.text-small {
-  font-size: 12px;
+.redhat-light {
+  font-family: "RedHatDisplay";
+  font-weight: 300;
 }
-// Less important text
-.text-muted {
+.redhat-regular {
+  font-family: "RedHatDisplay";
+  font-weight: 400;
 }
-
-// ******************************** button css ********************************
-
-.btn-primary {
-  @include custom-button();
-  font-family: $font-lufga;
+.redhat-medium {
+  font-family: "RedHatDisplay";
+  font-weight: 500;
+}
+.redhat-semibold {
+  font-family: "RedHatDisplay";
   font-weight: 600;
+}
+.redhat-bold {
+  font-family: "RedHatDisplay";
+  font-weight: 700;
+}
+
+.size18 {
   font-size: 18px;
 }
-.subscriber-group {
-  border-bottom: 1px solid $placeholder;
-  input[type="email"] {
-    height: 35px;
-    border: none;
-    // font-family: $font-lufga-regular;
-    font-family: $font-lufga;
-    font-weight: 400;
-    background-color: transparent !important;
-    color: $text-dark;
-    font-size: 14px;
-  }
-  .btn-subscribe {
-    font-size: 14px;
-    border: none !important;
-  }
+.size16 {
+  font-size: 16px;
 }
-// ================================= font family =========================
-
-// *************** Font family Crake *****************
-
-.crake-light {
-  font-family: $font-crake;
-  font-weight: 300;
+.size14 {
+  font-size: 14px;
 }
-.crake-regular {
-  font-family: $font-crake;
-  font-weight: 400;
+.size20 {
+  font-size: 20px;
 }
-.crake-medium {
-  font-family: $font-crake;
-  font-weight: 500;
+.size22 {
+  font-size: 22px;
 }
-.crake-semibold {
-  font-family: $font-crake;
-  font-weight: 600;
+.size28 {
+  font-size: 28px;
 }
-.crake-bold {
-  font-family: $font-crake;
-  font-weight: 700;
-}
-// ************** Font family Lufga *******************
-
-.lufga-thin {
-  font-family: $font-lufga;
-  font-weight: 100;
-}
-.lufga-light {
-  font-family: $font-lufga;
-  font-weight: 300;
-}
-.lufga-regular {
-  font-family: $font-lufga;
-  font-weight: 400;
-}
-.lufga-semibold {
-  font-family: $font-lufga;
-  font-weight: 600;
-}
-.lufga-medium {
-  font-family: $font-lufga;
-  font-weight: 500;
-}
-.lufga-bold {
-  font-family: $font-lufga;
-  font-weight: 700;
-}
-.lufga-Extrabold {
-  font-family: $font-lufga;
-  font-weight: 800;
-}
-.lufga-dark {
-  font-family: $font-lufga;
-  font-weight: 900;
-}
-
-// ================================== colors ==========================
-// Primary color
-.text-primary {
-  color: $text-primary !important;
-}
-.text-cream {
-  color: $text-cream;
-}
-.text-beige {
-  color: $text-beige;
-}
-.text-gray {
-  color: $text-gray;
-}
-.text-dark {
-  color: $text-dark;
-}
-.text-dark-2 {
-  color: $text-dark-2;
-}
-.text-dark-3 {
-  color: $text-dark-3;
-}
-.text-shadow {
-  color: $text-shadow;
-}
-
-// ================================= Background colors ========================
-.bg-primary {
-  background-color: $text-primary;
-}
-.bg-cream {
-  background-color: $text-cream;
-}
-.bg-beige {
-  background-color: $text-beige;
+.size89 {
+  font-size: 89px;
 }

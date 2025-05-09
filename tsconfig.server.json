@@ -1,13 +1,11 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "outDir": "./dist/arovan/server",
+    "outDir": "./dist/ghost-rental/server",
     "target": "ES2022",
     "types": ["node"]
   },
-  "files": [
-    "src/main.server.ts","server.ts"
-  ],
+  "files": ["src/main.server.ts", "server.ts"],
   "angularCompilerOptions": {
     "entryModule": "src/app/app.module.server#AppServerModule"
   }

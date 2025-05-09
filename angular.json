@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "arovan": {
+    "ghost-rental": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,14 +24,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/arovan",
+            "outputPath": "dist/ghost-rental",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,
@@ -67,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "arovan:build:production"
+              "buildTarget": "ghost-rental:build:production"
             },
             "development": {
-              "buildTarget": "arovan:build:development"
+              "buildTarget": "ghost-rental:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "arovan:build"
+            "buildTarget": "ghost-rental:build"
           }
         },
         "test": {
@@ -88,14 +91,17 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
             "scripts": []
           }
         },
         "server": {
             "builder": "@angular-devkit/build-angular:server",
             "options": {
-              "outputPath": "dist/arovan/server",
+              "outputPath": "dist/ghost-rental/server",
               "main": "src/main.server.ts",
               "tsConfig": "tsconfig.server.json"
             }
@@ -103,20 +109,20 @@
         "build-ssr": {
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
-            "browserTarget": "arovan:build:production",
-            "serverTarget": "arovan:server:production"
+            "browserTarget": "ghost-rental:build:production",
+            "serverTarget": "ghost-rental:server:production"
           }
         },
         "serve-ssr": {
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
-            "browserTarget": "arovan:build",
-            "serverTarget": "arovan:server"
+            "browserTarget": "ghost-rental:build",
+            "serverTarget": "ghost-rental:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "arovan:build:production",
-              "serverTarget": "arovan:server:production"
+              "browserTarget": "ghost-rental:build:production",
+              "serverTarget": "ghost-rental:server:production"
             }
           }
         }
