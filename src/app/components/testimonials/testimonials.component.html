@@ -1,0 +1,46 @@
+<section class="testimonial py-5">
+  <div class="container">
+    <h3 class="text-center text-capitalize size60 performa-light">
+      What Our Customers Say
+    </h3>
+    <div class="swiper" #swiper>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let testimonial of testimonials">
+          <div class="row g-5">
+            <div class="col-md-4 text-center mb-3 mb-md-0">
+              <img
+                [src]="imageURL + '/' + testimonial.image"
+                alt="Customer Testimonial"
+                class="rounded-4 img-fluid testimonial-img"
+              />
+            </div>
+            <div class="col-md-8 text-start">
+              <div class="mb-2 d-flex text-warning">
+                <ng-container *ngFor="let star of getStars(testimonial.rating)">
+                  <lucide-icon name="star" />
+                </ng-container>
+              </div>
+              <h5 class="size30 redhat-regular mb-1 mt-4">
+                {{ testimonial.title }}
+              </h5>
+              <p class="size22 redhat-regular mb-2 mt-3">
+                {{ testimonial.content }}
+              </p>
+              <h6 class="size18 redhat-regular mt-3">{{ testimonial.name }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="text-start d-flex gap-2 mt-5 ms-4">
+        <button class="button">
+          <lucide-icon name="arrow-left" />
+        </button>
+        <button class="button">
+          <lucide-icon name="arrow-right" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

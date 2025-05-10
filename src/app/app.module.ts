@@ -10,7 +10,7 @@ import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@ang
 import { Error404Component } from './error404/error404.component';
 import { FormsModule } from '@angular/forms';
 import { BrandsComponent } from './components/brands/brands.component';
-import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ChevronRight, ChevronLeft } from 'lucide-angular';
+import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft } from 'lucide-angular';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ChevronRight, ChevronLeft }),
+    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft }),
   ],
   providers: [
     provideClientHydration(),

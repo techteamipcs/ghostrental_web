@@ -35,7 +35,9 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -95,17 +97,20 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/swiper/swiper-bundle.min.js"
+            ]
           }
         },
         "server": {
-            "builder": "@angular-devkit/build-angular:server",
-            "options": {
-              "outputPath": "dist/ghost-rental/server",
-              "main": "src/main.server.ts",
-              "tsConfig": "tsconfig.server.json"
-            }
-          },
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ghost-rental/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          }
+        },
         "build-ssr": {
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
