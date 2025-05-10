@@ -1,6 +1,12 @@
 <section class="home">
   <div class="container-fluid position-relative">
-    <img src="assets/images/home_banner.png" alt="home" class="w-100" />
+    <img
+      src="{{ imageURL }}/home/home_banner.png"
+      alt="Limousine on road"
+      class="w-100"
+      loading="lazy"
+      decoding="async"
+    />
 
     <div class="content">
       <h1 class="size89 performa-thin">Drive <br />Your Dream</h1>
@@ -9,218 +15,157 @@
         services for any occasion, from weddings and proms to corporate events
         and airport transferes.
       </p>
-      <button class="size18 redhat-bold">Book Now</button>
+      <button class="button size18 redhat-bold">Book Now</button>
     </div>
+
     <div class="form-content">
-      <form
-        [formGroup]="reservationForm"
-        class="quick-reservation-form"
-        (ngSubmit)="onSubmit()"
-      >
-        <h2 class="text-center mb-4 size28 redhat-bold text-black">
+      <form class="quick-reservation-form">
+        <h2 class="text-center mb-1 size28 redhat-bold text-black">
           Quick Reservation
         </h2>
 
-        <!-- Vehicle Type Toggle -->
-        <div class="d-flex justify-content-center mb-4">
+        <div class="d-flex justify-content-center mb-1">
           <div class="vehicle-switch-container">
             <label class="vehicle-switch-label">
               <span class="vehicle-switch-text">CARS</span>
               <input
                 type="radio"
                 name="vehicleType"
-                formControlName="vehicleType"
                 value="Car"
                 class="vehicle-switch-input"
-                (change)="toggleVehicleType()"
+                onchange="toggleVehicleType(true)"
+                checked
               />
               <span class="vehicle-switch-slider"></span>
               <span class="vehicle-switch-text">Yachts</span>
+              <input
+                type="radio"
+                name="vehicleType"
+                value="Yacht"
+                class="vehicle-switch-input"
+                onchange="toggleVehicleType(false)"
+              />
             </label>
           </div>
         </div>
 
-        <!-- Car Form -->
-        <div *ngIf="isCar" class="car-form">
+        <div id="carForm" class="car-form">
           <div class="row">
             <div class="mb-4 col-6">
-              <label for="carType" class="form-label size18 redhat-bold"
-                >Type</label
-              >
-              <select class="form-select" formControlName="type">
+              <label class="form-label size18 redhat-bold">Type</label>
+              <select class="form-select">
                 <option value="">Select Type</option>
-                <option *ngFor="let type of carTypes" [value]="type.name">
-                  {{ type.name }}
-                </option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
               </select>
             </div>
 
             <div class="mb-4 col-6">
-              <label for="carModel" class="form-label size18 redhat-bold"
-                >Model</label
-              >
-              <select class="form-select" formControlName="model">
+              <label class="form-label size18 redhat-bold">Model</label>
+              <select class="form-select">
                 <option value="">Select Model</option>
-                <option *ngFor="let model of carTypes" [value]="model.name">
-                  {{ model.name }}
-                </option>
+                <option value="Model X">Model X</option>
+                <option value="Model Y">Model Y</option>
               </select>
-            </div>
-
-            <div class="mb-4 col-6">
-              <label for="pickupDate" class="form-label size18 redhat-bold"
-                >Pickup Date</label
-              >
-              <input
-                type="date"
-                class="form-input"
-                formControlName="pickupDate"
-                [min]="today"
-                [max]="maxDate"
-              />
-              <div class="row mb-2">
-                <div class="col-6">
-                  <input
-                    type="time"
-                    class="form-input"
-                    formControlName="pickupTime"
-                  />
-                </div>
-              </div>
-              <input
-                type="text"
-                class="form-input"
-                formControlName="pickupLocation"
-                placeholder="Enter pickup location"
-              />
-            </div>
-
-            <div class="mb-4 col-6">
-              <label for="returnDate" class="form-label size18 redhat-bold"
-                >Return Date</label
-              >
-              <input
-                type="date"
-                class="form-input"
-                formControlName="returnDate"
-                [min]="reservationForm.get('pickupDate').value"
-                [max]="maxDate"
-              />
-              <div class="row mb-2">
-                <div class="col-6">
-                  <input
-                    type="time"
-                    class="form-input"
-                    formControlName="returnTime"
-                  />
-                </div>
-              </div>
-              <input
-                type="text"
-                class="form-input"
-                formControlName="returnLocation"
-                placeholder="Enter return location"
-              />
             </div>
           </div>
+          <div class="mb-4 col-12">
+            <label class="form-label size18 redhat-bold">Pickup Date</label>
+            <div class="row mb-2">
+              <div class="col-6">
+                <input type="date" class="form-input" />
+              </div>
+              <div class="col-6">
+                <input type="time" class="form-input" />
+              </div>
+            </div>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Enter pickup location"
+            />
+          </div>
 
-          <button type="submit" class="book-now-btn">Book Now</button>
+          <div class="mb-4 col-12">
+            <label class="form-label size18 redhat-bold">Return Date</label>
+            <div class="row mb-2">
+              <div class="col-6">
+                <input type="date" class="form-input" />
+              </div>
+              <div class="col-6">
+                <input type="time" class="form-input" />
+              </div>
+            </div>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Enter return location"
+            />
+          </div>
         </div>
 
-        <!-- Yacht Form -->
-        <div *ngIf="!isCar" class="yacht-form">
+        <div id="yachtForm" class="yacht-form" style="display: none">
           <div class="row">
             <div class="mb-4 col-6">
-              <label for="yachtType" class="form-label size18 redhat-bold"
-                >Type</label
-              >
-              <select class="form-select" formControlName="type">
+              <label class="form-label size18 redhat-bold">Type</label>
+              <select class="form-select">
                 <option value="">Select Type</option>
-                <option *ngFor="let type of yachtTypes" [value]="type">
-                  {{ type }}
-                </option>
+                <option value="Sailing Yacht">Sailing Yacht</option>
+                <option value="Motor Yacht">Motor Yacht</option>
               </select>
             </div>
 
             <div class="mb-4 col-6">
-              <label for="yachtSize" class="form-label size18 redhat-bold"
-                >Size</label
-              >
-              <select class="form-select" formControlName="model">
+              <label class="form-label size18 redhat-bold">Size</label>
+              <select class="form-select">
                 <option value="">Select Size</option>
-                <option *ngFor="let size of yachtSizes" [value]="size">
-                  {{ size }}
-                </option>
+                <option value="30ft">30ft</option>
+                <option value="50ft">50ft</option>
               </select>
             </div>
 
             <div class="mb-4 col-6">
-              <label for="departureDate" class="form-label size18 redhat-bold"
+              <label class="form-label size18 redhat-bold"
                 >Departure Date</label
               >
-              <input
-                type="date"
-                class="form-input"
-                formControlName="departureDate"
-                [min]="today"
-                [max]="maxDate"
-              />
+              <input type="date" class="form-input" />
               <div class="row mb-2">
                 <div class="col-6">
-                  <input
-                    type="time"
-                    class="form-input"
-                    formControlName="departureTime"
-                  />
+                  <input type="time" class="form-input" />
                 </div>
               </div>
               <input
                 type="text"
                 class="form-input"
-                formControlName="departureMarina"
                 placeholder="Enter departure marina"
               />
             </div>
 
             <div class="mb-4 col-6">
-              <label for="returnDate" class="form-label size18 redhat-bold"
-                >Return Date</label
-              >
-              <input
-                type="date"
-                class="form-input"
-                formControlName="returnDate"
-                [min]="reservationForm.get('departureDate').value"
-                [max]="maxDate"
-              />
+              <label class="form-label size18 redhat-bold">Return Date</label>
+              <input type="date" class="form-input" />
               <div class="row mb-2">
                 <div class="col-6">
-                  <input
-                    type="time"
-                    class="form-input"
-                    formControlName="returnTime"
-                  />
+                  <input type="time" class="form-input" />
                 </div>
               </div>
               <input
                 type="text"
                 class="form-input"
-                formControlName="returnMarina"
                 placeholder="Enter return marina"
               />
             </div>
           </div>
-
-          <button type="submit" class="book-now-btn">Book Now</button>
         </div>
+        <button type="submit" class="button">Book Now</button>
       </form>
     </div>
   </div>
 </section>
 
-<section class="car-types-section">
+<section class="car-types-section sectionPadding">
   <h3 class="text-center mb-3 size22 redhat-bold">Browse by Car Type</h3>
-  <div class="container-fluid" style="padding: 0 195px">
+  <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center gap-4">
       <div *ngFor="let car of carTypes" class="car-icon">
         <img [src]="getCarImageUrl(car)" [alt]="car.name" />
@@ -232,18 +177,268 @@
   </div>
 </section>
 
-<!-- services section -->
-<section>
-  <div class="container">
-    <div class="">
-      <h3 class="size22 redhat-bold">Services</h3>
-      <h2 class="size60 performa-light">Drive Your Dream</h2>
-      <p class="size20 redhat-regular">
-        Welcome to our limousine rental website, we offer luxury transportation
-        services for any occasion, from weddings and proms to corporate events
-        and airport transfers.
-      </p>
-      <button class="size18 redhat-bold">view all</button>
+<section
+  class="services text-white sectionPadding position-relative"
+  style="height: 100vh"
+>
+  <div class="container-fluid text-white">
+    <div class="position-relative" style="height: 450px">
+      <div class="position-relative">
+        <div class="img-container position-absolute top-0 start-0">
+          <img
+            src="{{ imageURL }}/services/services1.png"
+            alt=""
+            class="w-100 object-fit-cover"
+          />
+          <span class="overlay"></span>
+        </div>
+        <div class="services-content">
+          <h3 class="size22 redhat-bold text-capitalize text-center">
+            our Services
+          </h3>
+          <h2 class="size60 performa-light text-capitalize text-center">
+            Drive Your Dream
+          </h2>
+          <p class="size20 redhat-regular text-center">
+            Welcome to our limousine rental website, we offer luxury
+            transportation services for any occasion, from weddings and proms to
+            corporate events and airport transfers.
+          </p>
+          <button class="button size18 redhat-bold text-capitalize">
+            view all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="row" style="gap: 3rem">
+        <div class="col text-black">
+          <div class="card">
+            <div class="img-cont p-1">
+              <img
+                src="{{ imageURL }}/services/yacht_rental.png"
+                alt=""
+                class="services-images"
+              />
+            </div>
+            <div class="card-content">
+              <h4 class="size26 redhat-semibold text-capitalize">
+                Luxury car Rental
+              </h4>
+              <p class="size18 redhat-semibold">
+                Choose from top brands like Lamborghini, Rolls-Royce, and Range
+                Rover. Enjoy daily or long-term rentals with free delivery
+                across the UAE.
+              </p>
+              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+            </div>
+          </div>
+        </div>
+        <div class="col text-black">
+          <div class="card">
+            <div class="img-cont p-1">
+              <img
+                src="{{ imageURL }}/services/yacht_rental.png"
+                alt=""
+                class="services-images"
+              />
+            </div>
+            <div class="card-content">
+              <h4 class="size26 redhat-semibold text-capitalize">
+                Luxury Yacht Rental
+              </h4>
+              <p class="size18 redhat-semibold">
+                Book private yachts for parties, getaways, or events. Includes
+                crew, catering options, and scenic routes like Marina &
+                Atlantis.
+              </p>
+              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+            </div>
+          </div>
+        </div>
+        <div class="col text-black">
+          <div class="card">
+            <div class="img-cont p-1">
+              <img
+                src="{{ imageURL }}/services/chauffeur.png"
+                alt=""
+                class="services-images"
+              />
+            </div>
+            <div class="card-content">
+              <h4 class="size26 redhat-semibold text-capitalize">
+                Luxury Chauffeur Services
+              </h4>
+              <p class="size18 redhat-semibold">
+                Professional chauffeurs, luxury cars, and on-time service for
+                VIPs, weddings, or airport transfers transfers.
+              </p>
+              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="collection sectionPadding">
+  <div class="container-fluid">
+    <h3 class="text-capitalize size60 performa-light">our car collection</h3>
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <button class="button size14 redhat-semibold">cars</button>
+          <button class="button viewbutton size18 redhat-bold">view all</button>
+        </div>
+
+        <!-- Scrollable Carousel -->
+        <div class="carousel-row d-flex overflow-auto gap-4 pb-3">
+          <div
+            *ngFor="let car of carsCollections"
+            class="car-card flex-shrink-0"
+            style="min-width: 300px; max-width: 300px"
+          >
+            <img
+              src="{{ imageURL }}/{{ car.image }}"
+              alt="{{ car.name }}"
+              class="img-fluid rounded"
+            />
+
+            <div class="car-info mt-2">
+              <h4 class="car-name mb-1 size26 redhat-semibold">
+                {{ car.name }}
+              </h4>
+              <h6 class="transmission text-muted size18 redhat-semibold">
+                {{ car.transmission }}
+              </h6>
+            </div>
+
+            <div
+              class="d-flex justify-content-between py-2 border-top border-bottom"
+            >
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/fuel_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">{{ car.fuel }}</h6>
+              </div>
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/speed_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">{{ car.speed }}</h6>
+              </div>
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/seat_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">
+                  {{ car.seat }} Seats
+                </h6>
+              </div>
+            </div>
+
+            <div
+              class="cash-container mt-2 d-flex justify-content-between align-items-center"
+            >
+              <div class="cash">
+                <h6 class="text-muted mb-0 size18 redhat-semibold">
+                  <del>AED {{ car.price.regular }}</del>
+                </h6>
+                <h5 class="mb-0 size26 redhat-semibold">
+                  AED {{ car.price.discounted }}
+                </h5>
+              </div>
+              <a href="#" class="btn btn-link p-0 mt-auto">View More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <button class="button size14 redhat-semibold">yachts</button>
+          <button class="button viewbutton size18 redhat-bold">view all</button>
+        </div>
+
+        <!-- Scrollable Carousel -->
+        <div class="carousel-row d-flex overflow-auto gap-4 pb-3">
+          <div
+            *ngFor="let car of carsCollections"
+            class="car-card flex-shrink-0"
+            style="min-width: 300px; max-width: 300px"
+          >
+            <img
+              src="{{ imageURL }}/{{ car.image }}"
+              alt="{{ car.name }}"
+              class="img-fluid rounded"
+            />
+
+            <div class="car-info mt-2">
+              <h4 class="car-name mb-1 size26 redhat-semibold">
+                {{ car.name }}
+              </h4>
+              <h6 class="transmission text-muted size18 redhat-semibold">
+                {{ car.transmission }}
+              </h6>
+            </div>
+
+            <div
+              class="d-flex justify-content-between py-2 border-top border-bottom"
+            >
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/fuel_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">{{ car.fuel }}</h6>
+              </div>
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/speed_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">{{ car.speed }}</h6>
+              </div>
+              <div class="text-center">
+                <img
+                  src="{{ imageURL }}/collection/seat_icon.png"
+                  class="img-fluid collection_image"
+                  alt=""
+                />
+                <h6 class="mb-0 size16 redhat-semibold">
+                  {{ car.seat }} Seats
+                </h6>
+              </div>
+            </div>
+
+            <div
+              class="cash-container mt-2 d-flex justify-content-between align-items-center"
+            >
+              <div class="cash">
+                <h6 class="text-muted mb-0 size18 redhat-semibold">
+                  <del>AED {{ car.price.regular }}</del>
+                </h6>
+                <h5 class="mb-0 size26 redhat-semibold">
+                  AED {{ car.price.discounted }}
+                </h5>
+              </div>
+              <a href="#" class="btn btn-link p-0 mt-auto">View More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-brands></app-brands>

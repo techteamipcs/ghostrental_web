@@ -7,36 +7,32 @@
     top: 30%;
     left: 10%;
     transform: translateY(-30%);
-
-    button {
-      border: 2px solid white;
-      color: white;
-      background-color: transparent;
-      border-radius: 30px;
-      padding: 18px 70px;
-      outline: none;
-    }
   }
 
   .form-content {
     position: absolute;
     top: 30%;
     right: 10%;
-    width: 508px;
-    height: 698px;
+    width: 100%;
+    max-width: 508px;
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
     border-radius: 30px;
     transform: translateY(-30%);
     padding: 2rem;
+    box-sizing: border-box;
 
     .quick-reservation-form {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
 
       .vehicle-toggle {
         display: flex;
         justify-content: center;
+        gap: 1rem;
 
         .vehicle-btn {
           padding: 0.5rem 1.5rem;
@@ -45,6 +41,8 @@
           transition: all 0.3s ease;
           border: none;
           cursor: pointer;
+          flex: 1;
+          min-width: 120px;
 
           &.active {
             background-color: black;
@@ -58,28 +56,45 @@
         }
       }
 
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+
+      .form-group {
+        flex: 1;
+        min-width: 200px;
+      }
+
       .form-select,
       .form-input {
+        width: 100%;
         padding: 13px 1rem;
         border-radius: 25px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         background-color: white;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-      }
-
-      .book-now-btn {
-        width: max-content;
-        padding: 1rem 2rem;
-        border-radius: 25px;
-        background-color: black;
-        color: white;
-        border: none;
-        cursor: pointer;
+        font-size: 16px;
         transition: all 0.3s ease;
 
-        &:hover {
-          background-color: black; // Same as default, but kept for consistency
+        &:focus {
+          outline: none;
+          border-color: black;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        &::placeholder {
+          color: #666;
+        }
+      }
+
+      .button {
+        background-color: black;
+        border: none;
+        display: flex;
+        place-self: center;
       }
     }
   }
@@ -119,7 +134,7 @@
         transition: all 0.3s ease;
 
         &:before {
-          content: '';
+          content: "";
           position: absolute;
           width: 26px;
           height: 26px;
@@ -144,8 +159,6 @@
 
 // Brands section
 .car-types-section {
-  padding: 3rem 0;
-
   .car-icon {
     border-radius: 15px;
     padding: 1.5rem;
@@ -173,4 +186,104 @@
       margin: 0;
     }
   }
+}
+
+// services
+.services {
+  .services-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .button {
+    display: flex;
+    place-self: center;
+    background-color: white;
+    color: black;
+  }
+  img {
+    border-radius: 20px;
+  }
+  .card-container {
+    position: relative;
+    top: -110px;
+    padding: 0 5rem;
+  }
+  .card {
+    position: relative;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    box-shadow: inset 0 85px 0px rgba(0, 0, 0, 0.8);
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .card-content {
+    padding: 0 16px;
+    height: 100%;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .img-cont {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  img {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    bottom: 0px;
+  }
+}
+
+
+.collection{
+  .button{
+    background-color: black;
+    color: white;
+    padding: .5rem 1rem;
+  }
+  .viewbutton{
+    padding: 1rem 4rem;
+  }
+  
+  .carousel-row {
+    scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.car-card {
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+.carousel-row::-webkit-scrollbar {
+  display: none;
+}
+
+.collection_image{
+  width: 36px;
+  height: 36px;
+}
 }

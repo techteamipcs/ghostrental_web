@@ -1,48 +1,65 @@
+@import "assets/scss/abstract/_variables";
 
-body{
+body {
   padding: 28px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
+
+//  performa Font family 
 .performa-thin {
-  font-family: "Performa thin";
-}
-.performa-light {
-  font-family: "Performa Light";
-}
-.performa-regular {
-  font-family: "Performa Regular";
-}
-.performa-medium {
-  font-family: "Performa Medium";
-}
-.performa-semibold {
-  font-family: "Performa SemiBold";
-}
-.performa-bold {
-  font-family: "Performa Bold";
-}
-.redhat-thin {
-  font-family: "RedHatDisplay";
+  font-family: $perfoma-thin;
   font-weight: 200;
 }
+
+.performa-light {
+  font-family: $perfoma-light;
+  font-weight: 300;
+}
+
+.performa-regular {
+  font-family: $perfoma-regular;
+  font-weight: 400;
+}
+
+.performa-medium {
+  font-family: $perfoma-medium;
+  font-weight: 500;
+}
+
+.performa-semibold {
+  font-family: $perfoma-semibold;
+  font-weight: 600;
+}
+
+.performa-bold {
+  font-family: $perfoma-bold;
+  font-weight: 700;
+}
+
+// Red Hat Display font family  
+.redhat-thin {
+  font-family: $redhat;
+  font-weight: 200;
+}
+
 .redhat-light {
-  font-family: "RedHatDisplay";
+  font-family: $redhat;
   font-weight: 300;
 }
 .redhat-regular {
-  font-family: "RedHatDisplay";
+  font-family: $redhat;
   font-weight: 400;
 }
 .redhat-medium {
-  font-family: "RedHatDisplay";
+  font-family: $redhat;
   font-weight: 500;
 }
 .redhat-semibold {
-  font-family: "RedHatDisplay";
+  font-family: $redhat;
   font-weight: 600;
 }
 .redhat-bold {
-  font-family: "RedHatDisplay";
+  font-family: $redhat;
   font-weight: 700;
 }
 
@@ -64,6 +81,41 @@ body{
 .size28 {
   font-size: 28px;
 }
+
+.sectionPadding {
+  padding: 5rem 0;
+}
+
+.size60{
+  font-size: 60px;
+}
 .size89 {
   font-size: 89px;
+}
+
+// common button styles
+.button {
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  border-radius: 30px;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+ 
+}
+
+img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.sectionPadding{
+  padding: 4rem 7rem
 }

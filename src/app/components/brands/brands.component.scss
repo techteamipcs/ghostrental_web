@@ -1,0 +1,25 @@
+.brand-logo {
+  width: 70px; /* Adjust the width of the brand logos */
+  height: auto;
+}
+
+.brand-item {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 145px;
+  gap: 1rem;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  display: flex;
+  place-self: center;
+}
