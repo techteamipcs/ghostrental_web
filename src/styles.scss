@@ -1,10 +1,12 @@
 @import "assets/scss/abstract/_variables";
 
 body {
-  padding: 28px;
+  padding: 26px;
   background-color: #ffffff;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
-
 //  performa Font family 
 .performa-thin {
   font-family: $perfoma-thin;
@@ -85,9 +87,6 @@ body {
   font-size: 30px;
 }
 
-.sectionPadding {
-  padding: 5rem 0;
-}
 
 .size60{
   font-size: 60px;
@@ -115,10 +114,9 @@ img{
   object-fit: cover;
 }
 a{
-  text-decoration: none;
-  color: black;
+  text-decoration: none !important;
+  color: black !important;
 }
-
 .sectionPadding{
-  padding: 4rem 7rem
+  padding: 7rem
 }

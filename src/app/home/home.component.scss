@@ -2,24 +2,27 @@
   color: white;
 
   .content {
-    width: 500px;
+    width: 570px;
     position: absolute;
     top: 30%;
     left: 10%;
     transform: translateY(-30%);
+    h1{
+      line-height: 90px;
+    }
   }
 
   .form-content {
     position: absolute;
-    top: 30%;
-    right: 10%;
+    top: 50%;
+    right: 6.5%;
     width: 100%;
     max-width: 508px;
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
     border-radius: 30px;
-    transform: translateY(-30%);
+    transform: translateY(-50%);
     padding: 2rem;
     box-sizing: border-box;
 
@@ -188,6 +191,26 @@
   }
 }
 
+// Features section
+.features {
+  .feature-item {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+  }
+}
+
 // services
 .services {
   .services-content {
@@ -197,7 +220,6 @@
     transform: translate(-50%, 50%);
   }
   .overlay {
-    background-color: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0;
     left: 0;

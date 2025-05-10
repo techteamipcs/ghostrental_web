@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   today: string;
   maxDate: string;
   reservationForm!: FormGroup;
-  
+
 
   carsCollections = [
     {
@@ -88,7 +88,31 @@ export class HomeComponent implements OnInit {
     }
   ];
 
- 
+  features = [
+    {
+      image: 'home/cars.png',
+      title: 'Elite Fleet',
+      description: 'Curated collection of world-class vehicles and yachts',
+
+    },
+    {
+      image: 'home/hand.png',
+      title: 'White-Glove Service',
+      description: 'VIP-level customer service & support',
+    },
+    {
+      image: 'home/fullday.png',
+      title: '24/7 Easy Booking',
+      description: 'Seamless online booking and 24/7 availability',
+    },
+    {
+      image: 'home/earth.png',
+      title: 'UAE-Wide Coverage',
+      description: 'Serving Dubai and all major UAE destinations',
+    }
+  ];
+
+
 
   carTypes = [
     { name: 'Convertible', image: 'convertible.png' },
@@ -145,5 +169,5 @@ export class HomeComponent implements OnInit {
     console.log(this.reservationForm.value);
   }
 
-  
+
 }

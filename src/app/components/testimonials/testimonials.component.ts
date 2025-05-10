@@ -11,6 +11,8 @@ import { Navigation } from 'swiper/modules';
 export class TestimonialsComponent implements AfterViewInit {
   @ViewChild('swiper') swiperRef!: ElementRef;
   imageURL: string = `${environment.baseUrl}/assets`;
+  expandedIndex: number = -1;
+  // Testimonials data
   testimonials = [
     {
       image: 'testimonials/image1.jpg',
@@ -49,19 +51,74 @@ export class TestimonialsComponent implements AfterViewInit {
     }
   ];
 
+  // FAQ data
+  faqs = [
+    {
+      id: 'faq1',
+      question: 'How can I pay for my car rental?',
+      answer: 'We have multiple payment options, including Visa, MasterCard, cash, American Express, online banking, and Bitcoin.'
+    },
+    {
+      id: 'faq2',
+      question: 'Which vehicles can I rent from Luxury Supercars?',
+      answer: 'You can choose from a wide range of high-end vehicles including Lamborghini, Ferrari, Rolls-Royce, Bentley, and more.'
+    },
+    {
+      id: 'faq3',
+      question: 'Can a reservation be modified or cancelled?',
+      answer: 'Yes, reservations can be modified or cancelled up to 24 hours before the pickup time without any charges.'
+    },
+    {
+      id: 'faq4',
+      question: 'What about late return fees?',
+      answer: 'A late return fee may be charged if the vehicle is returned more than one hour past the agreed time without prior notice.'
+    },
+    {
+      id: 'faq5',
+      question: 'Is roadside assistance offered in case I have problems with my car?',
+      answer: 'Yes, 24/7 roadside assistance is included with all our rentals to ensure your peace of mind.'
+    },
+    {
+      id: 'faq6',
+      question: 'How do I book a Dubai luxury car rental?',
+      answer: 'You can book directly through our website, mobile app, or by calling our customer service hotline.'
+    },
+    {
+      id: 'faq7',
+      question: 'Can I book more than one vehicle at once?',
+      answer: 'Yes, you can book multiple vehicles in one reservation. Just select the desired models during the booking process.'
+    }
+  ];
+
+
   getStars(rating: number): number[] {
     return Array(rating).fill(0);
   }
 
   ngAfterViewInit(): void {
-    new Swiper(this.swiperRef.nativeElement, {
-      modules: [Navigation],
-      slidesPerView: 1,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+    setTimeout(() => {
+      new Swiper(this.swiperRef.nativeElement, {
+        modules: [Navigation],
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
+    }, 0);
+  }
+
+  // Accordion methods
+  toggleAccordion(index: number) {
+    this.expandedIndex = this.expandedIndex === index ? -1 : index;
   }
 }

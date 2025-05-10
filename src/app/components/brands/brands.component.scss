@@ -4,7 +4,6 @@
 }
 
 .brand-item {
-  flex: 1;
   padding: 1rem;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
@@ -15,6 +14,7 @@
   justify-content: center;
   min-height: 145px;
   gap: 1rem;
+  width: 150px;
 }
 
 .button {

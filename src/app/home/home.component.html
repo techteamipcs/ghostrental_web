@@ -1,5 +1,5 @@
 <section class="home">
-  <div class="container-fluid position-relative">
+  <div class="container-fluid position-relative p-0">
     <img
       src="{{ imageURL }}/home/home_banner.png"
       alt="Limousine on road"
@@ -442,5 +442,20 @@
 </section>
 
 <app-brands></app-brands>
+
+<section class="features sectionPadding">
+  <div class="container-fluid">
+    <h3 class="text-center mb-5">What Sets Us Apart</h3>
+    <div class="row g-4">
+      <div class="col-md-3" *ngFor="let feature of features">
+        <div class="feature-item text-center">
+          <img [src]="imageURL + '/' + feature.image" alt="{{feature.title}}" class="feature-icon mb-3" />
+          <h4 class="size26 redhat-semibold mb-3">{{feature.title}}</h4>
+          <p class="size18 redhat-semibold">{{feature.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-testimonials></app-testimonials>

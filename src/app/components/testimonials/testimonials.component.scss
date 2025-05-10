@@ -1,4 +1,8 @@
 .testimonial {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
+  }
+
   .swiper {
     overflow: hidden;
     margin-top: 0;
@@ -42,16 +46,73 @@
     .text-warning {
       color: #000 !important;
     }
+  }
+  .button {
+    width: 41px;
+    padding: 0;
+    height: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 1px solid black;
+  }
+}
 
-    .button {
-      width: 41px;
-      padding: 0;
-      height: 41px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: black;
-      border: 1px solid black;
+.faq {
+  
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
     }
+  
+    .faq-item {
+      border-radius: 10px;
+      border: 1px solid black;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        gap: 1rem;
+        position: relative;
+        
+        .icon {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%) rotate(0deg);
+          font-size: 2.5rem;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      .faq-answer {
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+        opacity: 0;
+      }
+
+      &.expanded {
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+
+        .faq-answer {
+          opacity: 1;
+          margin-top: 0.5rem;
+        }
+        .icon {
+          transform:translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+  
+  .button {
+    background-color: black;
+    color: white;
   }
 }
