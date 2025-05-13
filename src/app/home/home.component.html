@@ -1,4 +1,4 @@
-<section class="home">
+<section class="home" style="padding: 28px">
   <div class="container-fluid position-relative p-0">
     <img
       src="{{ imageURL }}/home/home_banner.png"
@@ -168,7 +168,7 @@
   <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center gap-4">
       <div *ngFor="let car of carTypes" class="car-icon">
-        <img [src]="getCarImageUrl(car)" [alt]="car.name" />
+        <img [src]="getCarCategoriesImageUrl(car)" [alt]="car.name" />
         <p class="size18 redhat-semibold text-center position-relative">
           {{ car.name }}
         </p>
@@ -186,7 +186,7 @@
       <div class="position-relative">
         <div class="img-container position-absolute top-0 start-0">
           <img
-            src="{{ imageURL }}/services/services1.png"
+            src="{{ imageURL }}/home/services/services1.png"
             alt=""
             class="w-100 object-fit-cover"
           />
@@ -217,7 +217,7 @@
           <div class="card">
             <div class="img-cont p-1">
               <img
-                src="{{ imageURL }}/services/yacht_rental.png"
+                src="{{ imageURL }}/home/services/yacht_rental.png"
                 alt=""
                 class="services-images"
               />
@@ -231,7 +231,11 @@
                 Rover. Enjoy daily or long-term rentals with free delivery
                 across the UAE.
               </p>
-              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none"
+              >
+                know more
+              </a>
             </div>
           </div>
         </div>
@@ -239,7 +243,7 @@
           <div class="card">
             <div class="img-cont p-1">
               <img
-                src="{{ imageURL }}/services/yacht_rental.png"
+                src="{{ imageURL }}/home/services/yacht_rental.png"
                 alt=""
                 class="services-images"
               />
@@ -253,7 +257,11 @@
                 crew, catering options, and scenic routes like Marina &
                 Atlantis.
               </p>
-              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none"
+              >
+                know more
+              </a>
             </div>
           </div>
         </div>
@@ -261,7 +269,7 @@
           <div class="card">
             <div class="img-cont p-1">
               <img
-                src="{{ imageURL }}/services/chauffeur.png"
+                src="{{ imageURL }}/home/services/chauffeur.png"
                 alt=""
                 class="services-images"
               />
@@ -274,7 +282,11 @@
                 Professional chauffeurs, luxury cars, and on-time service for
                 VIPs, weddings, or airport transfers transfers.
               </p>
-              <a class="size16 redhat-semibold text-capitalize"> know more </a>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none"
+              >
+                know more
+              </a>
             </div>
           </div>
         </div>
@@ -301,11 +313,10 @@
             style="min-width: 300px; max-width: 300px"
           >
             <img
-              src="{{ imageURL }}/{{ car.image }}"
-              alt="{{ car.name }}"
+              [src]="getCarCategoriesImageUrl(car)"
+              [alt]="car.name"
               class="img-fluid rounded"
             />
-
             <div class="car-info mt-2">
               <h4 class="car-name mb-1 size26 redhat-semibold">
                 {{ car.name }}
@@ -320,7 +331,7 @@
             >
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/fuel_icon.png"
+                  src="{{ imageURL }}/home/collection/fuel_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
@@ -328,7 +339,7 @@
               </div>
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/speed_icon.png"
+                  src="{{ imageURL }}/home/collection/speed_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
@@ -336,7 +347,7 @@
               </div>
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/seat_icon.png"
+                  src="{{ imageURL }}/home/collection/seat_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
@@ -357,7 +368,9 @@
                   AED {{ car.price.discounted }}
                 </h5>
               </div>
-              <a href="#" class="btn btn-link p-0 mt-auto">View More</a>
+              <a href="#" class="btn btn-link p-0 mt-auto text-decoration-none"
+                >View More</a
+              >
             </div>
           </div>
         </div>
@@ -371,22 +384,22 @@
         <!-- Scrollable Carousel -->
         <div class="carousel-row d-flex overflow-auto gap-4 pb-3">
           <div
-            *ngFor="let car of carsCollections"
+            *ngFor="let yacht of yachtCollections"
             class="car-card flex-shrink-0"
             style="min-width: 300px; max-width: 300px"
           >
             <img
-              src="{{ imageURL }}/{{ car.image }}"
-              alt="{{ car.name }}"
+              [src]="getCarCategoriesImageUrl(yacht)"
+              [alt]="yacht.name"
               class="img-fluid rounded"
             />
 
             <div class="car-info mt-2">
               <h4 class="car-name mb-1 size26 redhat-semibold">
-                {{ car.name }}
+                {{ yacht.name }}
               </h4>
               <h6 class="transmission text-muted size18 redhat-semibold">
-                {{ car.transmission }}
+                {{ yacht.type }}
               </h6>
             </div>
 
@@ -395,28 +408,28 @@
             >
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/fuel_icon.png"
+                  src="{{ imageURL }}/home/collection/fuel_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
-                <h6 class="mb-0 size16 redhat-semibold">{{ car.fuel }}</h6>
+                <h6 class="mb-0 size16 redhat-semibold">{{ yacht.length }}</h6>
               </div>
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/speed_icon.png"
+                  src="{{ imageURL }}/home/collection/speed_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
-                <h6 class="mb-0 size16 redhat-semibold">{{ car.speed }}</h6>
+                <h6 class="mb-0 size16 redhat-semibold">{{ yacht.length }}</h6>
               </div>
               <div class="text-center">
                 <img
-                  src="{{ imageURL }}/collection/seat_icon.png"
+                  src="{{ imageURL }}/home/collection/seat_icon.png"
                   class="img-fluid collection_image"
                   alt=""
                 />
                 <h6 class="mb-0 size16 redhat-semibold">
-                  {{ car.seat }} Seats
+                  {{ yacht.cabins }} Cabins
                 </h6>
               </div>
             </div>
@@ -426,13 +439,15 @@
             >
               <div class="cash">
                 <h6 class="text-muted mb-0 size18 redhat-semibold">
-                  <del>AED {{ car.price.regular }}</del>
+                  <del>AED {{ yacht.price.regular }}</del>
                 </h6>
                 <h5 class="mb-0 size26 redhat-semibold">
-                  AED {{ car.price.discounted }}
+                  AED {{ yacht.price.discounted }}
                 </h5>
               </div>
-              <a href="#" class="btn btn-link p-0 mt-auto">View More</a>
+              <a href="#" class="btn btn-link p-0 mt-auto text-decoration-none"
+                >View More</a
+              >
             </div>
           </div>
         </div>
@@ -443,18 +458,105 @@
 
 <app-brands></app-brands>
 
-<section class="features sectionPadding">
-  <div class="container-fluid">
-    <h3 class="text-center mb-5">What Sets Us Apart</h3>
-    <div class="row g-4">
-      <div class="col-md-3" *ngFor="let feature of features">
-        <div class="feature-item text-center">
-          <img [src]="imageURL + '/' + feature.image" alt="{{feature.title}}" class="feature-icon mb-3" />
-          <h4 class="size26 redhat-semibold mb-3">{{feature.title}}</h4>
-          <p class="size18 redhat-semibold">{{feature.description}}</p>
+<section
+  class="about-us sectionPadding w-100 min-vh-100 position-relative overflow-hidden"
+>
+  <div class="d-flex flex-column w-100">
+    <div class="position-relative w-100" style="height: 580px">
+      <img
+        src="{{ imageURL }}/home/about_us.png"
+        alt="Luxury car and yacht rental"
+        class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1"
+      />
+      <div class="about-content">
+        <h3 class="size22 redhat-bold text-capitalize">about us</h3>
+        <h1 class="size60 performa-light text-capitalize">
+          Driven By Luxury. <br />Defined By Experience.
+        </h1>
+        <p class="size20 redhat-regular text-center">
+          At GhostRental.ae, we specialize in providing elite rental services
+          across the UAE — from luxury cars and private yachts to executive
+          chauffeur experiences. Built on trust, discretion, and premium
+          service, our brand caters to individuals who expect nothing but the
+          best.
+        </p>
+        <button class="button size18 redhat-bold text-capitalize">
+          know more
+        </button>
+      </div>
+    </div>
+
+    <div class="black-bg"></div>
+    <div class="container-fluid mt-5">
+      <h3 class="text-center my-5 size60 performa-light text-white">
+        What Sets Us Apart
+      </h3>
+      <div class="features-grid text-white">
+        <div class="feature-item" *ngFor="let feature of features">
+          <img
+            [src]="imageURL + '/' + feature.image"
+            [alt]="feature.title"
+            class="feature-icon"
+          />
+          <h4 class="size26 redhat-semibold">{{ feature.title }}</h4>
+          <p class="size18 redhat-semibold">{{ feature.description }}</p>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section
+  class="trending_cars sectionPadding w-100 position-relative overflow-hidden"
+>
+  <div class="black-bg"></div>
+  <div class="container-fluid">
+    <h3 class="text-center size60 performa-light text-white text-capitalize">
+      trending rental cars
+    </h3>
+    <h6 class="text-center size18 redhat-semibold text-capitalize text-white">
+      rent all popular cars
+    </h6>
+
+    <div class="px-4 w-100 mx-auto my-0">
+      <div class="trending-cars-grid">
+        <div *ngFor="let car of trendingCars" class="trending-car-card">
+          <img
+            [src]="getCarCategoriesImageUrl(car)"
+            [alt]="car.name"
+            class="trending-car-image"
+          />
+          <div class="car-info p-3 text-white">
+            <h4 class="car-name size35 redhat-semibold">{{ car.name }}</h4>
+            <h6 class="car-spec size24 redhat-semibold">
+              {{ car.transmission }}
+            </h6>
+          </div>
+          <div
+            class="car-pricing p-3 pt-0 d-flex justify-content-between align-items-end"
+          >
+            <div class="d-flex flex-column text-white">
+              <span class="original-price size24 redhat-semibold"
+                >AED {{ car.price.regular }}</span
+              >
+              <span class="discounted-price size35 redhat-semibold"
+                >AED {{ car.price.discounted }}</span
+              >
+            </div>
+            <a
+              href="#"
+              class="btn p-0 mt-auto text-decoration-none text-white size22 redhat-semibold"
+              >View details</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="button border-0 bg-white text-black d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
+    >
+      view all
+    </button>
   </div>
 </section>
 

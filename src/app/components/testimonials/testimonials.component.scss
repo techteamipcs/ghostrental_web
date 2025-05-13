@@ -4,21 +4,29 @@
   }
 
   .swiper {
+    width: 100%;
+    height: 100%;
+    margin: 20px 0;
+    position: relative;
     overflow: hidden;
-    margin-top: 0;
+    padding: 20px 0;
 
     .swiper-wrapper {
       display: flex;
+      width: 100%;
+      height: 100%;
     }
 
     .swiper-slide {
       flex-shrink: 0;
       width: 100%;
-      height: 500px;
+      height: auto;
       display: flex;
       align-items: center;
-      margin: 0;
-      padding-top: 2rem;
+      justify-content: center;
+      transition: transform 0.3s;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .row {
@@ -47,6 +55,50 @@
       color: #000 !important;
     }
   }
+  // Swiper Navigation
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #000;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    &::after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Swiper Pagination
+  .swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+    bottom: 0;
+    
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background: #ccc;
+      opacity: 1;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+      
+      &-active {
+        background: #000;
+        transform: scale(1.2);
+      }
+    }
+  }
+
   .button {
     width: 41px;
     padding: 0;
@@ -70,15 +122,35 @@
       border-radius: 10px;
       border: 1px solid black;
       padding: 1.2rem;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 1rem;
+      overflow: hidden;
 
       .faq-question {
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        cursor: pointer;
-        gap: 1rem;
+        padding: 1rem 0;
+        transition: all 0.2s ease;
         position: relative;
+        
+        h4 {
+          transition: color 0.2s ease;
+          flex: 1;
+          padding-right: 2rem;
+        }
+        
+        &:hover {
+          h4 {
+            color: #555;
+          }
+        }
+        
+        span {
+          flex-shrink: 0;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         
         .icon {
           position: absolute;
@@ -91,20 +163,46 @@
       }
 
       .faq-answer {
+        max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.3s ease;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.3s ease;
+        will-change: max-height;
         opacity: 0;
+        margin: 0;
+        padding: 0;
+        
+        p {
+          opacity: 0;
+          transform: translateY(-10px);
+          transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+        }
       }
 
       &.expanded {
         background-color: black;
         color: white;
-        border-radius: 10px;
+        padding-bottom: 1.5rem;
+        
+        .faq-question {
+          h4 {
+            color: white;
+          }
+          
+          span {
+            transform: rotate(180deg);
+          }
+        }
 
         .faq-answer {
           opacity: 1;
-          margin-top: 0.5rem;
+          margin-top: 1rem;
+          
+          p {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
+        
         .icon {
           transform:translateY(-50%) rotate(180deg);
         }

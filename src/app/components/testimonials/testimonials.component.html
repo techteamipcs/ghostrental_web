@@ -15,9 +15,14 @@
               />
             </div>
             <div class="col-md-8 text-start">
-              <div class="mb-2 d-flex text-warning">
+              <div class="mb-2 d-flex">
                 <ng-container *ngFor="let star of getStars(testimonial.rating)">
-                  <lucide-icon name="star" />
+                  <span
+                    class="material-icons"
+                    style="color: black; font-size: 24px"
+                  >
+                    star
+                  </span>
                 </ng-container>
               </div>
               <h5 class="size30 redhat-regular mb-1 mt-4">
@@ -31,16 +36,11 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="text-start gap-2 d-flex mt-5 ms-4">
-      <div class="button swiper-button-prev">
-        <lucide-icon name="arrow-left" class="swiper-button-icon" />
-      </div>
-      <div class="button swiper-button-next">
-        <lucide-icon name="arrow-right" class="swiper-button-icon" />
-      </div>
+      <!-- Add pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Navigation -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 </section>
@@ -66,14 +66,23 @@
           [class.expanded]="expandedIndex === i"
         >
           <div class="faq-question m-0" (click)="toggleAccordion(i)">
-            <h4 class="size26 redhat-medium">{{ faq.question }}</h4>
-            <span class="icon">{{ expandedIndex === i ? "−" : "+" }}</span>
+            <h4 class="size26 redhat-medium m-0">{{ faq.question }}</h4>
+            <!-- <span class="icon">{{ expandedIndex === i ? "−" : "+" }}</span> -->
+            <span>
+              <lucide-icon
+                [name]="expandedIndex === i ? 'minus' : 'plus'"
+                [class]="expandedIndex === i ? 'text-white' : 'text-black'"
+                size="24"
+                style="width: 24px; height: 24px"
+              >
+              </lucide-icon>
+            </span>
           </div>
           <div
             class="faq-answer"
             [style.maxHeight]="expandedIndex === i ? '300px' : '0'"
           >
-            <p class="size18 redhat-semibold">{{ faq.answer }}</p>
+            <p class="size18 redhat-semibold m-0">{{ faq.answer }}</p>
           </div>
         </div>
       </div>

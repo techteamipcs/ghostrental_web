@@ -1,7 +1,6 @@
 @import "assets/scss/abstract/_variables";
 
 body {
-  padding: 26px;
   background-color: #ffffff;
   @media (max-width: 768px) {
     padding: 0;
@@ -80,14 +79,18 @@ body {
 .size22 {
   font-size: 22px;
 }
+.size24 {
+  font-size: 24px;
+}
 .size28 {
   font-size: 28px;
 }
 .size30 {
   font-size: 30px;
 }
-
-
+.size35 {
+  font-size: 35px;
+}
 .size60{
   font-size: 60px;
 }
@@ -105,17 +108,11 @@ body {
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
- 
 }
-
 img{
   width: 100%;
   height: auto;
   object-fit: cover;
-}
-a{
-  text-decoration: none !important;
-  color: black !important;
 }
 .sectionPadding{
   padding: 7rem

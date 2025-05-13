@@ -7,7 +7,7 @@
     top: 30%;
     left: 10%;
     transform: translateY(-30%);
-    h1{
+    h1 {
       line-height: 90px;
     }
   }
@@ -174,39 +174,100 @@
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
-
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-
     p {
-      margin: 0;
+      margin: 1rem 0 0;
+      color: #333;
+      font-size: 1.1rem;
     }
   }
 }
 
 // Features section
-.features {
-  .feature-item {
+// About Us section
+.about-us {
+  .about-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    text-align: center;
+    color: white;
     padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    &:hover {
-      transform: translateY(-5px);
+    .button {
+      background-color: #fff;
+      color: #000;
+      border: none;
+    }
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    justify-content: space-between;
+    margin: 0 50px;
+  }
+  .feature-item {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      object-fit: contain;
+    }
+  }
+}
+
+// Trending cars section
+.trending_cars {
+  .black-bg {
+    top: 0%;
+    transform: translateY(0%);
+  }
+
+  .trending-cars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .trending-car-card {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    transition: border 0.3s ease;
+
+    &:hover {
+      border: 1px solid white;
+    }
+    .original-price {
+      text-decoration: line-through;
     }
   }
 }
@@ -225,7 +286,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
   }
   .button {
     display: flex;
@@ -249,7 +311,7 @@
     height: 400px;
     overflow: hidden;
   }
-  
+
   .card-content {
     padding: 0 16px;
     height: 100%;
@@ -278,34 +340,44 @@
   }
 }
 
-
-.collection{
-  .button{
+.collection {
+  .button {
     background-color: black;
     color: white;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
   }
-  .viewbutton{
+  .viewbutton {
     padding: 1rem 4rem;
   }
-  
+
   .carousel-row {
     scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-.car-card {
-  scroll-snap-align: start;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-}
-.carousel-row::-webkit-scrollbar {
-  display: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .car-card {
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  .carousel-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection_image {
+    width: 36px;
+    height: 36px;
+  }
 }
 
-.collection_image{
-  width: 36px;
-  height: 36px;
-}
+// black background
+.black-bg {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 32%;
+  left: 0;
+  z-index: -1;
 }

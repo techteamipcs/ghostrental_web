@@ -1,15 +1,25 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import Swiper from 'swiper';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, NgZone } from '@angular/core';
+import { Swiper as SwiperClass } from 'swiper/types';
+import { Swiper } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { environment } from '../../../environments/environment';
-import { Navigation } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+
+// Initialize Swiper modules
+Swiper.use([Navigation, Pagination, Autoplay]);
 
 @Component({
   selector: 'app-testimonials',
   templateUrl: './testimonials.component.html',
   styleUrls: ['./testimonials.component.scss']
 })
-export class TestimonialsComponent implements AfterViewInit {
+export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('swiper') swiperRef!: ElementRef;
+  private swiper: Swiper | null = null;
   imageURL: string = `${environment.baseUrl}/assets`;
   expandedIndex: number = -1;
   // Testimonials data
@@ -90,31 +100,77 @@ export class TestimonialsComponent implements AfterViewInit {
     }
   ];
 
+  constructor(private ngZone: NgZone) {}
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0);
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      new Swiper(this.swiperRef.nativeElement, {
-        modules: [Navigation],
-        slidesPerView: 1,
-        loop: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
+    this.ngZone.runOutsideAngular(() => {
+      // Use setTimeout to ensure the view is fully rendered
+      setTimeout(() => {
+        this.initSwiper();
       });
-    }, 0);
+    });
+  }
+
+  private initSwiper(): void {
+    if (this.swiperRef?.nativeElement && !this.swiper) {
+      try {
+        this.swiper = new Swiper(this.swiperRef.nativeElement, {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+          },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            992: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+          },
+          on: {
+            init: () => {
+              // Swiper initialized
+            },
+            slideChange: () => {
+              // Handle slide change if needed
+            },
+          },
+        });
+      } catch (error) {
+        console.error('Error initializing Swiper:', error);
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.swiper) {
+      try {
+        this.swiper.destroy(true, true);
+      } catch (error) {
+        console.error('Error destroying Swiper:', error);
+      } finally {
+        this.swiper = null;
+      }
+    }
   }
 
   // Accordion methods

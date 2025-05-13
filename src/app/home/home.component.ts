@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   carsCollections = [
     {
       name: 'BMW M3',
-      image: 'collection/bmw_m3.png',
+      image: 'home/collection/cars/bmw_m3.png',
       type: 'Sedan',
       transmission: 'Automatic',
       fuel: 'Petrol',
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'Jeep Wrangler',
-      image: 'collection/jeep_wrath.png',
+      image: 'home/collection/cars/jeep_wrath.png',
       type: 'SUV',
       transmission: 'Automatic',
       fuel: 'Petrol',
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'Lamborghini Huracan',
-      image: 'collection/lamborghini_huracan.png',
+      image: 'home/collection/cars/lamborghini_huracan.png',
       type: 'Sports',
       transmission: 'Automatic',
       fuel: 'Petrol',
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'Rolls Royce Wraith',
-      image: 'collection/rolls_royce_wraith.png',
+      image: 'home/collection/cars/rolls_royce_wraith.png',
       type: 'Luxury Sedan',
       transmission: 'Automatic',
       fuel: 'Petrol',
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
     },
     {
       name: 'Mclaren',
-      image: 'collection/mclaren.png',
+      image: 'home/collection/cars/mclaren.png',
       type: 'Sports',
       transmission: 'Automatic',
       fuel: 'Petrol',
@@ -84,6 +84,74 @@ export class HomeComponent implements OnInit {
       price: {
         regular: 4500,
         discounted: 4000
+      }
+    }
+  ];
+
+  yachtCollections = [
+    {
+      name: 'Luxury Yacht 1',
+      image: 'home/collection/yachts/yacht1.png',
+      type: 'Luxury',
+      length: '80ft',
+      cabins: '5',
+      guests: '10',
+      crew: '4',
+      price: {
+        regular: 15000,
+        discounted: 13000
+      }
+    },
+    {
+      name: 'Sport Yacht 2',
+      image: 'home/collection/yachts/yacht2.png',
+      type: 'Sport',
+      length: '65ft',
+      cabins: '4',
+      guests: '8',
+      crew: '3',
+      price: {
+        regular: 12000,
+        discounted: 11000
+      }
+    },
+    {
+      name: 'Party Yacht 3',
+      image: 'home/collection/yachts/yacht3.png',
+      type: 'Party',
+      length: '90ft',
+      cabins: '6',
+      guests: '25',
+      crew: '5',
+      price: {
+        regular: 18000,
+        discounted: 16000
+      }
+    },
+    {
+      name: 'Luxury Yacht 4',
+      image: 'home/collection/yachts/yacht4.png',
+      type: 'Luxury',
+      length: '75ft',
+      cabins: '5',
+      guests: '12',
+      crew: '4',
+      price: {
+        regular: 14000,
+        discounted: 12500
+      }
+    },
+    {
+      name: 'Sport Yacht 5',
+      image: 'home/collection/yachts/yacht5.png',
+      type: 'Sport',
+      length: '70ft',
+      cabins: '4',
+      guests: '10',
+      crew: '3',
+      price: {
+        regular: 13000,
+        discounted: 11500
       }
     }
   ];
@@ -112,17 +180,80 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-
-
   carTypes = [
-    { name: 'Convertible', image: 'convertible.png' },
-    { name: 'Coupe', image: 'coupe.png' },
-    { name: 'Hatch Back', image: 'hatch-back.png' },
-    { name: 'Sedan', image: 'sedan.png' },
-    { name: 'SUV', image: 'suv.png' },
-    { name: 'Truck', image: 'truck.png' },
+    { name: 'Convertible', image: 'home/car_categories/convertible.png' },
+    { name: 'Coupe', image: 'home/car_categories/coupe.png' },
+    { name: 'Hatch Back', image: 'home/car_categories/hatch-back.png' },
+    { name: 'Sedan', image: 'home/car_categories/sedan.png' },
+    { name: 'SUV', image: 'home/car_categories/suv.png' },
+    { name: 'Truck', image: 'home/car_categories/truck.png' },
   ];
 
+  trendingCars = [
+    {
+      name: 'Aston Martin',
+      image: 'home/trending_cars/astom_martin.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 3500,
+        discounted: 3000
+      }
+    },
+    {
+      name: 'Bentley',
+      image: 'home/trending_cars/bentley.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 4000,
+        discounted: 3500
+      }
+    },
+    {
+      name: 'BMW M3',
+      image: 'home/trending_cars/bmw_m3.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 3000,
+        discounted: 2500
+      }
+    },
+    {
+      name: 'Jeep Wrangler',
+      image: 'home/trending_cars/jeep_wrath.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 2800,
+        discounted: 2300
+      }
+    },
+    {
+      name: 'Lamborghini Huracan',
+      image: 'home/trending_cars/lamborghini_huracan.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 5000,
+        discounted: 4500
+      }
+    },
+    {
+      name: 'McLaren',
+      image: 'home/trending_cars/mclaren.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 4500,
+        discounted: 4000
+      }
+    },
+    {
+      name: 'Rolls Royce Wraith',
+      image: 'home/trending_cars/rolls_royce_wraith.png',
+      transmission: 'Automatic',
+      price: {
+        regular: 6000,
+        discounted: 5500
+      }
+    }
+  ]
   yachtTypes = ['Luxury', 'Sport', 'Party'];
   yachtSizes = ['Small', 'Medium', 'Large'];
 
@@ -155,9 +286,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getCarImageUrl(car: { image: string }): string {
-    return `${this.imageURL}/cars/${car.image}`;
+  getCarCategoriesImageUrl(car: { image: string }): string {
+    return `${this.imageURL}/${car.image}`;
   }
+
 
   toggleVehicle(type: 'Car' | 'Yacht') {
     this.isCar = type === 'Car';
