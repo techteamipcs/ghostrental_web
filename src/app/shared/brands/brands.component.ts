@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './brands.component.scss'
 })
 export class BrandsComponent {
+  @Input() title: string = 'explore our premium brands';
   imageURL: string = `${environment.baseUrl}/assets/brands`;
   brands = [
     { name: 'Bentley', imageUrl: `${this.imageURL}/bentley.png` },

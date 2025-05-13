@@ -162,27 +162,29 @@
 
 // Brands section
 .car-types-section {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  
+  .container-fluid {
+    min-width: fit-content;
+  }
+
   .car-icon {
-    border-radius: 15px;
-    padding: 1.5rem;
     text-align: center;
-    width: 200px;
-    height: 200px;
+    min-width: 140px;
+    padding: 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
+    
     img {
-      width: 100%;
-      height: 100%;
+      width: auto;
+      height: 140px;
       object-fit: contain;
-    }
-    p {
-      margin: 1rem 0 0;
-      color: #333;
-      font-size: 1.1rem;
     }
   }
 }
@@ -231,7 +233,6 @@
   }
 }
 
-// Trending cars section
 .trending_cars {
   .black-bg {
     top: 0%;
@@ -339,33 +340,100 @@
 }
 
 .collection {
-  .button {
-    background-color: black;
-    color: white;
-    padding: 0.5rem 1rem;
-  }
+  
   .viewbutton {
     padding: 1rem 4rem;
-  }
-
-  .carousel-row {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .car-card {
-    scroll-snap-align: start;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-  }
-  .carousel-row::-webkit-scrollbar {
-    display: none;
+    color: white;
+    background-color: black;
   }
 
   .collection_image {
-    width: 36px;
-    height: 36px;
+    width: 35px;
+    height: 35px;
+  }
+  .swiper {
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+
+    .swiper-wrapper {
+      align-items: stretch;
+      display: flex;
+      width: 100%;
+    }
+
+    .swiper-slide {
+      height: auto;
+      display: flex;
+      align-items: stretch;
+    }
+    
+  }
+  .car-swiper-button-prev,
+  .car-swiper-button-next,
+  .yacht-swiper-button-prev,
+  .yacht-swiper-button-next {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: black;
+      color: white;
+    }
+    &::after {
+      display: none;
+    }
+    .swiper-button-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .car-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .car-name {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .transmission {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .cash {
+      h5 {
+        color: #000;
+        font-weight: 600;
+      }
+
+      h6 {
+        text-decoration: line-through;
+      }
+    }
   }
 }
 

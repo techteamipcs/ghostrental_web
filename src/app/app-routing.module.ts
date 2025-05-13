@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './error404/error404.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: HomeComponent
   },
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule)
   },
   {
-    path:'**',
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: '**',
     component: Error404Component
   },
 ];
