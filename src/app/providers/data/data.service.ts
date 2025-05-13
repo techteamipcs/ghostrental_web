@@ -129,8 +129,8 @@ export class DataService {
       })
     );
   };
-  
-  
+
+
 
   addEmailSubscribe = (moreData: any): Observable<any> => {
     const endpoint = environment.baseUrl + '/api/user/addEmailSubscribe';
@@ -185,7 +185,7 @@ export class DataService {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('arovan-web-token');
+    const token = localStorage.getItem('ghost-rental-web-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

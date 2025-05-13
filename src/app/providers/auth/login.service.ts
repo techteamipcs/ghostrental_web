@@ -14,30 +14,30 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-	validateLogin = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/login';
+  validateLogin = (moreData: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/login';
     return this.http
       .post(endpoint, moreData, { observe: 'response' as 'body' })
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
   };
 
-  customerRegistration = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/registerCustomer';
+  customerRegistration = (moreData: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/registerCustomer';
     return this.http
       .post(endpoint, moreData, { observe: 'response' as 'body' })
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
   };
 
-  getLogincustomer = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/checklogincustomer';
+  getLogincustomer = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/checklogincustomer';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -45,26 +45,26 @@ export class LoginService {
     );
   };
 
-  getLoginCustomerData = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/getfrontCustomerData';
+  getLoginCustomerData = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/getfrontCustomerData';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
-        return throwError(err);      
+        return throwError(err);
       })
     );
   };
 
-  editProfiledata = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/editProfiledata';
-    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+  editProfiledata = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/editProfiledata';
+    return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
-        return throwError(err);  
+        return throwError(err);
       })
     );
   };
 
-  ResetPasswordLink = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/resetcustomerpasswordlink';
+  ResetPasswordLink = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/resetcustomerpasswordlink';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -72,8 +72,8 @@ export class LoginService {
     );
   };
 
-  SendEmailVerification = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/SendEmailVerification';
+  SendEmailVerification = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/SendEmailVerification';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -81,8 +81,8 @@ export class LoginService {
     );
   };
 
-  update_mailVeryfication = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/updateMailVeryfication';
+  update_mailVeryfication = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/updateMailVeryfication';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -90,8 +90,8 @@ export class LoginService {
     );
   };
 
-  updatecustomerData = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/activeaccount';
+  updatecustomerData = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/activeaccount';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -99,8 +99,8 @@ export class LoginService {
     );
   };
 
-  updateNewPassword = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/updateNewPassword';
+  updateNewPassword = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/updateNewPassword';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -108,8 +108,8 @@ export class LoginService {
     );
   };
 
-  activateCustomerData = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/activeaccount';
+  activateCustomerData = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/activeaccount';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -117,8 +117,8 @@ export class LoginService {
     );
   };
 
-  ForgotPasswordLink = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/forgotcustomerpasswordlink';
+  ForgotPasswordLink = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/forgotcustomerpasswordlink';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
@@ -126,37 +126,37 @@ export class LoginService {
     );
   };
 
-  updateForgotPassword = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/updateforgotpassword';
+  updateForgotPassword = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/updateforgotpassword';
     return this.http.post(endpoint, data).pipe(
       catchError((err) => {
         return throwError(err);
       })
     );
-  };  
+  };
 
-  checkCustomerSession = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/checkcustomersessions';
-    return this.http.post(endpoint, data,this.getRequestHeaders()).pipe(
+  checkCustomerSession = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/checkcustomersessions';
+    return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
-        return throwError(err);  
+        return throwError(err);
       })
     );
   };
 
-  guestLogin = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/guestlogin';
+  guestLogin = (moreData: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/guestlogin';
     return this.http
       .post(endpoint, moreData, { observe: 'response' as 'body' })
       .pipe(
-        catchError((err) => { 
+        catchError((err) => {
           return throwError(err);
         })
       );
   };
 
-  socialLoginUseRegistration = (moreData:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/socailloginregister';
+  socialLoginUseRegistration = (moreData: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/socailloginregister';
     return this.http
       .post(endpoint, moreData, { observe: 'response' as 'body' })
       .pipe(
@@ -175,28 +175,27 @@ export class LoginService {
     );
   };
 
-  checkIsvalidWalletBalance = (data:any): Observable<any> => {
-    const endpoint = environment.baseUrl+'/api/customer/checkValidWallet';
+  checkIsvalidWalletBalance = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/customer/checkValidWallet';
     return this.http.post(endpoint, data, this.getRequestHeaders()).pipe(
       catchError((err) => {
-        return throwError(err);         
+        return throwError(err);
       })
     );
   };
 
-  logout()
-  {
+  logout() {
     localStorage.clear();
     this.router.navigate(['/']).then(() => {
       window.location.reload();
-    }); 
+    });
   }
 
   protected getRequestHeaders(): {
     headers: HttpHeaders | { [header: string]: string | string[] };
   } {
     let headers;
-    const token = localStorage.getItem('arovan-web-token');
+    const token = localStorage.getItem('ghost-rental-web-token');
     headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
