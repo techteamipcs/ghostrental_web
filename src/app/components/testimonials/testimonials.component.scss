@@ -6,10 +6,9 @@
   .swiper {
     width: 100%;
     height: 100%;
-    margin: 20px 0;
+    margin: 0;
     position: relative;
     overflow: hidden;
-    padding: 20px 0;
 
     .swiper-wrapper {
       display: flex;
@@ -36,66 +35,31 @@
       margin: 0;
     }
 
-    .col-md-4 {
-      height: 100%;
+    .img-container {
+      height: 400px;
+      width: 400px;
+      min-width: 400px; 
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      margin: 0 auto;
+      
+      .testimonial-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        object-position: center; 
+      }
     }
 
     .testimonial-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; 
+      object-position: center; 
       border-radius: 10px;
-    }
-
-    .text-warning {
-      color: #000 !important;
-    }
-  }
-  // Swiper Navigation
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: #000;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    
-    &::after {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  // Swiper Pagination
-  .swiper-pagination {
-    position: relative;
-    margin-top: 20px;
-    bottom: 0;
-    
-    .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
-      background: #ccc;
-      opacity: 1;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-      
-      &-active {
-        background: #000;
-        transform: scale(1.2);
-      }
     }
   }
 

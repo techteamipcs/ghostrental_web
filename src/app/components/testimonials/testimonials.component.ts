@@ -1,16 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, NgZone } from '@angular/core';
-import { Swiper as SwiperClass } from 'swiper/types';
 import { Swiper } from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { environment } from '../../../environments/environment';
 
-// Import Swiper styles
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
-
-// Initialize Swiper modules
-Swiper.use([Navigation, Pagination, Autoplay]);
 
 @Component({
   selector: 'app-testimonials',
@@ -19,6 +10,8 @@ Swiper.use([Navigation, Pagination, Autoplay]);
 })
 export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('swiper') swiperRef!: ElementRef;
+  @ViewChild('nextButton') nextButton!: ElementRef;
+  @ViewChild('prevButton') prevButton!: ElementRef;
   private swiper: Swiper | null = null;
   imageURL: string = `${environment.baseUrl}/assets`;
   expandedIndex: number = -1;
@@ -100,7 +93,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) { }
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0);
@@ -118,14 +111,13 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   private initSwiper(): void {
     if (this.swiperRef?.nativeElement && !this.swiper) {
       try {
+        // Create a new Swiper instance
         this.swiper = new Swiper(this.swiperRef.nativeElement, {
           slidesPerView: 1,
           spaceBetween: 30,
           loop: true,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
+          // Initialize without navigation first
+          navigation: false,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -155,6 +147,17 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
             },
           },
         });
+
+        // Manually add click handlers after Swiper is initialized
+        if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
+          this.nextButton.nativeElement.addEventListener('click', () => {
+            this.swiper?.slideNext();
+          });
+
+          this.prevButton.nativeElement.addEventListener('click', () => {
+            this.swiper?.slidePrev();
+          });
+        }
       } catch (error) {
         console.error('Error initializing Swiper:', error);
       }
@@ -162,6 +165,15 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Remove event listeners
+    if (this.nextButton?.nativeElement) {
+      this.nextButton.nativeElement.removeEventListener('click', () => { });
+    }
+    if (this.prevButton?.nativeElement) {
+      this.prevButton.nativeElement.removeEventListener('click', () => { });
+    }
+
+    // Destroy Swiper instance
     if (this.swiper) {
       try {
         this.swiper.destroy(true, true);

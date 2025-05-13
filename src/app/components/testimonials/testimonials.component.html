@@ -1,13 +1,13 @@
-<section class="testimonial py-5">
+<section class="testimonial sectionPadding">
   <div class="container">
-    <h3 class="text-center text-capitalize size60 performa-light">
+    <h3 class="text-center text-capitalize size60 performa-light p-5">
       What Our Customers Say
     </h3>
-    <div class="swiper" #swiper>
+    <div class="swiper py-4" #swiper>
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let testimonial of testimonials">
           <div class="row g-5">
-            <div class="col-md-4 text-center mb-3 mb-md-0">
+            <div class="col-md-4 text-center mb-3 mb-md-0 img-container">
               <img
                 [src]="imageURL + '/' + testimonial.image"
                 alt="Customer Testimonial"
@@ -17,12 +17,11 @@
             <div class="col-md-8 text-start">
               <div class="mb-2 d-flex">
                 <ng-container *ngFor="let star of getStars(testimonial.rating)">
-                  <span
-                    class="material-icons"
-                    style="color: black; font-size: 24px"
-                  >
-                    star
-                  </span>
+                  <lucide-icon
+                    name="star"
+                    size="24"
+                    style="width: 24px; height: 24px"
+                  ></lucide-icon>
                 </ng-container>
               </div>
               <h5 class="size30 redhat-regular mb-1 mt-4">
@@ -36,11 +35,15 @@
           </div>
         </div>
       </div>
-      <!-- Add pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- Navigation -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="text-start gap-2 d-flex ms-4">
+      <div #prevButton class="button swiper-button-prev">
+        <lucide-icon name="arrow-left" class="swiper-button-icon" />
+      </div>
+      <div #nextButton class="button swiper-button-next">
+        <lucide-icon name="arrow-right" class="swiper-button-icon" />
+      </div>
     </div>
   </div>
 </section>
