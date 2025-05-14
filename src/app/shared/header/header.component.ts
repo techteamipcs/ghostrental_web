@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  imageURL: string = `${environment.baseUrl}/assets`;
+  imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
 

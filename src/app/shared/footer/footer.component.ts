@@ -6,5 +6,5 @@ import { environment } from '../../../environments/environment';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  imageURL: string = `${environment.baseUrl}/assets`;
+  imageURL: string = `${environment.url}/assets`;
 }

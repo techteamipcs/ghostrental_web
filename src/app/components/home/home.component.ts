@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
-
+import { DataService } from '../../providers/data/data.service';
 // Swiper.use([Navigation]);
 
 
@@ -16,7 +16,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('yachtSwiper') yachtSwiperRef!: ElementRef;
   private carSwiper: Swiper | null = null;
   private yachtSwiper: Swiper | null = null;
-  imageURL: string = `${environment.baseUrl}/assets`;
+  bannerData: any;
+  imageURL: string = `${environment.url}/assets`;
+  backendURl = `${environment.baseUrl}/public`;
+  cartypeData:any = [];
+  brandsData:any = [];
   isCar: boolean = true;
   today: string;
   maxDate: string;
@@ -334,7 +338,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   yachtTypes = ['Luxury', 'Sport', 'Party'];
   yachtSizes = ['Small', 'Medium', 'Large'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public dataservice: DataService) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
     const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));
@@ -343,6 +347,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.initForm();
+    this.getBannerData();
+    this.getCarTypes();
   }
 
   ngAfterViewInit() {
@@ -467,5 +473,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onSubmit() {
     console.log('Submitted');
     console.log(this.reservationForm.value);
+  }
+
+  getBannerData(){
+    let obj = {};
+    this.dataservice.getAllBanner(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.bannerData = response.result[0];
+        }
+      }
+    });
+  }
+  
+  getCarTypes(){
+    let obj = {};
+    this.dataservice.getCarTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.cartypeData = response.result;
+        }
+      }
+    });
   }
 }

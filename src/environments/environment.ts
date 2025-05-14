@@ -4,13 +4,12 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://localhost:5012',
-  baseUrl: 'http://localhost:4200',
-  url: 'http://localhost:4200',
+  baseUrl: 'http://localhost:5014',
+  url:'http://localhost:4200',
   isBrowser: true, // Add a flag
   // baseUrl: 'https://pcommerce.pixtar.ae:5007',
   // url:'https://pcommerce.pixtar.ae',
-  recaptcha_key: '6LdVAeAqAAAAANRiCTIwsrPp7DwcP3jSOpzVk0wi',
+  recaptcha_key : '6LdVAeAqAAAAANRiCTIwsrPp7DwcP3jSOpzVk0wi',
 };
 
 /*

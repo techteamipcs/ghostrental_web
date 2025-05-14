@@ -4,11 +4,11 @@
       {{ title }}
     </h3>
     <div class="d-flex justify-content-center align-items-center gap-4">
-      <div class="brand-item" *ngFor="let brand of brands">
-        <img [src]="brand.imageUrl" [alt]="brand.name" class="brand-logo" />
+      <div class="brand-item" *ngFor="let brand of brandsData">
+        <img *ngIf="brand.image.length > 0 && brand.image[0].src" src="{{backendURl}}/brand/{{brand.image[0].src}}"  [alt]="brand.name" class="brand-logo" />
         <h4 class="size18 redhat-semibold">{{ brand.name }}</h4>
       </div>
     </div>
-    <button class="button size18 redhat-bold mt-5">{{buttonTitle}}</button>
+    <button class="button size18 redhat-bold mt-5">show all</button>
   </div>
 </section>

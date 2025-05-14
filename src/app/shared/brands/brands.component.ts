@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { DataService } from '../../providers/data/data.service';
 
 @Component({
   selector: 'app-brands',
@@ -10,7 +11,9 @@ export class BrandsComponent {
   @Input() title: string = 'explore our premium brands';
   @Input() titleClass: string = 'text-center size22 performa-light text-capitalize mb-5';
   @Input() buttonTitle: string = 'show all';
-  imageURL: string = `${environment.baseUrl}/assets/brands`;
+  imageURL: string = `${environment.url}/assets/brands`;
+  backendURl = `${environment.baseUrl}/public`;
+  brandsData:any = [];
   brands = [
     { name: 'Bentley', imageUrl: `${this.imageURL}/bentley.png` },
     { name: 'BMW', imageUrl: `${this.imageURL}/bmw.png` },
@@ -21,4 +24,23 @@ export class BrandsComponent {
     { name: 'Porsche', imageUrl: `${this.imageURL}/porche.png` },
     { name: 'Rolls Royce', imageUrl: `${this.imageURL}/rolls_royce.png` }
   ];
+
+  constructor(public dataservice: DataService) {
+
+  }
+
+  ngOnInit() {
+    this.getBrands();
+  }
+
+  getBrands() {
+    let obj = {};
+    this.dataservice.getBrands(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.brandsData = response.result;
+        }
+      }
+    });
+  }
 }
