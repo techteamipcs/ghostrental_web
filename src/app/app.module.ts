@@ -13,6 +13,8 @@ import { Error404Component } from './error404/error404.component';
 import { FormsModule } from '@angular/forms';
 import { BrandsComponent } from './shared/brands/brands.component';
 import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus } from 'lucide-angular';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, Arrow
     Error404Component,
     BrandsComponent,
     TestimonialsComponent,
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [
     BrowserModule,

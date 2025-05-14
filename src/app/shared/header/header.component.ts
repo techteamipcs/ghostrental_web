@@ -12,9 +12,9 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
   isMenuOpen: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
@@ -28,6 +28,12 @@ export class HeaderComponent implements OnInit {
 
   isAboutPage(): boolean {
     return this.router.url === '/about';
+  }
+  isPrivacyPolicyPage(): boolean {
+    return this.router.url === '/privacy-policy';
+  }
+  isTermsAndConditionsPage(): boolean {
+    return this.router.url === '/terms-and-conditions';
   }
 
   toggleMenu(): void {
