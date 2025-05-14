@@ -8,6 +8,8 @@ import { environment } from '../../../environments/environment';
 })
 export class BrandsComponent {
   @Input() title: string = 'explore our premium brands';
+  @Input() titleClass: string = 'text-center size22 performa-light text-capitalize mb-5';
+  @Input() buttonTitle: string = 'show all';
   imageURL: string = `${environment.baseUrl}/assets/brands`;
   brands = [
     { name: 'Bentley', imageUrl: `${this.imageURL}/bentley.png` },

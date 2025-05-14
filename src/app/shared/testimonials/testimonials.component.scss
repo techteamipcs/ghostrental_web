@@ -72,6 +72,10 @@
     align-items: center;
     color: black;
     border: 1px solid black;
+    &:active{
+      background-color: black;
+      color: white;
+    }
   }
 }
 

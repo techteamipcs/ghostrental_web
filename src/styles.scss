@@ -90,6 +90,9 @@ body {
 .size30 {
   font-size: 30px;
 }
+.size32 {
+  font-size: 32px;
+}
 .size35 {
   font-size: 35px;
 }
@@ -100,9 +103,17 @@ body {
   font-size: 89px;
 }
 
+// colors
+.white{
+  color: $color-white;
+}
+.black{
+  color: $color-black;
+}
+
 // common button styles
 .button {
-  border: 2px solid white;
+  border: 2px solid $color-white;
   color: white;
   background-color: transparent;
   border-radius: 30px;

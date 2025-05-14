@@ -4,7 +4,7 @@ nav {
   background-color: transparent;
   transition: background-color 0.3s ease,padding 0.3s ease;
 
-  &.scrolled {
+  &.scrolled, &.about-page {
     background-color: #000;
     padding: 1rem;
   }
@@ -18,13 +18,11 @@ nav {
   }
 
   .nav-logo {
-    width: 160px;
+    width: 260px;
     height: auto;
     object-fit: cover;
 
-    @media (max-width: 768px) {
-      width: 120px;
-    }
+    
   }
 
   ul.nav {

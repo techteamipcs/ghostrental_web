@@ -1,0 +1,53 @@
+.sectionPadding {
+  padding: 15rem 0 0 0;
+}
+.about-content1 {
+  margin: 0 6rem;
+}
+.about-content2 {
+  width: 91%;
+  height: 100%; 
+  display: flex;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 4rem;
+  justify-content: space-between;
+  margin: 0 50px;
+}
+.feature-item {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+  }
+}
+
+.button {
+ background-color: white;
+ border: none;
+ color: black;
+}
+
+table{
+  td{
+    padding:2rem ;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+}

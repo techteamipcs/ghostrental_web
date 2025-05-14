@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
     this.closeMenu();
   }
 
+  isAboutPage(): boolean {
+    return this.router.url === '/about';
+  }
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }

@@ -1,42 +1,43 @@
 <nav
   class="position-fixed top-0 start-0 w-100 z-2"
   [class.scrolled]="isScrolled"
+  [class.about-page]="isAboutPage()"
 >
   <div
     class="container-fluid d-flex justify-content-between align-items-center"
     style="padding: 1rem 3rem"
   >
-    <img
-      src="{{ imageURL }}/images/logo/nav_logo.png"
-      alt=""
-      class="nav-logo"
-    />
+    <a href="/">
+      <img
+        src="{{ imageURL }}/images/logo/nav_logo.png"
+        alt=""
+        class="nav-logo"
+      />
+    </a>
     <ul class="nav d-flex gap-5 align-items-center">
       <li>
-        <a
-          href="/"
-          class="size16 redhat-semibold text-white text-decoration-none"
+        <a href="/" class="size16 redhat-semibold white text-decoration-none"
           >Home</a
         >
       </li>
       <li>
         <a
           href="/about"
-          class="size16 redhat-semibold text-white text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
           >About Us</a
         >
       </li>
       <li>
         <a
           href="/services"
-          class="size16 redhat-semibold text-white text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
           >Our Services</a
         >
       </li>
       <li>
         <a
           href="/fleets"
-          class="size16 redhat-semibold text-white text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
           >Our Fleets</a
         >
       </li>

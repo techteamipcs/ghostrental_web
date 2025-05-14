@@ -1,6 +1,6 @@
 <section class="brands sectionPadding">
   <div class="container-fluid">
-    <h3 class="text-center size60 performa-light text-capitalize mb-5">
+    <h3 [class]="titleClass">
       {{ title }}
     </h3>
     <div class="d-flex justify-content-center align-items-center gap-4">
@@ -9,6 +9,6 @@
         <h4 class="size18 redhat-semibold">{{ brand.name }}</h4>
       </div>
     </div>
-    <button class="button size18 redhat-bold mt-5">show all</button>
+    <button class="button size18 redhat-bold mt-5">{{buttonTitle}}</button>
   </div>
 </section>

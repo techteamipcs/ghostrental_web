@@ -1,3 +1,176 @@
-<app-brands title="Premium Car Rentals From Top Brands"></app-brands>
+<section class="sectionPadding">
+  <div class="container-fluid">
+    <div class="about-content1">
+      <div class="row mb-5">
+        <div class="col-8">
+          <h3 class="size22 redhat-semibold text-uppercase">
+            about ghost rentals
+          </h3>
+          <h1 class="size60 performa-thin text-capitalize">
+            Driven By Luxury. <br />
+            Defined By Experience.
+          </h1>
+        </div>
+        <div class="col-4">
+          <div class="about-content2">
+            <p class="size20 redhat-regular mt-auto mb-0">
+              GhostRental.ae is your premier destination for luxury car, yacht,
+              and chauffeur services in the UAE.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-between align-items-center gap-3"
+      style="height: 667px"
+    >
+      <img src="{{ imageURL }}/about/about_cars.png" alt="" />
+      <img src="{{ imageURL }}/about/company_picture.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<app-brands
+  title="Premium Car Rentals From Top Brands"
+  titleClass="text-center size22 redhat-bold text-capitalize mb-5"
+  buttonTitle="view all"
+></app-brands>
+
+<section class="story" style="padding-left: 16rem">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-5">
+        <div
+          class="story-content d-flex flex-column justify-content-center h-100"
+        >
+          <h4 class="text-uppercase size18 redhat-semibold">our story</h4>
+          <h2 class="size60 performa-light text-capitalize">how we began</h2>
+          <p class="size18 redhat-semibold my-4">
+            Founded in Dubai by a team of luxury enthusiasts and hospitality
+            experts, GhostRental.ae was born out of a simple idea: to bring
+            together world-class service with world-class vehicles.
+          </p>
+          <p class="size18 redhat-semibold mt-2">
+            What started as a boutique car rental firm quickly expanded into
+            premium yacht charters and chauffeured experiences. Our reputation
+            was built on punctuality, discretion, and an obsession with customer
+            satisfaction. Today, we proudly serve UAE residents, tourists,
+            influencers, celebrities, and corporate clients from around the
+            world.
+          </p>
+        </div>
+      </div>
+      <div class="col-7 p-0">
+        <img
+          src="{{ imageURL }}/about/rolls_royce.png"
+          alt=""
+          style="width: 1278px; height: 100%"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" style="padding: 7rem">
+  <div class="container-fluid mt-5">
+    <h3 class="text-center my-5 size60 performa-light black">
+      What Sets Us Apart?
+    </h3>
+    <div class="features-grid black">
+      <div class="feature-item" *ngFor="let feature of features">
+        <img
+          [src]="imageURL + '/' + feature.image"
+          [alt]="feature.title"
+          class="feature-icon"
+        />
+        <h4 class="size26 redhat-semibold black">{{ feature.title }}</h4>
+        <p class="size18 redhat-semibold black">
+          {{ feature.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signature" style="padding: 7rem">
+  <div class="position-relative" style="height: 627px">
+    <div class="position-relative h-100">
+      <div class="img-container position-absolute top-0 start-0 h-100">
+        <img
+          src="{{ imageURL }}/home/services/services1.png"
+          alt=""
+          class="h-100 rounded-4"
+        />
+        <span class="overlay"></span>
+      </div>
+      <div class="container-fluid position-relative h-100">
+        <div class="position-absolute top-0 start-0 z-1 white h-100 w-100 p-4">
+          <table>
+            <tbody>
+              <tr>
+              <td>
+                <h1 class="size60 performa-light text-capitalize">
+                  Our Signature Services
+                </h1>
+              </td>
+              <td>
+                <p class="size18 redhat-semibold">
+                  From high-performance supercars to private yacht escapes and
+                  elite chauffeur experiences — we offer tailored luxury
+                  services that redefine travel in the UAE.
+                </p>
+              </td>
+              <td>
+                <h4 class="size32 performa-light text-capitalize">
+                  Luxury Chauffeur Services
+                </h4>
+                <p class="size18 redhat-semibold">
+                  Professional chauffeurs, luxury cars, and on-time service for
+                  VIPs, weddings, or airport transfers.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4 class="size26 redhat-semibold">Luxury Car Rental</h4>
+                <p class="size18 redhat-semibold">
+                  Choose from top brands like Lamborghini, Rolls-Royce, and
+                  Range Rover. Enjoy daily or long-term rentals with free
+                  delivery across the UAE.
+                </p>
+              </td>
+              <td>
+                <h4 class="size26 redhat-semibold">Luxury Yacht Rental</h4>
+                <p class="size18 redhat-semibold">
+                  Book private yachts for parties, getaways, or events. Includes
+                  crew, catering options, and scenic routes like Marina &
+                  Atlantis.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <button class="button size18 redhat-bold">Explore Cars</button>
+              </td>
+              <td>
+                <button class="button size18 redhat-bold">
+                  Explore Yachts
+                </button>
+              </td>
+              <td>
+                <button class="button size18 redhat-bold">
+                  Hire A Chauffeur
+                </button>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-testimonials></app-testimonials>

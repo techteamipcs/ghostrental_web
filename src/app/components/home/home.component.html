@@ -20,7 +20,7 @@
 
     <div class="form-content">
       <form class="quick-reservation-form">
-        <h2 class="text-center mb-1 size28 redhat-bold text-black">
+        <h2 class="text-center mb-1 size28 redhat-bold black">
           Quick Reservation
         </h2>
 
@@ -181,10 +181,10 @@
 </section>
 
 <section
-  class="services text-white sectionPadding position-relative"
+  class="services white sectionPadding position-relative"
   style="height: 100vh"
 >
-  <div class="container-fluid text-white">
+  <div class="container-fluid white">
     <div class="position-relative" style="height: 450px">
       <div class="position-relative">
         <div class="img-container position-absolute top-0 start-0">
@@ -216,7 +216,7 @@
 
     <div class="card-container">
       <div class="row" style="gap: 3rem">
-        <div class="col text-black">
+        <div class="col black">
           <div class="card">
             <div class="img-cont p-1">
               <img
@@ -242,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="col text-black">
+        <div class="col black">
           <div class="card">
             <div class="img-cont p-1">
               <img
@@ -268,7 +268,7 @@
             </div>
           </div>
         </div>
-        <div class="col text-black">
+        <div class="col black">
           <div class="card">
             <div class="img-cont p-1">
               <img
@@ -502,7 +502,10 @@
   </div>
 </section>
 
-<app-brands title="Explore Our Premium Brands"></app-brands>
+<app-brands
+  title="Explore Our Premium Brands"
+  titleClass="text-center size60 performa-light text-uppercase mb-5"
+></app-brands>
 
 <section
   class="about-us sectionPadding w-100 min-vh-100 position-relative overflow-hidden"
@@ -534,10 +537,10 @@
 
     <div class="black-bg"></div>
     <div class="container-fluid mt-5">
-      <h3 class="text-center my-5 size60 performa-light text-white">
-        What Sets Us Apart
+      <h3 class="text-center my-5 size60 performa-light white">
+        What Sets Us Apart?
       </h3>
-      <div class="features-grid text-white">
+      <div class="features-grid white">
         <div class="feature-item" *ngFor="let feature of features">
           <img
             [src]="imageURL + '/' + feature.image"
@@ -557,10 +560,10 @@
 >
   <div class="black-bg"></div>
   <div class="container-fluid">
-    <h3 class="text-center size60 performa-light text-white text-capitalize">
+    <h3 class="text-center size60 performa-light white text-capitalize">
       trending rental cars
     </h3>
-    <h6 class="text-center size18 redhat-semibold text-capitalize text-white">
+    <h6 class="text-center size18 redhat-semibold text-capitalize white">
       rent all popular cars
     </h6>
 
@@ -572,7 +575,7 @@
             [alt]="car.name"
             class="trending-car-image"
           />
-          <div class="car-info p-3 text-white">
+          <div class="car-info p-3 white">
             <h4 class="car-name size35 redhat-semibold">{{ car.name }}</h4>
             <h6 class="car-spec size24 redhat-semibold">
               {{ car.transmission }}
@@ -581,7 +584,7 @@
           <div
             class="car-pricing p-3 pt-0 d-flex justify-content-between align-items-end"
           >
-            <div class="d-flex flex-column text-white">
+            <div class="d-flex flex-column white">
               <span class="original-price size24 redhat-semibold"
                 >AED {{ car.price.regular }}</span
               >
@@ -591,7 +594,7 @@
             </div>
             <a
               href="#"
-              class="btn p-0 mt-auto text-decoration-none text-white size22 redhat-semibold"
+              class="btn p-0 mt-auto text-decoration-none white size22 redhat-semibold"
               >View details</a
             >
           </div>
@@ -599,7 +602,7 @@
       </div>
     </div>
     <button
-      class="button border-0 bg-white text-black d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
+      class="button border-0 bg-white black d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
     >
       view all
     </button>
