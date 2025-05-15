@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  imageURL: string = `${environment.baseUrl}/assets`;
+  imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
   darkTextRoutes = ['/about', '/privacy', '/testimonials'];
