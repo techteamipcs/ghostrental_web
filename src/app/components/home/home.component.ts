@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
+import { DataService } from '../../providers/data/data.service';
 
 // Swiper.use([Navigation]);
 
@@ -330,7 +331,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   yachtTypes = ['Luxury', 'Sport', 'Party'];
   yachtSizes = ['Small', 'Medium', 'Large'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private dataservice: DataService
+  ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
     const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));

@@ -174,6 +174,37 @@ export class DataService {
     );
   };
 
+  //****************** Cartype Data API's Starts **************************/
+  getCarTypes = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/cartype/getAllCartype';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+
+  //****************** Brands Data API's Starts **************************/
+  getBrands = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/brand/getAllBrand';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  //****************** Testimonials Data API's Starts **************************/
+  getTestimonials = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/home/getlltestimonials';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   logout() {
     localStorage.clear();
     this.router.navigate(['/']).then(() => {
