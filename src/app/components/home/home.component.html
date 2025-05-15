@@ -9,8 +9,8 @@
     />
 
     <div class="content">
-      <h1 class="size89 performa-thin">Drive <br />Your Dream</h1>
-      <p class="size20 redhat-regular">
+      <h1 class="size90 performa-thin white">Drive <br />Your Dream</h1>
+      <p class="size20 redhat-regular hero-para white">
         Welcome to our limousine rental website, we offer luxury transportation
         services for any occasion, from weddings and proms to corporate events
         and airport transferes.
@@ -24,113 +24,115 @@
           Quick Reservation
         </h2>
 
-        <div class="d-flex justify-content-center mb-1">
-          <div class="vehicle-switch-container">
-            <label class="vehicle-switch-label">
-              <span class="vehicle-switch-text">CARS</span>
-              <input
-                type="radio"
-                name="vehicleType"
-                value="Car"
-                class="vehicle-switch-input"
-                onchange="toggleVehicleType(true)"
-                checked
-              />
-              <span class="vehicle-switch-slider"></span>
-              <span class="vehicle-switch-text">Yachts</span>
-              <input
-                type="radio"
-                name="vehicleType"
-                value="Yacht"
-                class="vehicle-switch-input"
-                onchange="toggleVehicleType(false)"
-              />
-            </label>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <h5 class="size18 redhat-bold text-uppercase m-0">Cars</h5>
+          <div
+            id="vehicleToggle"
+            class="vehicle-switch"
+            (click)="toggleVehicle()"
+            [class.active]="isVehicleYacht"
+            tabindex="0"
+            role="switch"
+            aria-checked="false"
+          >
+            <span class="vehicle-switch-slider"></span>
           </div>
+          <h5 class="size18 redhat-bold text-uppercase m-0">Yachts</h5>
         </div>
 
-        <div id="carForm" class="car-form">
+        <div
+          id="carForm"
+          class="car-form"
+          [style.display]="!isVehicleYacht ? 'block' : 'none'"
+        >
           <div class="row">
-            <div class="mb-4 col-6">
-              <label class="form-label size18 redhat-bold">Type</label>
+            <div class="mb-3 col-6">
+              <!-- <label class="form-label size18 redhat-bold">Type</label> -->
               <select class="form-select">
-                <option value="">Select Type</option>
+                <option value="">Type</option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
               </select>
             </div>
 
-            <div class="mb-4 col-6">
-              <label class="form-label size18 redhat-bold">Model</label>
+            <div class="mb-3 col-6">
+              <!-- <label class="form-label size18 redhat-bold">Model</label> -->
               <select class="form-select">
-                <option value="">Select Model</option>
+                <option value="">Model</option>
                 <option value="Model X">Model X</option>
                 <option value="Model Y">Model Y</option>
               </select>
             </div>
-          </div>
-          <div class="mb-4 col-12">
-            <label class="form-label size18 redhat-bold">Pickup Date</label>
-            <div class="row mb-2">
-              <div class="col-6">
-                <input type="date" class="form-input" />
+            <div class="mb-3 col-12">
+              <label class="form-label size18 redhat-bold">Pickup Date</label>
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="col-6 mb-3">
+                  <input type="time" class="form-input" />
+                </div>
               </div>
-              <div class="col-6">
-                <input type="time" class="form-input" />
-              </div>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Enter pickup location"
+              />
             </div>
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Enter pickup location"
-            />
+            <div class="mb-3 col-12">
+              <label class="form-label size18 redhat-bold">Return Date</label>
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="col-6 mb-3">
+                  <input type="time" class="form-input" />
+                </div>
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Enter return location"
+              />
+            </div>
           </div>
 
-          <div class="mb-4 col-12">
-            <label class="form-label size18 redhat-bold">Return Date</label>
-            <div class="row mb-2">
-              <div class="col-6">
-                <input type="date" class="form-input" />
-              </div>
-              <div class="col-6">
-                <input type="time" class="form-input" />
-              </div>
-            </div>
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Enter return location"
-            />
-          </div>
+          <button type="submit" class="button">Book Now</button>
         </div>
 
-        <div id="yachtForm" class="yacht-form" style="display: none">
+        <div
+          id="yachtForm"
+          class="yacht-form"
+          [style.display]="isVehicleYacht ? 'block' : 'none'"
+        >
           <div class="row">
-            <div class="mb-4 col-6">
-              <label class="form-label size18 redhat-bold">Type</label>
+            <div class="mb-3 col-6">
+              <!-- <label class="form-label size18 redhat-bold">Type</label> -->
               <select class="form-select">
-                <option value="">Select Type</option>
+                <option value="">Type</option>
                 <option value="Sailing Yacht">Sailing Yacht</option>
                 <option value="Motor Yacht">Motor Yacht</option>
               </select>
             </div>
 
-            <div class="mb-4 col-6">
-              <label class="form-label size18 redhat-bold">Size</label>
+            <div class="mb-3 col-6">
+              <!-- <label class="form-label size18 redhat-bold">Size</label> -->
               <select class="form-select">
-                <option value="">Select Size</option>
+                <option value="">Size</option>
                 <option value="30ft">30ft</option>
                 <option value="50ft">50ft</option>
               </select>
             </div>
 
-            <div class="mb-4 col-6">
+            <div class="mb-3 col-12">
               <label class="form-label size18 redhat-bold"
                 >Departure Date</label
               >
-              <input type="date" class="form-input" />
-              <div class="row mb-2">
-                <div class="col-6">
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="col-6 mb-3">
                   <input type="time" class="form-input" />
                 </div>
               </div>
@@ -141,11 +143,13 @@
               />
             </div>
 
-            <div class="mb-4 col-6">
+            <div class="mb-3 col-12">
               <label class="form-label size18 redhat-bold">Return Date</label>
-              <input type="date" class="form-input" />
-              <div class="row mb-2">
-                <div class="col-6">
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="col-6 mb-3">
                   <input type="time" class="form-input" />
                 </div>
               </div>
@@ -156,8 +160,8 @@
               />
             </div>
           </div>
+          <button type="submit" class="button">Book Now</button>
         </div>
-        <button type="submit" class="button">Book Now</button>
       </form>
     </div>
   </div>
@@ -300,7 +304,7 @@
 
 <section class="collection sectionPadding">
   <div class="container-fluid">
-    <div class="row g-4">
+    <div class="row">
       <div class="col-12 pb-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="text-capitalize size60 performa-light">
@@ -309,12 +313,11 @@
           <button class="button viewbutton size18 redhat-bold">view all</button>
         </div>
 
-        <!-- Car Collection Swiper -->
         <div class="position-relative">
           <div class="swiper car-collection-swiper" #carSwiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of carsCollections">
-                <div class="car-card" style="width: 300px">
+                <div class="car-card" >
                   <img
                     [src]="getCarCategoriesImageUrl(car)"
                     [alt]="car.name"
@@ -400,6 +403,13 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="collection sectionPadding">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="text-capitalize size60 performa-light">
@@ -408,12 +418,11 @@
           <button class="button viewbutton size18 redhat-bold">view all</button>
         </div>
 
-        <!-- Yacht Collection Swiper -->
         <div class="position-relative">
           <div class="swiper yacht-collection-swiper" #yachtSwiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let yacht of yachtCollections">
-                <div class="car-card" style="width: 300px">
+                <div class="car-card">
                   <img
                     [src]="getCarCategoriesImageUrl(yacht)"
                     [alt]="yacht.name"
@@ -594,7 +603,7 @@
             </div>
             <a
               href="#"
-              class="btn p-0 mt-auto text-decoration-none white size22 redhat-semibold"
+              class="btn p-0 mt-auto text-decoration-none text-white size22 redhat-semibold"
               >View details</a
             >
           </div>
@@ -602,7 +611,7 @@
       </div>
     </div>
     <button
-      class="button border-0 bg-white black d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
+      class="button border-0 text-black bg-white d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
     >
       view all
     </button>

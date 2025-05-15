@@ -15,6 +15,7 @@ import { BrandsComponent } from './shared/brands/brands.component';
 import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus } from 'lucide-angular';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { ServicesComponent } from './components/services/services.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
     TestimonialsComponent,
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
+    ServicesComponent,
   ],
   imports: [
     BrowserModule,

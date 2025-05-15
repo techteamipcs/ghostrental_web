@@ -66,47 +66,142 @@ body {
   font-weight: 700;
 }
 
-.size18 {
-  font-size: 18px;
+// font sizes
+.size14 {
+  font-size: 14px;
+  @media (max-width:1024px) {
+    font-size: 8px;
+  }
+  @media (max-width:768px) {
+    font-size: 5px;
+  }
 }
 .size16 {
   font-size: 16px;
+  @media (max-width:1024px) {
+    font-size: 9px;
+  }
+  @media (max-width:768px) {
+    font-size: 7px;
+  }
 }
-.size14 {
-  font-size: 14px;
+.size18 {
+  font-size: 18px;
+  @media (max-width:1024px) {
+    font-size: 11px;
+  }
+  @media (max-width:768px) {
+    font-size: 6px;
+  }
 }
 .size20 {
   font-size: 20px;
+  @media (max-width:1024px) {
+    font-size: 12px;
+  }
+  @media (max-width:768px) {
+    font-size: 7px;
+  }
 }
 .size22 {
   font-size: 22px;
+
+  @media (max-width:1024px) {
+    font-size: 13px;
+  }
+  @media (max-width:768px) {
+    font-size: 8px;
+  }
 }
 .size24 {
   font-size: 24px;
+  @media (max-width:1024px) {
+    font-size: 14px;
+  }
+  @media (max-width:768px) {
+    font-size: 10px;
+  }
 }
 .size28 {
   font-size: 28px;
+  @media (max-width:1024px) {
+    font-size: 17px;
+  }
+  @media (max-width:768px) {
+    font-size: 10px;
+  }
 }
 .size30 {
   font-size: 30px;
+  @media (max-width:1024px) {
+    font-size: 18px;
+  }
+  @media (max-width:768px) {
+    font-size: 11px;
+  }
 }
 .size32 {
   font-size: 32px;
+  @media (max-width:1024px) {
+    font-size: 19px;
+  }
+  @media (max-width:768px) {
+    font-size: 12px;
+  }
 }
 .size35 {
   font-size: 35px;
+  @media (max-width:1024px) {
+    font-size: 21px;
+  }
+  @media (max-width:768px) {
+    font-size: 12px;
+  }
+}
+.size42 {
+  font-size: 42px;
+  @media (max-width:1024px) {
+    font-size: 25px;
+  }
+  @media (max-width:768px) {
+    font-size: 16px;
+  }
+}
+.size46 {
+  font-size: 46px;
+  @media (max-width:1024px) {
+    font-size: 28px;
+  }
+  @media (max-width:768px) {
+    font-size: 17px;
+  }
 }
 .size55 {
   font-size: 55px;
+  @media (max-width:1024px) {
+    font-size:  33px;
+  }
+  @media (max-width:768px) {
+    font-size: 21px;
+  }
 }
 .size60{
   font-size: 60px;
-}
-.size89 {
-  font-size: 89px;
+  @media (max-width:1024px) {
+    font-size: 37px;
+  }
+  @media (max-width:768px) {
+    font-size: 22px;
+  }
 }
 .size90 {
   font-size: 90px;
+  @media (max-width:1024px) {
+    font-size: 55px;
+  }
+  @media (max-width:768px) {
+    font-size: 34px;
+  }
 }
 
 // colors

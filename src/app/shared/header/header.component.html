@@ -1,22 +1,37 @@
 <nav
   class="position-fixed top-0 start-0 w-100 z-2"
   [class.scrolled]="isScrolled"
-  [class.about-page]="isAboutPage()"
-  [class.about-page]="isPrivacyPolicyPage()"
-  [class.about-page]="isTermsAndConditionsPage()"
+  [class.dark-text]="isDarkText"
 >
-  <div
-    class="container-fluid d-flex justify-content-between align-items-center"
-    style="padding: 1rem 3rem"
-  >
-    <a href="/">
+  <div class="container-fluid d-flex justify-content-between align-items-center py-3 px-4">
+    <a href="/" class="d-flex align-items-center">
       <img
+        *ngIf="!isDarkText"
         src="{{ imageURL }}/images/logo/nav_logo.png"
-        alt=""
+        alt="Ghost Rental Logo"
+        class="nav-logo"
+      />
+      <img
+        *ngIf="isDarkText"
+        src="{{ imageURL }}/images/logo/nav_logo.png"
+        alt="Ghost Rental Logo"
         class="nav-logo"
       />
     </a>
-    <ul class="nav d-flex gap-5 align-items-center">
+    
+    <!-- Mobile menu button -->
+    <button 
+      class="navbar-toggler d-md-none" 
+      type="button" 
+      (click)="toggleMenu()"
+      aria-label="Toggle navigation"
+      [class.dark-text]="isDarkText && !isMenuOpen"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Desktop Navigation -->
+    <ul class="nav d-none d-md-flex align-items-center" style="gap: 4.5rem">
       <li>
         <a href="/" class="size16 redhat-semibold white text-decoration-none"
           >Home</a
@@ -49,5 +64,28 @@
         </a>
       </li>
     </ul>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-menu" [class.active]="isMenuOpen">
+      <ul class="nav flex-column align-items-center">
+        <li class="w-100" (click)="closeMenu()">
+          <a href="/" class="size16 redhat-semibold white text-decoration-none d-block py-2">Home</a>
+        </li>
+        <li class="w-100" (click)="closeMenu()">
+          <a href="/about" class="size16 redhat-semibold white text-decoration-none d-block py-2">About Us</a>
+        </li>
+        <li class="w-100" (click)="closeMenu()">
+          <a href="/services" class="size16 redhat-semibold white text-decoration-none d-block py-2">Our Services</a>
+        </li>
+        <li class="w-100" (click)="closeMenu()">
+          <a href="/fleets" class="size16 redhat-semibold white text-decoration-none d-block py-2">Our Fleets</a>
+        </li>
+        <li class="w-100 mt-3" (click)="closeMenu()">
+          <a href="/contact" class="d-block">
+            <button class="button size18 redhat-bold w-100">Contact Us</button>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

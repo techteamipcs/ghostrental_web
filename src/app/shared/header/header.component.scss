@@ -2,29 +2,73 @@ nav {
   padding:30px;
   z-index: 1000;
   background-color: transparent;
-  transition: background-color 0.3s ease,padding 0.3s ease;
+  transition: all 0.3s ease;
 
   &.scrolled, &.about-page {
     background-color: #000;
     padding: 1rem;
   }
 
+  &.dark-text {
+    .white {
+      color: #000 !important;
+      transition: color 0.3s ease;
+      
+      &.force-white {
+        color: #fff !important;
+      }
+    }
+    
+    .navbar-toggler-icon {
+      background-color: #000;
+      transition: background-color 0.3s ease;
+      
+      &::before,
+      &::after {
+        background-color: #000;
+        transition: background-color 0.3s ease;
+      }
+    }
+    
+    // When scrolled, show white text and icons
+    &.scrolled {
+      .white {
+        color: #fff !important;
+      }
+      
+      .navbar-toggler-icon {
+        background-color: #fff;
+        
+        &::before,
+        &::after {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
   .container-fluid {
+    position: relative;
+    padding: 1rem 2rem;
     padding: 0;
 
-    @media (max-width: 768px) {
-      padding: 0;
+    @media (min-width: 768px) {
+      padding: 1rem 3rem 1rem 5rem;
     }
   }
 
   .nav-logo {
-    width: 260px;
+    width: 268px;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
+    transition: all 0.3s ease;
 
-    
+    @media (min-width: 768px) {
+      width: 220px;
+    }
   }
 
+  // Desktop Navigation
   ul.nav {
     list-style: none;
     margin: 0;
@@ -37,12 +81,110 @@ nav {
       a {
         padding: 0.5rem;
         transition: color 0.3s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
 
       .button {
         background-color: white;
         color: black;
         padding: .5rem 2rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  // Mobile Menu Button
+  .navbar-toggler {
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+
+    .navbar-toggler-icon {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: white;
+      position: relative;
+      transition: all 0.3s ease;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+
+      &::before {
+        transform: translateY(-6px);
+      }
+
+      &::after {
+        transform: translateY(6px);
+      }
+    }
+  }
+
+  // Mobile Navigation
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 100px 0;
+    z-index: 1000;
+
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    ul.nav {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+
+      li {
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+
+        &:nth-child(1) { transition-delay: 0.1s; }
+        &:nth-child(2) { transition-delay: 0.15s; }
+        &:nth-child(3) { transition-delay: 0.2s; }
+        &:nth-child(4) { transition-delay: 0.25s; }
+        &:nth-child(5) { transition-delay: 0.3s; }
+      }
+    }
+
+    &.active {
+      ul.nav li {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }

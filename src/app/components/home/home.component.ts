@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
+import { Navigation } from 'swiper/modules';
 
-// Swiper.use([Navigation]);
+Swiper.use([Navigation]);
 
 
 @Component({
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   today: string;
   maxDate: string;
   reservationForm!: FormGroup;
+  isVehicleYacht = false;
 
 
   carsCollections = [
@@ -295,15 +297,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     },
     {
-      name: 'Jeep Wrangler',
-      image: 'home/trending_cars/jeep_wrath.png',
-      transmission: 'Automatic',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
       name: 'Lamborghini Huracan',
       image: 'home/trending_cars/lamborghini_huracan.png',
       transmission: 'Automatic',
@@ -331,9 +324,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     }
   ]
-  yachtTypes = ['Luxury', 'Sport', 'Party'];
-  yachtSizes = ['Small', 'Medium', 'Large'];
-
   constructor(private fb: FormBuilder) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
@@ -351,87 +341,80 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   private initCarSwiper() {
-    if (this.carSwiperRef?.nativeElement && !this.carSwiper) {
+    if (this.carSwiperRef?.nativeElement) {
       this.carSwiper = new Swiper(this.carSwiperRef.nativeElement, {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
+        slidesPerView: 3,
+        spaceBetween: 20,
         navigation: {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
         breakpoints: {
+          0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
           992: { slidesPerView: 3 },
-          1200: { slidesPerView: 4 }
         },
-        on: {
-          init: () => this.updateCarNavButtons(),
-          slideChange: () => this.updateCarNavButtons()
-        }
       });
     }
   }
 
+
   private initYachtSwiper() {
-    if (this.yachtSwiperRef?.nativeElement && !this.yachtSwiper) {
+    if (this.yachtSwiperRef?.nativeElement) {
       this.yachtSwiper = new Swiper(this.yachtSwiperRef.nativeElement, {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
+        slidesPerView: 3,
+        spaceBetween: 20,
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
+          0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
           992: { slidesPerView: 3 },
-          1200: { slidesPerView: 4 }
         },
-        on: {
-          init: () => this.updateYachtNavButtons(),
-          slideChange: () => this.updateYachtNavButtons()
-        }
       });
     }
   }
 
 
-  private updateCarNavButtons() {
-    if (!this.carSwiper) return;
+  // private updateCarNavButtons() {
+  //   if (!this.carSwiper) return;
 
-    const prevButton = document.querySelector('.car-swiper-button-prev');
-    const nextButton = document.querySelector('.car-swiper-button-next');
+  //   const prevButton = document.querySelector('.car-swiper-button-prev');
+  //   const nextButton = document.querySelector('.car-swiper-button-next');
 
-    if (prevButton) {
-      prevButton.classList.toggle('swiper-button-disabled', this.carSwiper.isBeginning);
-    }
+  //   if (prevButton) {
+  //     prevButton.classList.toggle('swiper-button-disabled', this.carSwiper.isBeginning);
+  //   }
 
-    if (nextButton) {
-      nextButton.classList.toggle('swiper-button-disabled', this.carSwiper.isEnd);
-    }
-  }
+  //   if (nextButton) {
+  //     nextButton.classList.toggle('swiper-button-disabled', this.carSwiper.isEnd);
+  //   }
+  // }
 
-  private updateYachtNavButtons() {
-    if (!this.yachtSwiper) return;
+  // private updateYachtNavButtons() {
+  //   if (!this.yachtSwiper) return;
 
-    const prevButton = document.querySelector('.yacht-swiper-button-prev');
-    const nextButton = document.querySelector('.yacht-swiper-button-next');
+  //   const prevButton = document.querySelector('.yacht-swiper-button-prev');
+  //   const nextButton = document.querySelector('.yacht-swiper-button-next');
 
-    if (prevButton) {
-      prevButton.classList.toggle('swiper-button-disabled', this.yachtSwiper.isBeginning);
-    }
+  //   if (prevButton) {
+  //     prevButton.classList.toggle('swiper-button-disabled', this.yachtSwiper.isBeginning);
+  //   }
 
-    if (nextButton) {
-      nextButton.classList.toggle('swiper-button-disabled', this.yachtSwiper.isEnd);
-    }
-  }
+  //   if (nextButton) {
+  //     nextButton.classList.toggle('swiper-button-disabled', this.yachtSwiper.isEnd);
+  //   }
+  // }
 
   ngOnDestroy() {
     if (this.carSwiper) {
-      this.carSwiper.destroy();
+      this.carSwiper?.destroy(true, true);
       this.carSwiper = null;
     }
     if (this.yachtSwiper) {
-      this.yachtSwiper.destroy();
+      this.yachtSwiper?.destroy(true, true);
       this.yachtSwiper = null;
     }
   }
@@ -458,12 +441,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return `${this.imageURL}/${car.image}`;
   }
 
-
-  toggleVehicle(type: 'Car' | 'Yacht') {
-    this.isCar = type === 'Car';
-    this.reservationForm.patchValue({ vehicleType: type });
+  toggleVehicle() {
+    this.isVehicleYacht = !this.isVehicleYacht;
   }
-
   onSubmit() {
     console.log('Submitted');
     console.log(this.reservationForm.value);
