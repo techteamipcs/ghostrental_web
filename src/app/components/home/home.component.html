@@ -8,12 +8,19 @@
       decoding="async"
     />
 
-    <div class="content">
+    <div class="content" *ngIf="!bannerData">
       <h1 class="size90 performa-thin white">Drive <br />Your Dream</h1>
       <p class="size20 redhat-regular hero-para white">
         Welcome to our limousine rental website, we offer luxury transportation
         services for any occasion, from weddings and proms to corporate events
         and airport transferes.
+      </p>
+      <button class="button size18 redhat-bold">Book Now</button>
+    </div>
+
+    <div class="content" *ngIf="bannerData">
+      <h1 class="size90 performa-thin white" [innerHtml]="bannerData.short_desc"></h1>
+      <p class="size20 redhat-regular hero-para white" [innerHtml]="bannerData.description">
       </p>
       <button class="button size18 redhat-bold">Book Now</button>
     </div>
@@ -171,8 +178,8 @@
   <h3 class="text-center mb-3 size22 redhat-bold">Browse by Car Type</h3>
   <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center">
-      <div *ngFor="let car of carTypes" class="car-icon">
-        <img [src]="getCarCategoriesImageUrl(car)" [alt]="car.name" />
+      <div *ngFor="let car of cartypeData" class="car-icon">
+        <img src="{{ backendURl }}/cartype/{{car.image[0].src}}" [alt]="car.name" />
         <p
           class="size18 redhat-semibold text-center position-relative m-0"
           style="top: -10px"
@@ -421,10 +428,10 @@
         <div class="position-relative">
           <div class="swiper yacht-collection-swiper" #yachtSwiper>
             <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let yacht of yachtCollections">
+              <div class="swiper-slide" *ngFor="let yacht of ouryatchsCollections">
                 <div class="car-card">
                   <img
-                    [src]="getCarCategoriesImageUrl(yacht)"
+                    src="{{ backendURl }}/media/{{yacht.media_data[0].src}}"
                     [alt]="yacht.name"
                     class="img-fluid rounded w-100"
                   />
@@ -617,5 +624,3 @@
     </button>
   </div>
 </section>
-
-<app-testimonials></app-testimonials>
