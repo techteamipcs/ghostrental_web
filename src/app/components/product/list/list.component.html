@@ -77,10 +77,10 @@
 
     <div class="products">
       <div class="row">
-        <div class="col-md-3 mb-5" *ngFor="let car of pagedCars">
+        <div class="col-md-3 mb-5" *ngFor="let car of vehicleData">
           <div class="car-card border border-1 border-black">
             <img
-              [src]="imageURL + '/' + car.image"
+              src="{{ backendURl }}/media/{{car.media_data[0].src}}"
               [alt]="car.name"
               class="img-fluid rounded w-100"
             />
@@ -104,7 +104,7 @@
                   alt=""
                 />
                 <h6 class="mb-0 size16 redhat-semibold">
-                  {{ car.fuel }}
+                  {{ car.fuelType }}
                 </h6>
               </div>
               <div class="text-center">
@@ -114,7 +114,7 @@
                   alt=""
                 />
                 <h6 class="mb-0 size16 redhat-semibold">
-                  {{ car.speed }}
+                  {{ car.mileage }}
                 </h6>
               </div>
               <div class="text-center">
@@ -124,7 +124,7 @@
                   alt=""
                 />
                 <h6 class="mb-0 size16 redhat-semibold">
-                  {{ car.seat }} Seats
+                  {{ car.seating_capacity }} Seats
                 </h6>
               </div>
             </div>
@@ -134,10 +134,10 @@
             >
               <div class="cash">
                 <h6 class="text-muted mb-0 size18 redhat-semibold">
-                  <del>AED {{ car.price.regular }}</del>
+                  <del>AED {{ car.regularRate }}</del>
                 </h6>
                 <h5 class="mb-0 size26 redhat-semibold">
-                  AED {{ car.price.discounted }}
+                  AED {{ car.dailyRate }}
                 </h5>
               </div>
               <a href="#" class="btn p-0 mt-auto text-decoration-none"
