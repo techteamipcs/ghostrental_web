@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { DataService } from '../../providers/data/data.service';
 
 @Component({
   selector: 'app-about',
@@ -8,7 +9,14 @@ import { environment } from '../../../environments/environment';
 })
 export class AboutComponent {
   imageURL: string = `${environment.url}/assets`;
-
+  bannerData: any;
+  constructor(
+    private dataservice: DataService
+  ) {
+  }
+  ngOnInit() {
+    this.getBannerData();
+  }
 
   features = [
     {
@@ -33,5 +41,21 @@ export class AboutComponent {
       description: 'Serving Dubai and all major UAE destinations',
     }
   ];
+
+
+  getBannerData() {
+    let obj = {};
+    this.dataservice.getAllBanner(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          response.result.forEach(banner => {
+            if (banner && banner.page == 'about') {
+              this.bannerData = banner;
+            }
+          });
+        }
+      }
+    });
+  }
 
 }
