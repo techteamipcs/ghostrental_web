@@ -471,7 +471,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dataservice.getAllBanner(obj).subscribe((response) => {
       if (response.code == 200) {
         if(response.result && response.result.length > 0){
-          this.bannerData = response.result[0];
+          response.result.forEach(banner => {
+            if(banner && banner.page == 'home'){
+              this.bannerData = banner;
+            }
+          });        
         }
       }
     });
