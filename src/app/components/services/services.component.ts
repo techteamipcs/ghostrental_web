@@ -7,5 +7,5 @@ import { environment } from '../../../environments/environment';
   styleUrl: './services.component.scss'
 })
 export class ServicesComponent {
-  imageURL: string = `${environment.baseUrl}/assets`;
+  imageURL: string = `${environment.url}/assets`;
 }

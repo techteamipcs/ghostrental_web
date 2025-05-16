@@ -1,0 +1,139 @@
+.content {
+  width: 654px;
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  transform: translateY(-30%);
+  h1 {
+    line-height: 90px;
+  }
+  .hero-para {
+    width: 495px;
+    line-height: 26px;
+  }
+}
+
+
+.viewbutton {
+  padding: 1rem 4rem;
+  background-color: black;
+}
+
+.collection_image {
+  width: 35px;
+  height: 35px;
+}
+.swiper {
+  width: 100%;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+
+  .swiper-wrapper {
+    align-items: stretch;
+    display: flex;
+    width: 100%;
+  }
+
+  .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: stretch;
+  }
+}
+.car-swiper-button-prev,
+.car-swiper-button-next,
+.yacht-swiper-button-prev,
+.yacht-swiper-button-next {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1rem;
+  border: 1px solid black;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: black;
+    color: white;
+  }
+  &::after {
+    display: none;
+  }
+  .swiper-button-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.car-card {
+  width: 400px;
+  height: 527px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .cash {
+    h6 {
+      text-decoration: line-through;
+    }
+  }
+}
+
+
+.pagination {
+  list-style: none;
+  padding-left: 0;
+}
+
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.circle-btn.filled {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.circle-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.number-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  padding: 0 10px;
+  transition: 0.3s;
+}
+
+.number-btn.active-page {
+  font-weight: bold;
+  color: black;
+}

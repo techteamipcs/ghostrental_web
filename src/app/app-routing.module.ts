@@ -6,8 +6,6 @@ import { AboutComponent } from './components/about/about.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { ServicesComponent } from './components/services/services.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
   {
@@ -15,35 +13,27 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'service',
+    component: ServicesComponent
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule)
   },
   {
     path: 'contact',
     loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule)
   },
   {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'services',
-    component: ServicesComponent
-  },
-  {
-    path: 'products',
-    component: ProductsComponent
-  },
-  {
-    path: 'product-details',
-    component: ProductDetailsComponent
-  },
-  {
-    path: 'privacy-policy',
+    path: 'privacy',
     component: PrivacyPolicyComponent
   },
   {
-    path: 'terms-and-conditions',
+    path: 'terms',
     component: TermsAndConditionsComponent
   },
   {
