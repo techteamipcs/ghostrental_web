@@ -61,7 +61,18 @@ nav {
     @media (max-width: 768px) {
       width: 220px;
     }
+    @media (max-width: 400px) {
+      width: 180px;
+    }
   }
+  .dark-mode {
+    filter: brightness(0);
+  }
+
+  &.scrolled .nav-logo {
+    filter: none !important;
+  }
+
 
   // Desktop Navigation
   ul.nav {

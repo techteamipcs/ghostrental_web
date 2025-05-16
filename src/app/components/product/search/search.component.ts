@@ -862,8 +862,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const filter = document.getElementById('filterContainer')!;
-    const results = document.getElementById('resultsSection')!;
+    const filter = this.filterRef.nativeElement;
+    const results = this.resultsRef.nativeElement;
 
     const filterHeight = filter.offsetHeight;
     const filterTop = filter.getBoundingClientRect().top;
@@ -873,7 +873,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       filter.style.position = 'relative';
       filter.style.bottom = '0';
     } else {
-      filter.style.position = 'fixed';
+      filter.style.position = 'sticky';
       filter.style.top = '11rem';
     }
   }

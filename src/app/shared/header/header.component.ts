@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -15,7 +16,11 @@ export class HeaderComponent implements OnInit {
   darkTextRoutes = ['/about', '/privacy', '/testimonials', '/search', '/product/Detail', '/produc t/list'];
   isDarkText = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
@@ -48,12 +53,12 @@ export class HeaderComponent implements OnInit {
 
   private updateTextColor(): void {
     // If scrolled, show white text, otherwise respect the dark text setting
-    const textElements = document.querySelectorAll('nav .white');
+    const textElements = this.document.querySelectorAll('nav .white');
     textElements.forEach(el => {
       if (this.isScrolled) {
-        el.classList.add('force-white');
+        this.renderer.addClass(el, 'force-white');
       } else {
-        el.classList.remove('force-white');
+        this.renderer.removeClass(el, 'force-white');
       }
     });
   }
@@ -69,19 +74,26 @@ export class HeaderComponent implements OnInit {
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
     // Toggle body scroll when menu is open
-    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
+    const body = this.document.body;
+    if (this.isMenuOpen) {
+      this.renderer.setStyle(body, 'overflow', 'hidden');
+    } else {
+      this.renderer.removeStyle(body, 'overflow');
+    }
   }
 
   closeMenu(): void {
     this.isMenuOpen = false;
-    document.body.style.overflow = '';
+    const body = this.document.body;
+    this.renderer.removeStyle(body, 'overflow');
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     if (window.innerWidth >= 768) {
       this.isMenuOpen = false;
-      document.body.style.overflow = '';
+      const body = this.document.body;
+      this.renderer.removeStyle(body, 'overflow');
     }
   }
 }

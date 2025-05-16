@@ -8,16 +8,10 @@
   >
     <a href="/" class="d-flex align-items-center">
       <img
-        *ngIf="!isDarkText"
-        src="{{ imageURL }}/images/logo/nav_logo.png"
+        src="{{ imageURL }}/images/logo/nav-logo.svg"
         alt="Ghost Rental Logo"
         class="nav-logo"
-      />
-      <img
-        *ngIf="isDarkText"
-        src="{{ imageURL }}/images/logo/nav_logo.png"
-        alt="Ghost Rental Logo"
-        class="nav-logo"
+        [ngClass]="{ 'dark-mode': isDarkText }"
       />
     </a>
 
@@ -55,7 +49,7 @@
       </li>
       <li>
         <a
-          href="/fleets"
+          href="/product/search"
           class="size16 redhat-semibold white text-decoration-none"
           >Our Fleets</a
         >
