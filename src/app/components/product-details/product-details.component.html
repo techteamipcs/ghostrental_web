@@ -1,0 +1,456 @@
+<section class="sectionPadding">
+  <div class="container-fluid">
+    <div class="product-header mb-4">
+      <h3 class="size22 redhat-semibold text-uppercase mb-2">sedan</h3>
+      <h1 class="size46 performa-light mb-4">BMW i7</h1>
+    </div>
+
+    <div class="gallery-container">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="main-image-wrapper position-relative">
+            <img
+              [src]="mainImage.src"
+              [alt]="mainImage.alt"
+              class="img-fluid main-image"
+              loading="lazy"
+            />
+            <button
+              class="position-absolute top-50 translate-middle-y prev"
+              (click)="prevImage()"
+            >
+              <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" />
+            </button>
+            <button
+              class="position-absolute top-50 translate-middle-y next"
+              (click)="nextImage()"
+            >
+              <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" />
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div
+            class="d-flex flex-column h-100 justify-content-between align-items-center"
+          >
+            <div
+              class="d-flex justify-content-center"
+              *ngFor="let img of thumbnailImages"
+              [class.active]="img.isActive"
+              (click)="setActiveImageById(img)"
+            >
+              <img
+                [src]="img.src"
+                [alt]="img.alt"
+                class="img-fluid"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sectionPadding">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 border-1 border-bottom border-top">
+        <div class="my-5">
+          <h3 class="size26 redhat-semibold text-capitalize">car overview</h3>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{ imageURL }}/product-details/overview_icons/body.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">body</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">sedan</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/mileage.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">mileage</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">28,000 miles</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{ imageURL }}/product-details/overview_icons/fuel.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">fuel type</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">petrol</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/transmission.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">transmission</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">automatic</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/engine.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">engine</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">4.8L</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/doors.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">doors</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">5-door</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{ imageURL }}/product-details/overview_icons/year.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">year</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">2023</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/drive.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">drive type</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">front wheel drive</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <img
+                    src="{{
+                      imageURL
+                    }}/product-details/overview_icons/color.png"
+                    alt=""
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-lg-5">
+                  <h5 class="size14 redhat-semibold">color</h5>
+                </div>
+                <div class="col-lg-5">
+                  <p class="size14 redhat-semibold">blue</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 border-1 border-bottom">
+        <div class="my-5">
+          <h3 class="size26 redhat-semibold text-capitalize">description</h3>
+          <p class="size18 redhat-semibold">
+            Quisque imperdiet dignissim enim dictum finibus. Sed consectetutr
+            convallis enim eget laoreet. Aenean vitae nisl mollis, porta risus
+            vel, dapibus lectus. Etiam ac suscipit eros, eget maximus
+          </p>
+          <p class="size18 redhat-semibold">
+            Etiam sit amet ex pharetra, venenatis ante vehicula, gravida sapien.
+            Fusce eleifend vulputate nibh, non cursus augue placerat
+            pellentesque. Sed venenatis risus nec felis mollis, in pharetra urna
+            euismod. Morbi aliquam ut turpis sit amet ultrices. Vestibulum
+            mattis blandit nisl, et tristique elit scelerisque nec. Fusce
+            eleifend laoreet dui eget aliquet. Ut rutrum risus et nunc pretium
+            scelerisque.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-8 border-1 border-bottom">
+        <div class="my-5">
+          <h3 class="size26 redhat-semibold text-capitalize">features</h3>
+          <div class="d-flex gap-4">
+            <div class="d-flex flex-column mb-5">
+              <h6 class="size18 redhat-semibold text-capitalize">Interior</h6>
+              <ul class="list-unstyled">
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">Air Conditioner</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">digital odometer</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">leather seats</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">heater</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">tachometer</p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column mb-5">
+              <h6 class="size18 redhat-semibold text-capitalize">exterior</h6>
+              <ul class="list-unstyled">
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">fog lights front</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rain seasing wipe</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rear spoiler</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">heater</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">tachometer</p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column mb-5">
+              <h6 class="size18 redhat-semibold text-capitalize">exterior</h6>
+              <ul class="list-unstyled">
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">fog lights front</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rain seasing wipe</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rear spoiler</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">heater</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">tachometer</p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column mb-5">
+              <h6 class="size18 redhat-semibold text-capitalize">exterior</h6>
+              <ul class="list-unstyled">
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">fog lights front</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rain seasing wipe</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">rear spoiler</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">heater</p>
+                </li>
+                <li class="d-flex gap-4 align-items-center mb-3">
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold">tachometer</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="my-5">
+          <h3 class="size26 redhat-semibold text-capitalize">location</h3>
+          <p class="size18 redhat-semibold">mk ghaninam, warehouse</p>
+          <p class="size18 redhat-semibold">
+            no.40 3rd al wuar, al a rja industrial area
+          </p>
+          <p class="size18 redhat-semibold">dubai, united arab emirates</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="maps">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7220.5634893502!2d55.270783!3d25.2048493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1620000000000!5m2!1sen!2sae"
+        width="100%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<app-testimonials></app-testimonials>

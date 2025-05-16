@@ -95,11 +95,13 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "https://cdn.jsdelivr.net/npm/lucide/dist/css/lucide.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/swiper/swiper-bundle.min.js"
+              "node_modules/swiper/swiper-bundle.min.js",
+              "https://cdn.jsdelivr.net/npm/lucide/dist/js/lucide.min.js"
             ]
           }
         },

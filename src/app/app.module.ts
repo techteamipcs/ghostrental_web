@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,10 +12,13 @@ import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@ang
 import { Error404Component } from './error404/error404.component';
 import { FormsModule } from '@angular/forms';
 import { BrandsComponent } from './shared/brands/brands.component';
-import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus } from 'lucide-angular';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { ServicesComponent } from './components/services/services.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductsComponent } from './components/products/products.component';
+
+import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,16 @@ import { ServicesComponent } from './components/services/services.component';
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
     ServicesComponent,
+    ProductDetailsComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbDropdownModule,
     HttpClientModule,
     FormsModule,
-    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus }),
+    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight }),
   ],
   providers: [
     provideClientHydration(),

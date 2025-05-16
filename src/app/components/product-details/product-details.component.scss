@@ -1,0 +1,61 @@
+.sectionPadding {
+  padding: 12rem 5rem 5rem 5rem;
+}
+
+// Navigation buttons
+.prev{
+  left: -100px;
+}
+.next{
+  right: -100px;
+}
+.prev, .next {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+
+  &:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:hover lucide-icon {
+    transform: scale(1.2);
+  }
+}
+
+.overview_icons {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.features_icons {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+// Maps container
+.maps {
+  width: 100%;
+  margin: 40px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  iframe {
+    display: block;
+    width: 100%;
+    min-height: 450px;
+    border: none;
+  }
+}
+
+h5,p{
+  margin: 0;
+  text-transform: capitalize;
+}

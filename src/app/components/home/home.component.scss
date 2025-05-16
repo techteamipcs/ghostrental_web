@@ -342,10 +342,8 @@
 }
 
 .collection {
-  
   .viewbutton {
     padding: 1rem 4rem;
-    color: white;
     background-color: black;
   }
 
@@ -417,23 +415,7 @@
       border-radius: 8px;
       margin-bottom: 15px;
     }
-
-    .car-name {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-
-    .transmission {
-      color: #666;
-      margin-bottom: 10px;
-    }
-
     .cash {
-      h5 {
-        color: #000;
-        font-weight: 600;
-      }
-
       h6 {
         text-decoration: line-through;
       }
