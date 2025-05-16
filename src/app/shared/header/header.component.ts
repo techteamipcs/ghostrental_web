@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials'];
+  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/search', '/product/Detail', '/produc t/list'];
   isDarkText = false;
 
   constructor(private router: Router) {
@@ -21,11 +21,7 @@ export class HeaderComponent implements OnInit {
     ).subscribe((event: any) => {
       const wasDarkText = this.isDarkText;
       this.isDarkText = this.darkTextRoutes.some(route => event.url.includes(route));
-      
-      // Reset scroll position when route changes
       window.scrollTo(0, 0);
-      
-      // If dark text state changed, update the text color
       if (wasDarkText !== this.isDarkText) {
         this.updateTextColor();
       }
@@ -43,7 +39,7 @@ export class HeaderComponent implements OnInit {
   onScroll(): void {
     const wasScrolled = this.isScrolled;
     this.isScrolled = window.scrollY > 50;
-    
+
     // If we're on a dark text page and scroll state changed, update the text color
     if (this.isDarkText && wasScrolled !== this.isScrolled) {
       this.updateTextColor();

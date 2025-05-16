@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,7 +34,6 @@ import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, Arrow
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbDropdownModule,
     HttpClientModule,
     FormsModule,
     LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight }),

@@ -1,0 +1,239 @@
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
+})
+export class SearchComponent implements OnInit, AfterViewInit {
+  Math = Math;
+  imageURL: string = `${environment.url}/assets`;
+  backendURl = `${environment.baseUrl}/public`;
+  searchForm: FormGroup;
+  
+  // Available options for filters
+  rentalTypes = ['Monthly', 'Weekly', 'Daily', 'Yearly'];
+  bodyTypes = ['All', 'SUV', 'Sedan', 'Hatchback'];
+  carBrands = ['All', 'Toyota', 'BMW', 'Mercedes', 'Audi', 'Honda'];
+  carModels = ['All', 'Corolla', 'Camry', 'X5', 'C-Class', 'A4', 'Civic'];
+  
+  // Price range filter
+  minPriceValue = 500;
+  maxPriceValue = 1000;
+  
+  // Pagination
+  currentPage = 1;
+  itemsPerPage = 16;
+  totalItems = 0;
+  pagedCars: any[] = [];
+
+  @ViewChild('rangeMin') rangeMinRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('rangeMax') rangeMaxRef!: ElementRef<HTMLInputElement>;
+  
+  constructor(private fb: FormBuilder) {
+    this.initializeForm();
+  }
+  
+  ngOnInit(): void {
+    this.initializeFormListeners();
+    this.filterCars();
+  }
+  
+  ngAfterViewInit(): void {
+    this.initializePriceRangeSlider();
+  }
+
+  private initializeForm(): void {
+    this.searchForm = this.fb.group({
+      rentalType: ['Monthly'],
+      bodyType: ['All'],
+      carBrand: ['All'],
+      carModel: ['All'],
+      dateFrom: [''],
+      dateTo: [''],
+      minPrice: [500],
+      maxPrice: [1000]
+    });
+  }
+  
+  private initializeFormListeners(): void {
+    // Debounce form value changes to avoid too many filter operations
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.currentPage = 1; // Reset to first page on filter change
+        this.filterCars();
+      });
+  }
+  
+  private initializePriceRangeSlider(): void {
+    const rangeMin = this.rangeMinRef.nativeElement;
+    const rangeMax = this.rangeMaxRef.nativeElement;
+    const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
+    const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
+
+    // Set initial values
+    minPriceInput.value = `AED ${this.minPriceValue}`;
+    maxPriceInput.value = `AED ${this.maxPriceValue}`;
+
+    // Update values when sliders change
+    rangeMin.addEventListener('input', (e: Event) => {
+      const value = parseInt((e.target as HTMLInputElement).value);
+      if (value > this.maxPriceValue) {
+        this.minPriceValue = this.maxPriceValue;
+        rangeMin.value = this.maxPriceValue.toString();
+      } else {
+        this.minPriceValue = value;
+      }
+      minPriceInput.value = `AED ${this.minPriceValue}`;
+      this.searchForm.patchValue({ minPrice: this.minPriceValue }, { emitEvent: false });
+    });
+
+    rangeMax.addEventListener('input', (e: Event) => {
+      const value = parseInt((e.target as HTMLInputElement).value);
+      if (value < this.minPriceValue) {
+        this.maxPriceValue = this.minPriceValue;
+        rangeMax.value = this.minPriceValue.toString();
+      } else {
+        this.maxPriceValue = value;
+      }
+      maxPriceInput.value = `AED ${this.maxPriceValue}`;
+      this.searchForm.patchValue({ maxPrice: this.maxPriceValue }, { emitEvent: false });
+    });
+  }
+  
+  filterCars(): void {
+    const formValue = this.searchForm.value;
+    
+    // Start with all cars
+    let filteredCars = [...this.carsCollections];
+    
+    // Filter by price range
+    filteredCars = filteredCars.filter(car => 
+      car.price.regular >= formValue.minPrice && 
+      car.price.regular <= formValue.maxPrice
+    );
+    
+    // Filter by body type
+    if (formValue.bodyType !== 'All') {
+      filteredCars = filteredCars.filter(car => car.type === formValue.bodyType);
+    }
+    
+    // Filter by brand
+    if (formValue.carBrand !== 'All') {
+      filteredCars = filteredCars.filter(car => car.name.includes(formValue.carBrand));
+    }
+    
+    // Filter by model
+    if (formValue.carModel !== 'All') {
+      filteredCars = filteredCars.filter(car => car.name.includes(formValue.carModel));
+    }
+    
+    // Update pagination
+    this.totalItems = filteredCars.length;
+    this.updatePagedCars(filteredCars);
+  }
+  
+  updatePagedCars(filteredCars: any[]): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.pagedCars = filteredCars.slice(startIndex, endIndex);
+  }
+  
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.filterCars();
+    window.scrollTo(0, 0);
+  }
+  
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+  
+  get pageNumbers(): number[] {
+    const pages = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = startPage + maxVisiblePages - 1;
+    
+    if (endPage > this.totalPages) {
+      endPage = this.totalPages;
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    
+    return pages;
+  }
+  
+  onSearch() {
+    this.currentPage = 1;
+    this.filterCars();
+  }
+  
+  // Helper method to check if a car matches the current filters
+  private carMatchesFilters(car: any, filters: any): boolean {
+    // Check price range
+    if (car.price.regular < filters.minPrice || car.price.regular > filters.maxPrice) {
+      return false;
+    }
+    
+    // Check body type
+    if (filters.bodyType !== 'All' && car.type !== filters.bodyType) {
+      return false;
+    }
+    
+    // Check brand
+    if (filters.carBrand !== 'All' && !car.name.includes(filters.carBrand)) {
+      return false;
+    }
+    
+    // Check model
+    if (filters.carModel !== 'All' && !car.name.includes(filters.carModel)) {
+      return false;
+    }
+    
+    return true;
+  }
+
+  // Sample car data - replace with your actual data
+  carsCollections = [
+    {
+      name: 'BMW M3',
+      image: 'home/collection/cars/bmw_m3.png',
+      type: 'Sedan',
+      transmission: 'Automatic',
+      fuel: 'Petrol',
+      speed: '250 km/hr',
+      class: 'Luxury',
+      seat: '5',
+      price: {
+        regular: 3000,
+        discounted: 2500
+      }
+    },
+    {
+      name: 'Jeep Wrangler',
+      image: 'home/collection/cars/jeep_wrath.png',
+      type: 'SUV',
+      transmission: 'Automatic',
+      fuel: 'Petrol',
+      speed: '200 km/hr',
+      class: 'Adventure',
+      seat: '5',
+      price: {
+        regular: 2800,
+        discounted: 2300
+      }
+    },
+    // Add more car objects as needed
+  ];
+}

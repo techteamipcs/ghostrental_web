@@ -6,28 +6,28 @@ import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:ListComponent
+    path: '',
+    component: ListComponent
   },
   {
-    path:'detail',
-    component:DetailComponent
+    path: 'detail',
+    component: DetailComponent
   },
   {
-    path:'list',
-    component:ListComponent
+    path: 'list',
+    component: ListComponent
   },
   {
-    path:'list/:car_type',
-    component:ListComponent
+    path: 'list/:car_type',
+    component: ListComponent
   },
   {
-    path:'search',
-    component:SearchComponent
+    path: 'search',
+    component: SearchComponent
   },
   {
-    path:'**',
-    component:ListComponent
+    path: '**',
+    component: ListComponent
   }
 ];
 

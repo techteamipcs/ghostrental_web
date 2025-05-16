@@ -6,8 +6,8 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
-// Make Math available in template
+export class ListComponent implements OnInit {
+  // Make Math available in template
   Math = Math;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;

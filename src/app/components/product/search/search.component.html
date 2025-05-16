@@ -1,1 +1,300 @@
-<p>search works!</p>
+<section
+  class="min-vh-100 sectionPadding search-container"
+  style="padding-top: 11rem"
+>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 filter-section">
+        <div
+          class="container-fluid border border-2 rounded-4 p-4 position-sticky filter-container"
+          style="max-width: 350px; transition: all 0.3s ease"
+          id="filterContainer"
+        >
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center gap-2">
+              <img
+                src="{{ imageURL }}/product-details/overview_icons/filter.svg"
+                alt="Filter"
+                class="img-fluid"
+                style="width: 20px"
+              />
+              <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
+            </div>
+            <button class="button">
+              <lucide-icon name="minus" />
+            </button>
+          </div>
+
+          <!-- Rental Type -->
+          <label class="form-label size14 redhat-semibold mb-1"
+            >Rental Type</label
+          >
+          <select class="form-select size16 redhat-semibold mb-2">
+            <option>Type 1</option>
+            <option>Type 2</option>
+            <option>Type 3</option>
+          </select>
+
+          <!-- Body Type -->
+          <label class="form-label size14 redhat-semibold mb-1"
+            >Body Type</label
+          >
+          <select class="form-select size16 redhat-semibold mb-2">
+            <option>Body 1</option>
+            <option>Body 2</option>
+            <option>Body 3</option>
+          </select>
+
+          <!-- Car Brand -->
+          <label class="form-label size14 redhat-semibold mb-1"
+            >Car Brand</label
+          >
+          <select class="form-select size16 redhat-semibold mb-2">
+            <option>Brand 1</option>
+            <option>Brand 2</option>
+            <option>Brand 3</option>
+          </select>
+
+          <!-- Car Model -->
+          <label class="form-label size14 redhat-semibold mb-1"
+            >Car Model</label
+          >
+          <select class="form-select size16 redhat-semibold mb-2">
+            <option>Model 1</option>
+            <option>Model 2</option>
+            <option>Model 3</option>
+          </select>
+
+          <!-- Date From -->
+          <label class="form-label size14 redhat-semibold mb-1"
+            >Date From</label
+          >
+          <input type="date" class="form-control size16 redhat-semibold mb-2" />
+
+          <!-- Date To -->
+          <label class="form-label size14 redhat-semibold mb-1">Date To</label>
+          <input type="date" class="form-control size16 redhat-semibold mb-2" />
+
+          <!-- Price -->
+          <div class="price-range-wrapper">
+            <label class="form-label size14 redhat-semibold mb-1"
+              >Price (AED)</label
+            >
+
+            <div class="price-inputs d-flex gap-2 mb-2">
+              <input
+                type="number"
+                #minPriceInput
+                id="minPrice"
+                min="0"
+                class="form-control"
+              />
+              <input
+                type="number"
+                #maxPriceInput
+                id="maxPrice"
+                min="0"
+                class="form-control"
+              />
+            </div>
+
+            <div class="slider d-flex gap-2">
+              <input
+                type="range"
+                #rangeMin
+                id="rangeMin"
+                min="0"
+                max="10000"
+                value="500"
+                step="50"
+                class="form-range"
+              />
+              <input
+                type="range"
+                #rangeMax
+                id="rangeMax"
+                min="0"
+                max="10000"
+                value="1000"
+                step="50"
+                class="form-range"
+              />
+            </div>
+          </div>
+
+          <!-- Search Button -->
+          <button class="btn btn-dark w-100 size16 redhat-semibold mt-4">
+            Search
+          </button>
+        </div>
+      </div>
+      <div class="col-9 results-section" id="resultsSection">
+        <div class="container-fluid">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h6 class="mb-0 size22 redhat-bold">
+              Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+              {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
+              {{ totalItems }} vehicles
+            </h6>
+            <div ngbDropdown>
+              <button
+                class="btn dropdown-toggle size16 redhat-semibold"
+                type="button"
+                id="dropdownMenuButton"
+                ngbDropdownToggle
+              >
+                Sort by any makes
+              </button>
+              <ul
+                ngbDropdownMenu
+                aria-labelledby="dropdownMenuButton"
+                class="dropdown-menu"
+              >
+                <li>
+                  <a
+                    ngbDropdownItem
+                    class="dropdown-item size16 redhat-semibold"
+                    href="#"
+                    >Action</a
+                  >
+                </li>
+                <li>
+                  <a
+                    ngbDropdownItem
+                    class="dropdown-item size16 redhat-semibold"
+                    href="#"
+                    >Another action</a
+                  >
+                </li>
+                <li>
+                  <a
+                    ngbDropdownItem
+                    class="dropdown-item size16 redhat-semibold"
+                    href="#"
+                    >Something else here</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="products">
+            <div class="row">
+              <div class="col-md-3 mb-5" *ngFor="let car of pagedCars">
+                <div class="car-card border border-1 border-black">
+                  <img
+                    [src]="imageURL + '/' + car.image"
+                    [alt]="car.name"
+                    class="img-fluid rounded w-100"
+                  />
+                  <div class="car-info">
+                    <h4 class="car-name mb-1 size26 redhat-semibold">
+                      {{ car.name }}
+                    </h4>
+                    <h6 class="transmission text-muted size18 redhat-semibold">
+                      {{ car.transmission }}
+                    </h6>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between border-top border-bottom"
+                    style="padding: 1rem 2rem"
+                  >
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/fuel_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.fuel }}
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/speed_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.speed }}
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/seat_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.seat }} Seats
+                      </h6>
+                    </div>
+                  </div>
+
+                  <div
+                    class="cash-container mt-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="cash">
+                      <h6 class="text-muted mb-0 size18 redhat-semibold">
+                        <del>AED {{ car.price.regular }}</del>
+                      </h6>
+                      <h5 class="mb-0 size26 redhat-semibold">
+                        AED {{ car.price.discounted }}
+                      </h5>
+                    </div>
+                    <a href="#" class="btn p-0 mt-auto text-decoration-none"
+                      >View details</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <nav
+              aria-label="Page navigation"
+              class="mt-4"
+              *ngIf="totalPages > 1"
+            >
+              <ul
+                class="pagination justify-content-center align-items-center gap-2"
+              >
+                <!-- Previous -->
+                <li [class.disabled]="currentPage === 1">
+                  <button
+                    class="circle-btn filled"
+                    [disabled]="currentPage === 1"
+                    (click)="onPageChange(currentPage - 1)"
+                  >
+                    <lucide-icon name="arrow-left" />
+                  </button>
+                </li>
+
+                <!-- Page Numbers -->
+                <li *ngFor="let page of getPages()">
+                  <button
+                    class="number-btn"
+                    [class.active-page]="page === currentPage"
+                    (click)="onPageChange(page)"
+                  >
+                    {{ page }}
+                  </button>
+                </li>
+
+                <!-- Next -->
+                <li [class.disabled]="currentPage === totalPages">
+                  <button
+                    class="circle-btn filled"
+                    [disabled]="currentPage === totalPages"
+                    (click)="onPageChange(currentPage + 1)"
+                  >
+                    <lucide-icon name="arrow-right" />
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

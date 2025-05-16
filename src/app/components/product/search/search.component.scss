@@ -1,0 +1,132 @@
+
+.collection_image {
+  width: 35px;
+  height: 35px;
+}
+
+.car-card {
+  height: 527px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  list-style: none;
+  padding-left: 0;
+}
+
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.circle-btn.filled {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.circle-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.number-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  padding: 0 10px;
+  transition: 0.3s;
+}
+
+.number-btn.active-page {
+  font-weight: bold;
+  color: black;
+}
+
+.filter_icon{
+  width: 25px;  
+  height: 25px;
+}
+.button{
+  border: none;
+  padding: 0;
+  color: black;
+  background-color: transparent;
+}
+
+.slider {
+  position: relative;
+  height: 40px; // Slightly higher for better thumb positioning
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 1; // Line stays behind
+  }
+}
+
+.slider input[type="range"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  z-index: 3; // Keep higher than the line
+
+  &::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid black;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    z-index: 4; // Above everything
+  }
+
+  &::-moz-range-thumb {
+    pointer-events: all;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid black;
+    cursor: pointer;
+    z-index: 4;
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+  }
+}
