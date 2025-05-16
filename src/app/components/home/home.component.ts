@@ -27,7 +27,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   maxDate: string;
   reservationForm!: FormGroup;
   isVehicleYacht = false;
-
+  ourCarCollections:any = [];  
+  ouryatchsCollections:any = [];
+  trendingRentalCars:any = [];
+  vehicleData:any = [];
 
   carsCollections = [
     {
@@ -345,6 +348,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.initForm();
     this.getBannerData();
     this.getCarTypes();
+    this.getCarData();
+    this.getYatchsData();
   }
 
   ngAfterViewInit() {
@@ -478,6 +483,48 @@ export class HomeComponent implements OnInit, AfterViewInit {
       if (response.code == 200) {
         if(response.result && response.result.length > 0){
           this.cartypeData = response.result;
+        }
+      }
+    });
+  }
+
+  getCarData(){
+    let obj = {
+      limit:10,
+      page:1,
+      availabilityStatus:'available',
+      vehicle_type:"Car"
+    };
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.vehicleData = response.result;
+          if(this.vehicleData && this.vehicleData.length > 0){
+            this.vehicleData.forEach(vehicle => {
+              if(vehicle && vehicle.home_vehicle){
+                this.ourCarCollections.push(vehicle);
+              } 
+              if(vehicle && vehicle.featured_vehicle){
+                this.trendingRentalCars.push(vehicle);
+              }
+            });
+          }
+        }
+      }
+    });
+  }
+
+  getYatchsData(){
+    let obj = {
+      limit:10,
+      page:1,
+      availabilityStatus:'available',
+      vehicle_type:"Yachts"
+    };
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.ouryatchsCollections = response.result;
         }
       }
     });

@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  imageURL: string = `${environment.baseUrl}/assets`;
+  imageURL: string = `${environment.url}/assets`;
 
 
   features = [

@@ -205,6 +205,16 @@ export class DataService {
     );
   };
 
+  //****************** Vehicle Data API's Starts **************************/
+  getFilterdVehicles = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/vehicle/getfilteredvehicle';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   logout() {
     localStorage.clear();
     this.router.navigate(['/']).then(() => {
