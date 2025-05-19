@@ -1,7 +1,8 @@
-<section class="home" style="padding: 28px">
+<section class="home bannerPadding">
   <div class="container-fluid position-relative p-0">
-    <img *ngIf="bannerData && bannerData.media_data.length > 0"
-      src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
+    <img
+      *ngIf="bannerData && bannerData.media_data.length > 0"
+      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
       class="w-100"
       loading="lazy"
@@ -9,8 +10,10 @@
     />
 
     <div class="content" *ngIf="!bannerData">
-      <h1 class="size90 performa-thin white">Drive <br />Your Dream</h1>
-      <p class="size20 redhat-regular hero-para white">
+      <h1 class="size90 performa-thin white-color line-height90">
+        Drive <br />Your Dream
+      </h1>
+      <p class="size20 redhat-regular hero-para beige-color line-height26">
         Welcome to our limousine rental website, we offer luxury transportation
         services for any occasion, from weddings and proms to corporate events
         and airport transferes.
@@ -19,20 +22,27 @@
     </div>
 
     <div class="content" *ngIf="bannerData">
-      <h1 class="size90 performa-thin white" [innerHtml]="bannerData.short_desc"></h1>
-      <p class="size20 redhat-regular hero-para white" [innerHtml]="bannerData.description">
-      </p>
-      <button class="button size18 redhat-bold">Book Now</button>
+      <h1
+        class="size90 performa-thin white-color line-height90"
+        [innerHtml]="bannerData.short_desc"
+      ></h1>
+      <p
+        class="size20 redhat-regular hero-para beige-color line-height26"
+        [innerHtml]="bannerData.description"
+      ></p>
+      <button class="white-button size18 redhat-bold">Book Now</button>
     </div>
 
     <div class="form-content">
       <form class="quick-reservation-form">
-        <h2 class="text-center mb-1 size28 redhat-bold black">
+        <h2 class="text-center mb-1 size28 redhat-bold black-color">
           Quick Reservation
         </h2>
 
         <div class="d-flex justify-content-center align-items-center gap-2">
-          <h5 class="size18 redhat-bold text-uppercase m-0">Cars</h5>
+          <h5 class="size18 redhat-bold text-uppercase m-0 black-color">
+            Cars
+          </h5>
           <div
             id="vehicleToggle"
             class="vehicle-switch"
@@ -44,7 +54,9 @@
           >
             <span class="vehicle-switch-slider"></span>
           </div>
-          <h5 class="size18 redhat-bold text-uppercase m-0">Yachts</h5>
+          <h5 class="size18 redhat-bold text-uppercase m-0 black-color">
+            Yachts
+          </h5>
         </div>
 
         <div
@@ -56,22 +68,30 @@
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Type</label> -->
               <select class="form-select">
-                <option value="">Type</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
+                <option value="" class="size14 redhat-semibold">Type</option>
+                <option value="Sedan" class="size14 redhat-semibold">
+                  Sedan
+                </option>
+                <option value="SUV" class="size14 redhat-semibold">SUV</option>
               </select>
             </div>
 
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Model</label> -->
               <select class="form-select">
-                <option value="">Model</option>
-                <option value="Model X">Model X</option>
-                <option value="Model Y">Model Y</option>
+                <option value="" class="size14 redhat-semibold">Model</option>
+                <option value="Model X" class="size14 redhat-semibold">
+                  Model X
+                </option>
+                <option value="Model Y" class="size14 redhat-semibold">
+                  Model Y
+                </option>
               </select>
             </div>
             <div class="mb-3 col-12">
-              <label class="form-label size18 redhat-bold">Pickup Date</label>
+              <label class="form-label size18 redhat-bold black-color"
+                >Pickup</label
+              >
               <div class="row">
                 <div class="col-6 mb-3">
                   <input type="date" class="form-input" />
@@ -80,14 +100,12 @@
                   <input type="time" class="form-input" />
                 </div>
               </div>
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Enter pickup location"
-              />
+              <input type="text" class="form-input" placeholder="Address" />
             </div>
-            <div class="mb-3 col-12">
-              <label class="form-label size18 redhat-bold">Return Date</label>
+            <div class="mb-5 col-12">
+              <label class="form-label size18 redhat-bold black-color"
+                >Return</label
+              >
               <div class="row">
                 <div class="col-6 mb-3">
                   <input type="date" class="form-input" />
@@ -96,15 +114,11 @@
                   <input type="time" class="form-input" />
                 </div>
               </div>
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Enter return location"
-              />
+              <input type="text" class="form-input" placeholder="Address" />
             </div>
           </div>
 
-          <button type="submit" class="button">Book Now</button>
+          <button type="submit" class="black-button">Book Now</button>
         </div>
 
         <div
@@ -116,24 +130,32 @@
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Type</label> -->
               <select class="form-select">
-                <option value="">Type</option>
-                <option value="Sailing Yacht">Sailing Yacht</option>
-                <option value="Motor Yacht">Motor Yacht</option>
+                <option value="" class="size14 redhat-semibold">Type</option>
+                <option value="Sailing Yacht" class="size14 redhat-semibold">
+                  Sailing Yacht
+                </option>
+                <option value="Motor Yacht" class="size14 redhat-semibold">
+                  Motor Yacht
+                </option>
               </select>
             </div>
 
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Size</label> -->
               <select class="form-select">
-                <option value="">Size</option>
-                <option value="30ft">30ft</option>
-                <option value="50ft">50ft</option>
+                <option value="" class="size14 redhat-semibold">Size</option>
+                <option value="30ft" class="size14 redhat-semibold">
+                  30ft
+                </option>
+                <option value="50ft" class="size14 redhat-semibold">
+                  50ft
+                </option>
               </select>
             </div>
 
             <div class="mb-3 col-12">
-              <label class="form-label size18 redhat-bold"
-                >Departure Date</label
+              <label class="form-label size18 redhat-bold black-color"
+                >Departure</label
               >
               <div class="row">
                 <div class="col-6 mb-3">
@@ -143,15 +165,13 @@
                   <input type="time" class="form-input" />
                 </div>
               </div>
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Enter departure marina"
-              />
+              <input type="text" class="form-input" placeholder="Address" />
             </div>
 
-            <div class="mb-3 col-12">
-              <label class="form-label size18 redhat-bold">Return Date</label>
+            <div class="mb-5 col-12">
+              <label class="form-label size18 redhat-bold black-color"
+                >Return</label
+              >
               <div class="row">
                 <div class="col-6 mb-3">
                   <input type="date" class="form-input" />
@@ -160,14 +180,10 @@
                   <input type="time" class="form-input" />
                 </div>
               </div>
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Enter return marina"
-              />
+              <input type="text" class="form-input" placeholder="Address" />
             </div>
           </div>
-          <button type="submit" class="button">Book Now</button>
+          <button type="submit" class="black-button">Book Now</button>
         </div>
       </form>
     </div>
@@ -179,7 +195,10 @@
   <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center">
       <div *ngFor="let car of cartypeData" class="car-icon">
-        <img src="{{ backendURl }}/cartype/{{car.image[0].src}}" [alt]="car.name" />
+        <img
+          src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
+          [alt]="car.name"
+        />
         <p
           class="size18 redhat-semibold text-center position-relative m-0"
           style="top: -10px"
@@ -324,9 +343,9 @@
           <div class="swiper car-collection-swiper" #carSwiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of ourCarCollections">
-                <div class="car-card" >
+                <div class="car-card">
                   <img
-                    src="{{ backendURl }}/media/{{car.media_data[0].src}}"
+                    src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"
                     class="img-fluid rounded w-100"
                   />
@@ -428,10 +447,13 @@
         <div class="position-relative">
           <div class="swiper yacht-collection-swiper" #yachtSwiper>
             <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let yacht of ouryatchsCollections">
+              <div
+                class="swiper-slide"
+                *ngFor="let yacht of ouryatchsCollections"
+              >
                 <div class="car-card">
                   <img
-                    src="{{ backendURl }}/media/{{yacht.media_data[0].src}}"
+                    src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}"
                     [alt]="yacht.name"
                     class="img-fluid rounded w-100"
                   />
@@ -587,7 +609,7 @@
       <div class="trending-cars-grid">
         <div *ngFor="let car of trendingRentalCars" class="trending-car-card">
           <img
-            src="{{ backendURl }}/media/{{car.media_data[0].src}}"
+            src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
             [alt]="car.name"
             class="trending-car-image"
           />

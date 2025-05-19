@@ -9,7 +9,7 @@
     />
 
     <div class="content">
-      <h1 class="size90 performa-thin white">
+      <h1 class="size90 performa-thin white-color line-height90">
         Smart Stylish <br />
         City-Ready
       </h1>
@@ -80,7 +80,7 @@
         <div class="col-md-3 mb-5" *ngFor="let car of vehicleData">
           <div class="car-card border border-1 border-black">
             <img
-              src="{{ backendURl }}/media/{{car.media_data[0].src}}"
+              src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
               [alt]="car.name"
               class="img-fluid rounded w-100"
             />

@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/search', '/product/Detail', '/produc t/list'];
+  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/search', '/product/detail', '/product/list'];
   isDarkText = false;
 
   constructor(

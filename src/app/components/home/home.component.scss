@@ -5,12 +5,18 @@
     top: 30%;
     left: 10%;
     transform: translateY(-30%);
-    h1 {
-      line-height: 90px;
+    @media (max-width: 1024px) {
+      width: 414px;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
     }
+    
     .hero-para{
       width:495px;
-      line-height:26px;
+      @media (max-width: 1024px) {
+        width: 373px;
+      }
     }
   }
 
@@ -79,9 +85,7 @@
         padding: 13px 1rem;
         border-radius: 25px;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        background-color: white;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-        font-size: 16px;
         transition: all 0.3s ease;
 
         &:focus {
@@ -410,7 +414,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-
     img {
       border-radius: 8px;
       margin-bottom: 15px;
@@ -422,8 +425,6 @@
     }
   }
 }
-
-// black background
 .black-bg {
   background-color: black;
   width: 100%;
@@ -433,8 +434,6 @@
   left: 0;
   z-index: -1;
 }
-
-
 .vehicle-switch {
   width: 50px;
   height: 26px;
@@ -445,7 +444,6 @@
   transition: background-color 0.3s ease;
   display: inline-block;
 }
-
 .vehicle-switch-slider {
   position: absolute;
   top: 3px;
@@ -456,15 +454,6 @@
   border-radius: 50%;
   transition: left 0.3s ease;
 }
-
-/* When toggle is ON */
-.vehicle-switch.active {
-  background-color: black;
-}
-.vehicle-switch.active .vehicle-switch-slider {
-  background-color: white;
-}
-
 .vehicle-switch.active .vehicle-switch-slider {
   left: 27px; 
 }
