@@ -197,11 +197,11 @@
       <div *ngFor="let car of cartypeData" class="car-icon">
         <img
           src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
-          [alt]="car.name"
+          [alt]="car.name" [routerLink]="['/product/list',car.url_key]" routerLinkActive="router-link-active"
         />
         <p
           class="size18 redhat-semibold text-center position-relative m-0"
-          style="top: -10px"
+          style="top: -10px" [routerLink]="['/product/list',car.url_key]" routerLinkActive="router-link-active"
         >
           {{ car.name }}
         </p>

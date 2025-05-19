@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
   
-  getCarTypes(){
+  getCarTypes(){ 
     let obj = {};
     this.dataservice.getCarTypes(obj).subscribe((response) => {
       if (response.code == 200) {

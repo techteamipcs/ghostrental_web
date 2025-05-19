@@ -184,6 +184,15 @@ export class DataService {
     );
   };
 
+  getCarTypeByURL = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/cartype/getCartypeWithURLKey';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
 
   //****************** Brands Data API's Starts **************************/
   getBrands = (data: any): Observable<any> => {
