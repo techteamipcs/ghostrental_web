@@ -224,6 +224,17 @@ export class DataService {
     );
   };
 
+
+  //****************** Vehicle Data API's Starts **************************//
+  getSingleVehicleDataByUrlKey = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/vehicle/getVehicleWithURLKey';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   getAllModels = (data: any): Observable<any> => {
     const endpoint = environment.baseUrl + '/api/model/getAllModel';
     return this.http.post(endpoint, data).pipe(
@@ -241,6 +252,8 @@ export class DataService {
       })
     );
   };
+
+  
 
   logout() {
     localStorage.clear();

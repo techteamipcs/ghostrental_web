@@ -1,8 +1,8 @@
-<section class="" style="padding: 12rem 5rem 5rem 5rem">
+<section class="" *ngIf="vehicleData" style="padding: 12rem 5rem 5rem 5rem">
   <div class="container-fluid">
     <div class="product-header mb-4">
-      <h3 class="size22 redhat-semibold text-uppercase mb-2">sedan</h3>
-      <h1 class="size46 performa-light mb-4">BMW i7</h1>
+      <h3 class="size22 redhat-semibold text-uppercase mb-2">{{vehicleData.bodytype_data[0].name}}</h3>
+      <h1 class="size46 performa-light mb-4">{{vehicleData.name}}</h1>
     </div>
 
     <div class="container-fluid">
@@ -87,24 +87,12 @@
         </div>
       </div>
 
-      <div class="col-lg-8 border-1 border-bottom p-0">
+      <div class="col-lg-8 border-1 border-bottom p-0" *ngIf="vehicleData">
         <div class="my-5">
           <h3 class="size26 redhat-semibold text-capitalize mb-5">
             description
           </h3>
-          <p class="size18 redhat-semibold mb-5">
-            Quisque imperdiet dignissim enim dictum finibus. Sed consectetutr
-            convallis enim eget laoreet. Aenean vitae nisl mollis, porta risus
-            vel, dapibus lectus. Etiam ac suscipit eros, eget maximus
-          </p>
-          <p class="size18 redhat-semibold">
-            Etiam sit amet ex pharetra, venenatis ante vehicula, gravida sapien.
-            Fusce eleifend vulputate nibh, non cursus augue placerat
-            pellentesque. Sed venenatis risus nec felis mollis, in pharetra urna
-            euismod. Morbi aliquam ut turpis sit amet ultrices. Vestibulum
-            mattis blandit nisl, et tristique elit scelerisque nec. Fusce
-            eleifend laoreet dui eget aliquet. Ut rutrum risus et nunc pretium
-            scelerisque.
+          <p class="size18 redhat-semibold mb-5" [innerHtml]="vehicleData.description">
           </p>
         </div>
       </div>
@@ -118,54 +106,14 @@
                 Interior
               </h6>
               <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3">
+                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of interior">
                   <img
                     src="{{ imageURL }}/product-details/tick_mark.png"
                     alt=""
                     class="features_icons"
                   />
                   <p class="size14 redhat-semibold text-capitalize m-0">
-                    Air Conditioner
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    digital odometer
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    leather seats
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    heater
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    tachometer
+                    {{item.name}}
                   </p>
                 </li>
               </ul>
@@ -175,168 +123,48 @@
                 exterior
               </h6>
               <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3">
+                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of exterior">
                   <img
                     src="{{ imageURL }}/product-details/tick_mark.png"
                     alt=""
                     class="features_icons"
                   />
                   <p class="size14 redhat-semibold text-capitalize m-0">
-                    fog lights front
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rain seasing wipe
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rear spoiler
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    heater
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    tachometer
+                    {{item.name}}
                   </p>
                 </li>
               </ul>
             </div>
             <div class="d-flex flex-column">
               <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                exterior
+                Safety
               </h6>
               <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3">
+                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of safety">
                   <img
                     src="{{ imageURL }}/product-details/tick_mark.png"
                     alt=""
                     class="features_icons"
                   />
                   <p class="size14 redhat-semibold text-capitalize m-0">
-                    fog lights front
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rain seasing wipe
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rear spoiler
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    heater
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    tachometer
+                    {{item.name}}
                   </p>
                 </li>
               </ul>
             </div>
             <div class="d-flex flex-column">
               <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                exterior
+                Comfort & Convenience
               </h6>
               <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3">
+                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of comfort">
                   <img
                     src="{{ imageURL }}/product-details/tick_mark.png"
                     alt=""
                     class="features_icons"
                   />
                   <p class="size14 redhat-semibold text-capitalize m-0">
-                    fog lights front
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rain seasing wipe
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    rear spoiler
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    heater
-                  </p>
-                </li>
-                <li class="d-flex gap-4 align-items-center mb-3">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    tachometer
+                    {{item.name}}
                   </p>
                 </li>
               </ul>

@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ListComponent
   },
   {
-    path: 'detail',
+    path: 'detail/:url_key',
     component: DetailComponent
   },
   {

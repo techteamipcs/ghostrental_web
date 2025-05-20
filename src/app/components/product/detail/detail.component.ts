@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, ElementRef, ViewChild, AfterViewInit, 
 import { environment } from '../../../../environments/environment';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { DataService } from '../../../providers/data/data.service';
 
 interface CarDetailItem {
   icon: string;
@@ -23,7 +25,13 @@ interface CarImage {
 export class DetailComponent {
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
-
+  url_key: any;
+  vehicleData: any;
+  relatedVehicleData: any = [];
+  interior: any = [];
+  exterior: any = [];
+  safety: any = [];
+  comfort: any = [];
   images: CarImage[] = [];
   carDetails: CarDetailItem[] = [];
   currentIndex = 0;
@@ -37,6 +45,41 @@ export class DetailComponent {
   private isBottomReached = false;
   private carSwiper: Swiper | null = null;
   @ViewChild('carSwiper', { static: false }) carSwiperRef!: ElementRef;
+  constructor(public route: Router, public actRoute: ActivatedRoute, public dataservice: DataService) {
+    this.url_key = this.actRoute.snapshot.paramMap.get('url_key');
+    if (this.url_key) {
+      this.getVehicleData();
+    }
+  }
+
+  getVehicleData() {
+    let obj = {
+      url_key: this.url_key
+    };
+    this.dataservice.getSingleVehicleDataByUrlKey(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.vehicleData = response.result[0];
+          this.initializeCarDetails();
+          if (this.vehicleData && this.vehicleData.feature_data && this.vehicleData.feature_data.length > 0) {
+            this.vehicleData.feature_data.forEach(feature => {
+              if (feature.type == "Interior") {
+                this.interior.push(feature);
+              } else if (feature.type == "Exterior") {
+                this.exterior.push(feature);
+              } else if (feature.type == "Safety") {
+                this.safety.push(feature);
+              } else if (feature.type == "Comfort & Convenience") {
+                this.comfort.push(feature);
+              }
+            });
+          }
+        } else {
+          this.vehicleData = null;
+        }
+      }
+    });
+  }
 
   carsCollections = [
     {
@@ -158,8 +201,7 @@ export class DetailComponent {
   }
 
   ngOnInit() {
-    this.initializeImages();
-    this.initializeCarDetails();
+    // this.initializeImages();
   }
 
   ngAfterViewInit() {
@@ -231,17 +273,39 @@ export class DetailComponent {
 
   private initializeCarDetails() {
     // Single flat array of all car details
-    this.carDetails = [
-      { icon: 'body', label: 'body', value: 'sedan' },
-      { icon: 'mileage', label: 'mileage', value: '28,000 miles' },
-      { icon: 'fuel', label: 'fuel type', value: 'petrol' },
-      { icon: 'transmission', label: 'transmission', value: 'automatic' },
-      { icon: 'engine', label: 'engine', value: '4.8L' },
-      { icon: 'doors', label: 'doors', value: '5-door' },
-      { icon: 'year', label: 'year', value: '2023' },
-      { icon: 'drive', label: 'drive type', value: 'front wheel drive' },
-      { icon: 'color', label: 'color', value: 'blue' }
-    ];
+    if (this.vehicleData) {
+      this.carDetails = [
+        { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0].name },
+        { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
+        { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
+        { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
+        { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
+        { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
+        { icon: 'year', label: 'year', value: this.vehicleData.year },
+        { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
+        { icon: 'color', label: 'color', value: this.vehicleData.color_data[0].name }
+      ];
+      if (this.vehicleData.media_data && this.vehicleData.media_data.length > 0) {
+        this.images.push(
+          {
+            src: this.backendURl+'/media/' + this.vehicleData.media_data[0].src,
+            alt: this.vehicleData.media_data[0].name,
+            isActive: false
+          });
+      }
+      if (this.vehicleData.gallery_image && this.vehicleData.gallery_image.length > 0) {
+        this.vehicleData.gallery_image.forEach(gal => {
+          this.images.push(
+            {
+              src: this.backendURl+'/media/' + gal.src,
+              alt: gal.name,
+              isActive: false
+            });
+        });
+      }
+      // Set first image as active by default
+      this.setActiveImageById(this.images[0]);
+    }
   }
 
   ngOnDestroy() {
@@ -274,8 +338,7 @@ export class DetailComponent {
         isActive: false
       }
     ];
-    // Set first image as active by default
-    this.setActiveImageById(this.images[0]);
+
   }
 
   setActiveImageById(image: CarImage) {
