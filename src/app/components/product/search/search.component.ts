@@ -40,6 +40,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   minPrice:any = 0;
   maxPrice:any = 10000;
   price_type:any = '';
+  filteredModel:any = [];
+  availableStartDate:any;
+  availableendDate:any;
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -229,6 +232,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   changeBrand(data){
     if(data){
       this.selectedBrand.push(data.target.value);
+      if(this.modelData && this.modelData.length > 0){
+        this.filteredModel = this.modelData.filter((item)=>item.brand == data.target.value)
+      }
     }
   }
 

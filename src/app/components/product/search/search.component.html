@@ -61,18 +61,18 @@
           >
           <select class="form-select size16 redhat-semibold mb-2" #selctModel name="model" (change)="changeModel($event)">
             <option value="">Select Car Model</option>
-            <option *ngFor="let item of modelData" value="{{item._id}}">{{item.name}}</option>
+            <option *ngFor="let item of filteredModel" value="{{item._id}}">{{item.name}}</option>
           </select>
 
           <!-- Date From -->
           <label class="form-label size14 redhat-semibold mb-1"
             >Date From</label
           >
-          <input type="date" class="form-control size16 redhat-semibold mb-2" />
+          <input type="date" class="form-control size16 redhat-semibold mb-2" [(ngModel)]="availableStartDate"/>
 
           <!-- Date To -->
           <label class="form-label size14 redhat-semibold mb-1">Date To</label>
-          <input type="date" class="form-control size16 redhat-semibold mb-2" />
+          <input type="date" class="form-control size16 redhat-semibold mb-2"  [(ngModel)]="availableendDate" />
 
           <!-- Price -->
           <div class="price-range-wrapper">
