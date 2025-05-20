@@ -224,6 +224,24 @@ export class DataService {
     );
   };
 
+  getAllModels = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/model/getAllModel';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  getAllBodyTypes = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/bodytype/getAllBodytype';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   logout() {
     localStorage.clear();
     this.router.navigate(['/']).then(() => {

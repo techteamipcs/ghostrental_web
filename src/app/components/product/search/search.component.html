@@ -29,40 +29,39 @@
           <label class="form-label size14 redhat-semibold mb-1"
             >Rental Type</label
           >
-          <select class="form-select size16 redhat-semibold mb-2">
-            <option>Type 1</option>
-            <option>Type 2</option>
-            <option>Type 3</option>
+          <select class="form-select size16 redhat-semibold mb-2" (change)="changeRentalType($event)">
+            <option value="">Select Rental Type</option>
+            <option value="Daily">Daily</option>
+            <option value="Hourly">Hourly</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
           </select>
 
           <!-- Body Type -->
           <label class="form-label size14 redhat-semibold mb-1"
             >Body Type</label
           >
-          <select class="form-select size16 redhat-semibold mb-2">
-            <option>Body 1</option>
-            <option>Body 2</option>
-            <option>Body 3</option>
+          <select class="form-select size16 redhat-semibold mb-2" name="bodytype" #selbodyType (change)="changeBodyType($event)">
+            <option value="">Select Body Type</option>
+            <option *ngFor="let item of bodyTypeData" value="{{item._id}}">{{item.name}}</option>
           </select>
 
           <!-- Car Brand -->
           <label class="form-label size14 redhat-semibold mb-1"
             >Car Brand</label
           >
-          <select class="form-select size16 redhat-semibold mb-2">
-            <option>Brand 1</option>
-            <option>Brand 2</option>
-            <option>Brand 3</option>
+          <select class="form-select size16 redhat-semibold mb-2" #selBrand name="brand" (change)="changeBrand($event)">
+             <option value="">Select Car Brand</option>
+            <option *ngFor="let item of brandData" value="{{item._id}}">{{item.name}}</option>
           </select>
 
           <!-- Car Model -->
           <label class="form-label size14 redhat-semibold mb-1"
             >Car Model</label
           >
-          <select class="form-select size16 redhat-semibold mb-2">
-            <option>Model 1</option>
-            <option>Model 2</option>
-            <option>Model 3</option>
+          <select class="form-select size16 redhat-semibold mb-2" #selctModel name="model" (change)="changeModel($event)">
+            <option value="">Select Car Model</option>
+            <option *ngFor="let item of modelData" value="{{item._id}}">{{item.name}}</option>
           </select>
 
           <!-- Date From -->
@@ -88,6 +87,7 @@
                 id="minPrice"
                 min="0"
                 class="form-control"
+                [(ngModel)]="minPrice"
               />
               <input
                 type="number"
@@ -95,6 +95,7 @@
                 id="maxPrice"
                 min="0"
                 class="form-control"
+                [(ngModel)]="maxPrice"
               />
             </div>
 
@@ -108,6 +109,7 @@
                 value="500"
                 step="50"
                 class="form-range"
+                [(ngModel)]="minPrice"
               />
               <input
                 type="range"
@@ -118,12 +120,13 @@
                 value="1000"
                 step="50"
                 class="form-range"
+                [(ngModel)]="maxPrice"
               />
             </div>
           </div>
 
           <!-- Search Button -->
-          <button class="btn btn-dark w-100 size16 redhat-semibold mt-4">
+          <button class="btn btn-dark w-100 size16 redhat-semibold mt-4" (click)="SearchItems()">
             Search
           </button>
         </div>
@@ -179,10 +182,10 @@
           </div>
           <div class="products">
             <div class="row">
-              <div class="col-md-3 mb-5" *ngFor="let car of pagedCars">
+              <div class="col-md-3 mb-5" *ngFor="let car of vehicleData">
                 <div class="car-card border border-1 border-black">
                   <img
-                    [src]="imageURL + '/' + car.image"
+                   src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"
                     class="img-fluid rounded w-100"
                   />
@@ -206,7 +209,7 @@
                         alt=""
                       />
                       <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.fuel }}
+                        {{ car.fuelType }}
                       </h6>
                     </div>
                     <div class="text-center">
@@ -216,7 +219,7 @@
                         alt=""
                       />
                       <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.speed }}
+                        {{ car.mileage }}
                       </h6>
                     </div>
                     <div class="text-center">
@@ -226,7 +229,7 @@
                         alt=""
                       />
                       <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.seat }} Seats
+                        {{ car.seating_capacity }} Seats
                       </h6>
                     </div>
                   </div>
@@ -236,10 +239,10 @@
                   >
                     <div class="cash">
                       <h6 class="text-muted mb-0 size18 redhat-semibold">
-                        <del>AED {{ car.price.regular }}</del>
+                        <del>AED {{ car.regularRate }}</del>
                       </h6>
                       <h5 class="mb-0 size26 redhat-semibold">
-                        AED {{ car.price.discounted }}
+                        AED {{ car.dailyRate }}
                       </h5>
                     </div>
                     <a href="#" class="btn p-0 mt-auto text-decoration-none"

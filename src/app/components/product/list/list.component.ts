@@ -15,9 +15,9 @@ export class ListComponent implements OnInit {
   backendURl = `${environment.baseUrl}/public`;
 
   // Pagination properties
-  currentLimit = 2;
+  currentLimit = 4;
   currentPage = 1;
-  itemsPerPage = 2;
+  itemsPerPage = 4;
   totalItems = 0;
   totolvehicle = 0;
   pagedCars: any = [];
@@ -36,9 +36,7 @@ export class ListComponent implements OnInit {
 
   ) {
     this.url_key = this.route.snapshot.paramMap.get('car_type');
-    
   }
-
   ngOnInit() {
     if(this.url_key){
       this.getCarTypes();
@@ -47,69 +45,6 @@ export class ListComponent implements OnInit {
     }    
     this.getBannerData();
   }
-
-  carsCollections = [
-    {
-      name: 'BMW M3',
-      image: 'home/collection/cars/bmw_m3.png',
-      type: 'Sedan',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '250 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 3000,
-        discounted: 2500
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    }
-  ];
-
-  // ngOnInit() {
-  //   this.updatePagedCars();
-  // }
 
   get totalPages(): number {
     return Math.ceil(this.totolvehicle / this.itemsPerPage);

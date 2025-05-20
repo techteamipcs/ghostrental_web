@@ -7,6 +7,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { DataService } from '../../../providers/data/data.service';
 
 @Component({
   selector: 'app-search',
@@ -17,13 +18,28 @@ export class SearchComponent implements OnInit, AfterViewInit {
   Math = Math;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
-
   // Pagination properties
+  currentLimit = 4;
   currentPage = 1;
-  itemsPerPage = 16;
+  itemsPerPage = 4;
   totalItems = 0;
+  carTypes: any = [];
+  vehicleData: any = [];
   pagedCars: any[] = [];
-
+  totolvehicle = 0;
+  cartypeData:any = [];
+  bodyData:any = [];
+  brandData:any = [];
+  modelData:any = [];
+  bodyTypeData:any = [];
+  selectedBodytype:any = [];
+  selectedBrand:any = [];
+  selectedModel:any = [];
+  selectedCartype:any = [];
+  selectedRentalType:any ; 
+  minPrice:any = 0;
+  maxPrice:any = 10000;
+  price_type:any = '';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -31,767 +47,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
 
-  carsCollections = [
-    {
-      name: 'BMW M3',
-      image: 'home/collection/cars/bmw_m3.png',
-      type: 'Sedan',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '250 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 3000,
-        discounted: 2500
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Jeep Wrangler',
-      image: 'home/collection/cars/jeep_wrath.png',
-      type: 'SUV',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '200 km/hr',
-      class: 'Adventure',
-      seat: '5',
-      price: {
-        regular: 2800,
-        discounted: 2300
-      }
-    },
-    {
-      name: 'Lamborghini Huracan',
-      image: 'home/collection/cars/lamborghini_huracan.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '320 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 5000,
-        discounted: 4500
-      }
-    },
-    {
-      name: 'Rolls Royce Wraith',
-      image: 'home/collection/cars/rolls_royce_wraith.png',
-      type: 'Luxury Sedan',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '250 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 6000,
-        discounted: 5500
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-    {
-      name: 'Mclaren',
-      image: 'home/collection/cars/mclaren.png',
-      type: 'Sports',
-      transmission: 'Automatic',
-      fuel: 'Petrol',
-      speed: '280 km/hr',
-      class: 'Luxury',
-      seat: '5',
-      price: {
-        regular: 4500,
-        discounted: 4000
-      }
-    },
-  ];
+  constructor(
+    private dataservice: DataService
+  ) {
+  }
 
   ngOnInit() {
-    this.updatePagedCars();
+    this.getCarData();
+    this.getBrands();
+    this.getCarTypes();
+    this.getModels();
+    this.getBodyTypes();
   }
 
   ngAfterViewInit(): void {
@@ -840,19 +106,18 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   get totalPages(): number {
-    return Math.ceil(this.carsCollections.length / this.itemsPerPage);
+    return Math.ceil(this.totolvehicle / this.itemsPerPage);
   }
 
   updatePagedCars() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    this.pagedCars = this.carsCollections.slice(startIndex, startIndex + this.itemsPerPage);
-    this.totalItems = this.carsCollections.length;
+    this.pagedCars = this.vehicleData.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
   onPageChange(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.updatePagedCars();
+      this.getCarData();
       window.scrollTo(0, 0);
     }
   }
@@ -877,4 +142,121 @@ export class SearchComponent implements OnInit, AfterViewInit {
       filter.style.top = '11rem';
     }
   }
+
+  SearchItems(){
+    this.getCarData();
+  }
+
+  getCarData() {
+    let obj = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      availabilityStatus: 'available',
+      vehicle_type: "Car",
+      car_type: this.carTypes,
+      bodyTypeId: this.selectedBodytype,
+      brandId: this.selectedBrand,
+      modelId:this.selectedModel,
+      rental_type: this.selectedRentalType,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      price_type: this.price_type
+    };
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.totolvehicle = response.count;
+          this.vehicleData = response.result;
+          this.totalItems = response.count;
+          this.updatePagedCars();
+        } else {
+          this.vehicleData = [];
+        }
+      }
+    });
+  }
+
+  getCarTypes(){ 
+    let obj = {};
+    this.dataservice.getCarTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.cartypeData = response.result;
+        }
+      }
+    });
+  }
+
+  getBrands(){ 
+    let obj = {};
+    this.dataservice.getBrands(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.brandData = response.result;
+        }
+      }
+    });
+  }
+
+  getModels(){ 
+    let obj = {};
+    this.dataservice.getAllModels(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.modelData = response.result;
+        }
+      }
+    });
+  }
+
+  getBodyTypes(){ 
+    let obj = {};
+    this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if(response.result && response.result.length > 0){
+          this.bodyTypeData = response.result;
+        }
+      }
+    });
+  }
+
+  changeBodyType(data){
+    if(data){
+      this.selectedBodytype.push(data.target.value);
+    }
+  }
+
+  changeBrand(data){
+    if(data){
+      this.selectedBrand.push(data.target.value);
+    }
+  }
+
+  changeModel(data){
+    if(data){
+      this.selectedModel.push(data.target.value);
+    }
+  }
+
+  changeCartype(data){
+    if(data){
+      this.selectedCartype.push(data.target.value);
+    }
+  }
+
+  changeRentalType(data){
+    if(data){
+      this.selectedRentalType = data.target.value;
+      if(data.target.value == 'Daily'){
+        this.price_type = 'dailyRate';
+      } else if(data.target.value == 'Hourly'){
+        this.price_type = 'hourlyRate';
+      } else if(data.target.value == 'Weekly'){
+        this.price_type = 'weeklyRate';
+      } else if(data.target.value == 'Monthly'){
+        this.price_type = 'monthlyRate';
+      }
+    }
+  }
+  
 }
