@@ -1,9 +1,12 @@
+.product{
+  height: 100vh;
+}
 .content {
   width: 654px;
   position: absolute;
-  top: 30%;
-  left: 10%;
-  transform: translateY(-30%);
+  top: 32%;
+  left: 6%;
+  transform: translateY(-32%);
   
   .hero-para {
     width: 495px;
@@ -12,10 +15,6 @@
 }
 
 
-.viewbutton {
-  padding: 1rem 4rem;
-  background-color: black;
-}
 
 .collection_image {
   width: 35px;

@@ -1,10 +1,10 @@
 <section class="home bannerPadding">
-  <div class="container-fluid position-relative p-0">
+  <div class="container-fluid position-relative p-0 h-100">
     <img
       *ngIf="bannerData && bannerData.media_data.length > 0"
       src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
-      class="w-100"
+      class="w-100 h-100 rounded-4"
       loading="lazy"
       decoding="async"
     />
@@ -18,7 +18,7 @@
         services for any occasion, from weddings and proms to corporate events
         and airport transferes.
       </p>
-      <button class="button size18 redhat-bold">Book Now</button>
+      <button class="white-border-button size18 redhat-bold">Book Now</button>
     </div>
 
     <div class="content" *ngIf="bannerData">
@@ -30,7 +30,7 @@
         class="size20 redhat-regular hero-para beige-color line-height26"
         [innerHtml]="bannerData.description"
       ></p>
-      <button class="white-button size18 redhat-bold">Book Now</button>
+      <button class="white-border-button size18 redhat-bold">Book Now</button>
     </div>
 
     <div class="form-content">
@@ -102,7 +102,7 @@
               </div>
               <input type="text" class="form-input" placeholder="Address" />
             </div>
-            <div class="mb-5 col-12">
+            <div class="mb-md-5 mb-3 col-md-12 col-12">
               <label class="form-label size18 redhat-bold black-color"
                 >Return</label
               >
@@ -118,7 +118,12 @@
             </div>
           </div>
 
-          <button type="submit" class="black-button">Book Now</button>
+          <button
+            type="submit"
+            class="black-button d-flex mx-auto size18 redhat-bold"
+          >
+            Book Now
+          </button>
         </div>
 
         <div
@@ -168,7 +173,7 @@
               <input type="text" class="form-input" placeholder="Address" />
             </div>
 
-            <div class="mb-5 col-12">
+            <div class="mb-md-5 mb-3 col-md-12 col-12">
               <label class="form-label size18 redhat-bold black-color"
                 >Return</label
               >
@@ -183,7 +188,12 @@
               <input type="text" class="form-input" placeholder="Address" />
             </div>
           </div>
-          <button type="submit" class="black-button">Book Now</button>
+          <button
+            type="submit"
+            class="black-button d-flex mx-auto size18 redhat-bold"
+          >
+            Book Now
+          </button>
         </div>
       </form>
     </div>
@@ -193,15 +203,22 @@
 <section class="car-types-section sectionPadding">
   <h3 class="text-center mb-3 size22 redhat-bold">Browse by Car Type</h3>
   <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center">
-      <div *ngFor="let car of cartypeData" class="car-icon">
+    <div class="row">
+      <div
+        *ngFor="let car of cartypeData"
+        class="col-xl-2 col-md-4 col-3 d-flex flex-column align-items-center justify-content-center"
+      >
         <img
           src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
-          [alt]="car.name" [routerLink]="['/product/list',car.url_key]" routerLinkActive="router-link-active"
+          [alt]="car.name"
+          class="category-image"
+          [routerLink]="['/product/list', car.url_key]"
+          routerLinkActive="router-link-active"
         />
         <p
-          class="size18 redhat-semibold text-center position-relative m-0"
-          style="top: -10px" [routerLink]="['/product/list',car.url_key]" routerLinkActive="router-link-active"
+          class="size18 redhat-semibold text-center m-0"
+          [routerLink]="['/product/list', car.url_key]"
+          routerLinkActive="router-link-active"
         >
           {{ car.name }}
         </p>
@@ -210,116 +227,125 @@
   </div>
 </section>
 
-<section
-  class="services white sectionPadding position-relative"
-  style="height: 100vh"
->
-  <div class="container-fluid white">
-    <div class="position-relative" style="height: 450px">
-      <div class="position-relative">
-        <div class="img-container position-absolute top-0 start-0">
-          <img
-            src="{{ imageURL }}/home/services/services1.png"
-            alt=""
-            class="w-100 object-fit-cover"
-          />
-          <span class="overlay"></span>
-        </div>
+<section class="services sectionPadding position-relative">
+  <div class="container-fluid">
+    <div class="position-relative service-banner">
+      <div class="img-container position-absolute top-0 start-0 h-100 w-100">
+        <img
+          src="{{ imageURL }}/home/services/services1.png"
+          alt=""
+          class="w-100 h-100 object-fit-cover"
+        />
+        <span class="overlay"></span>
         <div class="services-content">
-          <h3 class="size22 redhat-bold text-capitalize text-center">
+          <h3
+            class="size22 redhat-bold text-capitalize text-center beige-color"
+          >
             our Services
           </h3>
-          <h2 class="size60 performa-light text-capitalize text-center">
+          <h2
+            class="size60 performa-light text-capitalize text-center beige-color"
+          >
             Drive Your Dream
           </h2>
-          <p class="size20 redhat-regular text-center">
+          <p class="size20 redhat-regular text-center white-color">
             Welcome to our limousine rental website, we offer luxury
             transportation services for any occasion, from weddings and proms to
             corporate events and airport transfers.
           </p>
-          <button class="button size18 redhat-bold text-capitalize">
+          <button
+            class="white-button d-flex mx-auto my-4 size18 redhat-bold text-capitalize"
+          >
             view all
           </button>
         </div>
       </div>
     </div>
 
-    <div class="card-container">
-      <div class="row" style="gap: 3rem">
-        <div class="col black">
-          <div class="card">
-            <div class="img-cont p-1">
-              <img
-                src="{{ imageURL }}/home/services/yacht_rental.png"
-                alt=""
-                class="services-images"
-              />
-            </div>
-            <div class="card-content">
-              <h4 class="size26 redhat-semibold text-capitalize">
-                Luxury car Rental
-              </h4>
-              <p class="size18 redhat-semibold">
-                Choose from top brands like Lamborghini, Rolls-Royce, and Range
-                Rover. Enjoy daily or long-term rentals with free delivery
-                across the UAE.
-              </p>
-              <a
-                class="size16 redhat-semibold text-capitalize text-decoration-none"
-              >
-                know more
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col black">
-          <div class="card">
-            <div class="img-cont p-1">
-              <img
-                src="{{ imageURL }}/home/services/yacht_rental.png"
-                alt=""
-                class="services-images"
-              />
-            </div>
-            <div class="card-content">
-              <h4 class="size26 redhat-semibold text-capitalize">
-                Luxury Yacht Rental
-              </h4>
-              <p class="size18 redhat-semibold">
-                Book private yachts for parties, getaways, or events. Includes
-                crew, catering options, and scenic routes like Marina &
-                Atlantis.
-              </p>
-              <a
-                class="size16 redhat-semibold text-capitalize text-decoration-none"
-              >
-                know more
-              </a>
+    <div class="card-container position-relative">
+      <div class="position-absolute h-100 w-100 cards px-lg-5">
+        <div class="row justify-content-md-center">
+          <div class="col-xl-4 col-md-7 mb-md-4 mb-xl-0">
+            <div class="card h-100">
+              <div class="img-cont p-1">
+                <img
+                  src="{{ imageURL }}/home/services/car-rental.jpg"
+                  alt=""
+                  class="services-images"
+                />
+              </div>
+              <div class="card-content">
+                <h4
+                  class="size26 redhat-semibold text-capitalize gray-color mb-3"
+                >
+                  Luxury car Rental
+                </h4>
+                <p class="size18 redhat-semibold color-card-p mb-5">
+                  Choose from top brands like Lamborghini, Rolls-Royce, and
+                  Range Rover. Enjoy daily or long-term rentals with free
+                  delivery across the UAE.
+                </p>
+                <a
+                  class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+                >
+                  know more
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col black">
-          <div class="card">
-            <div class="img-cont p-1">
-              <img
-                src="{{ imageURL }}/home/services/chauffeur.png"
-                alt=""
-                class="services-images"
-              />
+          <div class="col-xl-4 col-md-7 mb-md-4 mb-xl-0">
+            <div class="card h-100">
+              <div class="img-cont p-1">
+                <img
+                  src="{{ imageURL }}/home/services/yacht_rental.png"
+                  alt=""
+                  class="services-images"
+                />
+              </div>
+              <div class="card-content">
+                <h4
+                  class="size26 redhat-semibold text-capitalize gray-color mb-3"
+                >
+                  Luxury Yacht Rental
+                </h4>
+                <p class="size18 redhat-semibold color-card-p mb-5">
+                  Book private yachts for parties, getaways, or events. Includes
+                  crew, catering options, and scenic routes like Marina &
+                  Atlantis.
+                </p>
+                <a
+                  class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+                >
+                  know more
+                </a>
+              </div>
             </div>
-            <div class="card-content">
-              <h4 class="size26 redhat-semibold text-capitalize">
-                Luxury Chauffeur Services
-              </h4>
-              <p class="size18 redhat-semibold">
-                Professional chauffeurs, luxury cars, and on-time service for
-                VIPs, weddings, or airport transfers transfers.
-              </p>
-              <a
-                class="size16 redhat-semibold text-capitalize text-decoration-none"
-              >
-                know more
-              </a>
+          </div>
+          <div class="col-xl-4 col-md-7 mb-md-4 mb-xl-0">
+            <div class="card h-100">
+              <div class="img-cont p-1">
+                <img
+                  src="{{ imageURL }}/home/services/chauffeur.png"
+                  alt=""
+                  class="services-images"
+                />
+              </div>
+              <div class="card-content">
+                <h4
+                  class="size26 redhat-semibold text-capitalize gray-color mb-3"
+                >
+                  Luxury Chauffeur Services
+                </h4>
+                <p class="size18 redhat-semibold color-card-p mb-5">
+                  Professional chauffeurs, luxury cars, and on-time service for
+                  VIPs, weddings, or airport transfers transfers.
+                </p>
+                <a
+                  class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+                >
+                  know more
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -328,15 +354,17 @@
   </div>
 </section>
 
-<section class="collection sectionPadding">
+<section class="collection">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 pb-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div
+          class="d-flex justify-content-between align-items-center mb-4 margin-right"
+        >
           <h3 class="text-capitalize size60 performa-light">
             our car collection
           </h3>
-          <button class="button viewbutton size18 redhat-bold">view all</button>
+          <button class="black-button size18 redhat-bold">view all</button>
         </div>
 
         <div class="position-relative">
@@ -405,7 +433,9 @@
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
-                    <a href="#" class="btn p-0 mt-auto text-decoration-none"
+                    <a
+                      href="#"
+                      class="color-card-p p-0 mt-auto text-decoration-none"
                       >View More</a
                     >
                   </div>
@@ -433,15 +463,17 @@
   </div>
 </section>
 
-<section class="collection sectionPadding">
+<section class="collection">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div
+          class="d-flex justify-content-between align-items-center mb-4 margin-right"
+        >
           <h3 class="text-capitalize size60 performa-light">
             our yacht collection
           </h3>
-          <button class="button viewbutton size18 redhat-bold">view all</button>
+          <button class="black-button size18 redhat-bold">view all</button>
         </div>
 
         <div class="position-relative">
@@ -512,7 +544,9 @@
                         AED {{ yacht.price.discounted }}
                       </h5>
                     </div>
-                    <a href="#" class="btn p-0 mt-auto text-decoration-none"
+                    <a
+                      href="#"
+                      class="color-card-p p-0 mt-auto text-decoration-none"
                       >View More</a
                     >
                   </div>
@@ -545,29 +579,27 @@
   titleClass="text-center size60 performa-light text-uppercase mb-5"
 ></app-brands>
 
-<section
-  class="about-us sectionPadding w-100 min-vh-100 position-relative overflow-hidden"
->
+<section class="about-us w-100 min-vh-100 position-relative overflow-hidden">
   <div class="d-flex flex-column w-100">
-    <div class="position-relative w-100" style="height: 580px">
+    <div class="position-relative w-100 div-height">
       <img
         src="{{ imageURL }}/home/about_us.png"
         alt="Luxury car and yacht rental"
         class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1"
       />
       <div class="about-content">
-        <h3 class="size22 redhat-bold text-capitalize">about us</h3>
-        <h1 class="size60 performa-light text-capitalize">
+        <h3 class="size22 redhat-bold text-capitalize white-color">about us</h3>
+        <h1 class="size60 performa-light text-capitalize white-color">
           Driven By Luxury. <br />Defined By Experience.
         </h1>
-        <p class="size20 redhat-regular text-center">
+        <p class="size20 redhat-regular text-center white-color">
           At GhostRental.ae, we specialize in providing elite rental services
           across the UAE — from luxury cars and private yachts to executive
           chauffeur experiences. Built on trust, discretion, and premium
           service, our brand caters to individuals who expect nothing but the
           best.
         </p>
-        <button class="button size18 redhat-bold text-capitalize">
+        <button class="white-button size18 redhat-bold text-capitalize">
           know more
         </button>
       </div>
@@ -575,18 +607,22 @@
 
     <div class="black-bg"></div>
     <div class="container-fluid mt-5">
-      <h3 class="text-center my-5 size60 performa-light white">
+      <h3 class="text-center my-5 size60 performa-light white-color">
         What Sets Us Apart?
       </h3>
-      <div class="features-grid white">
+      <div class="features-grid">
         <div class="feature-item" *ngFor="let feature of features">
           <img
             [src]="imageURL + '/' + feature.image"
             [alt]="feature.title"
             class="feature-icon"
           />
-          <h4 class="size26 redhat-semibold">{{ feature.title }}</h4>
-          <p class="size18 redhat-semibold">{{ feature.description }}</p>
+          <h4 class="size26 redhat-semibold white-color">
+            {{ feature.title }}
+          </h4>
+          <p class="size18 redhat-semibold white-color">
+            {{ feature.description }}
+          </p>
         </div>
       </div>
     </div>
@@ -597,11 +633,16 @@
   class="trending_cars sectionPadding w-100 position-relative overflow-hidden"
 >
   <div class="black-bg"></div>
-  <div class="container-fluid">
-    <h3 class="text-center size60 performa-light white text-capitalize">
+  desktop
+  <div class="container-fluid swiper-desktop">
+    <h3
+      class="text-center size60 performa-light white-color text-capitalize mb-4"
+    >
       trending rental cars
     </h3>
-    <h6 class="text-center size18 redhat-semibold text-capitalize white">
+    <h6
+      class="text-center size18 redhat-semibold text-capitalize gray-light-color"
+    >
       rent all popular cars
     </h6>
 
@@ -613,26 +654,29 @@
             [alt]="car.name"
             class="trending-car-image"
           />
-          <div class="car-info p-3 white">
-            <h4 class="car-name size35 redhat-semibold">{{ car.name }}</h4>
-            <h6 class="car-spec size24 redhat-semibold">
+          <div class="car-info p-3">
+            <h4 class="car-name size35 redhat-semibold white-color">
+              {{ car.name }}
+            </h4>
+            <h6 class="car-spec size24 redhat-semibold gray-light-color">
               {{ car.transmission }}
             </h6>
           </div>
           <div
             class="car-pricing p-3 pt-0 d-flex justify-content-between align-items-end"
           >
-            <div class="d-flex flex-column white">
-              <span class="original-price size24 redhat-semibold"
+            <div class="d-flex flex-column">
+              <span
+                class="original-price size24 redhat-semibold gray-light-color"
                 >AED {{ car.regularRate }}</span
               >
-              <span class="discounted-price size35 redhat-semibold"
+              <span class="discounted-price size35 redhat-semibold white-color"
                 >AED {{ car.dailyRate }}</span
               >
             </div>
             <a
               href="#"
-              class="btn p-0 mt-auto text-decoration-none text-white size22 redhat-semibold"
+              class="p-0 mt-auto text-decoration-none gray-light-color size22 redhat-semibold"
               >View details</a
             >
           </div>
@@ -640,9 +684,97 @@
       </div>
     </div>
     <button
-      class="button border-0 text-black bg-white d-flex text-center mx-auto size18 redhat-bold text-capitalize my-5"
+      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-5"
+    >
+      view all
+    </button>
+  </div>
+
+  <!-- mobile -->
+  <div class="container-fluid swiper-mobile">
+    <div class="row">
+      <div class="col-12 pb-5">
+        <div
+          class="d-flex flex-column justify-content-between align-items-center mb-4"
+        >
+          <h3
+            class="text-center size60 performa-light white-color text-capitalize mb-4"
+          >
+            trending rental cars
+          </h3>
+          <h6
+            class="text-center size18 redhat-semibold text-capitalize gray-light-color"
+          >
+            rent all popular cars
+          </h6>
+        </div>
+
+        <div class="position-relative">
+          <div class="swiper car-collection-swiper" #carSwiper>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let car of trendingRentalCars">
+                <div class="trending-car-card">
+                  <img
+                    src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
+                    [alt]="car.name"
+                    class="trending-car-image"
+                  />
+                  <div class="car-info p-3">
+                    <h4 class="car-name size35 redhat-semibold white-color">
+                      {{ car.name }}
+                    </h4>
+                    <h6
+                      class="car-spec size24 redhat-semibold gray-light-color"
+                    >
+                      {{ car.transmission }}
+                    </h6>
+                  </div>
+                  <div
+                    class="car-pricing p-3 pt-0 d-flex justify-content-between align-items-end"
+                  >
+                    <div class="d-flex flex-column">
+                      <span
+                        class="original-price size24 redhat-semibold gray-light-color"
+                        >AED {{ car.regularRate }}</span
+                      >
+                      <span
+                        class="discounted-price size35 redhat-semibold white-color"
+                        >AED {{ car.dailyRate }}</span
+                      >
+                    </div>
+                    <a
+                      href="#"
+                      class="p-0 mt-auto text-decoration-none gray-light-color size22 redhat-semibold"
+                      >View details</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="text-start gap-2 d-flex mt-5">
+            <div class="button car-swiper-button-prev">
+              <lucide-icon
+                name="arrow-left"
+                class="swiper-button-icon"
+              ></lucide-icon>
+            </div>
+            <div class="button car-swiper-button-next">
+              <lucide-icon
+                name="arrow-right"
+                class="swiper-button-icon"
+              ></lucide-icon>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <button
+      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-5"
     >
       view all
     </button>
   </div>
 </section>
+
+<app-testimonials></app-testimonials>

@@ -1,27 +1,62 @@
+.about {
+  height: 100vh;
+  @media screen and (max-width: 1200px) {
+    height: auto;
+  }
+}
 .sectionPadding {
   padding: 15rem 0 0 0;
+  @media screen and (max-width: 1200px) {
+    padding: 11rem 0 0 0;
+  }
+}
+
+.about-image-container {
+  height: 667px;
+  @media screen and (max-width: 1200px) {
+    height: max-content;
+  }
 }
 .about-content1 {
   margin: 0 6rem;
+  @media screen and (max-width: 1200px) {
+    margin: 0 30px;
+  }
 }
 .about-content2 {
   width: 91%;
-  height: 100%; 
+  height: 100%;
   display: flex;
+  @media screen and (max-width: 1200px) {
+    width: 80%;
+  }
 }
-
+.features {
+  padding: 7rem;
+  @media screen and (max-width: 1200px) {
+    padding: 4rem 11rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 4rem 1.6rem;
+  }
+}
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 4rem;
   justify-content: space-between;
-  margin: 0 50px;
+  @media screen and (max-width: 768px) {
+    gap: 0;
+  }
 }
 .feature-item {
   text-align: center;
   padding: 1.5rem;
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  @media screen and (max-width: 768px) {
+    padding: 1rem 2.5rem;
+  }
   .feature-icon {
     width: 64px;
     height: 64px;
@@ -30,11 +65,16 @@
   }
 }
 
+.about-image2 {
+  display: block;
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+}
 
-
-table{
-  td{
-    padding:2rem ;
+table {
+  td {
+    padding: 2rem;
   }
 }
 
@@ -46,4 +86,66 @@ table{
   height: 100%;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.story {
+  padding-left: 16rem;
+  @media screen and (max-width: 1200px) {
+    padding-left: 3.75rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding-left: 30px;
+  }
+
+  .story-image {
+    width: 1278px;
+    height: 100%;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.signature {
+  height: 90vh;
+  padding: 6.5rem;
+  @media screen and (max-width: 1200px) {
+    padding: 100px 20px;
+    height: 48vh;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 100px 20px;
+    height: 100vh;
+  }
+}
+.signature-mobile {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+.signature-desktop {
+  display: block;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.table-para-width {
+  width: 80%;
+  @media screen and (max-width: 1200px) {
+    width: 94%;
+  }
+  .heading-width {
+    width: 100%;
+    @media screen and (max-width: 1200px) {
+      width: 64%;
+    }
+  }
+}
+.table-yacht-width {
+  width: 85%;
+}
+.table-car-width {
+  width: 89%;
 }

@@ -15,7 +15,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   private swiper: Swiper | null = null;
   imageURL: string = `${environment.url}/assets`;
   backendURL: string = `${environment.baseUrl}/public`;
-  testimoinsData:any = [];
+  testimoinsData: any = [];
   expandedIndex: number = -1;
   // Testimonials data
   testimonials = [
@@ -95,23 +95,23 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private ngZone: NgZone,public dataservice: DataService) { }
+  constructor(private ngZone: NgZone, public dataservice: DataService) { }
 
   ngOnInit() {
     this.getTestimonials();
   }
-  
-  
-    getTestimonials(){
-      let obj = {};
-      this.dataservice.getTestimonials(obj).subscribe((response) => {
-        if (response.code == 200) {
-          if(response.result && response.result.length > 0){
-            this.testimoinsData = response.result;
-          }
+
+
+  getTestimonials() {
+    let obj = {};
+    this.dataservice.getTestimonials(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.testimoinsData = response.result;
         }
-      });
-    }
+      }
+    });
+  }
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0);

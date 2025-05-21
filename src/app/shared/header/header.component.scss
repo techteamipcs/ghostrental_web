@@ -1,18 +1,38 @@
 nav {
-  padding:4.3rem 7.3rem;
+  padding: 4.3rem 7.3rem;
   z-index: 1000;
   background-color: transparent;
   transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  
   @media (max-width: 1024px) {
-    padding: 3.7rem 3.3rem; 
+    padding: 2rem 2rem; 
   }
 
-  &.scrolled, &.about-page {
+  // Scrolled state
+  body.header-scrolled &,
+  &.scrolled {
+    background-color: #000 !important;
+    padding: 1.5rem 5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    @media (max-width: 1024px) {
+      padding: 1rem 2rem;
+    }
+    
+    .white {
+      color: #fff !important;
+    }
+  }
+  
+  &.about-page {
     background-color: #000;
-    // padding: 1rem;
     padding: 2rem 5rem;
     @media (max-width: 1024px) {
-      padding: 2rem 3rem; 
+      padding: 1.5rem 2rem;
     }
   }
 
@@ -60,11 +80,11 @@ nav {
     object-fit: contain;
     transition: all 0.3s ease;
 
-    @media (max-width: 768px) {
-      width: 220px;
+    @media (max-width: 1024px) {
+      width: 268px;
     }
-    @media (max-width: 400px) {
-      width: 180px;
+    @media (max-width: 768px) {
+      width: 140px;
     }
   }
   .dark-mode {
@@ -153,41 +173,215 @@ nav {
     }
   }
 
-  // Mobile Navigation
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #fff;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    padding: 100px 0;
-    z-index: 1000;
+  // Hamburger Menu Button
+.hamburger {
+  padding: 15px;
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  margin: 0;
+  z-index: 1001;
+  
+  &.dark {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: #000;
+    }
+  }
+  &.white-hamburger {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: white;
+    }
+  }
+  
+  &.active {
+    .hamburger-inner {
+      background-color: transparent;
+      
+      &::before {
+        transform: translateY(15px) rotate(45deg);
+        background-color: #000;
+        width: 49px;
+      }
+      
+      &::after {
+        transform: translateY(-4px) rotate(-45deg);
+        background-color: #000;
+        width: 49px;
+      }
+    }
+    
+    // Override dark class when active to ensure X is black
+    &.dark {
+      .hamburger-inner {
+        &::before,
+        &::after {
+          background-color: #000;
+        }
+      }
+    }
+  }
+}
 
+.hamburger-box {
+  width: 50px;
+  height: auto;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -1.5px;
+  width: 30px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 1px;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &::before{
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 1px;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
+  &::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 1px;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &::before {
+    top: -10px;
+  }
+  
+  &::after {
+    bottom: -10px;
+    top: auto;
+  }
+}
+
+// Mobile Navigation
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2rem 1.5rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  opacity: 0.98;
+  
+  -webkit-overflow-scrolling: touch;
+  
+  scrollbar-width: none; 
+  &::-webkit-scrollbar {
+    display: none; 
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+    top: 0;
+  }
+  
+  .nav li {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.05}s;
+      }
+    }
+  }
+  
+  &.active {
+    transform: translateX(0);
+    opacity: 1;
+    
+    .nav li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
     &.active {
       transform: translateX(0);
-      visibility: visible;
-      transform: translateY(0);
     }
-
-    ul.nav {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-
+  
+    .nav {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      
       li {
-        margin-bottom: 1.5rem;
+        margin: 0.5rem 0;
         opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-
-        &:nth-child(1) { transition-delay: 0.1s; }
-        &:nth-child(2) { transition-delay: 0.15s; }
-        &:nth-child(3) { transition-delay: 0.2s; }
-        &:nth-child(4) { transition-delay: 0.25s; }
-        &:nth-child(5) { transition-delay: 0.3s; }
+        transform: translateX(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            transition-delay: #{$i * 0.05}s;
+          }
+        }
+        
+        a {
+          display: block;
+          padding: 0.8rem 1.2rem;
+          text-decoration: none;
+          border-radius: 8px;
+          transition: all 0.2s ease;
+          
+          &:hover, &:focus {
+            background: rgba(0, 0, 0, 0.05);
+            color: #000;
+          }
+          
+          &.active {
+            color: #000;
+            font-weight: 600;
+          }
+        }
+        
+        .white-border-button {
+          width: 100%;
+          margin-top: 1rem;
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+          border-width: 2px;
+          
+          &:hover {
+            background: #fff;
+            color: #000;
+          }
+        }
       }
     }
 

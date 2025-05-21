@@ -1,10 +1,10 @@
-<section class="home" style="padding: 28px">
-  <div class="container-fluid position-relative p-0">
+<section class="product bannerPadding">
+  <div class="container-fluid position-relative p-0 h-100">
     <img
       *ngIf="bannerData && bannerData.media_data.length > 0"
-      src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
+      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
-      class="w-100"
+      class="w-100 h-100"
       loading="lazy"
       decoding="async"
     />
@@ -12,26 +12,27 @@
       *ngIf="!bannerData"
       src="{{ imageURL }}/products/product1.png"
       alt="Limousine on road"
-      class="w-100"
+      class="w-100 h-100"
       loading="lazy"
       decoding="async"
     />
 
     <div class="content" *ngIf="!bannerData">
-      <h1 class="size90 performa-thin white">
-        Smart Stylish <br />
-        City-Ready
-      </h1>
-      <p class="size20 redhat-regular white">
+      <h1 class="size90 performa-thin white-color">Smart Stylish City-Ready</h1>
+      <p class="size20 redhat-regular beige-color">
         Effortless driving for urban explorers—luxury hatchbacks that combine
         performance and practicality in one compact package.
       </p>
-      <button class="button size18 redhat-bold">Book Now</button>
     </div>
     <div class="content" *ngIf="bannerData">
-      <h1 class="size90 performa-thin white" [innerHTML]="bannerData.short_desc"></h1>
-      <p class="size20 redhat-regular hero-para white" [innerHTML]="bannerData.description"></p>
-      <button class="button size18 redhat-bold">Book Now</button>
+      <h1
+        class="size90 performa-thin white-color"
+        [innerHTML]="bannerData.short_desc"
+      ></h1>
+      <p
+        class="size20 redhat-regular hero-para beige-color"
+        [innerHTML]="bannerData.description"
+      ></p>
     </div>
   </div>
 </section>
@@ -39,7 +40,7 @@
 <section class="explore sectionPadding">
   <div class="container-fluid">
     <h3 *ngIf="cartypeData" class="size60 performa-light text-capitalize">
-      Explore our {{cartypeData.name}} car collection
+      Explore our {{ cartypeData.name }} car collection
     </h3>
     <h3 *ngIf="!cartypeData" class="size60 performa-light text-capitalize">
       Explore our all car collection
@@ -157,7 +158,9 @@
                   AED {{ car.dailyRate }}
                 </h5>
               </div>
-              <a href="/product/detail/{{car.url_key}}" class="btn p-0 mt-auto text-decoration-none"
+              <a
+                href="/product/detail/{{ car.url_key }}"
+                class="btn p-0 mt-auto text-decoration-none"
                 >View details</a
               >
             </div>

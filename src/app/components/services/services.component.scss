@@ -1,13 +1,46 @@
 .services {
+  height: 100vh;
   .content {
     position: absolute;
-    top: 30%;
+    top: 26%;
     left: 4%;
-    transform: translateY(-30%);
-    
+    transform: translateY(-26%);
+    @media (max-width: 1024px) {
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+    }
+    p{
+      width: 40%;
+      @media (max-width: 1024px) {
+        width: 62%;
+      }
+    }
+  }
+}
+
+.service{
+  height: 100vh;
+  @media screen and (max-width: 1024px){
+    height: auto;
   }
 }
 .service_image {
-  width: 774px;
   height: 587px;
+  @media screen and (max-width: 1024px){
+    height: 400px;
+  }
+}
+.sectionPadding{
+  padding: 4rem 3rem;
+}
+
+.servicePadding{
+  padding: 10rem 13rem;
+  @media screen and (max-width: 1024px){
+    padding: 70px 60px;
+  }
+  @media screen and (max-width: 768px){
+    padding: 46px 27px;
+  }
 }

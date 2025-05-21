@@ -88,29 +88,28 @@ body {
 .size18 {
   font-size: 18px;
   @media (max-width:1024px) {
-    font-size: 11px;
+    font-size: 16px;
   }
-  @media (max-width:768px) {
-    font-size: 6px;
+  @media (max-width:420px) {
+    font-size: 14px;
   }
 }
 .size20 {
   font-size: 20px;
   @media (max-width:1024px) {
-    font-size: 12px;
+    font-size: 18px;
   }
   @media (max-width:768px) {
-    font-size: 7px;
+    font-size: 14px;
   }
 }
 .size22 {
   font-size: 22px;
-
   @media (max-width:1024px) {
-    font-size: 13px;
+    font-size: 18px;
   }
   @media (max-width:768px) {
-    font-size: 8px;
+    font-size: 16px;
   }
 }
 .size24 {
@@ -122,13 +121,22 @@ body {
     font-size: 10px;
   }
 }
+.size26 {
+  font-size: 26px;
+  @media (max-width:1024px) {
+    font-size: 20px;
+  }
+  @media (max-width:768px) {
+    font-size: 14px;
+  }
+}
 .size28 {
   font-size: 28px;
   @media (max-width:1024px) {
-    font-size: 17px;
+    font-size: 22px;
   }
   @media (max-width:768px) {
-    font-size: 10px;
+    font-size: 16px;
   }
 }
 .size30 {
@@ -160,20 +168,20 @@ body {
 }
 .size42 {
   font-size: 42px;
-  @media (max-width:1024px) {
-    font-size: 25px;
+  @media (max-width:1200px) {
+    font-size: 36px;
   }
   @media (max-width:768px) {
-    font-size: 16px;
+    font-size: 24px;
   }
 }
 .size46 {
   font-size: 46px;
   @media (max-width:1024px) {
-    font-size: 28px;
+    font-size: 36px;
   }
   @media (max-width:768px) {
-    font-size: 17px;
+    font-size: 32px;
   }
 }
 .size55 {
@@ -191,7 +199,7 @@ body {
     font-size: 37px;
   }
   @media (max-width:768px) {
-    font-size: 22px;
+    font-size: 32px;
   }
 }
 .size90 {
@@ -214,6 +222,15 @@ body {
     line-height: 50px;
   }
 }
+.line-height30{
+  line-height: 30px;
+  @media (max-width:1024px) {
+    line-height: 18px;
+  }
+  @media (max-width:768px) {
+    line-height: 16px;
+  }
+}
 .line-height26{
   line-height: 26px;
   @media (max-width:1024px) {
@@ -226,13 +243,22 @@ body {
 
 
 // colors
+
 .white-color{
   // $color-white: #F3F3F3;
   color: $color-white;
 }
+.white-border-color{
+  // #F3F3F359
+  border-color: $color-border-white;
+}
 .black-color{
   // $color-black: #11191F;
   color: $color-black;
+}
+.black-light-color{
+  // $color-black: #11191F;
+  color: $color-light-black;
 }
 .green-color{
   // $color-green: #89E283;
@@ -243,6 +269,10 @@ body {
   // $color-beige: #F8F4F0;
   color: $color-beige;
 }
+// $color-gray-light: #D1D1D1;
+.gray-light-color{
+  color: $color-gray-light;
+}
 .gray-color{
   // $color-gray: #1D1D1D;
   color: $color-gray;
@@ -251,39 +281,59 @@ body {
   // $color-gray-beige: #F0F0F0;
   color: $color-gray-beige;
 } 
+.color-card-p{
+  // #48494B
+  color: $color-card-p;
+}
 
 // common button styles
-.white-border-button {
+.white-button {
   border: 2px solid $color-white;
   color: $color-black;
   background-color: $color-white;
   border-radius: 30px;
-  padding: 1rem 4rem;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
+  @media (max-width:1024px) {
+    padding: 14px 50px;
+  }
+  @media (max-width:768px) {
+    padding: 12px 40px;
+  }
 }
-.white-button {
+.white-border-button {
   border: 2px solid $color-white;
   color: $color-white;
   background-color: transparent;
   border-radius: 30px;
-  padding: 1rem 4rem;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
+  @media (max-width:1024px) {
+    padding: 14px 50px;
+  }
+  @media (max-width:768px) {
+    padding: 12px 40px;
+  }
 }
 .black-button {
-  display: flex;
-  margin: auto;
   border: 2px solid $color-gray;
   color: $color-gray-beige;
   background-color: $color-gray;
   border-radius: 30px;
-  padding: 1rem 4rem;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
+  @media (max-width:1024px) {
+    padding: 14px 50px;
+  }
+  @media (max-width:768px) {
+    padding: 12px 40px;
+  }
 }
 img{
   width: 100%;
@@ -291,7 +341,13 @@ img{
   object-fit: cover;
 }
 .sectionPadding{
-  padding: 7rem
+  padding:5rem 11rem;
+  @media (max-width:1024px) {
+    padding: 4rem 7rem;
+  }
+  @media (max-width:420px) {
+    padding: 3rem 10px;
+  }
 }
 
 .bannerPadding{

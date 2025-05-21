@@ -1,25 +1,28 @@
-.brand-logo {
-  width: 70px; 
-  height: auto;
-}
+.brands {
+  padding: 5rem 18rem;
+  @media screen and (max-width: 1200px) {
+    padding: 4rem 6.25rem;
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 3rem;
+  }
+  .brand-logo {
+    width: 107px;
+    height: 50px;
+    object-fit: contain;
+  }
 
-.brand-item {
-  padding: 1rem;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 145px;
-  gap: 1rem;
-  width: 150px;
-}
-
-.button {
-  background-color: black;
-  color: white;
-  display: flex;
-  place-self: center;
+  .brand-item {
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 145px;
+    gap: 1rem;
+    width: 145px;
+  }
 }

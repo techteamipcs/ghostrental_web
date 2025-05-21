@@ -20,17 +20,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
   bannerData: any;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
-  cartypeData:any = [];
-  brandsData:any = [];
+  cartypeData: any = [];
+  brandsData: any = [];
   isCar: boolean = true;
   today: string;
   maxDate: string;
   reservationForm!: FormGroup;
   isVehicleYacht = false;
-  ourCarCollections:any = [];  
-  ouryatchsCollections:any = [];
-  trendingRentalCars:any = [];
-  vehicleData:any = [];
+  ourCarCollections: any = [];
+  ouryatchsCollections: any = [];
+  trendingRentalCars: any = [];
+  vehicleData: any = [];
 
   features = [
     {
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'Serving Dubai and all major UAE destinations',
     }
   ];
-  
+
   constructor(
     private fb: FormBuilder,
     private dataservice: DataService
@@ -157,49 +157,49 @@ export class HomeComponent implements OnInit, AfterViewInit {
     console.log(this.reservationForm.value);
   }
 
-  getBannerData(){
+  getBannerData() {
     let obj = {};
     this.dataservice.getAllBanner(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           response.result.forEach(banner => {
-            if(banner && banner.page == 'home'){
+            if (banner && banner.page == 'home') {
               this.bannerData = banner;
             }
-          });        
+          });
         }
       }
     });
   }
-  
-  getCarTypes(){ 
+
+  getCarTypes() {
     let obj = {};
     this.dataservice.getCarTypes(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.cartypeData = response.result;
         }
       }
     });
   }
 
-  getCarData(){
+  getCarData() {
     let obj = {
-      limit:10,
-      page:1,
-      availabilityStatus:'available',
-      vehicle_type:"Car"
+      limit: 10,
+      page: 1,
+      availabilityStatus: 'available',
+      vehicle_type: "Car"
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.vehicleData = response.result;
-          if(this.vehicleData && this.vehicleData.length > 0){
+          if (this.vehicleData && this.vehicleData.length > 0) {
             this.vehicleData.forEach(vehicle => {
-              if(vehicle && vehicle.home_vehicle){
+              if (vehicle && vehicle.home_vehicle) {
                 this.ourCarCollections.push(vehicle);
-              } 
-              if(vehicle && vehicle.featured_vehicle){
+              }
+              if (vehicle && vehicle.featured_vehicle) {
                 this.trendingRentalCars.push(vehicle);
               }
             });
@@ -209,16 +209,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getYatchsData(){
+  getYatchsData() {
     let obj = {
-      limit:10,
-      page:1,
-      availabilityStatus:'available',
-      vehicle_type:"Yachts"
+      limit: 10,
+      page: 1,
+      availabilityStatus: 'available',
+      vehicle_type: "Yachts"
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.ouryatchsCollections = response.result;
         }
       }

@@ -1,14 +1,23 @@
-<section class="brands sectionPadding">
-  <div class="container-fluid">
+<section class="brands">
+  <div class="container-fluid p-0">
     <h3 [class]="titleClass">
       {{ title }}
     </h3>
-    <div class="d-flex justify-content-center align-items-center gap-4">
+    <div
+      class="d-flex justify-content-center align-items-center gap-4 flex-wrap"
+    >
       <div class="brand-item" *ngFor="let brand of brandsData">
-        <img *ngIf="brand.image.length > 0 && brand.image[0].src" src="{{backendURl}}/brand/{{brand.image[0].src}}"  [alt]="brand.name" class="brand-logo" />
+        <img
+          *ngIf="brand.image.length > 0 && brand.image[0].src"
+          src="{{ backendURl }}/brand/{{ brand.image[0].src }}"
+          [alt]="brand.name"
+          class="brand-logo"
+        />
         <h4 class="size18 redhat-semibold">{{ brand.name }}</h4>
       </div>
     </div>
-    <button class="button size18 redhat-bold mt-5">show all</button>
+    <button class="black-button d-flex mx-auto size18 redhat-bold mt-5">
+      show all
+    </button>
   </div>
 </section>

@@ -1,0 +1,31 @@
+
+.footer{
+  padding: 10rem;
+  @media screen and (max-width: 1200px) {
+    padding: 3.75rem;
+  } 
+  @media screen and (max-width: 420px) {
+    padding: 3.75rem 8rem;
+  }
+}
+.footer-logo {
+  width: 264px;
+  height: 175px;
+
+  @media screen and (max-width: 1200px) {
+    width: 180px;
+    height: 120px;
+  } 
+  @media screen and (max-width: 420px) {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+.footer-link{
+  font-size: 16px;
+}
+.footer-link-header{
+  font-size: 20px;
+}
+

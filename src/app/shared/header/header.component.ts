@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -40,15 +41,17 @@ export class HeaderComponent implements OnInit {
     this.updateTextColor();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(): void {
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
     const wasScrolled = this.isScrolled;
     this.isScrolled = window.scrollY > 50;
+    this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
 
-    // If we're on a dark text page and scroll state changed, update the text color
-    if (this.isDarkText && wasScrolled !== this.isScrolled) {
-      this.updateTextColor();
-    }
+    // Update text color based on scroll and route
+    this.updateTextColor();
+
+    // Force change detection
+    this.changeDetector.detectChanges();
   }
 
   private updateTextColor(): void {
@@ -71,22 +74,67 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/about']);
   }
 
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-    // Toggle body scroll when menu is open
-    const body = this.document.body;
-    if (this.isMenuOpen) {
-      this.renderer.setStyle(body, 'overflow', 'hidden');
-    } else {
-      this.renderer.removeStyle(body, 'overflow');
+  toggleMenu(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
+
+    this.isMenuOpen = !this.isMenuOpen;
+
+    // Toggle body scroll and menu state
+    if (this.isMenuOpen) {
+      this.renderer.addClass(this.document.body, 'menu-open');
+      this.renderer.addClass(this.document.documentElement, 'menu-open');
+      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
+      this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
+
+      // Animate menu items in
+      setTimeout(() => {
+        const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
+        menuItems.forEach((item) => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        });
+      }, 50);
+    } else {
+      this.closeMenu();
+    }
+
+    // Force update the view
+    this.changeDetector.detectChanges();
   }
 
   closeMenu(): void {
     this.isMenuOpen = false;
-    const body = this.document.body;
-    this.renderer.removeStyle(body, 'overflow');
+    this.renderer.removeClass(this.document.body, 'menu-open');
+    this.renderer.removeClass(this.document.documentElement, 'menu-open');
+    this.renderer.removeStyle(this.document.body, 'overflow');
+    this.renderer.removeStyle(this.document.documentElement, 'overflow');
+
+    // Reset menu items animation
+    const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
+    menuItems.forEach((item) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateX(20px)';
+    });
   }
+
+  // Close menu when clicking outside
+  @HostListener('document:click', ['$event'])
+  onClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const menuButton = this.document.querySelector('.navbar-toggler');
+    const menu = this.document.querySelector('.mobile-menu');
+
+    if (this.isMenuOpen &&
+      !target.closest('.mobile-menu') &&
+      !target.closest('.navbar-toggler')) {
+      this.toggleMenu();
+    }
+  }
+
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

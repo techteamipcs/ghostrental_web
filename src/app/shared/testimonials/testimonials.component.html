@@ -1,20 +1,24 @@
 <section class="testimonial sectionPadding">
   <div class="container">
-    <h3 class="text-center text-capitalize size60 performa-light p-5">
+    <h3
+      class="text-center text-capitalize size60 performa-light p-5 gray-color"
+    >
       What Our Customers Say
     </h3>
     <div class="swiper py-4" #swiper>
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let testimonial of testimoinsData">
-          <div class="row g-5">
-            <div class="col-md-4 text-center mb-3 mb-md-0 img-container">
+          <div class="row">
+            <div
+              class="col-md-5 col-lg-4 text-center mb-3 mb-md-0 img-container"
+            >
               <img
-                src="{{backendURL}}/{{testimonial.image}}"
+                src="{{ backendURL }}/{{ testimonial.image }}"
                 alt="Customer Testimonial"
                 class="rounded-4 img-fluid testimonial-img"
               />
             </div>
-            <div class="col-md-8 text-start">
+            <div class="col-md-6 col-lg-7 text-start">
               <div class="mb-2 d-flex">
                 <ng-container *ngFor="let star of getStars(testimonial.rating)">
                   <lucide-icon
@@ -24,13 +28,15 @@
                   ></lucide-icon>
                 </ng-container>
               </div>
-              <h5 class="size30 redhat-regular mb-1 mt-4">
+              <h5 class="size30 redhat-regular my-4 black-color">
                 {{ testimonial.title }}
               </h5>
-              <p class="size22 redhat-regular mb-2 mt-3">
+              <p class="size22 redhat-regular mb-4 color-card-p">
                 {{ testimonial.text }}
               </p>
-              <h6 class="size18 redhat-regular mt-3">{{ testimonial.name }}</h6>
+              <h6 class="size18 redhat-regular gray-color">
+                {{ testimonial.name }}
+              </h6>
             </div>
           </div>
         </div>
@@ -48,28 +54,30 @@
   </div>
 </section>
 
-<section class="faq sectionPadding">
-  <h3 class="text-center text-capitalize size60 performa-light">
+<section class="faq">
+  <h3 class="text-center text-capitalize size60 performa-light gray-color">
     Frequently Asked Questions
   </h3>
-  <p class="text-center size18 redhat-semibold">
+  <p class="text-center size18 redhat-semibold gray-color">
     Got Questions? We've Got Answers To Help You Navigate Your Car Rental
     Experience!
   </p>
   <div class="text-center my-4">
-    <button class="button size18 redhat-bold">Help Center</button>
+    <button class="black-button size18 redhat-bold">Help Center</button>
   </div>
 
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-lg-9 d-grid gap-3">
+      <div class="col-lg-12 d-grid gap-3">
         <div
           class="faq-item"
           *ngFor="let faq of faqs; let i = index"
           [class.expanded]="expandedIndex === i"
         >
           <div class="faq-question m-0" (click)="toggleAccordion(i)">
-            <h4 class="size26 redhat-medium m-0">{{ faq.question }}</h4>
+            <h4 class="size26 redhat-medium m-0 gray-color">
+              {{ faq.question }}
+            </h4>
             <!-- <span class="icon">{{ expandedIndex === i ? "−" : "+" }}</span> -->
             <span>
               <lucide-icon
@@ -85,7 +93,9 @@
             class="faq-answer"
             [style.maxHeight]="expandedIndex === i ? '300px' : '0'"
           >
-            <p class="size18 redhat-semibold m-0">{{ faq.answer }}</p>
+            <p class="size18 redhat-semibold m-0 gray-light-color">
+              {{ faq.answer }}
+            </p>
           </div>
         </div>
       </div>
