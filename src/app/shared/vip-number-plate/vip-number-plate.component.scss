@@ -1,0 +1,21 @@
+.para-width{
+  width: 60%;
+  @media screen and (max-width: 1920px) {
+    width: 85%;
+  }
+  @media screen and (max-width: 1680px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 1600px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 85%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
