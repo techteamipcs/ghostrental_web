@@ -61,30 +61,24 @@
 
         <div
           id="carForm"
-          class="car-form"
-          [style.display]="!isVehicleYacht ? 'block' : 'none'"
-        >
+          class="car-form" >
           <div class="row">
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Type</label> -->
-              <select class="form-select">
+              <select class="form-select" (change)="selectData('body_type',$event)">
                 <option value="" class="size14 redhat-semibold">Type</option>
-                <option value="Sedan" class="size14 redhat-semibold">
-                  Sedan
+                <option value="{{bodytype.url_key}}" class="size14 redhat-semibold" *ngFor="let bodytype of filteredBodytype">
+                  {{bodytype.name}}
                 </option>
-                <option value="SUV" class="size14 redhat-semibold">SUV</option>
               </select>
             </div>
 
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Model</label> -->
-              <select class="form-select">
-                <option value="" class="size14 redhat-semibold">Model</option>
-                <option value="Model X" class="size14 redhat-semibold">
-                  Model X
-                </option>
-                <option value="Model Y" class="size14 redhat-semibold">
-                  Model Y
+              <select class="form-select" (change)="selectData('brand',$event)">
+                <option value="" class="size14 redhat-semibold">Brands</option>
+                <option value="{{model.url_key}}" class="size14 redhat-semibold" *ngFor="let model of filteredBrands">
+                  {{model.name}}
                 </option>
               </select>
             </div>
@@ -94,10 +88,10 @@
               >
               <div class="row">
                 <div class="col-6 mb-3">
-                  <input type="date" class="form-input" />
+                  <input type="date" [(ngModel)]="selelctedstartDate" name="selelctedstartDate" class="form-input" />
                 </div>
                 <div class="col-6 mb-3">
-                  <input type="time" class="form-input" />
+                  <input type="time" [(ngModel)]="selectedstartTime" name="selectedstartTime" class="form-input" />
                 </div>
               </div>
               <input type="text" class="form-input" placeholder="Address" />
@@ -108,10 +102,10 @@
               >
               <div class="row">
                 <div class="col-6 mb-3">
-                  <input type="date" class="form-input" />
+                  <input type="date" [(ngModel)]="selelctedendDate" name="selelctedendDate" class="form-input" />
                 </div>
                 <div class="col-6 mb-3">
-                  <input type="time" class="form-input" />
+                  <input type="time" [(ngModel)]="selectedendTime" name="selectedendTime" class="form-input" />
                 </div>
               </div>
               <input type="text" class="form-input" placeholder="Address" />
@@ -121,76 +115,7 @@
           <button
             type="submit"
             class="black-button d-flex mx-auto size18 redhat-bold"
-          >
-            Book Now
-          </button>
-        </div>
-
-        <div
-          id="yachtForm"
-          class="yacht-form"
-          [style.display]="isVehicleYacht ? 'block' : 'none'"
-        >
-          <div class="row">
-            <div class="mb-3 col-6">
-              <!-- <label class="form-label size18 redhat-bold">Type</label> -->
-              <select class="form-select">
-                <option value="" class="size14 redhat-semibold">Type</option>
-                <option value="Sailing Yacht" class="size14 redhat-semibold">
-                  Sailing Yacht
-                </option>
-                <option value="Motor Yacht" class="size14 redhat-semibold">
-                  Motor Yacht
-                </option>
-              </select>
-            </div>
-
-            <div class="mb-3 col-6">
-              <!-- <label class="form-label size18 redhat-bold">Size</label> -->
-              <select class="form-select">
-                <option value="" class="size14 redhat-semibold">Size</option>
-                <option value="30ft" class="size14 redhat-semibold">
-                  30ft
-                </option>
-                <option value="50ft" class="size14 redhat-semibold">
-                  50ft
-                </option>
-              </select>
-            </div>
-
-            <div class="mb-3 col-12">
-              <label class="form-label size18 redhat-bold black-color"
-                >Departure</label
-              >
-              <div class="row">
-                <div class="col-6 mb-3">
-                  <input type="date" class="form-input" />
-                </div>
-                <div class="col-6 mb-3">
-                  <input type="time" class="form-input" />
-                </div>
-              </div>
-              <input type="text" class="form-input" placeholder="Address" />
-            </div>
-
-            <div class="mb-md-5 mb-3 col-md-12 col-12">
-              <label class="form-label size18 redhat-bold black-color"
-                >Return</label
-              >
-              <div class="row">
-                <div class="col-6 mb-3">
-                  <input type="date" class="form-input" />
-                </div>
-                <div class="col-6 mb-3">
-                  <input type="time" class="form-input" />
-                </div>
-              </div>
-              <input type="text" class="form-input" placeholder="Address" />
-            </div>
-          </div>
-          <button
-            type="submit"
-            class="black-button d-flex mx-auto size18 redhat-bold"
+            (click)="goToResults()"
           >
             Book Now
           </button>

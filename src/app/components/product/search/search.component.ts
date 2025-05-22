@@ -163,7 +163,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
       rental_type: this.selectedRentalType,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
-      price_type: this.price_type
+      price_type: this.price_type,
+      startDate: this.availableStartDate,
+      endDate: this.availableendDate
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {

@@ -16,6 +16,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
 import { ServicesComponent } from './components/services/services.component';
 
 import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-angular';
+import { BookingComponent } from './components/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, Arrow
     TestimonialsComponent,
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
-    ServicesComponent
+    ServicesComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

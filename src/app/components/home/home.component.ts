@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
 import { DataService } from '../../providers/data/data.service';
+import { Route, Router } from '@angular/router';
 
 // Swiper.use([Navigation]);
 
@@ -31,7 +32,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ouryatchsCollections: any = [];
   trendingRentalCars: any = [];
   vehicleData: any = [];
-
+  vehicletype: any = "Car";
+  listBodytype: any = [];
+  filteredBodytype: any = [];
+  listModels: any = [];
+  filteredModels: any = [];
+  listBrands: any = [];
+  filteredBrands: any = [];
+  selelctedbodytype:any;
+  selelctedbrand:any;
+  selelctedmodel:any;
+  selelctedstartDate:any;
+  selelctedendDate:any;
+  selectedstartTime:any;
+  selectedendTime:any;
+  selectedpickaddress:any;
+  selecteddropaddredd:any;
   features = [
     {
       image: 'home/cars.png',
@@ -58,7 +74,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
-    private dataservice: DataService
+    private dataservice: DataService,
+    public router : Router
   ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
@@ -72,6 +89,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getCarTypes();
     this.getCarData();
     this.getYatchsData();
+    this.getBodyTypes();
+    this.getModels();
+    this.getBrands();
   }
 
   ngAfterViewInit() {
@@ -151,7 +171,58 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   toggleVehicle() {
     this.isVehicleYacht = !this.isVehicleYacht;
+    if (!this.isVehicleYacht) {
+      this.vehicletype = "Car";
+    } else {
+      this.vehicletype = "Yachts";
+    }
+    if (this.listBodytype && this.listBodytype.length > 0) {
+      this.filteredBodytype = this.listBodytype.filter((bodytype) => bodytype.type == this.vehicletype);
+    }
+    if (this.listModels && this.listModels.length > 0) {
+      this.filteredModels = this.listModels.filter((model) => model.type == this.vehicletype);
+    }
+    if (this.listBrands && this.listBrands.length > 0) {
+      this.filteredBrands = this.listBrands.filter((model) => model.type == this.vehicletype);
+    }
   }
+
+  selectData(type,event){
+    if(type =='body_type'){
+      this.selelctedbodytype = event.target.value;
+    } else if(type =='brand'){
+      this.selelctedbrand = event.target.value;
+    }
+  }
+ 
+  goToResults() {
+    this.router.navigate(['/booking'], {
+      queryParams: {
+        vehicle: this.vehicletype,
+        body_type: this.selelctedbodytype,
+        brand: this.selelctedbrand,
+        model: this.selelctedmodel,
+        startDate: this.mergeDateTime(this.selectedstartTime,this.selelctedstartDate),
+        endDate: this.mergeDateTime(this.selectedendTime,this.selelctedendDate),
+        pick_address: this.selectedpickaddress,
+        drop_address: this.selecteddropaddredd
+      }
+    });
+}
+
+mergeDateTime(time,date):any {
+  if(time && date){
+    const [hours, minutes] = time.split(':').map(Number);
+    const dateObj = new Date(date);
+    dateObj.setHours(hours);
+    dateObj.setMinutes(minutes);
+    dateObj.setSeconds(0);
+    dateObj.setMilliseconds(0);
+    return dateObj;
+  }
+}
+
+
   onSubmit() {
     console.log('Submitted');
     console.log(this.reservationForm.value);
@@ -194,12 +265,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
           this.vehicleData = response.result;
+          let index = 0;
           if (this.vehicleData && this.vehicleData.length > 0) {
-            this.vehicleData.forEach(vehicle => {
+            this.vehicleData.forEach((vehicle,i) => {              
               if (vehicle && vehicle.home_vehicle) {
                 this.ourCarCollections.push(vehicle);
               }
-              if (vehicle && vehicle.featured_vehicle) {
+              if (vehicle && vehicle.featured_vehicle && index < 6) {
+                index = index + 1
                 this.trendingRentalCars.push(vehicle);
               }
             });
@@ -220,6 +293,48 @@ export class HomeComponent implements OnInit, AfterViewInit {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
           this.ouryatchsCollections = response.result;
+        }
+      }
+    });
+  }
+
+  getBodyTypes() {
+    let obj = {};
+    this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.listBodytype = response.result;
+          if (this.listBodytype && this.listBodytype.length > 0) {
+            this.filteredBodytype = this.listBodytype.filter((bodytype) => bodytype.type == this.vehicletype);
+          }
+        }
+      }
+    });
+  }
+
+  getModels() {
+    let obj = {};
+    this.dataservice.getAllModels(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.listModels = response.result;
+          if (this.listModels && this.listModels.length > 0) {
+            this.filteredModels = this.listModels.filter((model) => model.type == this.vehicletype);
+          }
+        }
+      }
+    });
+  }
+
+  getBrands() {
+    let obj = {};
+    this.dataservice.getBrands(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.listBrands = response.result;
+          if (this.listBrands && this.listBrands.length > 0) {
+            this.filteredBrands = this.listBrands.filter((model) => model.type == this.vehicletype);
+          }
         }
       }
     });

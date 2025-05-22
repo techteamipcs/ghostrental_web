@@ -6,6 +6,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { ServicesComponent } from './components/services/services.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,14 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'booking',
+    component: BookingComponent
+  },
+  {
+    path: 'booking/:type',
+    component: BookingComponent
   },
   {
     path: 'services',
