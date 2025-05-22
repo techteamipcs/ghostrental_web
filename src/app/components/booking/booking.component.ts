@@ -172,6 +172,10 @@ export class BookingComponent {
           this.vehicleData = response.result;
           this.totalItems = response.count;
           this.updatePagedCars();
+        } else{
+          this.totolvehicle = 0;
+          this.vehicleData = [];
+          this.totalItems = 0;
         }
       }
     });
