@@ -18,6 +18,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   Math = Math;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
+  mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
+
   // Pagination properties
   currentLimit = 4;
   currentPage = 1;
@@ -27,22 +29,24 @@ export class SearchComponent implements OnInit, AfterViewInit {
   vehicleData: any = [];
   pagedCars: any[] = [];
   totolvehicle = 0;
-  cartypeData:any = [];
-  bodyData:any = [];
-  brandData:any = [];
-  modelData:any = [];
-  bodyTypeData:any = [];
-  selectedBodytype:any = [];
-  selectedBrand:any = [];
-  selectedModel:any = [];
-  selectedCartype:any = [];
-  selectedRentalType:any ; 
-  minPrice:any = 0;
-  maxPrice:any = 10000;
-  price_type:any = '';
-  filteredModel:any = [];
-  availableStartDate:any;
-  availableendDate:any;
+  cartypeData: any = [];
+  bodyData: any = [];
+  brandData: any = [];
+  modelData: any = [];
+  bodyTypeData: any = [];
+  selectedBodytype: any = [];
+  selectedBrand: any = [];
+  selectedModel: any = [];
+  selectedCartype: any = [];
+  selectedRentalType: any;
+  minPrice: any = 0;
+  maxPrice: any = 10000;
+  price_type: any = '';
+  filteredModel: any = [];
+  availableStartDate: any;
+  availableendDate: any;
+  isFilterCollapsed = false;
+  isMobileFilterVisible: boolean = false;
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -53,6 +57,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   constructor(
     private dataservice: DataService
   ) {
+    // Initialize mobile filter as closed
+    this.isMobileFilterVisible = false;
   }
 
   ngOnInit() {
@@ -128,8 +134,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
   getPages(): number[] {
     return Array(this.totalPages).fill(0).map((_, i) => i + 1);
   }
-  @HostListener('window:scroll', [])
+  @HostListener('window:scroll', ['$event'])
   onScroll(): void {
+
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 10) {
+      this.mobileFilterHeight = 'calc(100vh - 5rem)';
+    } else {
+      this.mobileFilterHeight = 'calc(100vh - 7.5rem)';
+    }
+
     const filter = this.filterRef.nativeElement;
     const results = this.resultsRef.nativeElement;
 
@@ -146,7 +160,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  SearchItems(){
+  SearchItems() {
     this.getCarData();
   }
 
@@ -159,7 +173,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       car_type: this.carTypes,
       bodyTypeId: this.selectedBodytype,
       brandId: this.selectedBrand,
-      modelId:this.selectedModel,
+      modelId: this.selectedModel,
       rental_type: this.selectedRentalType,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
@@ -181,90 +195,104 @@ export class SearchComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getCarTypes(){ 
+  getCarTypes() {
     let obj = {};
     this.dataservice.getCarTypes(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.cartypeData = response.result;
         }
       }
     });
   }
 
-  getBrands(){ 
+  getBrands() {
     let obj = {};
     this.dataservice.getBrands(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.brandData = response.result;
         }
       }
     });
   }
 
-  getModels(){ 
+  getModels() {
     let obj = {};
     this.dataservice.getAllModels(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.modelData = response.result;
         }
       }
     });
   }
 
-  getBodyTypes(){ 
+  getBodyTypes() {
     let obj = {};
     this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.bodyTypeData = response.result;
         }
       }
     });
   }
 
-  changeBodyType(data){
-    if(data){
+  changeBodyType(data) {
+    if (data) {
       this.selectedBodytype.push(data.target.value);
     }
   }
 
-  changeBrand(data){
-    if(data){
+  changeBrand(data) {
+    if (data) {
       this.selectedBrand.push(data.target.value);
-      if(this.modelData && this.modelData.length > 0){
-        this.filteredModel = this.modelData.filter((item)=>item.brand == data.target.value)
+      if (this.modelData && this.modelData.length > 0) {
+        this.filteredModel = this.modelData.filter((item) => item.brand == data.target.value)
       }
     }
   }
 
-  changeModel(data){
-    if(data){
+  changeModel(data) {
+    if (data) {
       this.selectedModel.push(data.target.value);
     }
   }
 
-  changeCartype(data){
-    if(data){
+  changeCartype(data) {
+    if (data) {
       this.selectedCartype.push(data.target.value);
     }
   }
 
-  changeRentalType(data){
-    if(data){
+  changeRentalType(data) {
+    if (data) {
       this.selectedRentalType = data.target.value;
-      if(data.target.value == 'Daily'){
+      if (data.target.value == 'Daily') {
         this.price_type = 'dailyRate';
-      } else if(data.target.value == 'Hourly'){
+      } else if (data.target.value == 'Hourly') {
         this.price_type = 'hourlyRate';
-      } else if(data.target.value == 'Weekly'){
+      } else if (data.target.value == 'Weekly') {
         this.price_type = 'weeklyRate';
-      } else if(data.target.value == 'Monthly'){
+      } else if (data.target.value == 'Monthly') {
         this.price_type = 'monthlyRate';
       }
     }
   }
-  
+
+  // UI Helpers
+  toggleFilter(): void {
+    if (window.innerWidth <= 768) {
+      this.isMobileFilterVisible = !this.isMobileFilterVisible;
+    } else {
+      this.isFilterCollapsed = !this.isFilterCollapsed;
+    }
+  }
+
+  // Alias for toggleFilter for mobile view
+  openMobileFilter(): void {
+    this.toggleFilter();
+  }
+
 }

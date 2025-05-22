@@ -8,13 +8,13 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { Error404Component } from './error404/error404.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrandsComponent } from './shared/brands/brands.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { ServicesComponent } from './components/services/services.component';
 
-import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-angular';
+import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight, X, Home, Users, Settings, Car, Phone, Facebook, Instagram, Twitter } from 'lucide-angular';
 import { BookingComponent } from './components/booking/booking.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -37,8 +37,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
-    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight }),
+    LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight, X, Home, Users, Settings, Car, Phone, Facebook, Instagram, Twitter }),
   ],
   providers: [
     provideClientHydration(),
