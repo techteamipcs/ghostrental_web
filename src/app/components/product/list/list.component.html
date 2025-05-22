@@ -70,7 +70,7 @@
               ngbDropdownItem
               class="dropdown-item size16 redhat-semibold"
               href="#"
-              >Action</a
+              >yachts</a
             >
           </li>
           <li>
@@ -78,15 +78,7 @@
               ngbDropdownItem
               class="dropdown-item size16 redhat-semibold"
               href="#"
-              >Another action</a
-            >
-          </li>
-          <li>
-            <a
-              ngbDropdownItem
-              class="dropdown-item size16 redhat-semibold"
-              href="#"
-              >Something else here</a
+              >cars</a
             >
           </li>
         </ul>
@@ -95,7 +87,10 @@
 
     <div class="products">
       <div class="row">
-        <div class="col-md-3 mb-5" *ngFor="let car of vehicleData">
+        <div
+          class="col-xl-3 col-lg-6 col-md-6 col-12 mb-5"
+          *ngFor="let car of vehicleData"
+        >
           <div class="car-card border border-1 border-black">
             <img
               src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
@@ -177,7 +172,7 @@
               [disabled]="currentPage === 1"
               (click)="onPageChange(currentPage - 1)"
             >
-              <lucide-icon name="arrow-left" />
+              <lucide-icon name="arrowLeft" />
             </button>
           </li>
 
@@ -207,3 +202,5 @@
     </div>
   </div>
 </section>
+
+<app-testimonials></app-testimonials>

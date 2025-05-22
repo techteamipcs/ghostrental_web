@@ -15,7 +15,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   private swiper: Swiper | null = null;
   imageURL: string = `${environment.url}/assets`;
   backendURL: string = `${environment.baseUrl}/public`;
-  testimoinsData: any = [];
+  testimonialsData: any = [];
   expandedIndex: number = -1;
   // Testimonials data
   testimonials = [
@@ -107,7 +107,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     this.dataservice.getTestimonials(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.testimoinsData = response.result;
+          this.testimonialsData = response.result;
         }
       }
     });
@@ -129,12 +129,10 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   private initSwiper(): void {
     if (this.swiperRef?.nativeElement && !this.swiper) {
       try {
-        // Create a new Swiper instance
         this.swiper = new Swiper(this.swiperRef.nativeElement, {
           slidesPerView: 1,
           spaceBetween: 30,
           loop: true,
-          // Initialize without navigation first
           navigation: false,
           pagination: {
             el: '.swiper-pagination',
@@ -158,15 +156,12 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
           },
           on: {
             init: () => {
-              // Swiper initialized
             },
             slideChange: () => {
-              // Handle slide change if needed
             },
           },
         });
 
-        // Manually add click handlers after Swiper is initialized
         if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
           this.nextButton.nativeElement.addEventListener('click', () => {
             this.swiper?.slideNext();
@@ -183,7 +178,6 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Remove event listeners
     if (this.nextButton?.nativeElement) {
       this.nextButton.nativeElement.removeEventListener('click', () => { });
     }
@@ -191,7 +185,6 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
       this.prevButton.nativeElement.removeEventListener('click', () => { });
     }
 
-    // Destroy Swiper instance
     if (this.swiper) {
       try {
         this.swiper.destroy(true, true);
@@ -203,8 +196,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // Accordion methods
-  toggleAccordion(index: number) {
+  toggleAccordion(index: number): void {
     this.expandedIndex = this.expandedIndex === index ? -1 : index;
   }
 }

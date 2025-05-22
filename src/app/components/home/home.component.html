@@ -59,26 +59,37 @@
           </h5>
         </div>
 
-        <div
-          id="carForm"
-          class="car-form" >
+        <div id="carForm" class="car-form">
           <div class="row">
             <div class="mb-3 col-6">
-              <!-- <label class="form-label size18 redhat-bold">Type</label> -->
-              <select class="form-select" (change)="selectData('body_type',$event)">
+              <select
+                class="form-select"
+                (change)="selectData('body_type', $event)"
+              >
                 <option value="" class="size14 redhat-semibold">Type</option>
-                <option value="{{bodytype.url_key}}" class="size14 redhat-semibold" *ngFor="let bodytype of filteredBodytype">
-                  {{bodytype.name}}
+                <option
+                  value="{{ bodytype.url_key }}"
+                  class="size14 redhat-semibold"
+                  *ngFor="let bodytype of filteredBodytype"
+                >
+                  {{ bodytype.name }}
                 </option>
               </select>
             </div>
 
             <div class="mb-3 col-6">
               <!-- <label class="form-label size18 redhat-bold">Model</label> -->
-              <select class="form-select" (change)="selectData('brand',$event)">
+              <select
+                class="form-select"
+                (change)="selectData('brand', $event)"
+              >
                 <option value="" class="size14 redhat-semibold">Brands</option>
-                <option value="{{model.url_key}}" class="size14 redhat-semibold" *ngFor="let model of filteredBrands">
-                  {{model.name}}
+                <option
+                  value="{{ model.url_key }}"
+                  class="size14 redhat-semibold"
+                  *ngFor="let model of filteredBrands"
+                >
+                  {{ model.name }}
                 </option>
               </select>
             </div>
@@ -88,10 +99,20 @@
               >
               <div class="row">
                 <div class="col-6 mb-3">
-                  <input type="date" [(ngModel)]="selelctedstartDate" name="selelctedstartDate" class="form-input" />
+                  <input
+                    type="date"
+                    [(ngModel)]="selelctedstartDate"
+                    name="selelctedstartDate"
+                    class="form-input"
+                  />
                 </div>
                 <div class="col-6 mb-3">
-                  <input type="time" [(ngModel)]="selectedstartTime" name="selectedstartTime" class="form-input" />
+                  <input
+                    type="time"
+                    [(ngModel)]="selectedstartTime"
+                    name="selectedstartTime"
+                    class="form-input"
+                  />
                 </div>
               </div>
               <input type="text" class="form-input" placeholder="Address" />
@@ -102,10 +123,20 @@
               >
               <div class="row">
                 <div class="col-6 mb-3">
-                  <input type="date" [(ngModel)]="selelctedendDate" name="selelctedendDate" class="form-input" />
+                  <input
+                    type="date"
+                    [(ngModel)]="selelctedendDate"
+                    name="selelctedendDate"
+                    class="form-input"
+                  />
                 </div>
                 <div class="col-6 mb-3">
-                  <input type="time" [(ngModel)]="selectedendTime" name="selectedendTime" class="form-input" />
+                  <input
+                    type="time"
+                    [(ngModel)]="selectedendTime"
+                    name="selectedendTime"
+                    class="form-input"
+                  />
                 </div>
               </div>
               <input type="text" class="form-input" placeholder="Address" />
@@ -298,6 +329,7 @@
               <div class="swiper-slide" *ngFor="let car of ourCarCollections">
                 <div class="car-card">
                   <img
+                    *ngIf="car.media_data && car.media_data.length > 0"
                     src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"
                     class="img-fluid rounded w-100"
@@ -410,6 +442,7 @@
               >
                 <div class="car-card">
                   <img
+                    *ngIf="yacht.media_data && yacht.media_data.length > 0"
                     src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}"
                     [alt]="yacht.name"
                     class="img-fluid rounded w-100"
@@ -463,10 +496,10 @@
                   >
                     <div class="cash">
                       <h6 class="text-muted mb-0 size18 redhat-semibold">
-                        <del>AED {{ yacht.price.regular }}</del>
+                        <del>AED {{ yacht.regularRate }}</del>
                       </h6>
                       <h5 class="mb-0 size26 redhat-semibold">
-                        AED {{ yacht.price.discounted }}
+                        AED {{ yacht.dailyRate }}
                       </h5>
                     </div>
                     <a

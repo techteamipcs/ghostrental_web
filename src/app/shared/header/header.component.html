@@ -1,8 +1,4 @@
-<nav
-  class="position-fixed top-0 start-0 w-100 z-2"
-  [class.scrolled]="isScrolled"
-  [class.dark-text]="isDarkText"
->
+<nav class="position-fixed top-0 start-0 w-100 z-2">
   <div
     class="container-fluid d-flex justify-content-between align-items-center"
   >
@@ -22,8 +18,8 @@
       (click)="toggleMenu($event)"
       aria-label="Toggle navigation"
       [class.active]="isMenuOpen"
-      [class.dark]="isDarkText && !isMenuOpen"
-      [class.white-hamburger]="!isDarkText || isScrolled"
+      [class.dark]="isDarkText && !isScrolled && !isMenuOpen"
+      [class.white-hamburger]="!isDarkText || isScrolled || isMenuOpen"
     >
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
@@ -35,77 +31,117 @@
       <li>
         <a
           href="/"
-          class="size16 redhat-semibold white-color text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled"
           >Home</a
         >
       </li>
       <li>
         <a
           href="/about"
-          class="size16 redhat-semibold white-color text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled"
           >About Us</a
         >
       </li>
       <li>
         <a
           href="/services"
-          class="size16 redhat-semibold white-color text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled"
           >Our Services</a
         >
       </li>
       <li>
         <a
           href="/product/search"
-          class="size16 redhat-semibold white-color text-decoration-none"
+          class="size16 redhat-semibold white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled"
           >Our Fleets</a
         >
       </li>
       <li>
         <a href="/contact">
-          <button class="white-button size18 redhat-bold">Contact Us</button>
+          <button
+            class="white-button size18 redhat-bold"
+            [class.dark]="isDarkText && !isScrolled"
+          >
+            Contact Us
+          </button>
         </a>
       </li>
     </ul>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-menu" [class.active]="isMenuOpen">
-      <ul class="nav flex-column align-items-center">
-        <li class="w-100" (click)="closeMenu()">
-          <a
-            href="/"
-            class="size16 redhat-semibold black-color text-decoration-none d-block py-2"
-            >Home</a
-          >
-        </li>
-        <li class="w-100" (click)="closeMenu()">
-          <a
-            href="/about"
-            class="size16 redhat-semibold black-color text-decoration-none d-block py-2"
-            >About Us</a
-          >
-        </li>
-        <li class="w-100" (click)="closeMenu()">
-          <a
-            href="/services"
-            class="size16 redhat-semibold black-color text-decoration-none d-block py-2"
-            >Our Services</a
-          >
-        </li>
-        <li class="w-100" (click)="closeMenu()">
-          <a
-            href="/product/search"
-            class="size16 redhat-semibold black-color text-decoration-none d-block py-2"
-            >Our Fleets</a
-          >
-        </li>
-        <li class="w-100 mt-3" (click)="closeMenu()">
-          <a href="/contact" class="d-block">
-            <button class="white-border-button size18 redhat-bold w-100">
-              Contact Us
+    <div class="mobile-menu" [class.active]="isMenuOpen" (click)="closeMenu()">
+      <div class="menu-overlay" (click)="$event.stopPropagation()">
+        <nav class="menu-container">
+          <div class="menu-header">
+            <a href="/" class="logo-link">
+              <img src="assets/images/logo.svg" alt="Logo" class="logo" />
+            </a>
+            <button class="close-btn" (click)="closeMenu()">
+              <lucide-icon name="x" class="close-icon"></lucide-icon>
             </button>
-          </a>
-        </li>
-      </ul>
+          </div>
+
+          <ul class="nav-menu">
+            <li class="nav-item" (click)="closeMenu()">
+              <a href="/" class="nav-link">
+                <lucide-icon name="home" class="nav-icon"></lucide-icon>
+                <span>Home</span>
+              </a>
+            </li>
+
+            <li class="nav-item" (click)="closeMenu()">
+              <a href="/about" class="nav-link">
+                <lucide-icon name="users" class="nav-icon"></lucide-icon>
+                <span>About Us</span>
+              </a>
+            </li>
+
+            <li class="nav-item" (click)="closeMenu()">
+              <a href="/services" class="nav-link">
+                <lucide-icon name="settings" class="nav-icon"></lucide-icon>
+                <span>Our Services</span>
+              </a>
+            </li>
+
+            <li class="nav-item" (click)="closeMenu()">
+              <a href="/product/search" class="nav-link">
+                <lucide-icon name="car" class="nav-icon"></lucide-icon>
+                <span>Our Fleets</span>
+              </a>
+            </li>
+
+            <li class="nav-divider"></li>
+
+            <li class="nav-item" (click)="closeMenu()">
+              <a href="/contact" class="nav-button">
+                <button class="primary-button">
+                  <lucide-icon name="phone" class="mr-2"></lucide-icon>
+                  Contact Us
+                </button>
+              </a>
+            </li>
+          </ul>
+
+          <div class="menu-footer">
+            <div class="social-links">
+              <a href="#" class="social-link"
+                ><lucide-icon name="facebook"></lucide-icon
+              ></a>
+              <a href="#" class="social-link"
+                ><lucide-icon name="instagram"></lucide-icon
+              ></a>
+              <a href="#" class="social-link"
+                ><lucide-icon name="twitter"></lucide-icon
+              ></a>
+            </div>
+            <p class="copyright">© 2025 Ghost Rental. All rights reserved.</p>
+          </div>
+        </nav>
+      </div>
     </div>
   </div>
 </nav>

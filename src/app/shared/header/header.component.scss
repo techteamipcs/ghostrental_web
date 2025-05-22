@@ -8,12 +8,34 @@ nav {
   left: 0;
   right: 0;
   
+  @media (max-width: 1600px) {
+    padding: 3rem 6rem; 
+  }
   @media (max-width: 1024px) {
-    padding: 2rem 2rem; 
+    padding: 2rem; 
+  }
+  
+  // Default text color (white)
+  .white {
+    color: #ffffff;
+    transition: color 0.3s ease;
+    
+    // Dark text variant for light backgrounds
+    &.dark {
+      color: #000000;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    
+    // Force white text when scrolled or menu open
+    .scrolled &, .menu-open & {
+      color: #ffffff !important;
+    }
   }
 
   // Scrolled state
-  body.header-scrolled &,
   &.scrolled {
     background-color: #000 !important;
     padding: 1.5rem 5rem;
@@ -23,8 +45,14 @@ nav {
       padding: 1rem 2rem;
     }
     
+    // Force white text when scrolled
     .white {
-      color: #fff !important;
+      color: #ffffff !important;
+    }
+    
+    // Ensure logo is visible on dark background
+    .nav-logo {
+      filter: brightness(0) invert(1) !important;
     }
   }
   
@@ -36,40 +64,33 @@ nav {
     }
   }
 
+  // Dark text variant for light backgrounds
   &.dark-text {
     .white {
-      color: #000 !important;
-      transition: color 0.3s ease;
+      color: #000000;
       
-      &.force-white {
-        color: #fff !important;
+      &:hover {
+        opacity: 0.8;
       }
     }
     
-    .navbar-toggler-icon {
-      background-color: #000;
-      transition: background-color 0.3s ease;
-      
-      &::before,
-      &::after {
-        background-color: #000;
-        transition: background-color 0.3s ease;
-      }
+    // Hamburger menu color for light backgrounds
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: #000000;
     }
     
-    // When scrolled, show white text and icons
-    &.scrolled {
+    // When scrolled or menu is open, use white text
+    &.scrolled, &.menu-open {
       .white {
-        color: #fff !important;
+        color: #ffffff !important;
       }
       
-      .navbar-toggler-icon {
-        background-color: #fff;
-        
-        &::before,
-        &::after {
-          background-color: #fff;
-        }
+      .hamburger-inner,
+      .hamburger-inner::before,
+      .hamburger-inner::after {
+        background-color: #ffffff;
       }
     }
   }
@@ -102,6 +123,9 @@ nav {
     margin: 0;
     padding: 0;
   gap: 4.5rem;
+  @media screen and (max-width: 1440px) {
+    gap: 2rem;
+  }
 
 
     li {
@@ -369,19 +393,6 @@ nav {
             font-weight: 600;
           }
         }
-        
-        .white-border-button {
-          width: 100%;
-          margin-top: 1rem;
-          padding: 0.8rem 1.5rem;
-          font-size: 1rem;
-          border-width: 2px;
-          
-          &:hover {
-            background: #fff;
-            color: #000;
-          }
-        }
       }
     }
 
@@ -391,5 +402,190 @@ nav {
         transform: translateY(0);
       }
     }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    
+    .menu-overlay {
+      transform: translateX(0);
+    }
+  }
+}
+
+.menu-overlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 85%;
+  max-width: 320px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1.5rem;
+  
+  .logo {
+    height: 30px;
+    width: auto;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .close-icon {
+      width: 24px;
+      height: 24px;
+      color: #333;
+    }
+  }
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-item {
+  margin-bottom: 0.5rem;
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #f8f9fa;
+      color: #000;
+    }
+    
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      color: #666;
+    }
+    
+    span {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.nav-divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 1rem 0;
+}
+
+.nav-button {
+  display: block;
+  margin-top: 1rem;
+  text-decoration: none;
+  
+  .primary-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+  }
+}
+
+.menu-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    
+    .social-link {
+      color: #666;
+      transition: color 0.2s;
+      
+      &:hover {
+        color: #4f46e5;
+      }
+      
+      lucide-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  
+  .copyright {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .menu-overlay {
+    width: 90%;
   }
 }

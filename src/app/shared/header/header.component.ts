@@ -13,8 +13,9 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/search', '/product/detail', '/product/list'];
+  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail', '/product/list', '/terms', '/privacy'];
   isDarkText = false;
+  currentRoute: string = '';
 
   constructor(
     private router: Router,
@@ -25,19 +26,18 @@ export class HeaderComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
+      this.currentRoute = event.url;
       const wasDarkText = this.isDarkText;
-      this.isDarkText = this.darkTextRoutes.some(route => event.url.includes(route));
+      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
       window.scrollTo(0, 0);
-      if (wasDarkText !== this.isDarkText) {
-        this.updateTextColor();
-      }
+      this.updateTextColor();
+      this.changeDetector.detectChanges();
     });
   }
 
   ngOnInit(): void {
-    // Check initial route
-    this.isDarkText = this.darkTextRoutes.some(route => this.router.url.includes(route));
-    // Initial update of text color
+    this.currentRoute = this.router.url;
+    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
     this.updateTextColor();
   }
 
@@ -46,24 +46,28 @@ export class HeaderComponent implements OnInit {
     const wasScrolled = this.isScrolled;
     this.isScrolled = window.scrollY > 50;
     this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
-
-    // Update text color based on scroll and route
     this.updateTextColor();
-
-    // Force change detection
     this.changeDetector.detectChanges();
   }
 
   private updateTextColor(): void {
-    // If scrolled, show white text, otherwise respect the dark text setting
-    const textElements = this.document.querySelectorAll('nav .white');
-    textElements.forEach(el => {
-      if (this.isScrolled) {
-        this.renderer.addClass(el, 'force-white');
+    const navElement = this.document.querySelector('nav');
+    if (!navElement) return;
+
+    // If scrolled or menu is open, use white text
+    if (this.isScrolled || this.isMenuOpen) {
+      this.renderer.addClass(navElement, 'scrolled');
+      this.renderer.removeClass(navElement, 'dark-text');
+    } else {
+      // Otherwise, respect the dark text setting based on route
+      if (this.isDarkText) {
+        this.renderer.addClass(navElement, 'dark-text');
+        this.renderer.removeClass(navElement, 'scrolled');
       } else {
-        this.renderer.removeClass(el, 'force-white');
+        this.renderer.removeClass(navElement, 'dark-text');
+        this.renderer.removeClass(navElement, 'scrolled');
       }
-    });
+    }
   }
 
   selectLink(route: string): void {

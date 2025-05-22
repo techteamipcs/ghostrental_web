@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +9,6 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
-  // Make Math available in template
   Math = Math;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
@@ -17,7 +16,7 @@ export class ListComponent implements OnInit {
   // Pagination properties
   currentLimit = 4;
   currentPage = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 6;
   totalItems = 0;
   totolvehicle = 0;
   pagedCars: any = [];
@@ -26,7 +25,7 @@ export class ListComponent implements OnInit {
   trendingRentalCars: any = [];
   bannerData: any;
   cartypeData: any;
-  url_key:any;
+  url_key: any;
   carTypes: any = [];
   selectedbannerpage = 'product';
   constructor(
@@ -38,11 +37,11 @@ export class ListComponent implements OnInit {
     this.url_key = this.route.snapshot.paramMap.get('car_type');
   }
   ngOnInit() {
-    if(this.url_key){
+    if (this.url_key) {
       this.getCarTypes();
     } else {
       this.getCarData();
-    }    
+    }
     this.getBannerData();
   }
 
@@ -77,7 +76,7 @@ export class ListComponent implements OnInit {
       page: this.currentPage,
       availabilityStatus: 'available',
       vehicle_type: "Car",
-      car_type : this.carTypes
+      car_type: this.carTypes
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -91,35 +90,35 @@ export class ListComponent implements OnInit {
     });
   }
 
-  getBannerData(){
+  getBannerData() {
     let obj = {};
     this.dataservice.getAllBanner(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           response.result.forEach(banner => {
-            if(banner && banner.status && banner.page == this.selectedbannerpage){
+            if (banner && banner.status && banner.page == this.selectedbannerpage) {
               this.bannerData = banner;
             }
-          });        
+          });
         }
       }
     });
   }
 
-  getCarTypes(){
+  getCarTypes() {
     let obj = {
-      url_key : this.url_key
+      url_key: this.url_key
     };
     this.dataservice.getCarTypeByURL(obj).subscribe((response) => {
       if (response.code == 200) {
-        if(response.result && response.result.length > 0){
+        if (response.result && response.result.length > 0) {
           this.cartypeData = response.result[0];
-          if(this.cartypeData){
+          if (this.cartypeData) {
             this.carTypes.push(this.cartypeData._id);
             this.selectedbannerpage = this.cartypeData.name;
             this.getCarData();
             this.getBannerData();
-          }          
+          }
         }
       }
     });

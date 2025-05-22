@@ -1,11 +1,78 @@
+.product-detail {
+  padding: 12rem 5rem 5rem 5rem;
+  @media screen and (max-width: 1200px) {
+    padding: 10rem 4rem 4rem 4rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 10rem 2rem 2rem 2rem;
+  }
+  @media screen and (max-width: 425px) {
+    padding: 10rem 5px 2rem 5px;
+  }
+
+  .main-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .thumbnail-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-height: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 0.8;
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+
+
 .prev {
-  left: -100px;
+  left: 15px;
+  @media screen and (max-width: 768px) {
+    left: -5px;
+  }
 }
 .next {
-  right: -100px;
+  right: 15px;
+  @media screen and (max-width: 768px) {
+    right: -5px;
+  }
 }
+
+
 .prev,
 .next {
+  z-index: 2;
   border: none;
   background: transparent;
   outline: none;
@@ -22,6 +89,15 @@
   }
 }
 
+.details {
+  padding: 2rem 6rem 6rem 6rem;
+  @media screen and (max-width: 1200px) {
+    padding: 2rem 5rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 2rem 20px;
+  }
+}
 .overview_icons {
   width: 24px;
   height: 24px;
@@ -33,20 +109,26 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-
-  .detail-item {
+}
+.detail-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.75rem;
+    // padding: 0.75rem;
     border-radius: 8px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     h5 {
       min-width: 140px;
+      // margin-right: 35rem;
+      @media screen and (max-width: 768px) {
+        min-width: 96px;
+      }
+      @media screen and (max-width: 425px) {
+        min-width: 130px;
+      }
     }
   }
-}
 
 .features_icons {
   width: 20px;
@@ -60,6 +142,9 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  @media screen and (max-width: 768px) {
+    height: 300px; 
+  }
 
   iframe {
     display: block;
@@ -83,13 +168,11 @@
   will-change: transform;
   backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
-
   &.stuck {
     position: fixed;
     top: 10rem;
     bottom: auto;
-    right: 7.5rem;
+    right: 8.5rem;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -101,10 +184,24 @@
   }
 }
 
+.purchase-card{
+  width: 400px;
+  background: white;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  margin-left: auto;
+  margin-right: 12px;
+}
+
 .sticky-card-icons {
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
+  @media screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .sticky-container {
@@ -118,8 +215,8 @@
   .prev,
   .next {
     border: none;
-    width: 48px;
-    height: 48px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -127,25 +224,26 @@
     z-index: 1;
     opacity: 0.8;
     transition: opacity 0.3s ease;
-
+    @media screen and (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
     &:hover {
       opacity: 1;
     }
-
-    &.prev {
-      left: 20px;
-    }
-
-    &.next {
-      right: 20px;
-    }
   }
 }
-
-
-.viewbutton {
-    padding: 1rem 4rem;
-    background-color: black;
+// collections
+.collection {
+  padding: 5rem 0rem 5rem 11rem;
+  @media screen and (max-width: 1200px) {
+    padding-left: 3.75rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding:22px;
+  }
+  .margin-right {
+    margin-right: 11rem;
   }
 
   .collection_image {
@@ -169,7 +267,6 @@
       display: flex;
       align-items: stretch;
     }
-    
   }
   .car-swiper-button-prev,
   .car-swiper-button-next,
@@ -201,7 +298,7 @@
     }
   }
   .car-card {
-    width: 400px;
+    width: 500px;
     height: 527px;
     background: white;
     border-radius: 10px;
@@ -211,7 +308,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-
     img {
       border-radius: 8px;
       margin-bottom: 15px;
@@ -222,3 +318,7 @@
       }
     }
   }
+}
+
+
+

@@ -89,29 +89,52 @@
 .faq {
   padding: 5rem 23.6rem;
   @media screen and (max-width: 1200px) {
-    padding: 5rem 3.75rem;
+    padding: 4rem 3.75rem;
   }
+  
   @media screen and (max-width: 768px) {
-    padding: 126px 20px;
+    padding: 3rem 1.5rem;
   }
-  .faq-list {
+  
+  h3 {
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem !important;
+    }
+  }
+  
+  p {
+    margin-bottom: 2rem;
     max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .faq-list {
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0 1rem;
   }
 
   .faq-item {
     border-radius: 10px;
     border: 1px solid black;
-    // padding: 1.2rem;
     padding: 24px 27px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 1rem;
     overflow: hidden;
+    
     @media screen and (max-width: 1200px) {
-      padding:25px 21px;
+      padding: 1.25rem 1.5rem;
     }
+    
     @media screen and (max-width: 768px) {
-      padding:14px 12px;
+      padding: 1rem 1.25rem;
+    }
+    
+    &:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .faq-question {

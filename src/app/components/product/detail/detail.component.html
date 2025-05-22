@@ -1,51 +1,54 @@
-<section class="" *ngIf="vehicleData" style="padding: 12rem 5rem 5rem 5rem">
+<section class="product-detail" *ngIf="vehicleData">
   <div class="container-fluid">
     <div class="product-header mb-4">
-      <h3 class="size22 redhat-semibold text-uppercase mb-2">{{vehicleData.bodytype_data[0].name}}</h3>
-      <h1 class="size46 performa-light mb-4">{{vehicleData.name}}</h1>
+      <h3 class="size22 redhat-semibold text-uppercase mb-2">
+        {{ vehicleData.bodytype_data[0].name }}
+      </h3>
+      <h1 class="size46 performa-light mb-4">
+        {{ vehicleData.name }}
+      </h1>
     </div>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-12 mb-xl-0 mb-3 p-xl-2 p-lg-1 p-md-1 p-0">
           <div class="main-image-wrapper position-relative">
             <img
               [src]="mainImage.src"
               [alt]="mainImage.alt"
-              class="img-fluid main-image rounded-4"
+              class="img-fluid h-100 rounded-4"
               loading="lazy"
             />
             <button
               class="position-absolute top-50 translate-middle-y prev"
               (click)="prevImage()"
             >
-              <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" />
+              <!-- <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" /> -->
+              <img src="{{ imageURL }}/product-details/left-arrow.svg" alt="" />
             </button>
             <button
               class="position-absolute top-50 translate-middle-y next"
               (click)="nextImage()"
             >
-              <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" />
+              <!-- <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" /> -->
+              <img
+                src="{{ imageURL }}/product-details/right-arrow.svg"
+                alt=""
+                class="arrows"
+              />
             </button>
           </div>
         </div>
 
-        <div class="col-lg-3 d-flex">
-          <div
-            class="d-flex flex-column h-100 justify-content-between align-items-center"
-          >
+        <div class="col-xl-3 col-lg-12 p-xl-2 p-lg-1 p-md-1 p-0">
+          <div class="d-flex flex-xl-column h-100 gap-xl-2 gap-lg-3">
             <div
-              class="d-flex justify-content-center w-100"
-              *ngFor="let img of thumbnailImages"
-              [class.active]="img.isActive"
-              (click)="setActiveImageById(img)"
+              class="thumbnail-item"
+              *ngFor="let img of thumbnailImages; let i = index"
+              [class.active]="i === currentIndex"
+              (click)="selectImage(i)"
             >
-              <img
-                [src]="img.src"
-                [alt]="img.alt"
-                class="img-fluid rounded-4"
-                loading="lazy"
-              />
+              <img [src]="img.src" [alt]="img.alt" loading="lazy" />
             </div>
           </div>
         </div>
@@ -54,151 +57,12 @@
   </div>
 </section>
 
-<section style="padding: 0rem 5rem 5rem 5rem" class="details">
+<section class="details">
   <div class="container-fluid">
     <div class="row sticky-container" #stickyContainer>
-      <div class="col-lg-8 border-1 border-bottom p-0">
-        <div class="my-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-5">
-            car overview
-          </h3>
-          <div class="car-details-grid">
-            <ng-container *ngFor="let detail of carDetails.flat()">
-              <div *ngIf="detail.value" class="detail-item">
-                <img
-                  [src]="
-                    imageURL +
-                    '/product-details/overview_icons/' +
-                    detail.icon +
-                    '.png'
-                  "
-                  [alt]="detail.label"
-                  class="overview_icons"
-                />
-                <h5 class="size14 redhat-semibold text-capitalize m-0">
-                  {{ detail.label }}
-                </h5>
-                <p class="size14 redhat-semibold text-capitalize m-0">
-                  {{ detail.value }}
-                </p>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-8 border-1 border-bottom p-0" *ngIf="vehicleData">
-        <div class="my-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-5">
-            description
-          </h3>
-          <p class="size18 redhat-semibold mb-5" [innerHtml]="vehicleData.description">
-          </p>
-        </div>
-      </div>
-
-      <div class="col-lg-8 border-1 border-bottom p-0">
-        <div class="my-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-5">features</h3>
-          <div class="d-flex gap-4">
-            <div class="d-flex flex-column">
-              <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                Interior
-              </h6>
-              <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of interior">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    {{item.name}}
-                  </p>
-                </li>
-              </ul>
-            </div>
-            <div class="d-flex flex-column">
-              <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                exterior
-              </h6>
-              <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of exterior">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    {{item.name}}
-                  </p>
-                </li>
-              </ul>
-            </div>
-            <div class="d-flex flex-column">
-              <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                Safety
-              </h6>
-              <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of safety">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    {{item.name}}
-                  </p>
-                </li>
-              </ul>
-            </div>
-            <div class="d-flex flex-column">
-              <h6 class="size18 redhat-semibold text-capitalize mb-3">
-                Comfort & Convenience
-              </h6>
-              <ul class="list-unstyled">
-                <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of comfort">
-                  <img
-                    src="{{ imageURL }}/product-details/tick_mark.png"
-                    alt=""
-                    class="features_icons"
-                  />
-                  <p class="size14 redhat-semibold text-capitalize m-0">
-                    {{item.name}}
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-8 location-section">
-        <div class="mt-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-5">location</h3>
-          <p class="size18 redhat-semibold">mk ghaninam, warehouse</p>
-          <p class="size18 redhat-semibold">
-            no.40 3rd al wuar, al a rja industrial area
-          </p>
-          <p class="size18 redhat-semibold">dubai, united arab emirates</p>
-          <div class="maps">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7220.5634893502!2d55.270783!3d25.2048493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1620000000000!5m2!1sen!2sae"
-              width="100%"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            >
-            </iframe>
-          </div>
-        </div>
-      </div>
-      
       <div
         #stickyCard
-        class="sticky-card border border-1 border-black p-3 rounded-4"
+        class="sticky-card d-xl-block d-none border border-1 border-black p-3 rounded-4"
       >
         <div class="d-flex align-items-end mb-4 gap-4">
           <img
@@ -224,7 +88,7 @@
               alt=""
               class="sticky-card-icons me-1"
             />
-            <p class="size14 redhat-regular">get directions</p>
+            <p class="size14 redhat-regular m-0">get directions</p>
           </div>
           <div class="d-flex align-items-center">
             <img
@@ -232,28 +96,475 @@
               alt=""
               class="sticky-card-icons me-1"
             />
-            <p class="size14 redhat-regular">+971 800 44678</p>
+            <p class="size14 redhat-regular m-0">+971 800 44678</p>
           </div>
         </div>
         <div class="btns">
-          <button class="w-100 bg-black rounded-3 mb-2 p-3">
+          <button class="w-100 bg-black rounded-3 mb-3 p-3">
             <a
               href="mailto:ghostrental@gmail.com"
-              class="size18 redhat-semibold text-decoration-none white text-capitalize"
+              class="size18 redhat-semibold text-decoration-none white-color text-capitalize"
             >
               send a mail
             </a>
           </button>
-          <button class="w-100 bg-white rounded-3 p-3 green">
+          <button class="w-100 bg-white rounded-3 p-3 green-color">
             <a
               href="https://wa.me/971555555555"
-              class="size18 redhat-semibold green text-decoration-none text-capitalize"
+              class="size18 redhat-semibold green-color text-decoration-none text-capitalize"
             >
               book via whatsapp
             </a>
           </button>
         </div>
       </div>
+      <div
+        class="d-xl-none d-block purchase-card mb-5 border border-1 border-black p-3 rounded-4"
+      >
+        <div class="d-flex align-items-end mb-4 gap-4">
+          <img
+            src="{{ imageURL }}/product-details/bmw_main.png"
+            alt=""
+            class="sticky_image rounded-4"
+          />
+          <div class="cash">
+            <h6 class="text-muted mb-0 size18 redhat-semibold">
+              <del>AED 2500</del>
+            </h6>
+            <h5 class="mb-0 size26 redhat-semibold">AED 2000</h5>
+          </div>
+        </div>
+
+        <h4 class="size26 redhat-semibold m-0">BMW i7</h4>
+        <p class="size18 redhat-semibold mb-2">sedan</p>
+
+        <div class="d-flex gap-5 mb-4">
+          <div class="d-flex align-items-center">
+            <img
+              src="{{ imageURL }}/product-details/overview_icons/location.png"
+              alt=""
+              class="sticky-card-icons me-1"
+            />
+            <p class="size14 redhat-regular m-0">get directions</p>
+          </div>
+          <div class="d-flex align-items-center justify-content-center">
+            <img
+              src="{{ imageURL }}/product-details/overview_icons/call.png"
+              alt=""
+              class="sticky-card-icons me-1"
+            />
+            <p class="size14 redhat-regular m-0">+971 800 44678</p>
+          </div>
+        </div>
+        <div class="btns">
+          <button class="w-100 bg-black rounded-3 mb-2 p-3">
+            <a
+              href="mailto:ghostrental@gmail.com"
+              class="size18 redhat-semibold text-decoration-none white-color text-capitalize"
+            >
+              send a mail
+            </a>
+          </button>
+          <button class="w-100 bg-white rounded-3 p-3 green-color">
+            <a
+              href="https://wa.me/971555555555"
+              class="size18 redhat-semibold green-color text-decoration-none text-capitalize"
+            >
+              book via whatsapp
+            </a>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-12 border-1 border-bottom p-0">
+        <div class="mb-5">
+          <h3
+            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
+          >
+            car overview
+          </h3>
+          <div class="row">
+            <ng-container *ngFor="let detail of carDetails.flat()">
+              <div
+                *ngIf="detail.value"
+                class="col-xl-3 col-lg-6 col-md-6 col-12"
+              >
+                <div class="detail-item mb-xl-3 mb-lg-2 mb-3">
+                  <img
+                    [src]="
+                      imageURL +
+                      '/product-details/overview_icons/' +
+                      detail.icon +
+                      '.png'
+                    "
+                    [alt]="detail.label"
+                    class="overview_icons"
+                  />
+                  <h5 class="size14 redhat-semibold text-capitalize mb-0">
+                    {{ detail.label }}
+                  </h5>
+                  <p class="size14 redhat-semibold text-capitalize mb-0">
+                    {{ detail.value }}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <!-- <div class="car-details-grid">
+            <ng-container *ngFor="let detail of carDetails.flat()">
+              <div *ngIf="detail.value" class="detail-item">
+                <img
+                  [src]="
+                    imageURL +
+                    '/product-details/overview_icons/' +
+                    detail.icon +
+                    '.png'
+                  "
+                  [alt]="detail.label"
+                  class="overview_icons"
+                />
+                <h5 class="size14 redhat-semibold text-capitalize m-0">
+                  {{ detail.label }}
+                </h5>
+                <p class="size14 redhat-semibold text-capitalize m-0">
+                  {{ detail.value }}
+                </p>
+              </div>
+            </ng-container>
+          </div> -->
+        </div>
+      </div>
+
+      <div
+        class="col-xl-8 col-12 border-1 border-bottom p-0"
+        *ngIf="vehicleData"
+      >
+        <div class="my-5">
+          <h3
+            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
+          >
+            description
+          </h3>
+          <p
+            class="size18 redhat-semibold mb-5"
+            [innerHtml]="vehicleData.description"
+          ></p>
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-12 border-1 border-bottom p-0">
+        <div class="my-5">
+          <h3
+            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
+          >
+            features
+          </h3>
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+              <div class="d-flex flex-column">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                  Interior
+                </h6>
+                <ul class="list-unstyled">
+                  <li
+                    class="d-flex gap-4 align-items-center mb-3"
+                    *ngFor="let item of interior"
+                  >
+                    <img
+                      src="{{ imageURL }}/product-details/tick_mark.png"
+                      alt=""
+                      class="features_icons"
+                    />
+                    <p class="size14 redhat-semibold text-capitalize m-0">
+                      {{ item.name }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+              <div class="d-flex flex-column">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                  exterior
+                </h6>
+                <ul class="list-unstyled">
+                  <li
+                    class="d-flex gap-4 align-items-center mb-3"
+                    *ngFor="let item of exterior"
+                  >
+                    <img
+                      src="{{ imageURL }}/product-details/tick_mark.png"
+                      alt=""
+                      class="features_icons"
+                    />
+                    <p class="size14 redhat-semibold text-capitalize m-0">
+                      {{ item.name }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+              <div class="d-flex flex-column">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                  Safety
+                </h6>
+                <ul class="list-unstyled">
+                  <li
+                    class="d-flex gap-4 align-items-center mb-3"
+                    *ngFor="let item of safety"
+                  >
+                    <img
+                      src="{{ imageURL }}/product-details/tick_mark.png"
+                      alt=""
+                      class="features_icons"
+                    />
+                    <p class="size14 redhat-semibold text-capitalize m-0">
+                      {{ item.name }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+              <div class="d-flex flex-column">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                  Comfort & Convenience
+                </h6>
+                <ul class="list-unstyled">
+                  <li
+                    class="d-flex gap-4 align-items-center mb-3"
+                    *ngFor="let item of comfort"
+                  >
+                    <img
+                      src="{{ imageURL }}/product-details/tick_mark.png"
+                      alt=""
+                      class="features_icons"
+                    />
+                    <p class="size14 redhat-semibold text-capitalize m-0">
+                      {{ item.name }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="d-flex gap-4">
+            <div class="d-flex flex-column">
+              <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                Interior
+              </h6>
+              <ul class="list-unstyled">
+                <li
+                  class="d-flex gap-4 align-items-center mb-3"
+                  *ngFor="let item of interior"
+                >
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold text-capitalize m-0">
+                    {{ item.name }}
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column">
+              <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                exterior
+              </h6>
+              <ul class="list-unstyled">
+                <li
+                  class="d-flex gap-4 align-items-center mb-3"
+                  *ngFor="let item of exterior"
+                >
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold text-capitalize m-0">
+                    {{ item.name }}
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column">
+              <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                Safety
+              </h6>
+              <ul class="list-unstyled">
+                <li
+                  class="d-flex gap-4 align-items-center mb-3"
+                  *ngFor="let item of safety"
+                >
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold text-capitalize m-0">
+                    {{ item.name }}
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="d-flex flex-column">
+              <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                Comfort & Convenience
+              </h6>
+              <ul class="list-unstyled">
+                <li
+                  class="d-flex gap-4 align-items-center mb-3"
+                  *ngFor="let item of comfort"
+                >
+                  <img
+                    src="{{ imageURL }}/product-details/tick_mark.png"
+                    alt=""
+                    class="features_icons"
+                  />
+                  <p class="size14 redhat-semibold text-capitalize m-0">
+                    {{ item.name }}
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-12 location-section">
+        <div class="mt-5">
+          <h3
+            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
+          >
+            location
+          </h3>
+          <p class="size18 redhat-semibold">mk ghaninam, warehouse</p>
+          <p class="size18 redhat-semibold">
+            no.40 3rd al wuar, al a rja industrial area
+          </p>
+          <p class="size18 redhat-semibold">dubai, united arab emirates</p>
+          <div class="maps">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7220.5634893502!2d55.270783!3d25.2048493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1620000000000!5m2!1sen!2sae"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="collection">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 pb-5">
+        <h3 class="text-capitalize size60 performa-light">related listings</h3>
+
+        <div class="position-relative">
+          <div class="swiper car-collection-swiper" #carSwiper>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let car of ourCarCollections">
+                <div class="car-card">
+                  <img
+                    src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
+                    [alt]="car.name"
+                    class="img-fluid rounded w-100"
+                  />
+                  <div class="car-info">
+                    <h4 class="car-name mb-1 size26 redhat-semibold">
+                      {{ car.name }}
+                    </h4>
+                    <h6 class="transmission text-muted size18 redhat-semibold">
+                      {{ car.transmission }}
+                    </h6>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between border-top border-bottom"
+                    style="padding: 1rem 2rem"
+                  >
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/fuel_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.fuelType }}
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/speed_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.mileage }}
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img
+                        src="{{ imageURL }}/home/collection/seat_icon.png"
+                        class="img-fluid collection_image"
+                        alt=""
+                      />
+                      <h6 class="mb-0 size16 redhat-semibold">
+                        {{ car.seating_capacity }} Seats
+                      </h6>
+                    </div>
+                  </div>
+
+                  <div
+                    class="cash-container mt-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="cash">
+                      <h6 class="text-muted mb-0 size18 redhat-semibold">
+                        <del>AED {{ car.regularRate }}</del>
+                      </h6>
+                      <h5 class="mb-0 size26 redhat-semibold">
+                        AED {{ car.dailyRate }}
+                      </h5>
+                    </div>
+                    <a
+                      href="#"
+                      class="color-card-p p-0 mt-auto text-decoration-none"
+                      >View More</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-start gap-2 d-flex mt-5">
+            <div class="button car-swiper-button-prev">
+              <lucide-icon
+                name="arrow-left"
+                class="swiper-button-icon"
+              ></lucide-icon>
+            </div>
+            <div class="button car-swiper-button-next">
+              <lucide-icon
+                name="arrow-right"
+                class="swiper-button-icon"
+              ></lucide-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-testimonials></app-testimonials>

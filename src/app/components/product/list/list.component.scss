@@ -7,10 +7,18 @@
   top: 32%;
   left: 6%;
   transform: translateY(-32%);
-  
+  @media (max-width: 768px) {
+    top: 50%;
+    width: 100%;
+    left: 5%;
+    transform: translateY(-50%);
+  }
   .hero-para {
     width: 495px;
     line-height: 26px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 }
 
@@ -68,14 +76,15 @@
   }
 }
 .car-card {
-  width: 400px;
-  height: 527px;
+  // width: 400px;
+  // height: 527px;
   background: white;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -133,4 +142,14 @@
 .number-btn.active-page {
   font-weight: bold;
   color: black;
+}
+
+
+.sectionPadding{
+  @media screen and (max-width: 1024px){
+    padding: 100px 60px;
+  }
+  @media screen and (max-width: 768px){
+    padding: 3rem 10px;
+  }
 }

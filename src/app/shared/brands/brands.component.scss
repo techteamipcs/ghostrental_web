@@ -3,13 +3,17 @@
   @media screen and (max-width: 1200px) {
     padding: 4rem 6.25rem;
   }
-  @media screen and (max-width: 1200px) {
-    padding: 3rem;
+  @media screen and (max-width: 768px) {
+    padding: 3rem 2rem;
   }
   .brand-logo {
     width: 107px;
-    height: 50px;
+    height: 52px;
     object-fit: contain;
+    @media screen and (max-width: 768px) {
+      width: 71px;
+      height: 34px;
+    }
   }
 
   .brand-item {
@@ -21,8 +25,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 145px;
     gap: 1rem;
     width: 145px;
+    min-height: 145px;
+    @media screen and (max-width: 768px) {
+      width: 96px;
+      min-height: 96px;
+      padding: 0.5rem;
+    }
+  }
+}
+
+.brand-name {
+  font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 11px;
   }
 }

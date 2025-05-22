@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
-import { TestimonialsComponent } from './shared/testimonials/testimonials.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
@@ -17,6 +16,7 @@ import { ServicesComponent } from './components/services/services.component';
 
 import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-angular';
 import { BookingComponent } from './components/booking/booking.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { BookingComponent } from './components/booking/booking.component';
     FooterComponent,
     Error404Component,
     BrandsComponent,
-    TestimonialsComponent,
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
     ServicesComponent,
@@ -38,6 +37,7 @@ import { BookingComponent } from './components/booking/booking.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
     LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight }),
   ],
   providers: [

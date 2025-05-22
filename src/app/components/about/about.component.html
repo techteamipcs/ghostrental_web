@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid about-image-container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-xl-8 col-lg-12">
           <img
@@ -88,15 +88,22 @@
     <h3 class="text-center my-5 size60 performa-light gray-color line-height90">
       What Sets Us Apart?
     </h3>
-    <div class="features-grid p-md-5">
-      <div class="feature-item" *ngFor="let feature of features">
+    <div class="row justify-content-center gap-xl-5 gap-md-3">
+      <div
+        class="col-xl-2 col-md-4 col-9 mb-md-4 mb-2"
+        *ngFor="let feature of features"
+      >
         <img
           [src]="imageURL + '/' + feature.image"
           [alt]="feature.title"
-          class="feature-icon"
+          class="feature-icon d-flex mx-auto mb-xl-5 mb-md-3 mb-2"
         />
-        <h4 class="size26 redhat-semibold gray-color">{{ feature.title }}</h4>
-        <p class="size18 redhat-semibold gray-color">
+        <h4
+          class="size26 redhat-semibold black-color text-center mb-xl-3 mb-md-2 mb-1"
+        >
+          {{ feature.title }}
+        </h4>
+        <p class="size18 redhat-semibold black-color text-center">
           {{ feature.description }}
         </p>
       </div>
@@ -104,109 +111,100 @@
   </div>
 </section>
 
-<section class="signature signature-desktop">
-  <div class="position-relative h-100 w-100">
-    <div class="position-relative h-100">
-      <div class="img-container position-absolute top-0 start-0 h-100 w-100">
-        <img
-          src="{{ imageURL }}/home/services/services1.png"
-          alt=""
-          class="h-100 rounded-4"
-        />
-        <span class="overlay"></span>
-      </div>
+<section class="signature position-relative">
+  <div class="img-container position-absolute top-0 start-0 h-100 w-100">
+    <img
+      src="{{ imageURL }}/home/services/services1.png"
+      alt=""
+      class="h-100 rounded-4"
+    />
+    <span class="overlay"></span>
+  </div>
 
-      <div class="container-fluid position-relative h-100">
-        <div class="position-absolute top-0 start-0 z-1 white h-100 w-100">
-          <div class="row h-100">
-            <div class="col-xl-8 col-lg-8 border-end white-border-color">
-              <div class="row h-100">
-                <div class="col-xl-12 p-xl-5 p-lg-4">
-                  <div class="row h-100">
-                    <div class="col-xl-6 col-lg-11 mb-lg-4">
-                      <h1
-                        class="size60 performa-light text-capitalize white-color"
-                      >
-                        Our Signature Services
-                      </h1>
-                    </div>
-                    <div class="col-xl-6 col-lg-9">
-                      <p
-                        class="size18 redhat-semibold white-color line-height30"
-                      >
-                        From high-performance supercars to private yacht escapes
-                        and elite chauffeur experiences — we offer tailored
-                        luxury services that redefine travel in the UAE.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-12 border-top white-border-color">
-                  <div class="row h-100">
-                    <div
-                      class="col-xl-6 col-lg-6 p-xl-5 p-lg-4 border-end white-border-color d-flex"
-                    >
-                      <div
-                        class="table-car-width d-flex justify-content-between align-items-start flex-column"
-                      >
-                        <h4 class="size26 redhat-semibold white-color mb-2">
-                          Luxury Car Rental
-                        </h4>
-                        <p
-                          class="size18 redhat-semibold white-color mb-4 line-height30"
-                        >
-                          Choose from top brands like Lamborghini, Rolls-Royce,
-                          and Range Rover. Enjoy daily or long-term rentals with
-                          free delivery across the UAE.
-                        </p>
-                        <button class="white-button size18 redhat-bold">
-                          Explore Cars
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 p-xl-5 p-lg-4 d-flex">
-                      <div
-                        class="table-yacht-width d-flex justify-content-between align-items-start flex-column"
-                      >
-                        <h4 class="size26 redhat-semibold white-color mb-2">
-                          Luxury Yacht Rental
-                        </h4>
-                        <p
-                          class="size18 redhat-semibold white-color mb-4 line-height30"
-                        >
-                          Book private yachts for parties, getaways, or events.
-                          Includes crew, catering options, and scenic routes
-                          like Marina & Atlantis.
-                        </p>
-                        <button class="white-button size18 redhat-bold">
-                          Explore Yachts
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <div class="container-fluid position-relative h-100">
+    <div class="row h-100">
+      <div class="col-xl-8 col-lg-8 border-end white-border-color">
+        <div class="row h-100">
+          <div class="col-xl-12 p-xl-5 p-lg-4 p-3">
+            <div class="row h-100">
+              <div class="col-xl-6 col-lg-11 col-6 mb-lg-4">
+                <h1 class="size60 performa-light text-capitalize white-color">
+                  Our Signature Services
+                </h1>
+                <p
+                  class="size18 redhat-regular white-color line-height30 d-lg-none d-block"
+                >
+                  From high-performance supercars to private yacht escapes and
+                  elite chauffeur experiences — we offer tailored luxury
+                  services that redefine travel in the UAE.
+                </p>
               </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 p-xl-5 p-lg-4">
-              <div class="row h-100">
-                <div class="col-xl-12 col-lg-12 p-lg-0">
-                  <div class="table-para-width">
-                    <h4
-                      class="size32 performa-light text-capitalize white-color heading-width"
-                    >
-                      Luxury Chauffeur Services
-                    </h4>
-                    <p
-                      class="size18 redhat-semibold white-color para-width line-height30"
-                    >
-                      Professional chauffeurs, luxury cars, and on-time service
-                      for VIPs, weddings, or airport transfers.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-xl-12 col-lg-12 mt-auto">
+              <div class="col-xl-6 col-lg-9 col-6 d-lg-none d-block">
+                <div class="table-para-width">
+                  <h4
+                    class="size32 performa-light text-capitalize white-color heading-width"
+                  >
+                    Luxury Chauffeur Services
+                  </h4>
+                  <p
+                    class="size18 redhat-regular white-color para-width line-height30"
+                  >
+                    Professional chauffeurs, luxury cars, and on-time service
+                    for VIPs, weddings, or airport transfers.
+                  </p>
                   <button class="white-button size18 redhat-bold">
                     Hire A Chauffeur
+                  </button>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-9 col-6 d-lg-block d-none">
+                <p class="size18 redhat-regular white-color line-height30">
+                  From high-performance supercars to private yacht escapes and
+                  elite chauffeur experiences — we offer tailored luxury
+                  services that redefine travel in the UAE.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 border-top white-border-color">
+            <div class="row h-100">
+              <div
+                class="col-xl-6 col-lg-6 col-6 p-xl-5 p-lg-4 p-3 border-end white-border-color d-flex"
+              >
+                <div
+                  class="table-car-width d-flex justify-content-between align-items-start flex-column"
+                >
+                  <h4 class="size26 redhat-semibold white-color mb-2">
+                    Luxury Car Rental
+                  </h4>
+                  <p
+                    class="size18 redhat-regular white-color mb-4 line-height30"
+                  >
+                    Choose from top brands like Lamborghini, Rolls-Royce, and
+                    Range Rover. Enjoy daily or long-term rentals with free
+                    delivery across the UAE.
+                  </p>
+                  <button class="white-button size18 redhat-bold">
+                    Explore Cars
+                  </button>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-6 p-xl-5 p-lg-4 p-3 d-flex">
+                <div
+                  class="table-yacht-width d-flex justify-content-between align-items-start flex-column"
+                >
+                  <h4 class="size26 redhat-semibold white-color mb-2">
+                    Luxury Yacht Rental
+                  </h4>
+                  <p
+                    class="size18 redhat-regular white-color mb-4 line-height30"
+                  >
+                    Book private yachts for parties, getaways, or events.
+                    Includes crew, catering options, and scenic routes like
+                    Marina & Atlantis.
+                  </p>
+                  <button class="white-button size18 redhat-bold">
+                    Explore Yachts
                   </button>
                 </div>
               </div>
@@ -214,76 +212,26 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="signature signature-mobile">
-  <div class="position-relative h-100 w-100">
-    <div class="position-relative h-100">
-      <div class="img-container position-absolute top-0 start-0 h-100 w-100">
-        <img
-          src="{{ imageURL }}/home/services/services1.png"
-          alt=""
-          class="h-100 rounded-4"
-        />
-        <span class="overlay"></span>
-      </div>
-
-      <div
-        class="container-fluid position-absolute top-0 start-0 z-1 white h-100 w-100"
-      >
-        <div class="row">
-          <div class="col-6">
-            <h1 class="size60 performa-light text-capitalize white-color">
-              Our Signature Services
-            </h1>
-            <p class="size18 redhat-semibold white-color line-height30">
-              From high-performance supercars to private yacht escapes and elite
-              chauffeur experiences — we offer tailored luxury services that
-              redefine travel in the UAE.
-            </p>
+      <div class="col-xl-4 col-lg-4 p-xl-5 p-lg-4 d-lg-block d-none">
+        <div class="row h-100">
+          <div class="col-xl-12 col-lg-12 p-lg-0">
+            <div class="table-para-width">
+              <h4
+                class="size32 performa-light text-capitalize white-color heading-width"
+              >
+                Luxury Chauffeur Services
+              </h4>
+              <p
+                class="size18 redhat-regular white-color para-width line-height30"
+              >
+                Professional chauffeurs, luxury cars, and on-time service for
+                VIPs, weddings, or airport transfers.
+              </p>
+            </div>
           </div>
-          <div class="col-6">
-            <h4
-              class="size32 performa-light text-capitalize white-color heading-width"
-            >
-              Luxury Chauffeur Services
-            </h4>
-            <p
-              class="size18 redhat-semibold white-color para-width line-height30"
-            >
-              Professional chauffeurs, luxury cars, and on-time service for
-              VIPs, weddings, or airport transfers.
-            </p>
-
+          <div class="col-xl-12 col-lg-12 mt-auto">
             <button class="white-button size18 redhat-bold">
               Hire A Chauffeur
-            </button>
-          </div>
-          <div class="col-6">
-            <h4 class="size26 redhat-semibold white-color mb-2">
-              Luxury Yacht Rental
-            </h4>
-            <p class="size18 redhat-semibold white-color mb-4 line-height30">
-              Book private yachts for parties, getaways, or events. Includes
-              crew, catering options, and scenic routes like Marina & Atlantis.
-            </p>
-            <button class="white-button size18 redhat-bold">
-              Explore Yachts
-            </button>
-          </div>
-          <div class="col-6">
-            <h4 class="size26 redhat-semibold white-color mb-2">
-              Luxury Car Rental
-            </h4>
-            <p class="size18 redhat-semibold white-color mb-4 line-height30">
-              Choose from top brands like Lamborghini, Rolls-Royce, and Range
-              Rover. Enjoy daily or long-term rentals with free delivery across
-              the UAE.
-            </p>
-            <button class="white-button size18 redhat-bold">
-              Explore Cars
             </button>
           </div>
         </div>

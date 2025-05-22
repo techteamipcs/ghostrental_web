@@ -1,9 +1,9 @@
-.about {
-  height: 100vh;
-  @media screen and (max-width: 1200px) {
-    height: auto;
-  }
-}
+// .about {
+//   height: 100vh;
+//   @media screen and (max-width: 1200px) {
+//     height: auto;
+//   }
+// }
 .sectionPadding {
   padding: 15rem 0 0 0;
   @media screen and (max-width: 1200px) {
@@ -34,36 +34,36 @@
 .features {
   padding: 7rem;
   @media screen and (max-width: 1200px) {
-    padding: 4rem 11rem;
+    padding: 4rem 9rem;
   }
   @media screen and (max-width: 768px) {
-    padding: 4rem 1.6rem;
+    padding: 3rem 10px;
   }
 }
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 4rem;
-  justify-content: space-between;
-  @media screen and (max-width: 768px) {
-    gap: 0;
-  }
+// .features-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+//   gap: 4rem;
+//   justify-content: space-between;
+//   @media screen and (max-width: 768px) {
+//     gap: 0;
+//   }
+// }
+// .feature-item {
+//   text-align: center;
+//   padding: 1.5rem;
+//   border-radius: 8px;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease;
+//   @media screen and (max-width: 768px) {
+//     padding: 1rem 2.5rem;
+//   }
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: brightness(0);
 }
-.feature-item {
-  text-align: center;
-  padding: 1.5rem;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  @media screen and (max-width: 768px) {
-    padding: 1rem 2.5rem;
-  }
-  .feature-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 1rem;
-    object-fit: contain;
-  }
-}
+// }
 
 .about-image2 {
   display: block;
@@ -107,45 +107,58 @@ table {
 }
 
 .signature {
-  height: 90vh;
-  padding: 6.5rem;
+  margin: 6.5rem;
   @media screen and (max-width: 1200px) {
-    padding: 100px 20px;
-    height: 48vh;
+    margin: 100px 20px;
   }
   @media screen and (max-width: 768px) {
-    padding: 100px 20px;
-    height: 100vh;
+    margin: 100px 20px;
+  }
+
+  button {
+    margin-top: 5rem;
   }
 }
-.signature-mobile {
-  display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-}
-.signature-desktop {
-  display: block;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-}
+// .signature {
+//   height: 90vh;
+//   padding: 6.5rem;
+//   @media screen and (max-width: 1200px) {
+//     padding: 100px 20px;
+//     height: 48vh;
+//   }
+//   @media screen and (max-width: 768px) {
+//     padding: 100px 20px;
+//     height: 100vh;
+//   }
+// }
 
 .table-para-width {
   width: 80%;
   @media screen and (max-width: 1200px) {
     width: 94%;
   }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   .heading-width {
     width: 100%;
     @media screen and (max-width: 1200px) {
       width: 64%;
     }
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 }
 .table-yacht-width {
   width: 85%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 .table-car-width {
   width: 89%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }

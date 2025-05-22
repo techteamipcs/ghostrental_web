@@ -69,11 +69,8 @@ body {
 // font sizes
 .size14 {
   font-size: 14px;
-  @media (max-width:1024px) {
-    font-size: 8px;
-  }
   @media (max-width:768px) {
-    font-size: 5px;
+    font-size: 11px;
   }
 }
 .size16 {
@@ -90,8 +87,11 @@ body {
   @media (max-width:1024px) {
     font-size: 16px;
   }
-  @media (max-width:420px) {
+  @media (max-width:768px) {
     font-size: 14px;
+  }
+  @media (max-width:425px) {
+    font-size: 12px;
   }
 }
 .size20 {
@@ -124,10 +124,10 @@ body {
 .size26 {
   font-size: 26px;
   @media (max-width:1024px) {
-    font-size: 20px;
+    font-size: 22px;
   }
   @media (max-width:768px) {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 .size28 {
@@ -151,10 +151,10 @@ body {
 .size32 {
   font-size: 32px;
   @media (max-width:1024px) {
-    font-size: 19px;
+    font-size: 26px;
   }
   @media (max-width:768px) {
-    font-size: 12px;
+    font-size: 22px;
   }
 }
 .size35 {
@@ -196,10 +196,13 @@ body {
 .size60{
   font-size: 60px;
   @media (max-width:1024px) {
-    font-size: 37px;
+    font-size: 42px;
   }
   @media (max-width:768px) {
     font-size: 32px;
+  }
+  @media (max-width:425px) {
+    font-size: 24px;
   }
 }
 .size90 {
@@ -302,6 +305,9 @@ body {
   @media (max-width:768px) {
     padding: 12px 40px;
   }
+  @media (max-width:425px) {
+    padding: 12px 20px;
+  }
 }
 .white-border-button {
   border: 2px solid $color-white;
@@ -317,6 +323,9 @@ body {
   }
   @media (max-width:768px) {
     padding: 12px 40px;
+  }
+  @media (max-width:425px) {
+    padding: 12px 20px;
   }
 }
 .black-button {
@@ -334,6 +343,9 @@ body {
   @media (max-width:768px) {
     padding: 12px 40px;
   }
+  @media (max-width:425px) {
+    padding: 12px 20px;
+  }
 }
 img{
   width: 100%;
@@ -345,7 +357,7 @@ img{
   @media (max-width:1024px) {
     padding: 4rem 7rem;
   }
-  @media (max-width:420px) {
+  @media (max-width:768px) {
     padding: 3rem 10px;
   }
 }
