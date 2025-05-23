@@ -70,16 +70,16 @@ body {
 .size14 {
   font-size: 14px;
   @media (max-width:768px) {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 .size16 {
   font-size: 16px;
   @media (max-width:1024px) {
-    font-size: 9px;
+    font-size: 14px;
   }
   @media (max-width:768px) {
-    font-size: 7px;
+    font-size: 12px;
   }
 }
 .size18 {
@@ -367,11 +367,11 @@ img{
 }
 
 .bannerPadding{
-  padding: 28px ;
+  padding: 28px;
   @media (max-width:1024px) {
-    padding: 20px ;
+    padding: 20px;
   }
   @media (max-width:768px) {
-    padding: 15px ;
+    padding: 15px;
   }
 }

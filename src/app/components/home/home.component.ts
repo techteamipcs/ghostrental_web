@@ -39,15 +39,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   filteredModels: any = [];
   listBrands: any = [];
   filteredBrands: any = [];
-  selelctedbodytype:any;
-  selelctedbrand:any;
-  selelctedmodel:any;
-  selelctedstartDate:any;
-  selelctedendDate:any;
-  selectedstartTime:any;
-  selectedendTime:any;
-  selectedpickaddress:any;
-  selecteddropaddredd:any;
+  selelctedbodytype: any;
+  selelctedbrand: any;
+  selelctedmodel: any;
+  selelctedstartDate: any;
+  selelctedendDate: any;
+  selectedstartTime: any;
+  selectedendTime: any;
+  selectedpickaddress: any;
+  selecteddropaddredd: any;
   features = [
     {
       image: 'home/cars.png',
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private dataservice: DataService,
-    public router : Router
+    public router: Router
   ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
@@ -95,13 +95,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initCarSwiper();
-    this.initYachtSwiper();
+    setTimeout(() => {
+      this.initCarSwiper();
+      this.initYachtSwiper();
+    }, 0);
   }
 
   private initCarSwiper() {
-    if (this.carSwiperRef?.nativeElement) {
-      this.carSwiper = new Swiper(this.carSwiperRef.nativeElement, {
+    const el = this.carSwiperRef?.nativeElement;
+    if (el instanceof HTMLElement) {
+      this.carSwiper = new Swiper(el, {
         slidesPerView: 3,
         spaceBetween: 20,
         navigation: {
@@ -119,8 +122,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   private initYachtSwiper() {
-    if (this.yachtSwiperRef?.nativeElement) {
-      this.yachtSwiper = new Swiper(this.yachtSwiperRef.nativeElement, {
+    const el = this.yachtSwiperRef?.nativeElement;
+    if (el instanceof HTMLElement) {
+      this.yachtSwiper = new Swiper(el, {
         slidesPerView: 3,
         spaceBetween: 20,
         navigation: {
@@ -187,14 +191,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  selectData(type,event){
-    if(type =='body_type'){
+  selectData(type, event) {
+    if (type == 'body_type') {
       this.selelctedbodytype = event.target.value;
-    } else if(type =='brand'){
+    } else if (type == 'brand') {
       this.selelctedbrand = event.target.value;
     }
   }
- 
+
   goToResults() {
     this.router.navigate(['/booking'], {
       queryParams: {
@@ -202,25 +206,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
         body_type: this.selelctedbodytype,
         brand: this.selelctedbrand,
         model: this.selelctedmodel,
-        startDate: this.mergeDateTime(this.selectedstartTime,this.selelctedstartDate),
-        endDate: this.mergeDateTime(this.selectedendTime,this.selelctedendDate),
+        startDate: this.mergeDateTime(this.selectedstartTime, this.selelctedstartDate),
+        endDate: this.mergeDateTime(this.selectedendTime, this.selelctedendDate),
         pick_address: this.selectedpickaddress,
         drop_address: this.selecteddropaddredd
       }
     });
-}
-
-mergeDateTime(time,date):any {
-  if(time && date){
-    const [hours, minutes] = time.split(':').map(Number);
-    const dateObj = new Date(date);
-    dateObj.setHours(hours);
-    dateObj.setMinutes(minutes);
-    dateObj.setSeconds(0);
-    dateObj.setMilliseconds(0);
-    return dateObj;
   }
-}
+
+  mergeDateTime(time, date): any {
+    if (time && date) {
+      const [hours, minutes] = time.split(':').map(Number);
+      const dateObj = new Date(date);
+      dateObj.setHours(hours);
+      dateObj.setMinutes(minutes);
+      dateObj.setSeconds(0);
+      dateObj.setMilliseconds(0);
+      return dateObj;
+    }
+  }
 
 
   onSubmit() {
@@ -267,7 +271,7 @@ mergeDateTime(time,date):any {
           this.vehicleData = response.result;
           let index = 0;
           if (this.vehicleData && this.vehicleData.length > 0) {
-            this.vehicleData.forEach((vehicle,i) => {              
+            this.vehicleData.forEach((vehicle, i) => {
               if (vehicle && vehicle.home_vehicle) {
                 this.ourCarCollections.push(vehicle);
               }

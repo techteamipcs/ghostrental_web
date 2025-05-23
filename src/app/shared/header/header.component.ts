@@ -1,5 +1,13 @@
-import { Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Renderer2,
+  Inject,
+  ChangeDetectorRef,
+  PLATFORM_ID
+} from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -13,23 +21,29 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail', '/product/list', '/terms', '/privacy'];
+  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail', '/product/list', '/terms', '/privacy', '/contact'];
   isDarkText = false;
   currentRoute: string = '';
+  isBrowser: boolean;
 
   constructor(
     private router: Router,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.url;
       const wasDarkText = this.isDarkText;
       this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
-      window.scrollTo(0, 0);
+      if (this.isBrowser) {
+        window.scrollTo(0, 0);
+      }
       this.updateTextColor();
       this.changeDetector.detectChanges();
     });
@@ -43,23 +57,23 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const wasScrolled = this.isScrolled;
-    this.isScrolled = window.scrollY > 50;
-    this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
-    this.updateTextColor();
-    this.changeDetector.detectChanges();
+    if (this.isBrowser) {
+      const wasScrolled = this.isScrolled;
+      this.isScrolled = window.scrollY > 50;
+      this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
+      this.updateTextColor();
+      this.changeDetector.detectChanges();
+    }
   }
 
   private updateTextColor(): void {
     const navElement = this.document.querySelector('nav');
     if (!navElement) return;
 
-    // If scrolled or menu is open, use white text
     if (this.isScrolled || this.isMenuOpen) {
       this.renderer.addClass(navElement, 'scrolled');
       this.renderer.removeClass(navElement, 'dark-text');
     } else {
-      // Otherwise, respect the dark text setting based on route
       if (this.isDarkText) {
         this.renderer.addClass(navElement, 'dark-text');
         this.renderer.removeClass(navElement, 'scrolled');
@@ -86,26 +100,25 @@ export class HeaderComponent implements OnInit {
 
     this.isMenuOpen = !this.isMenuOpen;
 
-    // Toggle body scroll and menu state
     if (this.isMenuOpen) {
       this.renderer.addClass(this.document.body, 'menu-open');
       this.renderer.addClass(this.document.documentElement, 'menu-open');
       this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
       this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
 
-      // Animate menu items in
-      setTimeout(() => {
-        const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
-        menuItems.forEach((item) => {
-          item.style.opacity = '1';
-          item.style.transform = 'translateX(0)';
-        });
-      }, 50);
+      if (this.isBrowser) {
+        setTimeout(() => {
+          const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
+          menuItems.forEach((item) => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+          });
+        }, 50);
+      }
     } else {
       this.closeMenu();
     }
 
-    // Force update the view
     this.changeDetector.detectChanges();
   }
 
@@ -116,7 +129,6 @@ export class HeaderComponent implements OnInit {
     this.renderer.removeStyle(this.document.body, 'overflow');
     this.renderer.removeStyle(this.document.documentElement, 'overflow');
 
-    // Reset menu items animation
     const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
     menuItems.forEach((item) => {
       item.style.opacity = '0';
@@ -124,7 +136,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // Close menu when clicking outside
   @HostListener('document:click', ['$event'])
   onClick(event: Event): void {
     const target = event.target as HTMLElement;
@@ -138,14 +149,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
-
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (window.innerWidth >= 768) {
+  onResize(event: any): void {
+    if (this.isBrowser && window.innerWidth >= 768) {
       this.isMenuOpen = false;
-      const body = this.document.body;
-      this.renderer.removeStyle(body, 'overflow');
+      this.renderer.removeStyle(this.document.body, 'overflow');
     }
   }
 }

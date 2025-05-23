@@ -61,7 +61,7 @@
       <div class="row">
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-3"
+            class="form-select mb-xl-2 mb-1 size14 redhat-semibold"
             required
             (change)="selectData('body_type', $event)"
           >
@@ -79,25 +79,28 @@
         </div>
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-3"
+            class="form-select mb-xl-2 mb-1 size14 redhat-semibold"
             required
             (change)="selectData('brand', $event)"
           >
             <option value="" disabled selected class="size14 redhat-semibold">
-              Model
+              Brands
             </option>
             <option
-              value="{{ model.url_key }}"
+              value="{{ brand.url_key }}"
               class="size14 redhat-semibold"
-              *ngFor="let model of filteredBrands"
+              *ngFor="let brand of filteredBrands"
             >
-              {{ model.name }}
+              {{ brand.name }}
             </option>
           </select>
         </div>
 
         <div class="col-6" *ngIf="isVehicleYacht">
-          <select class="form-select mb-3" required>
+          <select
+            class="form-select mb-xl-2 mb-1 size14 redhat-semibold"
+            required
+          >
             <option value="" disabled selected class="size14 redhat-semibold">
               Type
             </option>
@@ -111,7 +114,10 @@
           </select>
         </div>
         <div class="col-6" *ngIf="isVehicleYacht">
-          <select class="form-select mb-3" required>
+          <select
+            class="form-select mb-xl-2 mb-1 size14 redhat-semibold"
+            required
+          >
             <option value="" disabled selected class="size14 redhat-semibold">
               Model
             </option>
@@ -131,37 +137,52 @@
         Pickup
       </div>
       <div class="row">
-        <div class="col-6 mb-3">
-          <input
-            type="date"
-            [(ngModel)]="selelctedstartDate"
-            name="selelctedstartDate"
-            class="form-control"
-            placeholder="Date"
-            required
-          />
+        <div class="col-6">
+          <div class="position-relative">
+            <label for="startDate" class="form-label size14 redhat-semibold"
+              >Date</label
+            >
+            <input
+              type="date"
+              id="startDate"
+              [(ngModel)]="selelctedstartDate"
+              name="selelctedstartDate"
+              class="form-control mb-xl-2 mb-2 size14 redhat-semibold"
+              placeholder="Date"
+              required
+            />
+          </div>
         </div>
-        <div class="col-6 mb-3">
-          <input
-            type="time"
-            [(ngModel)]="selectedstartTime"
-            name="selectedstartTime"
-            class="form-control"
-            placeholder="Time"
-            required
-          />
+        <div class="col-6">
+          <div class="position-relative">
+            <label for="startTime" class="form-label size14 redhat-semibold"
+              >Time</label
+            >
+            <input
+              type="time"
+              id="startTime"
+              [(ngModel)]="selectedstartTime"
+              name="selectedstartTime"
+              class="form-control mb-xl-2 mb-2 size14 redhat-semibold"
+              placeholder="Time"
+              required
+            />
+          </div>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-xl-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
             <input
               type="text"
-              class="form-control"
+              class="form-control size14 redhat-semibold"
               placeholder="Pickup Address (Road)"
               required
             />
           </ng-container>
           <ng-template #yachtPickup>
-            <select class="form-select" required>
+            <select
+              class="form-select mb-xl-2 mb-2 size14 redhat-semibold"
+              required
+            >
               <option value="" disabled selected>Choose Pickup Marina</option>
               <option>Marina Bay</option>
               <option>Ocean Docks</option>
@@ -175,37 +196,52 @@
         Return
       </div>
       <div class="row">
-        <div class="col-6 mb-3">
-          <input
-            type="date"
-            [(ngModel)]="selelctedendDate"
-            name="selelctedendDate"
-            class="form-control"
-            placeholder="Date"
-            required
-          />
+        <div class="col-6">
+          <div class="position-relative">
+            <label for="endDate" class="form-label size14 redhat-semibold"
+              >Date</label
+            >
+            <input
+              type="date"
+              id="endDate"
+              [(ngModel)]="selelctedendDate"
+              name="selelctedendDate"
+              class="form-control mb-xl-2 mb-2 size14 redhat-semibold"
+              placeholder="Date"
+              required
+            />
+          </div>
         </div>
-        <div class="col-6 mb-3">
-          <input
-            type="time"
-            [(ngModel)]="selectedendTime"
-            name="selectedendTime"
-            class="form-control"
-            placeholder="Time"
-            required
-          />
+        <div class="col-6">
+          <div class="position-relative">
+            <label for="endTime" class="form-label size14 redhat-semibold"
+              >Time</label
+            >
+            <input
+              type="time"
+              id="endTime"
+              [(ngModel)]="selectedendTime"
+              name="selectedendTime"
+              class="form-control mb-xl-2 mb-2 size14 redhat-semibold"
+              placeholder="Time"
+              required
+            />
+          </div>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-xl-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
             <input
               type="text"
-              class="form-control"
+              class="form-control size14 redhat-semibold"
               placeholder="Return Address (Road)"
               required
             />
           </ng-container>
           <ng-template #yachtReturn>
-            <select class="form-select" required>
+            <select
+              class="form-select mb-xl-2 mb-2 size14 redhat-semibold"
+              required
+            >
               <option value="" disabled selected>Choose Return Marina</option>
               <option>Marina Bay</option>
               <option>Ocean Docks</option>
