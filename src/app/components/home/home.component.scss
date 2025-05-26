@@ -197,47 +197,65 @@
   }
 
   .form-glass {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    padding: 30px;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    right: 6.5%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 550px;
-    @media screen and (max-width: 1920px) {
-      max-width: 400px;
-      gap: 0;
-    }
-    @media screen and (max-width: 1440px) {
-      max-width: 350px;
-      top: 53%;
-      right: 4.5%;
-    }
-    @media (max-width: 1024px) {
-      left: 50%;
-      bottom: 5%;
-      top: auto;
-      right: 0;
-      transform: translate(-50%, 0);
-      padding: 1rem;
-    }
+  overflow: visible !important;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding:42px 36px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  right: 6.5%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 550px;
+  @media screen and (max-width: 1920px) {
+    max-width: 500px;
+    gap: 0;
+  }
+  @media screen and (max-width: 1440px) {
+    max-width: 350px;
+    top: 53%;
+    right: 4.5%;
+  }
+  @media (max-width: 1024px) {
+    left: 50%;
+    bottom: 5%;
+    top: auto;
+    right: 0;
+    transform: translate(-50%, 0);
+    padding: 1rem;
+  }
 
-    @media (max-width: 768px) {
-      top: auto;
-      bottom: 1rem;
-      transform: translateX(-50%);
-      max-width: 350px;
-      padding: 1.5rem;
+  @media (max-width: 768px) {
+    top: auto;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    max-width: 350px;
+    padding: 1.5rem;
+  }
+  .form-select {
+    position: relative;
+    z-index: 1;
+    
+    option {
+      position: relative;
+      z-index: 1000;
     }
+  }
+   
 
     .form-control,
     .form-select {
+  position: relative;
+  z-index: 1;
+  
+  option {
+    position: static;
+    z-index: 1000;
+  }
       border: none;
       border-radius: 20px;
       padding: 10px 15px;
@@ -261,7 +279,7 @@
       position: relative;
       width: 50px;
       height: 24px;
-      background: #ccc;
+      background: white;
       border-radius: 24px;
       cursor: pointer;
       transition: background 0.3s;
@@ -273,13 +291,12 @@
         height: 20px;
         left: 2px;
         top: 2px;
-        background-color: white;
+        background-color: black;
         border-radius: 50%;
         transition: transform 0.3s;
       }
 
       &.active {
-        background: black;
 
         &::before {
           transform: translateX(26px);
@@ -360,7 +377,7 @@
     }
   }
   .cards {
-    top: -16%;
+    top: -19%;
     @media screen and (max-width: 1200px) {
       top: -11%;
       flex-direction: column;
@@ -381,8 +398,8 @@
   }
 
   .card-content {
-    padding: 0 16px;
-    height: 100%;
+    padding: 0 16px 16px 16px;
+    height: max-content;
   }
   .card:hover {
     transform: translateY(-5px);
@@ -410,6 +427,11 @@
   @media screen and (max-width: 768px) {
     padding: 22px;
   }
+
+
+  .size8{
+    font-size: 8px ;
+  }
   .margin-right {
     margin-right: 11rem;
   }
@@ -434,6 +456,7 @@
       height: auto;
       display: flex;
       align-items: stretch;
+      border: 1px solid #D1D1D1;
     }
   }
   .car-swiper-button-prev,
@@ -466,19 +489,16 @@
     }
   }
   .car-card {
-    width: 500px;
-    height: 527px;
+    width: 366px;
+    // height: 527px;
     background: white;
-    border-radius: 10px;
-    padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
-    img {
-      border-radius: 8px;
-      margin-bottom: 15px;
+    .thumbnail-image{
+      padding: 12px 12px 0px 12px;
     }
     .cash {
       h6 {
@@ -677,7 +697,7 @@
   z-index: -1;
   top: 23%;
   @media screen and (max-width: 1920px) {
-    top: 28%;
+    top: 29%;
   }
   @media screen and (max-width: 1680px) {
     top: 26%;

@@ -21,9 +21,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
 
   // Pagination properties
-  currentLimit = 4;
+  currentLimit = 7;
   currentPage = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 7;
   totalItems = 0;
   carTypes: any = [];
   vehicleData: any = [];

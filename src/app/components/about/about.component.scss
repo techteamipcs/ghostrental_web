@@ -12,7 +12,10 @@
 }
 
 .banner-content{
-  width: 50%;
+  width: 48%;
+@media screen and (max-width: 1920px) {
+  width: 65%; 
+} 
 @media screen and (max-width: 1440px) {
   width: 90%; 
 } 
@@ -56,6 +59,9 @@
   width: 63%;
   height: 100%;
   display: flex;
+  @media screen and (max-width: 1920px) {
+    width:81%;
+  }
   @media screen and (max-width: 1440px) {
     width:100%;
   }
@@ -144,6 +150,9 @@ table {
   .story-content{
     width: 81%;
 
+    @media screen and (max-width: 1920px) {
+      width: 100%;
+    }
     @media screen and (max-width: 1440px) {
       width: 100%;
     }
@@ -214,7 +223,10 @@ table {
 // }
 
 .table-para-width {
-  width: 80%;
+  width: 60%;
+  @media screen and (max-width: 1920px) {
+    width: 80%;
+  }
   @media screen and (max-width: 1200px) {
     width: 94%;
   }
@@ -243,3 +255,8 @@ table {
     width: 100%;
   }
 }
+
+
+
+
+// mb-lg-4 

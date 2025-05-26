@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { DataService } from '../../providers/data/data.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
-// Swiper.use([Navigation]);
+Swiper.use([Navigation]);
 
 
 @Component({
@@ -105,8 +106,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const el = this.carSwiperRef?.nativeElement;
     if (el instanceof HTMLElement) {
       this.carSwiper = new Swiper(el, {
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 4.5,         // 4 full + 0.5 peek
+        loop: true,
+        spaceBetween: 20,           // adjust gap if needed
         navigation: {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
@@ -114,7 +116,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 3 },
+          992: { slidesPerView: 4.5 },
         },
       });
     }
@@ -125,7 +127,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const el = this.yachtSwiperRef?.nativeElement;
     if (el instanceof HTMLElement) {
       this.yachtSwiper = new Swiper(el, {
-        slidesPerView: 3,
+        slidesPerView: 4.5,
+        loop: true,
         spaceBetween: 20,
         navigation: {
           nextEl: '.yacht-swiper-button-next',
@@ -134,7 +137,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 3 },
+          992: { slidesPerView: 4.5 },
         },
       });
     }

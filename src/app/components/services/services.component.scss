@@ -2,22 +2,39 @@
   height: 100vh;
   .content {
     position: absolute;
-    top: 26%;
-    left: 4%;
+    top: 27%;
+    left: 6%;
     transform: translateY(-26%);
+    @media (max-width: 1920px) {
+      top: 35%;
+      left: 6%;
+      transform: translateY(-50%);
+    }
     @media (max-width: 1024px) {
       top: 50%;
       left: 5%;
       transform: translateY(-50%);
     }
+    .heading-width{
+      width: 57%;
+      @media (max-width: 1920px) {
+        width: 66%;
+      }
+    }
     p{
-      width: 40%;
+      width: 22%;
+      @media (max-width: 1920px) {
+        width: 25%;
+      }
       @media (max-width: 1024px) {
         width: 62%;
       }
     }
+    
   }
 }
+
+
 
 .service{
   height: 100vh;
@@ -25,18 +42,25 @@
     height: auto;
   }
 }
-// .service_image {
-//   height: 587px;
-//   @media screen and (max-width: 1024px){
-//     height: 400px;
-//   }
-// }
+.service_image {
+  object-fit: contain;
+}
 .sectionPadding{
-  padding: 4rem 3rem;
+  padding: 4rem 7rem;
+  
+  @media screen and (max-width: 1440px){
+    padding: 4rem 
+  }
+  @media screen and (max-width: 1024px){
+    padding: 3rem 
+  }
+  @media screen and (max-width: 768px){
+    padding: 2rem
+  }
 }
 
 .servicePadding{
-  padding: 10rem;
+  padding: 8rem;
   @media screen and (max-width: 1024px){
     padding: 70px 60px;
   }
@@ -46,22 +70,42 @@
 }
 
 .para-width{
-  width: 87%;
-
+  width: 54%;
+  @media screen and (max-width: 1920px){
+    width: 75%;
+  }
+  @media screen and (max-width: 1440px){
+    width: 100%;
+  }
+  @media screen and (max-width: 1280px){
+    width: 100%;
+  }
   @media screen and (max-width: 1024px){
     width: 100%;
   }
 }
 
 .service1-width{
-  width: 88%;
+  width: 63%;
+  @media screen and (max-width: 1920px){
+    width: 91%;
+  }
 }
 .service2-width{
-  width: 81%;
+width: 62%;
+  @media screen and (max-width: 1920px){
+    width: 86%;
+  }
 }
 .service3-width{
   width: 80%;
+  @media screen and (max-width: 1920px){
+    width: 86%;
+  }
 }
 .service4-width{
   width: 82%;
+  @media screen and (max-width: 1920px){
+    width: 86%;
+  }
 }

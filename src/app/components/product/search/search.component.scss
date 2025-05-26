@@ -1,5 +1,5 @@
 .search-container {
-  padding:11rem 7rem;
+  padding:15rem 7rem;
   @media screen and (max-width: 1200px) {
     padding: 10rem 2rem;
   }
@@ -28,10 +28,19 @@
 }
 
 .filter-container {
+  
   background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+  @media screen and (max-width: 768px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 576px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 325px) {
+    width: 100%;
+  }
   &.collapse-height {
     height: 50px !important;
     overflow: hidden;
@@ -64,15 +73,16 @@
 }
 
 .car-card {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: hidden;
+  border: 1px solid #D1D1D1;
+
+  .thumbnail-image{
+    padding: 12px 12px 0px 12px;
+  }
 }
 
 .pagination {
@@ -207,4 +217,7 @@
 
 .mobile-filter.show {
   display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
