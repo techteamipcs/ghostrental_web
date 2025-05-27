@@ -4,7 +4,7 @@
       *ngIf="bannerData && bannerData.media_data.length > 0"
       src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
-      class="w-100 h-100"
+      class="w-100 h-100 rounded-4"
       loading="lazy"
       decoding="async"
     />
@@ -12,7 +12,7 @@
       *ngIf="!bannerData"
       src="{{ imageURL }}/products/product1.png"
       alt="Limousine on road"
-      class="w-100 h-100"
+      class="w-100 h-100 rounded-4"
       loading="lazy"
       decoding="async"
     />

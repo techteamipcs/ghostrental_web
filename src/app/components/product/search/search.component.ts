@@ -281,6 +281,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onChangeSort(event) {
+
+  }
+
   // UI Helpers
   toggleFilter(): void {
     if (window.innerWidth <= 768) {

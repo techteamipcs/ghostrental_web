@@ -397,7 +397,7 @@
             {{ totalItems }} vehicles
           </h6>
 
-          <select class="border-0 outline-none size16 redhat-semibold">
+          <select class="border-0 outline-none size16 redhat-semibold" (change)="onChangeSort($event)">
             <option selected disabled class="text-muted size14 redhat-semibold">
               Sort by any makes
             </option>

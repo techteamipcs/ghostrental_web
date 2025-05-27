@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail', '/product/list', '/terms', '/privacy', '/contact'];
+  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail/:id', '/terms', '/privacy', '/contact'];
   isDarkText = false;
   currentRoute: string = '';
   isBrowser: boolean;
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     ).subscribe((event: any) => {
       this.currentRoute = event.url;
       const wasDarkText = this.isDarkText;
-      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
+      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) || this.currentRoute.startsWith('/product/detail/');
       if (this.isBrowser) {
         window.scrollTo(0, 0);
       }
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
-    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
+    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) || this.currentRoute.startsWith('/product/detail/');
     this.updateTextColor();
   }
 

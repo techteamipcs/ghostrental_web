@@ -14,7 +14,7 @@
         Drive <br />Your Dream
       </h1>
       <p
-        class="size20 redhat-regular hero-para beige-color line-height26 mb-md-2 mb-2"
+        class="size20 redhat-regular hero-para beige-color line-height26 mb-md-4 mb-2"
       >
         Welcome to our limousine rental website, we offer luxury transportation
         services for any occasion, from weddings and proms to corporate events
@@ -31,7 +31,7 @@
         [innerHtml]="bannerData.short_desc"
       ></h1>
       <p
-        class="size20 redhat-regular hero-para beige-color line-height26 mb-md-2 mb-2"
+        class="size20 redhat-regular hero-para beige-color line-height26 mb-md-4 mb-2"
         [innerHtml]="bannerData.description"
       ></p>
       <button class="white-border-button size18 redhat-bold mt-md-2 mt-2">
@@ -40,12 +40,14 @@
     </div>
 
     <form class="form-glass" (submit)="onSubmit()">
-      <h2 class="text-center mb-md-4 mb-2 size28 redhat-bold black-color">
+      <h2
+        class="text-center mb-xl-4 mb-lg-2 mb-md-2 mb-2 size28 redhat-bold black-color"
+      >
         Quick Reservation
       </h2>
 
       <div
-        class="d-flex justify-content-center align-items-center gap-2 mb-md-4 mb-2"
+        class="d-flex justify-content-center align-items-center gap-2 mb-xl-4 mb-lg-2 mb-md-2 mb-2"
       >
         <span class="size18 redhat-bold text-uppercase m-0 black-color"
           >CARS</span
@@ -69,7 +71,7 @@
       <div class="row">
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-md-4 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
             (change)="selectData('body_type', $event)"
           >
@@ -87,7 +89,7 @@
         </div>
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-md-4 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
             (change)="selectData('brand', $event)"
           >
@@ -106,7 +108,7 @@
 
         <div class="col-6" *ngIf="isVehicleYacht">
           <select
-            class="form-select mb-md-4 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
           >
             <option value="" disabled selected class="size14 redhat-semibold">
@@ -123,7 +125,7 @@
         </div>
         <div class="col-6" *ngIf="isVehicleYacht">
           <select
-            class="form-select mb-md-4 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
           >
             <option value="" disabled selected class="size14 redhat-semibold">
@@ -141,11 +143,13 @@
         </div>
       </div>
 
-      <div class="section-title size18 redhat-bold black-color mb-md-3 mb-2">
+      <div
+        class="section-title size18 redhat-bold black-color mb-xl-2 mb-lg-2 mb-md-2 mb-2"
+      >
         Pickup
       </div>
       <div class="row">
-        <div class="col-6 mb-md-3 mb-2">
+        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="startDate" class="form-label size14 redhat-semibold"
               >Date</label
@@ -161,7 +165,7 @@
             />
           </div>
         </div>
-        <div class="col-6 mb-md-3 mb-2">
+        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="startTime" class="form-label size14 redhat-semibold"
               >Time</label
@@ -177,7 +181,7 @@
             />
           </div>
         </div>
-        <div class="col-12 mb-md-4 mb-2">
+        <div class="col-12 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
             <select class="form-select size14 redhat-semibold" required>
               <option value="" disabled selected class="size14 redhat-semibold">
@@ -201,11 +205,13 @@
         </div>
       </div>
 
-      <div class="section-title size18 redhat-bold black-color mb-md-3 mb-2">
+      <div
+        class="section-title size18 redhat-bold black-color mb-xl-2 mb-lg-2 mb-md-2 mb-2"
+      >
         Return
       </div>
       <div class="row">
-        <div class="col-6 mb-md-3 mb-2">
+        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="endDate" class="form-label size14 redhat-semibold"
               >Date</label
@@ -221,7 +227,7 @@
             />
           </div>
         </div>
-        <div class="col-6 mb-md-3 mb-2">
+        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="endTime" class="form-label size14 redhat-semibold"
               >Time</label
@@ -237,7 +243,7 @@
             />
           </div>
         </div>
-        <div class="col-12 mb-md-4 mb-2">
+        <div class="col-12 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
             <select class="form-select size14 redhat-semibold" required>
               <option value="" disabled selected>Choose Return Location</option>
@@ -261,7 +267,7 @@
 
       <button
         type="submit"
-        class="black-button d-flex mx-auto size18 redhat-bold mt-md-4 mt-2"
+        class="black-button d-flex mx-auto size18 redhat-bold mt-xl-2 mt-lg-2 mt-md-2 mt-2"
         (click)="goToResults()"
       >
         Book Now
@@ -456,9 +462,9 @@
         Drive Your Dream
       </h2>
       <p class="size20 redhat-regular white-color">
-        Welcome to our limousine rental website, we offer luxury transportation
-        services for any occasion, from weddings and proms to corporate events
-        and airport transfers.
+        We deliver premium transportation services in Dubai and across the UAE
+        for weddings, proms, conferences, and airport travel — where luxury
+        meets convenience.
       </p>
       <button class="white-button my-4 size18 redhat-bold text-capitalize">
         view all
@@ -486,9 +492,9 @@
               Luxury car Rental
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Choose from top brands like Lamborghini, Rolls-Royce, and Range
-              Rover. Enjoy daily or long-term rentals with free delivery across
-              the UAE.
+              Choose from top brands like Rolls-Royce, Lamborghini and Range
+              Rover. Enjoy one time or long-term rentals with free delivery
+              across the UAE.
             </p>
             <a
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
@@ -513,8 +519,8 @@
               Luxury Yacht Rental
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Book private yachts for parties, getaways, or events. Includes
-              crew, catering options, and scenic routes like Marina & Atlantis.
+              Book private yachts for parties, getaways or events which includes
+              crew, catering options and scenic routes like Marina & Atlantis.
             </p>
             <a
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
@@ -539,8 +545,9 @@
               Luxury Chauffeur Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Professional chauffeurs, luxury cars, and on-time service for
-              VIPs, weddings, or airport transfers transfers.
+              Chauffeur services in Dubai with Professional drivers, luxury cars
+              and on time service. Ideal for VIP guests, wedding or airport
+              transfers.
             </p>
             <a
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
@@ -815,11 +822,10 @@
           Driven By Luxury. Defined By Experience.
         </h1>
         <p class="size20 redhat-regular text-center white-color line-height26">
-          At GhostRental.ae, we specialize in providing elite rental services
-          across the UAE — from luxury cars and private yachts to executive
-          chauffeur experiences. Built on trust, discretion, and premium
-          service, our brand caters to individuals who expect nothing but the
-          best.
+          At GhostRental.ae we specialized in providing elite car rentals in
+          Dubai, luxury yacht charters, and VIP chauffeur services. Built on
+          trust, discretion and premium services across the UAE. Our brand is
+          for those individuals, who expect nothing but the best.
         </p>
         <button class="white-button size18 redhat-bold text-capitalize">
           know more

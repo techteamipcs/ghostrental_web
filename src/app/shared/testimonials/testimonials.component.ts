@@ -66,32 +66,32 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     {
       id: 'faq2',
       question: 'Which vehicles can I rent from Luxury Supercars?',
-      answer: 'You can choose from a wide range of high-end vehicles including Lamborghini, Ferrari, Rolls-Royce, Bentley, and more.'
+      answer: 'We offer an elite fleet of luxury and exotic cars for rent in Dubai, including top brands like Ferrari, Lamborghini, Rolls-Royce, Bentley, and McLaren. All our vehicles are insured, clean and well maintained and our help desk can be contacted on a 24-hours basis. Please browse through our site to check out the complete range of cars that we offer.'
     },
     {
       id: 'faq3',
       question: 'Can a reservation be modified or cancelled?',
-      answer: 'Yes, reservations can be modified or cancelled up to 24 hours before the pickup time without any charges.'
+      answer: 'You may modify or terminate your existing reservation by getting in touch with one of our customer service representatives. We kindly request that all changes be made at least 48 hours. In any event, if the customer cancels or modifies their booking within 48 hours, an additional fee may be charged. Our team is available 24/7 to assist you with a smooth and flexible booking experience across the UAE.'
     },
     {
       id: 'faq4',
       question: 'What about late return fees?',
-      answer: 'A late return fee may be charged if the vehicle is returned more than one hour past the agreed time without prior notice.'
+      answer: 'Our luxury car rentals in Dubai operate on a 24-hour cycle with a 1-hour grace period for returns. However, after the grace period, hourly charges will be applicable. After 3 hours, full-day late charges will be applicable. Please note: surcharges, protection fees, and optional add-ons do not include a grace period for such things; full-day charges apply immediately upon delay.'
     },
     {
       id: 'faq5',
       question: 'Is roadside assistance offered in case I have problems with my car?',
-      answer: 'Yes, 24/7 roadside assistance is included with all our rentals to ensure your peace of mind.'
+      answer: 'We offer 24/7 roadside assistance for all our luxury car rentals across Dubai and the UAE. If you have difficulties with your rental car, please contact our team immediately. If there are any minor problems that can be addressed on the spot, we will dispatch our operations team to assist you right away. In the unlikely event that your car faces a malfunction, get in touch with our sales department for car replacement or assistance. However, in this case, do not leave your vehicle and wait for service or the police to arrive.'
     },
     {
       id: 'faq6',
       question: 'How do I book a Dubai luxury car rental?',
-      answer: 'You can book directly through our website, mobile app, or by calling our customer service hotline.'
+      answer: 'The booking process for Dubai luxury car rental is easy and straightforward. Simply visit our website, select your desired luxury car, enter your payment details, and make the reservation.'
     },
     {
       id: 'faq7',
       question: 'Can I book more than one vehicle at once?',
-      answer: 'Yes, you can book multiple vehicles in one reservation. Just select the desired models during the booking process.'
+      answer: 'Yes, you can book multiple luxury cars at once with GhostRental.ae. Whether it’s for a wedding convoy, VIP event, or corporate travel, our booking process is designed to handle group rentals effortlessly. Simply select your desired cars and make the booking. Our team will be happy to help if you have any questions or queries about this process.'
     }
   ];
 
