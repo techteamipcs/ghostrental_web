@@ -125,7 +125,7 @@
                 >Date From</label
               >
               <div class="position-relative">
-                <span
+                <span *ngIf="!availableStartDate"
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
                   >Start date</span
@@ -148,7 +148,7 @@
                 >Date To</label
               >
               <div class="position-relative">
-                <span
+                <span *ngIf="!availableendDate"
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
                   >End date</span
