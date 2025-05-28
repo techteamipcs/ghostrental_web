@@ -11,11 +11,11 @@
     <div class="row">
       <!-- form -->
       <div class="col-xl-6 col-lg-6 col-md-12 col-12 pe-xl-5">
-        <form action="">
+        <form [formGroup]="addcontactForm" (ngSubmit)="onSubmit()" method="post" novalidate>
           <div class="row">
             <div class="col-6">
               <div
-                class="d-flex flex-column border border-2 p-xl-2 p-lg-2 p-md-2 p-2 rounded-3 text-capitalize mb-xl-3 mb-lg-3 mb-md-3 mb-2"
+                class="d-flex flex-column border border-2 p-xl-2 p-lg-2 p-md-2 p-2 rounded-3 text-capitalize mb-xl-3 mb-lg-3 mb-md-3 "
               >
                 <label for="firstName" class="form-label">first Name</label>
                 <input
@@ -23,12 +23,16 @@
                   type="text"
                   class="border-0 outline-0"
                   placeholder="first Name"
+                  formControlName="name" 
+                  name="name"
                 />
               </div>
+              <span *ngIf="submitted && hasError('name','required')" class="alert-danger mb-4">Name is
+                        required</span>
             </div>
             <div class="col-6">
               <div
-                class="d-flex flex-column border border-2 p-xl-2 p-lg-2 p-md-2 p-2 rounded-3 text-capitalize mb-xl-3 mb-lg-3 mb-md-3 mb-2"
+                class="d-flex flex-column border border-2 p-xl-2 p-lg-2 p-md-2 p-2 rounded-3 text-capitalize mb-xl-3 mb-lg-3 mb-md-3"
               >
                 <label for="lastName" class="form-label">last name</label>
                 <input
@@ -36,8 +40,11 @@
                   type="text"
                   class="border-0 outline-0"
                   placeholder="last name"
+                  formControlName="lastname" name="lastname"
                 />
               </div>
+              <span *ngIf="submitted && hasError('lastname','required')" class="alert-danger mb-2">Last is
+                        required</span>
             </div>
             <div class="col-6">
               <div
@@ -49,8 +56,11 @@
                   type="email"
                   class="border-0 outline-0"
                   placeholder="email"
+                  formControlName="email" name="email"
                 />
               </div>
+              <span *ngIf="submitted && hasError('email','required')" class="alert-danger mb-2">Email is
+                        required</span>
             </div>
             <div class="col-6">
               <div
@@ -62,8 +72,11 @@
                   type="text"
                   class="border-0 outline-0"
                   placeholder="Phone"
+                  formControlName="phone" name="phone"
                 />
               </div>
+              <span *ngIf="submitted && hasError('phone','required')" class="alert-danger mb-2">Phone is
+                        required</span>
             </div>
             <div class="col-12">
               <div
@@ -75,16 +88,21 @@
                   id="message"
                   class="border-0 outline-0"
                   placeholder="Message"
+                  formControlName="message" name="message"
                 ></textarea>
               </div>
             </div>
             <div class="col-12">
+              <div class="alert alert-success alert-dismissable mt-4" style="text-align: center;" *ngIf="msg_success">
+                {{throw_msg}}
+              </div>
               <button
                 class="black-button size18 redhat-bold mt-xl-3 mt-lg-3 my-md-3 my-2"
               >
                 send message
               </button>
             </div>
+            
           </div>
         </form>
       </div>

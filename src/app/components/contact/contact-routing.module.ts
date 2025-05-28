@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path:'',
     component:ContactComponent
+  },
+  {
+    path: 'product/:prod',
+    component:ContactComponent,
   }
 ];
 
