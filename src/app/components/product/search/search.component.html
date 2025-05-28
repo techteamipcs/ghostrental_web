@@ -32,6 +32,20 @@
             </div>
 
             <div id="desktopFilter" [class.collapsed]="isFilterCollapsed">
+              <!-- Special Number Plate -->
+              <label
+                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+                >Special Number Plate</label
+              >
+              <select
+                class="form-select size16 redhat-semibold mb-2"
+                (change)="onChangeSpecialNumber($event)"
+              >
+                <option value="">Select Special Number Plate</option>
+                <option value="true">Enable</option>
+                <option value="false">Disbale</option>
+              </select>
+
               <!-- Rental Type -->
               <label
                 class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
@@ -114,13 +128,13 @@
                 <span
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
-                  >date</span
+                  >Start date</span
                 >
-                <span
+                <!-- <span
                   class="position-absolute bg-white"
                   style="top: 13%; right: 3%"
                   ><lucide-icon name="calendar"
-                /></span>
+                /></span> -->
                 <input
                   type="datetime-local"
                   class="form-control size16 redhat-semibold mb-2"
@@ -137,13 +151,13 @@
                 <span
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
-                  >date</span
+                  >End date</span
                 >
-                <span
+                <!-- <span
                   class="position-absolute bg-white"
                   style="top: 13%; right: 3%"
                   ><lucide-icon name="calendar"
-                /></span>
+                /></span> -->
                 <input
                   type="datetime-local"
                   class="form-control size16 redhat-semibold mb-2"

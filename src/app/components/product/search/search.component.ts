@@ -47,6 +47,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   availableendDate: any;
   isFilterCollapsed = false;
   isMobileFilterVisible: boolean = false;
+  vipNumberPlate: any;
   sort: any = '';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
@@ -212,7 +213,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       price_type: this.price_type,
       startDate: this.availableStartDate,
       endDate: this.availableendDate,
-      sort: this.sort
+      sort: this.sort,
+      isvipNumberPlate: this.vipNumberPlate
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -317,6 +319,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onChangeSort(data) {
      if (data) {
       this.sort = data.target.value;
+      this.getCarData();
+     }
+  }
+
+  onChangeSpecialNumber(data) {
+     if (data) {
+      this.vipNumberPlate = data.target.value =='true'? true : false;
       this.getCarData();
      }
   }
