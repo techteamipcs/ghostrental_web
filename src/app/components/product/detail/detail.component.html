@@ -1,7 +1,12 @@
 <section class="product-detail" *ngIf="vehicleData">
   <div class="container-fluid">
     <div class="product-header mb-4">
-      <h3 *ngIf="vehicleData.bodytype_data && vehicleData.bodytype_data.length > 0" class="size22 redhat-semibold text-uppercase mb-2">
+      <h3
+        *ngIf="
+          vehicleData.bodytype_data && vehicleData.bodytype_data.length > 0
+        "
+        class="size22 redhat-semibold text-uppercase mb-2"
+      >
         {{ vehicleData.bodytype_data[0].name }}
       </h3>
       <h1 class="size46 performa-light mb-4">
@@ -25,7 +30,7 @@
             >
               <!-- <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" /> -->
               <img
-                src="{{ imageURL }}/product-details/left-arrow.png"
+                src="{{ imageURL }}/product-details/left-arrow.svg"
                 alt="Previous"
               />
             </button>
@@ -35,7 +40,7 @@
             >
               <!-- <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" /> -->
               <img
-                src="{{ imageURL }}/product-details/right-arrow.png"
+                src="{{ imageURL }}/product-details/right-arrow.svg"
                 alt="Next"
                 class="arrows"
               />
@@ -558,7 +563,7 @@
                       </h5>
                     </div>
                     <a
-                      href="#"
+                      href="/product/detail/{{ car.url_key }}"
                       class="color-card-p p-0 mt-auto text-decoration-none"
                       >View More</a
                     >

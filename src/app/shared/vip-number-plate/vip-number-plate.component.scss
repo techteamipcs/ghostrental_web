@@ -22,4 +22,10 @@
 
 .sectionPadding{
   padding: 6rem 10rem;
+  @media screen and (max-width: 1200px) {
+    padding: 4rem 9rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 }

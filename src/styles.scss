@@ -99,12 +99,15 @@ body {
 }
 .size20 {
   font-size: 20px;
-  @media (max-width:1024px) {
-    font-size: 18px;
-  }
-  @media (max-width:768px) {
-    font-size: 14px;
-  }
+  @media (max-width: 1366px) {
+		font-size: 18px;
+	}
+	@media (max-width: 1024px) {
+		font-size: 16px;
+	}
+	@media (max-width: 380px) {
+		font-size: 14px;
+	}
 }
 .size22 {
   font-size: 22px;
@@ -117,9 +120,12 @@ body {
 }
 .size24 {
   font-size: 24px;
-  @media (max-width:1024px) {
-    font-size: 14px;
-  }
+  @media (max-width: 1366px) {
+		font-size: 18px;
+	}
+	@media (max-width: 1024px) {
+		font-size: 16px;
+	}
   @media (max-width:768px) {
     font-size: 10px;
   }
@@ -153,12 +159,20 @@ body {
 }
 .size32 {
   font-size: 32px;
-  @media (max-width:1024px) {
-    font-size: 26px;
-  }
-  @media (max-width:768px) {
-    font-size: 22px;
-  }
+  @media (max-width: 1366px) {
+		font-size: 28px;
+	}
+
+	@media (max-width: 1024px) {
+		font-size: 24px;
+	}
+
+	@media (max-width: 991px) {
+		font-size: 20px;
+	}
+	@media (max-width: 480px) {
+		font-size: 18px;
+	}
 }
 .size35 {
   font-size: 35px;
@@ -189,12 +203,21 @@ body {
 }
 .size55 {
   font-size: 55px;
-  @media (max-width:1024px) {
-    font-size:  33px;
-  }
-  @media (max-width:768px) {
-    font-size: 21px;
-  }
+  @media (max-width: 1440px) {
+		font-size: 42px;
+	}
+
+	@media (max-width: 1199px) {
+		font-size: 36px;
+	}
+
+	@media (max-width: 991px) {
+		font-size: 32px;
+	}
+
+	@media (max-width: 480px) {
+		font-size: 26px;
+	}
 }
 .size60{
   font-size: 60px;
@@ -210,12 +233,37 @@ body {
 }
 .size90 {
   font-size: 90px;
-  @media (max-width:1024px) {
-    font-size: 64px;
-  }
-  @media (max-width:768px) {
-    font-size: 42px;
-  }
+  @media (max-width: 1650px) {
+		font-size: 80px;
+	}
+
+	@media (max-width: 1440px) {
+		font-size: 75px;
+	}
+
+	@media (max-width: 1366px) {
+		font-size: 60px;
+	}
+
+	@media (max-width: 1024px) {
+		font-size: 50px;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 40px;
+	}
+
+	@media (max-width: 600px) {
+		font-size: 36px;
+	}
+
+	@media (max-width: 480px) {
+		font-size: 32px;
+	}
+
+	@media (max-width: 380px) {
+		font-size: 26px;
+	}
 }
 
 // line-height
@@ -298,11 +346,14 @@ body {
   border: 2px solid $color-white;
   color: $color-black;
   background-color: $color-white;
-  border-radius: 30px;
+  border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
+  @media (max-width:1280px) {
+    padding: 14px 40px;
+  }
   @media (max-width:1024px) {
     padding: 14px 50px;
   }
@@ -319,7 +370,7 @@ body {
   border: 2px solid $color-white;
   color: $color-white;
   background-color: transparent;
-  border-radius: 30px;
+  border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
@@ -339,13 +390,16 @@ body {
   border: 2px solid $color-gray;
   color: $color-gray-beige;
   background-color: $color-gray;
-  border-radius: 30px;
+  border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
-  @media (max-width:1024px) {
+  @media (max-width:1280px) {
     padding: 14px 50px;
+  }
+  @media (max-width:1024px) {
+    padding: 14px 45px;
   }
   @media (max-width:768px) {
     padding: 12px 40px;

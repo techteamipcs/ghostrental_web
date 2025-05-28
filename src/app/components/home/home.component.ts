@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef,Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
@@ -95,18 +95,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getBrands();
     this.initCarSwiper();
     this.initYachtSwiper();
+    this.initTrendingSwiper();
   }
 
   ngAfterViewInit() {
-    
+
   }
 
   public initCarSwiper() {
     if (isPlatformBrowser(this.platformId)) {
-     new Swiper('.car-collection-swiper', {
-        slidesPerView: 4.5,         // 4 full + 0.5 peek
+      new Swiper('.car-collection-swiper', {
+        slidesPerView: 4.5,
         loop: true,
-        spaceBetween: 20,           // adjust gap if needed
+        spaceBetween: 20,
         navigation: {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
@@ -114,7 +115,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 4.5 },
+          992: { slidesPerView: 4 },
         },
       });
     }
@@ -134,7 +135,35 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 4.5 },
+          992: { slidesPerView: 4 },
+        },
+      });
+    }
+  }
+
+  public initTrendingSwiper() {
+    if (isPlatformBrowser(this.platformId)) {
+      new Swiper('.trending-cars-swiper', {
+        slidesPerView: 2,
+        loop: true,
+        spaceBetween: 20,
+        speed: 500,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.trending-swiper-button-next',
+          prevEl: '.trending-swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 1 },
+          992: { slidesPerView: 1 },
         },
       });
     }
