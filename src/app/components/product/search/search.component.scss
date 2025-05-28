@@ -169,7 +169,6 @@
     pointer-events: none;
     appearance: none;
     background: transparent;
-    z-index: 3;
 
     &::-webkit-slider-thumb {
       pointer-events: all;
@@ -180,7 +179,6 @@
       border: 2px solid black;
       cursor: pointer;
       appearance: none;
-      z-index: 4;
     }
 
     &::-moz-range-thumb {
@@ -191,7 +189,6 @@
       background: white;
       border: 2px solid black;
       cursor: pointer;
-      z-index: 4;
     }
 
     &::-webkit-slider-runnable-track,
@@ -221,3 +218,27 @@
   top: 100%;
   left: 0;
 }
+
+
+.slider-track {
+  position: absolute;
+  height: 5px;
+  // background: ;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.slider-range {
+  position: absolute;
+  height: 5px;
+  background: black;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  z-index: 2;
+}
+
+

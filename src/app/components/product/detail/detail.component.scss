@@ -32,11 +32,10 @@
   .thumbnail-item {
     cursor: pointer;
     border: 2px solid transparent;
-    border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
     flex: 1;
-    min-height: 0;
+    position: relative;
 
     img {
       width: 100%;
@@ -50,6 +49,20 @@
       img {
         transform: scale(1.05);
       }
+    }
+    .remaining-count-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
   }
 }
@@ -162,7 +175,7 @@
 
 .sticky-card {
   position: absolute;
-  right: 2.5rem;
+  right: 0.5rem;
   width: 400px;
   background: white;
   will-change: transform;
@@ -170,9 +183,9 @@
   transform: translateZ(0);
   &.stuck {
     position: fixed;
-    top: 10rem;
+    top: 8rem;
     bottom: auto;
-    right: 8.5rem;
+    right: 6.5rem;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -180,7 +193,7 @@
     position: absolute;
     top: auto;
     bottom: 2rem;
-    right: 2.5rem;
+    right: .5rem;
   }
 }
 

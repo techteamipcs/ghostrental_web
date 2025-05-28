@@ -1,7 +1,13 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg fill="#ffffff" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330.002 330.002" xml:space="preserve" stroke="#ffffff">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <path id="XMLID_103_" d="M233.252,155.997L120.752,6.001c-4.972-6.628-14.372-7.97-21-3c-6.628,4.971-7.971,14.373-3,21 l105.75,140.997L96.752,306.001c-4.971,6.627-3.627,16.03,3,21c2.698,2.024,5.856,3.001,8.988,3.001 c4.561,0,9.065-2.072,12.012-6.001l112.5-150.004C237.252,168.664,237.252,161.33,233.252,155.997z"/> </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f3f3f4;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-1" d="M42.59,44L.29,86.29c-.39.39-.39,1.02,0,1.41s1.02.39,1.41,0l43-43c.39-.39.39-1.02,0-1.41L1.71.29c-.2-.2-.45-.29-.71-.29S.49.1.29.29C-.1.68-.1,1.32.29,1.71l42.29,42.29Z"/>
+  </g>
+</svg>

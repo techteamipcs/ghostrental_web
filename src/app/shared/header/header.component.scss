@@ -1,5 +1,4 @@
 nav {
-  padding: 4.3rem 7.3rem;
   z-index: 1000;
   background-color: transparent;
   transition: all 0.3s ease;
@@ -8,11 +7,24 @@ nav {
   left: 0;
   right: 0;
   
-  @media (max-width: 1600px) {
-    padding: 3rem 6rem; 
+  // Default padding (for small-padding class)
+  padding: 2.3rem 7.3rem;
+  
+  // Large padding for specific routes
+  &.large-padding {
+    padding: 4.3rem 7.3rem;
   }
+  
+  @media (max-width: 1600px) {
+    padding: 2rem 6rem;
+    
+    &.large-padding {
+      padding: 3rem 6rem;
+    }
+  }
+  
   @media (max-width: 1024px) {
-    padding: 2rem; 
+    padding: 2rem !important;
   }
   
   // Default text color (white)

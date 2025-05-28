@@ -34,7 +34,7 @@
             <div id="desktopFilter" [class.collapsed]="isFilterCollapsed">
               <!-- Rental Type -->
               <label
-                class="form-label size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
                 >Rental Type</label
               >
               <select
@@ -49,7 +49,8 @@
               </select>
 
               <!-- Body Type -->
-              <label class="form-label size14 redhat-semibold mb-1"
+              <label
+                class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Body Type</label
               >
               <select
@@ -68,7 +69,8 @@
               </select>
 
               <!-- Car Brand -->
-              <label class="form-label size14 redhat-semibold mb-1"
+              <label
+                class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Brand</label
               >
               <select
@@ -84,7 +86,8 @@
               </select>
 
               <!-- Car Model -->
-              <label class="form-label size14 redhat-semibold mb-1"
+              <label
+                class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Model</label
               >
               <select
@@ -103,30 +106,58 @@
               </select>
 
               <!-- Date From -->
-              <label class="form-label size14 redhat-semibold mb-1"
+              <label
+                class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date From</label
               >
-              <input
-                type="datetime-local"
-                class="form-control size16 redhat-semibold mb-2"
-                [(ngModel)]="availableStartDate"
-              />
+              <div class="position-relative">
+                <span
+                  class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
+                  style="top: 20%; left: 4%"
+                  >date</span
+                >
+                <span
+                  class="position-absolute bg-white"
+                  style="top: 13%; right: 3%"
+                  ><lucide-icon name="calendar"
+                /></span>
+                <input
+                  type="datetime-local"
+                  class="form-control size16 redhat-semibold mb-2"
+                  [(ngModel)]="availableStartDate"
+                />
+              </div>
 
               <!-- Date To -->
-              <label class="form-label size14 redhat-semibold mb-1"
+              <label
+                class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date To</label
               >
-              <input
-                type="datetime-local"
-                class="form-control size16 redhat-semibold mb-2"
-                [(ngModel)]="availableendDate"
-              />
+              <div class="position-relative">
+                <span
+                  class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
+                  style="top: 20%; left: 4%"
+                  >date</span
+                >
+                <span
+                  class="position-absolute bg-white"
+                  style="top: 13%; right: 3%"
+                  ><lucide-icon name="calendar"
+                /></span>
+                <input
+                  type="datetime-local"
+                  class="form-control size16 redhat-semibold mb-2"
+                  [(ngModel)]="availableendDate"
+                />
+              </div>
 
               <!-- Price -->
               <div class="price-range-wrapper">
-                <label class="form-label size14 redhat-semibold mb-1"
-                  >Price (AED)</label
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >
+                  Price (AED)
+                </label>
 
                 <div class="price-inputs d-flex gap-2 mb-2">
                   <input
@@ -147,17 +178,23 @@
                   />
                 </div>
 
-                <div class="slider d-flex gap-2">
+                <div
+                  class="slider d-flex gap-2 position-relative"
+                  style="width: 100%; height: 30px"
+                >
+                  <div class="slider-track"></div>
+                  <div class="slider-range" id="slider-range"></div>
+
                   <input
                     type="range"
                     #rangeMin
                     id="rangeMin"
                     min="0"
                     max="10000"
-                    value="500"
                     step="50"
-                    class="form-range"
+                    class="form-range position-absolute w-100"
                     [(ngModel)]="minPrice"
+                    (input)="updateSlider()"
                   />
                   <input
                     type="range"
@@ -165,10 +202,10 @@
                     id="rangeMax"
                     min="0"
                     max="10000"
-                    value="1000"
                     step="50"
-                    class="form-range"
+                    class="form-range position-absolute w-100"
                     [(ngModel)]="maxPrice"
+                    (input)="updateSlider()"
                   />
                 </div>
               </div>
@@ -240,7 +277,7 @@
                 <!-- Rental Type -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Rental Type</label
                   >
                   <select
@@ -258,7 +295,7 @@
                 <!-- Body Type -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Body Type</label
                   >
                   <select
@@ -279,7 +316,7 @@
                 <!-- Car Brand -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Car Brand</label
                   >
                   <select
@@ -297,7 +334,7 @@
                 <!-- Car Model -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Car Model</label
                   >
                   <select
@@ -318,7 +355,7 @@
                 <!-- Date From -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Date From</label
                   >
                   <input
@@ -331,9 +368,10 @@
                 <!-- Date To -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Date To</label
                   >
+
                   <input
                     type="date"
                     class="form-control size16 redhat-semibold mb-2"
@@ -344,7 +382,7 @@
                 <!-- Price Range -->
                 <div class="filter-section">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1"
+                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
                     >Price (AED)</label
                   >
                   <div class="price-inputs d-flex gap-2">
@@ -391,29 +429,48 @@
         <div
           class="d-flex justify-content-between align-items-center my-md-3 my-2"
         >
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none">
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} vehicles
           </h6>
 
-          <select class="border-0 outline-none size16 redhat-semibold" (change)="onChangeSort($event)">
-            <option selected disabled class="text-muted size14 redhat-semibold">
+          <select
+            class="border-0 outline-none size16 redhat-semibold text-capitalize"
+            (change)="onChangeSort($event)"
+          >
+            <option
+              selected
+              disabled
+              class="text-muted size14 redhat-semibold text-capitalize"
+            >
               Sort by any makes
             </option>
-            <option value="az" class="size14 redhat-semibold">
+            <option value="az" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z
             </option>
-            <option value="high-low" class="size14 redhat-semibold">
+            <option
+              value="high-low"
+              class="size14 redhat-semibold text-capitalize"
+            >
               Price: High to Low
             </option>
-            <option value="low-high" class="size14 redhat-semibold">
+            <option
+              value="low-high"
+              class="size14 redhat-semibold text-capitalize"
+            >
               Price: Low to High
             </option>
-            <option value="old-new" class="size14 redhat-semibold">
+            <option
+              value="old-new"
+              class="size14 redhat-semibold text-capitalize"
+            >
               Old to New
             </option>
-            <option value="relevance" class="size14 redhat-semibold">
+            <option
+              value="relevance"
+              class="size14 redhat-semibold text-capitalize"
+            >
               Relevance
             </option>
           </select>

@@ -360,9 +360,12 @@ img{
   object-fit: cover;
 }
 .sectionPadding{
-  padding:5rem 11rem;
-  @media (max-width:1024px) {
+  padding:6rem 12rem;
+  @media (max-width:1440px) {
     padding: 4rem 7rem;
+  }
+  @media (max-width:1024px) {
+    padding: 4rem 6rem;
   }
   @media (max-width:768px) {
     padding: 3rem 10px;

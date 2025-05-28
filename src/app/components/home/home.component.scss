@@ -3,7 +3,7 @@
   .content {
     width: 575px;
     position: absolute;
-    top: 41%;
+    top: 44%;
     left: 8rem;
     transform: translateY(-50%);
     @media (max-width: 1024px) {
@@ -19,7 +19,7 @@
     }
 
     .hero-para {
-      width: 495px;
+      width: 526px;
       @media (max-width: 768px) {
         width: 322px;
       }
@@ -197,69 +197,68 @@
   }
 
   .form-glass {
-  overflow: visible !important;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 25px;
-  padding:42px 36px;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  right: 6.5%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 650px;
-  @media screen and (max-width: 1920px) {
-    max-width: 500px;
-    gap: 0;
-  padding:40px 30px;
-
-  }
-  @media screen and (max-width: 1440px) {
-    max-width: 350px;
-    top: 53%;
-    right: 4.5%;
-  padding:24px;
-
-  }
-  @media (max-width: 1024px) {
-    left: 50%;
-    bottom: 5%;
-    top: auto;
-    right: 0;
-    transform: translate(-50%, 0);
-    padding: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    top: auto;
-    bottom: 1rem;
-    transform: translateX(-50%);
-    max-width: 350px;
-    padding: 1.5rem;
-  }
-  .form-select {
-    position: relative;
-    z-index: 1;
-    
-    option {
-      position: relative;
-      z-index: 1000;
+    overflow: visible !important;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    fill-opacity: 49%;
+    border-radius: 25px;
+    padding: 42px 36px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    right: 6.5%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 650px;
+    @media screen and (max-width: 1920px) {
+      max-width: 500px;
+      gap: 0;
+      padding: 40px 30px;
     }
-  }
-   
+    @media screen and (max-width: 1440px) {
+      max-width: 350px;
+      top: 53%;
+      right: 4.5%;
+      padding: 24px;
+    }
+    @media (max-width: 1024px) {
+      left: 50%;
+      bottom: 5%;
+      top: auto;
+      right: 0;
+      transform: translate(-50%, 0);
+      padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      top: auto;
+      bottom: 1rem;
+      transform: translateX(-50%);
+      max-width: 350px;
+      padding: 1.5rem;
+    }
+    .form-select {
+      position: relative;
+      z-index: 1;
+
+      option {
+        position: relative;
+        z-index: 1000;
+      }
+    }
 
     .form-control,
     .form-select {
-  position: relative;
-  z-index: 1;
-  
-  option {
-    position: static;
-    z-index: 1000;
-  }
+      position: relative;
+      z-index: 1;
+
+      option {
+        position: static;
+        z-index: 1000;
+      }
       border: none;
       border-radius: 20px;
       padding: 10px 15px;
@@ -267,16 +266,16 @@
 
     .form-label {
       position: absolute;
-    top: 50%;
-    left: 15px;
-    width: 85%;
-    transform: translateY(-50%);
-    margin: 0;
-    background-color: white;
-    @media screen and (max-width: 768px) {
-      left: 10px;
-      width: 90%;
-    }
+      top: 50%;
+      left: 15px;
+      width: 85%;
+      transform: translateY(-50%);
+      margin: 0;
+      background-color: white;
+      @media screen and (max-width: 768px) {
+        left: 10px;
+        width: 90%;
+      }
     }
 
     .toggle-switch {
@@ -301,7 +300,6 @@
       }
 
       &.active {
-
         &::before {
           transform: translateX(26px);
         }
@@ -315,7 +313,7 @@
       }
     }
 
-    .redhat-semibold{
+    .redhat-semibold {
       font-weight: 600 !important;
     }
   }
@@ -420,6 +418,8 @@
 //   }
 // }
 .services {
+  padding-left: 7rem;
+  padding-right:  7rem;
   .card {
     position: relative;
     transition: transform 0.3s ease;
@@ -427,8 +427,36 @@
   }
   .card-content {
     padding: 0 16px 16px 16px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 1920px) {
+      height: 220px;
+    }
+    @media screen and (max-width: 1600px) {
+      height: 150px;
+    }
+    @media screen and (max-width: 1536px) {
+      height: 120px;
+    }
+    @media screen and (max-width: 1400px) {
+      height: 100px;
+    }
+    @media screen and (max-width: 1366px) {
+      height: 80px;
+    }
+    @media screen and (max-width: 1200px) {
+      height: 60px;
+    }
+    @media screen and (max-width: 1024px) {
+      height: 40px;
+    }
+
+    a{
+      margin-top: auto;
+    }
   }
-  .glass{
+  .glass {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     width: 100%;
@@ -438,11 +466,38 @@
     left: 0;
     z-index: 0;
   }
+  .card-positions {
+    width: 75%;
+    bottom: 25%;
+    @media screen and (max-width: 1920px) {
+      width: 81%;
+      bottom: 9%;
+    }
+    @media screen and (max-width: 1600px) {
+      width: 70%;
+      bottom: 12%;
+    }
+    @media screen and (max-width: 1536px) {
+      bottom: 8%;
+    }
+    @media screen and (max-width: 1400px) {
+      bottom: 11%;
+    }
+    @media screen and (max-width: 1366px) {
+      bottom: 4%;
+    }
+    @media screen and (max-width: 1200px) {
+      bottom: 1%;
+    }
+    @media screen and (max-width: 1024px) {
+      bottom: 1%;
+    }
+  }
 }
 
 // collections
 .collection {
-  padding: 5rem 0rem 5rem 11rem;
+  padding: 6rem 0rem 6rem 7rem;
   @media screen and (max-width: 1200px) {
     padding-left: 3.75rem;
   }
@@ -473,7 +528,7 @@
       height: auto;
       display: flex;
       align-items: stretch;
-      border: 1px solid #D1D1D1;
+      border: 1px solid #d1d1d1;
     }
   }
   .car-swiper-button-prev,
@@ -506,19 +561,16 @@
     }
   }
   .car-card {
-    
     // height: 527px;
-    background: white;
+    // background: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 506px;
-    @media screen and (max-width: 1920px) {
-      width: 366px;
-    }
-    .thumbnail-image{
+    width: 500px;
+    
+    .thumbnail-image {
       padding: 12px 12px 0px 12px;
     }
     .cash {
@@ -540,9 +592,9 @@
   }
   .div-height {
     height: 580px;
-    @media screen {
-      height: 480px;
-    }
+    // @media screen {
+    //   height: 480px;
+    // }
   }
   .about-content {
     position: relative;
@@ -575,13 +627,13 @@
   .feature-icon {
     width: 64px;
     height: 64px;
-    margin-bottom: 1rem;
     object-fit: contain;
   }
   // }
 }
 
 .trending_cars {
+  padding: 6rem 7rem;
   .black-bg {
     top: 0%;
     transform: translateY(0%);
@@ -630,7 +682,7 @@
     @media screen and (max-width: 1920px) {
       width: 366px;
     }
-    .thumbnail-image{
+    .thumbnail-image {
       padding: 12px 12px 0px 12px;
     }
     .cash {
@@ -730,7 +782,7 @@
 }
 
 .black-bg {
-  background-color: black;
+  background-color: #1D1D1D;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -738,7 +790,7 @@
   z-index: -1;
   top: 23%;
   @media screen and (max-width: 1920px) {
-    top: 29%;
+    top: 31%;
   }
   @media screen and (max-width: 1680px) {
     top: 26%;

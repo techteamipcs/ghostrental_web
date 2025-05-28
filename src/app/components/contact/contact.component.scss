@@ -1,14 +1,6 @@
-.map {
-  padding-top: 15rem;
-  @media (max-width: 1024px) {
-    padding: 10rem 7rem 5rem;
-  }
-  @media (max-width: 768px) {
-    padding: 8rem 2rem 4rem;
-  }
-} 
+
 .contact {
-  padding-top: 15rem;
+  padding-top: 10rem;
   @media (max-width: 1024px) {
     padding: 10rem 7rem 5rem;
   }
@@ -56,14 +48,22 @@
 }
 
 textarea {
-  height: 246px;
+  height: 260px;
+  @media screen and (max-width: 1920px) {
+    height: 286px;
+  }
   @media screen and (max-width: 1440px) {
-    height: 300px;
+    height:315px;
   }
   @media screen and (max-width: 1200px) {
-    height: 173px;
+    height: 198px;
   }
   @media screen and (max-width: 768px) {
     height: 150px;
   }
+}
+
+
+.para-width{
+  width: 60%;
 }

@@ -24,7 +24,7 @@
     p{
       width: 22%;
       @media (max-width: 1920px) {
-        width: 25%;
+        width: 26%;
       }
       @media (max-width: 1024px) {
         width: 62%;
@@ -33,7 +33,6 @@
     
   }
 }
-
 
 
 .service{
@@ -46,8 +45,12 @@
   object-fit: contain;
 }
 .sectionPadding{
-  padding: 4rem 7rem;
+  // padding: 4rem 7rem;
+  padding: 11rem 7.2rem;
   
+  @media screen and (max-width: 1920px){
+    padding: 11rem 7.2rem;
+  }
   @media screen and (max-width: 1440px){
     padding: 4rem 
   }

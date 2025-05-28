@@ -14,7 +14,7 @@
 .banner-content{
   width: 48%;
 @media screen and (max-width: 1920px) {
-  width: 65%; 
+  width: 66%; 
 } 
 @media screen and (max-width: 1440px) {
   width: 90%; 
@@ -60,7 +60,7 @@
   height: 100%;
   display: flex;
   @media screen and (max-width: 1920px) {
-    width:81%;
+    width:82%;
   }
   @media screen and (max-width: 1440px) {
     width:100%;
@@ -139,7 +139,7 @@ table {
 }
 
 .story {
-  padding: 8rem 0 8rem 9rem;
+  padding: 8rem 0 8rem 16.5rem;
   @media screen and (max-width: 1200px) {
     padding: 4rem 0 4rem 4rem ;
   }
@@ -151,7 +151,7 @@ table {
     width: 81%;
 
     @media screen and (max-width: 1920px) {
-      width: 100%;
+      width: 96%;
     }
     @media screen and (max-width: 1440px) {
       width: 100%;
@@ -206,7 +206,7 @@ table {
   }
 
   button {
-    margin-top: 5rem;
+    // margin-top: 5rem;
   }
 }
 // .signature {

@@ -24,7 +24,10 @@
               (click)="prevImage()"
             >
               <!-- <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" /> -->
-              <img src="{{ imageURL }}/product-details/left-arrow.svg" alt="" />
+              <img
+                src="{{ imageURL }}/product-details/left-arrow.png"
+                alt="Previous"
+              />
             </button>
             <button
               class="position-absolute top-50 translate-middle-y next"
@@ -32,23 +35,40 @@
             >
               <!-- <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" /> -->
               <img
-                src="{{ imageURL }}/product-details/right-arrow.svg"
-                alt=""
+                src="{{ imageURL }}/product-details/right-arrow.png"
+                alt="Next"
                 class="arrows"
               />
             </button>
           </div>
         </div>
 
-        <div class="col-xl-3 col-lg-12 p-xl-2 p-lg-1 p-md-1 p-0">
+        <!-- <div class="col-xl-3 col-lg-12 p-xl-2 p-lg-1 p-md-1 p-0">
           <div class="d-flex flex-xl-column h-100 gap-xl-2 gap-lg-3">
             <div
               class="thumbnail-item"
+              [class.active]="true"
               *ngFor="let img of thumbnailImages; let i = index"
               [class.active]="i === currentIndex"
               (click)="selectImage(i)"
             >
               <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+            </div>
+          </div>
+        </div> -->
+
+        <div class="col-xl-3 col-lg-12 p-xl-2 p-lg-1 p-md-1 p-0">
+          <div class="d-flex flex-xl-column h-100 gap-xl-2 gap-lg-3">
+            <div
+              *ngFor="let img of thumbnailImages.images; let i = index"
+              class="thumbnail-item rounded-4"
+              [class.active]="i === 0"
+              (click)="selectImage((currentIndex + i) % images.length)"
+            >
+              <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+              <div *ngIf="img.showCount" class="remaining-count-overlay">
+                +{{ img.count }}
+              </div>
             </div>
           </div>
         </div>
@@ -176,7 +196,7 @@
         </div>
       </div>
 
-      <div class="col-xl-8 col-12 border-1 border-bottom p-0">
+      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
         <div class="mb-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -236,7 +256,7 @@
       </div>
 
       <div
-        class="col-xl-8 col-12 border-1 border-bottom p-0"
+        class="col-xl-9 col-12 border-1 border-bottom p-0"
         *ngIf="vehicleData"
       >
         <div class="my-5">
@@ -252,7 +272,7 @@
         </div>
       </div>
 
-      <div class="col-xl-8 col-12 border-1 border-bottom p-0">
+      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
         <div class="my-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -435,7 +455,7 @@
         </div>
       </div>
 
-      <div class="col-xl-8 col-12 location-section">
+      <div class="col-xl-9 col-12 location-section">
         <div class="mt-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"

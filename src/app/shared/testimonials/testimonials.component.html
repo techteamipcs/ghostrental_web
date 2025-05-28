@@ -21,11 +21,16 @@
             <div class="col-md-6 col-lg-7 text-start">
               <div class="mb-2 d-flex">
                 <ng-container *ngFor="let star of getStars(testimonial.rating)">
-                  <lucide-icon
+                  <img
+                    src="{{ imageURL }}/testimonials/star-icon.svg"
+                    alt=""
+                    class="star-icon"
+                  />
+                  <!-- <lucide-icon
                     name="star"
                     size="24"
                     style="width: 24px; height: 24px"
-                  ></lucide-icon>
+                  ></lucide-icon> -->
                 </ng-container>
               </div>
               <h5 class="size30 redhat-regular my-4 black-color">

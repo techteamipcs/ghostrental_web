@@ -25,6 +25,9 @@ export class HeaderComponent implements OnInit {
   isDarkText = false;
   currentRoute: string = '';
   isBrowser: boolean;
+  hasLargePadding = false;
+  largePaddingRoutes = ['/home', '/list', '/services'];
+  detailRouteRegex = /^\/detail\//;
 
   constructor(
     private router: Router,
@@ -39,8 +42,14 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.url;
-      const wasDarkText = this.isDarkText;
-      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) || this.currentRoute.startsWith('/product/detail/');
+      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
+      
+      // Check if current route should have large padding
+      const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
+      this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) || 
+                            isDetailRoute ||
+                            this.currentRoute === '/';
+      
       if (this.isBrowser) {
         window.scrollTo(0, 0);
       }

@@ -71,7 +71,7 @@
       <div class="row">
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-4 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
             (change)="selectData('body_type', $event)"
           >
@@ -89,7 +89,7 @@
         </div>
         <div class="col-6" *ngIf="!isVehicleYacht">
           <select
-            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-4 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
             (change)="selectData('brand', $event)"
           >
@@ -108,7 +108,7 @@
 
         <div class="col-6" *ngIf="isVehicleYacht">
           <select
-            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-4 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
           >
             <option value="" disabled selected class="size14 redhat-semibold">
@@ -125,7 +125,7 @@
         </div>
         <div class="col-6" *ngIf="isVehicleYacht">
           <select
-            class="form-select mb-xl-2 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
+            class="form-select mb-xl-4 mb-lg-2 mb-md-2 mb-2 size14 redhat-semibold"
             required
           >
             <option value="" disabled selected class="size14 redhat-semibold">
@@ -144,12 +144,12 @@
       </div>
 
       <div
-        class="section-title size18 redhat-bold black-color mb-xl-2 mb-lg-2 mb-md-2 mb-2"
+        class="section-title size18 redhat-bold black-color mb-xl-3 mb-lg-2 mb-md-2 mb-2"
       >
         Pickup
       </div>
       <div class="row">
-        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="startDate" class="form-label size14 redhat-semibold"
               >Date</label
@@ -165,7 +165,7 @@
             />
           </div>
         </div>
-        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="startTime" class="form-label size14 redhat-semibold"
               >Time</label
@@ -181,7 +181,7 @@
             />
           </div>
         </div>
-        <div class="col-12 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-12 mb-xl-4 mb-lg-2 mb-md-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
             <select class="form-select size14 redhat-semibold" required>
               <option value="" disabled selected class="size14 redhat-semibold">
@@ -206,12 +206,12 @@
       </div>
 
       <div
-        class="section-title size18 redhat-bold black-color mb-xl-2 mb-lg-2 mb-md-2 mb-2"
+        class="section-title size18 redhat-bold black-color mb-xl-3 mb-lg-2 mb-md-2 mb-2"
       >
         Return
       </div>
       <div class="row">
-        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="endDate" class="form-label size14 redhat-semibold"
               >Date</label
@@ -227,7 +227,7 @@
             />
           </div>
         </div>
-        <div class="col-6 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
           <div class="position-relative">
             <label for="endTime" class="form-label size14 redhat-semibold"
               >Time</label
@@ -243,7 +243,7 @@
             />
           </div>
         </div>
-        <div class="col-12 mb-xl-2 mb-lg-2 mb-md-2 mb-2">
+        <div class="col-12 mb-xl-5 mb-lg-2 mb-md-2 mb-2">
           <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
             <select class="form-select size14 redhat-semibold" required>
               <option value="" disabled selected>Choose Return Location</option>
@@ -267,7 +267,7 @@
 
       <button
         type="submit"
-        class="black-button d-flex mx-auto size18 redhat-bold mt-xl-2 mt-lg-2 mt-md-2 mt-2"
+        class="black-button d-flex mx-auto size18 redhat-bold mt-xl-3 mt-lg-2 mt-md-2 mt-2"
         (click)="goToResults()"
       >
         Book Now
@@ -437,123 +437,131 @@
 </section> -->
 
 <section class="services sectionPadding min-vh-100 position-relative">
-  <div
-    class="container-fluid position-relative"
-    style="overflow: hidden; height: 50vh"
-  >
-    <img
-      src="{{ imageURL }}/home/services/services1.png"
-      alt=""
-      class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-4"
-    />
-
+  <div class="container-fluid min-vh-100">
     <div
-      class="position-absolute top-0 start-0 w-100 h-100 rounded-4"
-      style="background-color: rgba(0, 0, 0, 0.7)"
-    ></div>
-
-    <div
-      class="position-relative text-center d-flex flex-column justify-content-center align-items-center h-100"
+      class="container-fluid position-relative"
+      style="overflow: hidden; height: 540px"
     >
-      <h3 class="size22 redhat-bold text-capitalize beige-color">
-        our Services
-      </h3>
-      <h2 class="size60 performa-light text-capitalize beige-color">
-        Drive Your Dream
-      </h2>
-      <p class="size20 redhat-regular white-color">
-        We deliver premium transportation services in Dubai and across the UAE
-        for weddings, proms, conferences, and airport travel — where luxury
-        meets convenience.
-      </p>
-      <button class="white-button my-4 size18 redhat-bold text-capitalize">
-        view all
-      </button>
-    </div>
-  </div>
+      <img
+        src="{{ imageURL }}/home/services/services1.png"
+        alt=""
+        class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-4"
+      />
 
-  <div
-    class="container-fluid position-absolute start-50 translate-middle-x"
-    style="width: 80%; bottom: 15%"
-  >
-    <div class="row g-5">
-      <div class="col-md-4">
-        <div class="card rounded-4">
-          <img
-            src="{{ imageURL }}/home/services/car-rental.jpg"
-            alt=""
-            class="services-images p-md-3 z-1"
-          />
-          <div class="glass rounded-top-4"></div>
-          <div class="card-content">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
-            >
-              Luxury car Rental
-            </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Choose from top brands like Rolls-Royce, Lamborghini and Range
-              Rover. Enjoy one time or long-term rentals with free delivery
-              across the UAE.
-            </p>
-            <a
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
-            >
-              know more
-            </a>
+      <div
+        class="position-absolute top-0 start-0 w-100 h-100 rounded-4"
+        style="background-color: rgba(0, 0, 0, 0.7)"
+      ></div>
+
+      <div
+        class="position-relative text-center d-flex flex-column justify-content-center align-items-center h-100"
+      >
+        <h3 class="size22 redhat-bold text-capitalize beige-color">
+          our Services
+        </h3>
+        <h2 class="size60 performa-light text-capitalize beige-color">
+          Drive Your Dream
+        </h2>
+        <p class="size20 redhat-regular white-color">
+          We deliver premium transportation services in Dubai and across the UAE
+          for weddings, proms, conferences, and airport travel — where luxury
+          meets convenience.
+        </p>
+        <button class="white-button my-4 size18 redhat-bold text-capitalize">
+          view all
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid position-absolute start-50 translate-middle-x card-positions"
+    >
+      <div class="row">
+        <div class="col-md-4 px-lg-4 px-2">
+          <div class="card rounded-4">
+            <img
+              src="{{ imageURL }}/home/services/car-rental.jpg"
+              alt=""
+              class="services-images p-md-2 z-1"
+            />
+            <div class="glass rounded-top-4"></div>
+            <div class="card-content">
+              <h4
+                class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
+              >
+                Luxury car Rental
+              </h4>
+              <p
+                class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2"
+              >
+                Choose from top brands like Rolls-Royce, Lamborghini and Range
+                Rover. Enjoy one time or long-term rentals with free delivery
+                across the UAE.
+              </p>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+              >
+                know more
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card rounded-4">
-          <img
-            src="{{ imageURL }}/home/services/yacht_rental.png"
-            alt=""
-            class="services-images p-md-3 z-1"
-          />
-          <div class="glass rounded-top-4"></div>
-          <div class="card-content">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
-            >
-              Luxury Yacht Rental
-            </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Book private yachts for parties, getaways or events which includes
-              crew, catering options and scenic routes like Marina & Atlantis.
-            </p>
-            <a
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
-            >
-              know more
-            </a>
+        <div class="col-md-4 px-lg-4 px-2">
+          <div class="card rounded-4">
+            <img
+              src="{{ imageURL }}/home/services/yacht_rental.png"
+              alt=""
+              class="services-images p-md-2 z-1"
+            />
+            <div class="glass rounded-top-4"></div>
+            <div class="card-content">
+              <h4
+                class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
+              >
+                Luxury Yacht Rental
+              </h4>
+              <p
+                class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2"
+              >
+                Book private yachts for parties, getaways or events which
+                includes crew, catering options and scenic routes like Marina &
+                Atlantis.
+              </p>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+              >
+                know more
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card rounded-4">
-          <img
-            src="{{ imageURL }}/home/services/chauffeur.png"
-            alt=""
-            class="services-images p-md-3 z-1"
-          />
-          <div class="glass rounded-top-4"></div>
-          <div class="card-content">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
-            >
-              Luxury Chauffeur Services
-            </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Chauffeur services in Dubai with Professional drivers, luxury cars
-              and on time service. Ideal for VIP guests, wedding or airport
-              transfers.
-            </p>
-            <a
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
-            >
-              know more
-            </a>
+        <div class="col-md-4 px-lg-4 px-2">
+          <div class="card rounded-4">
+            <img
+              src="{{ imageURL }}/home/services/chauffeur.png"
+              alt=""
+              class="services-images p-md-2 z-1"
+            />
+            <div class="glass rounded-top-4"></div>
+            <div class="card-content">
+              <h4
+                class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
+              >
+                Luxury Chauffeur Services
+              </h4>
+              <p
+                class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2"
+              >
+                Chauffeur services in Dubai with Professional drivers, luxury
+                cars and on time service. Ideal for VIP guests, wedding or
+                airport transfers.
+              </p>
+              <a
+                class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p"
+              >
+                know more
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -878,7 +886,7 @@
     <h6
       class="text-center size18 redhat-semibold text-capitalize gray-light-color"
     >
-      rent all popular cars
+      rent our popular cars
     </h6>
 
     <div class="px-4 w-100 mx-auto my-0">
@@ -904,7 +912,7 @@
                 </h6>
               </div>
               <span
-                class="size8 white-color redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
+                class="size8 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
                 >special number plate</span
               >
             </div>

@@ -71,47 +71,78 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.onScroll();
+
     const minInput = this.minPriceInput.nativeElement;
     const maxInput = this.maxPriceInput.nativeElement;
     const rangeMinEl = this.rangeMin.nativeElement;
     const rangeMaxEl = this.rangeMax.nativeElement;
 
-    // Initialize input values
-    minInput.value = rangeMinEl.value;
-    maxInput.value = rangeMaxEl.value;
+    this.updateSlider(); // initialize
 
-    // Sync range to inputs
+    // Sync range sliders
     rangeMinEl.addEventListener('input', () => {
-      const min = parseInt(rangeMinEl.value);
-      const max = parseInt(rangeMaxEl.value);
-      if (min > max) rangeMinEl.value = max;
-      minInput.value = rangeMinEl.value;
+      let min = parseInt(rangeMinEl.value);
+      let max = parseInt(rangeMaxEl.value);
+      if (min > max - 500) {
+        min = max - 500;
+        rangeMinEl.value = min;
+      }
+      minInput.value = min;
+      this.minPrice = min;
+      this.updateSlider();
     });
 
     rangeMaxEl.addEventListener('input', () => {
-      const min = parseInt(rangeMinEl.value);
-      const max = parseInt(rangeMaxEl.value);
-      if (max < min) rangeMaxEl.value = min;
-      maxInput.value = rangeMaxEl.value;
+      let min = parseInt(rangeMinEl.value);
+      let max = parseInt(rangeMaxEl.value);
+      if (max < min + 500) {
+        max = min + 500;
+        rangeMaxEl.value = max;
+      }
+      maxInput.value = max;
+      this.maxPrice = max;
+      this.updateSlider();
     });
 
-    // Sync inputs to range
+    // Sync number inputs
     minInput.addEventListener('input', () => {
       let min = parseInt(minInput.value) || 0;
       let max = parseInt(maxInput.value) || 0;
       if (min < 0) min = 0;
-      if (min > max) min = max;
+      if (min > max - 500) min = max - 500;
       rangeMinEl.value = min;
-      minInput.value = min;
+      this.minPrice = min;
+      this.updateSlider();
     });
 
     maxInput.addEventListener('input', () => {
       let min = parseInt(minInput.value) || 0;
       let max = parseInt(maxInput.value) || 0;
-      if (max < min) max = min;
+      if (max < min + 500) max = min + 500;
       rangeMaxEl.value = max;
-      maxInput.value = max;
+      this.maxPrice = max;
+      this.updateSlider();
     });
+  }
+
+
+
+  updateSlider() {
+    const rangeMinEl = this.rangeMin.nativeElement;
+    const rangeMaxEl = this.rangeMax.nativeElement;
+    const sliderRange = document.getElementById('slider-range');
+
+    const min = parseInt(rangeMinEl.value);
+    const max = parseInt(rangeMaxEl.value);
+    const maxLimit = parseInt(rangeMinEl.max);
+
+    const percentMin = (min / maxLimit) * 100;
+    const percentMax = (max / maxLimit) * 100;
+
+    if (sliderRange) {
+      sliderRange.style.left = percentMin + '%';
+      sliderRange.style.width = (percentMax - percentMin) + '%';
+    }
   }
 
   get totalPages(): number {
