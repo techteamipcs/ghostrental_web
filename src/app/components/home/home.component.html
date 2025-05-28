@@ -612,7 +612,7 @@
                           {{ car.transmission }}
                         </h6>
                       </div>
-                      <span
+                      <span *ngIf="car && car.isvipNumberPlate"
                         class="size8 redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
                         >special number plate</span
                       >
@@ -913,7 +913,7 @@
                   {{ car.transmission }}
                 </h6>
               </div>
-              <span
+              <span *ngIf="car && car.isvipNumberPlate"
                 class="size8 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
                 >special number plate</span
               >
