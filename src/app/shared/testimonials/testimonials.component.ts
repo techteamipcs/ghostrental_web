@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, NgZone } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, NgZone, PLATFORM_ID, Inject } from '@angular/core';
 import { Swiper } from 'swiper';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../providers/data/data.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-testimonials',
@@ -95,7 +96,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
-  constructor(private ngZone: NgZone, public dataservice: DataService) { }
+  constructor(private ngZone: NgZone, public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
     this.getTestimonials();
@@ -126,9 +127,10 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private initSwiper(): void {
+  public initSwiper(): void {
     if (this.swiperRef?.nativeElement && !this.swiper) {
       try {
+        if (isPlatformBrowser(this.platformId)) {
         this.swiper = new Swiper(this.swiperRef.nativeElement, {
           slidesPerView: 1,
           spaceBetween: 30,
@@ -171,6 +173,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
             this.swiper?.slidePrev();
           });
         }
+      }
       } catch (error) {
         console.error('Error initializing Swiper:', error);
       }

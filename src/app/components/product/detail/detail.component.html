@@ -1,7 +1,7 @@
 <section class="product-detail" *ngIf="vehicleData">
   <div class="container-fluid">
     <div class="product-header mb-4">
-      <h3 class="size22 redhat-semibold text-uppercase mb-2">
+      <h3 *ngIf="vehicleData.bodytype_data && vehicleData.bodytype_data.length > 0" class="size22 redhat-semibold text-uppercase mb-2">
         {{ vehicleData.bodytype_data[0].name }}
       </h3>
       <h1 class="size46 performa-light mb-4">
@@ -492,9 +492,9 @@
         <h3 class="text-capitalize size60 performa-light">related listings</h3>
 
         <div class="position-relative">
-          <div class="swiper car-collection-swiper" #carSwiper>
+          <div class="swiper car-collection-swiper">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let car of ourCarCollections">
+              <div class="swiper-slide" *ngFor="let car of relatedVehicleData">
                 <div class="car-card">
                   <img
                     src="{{ backendURl }}/media/{{ car.media_data[0].src }}"

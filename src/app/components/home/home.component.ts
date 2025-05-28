@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 Swiper.use([Navigation]);
 
@@ -15,8 +16,6 @@ Swiper.use([Navigation]);
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  @ViewChild('carSwiper') carSwiperRef!: ElementRef;
-  @ViewChild('yachtSwiper') yachtSwiperRef!: ElementRef;
   private carSwiper: Swiper | null = null;
   private yachtSwiper: Swiper | null = null;
   bannerData: any;
@@ -76,7 +75,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private dataservice: DataService,
-    public router: Router
+    public router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
@@ -93,19 +93,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getBodyTypes();
     this.getModels();
     this.getBrands();
+    this.initCarSwiper();
+    this.initYachtSwiper();
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.initCarSwiper();
-      this.initYachtSwiper();
-    }, 0);
+    
   }
 
-  private initCarSwiper() {
-    const el = this.carSwiperRef?.nativeElement;
-    if (el instanceof HTMLElement) {
-      this.carSwiper = new Swiper(el, {
+  public initCarSwiper() {
+    if (isPlatformBrowser(this.platformId)) {
+     new Swiper('.car-collection-swiper', {
         slidesPerView: 4.5,         // 4 full + 0.5 peek
         loop: true,
         spaceBetween: 20,           // adjust gap if needed
@@ -123,10 +121,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
 
-  private initYachtSwiper() {
-    const el = this.yachtSwiperRef?.nativeElement;
-    if (el instanceof HTMLElement) {
-      this.yachtSwiper = new Swiper(el, {
+  public initYachtSwiper() {
+    if (isPlatformBrowser(this.platformId)) {
+      new Swiper('.yacht-collection-swiper', {
         slidesPerView: 4.5,
         loop: true,
         spaceBetween: 20,

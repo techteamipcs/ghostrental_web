@@ -1,6 +1,6 @@
 import {
   Component, OnInit, HostListener, ElementRef, ViewChild,
-  AfterViewInit, OnDestroy
+  AfterViewInit, OnDestroy, PLATFORM_ID, Inject
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import Swiper from 'swiper';
@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../providers/data/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
+import * as moment from "moment";
 
 interface CarDetailItem {
   icon: string;
@@ -28,34 +30,38 @@ interface CarImage {
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
-  imageURL = `${environment.url}/assets`;
+  imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
   url_key: any;
   vehicleData: any;
-  relatedVehicleData: any[] = [];
-  interior: any[] = [];
-  exterior: any[] = [];
-  safety: any[] = [];
-  comfort: any[] = [];
+  relatedVehicleData: any = [];
+  interior: any = [];
+  exterior: any = [];
+  safety: any = [];
+  comfort: any = [];
   images: CarImage[] = [];
   carDetails: CarDetailItem[] = [];
-  trendingRentalCars: any[] = [];
-  ourCarCollections: any[] = [];
+  trendingRentalCars: any = [];
+  ourCarCollections: any = [];
   currentIndex = 0;
   isLoading = true;
-
+  relatedvehicleIds: any = [];
+  existedVehicle:any;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
   @ViewChild('carSwiper', { static: false }) carSwiperRef!: ElementRef;
-
-  private carSwiper: Swiper | null = null;
+  private stickyCardElement!: HTMLElement;
+  private stickyContainerElement!: HTMLElement;
   private headerOffset = 150;
+  private isSticky = false;
+  private isBottomReached = false;
+  private carSwiper: Swiper | null = null;
   private destroy$ = new Subject<void>();
 
   constructor(
     public router: Router,
     public actRoute: ActivatedRoute,
-    public dataservice: DataService
+    public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.url_key = this.actRoute.snapshot.paramMap.get('url_key');
     if (this.url_key) {
@@ -123,33 +129,45 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataservice.getSingleVehicleDataByUrlKey(obj)
       .pipe(takeUntil(this.destroy$))
       .subscribe(response => {
-        if (response.code === 200 && response.result?.length > 0) {
+        if (response.result && response.result.length > 0) {
           this.vehicleData = response.result[0];
           this.initializeCarDetails();
-          this.sortFeatures();
+          if(this.vehicleData && this.vehicleData.related_vehicles && this.vehicleData.related_vehicles.length > 0 ){
+            this.relatedvehicleIds = this.vehicleData.related_vehicles;
+          }
+          this.getCarData();
+          if (this.vehicleData && this.vehicleData.feature_data && this.vehicleData.feature_data.length > 0) {
+            this.vehicleData.feature_data.forEach(feature => {
+              if (feature.type == "Interior") {
+                this.interior.push(feature);
+              } else if (feature.type == "Exterior") {
+                this.exterior.push(feature);
+              } else if (feature.type == "Safety") {
+                this.safety.push(feature);
+              } else if (feature.type == "Comfort & Convenience") {
+                this.comfort.push(feature);
+              }
+            });
+          }
         } else {
           this.vehicleData = null;
         }
       });
   }
 
-  private getCarData() {
-    const obj = {
+  getCarData() {
+    let obj = {
       limit: 10,
       page: 1,
-      availabilityStatus: 'available',
-      vehicle_type: 'Car'
+      vehicle_Ids: this.relatedvehicleIds
     };
-    this.dataservice.getFilterdVehicles(obj)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(response => {
-        if (response.code === 200 && response.result?.length > 0) {
-          response.result.forEach(vehicle => {
-            if (vehicle.home_vehicle) this.ourCarCollections.push(vehicle);
-            if (vehicle.featured_vehicle) this.trendingRentalCars.push(vehicle);
-          });
+    this.dataservice.getvehiclewithIDs(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.relatedVehicleData = response.result;
         }
-      });
+      }
+    });
   }
 
   private sortFeatures() {
@@ -163,82 +181,87 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  private checkSticky() {
-    if (!this.stickyCard || !this.stickyContainer) return;
+  public checkSticky() {
+   if (!this.stickyCardElement || !this.stickyContainerElement) {;
+      if (isPlatformBrowser(this.platformId)) {
+        const card = this.stickyCard.nativeElement;
+        const container = this.stickyContainer.nativeElement;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const containerRect = container.getBoundingClientRect();
+        const containerBottom = containerRect.bottom + scrollTop - this.headerOffset - 20;
+        const startSticky = containerRect.top + scrollTop - this.headerOffset;
+        const stopSticky = containerBottom - card.offsetHeight;
 
-    const card = this.stickyCard.nativeElement;
-    const container = this.stickyContainer.nativeElement;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const containerRect = container.getBoundingClientRect();
-    const containerBottom = containerRect.bottom + scrollTop - this.headerOffset - 20;
-    const startSticky = containerRect.top + scrollTop - this.headerOffset;
-    const stopSticky = containerBottom - card.offsetHeight;
-
-    if (scrollTop > startSticky && scrollTop < stopSticky) {
-      card.classList.add('stuck');
-      card.classList.remove('bottom-reached');
-    } else if (scrollTop >= stopSticky) {
-      card.classList.remove('stuck');
-      card.classList.add('bottom-reached');
-    } else {
-      card.classList.remove('stuck', 'bottom-reached');
+        if (scrollTop > startSticky && scrollTop < stopSticky) {
+          card.classList.add('stuck');
+          card.classList.remove('bottom-reached');
+        } else if (scrollTop >= stopSticky) {
+          card.classList.remove('stuck');
+          card.classList.add('bottom-reached');
+        } else {
+          card.classList.remove('stuck', 'bottom-reached');
+        }
+      } 
     }
   }
 
-  private initCarSwiper() {
+  public initCarSwiper() {
     if (this.carSwiperRef?.nativeElement) {
-      this.carSwiper = new Swiper(this.carSwiperRef.nativeElement, {
-        modules: [Navigation],
-        slidesPerView: 3,
-        spaceBetween: 20,
-        navigation: {
-          nextEl: '.car-swiper-button-next',
-          prevEl: '.car-swiper-button-prev'
-        },
-        loop: false,
-        breakpoints: {
-          320: { slidesPerView: 1, spaceBetween: 10 },
-          768: { slidesPerView: 2, spaceBetween: 15 },
-          1024: { slidesPerView: 3, spaceBetween: 20 }
-        }
-      });
+      if (isPlatformBrowser(this.platformId)) {
+        this.carSwiper = new Swiper(this.carSwiperRef.nativeElement, {
+          modules: [Navigation],
+          slidesPerView: 3,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: '.car-swiper-button-next',
+            prevEl: '.car-swiper-button-prev'
+          },
+          loop: false,
+          breakpoints: {
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 15 },
+            1024: { slidesPerView: 3, spaceBetween: 20 }
+          }
+        });
+      }
     }
   }
 
   private initializeCarDetails() {
-    if (!this.vehicleData) return;
+    if (this.vehicleData) {
 
-    this.carDetails = [
-      { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
-      { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
-      { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
-      { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
-      { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
-      { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
-      // { icon: 'year', label: 'year', value: this.vehicleData.year },
-      { icon: 'year', label: 'year', value: this.vehicleData.year?.toString()?.split('-')[0] || this.vehicleData.year },
-      { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
-      { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
-    ];
+      this.carDetails = [
+        { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
+        { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
+        { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
+        { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
+        { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
+        { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
+        // { icon: 'year', label: 'year', value: this.vehicleData.year },
+        { icon: 'year', label: 'year', value: 2024 },
+        { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
+        { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
+      ];
 
-    if (this.vehicleData.media_data?.length > 0) {
-      this.images.push({
-        src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
-        alt: this.vehicleData.media_data[0].name,
-        isActive: false
+      if (this.vehicleData.media_data?.length > 0) {
+        this.images.push({
+          src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
+          alt: this.vehicleData.media_data[0].name,
+          isActive: false
+        });
+      }
+
+      this.vehicleData.gallery_image?.forEach(gal => {
+        this.images.push({
+          src: `${this.backendURl}/media/${gal.src}`,
+          alt: gal.name,
+          isActive: false
+        });
       });
-    }
 
-    this.vehicleData.gallery_image?.forEach(gal => {
-      this.images.push({
-        src: `${this.backendURl}/media/${gal.src}`,
-        alt: gal.name,
-        isActive: false
-      });
-    });
-
-    if (this.images.length > 0) {
-      this.setActiveImageById(this.images[0]);
+      if (this.images.length > 0) {
+        this.setActiveImageById(this.images[0]);
+      }
     }
   }
 

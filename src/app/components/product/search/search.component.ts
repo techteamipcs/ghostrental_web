@@ -47,6 +47,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   availableendDate: any;
   isFilterCollapsed = false;
   isMobileFilterVisible: boolean = false;
+  sort: any = '';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -210,7 +211,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       maxPrice: this.maxPrice,
       price_type: this.price_type,
       startDate: this.availableStartDate,
-      endDate: this.availableendDate
+      endDate: this.availableendDate,
+      sort: this.sort
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -312,8 +314,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onChangeSort(event) {
-
+  onChangeSort(data) {
+     if (data) {
+      this.sort = data.target.value;
+      this.getCarData();
+     }
   }
 
   // UI Helpers

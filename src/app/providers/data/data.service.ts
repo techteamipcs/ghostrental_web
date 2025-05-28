@@ -224,6 +224,15 @@ export class DataService {
     );
   };
 
+  getvehiclewithIDs = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/vehicle/getvehiclewithIDs';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
 
   //****************** Vehicle Data API's Starts **************************//
   getSingleVehicleDataByUrlKey = (data: any): Observable<any> => {

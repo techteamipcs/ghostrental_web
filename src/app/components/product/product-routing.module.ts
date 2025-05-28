@@ -10,6 +10,10 @@ const routes: Routes = [
     component: ListComponent
   },
   {
+    path: 'detail',
+    component: DetailComponent
+  },
+  {
     path: 'detail/:url_key',
     component: DetailComponent
   },

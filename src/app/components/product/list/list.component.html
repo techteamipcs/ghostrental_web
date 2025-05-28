@@ -154,7 +154,8 @@
                 </h5>
               </div>
               <a
-                href="/product/detail/{{ car.url_key }}"
+                [routerLink]="['/product/detail', car.url_key]"
+                routerLinkActive="router-link-active"
                 class="btn p-0 mt-auto text-decoration-none"
                 >View details</a
               >
