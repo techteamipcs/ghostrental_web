@@ -19,8 +19,10 @@
               />
             </div>
             <div class="col-md-6 col-lg-7 text-start">
-              <div class="mb-2 d-flex">
-                <ng-container *ngFor="let star of getStars(testimonial.rating)">
+              <div class="mb-2 d-flex gap-2">
+                <ng-container
+                  *ngFor="let star of getStars(testimonial.ratings)"
+                >
                   <img
                     src="{{ imageURL }}/testimonials/star-icon.svg"
                     alt=""

@@ -184,7 +184,7 @@
         <div class="btns">
           <button class="w-100 bg-black rounded-3 mb-2 p-3">
             <a
-             [routerLink]="['/contact/product',vehicleData.name]"
+              [routerLink]="['/contact/product', vehicleData.name]"
               class="size18 redhat-semibold text-decoration-none white-color text-capitalize"
             >
               send a mail
@@ -493,18 +493,21 @@
 <section class="collection">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 pb-5">
+      <div class="col-12 pb-md-5 pb-2">
         <h3 class="text-capitalize size60 performa-light">related listings</h3>
 
         <div class="position-relative">
-          <div class="swiper car-collection-swiper">
+          <div
+            class="swiper car-collection-swiper"
+            id="related-vehicles-swiper"
+          >
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of relatedVehicleData">
-                <div class="car-card">
+                <div class="car-card rounded-4">
                   <img
                     src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"
-                    class="img-fluid rounded w-100"
+                    class="img-fluid rounded-4 w-100 thumbnail-image"
                   />
                   <div class="car-info">
                     <h4 class="car-name mb-1 size26 redhat-semibold">
@@ -572,14 +575,14 @@
               </div>
             </div>
           </div>
-          <div class="text-start gap-2 d-flex mt-5">
-            <div class="button car-swiper-button-prev">
+          <div class="swiper-navigation">
+            <div class="swiper-button-prev car-swiper-button-prev">
               <lucide-icon
                 name="arrow-left"
                 class="swiper-button-icon"
               ></lucide-icon>
             </div>
-            <div class="button car-swiper-button-next">
+            <div class="swiper-button-next car-swiper-button-next">
               <lucide-icon
                 name="arrow-right"
                 class="swiper-button-icon"

@@ -51,15 +51,13 @@
         <div
           class="col-xl-4 col-lg-5 col-md-7 col-sm-10 col-11 mt-lg-0 mt-md-5 mt-sm-4 mt-3 mx-auto"
         >
-          <form class="form-glass ms-auto" (submit)="onSubmit()">
-            <h2
-              class="text-center mb-xl-3 mb-lg-2 mb-md-2 mb-2 size28 redhat-bold black-color"
-            >
+          <form class="form-glass ms-auto gap-0" (submit)="onSubmit()">
+            <h2 class="text-center size28 redhat-bold black-color">
               Quick Reservation
             </h2>
 
             <div
-              class="d-flex justify-content-center align-items-center gap-2 mb-xl-3 mb-lg-2 mb-md-2 mb-2"
+              class="d-flex justify-content-center align-items-center gap-2 toggle"
             >
               <span class="size18 redhat-bold text-uppercase m-0 black-color"
                 >CARS</span
@@ -80,7 +78,7 @@
               >
             </div>
 
-            <div class="row">
+            <div class="row type-margin">
               <div class="col-6" *ngIf="!isVehicleYacht">
                 <select
                   class="form-select size14 redhat-semibold"
@@ -170,12 +168,12 @@
             </div>
 
             <div
-              class="section-title size18 redhat-bold black-color my-xl-3 my-lg-2 my-md-2 my-2"
+              class="section-title size18 redhat-bold black-color label-margin"
             >
               Pickup
             </div>
             <div class="row">
-              <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
+              <div class="col-6">
                 <div class="position-relative">
                   <label
                     for="startDate"
@@ -187,13 +185,13 @@
                     id="startDate"
                     [(ngModel)]="selelctedstartDate"
                     name="selelctedstartDate"
-                    class="form-control size14 redhat-semibold"
+                    class="form-control size14 redhat-semibold input-margin"
                     placeholder="Date"
                     required
                   />
                 </div>
               </div>
-              <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
+              <div class="col-6">
                 <div class="position-relative">
                   <label
                     for="startTime"
@@ -211,7 +209,7 @@
                   />
                 </div>
               </div>
-              <div class="col-12">
+              <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
                   <select class="form-select size14 redhat-semibold" required>
                     <option
@@ -249,12 +247,12 @@
             </div>
 
             <div
-              class="section-title size18 redhat-bold black-color my-xl-3 my-lg-2 my-md-2 my-2"
+              class="section-title size18 redhat-bold black-color label-margin"
             >
               Return
             </div>
             <div class="row">
-              <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
+              <div class="col-6">
                 <div class="position-relative">
                   <label for="endDate" class="form-label size14 redhat-semibold"
                     >Date</label
@@ -264,13 +262,13 @@
                     id="endDate"
                     [(ngModel)]="selelctedendDate"
                     name="selelctedendDate"
-                    class="form-control size14 redhat-semibold"
+                    class="form-control size14 redhat-semibold input-margin"
                     placeholder="Date"
                     required
                   />
                 </div>
               </div>
-              <div class="col-6 mb-xl-3 mb-lg-2 mb-md-2 mb-2">
+              <div class="col-6">
                 <div class="position-relative">
                   <label for="endTime" class="form-label size14 redhat-semibold"
                     >Time</label
@@ -286,7 +284,7 @@
                   />
                 </div>
               </div>
-              <div class="col-12">
+              <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
                   <select class="form-select size14 redhat-semibold" required>
                     <option value="" disabled selected>
@@ -314,7 +312,7 @@
 
             <button
               type="submit"
-              class="black-button d-flex mx-auto size18 redhat-bold mt-xl-5 mt-lg-4 mt-md-3 mt-2"
+              class="black-button d-flex mx-auto size18 redhat-bold btn-margin"
               (click)="goToResults()"
             >
               Book Now
@@ -332,7 +330,7 @@
     <div class="row">
       <div
         *ngFor="let car of cartypeData"
-        class="col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
+        class="position-relative padding-between col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
       >
         <img
           src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
@@ -342,7 +340,7 @@
           routerLinkActive="router-link-active"
         />
         <p
-          class="size18 redhat-semibold text-center m-0"
+          class="size18 redhat-semibold text-center type-margin text-capitalize"
           [routerLink]="['/product/list', car.url_key]"
           routerLinkActive="router-link-active"
         >
@@ -394,7 +392,7 @@
           <img
             src="{{ imageURL }}/home/services/car-rental.jpg"
             alt=""
-            class="services-images p-md-2 z-1"
+            class="services-images p-md-2 p-1 z-1"
           />
           <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
@@ -421,7 +419,7 @@
           <img
             src="{{ imageURL }}/home/services/yacht_rental.png"
             alt=""
-            class="services-images p-md-2 z-1"
+            class="services-images p-md-2 p-1 z-1"
           />
           <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
@@ -447,7 +445,7 @@
           <img
             src="{{ imageURL }}/home/services/chauffeur.png"
             alt=""
-            class="services-images p-md-2 z-1"
+            class="services-images p-md-2 p-1 z-1"
           />
           <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
@@ -502,7 +500,7 @@
                     [alt]="car.name"
                     class="img-fluid rounded-4 w-100 thumbnail-image"
                   />
-                  <div class="card-content p-xl-4">
+                  <div class="card-content">
                     <div
                       class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
                     >

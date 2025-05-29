@@ -103,10 +103,10 @@ body {
 		font-size: 18px;
 	}
 	@media (max-width: 1024px) {
-		font-size: 16px;
+		font-size: 14px;
 	}
 	@media (max-width: 380px) {
-		font-size: 14px;
+		font-size: 12px;
 	}
 }
 .size22 {
@@ -176,6 +176,9 @@ body {
 }
 .size35 {
   font-size: 35px;
+  @media (max-width: 1366px) {
+		font-size: 28px;
+	}
   @media (max-width:1024px) {
     font-size: 21px;
   }
@@ -185,12 +188,15 @@ body {
 }
 .size42 {
   font-size: 42px;
-  @media (max-width:1200px) {
-    font-size: 36px;
-  }
-  @media (max-width:768px) {
-    font-size: 24px;
-  }
+  @media (max-width: 1366px) {
+		font-size: 32px;
+	}
+	@media (max-width: 767px) {
+		font-size: 28px;
+	}
+	@media (max-width: 575px) {
+		font-size: 24px;
+	}
 }
 .size46 {
   font-size: 46px;
@@ -347,7 +353,7 @@ body {
   color: $color-black;
   background-color: $color-white;
   border-radius: 100px;
-  padding: 18px 66px;
+  padding: 14px 68.5px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
@@ -366,12 +372,11 @@ body {
 }
 .white-border-button {
   width: max-content;
-
   border: 2px solid $color-white;
   color: $color-white;
   background-color: transparent;
   border-radius: 100px;
-  padding: 18px 66px;
+  padding: 14px 68.5px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
@@ -391,7 +396,7 @@ body {
   color: $color-gray-beige;
   background-color: $color-gray;
   border-radius: 100px;
-  padding: 18px 66px;
+  padding: 14px 68.5px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;

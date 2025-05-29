@@ -46,7 +46,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   currentIndex = 0;
   isLoading = true;
   relatedvehicleIds: any = [];
-  existedVehicle:any;
+  existedVehicle: any;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
   @ViewChild('carSwiper', { static: false }) carSwiperRef!: ElementRef;
@@ -75,6 +75,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.checkSticky();
+    // Initialize car swiper after a small delay to ensure DOM is ready
     setTimeout(() => this.initCarSwiper(), 100);
   }
 
@@ -132,7 +133,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
         if (response.result && response.result.length > 0) {
           this.vehicleData = response.result[0];
           this.initializeCarDetails();
-          if(this.vehicleData && this.vehicleData.related_vehicles && this.vehicleData.related_vehicles.length > 0 ){
+          if (this.vehicleData && this.vehicleData.related_vehicles && this.vehicleData.related_vehicles.length > 0) {
             this.relatedvehicleIds = this.vehicleData.related_vehicles;
           }
           this.getCarData();
@@ -182,7 +183,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public checkSticky() {
-   if (!this.stickyCardElement || !this.stickyContainerElement) {;
+    if (!this.stickyCardElement || !this.stickyContainerElement) {
+      ;
       if (isPlatformBrowser(this.platformId)) {
         const card = this.stickyCard.nativeElement;
         const container = this.stickyContainer.nativeElement;
@@ -201,14 +203,15 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
         } else {
           card.classList.remove('stuck', 'bottom-reached');
         }
-      } 
+      }
     }
   }
 
   public initCarSwiper() {
-    if (this.carSwiperRef?.nativeElement) {
-      if (isPlatformBrowser(this.platformId)) {
-        this.carSwiper = new Swiper(this.carSwiperRef.nativeElement, {
+    if (isPlatformBrowser(this.platformId)) {
+      // Initialize main car swiper if element exists
+      if (this.carSwiperRef?.nativeElement) {
+        this.carSwiper = new Swiper(this.carSwiperRef.nativeElement as HTMLElement, {
           modules: [Navigation],
           slidesPerView: 3,
           spaceBetween: 20,
@@ -221,6 +224,24 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
             320: { slidesPerView: 1, spaceBetween: 10 },
             768: { slidesPerView: 2, spaceBetween: 15 },
             1024: { slidesPerView: 3, spaceBetween: 20 }
+          }
+        });
+      }
+      const relatedSwiperEl = document.querySelector('.car-collection-swiper') as HTMLElement;
+      if (relatedSwiperEl && !(relatedSwiperEl as any).swiper) {
+        new Swiper(relatedSwiperEl, {
+          modules: [Navigation],
+          slidesPerView: 4,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: '.car-swiper-button-next',
+            prevEl: '.car-swiper-button-prev'
+          },
+          loop: true,
+          breakpoints: {
+            320: { slidesPerView: 1, },
+            768: { slidesPerView: 2, },
+            1024: { slidesPerView: 4, }
           }
         });
       }

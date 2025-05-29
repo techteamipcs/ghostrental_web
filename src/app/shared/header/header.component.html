@@ -19,7 +19,7 @@
 
     <!-- Mobile menu button -->
     <button
-      class="hamburger d-xl-none"
+      class="hamburger d-xl-none position-relative"
       type="button"
       (click)="toggleMenu($event)"
       aria-label="Toggle navigation"
@@ -69,8 +69,8 @@
       <li>
         <a href="/contact">
           <button
-            [class.black-button]="!isScrolled"
-            [class.white-button]="isScrolled"
+            [class.black-button]="!useWhiteButton && !isScrolled"
+            [class.white-button]="useWhiteButton || isScrolled"
             class="size18 redhat-bold"
             [class.dark]="isDarkText && !isScrolled"
           >

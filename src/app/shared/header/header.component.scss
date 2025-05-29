@@ -20,11 +20,14 @@ nav {
     
     &.large-padding {
       padding: 3rem 6rem;
+      @media (max-width: 1024px) {
+        padding: 3rem 2rem ;
+      }
     }
   }
   
   @media (max-width: 1024px) {
-    padding: 2rem !important;
+    padding: 2rem ;
   }
   
   // Default text color (white)
@@ -211,13 +214,15 @@ nav {
 
   // Hamburger Menu Button
 .hamburger {
-  padding: 15px;
+  // padding: 15px;
   display: inline-block;
   cursor: pointer;
   background: transparent;
   border: 0;
   margin: 0;
   z-index: 1001;
+  height: 100%;
+  width: 50px;
   
   &.dark {
     .hamburger-inner,
@@ -267,17 +272,16 @@ nav {
   width: 50px;
   height: auto;
   display: inline-block;
-  position: relative;
 }
 
 .hamburger-inner {
   display: block;
-  top: 50%;
-  margin-top: -1.5px;
+  // top: 50%;
+  // margin-top: -1.5px;
   width: 30px;
-  height: 2px;
+  height: 5px;
   background-color: #fff;
-  border-radius: 1px;
+  border-radius: 50px;
   position: absolute;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
@@ -285,28 +289,28 @@ nav {
     content: '';
     display: block;
     width: 50px;
-    height: 2px;
+    height: 5px;
     background-color: #fff;
-    border-radius: 1px;
+    border-radius: 50px;
     position: absolute;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
   &::after {
     content: '';
     display: block;
     width: 50%;
-    height: 2px;
+    height: 5px;
     background-color: #fff;
-    border-radius: 1px;
+    border-radius: 50px;
     position: absolute;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   &::before {
-    top: -10px;
+    top: -15px;
   }
   
   &::after {
-    bottom: -10px;
+    bottom: -15px;
     top: auto;
   }
 }

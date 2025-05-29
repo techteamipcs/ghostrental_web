@@ -21,9 +21,26 @@ export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
   isMenuOpen: boolean = false;
-  darkTextRoutes = ['/about', '/privacy', '/testimonials', '/product/search', '/product/detail/:id', '/terms', '/privacy', '/contact'];
+  darkTextRoutes = [
+    '/about',
+    '/privacy',
+    '/testimonials',
+    '/product/search',
+    '/terms',
+    '/contact',
+    '/product/detail',
+    '/services'
+  ];
+
+  whiteTextRoutes = [
+    '/',
+    '/list',
+    '/services'
+  ];
+
   isDarkText = false;
   currentRoute: string = '';
+  useWhiteButton = false;
   isBrowser: boolean;
   hasLargePadding = false;
   largePaddingRoutes = ['/home', '/list', '/services'];
@@ -42,14 +59,25 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.url;
-      this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.includes(route));
-      
-      // Check if current route should have large padding
+
+      const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
+        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+      );
+      const shouldHaveDarkText = this.darkTextRoutes.some(route =>
+        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+      );
+
+      this.isDarkText = shouldHaveDarkText && !shouldHaveWhiteText;
+
+      this.useWhiteButton = this.whiteTextRoutes.some(route =>
+        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+      );
+
       const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
-      this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) || 
-                            isDetailRoute ||
-                            this.currentRoute === '/';
-      
+      this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
+        isDetailRoute ||
+        this.currentRoute === '/';
+
       if (this.isBrowser) {
         window.scrollTo(0, 0);
       }
@@ -60,7 +88,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
-    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) || this.currentRoute.startsWith('/product/detail/');
+    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) ||
+      this.currentRoute.startsWith('/product/detail');
     this.updateTextColor();
   }
 

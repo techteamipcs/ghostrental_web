@@ -48,7 +48,7 @@
 
               <!-- Rental Type -->
               <label
-                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+                class="form-label gray-light-color size14 redhat-semibold mb-1"
                 >Rental Type</label
               >
               <select
@@ -118,46 +118,46 @@
                   {{ item.name }}
                 </option>
               </select>
-
               <!-- Date From -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date From</label
               >
               <div class="position-relative">
-                <span *ngIf="!availableStartDate"
+                <span
+                  *ngIf="!availableStartDate"
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
                   >Start date</span
                 >
                 <!-- <span
-                  class="position-absolute bg-white"
-                  style="top: 13%; right: 3%"
-                  ><lucide-icon name="calendar"
-                /></span> -->
+                    class="position-absolute bg-white"
+                    style="top: 13%; right: 3%"
+                    ><lucide-icon name="calendar"
+                  /></span> -->
                 <input
                   type="datetime-local"
                   class="form-control size16 redhat-semibold mb-2"
                   [(ngModel)]="availableStartDate"
                 />
               </div>
-
               <!-- Date To -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date To</label
               >
               <div class="position-relative">
-                <span *ngIf="!availableendDate"
+                <span
+                  *ngIf="!availableendDate"
                   class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
                   style="top: 20%; left: 4%"
                   >End date</span
                 >
                 <!-- <span
-                  class="position-absolute bg-white"
-                  style="top: 13%; right: 3%"
-                  ><lucide-icon name="calendar"
-                /></span> -->
+                    class="position-absolute bg-white"
+                    style="top: 13%; right: 3%"
+                    ><lucide-icon name="calendar"
+                  /></span> -->
                 <input
                   type="datetime-local"
                   class="form-control size16 redhat-semibold mb-2"
@@ -463,22 +463,13 @@
             <option value="A-Z" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z
             </option>
-            <option
-              value="H-L"
-              class="size14 redhat-semibold text-capitalize"
-            >
+            <option value="H-L" class="size14 redhat-semibold text-capitalize">
               Price: High to Low
             </option>
-            <option
-              value="L-H"
-              class="size14 redhat-semibold text-capitalize"
-            >
+            <option value="L-H" class="size14 redhat-semibold text-capitalize">
               Price: Low to High
             </option>
-            <option
-              value="old"
-              class="size14 redhat-semibold text-capitalize"
-            >
+            <option value="old" class="size14 redhat-semibold text-capitalize">
               Old to New
             </option>
             <option
@@ -515,7 +506,8 @@
                         {{ car.transmission }}
                       </h6>
                     </div>
-                    <span *ngIf="car && car.isvipNumberPlate"
+                    <span
+                      *ngIf="car && car.isvipNumberPlate"
                       class="size8 redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
                       >special number plate</span
                     >
@@ -577,46 +569,45 @@
               </div>
             </div>
           </div>
-
-          <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
-            <ul
-              class="pagination justify-content-center align-items-center gap-2"
-            >
-              <!-- Previous -->
-              <li [class.disabled]="currentPage === 1">
-                <button
-                  class="circle-btn filled"
-                  [disabled]="currentPage === 1"
-                  (click)="onPageChange(currentPage - 1)"
-                >
-                  <lucide-icon name="arrow-left" />
-                </button>
-              </li>
-
-              <!-- Page Numbers -->
-              <li *ngFor="let page of getPages()">
-                <button
-                  class="number-btn"
-                  [class.active-page]="page === currentPage"
-                  (click)="onPageChange(page)"
-                >
-                  {{ page }}
-                </button>
-              </li>
-
-              <!-- Next -->
-              <li [class.disabled]="currentPage === totalPages">
-                <button
-                  class="circle-btn filled"
-                  [disabled]="currentPage === totalPages"
-                  (click)="onPageChange(currentPage + 1)"
-                >
-                  <lucide-icon name="arrow-right" />
-                </button>
-              </li>
-            </ul>
-          </nav>
         </div>
+        <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
+          <ul
+            class="pagination justify-content-center align-items-center gap-2"
+          >
+            <!-- Previous -->
+            <li [class.disabled]="currentPage === 1">
+              <button
+                class="circle-btn filled"
+                [disabled]="currentPage === 1"
+                (click)="onPageChange(currentPage - 1)"
+              >
+                <lucide-icon name="arrow-left" />
+              </button>
+            </li>
+
+            <!-- Page Numbers -->
+            <li *ngFor="let page of getPages()">
+              <button
+                class="number-btn"
+                [class.active-page]="page === currentPage"
+                (click)="onPageChange(page)"
+              >
+                {{ page }}
+              </button>
+            </li>
+
+            <!-- Next -->
+            <li [class.disabled]="currentPage === totalPages">
+              <button
+                class="circle-btn filled"
+                [disabled]="currentPage === totalPages"
+                (click)="onPageChange(currentPage + 1)"
+              >
+                <lucide-icon name="arrow-right" />
+              </button>
+            </li>
+          </ul>
+        </nav>
         <!-- </div> -->
       </div>
     </div>
