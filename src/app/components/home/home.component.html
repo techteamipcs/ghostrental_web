@@ -9,10 +9,7 @@
       decoding="async"
     />
 
-    <div
-      style="top: 52%"
-      class="position-absolute w-100 start-50 translate-middle"
-    >
+    <div class="position-absolute w-100 start-50 translate-middle form-top">
       <div class="row">
         <div class="col-xl-5 col-lg-5 col-md-10 col-sm-10 col-11 mx-auto">
           <div class="content mt-lg-5 mt-md-0 mt-0" *ngIf="!bannerData">
@@ -51,7 +48,10 @@
         <div
           class="col-xl-4 col-lg-5 col-md-7 col-sm-10 col-11 mt-lg-0 mt-md-5 mt-sm-4 mt-3 mx-auto"
         >
-          <form class="form-glass ms-auto gap-0" (submit)="onSubmit()">
+          <form
+            class="form-glass ms-md-auto m-md-0 m-auto gap-0"
+            (submit)="onSubmit()"
+          >
             <h2 class="text-center size28 redhat-bold black-color">
               Quick Reservation
             </h2>
@@ -329,7 +329,9 @@
 </section>
 
 <section class="car-types-section sectionPadding">
-  <h3 class="text-center mb-3 size22 redhat-bold">Browse by Car Type</h3>
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
+    Browse by Car Type
+  </h3>
   <div class="container-fluid">
     <div class="row">
       <div
@@ -372,7 +374,7 @@
       <div
         class="position-absolute topspace text-center d-flex flex-column justify-content-center align-items-center h-100 w-100"
       >
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-11">
           <h3 class="size22 redhat-bold text-capitalize beige-color">
             our Services
           </h3>
@@ -481,7 +483,7 @@
         <div
           class="d-flex justify-content-between align-items-center mb-md-4 mb-2 margin-right"
         >
-          <h3 class="text-capitalize size60 performa-light">
+          <h3 class="text-capitalize size60 performa-light mb-0">
             our car collection
           </h3>
           <button class="black-button size18 redhat-bold">view all</button>
@@ -610,7 +612,7 @@
         <div
           class="d-flex justify-content-between align-items-center mb-4 margin-right"
         >
-          <h3 class="text-capitalize size60 performa-light">
+          <h3 class="text-capitalize size60 performa-light mb-0">
             our yacht collection
           </h3>
           <button class="black-button size18 redhat-bold">view all</button>
@@ -761,7 +763,9 @@
         What Sets Us Apart?
       </h3>
 
-      <div class="row justify-content-around gap-xl-5 gap-md-3 mt-xl-3 mt-2">
+      <div
+        class="row justify-content-around gap-xl-5 gap-md-3 gap-3 mt-xl-3 mt-2"
+      >
         <div
           class="col-xl-2 col-md-4 col-9 mb-md-4 mb-2"
           *ngFor="let feature of features"
@@ -877,7 +881,7 @@
           <h6
             class="text-center size18 redhat-semibold text-capitalize gray-light-color"
           >
-            rent all popular cars
+            rent our popular cars
           </h6>
         </div>
 
@@ -916,7 +920,7 @@
                     </div>
                     <a
                       href="/product/detail/{{ car.url_key }}"
-                      class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize color-card-p"
+                      class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize"
                       >View details</a
                     >
                   </div>

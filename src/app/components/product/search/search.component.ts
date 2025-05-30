@@ -48,7 +48,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   availableendDate: any;
   isFilterCollapsed = false;
   isMobileFilterVisible: boolean = false;
-  vipNumberPlate: any='';
+  vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     // Initialize mobile filter as closed
     this.isMobileFilterVisible = false;
     this.param_type = this.router.snapshot.paramMap.get('type');
-    if(this.param_type && this.param_type == 'vip'){
+    if (this.param_type && this.param_type == 'vip') {
       this.vipNumberPlate = true;
     }
   }
@@ -324,17 +324,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSort(data) {
-     if (data) {
+    if (data) {
       this.sort = data.target.value;
       this.getCarData();
-     }
+    }
   }
 
   onChangeSpecialNumber(data) {
-     if (data) {
-      this.vipNumberPlate = data.target.value =='true'? true : false;
+    if (data) {
+      this.vipNumberPlate = data.target.value == 'true' ? true : false;
       // this.getCarData();
-     }
+    }
   }
 
   // UI Helpers
