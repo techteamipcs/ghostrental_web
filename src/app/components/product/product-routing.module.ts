@@ -30,6 +30,10 @@ const routes: Routes = [
     component: SearchComponent
   },
   {
+    path: 'search/:type',
+    component: SearchComponent
+  },
+  {
     path: '**',
     component: ListComponent
   }

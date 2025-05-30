@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   url_key: any;
   carTypes: any = [];
   selectedbannerpage = 'product';
+  sort: any;
   constructor(
     private dataservice: DataService,
     public route: ActivatedRoute,
@@ -76,7 +77,8 @@ export class ListComponent implements OnInit {
       page: this.currentPage,
       availabilityStatus: 'available',
       vehicle_type: "Car",
-      car_type: this.carTypes
+      car_type: this.carTypes,
+      sort: this.sort
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -122,5 +124,12 @@ export class ListComponent implements OnInit {
         }
       }
     });
+  }
+
+  onChangeSort(data) {
+     if (data) {
+      this.sort = data.target.value;
+      this.getCarData();
+     }
   }
 }

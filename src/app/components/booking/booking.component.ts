@@ -43,6 +43,7 @@ export class BookingComponent {
   filteredModels: any = [];
   listBrands: any = [];
   filteredBrands: any = [];
+  sort:any;
   constructor(
     private dataservice: DataService,
     public route: ActivatedRoute,
@@ -163,7 +164,8 @@ export class BookingComponent {
       brandId: this.filteredBrands,
       modelId:this.filteredModels,
       startDate: this.availableStartDate,
-      endDate: this.availableendDate
+      endDate: this.availableendDate,
+      sort: this.sort
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -179,6 +181,13 @@ export class BookingComponent {
         }
       }
     });
+  }
+
+  onChangeSort(data) {
+     if (data) {
+      this.sort = data.target.value;
+      this.getCarData();
+     }
   }
 
   getBannerData(){

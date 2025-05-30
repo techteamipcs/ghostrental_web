@@ -51,45 +51,46 @@
         {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
         {{ totalItems }} vehicles
       </h6>
-      <div ngbDropdown>
-        <button
-          class="btn dropdown-toggle size16 redhat-semibold"
-          type="button"
-          id="dropdownMenuButton"
-          ngbDropdownToggle
-        >
-          Sort by any makes
-        </button>
-        <ul
-          ngbDropdownMenu
-          aria-labelledby="dropdownMenuButton"
-          class="dropdown-menu"
-        >
-          <li>
-            <a
-              ngbDropdownItem
-              class="dropdown-item size16 redhat-semibold"
-              href="#"
-              >Action</a
+      <div >
+        <select
+            class="border-0 outline-none size16 redhat-semibold text-capitalize"
+            (change)="onChangeSort($event)"
+          >
+            <option
+              selected
+              disabled
+              class="text-muted size14 redhat-semibold text-capitalize"
             >
-          </li>
-          <li>
-            <a
-              ngbDropdownItem
-              class="dropdown-item size16 redhat-semibold"
-              href="#"
-              >Another action</a
+              Sort by any makes
+            </option>
+            <option value="A-Z" class="size14 redhat-semibold text-capitalize">
+              Sort by A - Z
+            </option>
+            <option
+              value="H-L"
+              class="size14 redhat-semibold text-capitalize"
             >
-          </li>
-          <li>
-            <a
-              ngbDropdownItem
-              class="dropdown-item size16 redhat-semibold"
-              href="#"
-              >Something else here</a
+              Price: High to Low
+            </option>
+            <option
+              value="L-H"
+              class="size14 redhat-semibold text-capitalize"
             >
-          </li>
-        </ul>
+              Price: Low to High
+            </option>
+            <option
+              value="old"
+              class="size14 redhat-semibold text-capitalize"
+            >
+              Old to New
+            </option>
+            <option
+              value="relevance"
+              class="size14 redhat-semibold text-capitalize"
+            >
+              Relevance
+            </option>
+          </select>
       </div>
     </div>
 

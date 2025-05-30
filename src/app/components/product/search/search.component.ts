@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -47,8 +48,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   availableendDate: any;
   isFilterCollapsed = false;
   isMobileFilterVisible: boolean = false;
-  vipNumberPlate: any;
+  vipNumberPlate: any='';
   sort: any = '';
+  param_type: any;
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -57,10 +59,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('resultsSection') resultsRef!: ElementRef;
 
   constructor(
-    private dataservice: DataService
+    private dataservice: DataService,
+    public router: ActivatedRoute
   ) {
     // Initialize mobile filter as closed
     this.isMobileFilterVisible = false;
+    this.param_type = this.router.snapshot.paramMap.get('type');
+    if(this.param_type && this.param_type == 'vip'){
+      this.vipNumberPlate = true;
+    }
   }
 
   ngOnInit() {
@@ -326,7 +333,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onChangeSpecialNumber(data) {
      if (data) {
       this.vipNumberPlate = data.target.value =='true'? true : false;
-      this.getCarData();
+      // this.getCarData();
      }
   }
 
