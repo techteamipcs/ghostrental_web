@@ -17,6 +17,9 @@ import { ServicesComponent } from './components/services/services.component';
 import { LucideAngularModule, Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Minus, Plus, ChevronLeft, ChevronRight, X, Home, Users, Settings, Car, Phone, Facebook, Instagram, Twitter } from 'lucide-angular';
 import { BookingComponent } from './components/booking/booking.component';
 import { SharedModule } from './shared/shared.module';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,11 +42,14 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    NgxIntlTelInputModule,
+    BrowserAnimationsModule,
     LucideAngularModule.pick({ Fuel, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight, X, Home, Users, Settings, Car, Phone, Facebook, Instagram, Twitter }),
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimations()
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -30,6 +30,23 @@
   }
   }
 
+  ::ng-deep {
+    .intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=text], .intl-tel-input.separate-dial-code input[type=tel]{
+      // padding-right:322px !important;
+      height: 30px;
+      width: 100%;
+      // padding: 0 322px;
+      outline: none;
+      border: none;
+      @media (max-width: 768px) {
+        padding: 0 0px;
+      }
+    }
+    .intl-tel-input.separate-dial-code .selected-flag {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
 }
 
 .maps {
@@ -80,6 +97,23 @@ textarea {
   width: 72%;
 }
 
+.alert-danger{
+  color: red;
+}
+
+.interphone {
+  color: #101010;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #dddddd;
+  &:focus {
+    border-color: #878787;
+  }
+}
+.custom-intl-tel-input{
+  box-shadow: none !important;
+  outline: none !important;
+}
 
 .margin-bottom{
   margin-bottom: 60px;

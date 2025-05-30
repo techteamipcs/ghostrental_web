@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 // Services
 import { ContactService } from '../../providers/contact/contact.service';
 import { PageService } from '../../providers/page/page.service';
+import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 export { };
 declare global {
 	interface Window {
@@ -28,6 +29,10 @@ export class ContactComponent {
 	url = 'https://calendly.com/tinaz-miniaar/30min';
 	prod:any;
 	isvalidSubmit: boolean = true;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+	preferredCountries: CountryISO[] = [CountryISO.India,CountryISO.UnitedStates, CountryISO.UnitedKingdom,CountryISO.UnitedArabEmirates];
+	separateDialCode = false;
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
@@ -40,7 +45,7 @@ export class ContactComponent {
 		this.addcontactForm = this.formBuilder.group({
 			name: ['', Validators.required],
       lastname: ['', Validators.required],
-			email: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 			phone: ['', Validators.required],
 			message: ['', Validators.required],
 		});
@@ -50,6 +55,26 @@ export class ContactComponent {
 
 	public hasError = (controlName: string, errorName: string) => {
 		return this.addcontactForm.controls[controlName].hasError(errorName);
+	};
+
+	public hasEmailError = (controlName: string, errorName: string) => {
+    if (this.addcontactForm.controls['email'].value == "") {
+      return "Email is required";
+    } else if (this.addcontactForm.controls['email'].status == "INVALID") {
+      return "Invalid Email";
+    } else {
+      return this.addcontactForm.controls['email'].hasError(errorName);
+    }
+  };
+
+	public hasPhoneNumberError = (controlName: string,errorName: string) => {
+		if (this.addcontactForm.controls['phone'].value == "") {
+			return "Phone Number is required";
+		} else if (this.addcontactForm.controls['phone'].status == "INVALID") {
+			return "Invalid Phone Number";
+		} else {
+			return this.addcontactForm.controls['phone'].hasError(errorName);
+		}
 	};
 
 	ngOnInit(): void {
@@ -93,6 +118,7 @@ export class ContactComponent {
 		if(this.isvalidSubmit == false){
 			return
 		}
+		obj['phone'] = obj.phone.internationalNumber;
 		this.contactservice.addContact(obj).subscribe(
 			(response) => {
 				if (response.code == 200) {
