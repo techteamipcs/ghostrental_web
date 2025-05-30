@@ -440,3 +440,18 @@ img{
     padding: 15px;
   }
 }
+
+a{
+  &:focus{
+    outline: none;
+    border: none;
+  }
+  &:active{
+    outline: none;
+    border: none;
+  }
+  &:hover{
+    outline: none;
+    border: none;
+  }
+}

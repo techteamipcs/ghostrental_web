@@ -29,6 +29,8 @@ export class ListComponent implements OnInit {
   carTypes: any = [];
   selectedbannerpage = 'product';
   sort: any;
+
+
   constructor(
     private dataservice: DataService,
     public route: ActivatedRoute,
@@ -92,6 +94,7 @@ export class ListComponent implements OnInit {
     });
   }
 
+
   getBannerData() {
     let obj = {};
     this.dataservice.getAllBanner(obj).subscribe((response) => {
@@ -127,9 +130,9 @@ export class ListComponent implements OnInit {
   }
 
   onChangeSort(data) {
-     if (data) {
+    if (data) {
       this.sort = data.target.value;
       this.getCarData();
-     }
+    }
   }
 }

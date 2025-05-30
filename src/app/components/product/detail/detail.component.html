@@ -14,9 +14,9 @@
       </h1>
     </div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-9 col-lg-12 mb-xl-0 mb-3 p-xl-2 p-lg-1 p-md-1 p-0">
+    <div class="container-fluid gallery-height">
+      <div class="row h-100">
+        <div class="col-xl-9 col-lg-12 mb-xl-0 mb-3 pad-right h-100">
           <div class="main-image-wrapper position-relative">
             <img
               [src]="mainImage.src"
@@ -62,7 +62,7 @@
           </div>
         </div> -->
 
-        <div class="col-xl-3 col-lg-12 p-xl-2 p-lg-1 p-md-1 p-0">
+        <div class="col-xl-3 col-lg-12 pad-left h-100">
           <div class="d-flex flex-xl-column h-100 gap-xl-2 gap-lg-3">
             <div
               *ngFor="let img of thumbnailImages.images; let i = index"
@@ -127,7 +127,7 @@
         <div class="btns">
           <button class="w-100 bg-black rounded-3 mb-3 p-3">
             <a
-              [routerLink]="['/contact/product',vehicleData.name]"
+              [routerLink]="['/contact/product', vehicleData.name]"
               class="size18 redhat-semibold text-decoration-none white-color text-capitalize"
             >
               send a mail
@@ -507,7 +507,7 @@
                   <img
                     src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"
-                    class="img-fluid rounded-4 w-100 thumbnail-image"
+                    class="img-fluid rounded-4 w-100 thumbnail-image h-100"
                   />
                   <div class="car-info">
                     <h4 class="car-name mb-1 size26 redhat-semibold">
@@ -568,7 +568,7 @@
                     <a
                       href="/product/detail/{{ car.url_key }}"
                       class="color-card-p p-0 mt-auto text-decoration-none"
-                      >View More</a
+                      >View details</a
                     >
                   </div>
                 </div>

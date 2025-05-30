@@ -69,7 +69,21 @@
 .collection_image {
   width: 35px;
   height: 35px;
+  margin-bottom: 5px;
   object-fit: contain;
+
+  @media screen and (max-width: 1920px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media screen and (max-width: 1400px) {
+    width: 30px;
+    height: 30px;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 25px;
+    height: 25px;
+  }  
 }
 
 .car-card {
@@ -82,9 +96,44 @@
 
   .thumbnail-image{
     padding: 12px 12px 0px 12px;
+
+    @media screen and (max-width: 1920px) {
+      padding: 12px 12px 0px 12px;
+    } 
+    @media screen and (max-width: 1400px) {
+      padding: 10px 10px 0px 10px;
+    } 
+    @media screen and (max-width: 1200px) {
+      padding: 10px 10px 0px 10px;
+    } 
+    @media screen and (max-width: 1024px) {
+      padding: 10px 10px 0px 10px;
+    } 
+    @media screen and (max-width: 768px) {
+      padding: 8px 8px 0px 8px;
+    } 
   }
 }
 
+.card-content {
+  padding: 26px;
+
+  @media screen and (max-width: 1920px) {
+    padding: 12px;
+  }
+  @media screen and (max-width: 1400px) {
+    padding: 10px;
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 10px;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 10px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 8px;
+  }
+}
 .pagination {
   list-style: none;
   padding-left: 0;

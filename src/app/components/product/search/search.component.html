@@ -490,18 +490,20 @@
                 <img
                   src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                   [alt]="car.name"
-                  class="img-fluid rounded w-100 thumbnail-image"
+                  class="img-fluid rounded-4 w-100 thumbnail-image h-100"
                 />
-                <div class="card-content p-xl-4 p-md-3 p-2">
+                <div class="card-content">
                   <div
                     class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
                   >
                     <div class="car-header">
-                      <h4 class="car-name mb-1 size26 redhat-semibold">
+                      <h4
+                        class="car-name mb-1 size26 redhat-semibold gray-color"
+                      >
                         {{ car.name }}
                       </h4>
                       <h6
-                        class="transmission text-muted size18 redhat-semibold text-capitalize"
+                        class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
                       >
                         {{ car.transmission }}
                       </h6>
@@ -522,7 +524,9 @@
                         class="img-fluid collection_image"
                         alt=""
                       />
-                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold">
+                      <h6
+                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
+                      >
                         {{ car.fuelType }}
                       </h6>
                     </div>
@@ -532,7 +536,9 @@
                         class="img-fluid collection_image"
                         alt=""
                       />
-                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold">
+                      <h6
+                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
+                      >
                         {{ car.mileage }}
                       </h6>
                     </div>
@@ -542,7 +548,9 @@
                         class="img-fluid collection_image"
                         alt=""
                       />
-                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold">
+                      <h6
+                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
+                      >
                         {{ car.seating_capacity }} Seats
                       </h6>
                     </div>
@@ -552,16 +560,18 @@
                     class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2"
                   >
                     <div class="cash">
-                      <h6 class="text-muted mb-0 size18 redhat-semibold">
+                      <h6
+                        class="text-muted mb-0 size18 redhat-semibold color-card-p"
+                      >
                         <del>AED {{ car.regularRate }}</del>
                       </h6>
-                      <h5 class="mb-0 size26 redhat-semibold">
+                      <h5 class="mb-0 size26 redhat-semibold gray-color">
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
                     <a
                       href="/product/detail/{{ car.url_key }}"
-                      class="btn p-0 mt-auto text-decoration-none"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
                       >View details</a
                     >
                   </div>

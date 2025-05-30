@@ -67,12 +67,13 @@
         >
       </li>
       <li>
-        <a href="/contact">
+        <a routerLink="/contact" routerLinkActive="active">
           <button
             [class.black-button]="!useWhiteButton && !isScrolled"
             [class.white-button]="useWhiteButton || isScrolled"
             class="size18 redhat-bold"
             [class.dark]="isDarkText && !isScrolled"
+            (click)="closeMenu()"
           >
             Contact Us
           </button>

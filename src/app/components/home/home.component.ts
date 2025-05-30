@@ -48,6 +48,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedendTime: any;
   selectedpickaddress: any;
   selecteddropaddredd: any;
+  availableStartDate: any;
+
+  onDateChange(event: any) {
+    // This method is triggered when the date input changes
+    // The [(ngModel)] will automatically update selelctedstartDate
+  }
   features = [
     {
       image: 'home/cars.png',
@@ -105,7 +111,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initCarSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       new Swiper('.car-collection-swiper', {
-        slidesPerView: 4.5,
         loop: true,
         spaceBetween: 20,
         navigation: {
@@ -113,9 +118,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
           prevEl: '.car-swiper-button-prev',
         },
         breakpoints: {
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          992: { slidesPerView: 4 },
+          0: { slidesPerView: 1.5 },
+          414: { slidesPerView: 1.5 },
+          768: { slidesPerView: 2.5 },
+          992: { slidesPerView: 3.5 },
+          1200: { slidesPerView: 4.5 },
+          2560: { slidesPerView: 5.5 },
         },
       });
     }

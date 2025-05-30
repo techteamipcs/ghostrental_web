@@ -34,17 +34,21 @@ export class HeaderComponent implements OnInit {
 
   whiteTextRoutes = [
     '/',
-    '/list',
-    '/services'
+    '/product/list',
+    '/services',
+    '/booking'
   ];
 
   isDarkText = false;
+  isWhiteText = false;
   currentRoute: string = '';
   useWhiteButton = false;
   isBrowser: boolean;
   hasLargePadding = false;
-  largePaddingRoutes = ['/home', '/list', '/services'];
+  largePaddingRoutes = ['/', '/product/list', '/services', '/booking'];
   detailRouteRegex = /^\/detail\//;
+  listRouteRegex = /^\/product\/list/;
+  bookingRouteRegex = /^\/booking/;
 
   constructor(
     private router: Router,
@@ -58,24 +62,31 @@ export class HeaderComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      this.currentRoute = event.url;
+      // Get the path without query parameters
+      const path = event.url.split('?')[0];
+      this.currentRoute = path;
 
       const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
-        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+        path === route || path.startsWith(route + '/')
       );
       const shouldHaveDarkText = this.darkTextRoutes.some(route =>
-        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+        path === route || path.startsWith(route + '/')
       );
 
       this.isDarkText = shouldHaveDarkText && !shouldHaveWhiteText;
 
       this.useWhiteButton = this.whiteTextRoutes.some(route =>
-        this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+        path === route || path.startsWith(route + '/')
       );
 
       const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
+      const isListRoute = this.listRouteRegex.test(this.currentRoute);
+      const isBookingRoute = this.bookingRouteRegex.test(this.currentRoute);
+
       this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
         isDetailRoute ||
+        isListRoute ||
+        isBookingRoute ||
         this.currentRoute === '/';
 
       if (this.isBrowser) {
@@ -87,9 +98,29 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentRoute = this.router.url;
-    this.isDarkText = this.darkTextRoutes.some(route => this.currentRoute.startsWith(route)) ||
-      this.currentRoute.startsWith('/product/detail');
+    const path = this.router.url.split('?')[0];
+    this.currentRoute = path;
+
+    const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
+      path === route || path.startsWith(route + '/')
+    );
+    const shouldHaveDarkText = this.darkTextRoutes.some(route =>
+      path === route || path.startsWith(route + '/')
+    );
+
+    this.isDarkText = shouldHaveDarkText && !shouldHaveWhiteText;
+    this.useWhiteButton = shouldHaveWhiteText;
+
+    const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
+    const isListRoute = this.listRouteRegex.test(this.currentRoute);
+    const isBookingRoute = this.bookingRouteRegex.test(this.currentRoute);
+
+    this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
+      isDetailRoute ||
+      isListRoute ||
+      isBookingRoute ||
+      this.currentRoute === '/';
+
     this.updateTextColor();
   }
 

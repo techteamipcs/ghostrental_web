@@ -175,28 +175,28 @@
             <div class="row">
               <div class="col-6">
                 <div class="position-relative">
-                  <label
-                    for="startDate"
-                    class="form-label size14 redhat-semibold"
-                    >Date</label
+                  <span
+                    [class.d-none]="selelctedstartDate"
+                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    >Date</span
                   >
                   <input
                     type="date"
                     id="startDate"
                     [(ngModel)]="selelctedstartDate"
+                    (ngModelChange)="onDateChange($event)"
                     name="selelctedstartDate"
                     class="form-control size14 redhat-semibold input-margin"
-                    placeholder="Date"
                     required
                   />
                 </div>
               </div>
               <div class="col-6">
                 <div class="position-relative">
-                  <label
-                    for="startTime"
-                    class="form-label size14 redhat-semibold"
-                    >Time</label
+                  <span
+                    [class.d-none]="selectedstartTime"
+                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    >Time</span
                   >
                   <input
                     type="time"
@@ -254,8 +254,10 @@
             <div class="row">
               <div class="col-6">
                 <div class="position-relative">
-                  <label for="endDate" class="form-label size14 redhat-semibold"
-                    >Date</label
+                  <span
+                    [class.d-none]="selelctedendDate"
+                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    >Date</span
                   >
                   <input
                     type="date"
@@ -270,8 +272,10 @@
               </div>
               <div class="col-6">
                 <div class="position-relative">
-                  <label for="endTime" class="form-label size14 redhat-semibold"
-                    >Time</label
+                  <span
+                    [class.d-none]="selectedendTime"
+                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    >Time</span
                   >
                   <input
                     type="time"
@@ -394,7 +398,6 @@
             alt=""
             class="services-images p-md-2 p-1 z-1"
           />
-          <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
             <h4
               class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
@@ -417,11 +420,10 @@
       <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-4">
         <div class="card rounded-4 h-100 position-relative">
           <img
-            src="{{ imageURL }}/home/services/yacht_rental.png"
+            src="{{ imageURL }}/home/services/yacht_rental.jpg"
             alt=""
             class="services-images p-md-2 p-1 z-1"
           />
-          <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
             <h4
               class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
@@ -443,11 +445,10 @@
       <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-4">
         <div class="card rounded-4 h-100 position-relative">
           <img
-            src="{{ imageURL }}/home/services/chauffeur.png"
+            src="{{ imageURL }}/home/services/chauffeur.jpg"
             alt=""
             class="services-images p-md-2 p-1 z-1"
           />
-          <div class="glass rounded-top-4"></div>
           <div class="card-content h-100 d-flex flex-column">
             <h4
               class="size26 redhat-semibold text-capitalize gray-color mb-3 mb-md-4"
@@ -494,12 +495,14 @@
                 *ngFor="let car of ourCarCollections"
               >
                 <div class="car-card rounded-4">
-                  <img
-                    *ngIf="car.media_data && car.media_data.length > 0"
-                    src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                    [alt]="car.name"
-                    class="img-fluid rounded-4 w-100 thumbnail-image"
-                  />
+                  <div class="thumbnail-image">
+                    <img
+                      *ngIf="car.media_data && car.media_data.length > 0"
+                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
+                      [alt]="car.name"
+                      class="img-fluid rounded-4 w-100 h-100"
+                    />
+                  </div>
                   <div class="card-content">
                     <div
                       class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
@@ -577,8 +580,8 @@
                       <a
                         [routerLink]="['/product/detail', car.url_key]"
                         routerLinkActive="router-link-active"
-                        class="color-card-p p-0 mt-auto text-decoration-none"
-                        >View More</a
+                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
+                        >view details</a
                       >
                     </div>
                   </div>
@@ -621,14 +624,16 @@
                 *ngFor="let yacht of ouryatchsCollections"
               >
                 <div class="car-card rounded-4">
-                  <img
-                    *ngIf="yacht.media_data && yacht.media_data.length > 0"
-                    src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}"
-                    [alt]="yacht.name"
-                    class="img-fluid rounded w-100 thumbnail-image"
-                  />
-                  <div class="card-content p-xl-4">
-                    <div class="car-info pb-xl-3">
+                  <div class="thumbnail-image">
+                    <img
+                      *ngIf="yacht.media_data && yacht.media_data.length > 0"
+                      src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}"
+                      [alt]="yacht.name"
+                      class="img-fluid rounded-4 w-100 h-100"
+                    />
+                  </div>
+                  <div class="card-content">
+                    <div class="car-info pb-xl-3 p-md-3 p-2">
                       <h4 class="car-name mb-1 size26 redhat-semibold">
                         {{ yacht.name }}
                       </h4>
@@ -695,8 +700,8 @@
                       <a
                         [routerLink]="['/product/detail', yacht.url_key]"
                         routerLinkActive="router-link-active"
-                        class="color-card-p p-0 mt-auto text-decoration-none"
-                        >View More</a
+                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
+                        >view details</a
                       >
                     </div>
                   </div>
@@ -804,9 +809,9 @@
           <img
             src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
             [alt]="car.name"
-            class="trending-car-image thumbnail-image"
+            class="trending-car-image thumbnail-image rounded-4 h-100"
           />
-          <div class="card-content p-xl-4">
+          <div class="card-content">
             <div
               class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
             >
@@ -842,7 +847,7 @@
               </div>
               <a
                 href="/product/detail/{{ car.url_key }}"
-                class="p-0 mt-auto text-decoration-none gray-light-color size22 redhat-semibold"
+                class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize"
                 >View details</a
               >
             </div>
@@ -911,7 +916,7 @@
                     </div>
                     <a
                       href="/product/detail/{{ car.url_key }}"
-                      class="p-0 mt-auto text-decoration-none gray-light-color size22 redhat-semibold"
+                      class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize color-card-p"
                       >View details</a
                     >
                   </div>
