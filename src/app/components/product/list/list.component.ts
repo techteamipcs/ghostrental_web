@@ -14,9 +14,9 @@ export class ListComponent implements OnInit {
   backendURl = `${environment.baseUrl}/public`;
 
   // Pagination properties
-  currentLimit = 4;
+  currentLimit = 6;
   currentPage = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 6;
   totalItems = 0;
   totolvehicle = 0;
   pagedCars: any = [];
@@ -84,10 +84,10 @@ export class ListComponent implements OnInit {
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
+        this.totolvehicle = response.count;
+        this.totalItems = response.count;
         if (response.result && response.result.length > 0) {
-          this.totolvehicle = response.count;
           this.vehicleData = response.result;
-          this.totalItems = response.count;
           this.updatePagedCars();
         }
       }

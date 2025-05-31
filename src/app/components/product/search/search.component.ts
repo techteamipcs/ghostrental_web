@@ -47,9 +47,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
 
   // Pagination properties
-  currentLimit = 3;
+  currentLimit = 6;
   currentPage = 1;
-  itemsPerPage = 3;
+  itemsPerPage = 6;
   totalItems = 0;
   carTypes: any = [];
   vehicleData: any = [];
@@ -472,10 +472,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
-        if (response.result && response.result.length > 0) {
           this.totolvehicle = response.count;
           this.vehicleData = response.result;
           this.totalItems = response.count;
+        if (response.result && response.result.length > 0) {
+          this.vehicleData = response.result;
           this.updatePagedCars();
         } else {
           this.vehicleData = [];
