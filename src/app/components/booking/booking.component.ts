@@ -43,6 +43,9 @@ export class BookingComponent {
   filteredModels: any = [];
   listBrands: any = [];
   filteredBrands: any = [];
+  locationData: any = [];
+  filterPickupLocation: any = [];
+  filterDropLocation: any = [];
   sort:any;
   constructor(
     private dataservice: DataService,
@@ -65,6 +68,7 @@ export class BookingComponent {
     this.getBodyTypes();
     this.getModels();
     this.getBrands();
+    this.getLocations();
     if(this.url_key){
       this.getCarTypes();
     } else {
@@ -151,6 +155,28 @@ export class BookingComponent {
       }
     });
   }
+
+  getLocations() {
+    let obj = {};
+    this.dataservice.getAllLocations(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.locationData = response.result;
+          if (this.locationData && this.locationData.length > 0) {
+            let temp = this.locationData.filter((location) => location.name == this.pickuplocation);
+            if(temp && temp.length > 0 && temp[0] && this.pickuplocation){
+              this.filterPickupLocation.push({ _id:temp[0]._id,name: temp[0].name});
+            }
+            temp = this.locationData.filter((location) => location.name == this.droplocation);
+            if(temp && temp.length > 0 && temp[0] && this.droplocation){
+              this.filterDropLocation.push({ _id:temp[0]._id,name: temp[0].name});
+            }
+            this.getCarData();
+          }
+        }
+      }
+    });
+  }
   
 
   getCarData() {
@@ -165,7 +191,9 @@ export class BookingComponent {
       modelId:this.filteredModels,
       startDate: this.availableStartDate,
       endDate: this.availableendDate,
-      sort: this.sort
+      sort: this.sort,
+      pickuplocation: this.filterPickupLocation,
+      droplocation: this.filterDropLocation
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {

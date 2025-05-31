@@ -211,7 +211,7 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
                     <option
                       value=""
                       disabled
@@ -220,17 +220,17 @@
                     >
                       Choose Pickup Location
                     </option>
-                    <option *ngFor="let location of pickupLocations" class="size14 redhat-semibold">
+                    <option *ngFor="let location of pickupLocations" value="{{location.name}}" class="size14 redhat-semibold">
                       {{location.name}}
                     </option>
                   </select>
                 </ng-container>
                 <ng-template #yachtPickup>
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Pickup Marina
                     </option>
-                    <option *ngFor="let location of pickupLocations">{{location.name}}</option>
+                    <option *ngFor="let location of pickupLocations" value="{{location.name}}">{{location.name}}</option>
                   </select>
                 </ng-template>
               </div>
@@ -280,19 +280,19 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Return Location
                     </option>
-                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
+                    <option *ngFor="let location of dropLocations" value="{{location.name}}">{{location.name}}</option>
                   </select>
                 </ng-container>
                 <ng-template #yachtReturn>
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Return Marina
                     </option>
-                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
+                    <option *ngFor="let location of dropLocations" value="{{location.name}}">{{location.name}}</option>
                   </select>
                 </ng-template>
               </div>

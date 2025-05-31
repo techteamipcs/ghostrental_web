@@ -397,4 +397,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  onSelectPickupLocation(loc){
+    if(loc && loc.target.value){
+      this.selectedpickaddress = loc.target.value;
+      let tempLoc = this.locationData.filter((location)=>location.name != loc.target.value);
+      if(tempLoc.length > 0){
+        this.dropLocations = tempLoc
+      }
+    }
+  }
+
+  onSelectDropLocation(loc){
+    if(loc && loc.target.value){
+      this.selecteddropaddredd = loc.target.value;
+      let tempLoc = this.locationData.filter((location)=>location.name != loc.target.value);
+      if(tempLoc.length > 0){
+        this.pickupLocations = tempLoc
+      }
+    }
+  }
 }
