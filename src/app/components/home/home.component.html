@@ -211,7 +211,7 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
                     <option
                       value=""
                       disabled
@@ -223,22 +223,17 @@
                     <option class="size14 redhat-semibold">
                       Airport Terminal 1
                     </option>
-                    <option
-                      *ngFor="let location of pickupLocations"
-                      class="size14 redhat-semibold"
-                    >
-                      {{ location.name }}
+                    <option *ngFor="let location of pickupLocations" class="size14 redhat-semibold">
+                      {{location.name}}
                     </option>
                   </select>
                 </ng-container>
                 <ng-template #yachtPickup>
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Pickup Marina
                     </option>
-                    <option *ngFor="let location of pickupLocations">
-                      {{ location.name }}
-                    </option>
+                    <option *ngFor="let location of pickupLocations">{{location.name}}</option>
                   </select>
                 </ng-template>
               </div>
@@ -288,23 +283,19 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Return Location
                     </option>
-                    <option *ngFor="let location of dropLocations">
-                      {{ location.name }}
-                    </option>
+                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
                   </select>
                 </ng-container>
                 <ng-template #yachtReturn>
-                  <select class="form-select size14 redhat-semibold" required>
+                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                     <option value="" disabled selected>
                       Choose Return Marina
                     </option>
-                    <option *ngFor="let location of dropLocations">
-                      {{ location.name }}
-                    </option>
+                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
                   </select>
                 </ng-template>
               </div>
@@ -335,6 +326,7 @@
         class="position-relative padding-between col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
         style="cursor: pointer"
       >
+      <a [routerLink]="['/product/list', car.url_key]" class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
         <img
           src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
           [alt]="car.name"
@@ -349,6 +341,7 @@
         >
           {{ car.name }}
         </p>
+        </a>
       </div>
     </div>
   </div>
