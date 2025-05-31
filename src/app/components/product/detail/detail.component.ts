@@ -213,7 +213,6 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.carSwiperRef?.nativeElement) {
         this.carSwiper = new Swiper(this.carSwiperRef.nativeElement as HTMLElement, {
           modules: [Navigation],
-          slidesPerView: 3,
           spaceBetween: 20,
           navigation: {
             nextEl: '.car-swiper-button-next',
@@ -223,7 +222,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
           breakpoints: {
             320: { slidesPerView: 1, spaceBetween: 10 },
             768: { slidesPerView: 2, spaceBetween: 15 },
-            1024: { slidesPerView: 3, spaceBetween: 20 }
+            1024: { slidesPerView: 4.5, spaceBetween: 20 }
           }
         });
       }
@@ -231,7 +230,6 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       if (relatedSwiperEl && !(relatedSwiperEl as any).swiper) {
         new Swiper(relatedSwiperEl, {
           modules: [Navigation],
-          slidesPerView: 4,
           spaceBetween: 20,
           navigation: {
             nextEl: '.car-swiper-button-next',
@@ -241,7 +239,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
           breakpoints: {
             320: { slidesPerView: 1, },
             768: { slidesPerView: 2, },
-            1024: { slidesPerView: 4, }
+            1024: { slidesPerView: 4.5, }
           }
         });
       }

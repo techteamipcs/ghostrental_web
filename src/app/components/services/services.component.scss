@@ -10,6 +10,11 @@
       left: 6%;
       transform: translateY(-50%);
     }
+    @media (max-width: 1536px) {
+      top: 42%;
+      left: 5%;
+      transform: translateY(-50%);
+    }
     @media (max-width: 1024px) {
       top: 50%;
       left: 5%;
@@ -20,11 +25,17 @@
       @media (max-width: 1920px) {
         width: 66%;
       }
+      @media (max-width: 1600px) {
+        width: 70%;
+      }
     }
     p{
       width: 22%;
       @media (max-width: 1920px) {
         width: 26%;
+      }
+      @media (max-width: 1536px) {
+        width: 29%;
       }
       @media (max-width: 1024px) {
         width: 62%;
@@ -77,8 +88,11 @@
   @media screen and (max-width: 1920px){
     width: 75%;
   }
+  @media screen and (max-width: 1536px){
+    width: 64%;
+  }
   @media screen and (max-width: 1440px){
-    width: 100%;
+    width: 64%;
   }
   @media screen and (max-width: 1280px){
     width: 100%;
@@ -99,11 +113,17 @@ width: 62%;
   @media screen and (max-width: 1920px){
     width: 86%;
   }
+  @media screen and (max-width: 1536px){
+    width: 100%;
+  }
 }
 .service3-width{
   width: 80%;
   @media screen and (max-width: 1920px){
     width: 86%;
+  }
+  @media screen and (max-width: 1536px){
+    width: 100%;
   }
 }
 .service4-width{
@@ -111,4 +131,7 @@ width: 62%;
   @media screen and (max-width: 1920px){
     width: 86%;
   }
+  @media screen and (max-width: 1536px){
+    width: 100%;
+  } 
 }

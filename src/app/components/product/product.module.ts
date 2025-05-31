@@ -7,7 +7,7 @@ import { DetailComponent } from './detail/detail.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import { LucideAngularModule, ArrowLeft, ArrowRight, Minus, Plus, Star, Calendar } from 'lucide-angular';
+import { LucideAngularModule, ArrowLeft, ArrowRight, Minus, Plus, Star, CalendarDays, ChevronDown } from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { LucideAngularModule, ArrowLeft, ArrowRight, Minus, Plus, Star, Calendar
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    LucideAngularModule.pick({ Star, ArrowRight, ArrowLeft, Plus, Minus, Calendar }),
+    LucideAngularModule.pick({ Star, ArrowRight, ArrowLeft, Plus, Minus, CalendarDays, ChevronDown }),
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

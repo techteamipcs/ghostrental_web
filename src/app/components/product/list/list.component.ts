@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   // Pagination properties
   currentLimit = 4;
   currentPage = 1;
-  itemsPerPage = 6;
+  itemsPerPage = 4;
   totalItems = 0;
   totolvehicle = 0;
   pagedCars: any = [];

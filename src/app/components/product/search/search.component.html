@@ -37,190 +37,222 @@
                 class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
                 >Special Number Plate</label
               >
-              <select
-                class="form-select size16 redhat-semibold mb-2"
-                (change)="onChangeSpecialNumber($event)"
-              >
-                <option value="">Select Special Number Plate</option>
-                <option value="true">Enable</option>
-                <option value="false">Disbale</option>
-              </select>
-
+              <div class="filter-section">
+                <select
+                  class="form-selection size16 redhat-semibold"
+                  (change)="onChangeSpecialNumber($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
+                >
+                  <option value="">Select Special Number Plate</option>
+                  <option value="true">Enable</option>
+                  <option value="false">Disable</option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
               <!-- Rental Type -->
               <label
                 class="form-label gray-light-color size14 redhat-semibold mb-1"
                 >Rental Type</label
               >
-              <select
-                class="form-select size16 redhat-semibold mb-2"
-                (change)="changeRentalType($event)"
-              >
-                <option value="">Select Rental Type</option>
-                <option value="Daily">Daily</option>
-                <option value="Hourly">Hourly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Monthly">Monthly</option>
-              </select>
-
+              <div class="filter-section">
+                <select
+                  class="form-selection size16 redhat-semibold"
+                  (change)="changeRentalType($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
+                >
+                  <option value="">Select Rental Type</option>
+                  <option value="Daily">Daily</option>
+                  <option value="Hourly">Hourly</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
               <!-- Body Type -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Body Type</label
               >
-              <select
-                class="form-select size16 redhat-semibold mb-2"
-                name="bodytype"
-                #selbodyType
-                (change)="changeBodyType($event)"
-              >
-                <option value="">Select Body Type</option>
-                <option
-                  *ngFor="let item of bodyTypeData"
-                  value="{{ item._id }}"
+              <div class="filter-section">
+                <select
+                  class="form-selection size16 redhat-semibold"
+                  name="bodytype"
+                  #selbodyType
+                  (change)="changeBodyType($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
                 >
-                  {{ item.name }}
-                </option>
-              </select>
-
+                  <option value="">Select Body Type</option>
+                  <option
+                    *ngFor="let item of bodyTypeData"
+                    value="{{ item._id }}"
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
               <!-- Car Brand -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Brand</label
               >
-              <select
-                class="form-select size16 redhat-semibold mb-2"
-                #selBrand
-                name="brand"
-                (change)="changeBrand($event)"
-              >
-                <option value="">Select Car Brand</option>
-                <option *ngFor="let item of brandData" value="{{ item._id }}">
-                  {{ item.name }}
-                </option>
-              </select>
-
+              <div class="filter-section">
+                <select
+                  class="form-selection size16 redhat-semibold"
+                  #selBrand
+                  name="brand"
+                  (change)="changeBrand($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
+                >
+                  <option value="">Select Car Brand</option>
+                  <option *ngFor="let item of brandData" value="{{ item._id }}">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
               <!-- Car Model -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Model</label
               >
-              <select
-                class="form-select size16 redhat-semibold mb-2"
-                #selctModel
-                name="model"
-                (change)="changeModel($event)"
-              >
-                <option value="">Select Car Model</option>
-                <option
-                  *ngFor="let item of filteredModel"
-                  value="{{ item._id }}"
+              <div class="filter-section">
+                <select
+                  class="form-selection size16 redhat-semibold"
+                  #selctModel
+                  name="model"
+                  (change)="changeModel($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
                 >
-                  {{ item.name }}
-                </option>
-              </select>
+                  <option value="">Select Car Model</option>
+                  <option
+                    *ngFor="let item of filteredModel"
+                    value="{{ item._id }}"
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
               <!-- Date From -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date From</label
               >
-              <div class="position-relative">
+              <div class="filter-section">
                 <span
                   *ngIf="!availableStartDate"
-                  class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
-                  style="top: 20%; left: 4%"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50 label-text"
                   >Start date</span
                 >
-                <!-- <span
-                    class="position-absolute bg-white"
-                    style="top: 13%; right: 3%"
-                    ><lucide-icon name="calendar"
-                  /></span> -->
+
                 <input
                   type="datetime-local"
-                  class="form-control size16 redhat-semibold mb-2"
+                  class="form-controls size16 redhat-semibold mb-2"
                   [(ngModel)]="availableStartDate"
                 />
+                <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
               <!-- Date To -->
               <label
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Date To</label
               >
-              <div class="position-relative">
+              <div class="filter-section">
                 <span
                   *ngIf="!availableendDate"
-                  class="size16 redhat-regular position-absolute w-50 text-capitalize bg-white"
-                  style="top: 20%; left: 4%"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50 label-text"
                   >End date</span
                 >
-                <!-- <span
-                    class="position-absolute bg-white"
-                    style="top: 13%; right: 3%"
-                    ><lucide-icon name="calendar"
-                  /></span> -->
+
                 <input
                   type="datetime-local"
-                  class="form-control size16 redhat-semibold mb-2"
+                  class="form-controls size16 redhat-semibold mb-2"
                   [(ngModel)]="availableendDate"
                 />
+                <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
 
-              <!-- Price -->
-              <div class="price-range-wrapper">
+              <!-- Price Range -->
+              <div class="price-wrapper">
                 <label
                   class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >
-                  Price (AED)
+                  Price Range (AED)
                 </label>
 
-                <div class="price-inputs d-flex gap-2 mb-2">
-                  <input
-                    type="number"
-                    #minPriceInput
-                    id="minPrice"
-                    min="0"
-                    class="form-control"
-                    [(ngModel)]="minPrice"
-                  />
-                  <input
-                    type="number"
-                    #maxPriceInput
-                    id="maxPrice"
-                    min="0"
-                    class="form-control"
-                    [(ngModel)]="maxPrice"
-                  />
+                <!-- Price Inputs -->
+                <div class="row">
+                  <div class="col-6">
+                    <label
+                      for="minPrice"
+                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                      >Min</label
+                    >
+                    <input
+                      type="number"
+                      id="minPrice"
+                      [(ngModel)]="minPrice"
+                      (change)="onPriceInputChange('min')"
+                      min="0"
+                      max="{{ maxPrice - 500 }}"
+                      class="form-controls size16 redhat-semibold mb-2"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label
+                      for="maxPrice"
+                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                      >Max</label
+                    >
+                    <input
+                      type="number"
+                      id="maxPrice"
+                      [(ngModel)]="maxPrice"
+                      (change)="onPriceInputChange('max')"
+                      min="{{ minPrice + 500 }}"
+                      max="10000"
+                      class="form-controls size16 redhat-semibold mb-2"
+                    />
+                  </div>
                 </div>
 
-                <div
-                  class="slider d-flex gap-2 position-relative"
-                  style="width: 100%; height: 30px"
-                >
-                  <div class="slider-track"></div>
+                <!-- Slider -->
+                <div class="slider" id="slider">
                   <div class="slider-range" id="slider-range"></div>
-
-                  <input
-                    type="range"
-                    #rangeMin
-                    id="rangeMin"
-                    min="0"
-                    max="10000"
-                    step="50"
-                    class="form-range position-absolute w-100"
-                    [(ngModel)]="minPrice"
-                    (input)="updateSlider()"
-                  />
-                  <input
-                    type="range"
-                    #rangeMax
-                    id="rangeMax"
-                    min="0"
-                    max="10000"
-                    step="50"
-                    class="form-range position-absolute w-100"
-                    [(ngModel)]="maxPrice"
-                    (input)="updateSlider()"
-                  />
+                  <div
+                    class="slider-thumb"
+                    id="thumb-min"
+                    role="slider"
+                    aria-valuemin="0"
+                    aria-valuemax="10000"
+                    [attr.aria-valuenow]="minPrice"
+                    tabindex="0"
+                  ></div>
+                  <div
+                    class="slider-thumb"
+                    id="thumb-max"
+                    role="slider"
+                    aria-valuemin="0"
+                    aria-valuemax="10000"
+                    [attr.aria-valuenow]="maxPrice"
+                    tabindex="0"
+                  ></div>
                 </div>
               </div>
 
@@ -249,7 +281,8 @@
               </div>
 
               <button
-                class="btn gray-color p-0"
+                class="bg-transparent gray-color p-0 border-0"
+                style="background: transparent; border: none"
                 (click)="toggleFilter()"
                 type="button"
               >
@@ -288,15 +321,41 @@
                   </button>
                 </div> -->
 
-                <!-- Rental Type -->
+                <!-- Special Number Plate -->
+                <label
+                  class="form-label gray-light-color size14 redhat-semibold mt-xl-4 mb-xl-1 mb-1"
+                  >Special Number Plate</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Rental Type</label
-                  >
                   <select
-                    class="form-select size16 redhat-semibold mb-2"
+                    class="form-selection size16 redhat-semibold"
+                    (change)="onChangeSpecialNumber($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
+                  >
+                    <option value="">Select Special Number Plate</option>
+                    <option value="true">Enable</option>
+                    <option value="false">Disable</option>
+                  </select>
+
+                  <lucide-icon name="chevron-down" size="20" />
+                </div>
+
+                <!-- Rental Type -->
+                <label
+                  class="form-label gray-light-color size14 redhat-semibold mb-1"
+                  >Rental Type</label
+                >
+                <div class="filter-section">
+                  <select
+                    class="form-selection size16 redhat-semibold"
                     (change)="changeRentalType($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
                   >
                     <option value="">Select Rental Type</option>
                     <option value="Daily">Daily</option>
@@ -304,123 +363,190 @@
                     <option value="Weekly">Weekly</option>
                     <option value="Monthly">Monthly</option>
                   </select>
+                  <lucide-icon name="chevron-down" size="20" />
                 </div>
 
                 <!-- Body Type -->
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                  >Body Type</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Body Type</label
-                  >
                   <select
-                    class="form-select size16 redhat-semibold mb-2"
+                    class="form-selection size16 redhat-semibold"
                     name="bodytype"
+                    #selbodyType
                     (change)="changeBodyType($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
                   >
                     <option value="">Select Body Type</option>
                     <option
                       *ngFor="let item of bodyTypeData"
-                      [value]="item._id"
+                      value="{{ item._id }}"
                     >
                       {{ item.name }}
                     </option>
                   </select>
+                  <lucide-icon name="chevron-down" size="20" />
                 </div>
-
                 <!-- Car Brand -->
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                  >Car Brand</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Car Brand</label
-                  >
                   <select
-                    class="form-select size16 redhat-semibold mb-2"
+                    class="form-selection size16 redhat-semibold"
+                    #selBrand
                     name="brand"
                     (change)="changeBrand($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
                   >
                     <option value="">Select Car Brand</option>
-                    <option *ngFor="let item of brandData" [value]="item._id">
+                    <option
+                      *ngFor="let item of brandData"
+                      value="{{ item._id }}"
+                    >
                       {{ item.name }}
                     </option>
                   </select>
+                  <lucide-icon name="chevron-down" size="20" />
                 </div>
-
                 <!-- Car Model -->
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                  >Car Model</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Car Model</label
-                  >
                   <select
-                    class="form-select size16 redhat-semibold mb-2"
+                    class="form-selection size16 redhat-semibold"
+                    #selctModel
                     name="model"
                     (change)="changeModel($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
                   >
                     <option value="">Select Car Model</option>
                     <option
                       *ngFor="let item of filteredModel"
-                      [value]="item._id"
+                      value="{{ item._id }}"
                     >
                       {{ item.name }}
                     </option>
                   </select>
+                  <lucide-icon name="chevron-down" size="20" />
                 </div>
-
                 <!-- Date From -->
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                  >Date From</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Date From</label
+                  <span
+                    *ngIf="!availableStartDate"
+                    class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50"
+                    style="top: 20%; left: 4%; width: 77%"
+                    >Start date</span
                   >
+
                   <input
-                    type="date"
-                    class="form-control size16 redhat-semibold mb-2"
+                    type="datetime-local"
+                    class="form-controls size16 redhat-semibold mb-1"
                     [(ngModel)]="availableStartDate"
                   />
+                  <lucide-icon name="calendar-days" size="15"></lucide-icon>
                 </div>
-
                 <!-- Date To -->
+                <label
+                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                  >Date To</label
+                >
                 <div class="filter-section">
-                  <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Date To</label
+                  <span
+                    *ngIf="!availableendDate"
+                    class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50"
+                    style="top: 20%; left: 4%; width: 77%"
+                    >End date</span
                   >
 
                   <input
-                    type="date"
-                    class="form-control size16 redhat-semibold mb-2"
+                    type="datetime-local"
+                    class="form-controls size16 redhat-semibold mb-1"
                     [(ngModel)]="availableendDate"
                   />
+                  <lucide-icon name="calendar-days" size="15"></lucide-icon>
                 </div>
 
-                <!-- Price Range -->
-                <div class="filter-section">
+                <!-- Price -->
+                <div class="price-range-wrapper">
                   <label
-                    class="form-label size14 redhat-semibold mt-xl-4 mb-xl-1 gray-light-color"
-                    >Price (AED)</label
+                    class="form-label size14 redhat-semibold mb-1 gray-light-color"
                   >
-                  <div class="price-inputs d-flex gap-2">
+                    Price (AED)
+                  </label>
+
+                  <div class="price-inputs d-flex gap-2 mb-1">
                     <input
                       type="number"
-                      placeholder="Min"
+                      #minPriceInput
+                      id="minPrice"
                       min="0"
-                      class="form-control size16 redhat-semibold mb-2"
+                      class="form-controls size16 redhat-semibold mb-1"
                       [(ngModel)]="minPrice"
                     />
-                    <span class="align-self-center">-</span>
                     <input
                       type="number"
-                      placeholder="Max"
+                      #maxPriceInput
+                      id="maxPrice"
                       min="0"
-                      class="form-control size16 redhat-semibold mb-2"
+                      class="form-controls size16 redhat-semibold mb-1"
                       [(ngModel)]="maxPrice"
+                    />
+                  </div>
+
+                  <div
+                    class="slider d-flex gap-2 position-relative"
+                    style="width: 100%; height: 30px"
+                  >
+                    <div class="slider-track"></div>
+                    <div class="slider-range" id="slider-range"></div>
+
+                    <input
+                      type="range"
+                      #rangeMin
+                      id="rangeMin"
+                      min="0"
+                      max="10000"
+                      step="50"
+                      class="form-range position-absolute w-100"
+                      [(ngModel)]="minPrice"
+                      (input)="updateSlider()"
+                    />
+                    <input
+                      type="range"
+                      #rangeMax
+                      id="rangeMax"
+                      min="0"
+                      max="10000"
+                      step="50"
+                      class="form-range position-absolute w-100"
+                      [(ngModel)]="maxPrice"
+                      (input)="updateSlider()"
                     />
                   </div>
                 </div>
 
                 <!-- Search Button -->
                 <button
-                  class="black-button w-100 size16 redhat-semibold mt-2"
+                  class="black-button w-100 size16 redhat-semibold mt-4"
                   (click)="SearchItems()"
                   (click)="toggleFilter()"
                 >

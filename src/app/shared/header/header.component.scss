@@ -6,71 +6,78 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  
+
   // Default padding (for small-padding class)
   padding: 2.3rem 7.3rem;
-  
-  // Large padding for specific routes
   &.large-padding {
     padding: 4.3rem 7.3rem;
   }
-  
+
   @media (max-width: 1600px) {
     padding: 2rem 6rem;
-    
     &.large-padding {
       padding: 3rem 6rem;
-      @media (max-width: 1024px) {
-        padding: 3rem 2rem ;
-      }
     }
   }
-  
-  @media (max-width: 1024px) {
-    padding: 2rem ;
+
+  @media (max-width: 1536px) {
+    &.large-padding {
+      padding: 2.5rem 5rem;
+    }
   }
-  
+
+  @media (max-width: 1024px) {
+    padding: 3.3rem 2rem;
+    &.large-padding {
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 2rem;
+  }
   // Default text color (white)
   .white {
     color: #ffffff;
     transition: color 0.3s ease;
-    
+
     // Dark text variant for light backgrounds
     &.dark {
       color: #000000;
-      
+
       &:hover {
         opacity: 0.8;
       }
     }
-    
+
     // Force white text when scrolled or menu open
-    .scrolled &, .menu-open & {
+    .scrolled &,
+    .menu-open & {
       color: #ffffff !important;
     }
   }
 
   // Scrolled state
   &.scrolled {
-    background-color: #1D1D1D !important;
+    background-color: #1d1d1d !important;
     padding: 1.5rem 5rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    
+
     @media (max-width: 1024px) {
       padding: 1rem 2rem;
     }
-    
+
     // Force white text when scrolled
     .white {
       color: #ffffff !important;
     }
-    
+
     // Ensure logo is visible on dark background
     .nav-logo {
       filter: brightness(0) invert(1) !important;
     }
   }
-  
+
   &.about-page {
     background-color: #000;
     padding: 2rem 5rem;
@@ -83,25 +90,26 @@ nav {
   &.dark-text {
     .white {
       color: #000000;
-      
+
       &:hover {
         opacity: 0.8;
       }
     }
-    
+
     // Hamburger menu color for light backgrounds
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {
       background-color: #000000;
     }
-    
+
     // When scrolled or menu is open, use white text
-    &.scrolled, &.menu-open {
+    &.scrolled,
+    &.menu-open {
       .white {
         color: #ffffff !important;
       }
-      
+
       .hamburger-inner,
       .hamburger-inner::before,
       .hamburger-inner::after {
@@ -119,9 +127,6 @@ nav {
     @media (max-width: 1024px) {
       width: 268px;
     }
-    @media (max-width: 768px) {
-      width: 140px;
-    }
   }
   .dark-mode {
     filter: brightness(0);
@@ -131,17 +136,15 @@ nav {
     filter: none !important;
   }
 
-
   // Desktop Navigation
   ul.nav {
     list-style: none;
     margin: 0;
     padding: 0;
-  gap: 4.5rem;
-  @media screen and (max-width: 1440px) {
-    gap: 2rem;
-  }
-
+    gap: 4.5rem;
+    @media screen and (max-width: 1440px) {
+      gap: 2rem;
+    }
 
     li {
       margin: 0;
@@ -158,8 +161,8 @@ nav {
 
       .button {
         background-color: white;
-        color:#1D1D1D;
-        padding: .5rem 2rem;
+        color: #1d1d1d;
+        padding: 0.5rem 2rem;
         transition: all 0.3s ease;
 
         &:hover {
@@ -194,7 +197,7 @@ nav {
 
       &::before,
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 24px;
         height: 2px;
@@ -213,197 +216,198 @@ nav {
   }
 
   // Hamburger Menu Button
-.hamburger {
-  // padding: 15px;
-  display: inline-block;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  margin: 0;
-  z-index: 1001;
-  height: 100%;
-  width: 50px;
-  
-  &.dark {
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: #000;
-    }
-  }
-  &.white-hamburger {
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: white;
-    }
-  }
-  
-  &.active {
-    .hamburger-inner {
-      background-color: transparent;
-      
-      &::before {
-        transform: translateY(15px) rotate(45deg);
-        background-color: #000;
-        width: 49px;
-      }
-      
-      &::after {
-        transform: translateY(-4px) rotate(-45deg);
-        background-color: #000;
-        width: 49px;
-      }
-    }
-    
-    // Override dark class when active to ensure X is black
+  .hamburger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    z-index: 1001;
+    height: 50px;
+    width: 50px;
+
     &.dark {
+      .hamburger-inner,
+      .hamburger-inner::before,
+      .hamburger-inner::after {
+        background-color: #000;
+      }
+    }
+    &.white-hamburger {
+      .hamburger-inner,
+      .hamburger-inner::before,
+      .hamburger-inner::after {
+        background-color: white;
+      }
+    }
+
+    &.active {
       .hamburger-inner {
-        &::before,
-        &::after {
+        background-color: transparent;
+
+        &::before {
+          transform: translateY(12px) rotate(45deg);
           background-color: #000;
+          width: 50px;
+        }
+
+        &::after {
+          transform: translateY(-17px) rotate(-45deg);
+          background-color: #000;
+          width: 50px;
+        }
+      }
+
+      // Override dark class when active to ensure X is black
+      &.dark {
+        .hamburger-inner {
+          &::before,
+          &::after {
+            background-color: #000;
+          }
         }
       }
     }
   }
-}
 
-.hamburger-box {
-  width: 50px;
-  height: auto;
-  display: inline-block;
-}
-
-.hamburger-inner {
-  display: block;
-  // top: 50%;
-  // margin-top: -1.5px;
-  width: 30px;
-  height: 5px;
-  background-color: #fff;
-  border-radius: 50px;
-  position: absolute;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  &::before{
-    content: '';
-    display: block;
+  .hamburger-box {
     width: 50px;
-    height: 5px;
-    background-color: #fff;
-    border-radius: 50px;
-    position: absolute;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
-  &::after {
-    content: '';
+    height: auto;
+    display: inline-block;
+  }
+
+  .hamburger-inner {
     display: block;
-    width: 50%;
+    // top: 50%;
+    // margin-top: -1.5px;
+    width: 30px;
     height: 5px;
     background-color: #fff;
     border-radius: 50px;
     position: absolute;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  &::before {
-    top: -15px;
-  }
-  
-  &::after {
-    bottom: -15px;
-    top: auto;
-  }
-}
 
-// Mobile Navigation
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 2rem 1.5rem;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1000;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  will-change: transform;
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
-  opacity: 0.98;
-  
-  -webkit-overflow-scrolling: touch;
-  
-  scrollbar-width: none; 
-  &::-webkit-scrollbar {
-    display: none; 
+    &::before {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 5px;
+      background-color: #fff;
+      border-radius: 50px;
+      position: absolute;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 5px;
+      background-color: #fff;
+      border-radius: 50px;
+      position: absolute;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &::before {
+      top: -15px;
+    }
+
+    &::after {
+      bottom: -15px;
+      top: auto;
+    }
   }
-  
-  @media (max-width: 480px) {
-    padding: 1.5rem 1rem;
+
+  // Mobile Navigation
+  .mobile-menu {
+    position: fixed;
     top: 0;
-  }
-  
-  .nav li {
-    opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    @for $i from 1 through 10 {
-      &:nth-child(#{$i}) {
-        transition-delay: #{$i * 0.05}s;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    opacity: 0.98;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1.5rem 1rem;
+      top: 0;
+    }
+
+    .nav li {
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{$i * 0.05}s;
+        }
       }
     }
-  }
-  
-  &.active {
-    transform: translateX(0);
-    opacity: 1;
-    
-    .nav li {
-      opacity: 1;
+
+    &.active {
       transform: translateX(0);
+      opacity: 1;
+
+      .nav li {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
-  }
-  
+
     &.active {
       transform: translateX(0);
     }
-  
+
     .nav {
       flex-direction: column;
       gap: 1.5rem;
       padding: 0;
       margin: 0;
       list-style: none;
-      
+
       li {
         margin: 0.5rem 0;
         opacity: 0;
         transform: translateX(20px);
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        
+
         @for $i from 1 through 10 {
           &:nth-child(#{$i}) {
             transition-delay: #{$i * 0.05}s;
           }
         }
-        
+
         a {
           display: block;
           padding: 0.8rem 1.2rem;
           text-decoration: none;
           border-radius: 8px;
           transition: all 0.2s ease;
-          
-          &:hover, &:focus {
+
+          &:hover,
+          &:focus {
             background: rgba(0, 0, 0, 0.05);
             color: #000;
           }
-          
+
           &.active {
             color: #000;
             font-weight: 600;
@@ -433,11 +437,11 @@ nav {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in-out;
-  
+
   &.active {
     opacity: 1;
     visibility: visible;
-    
+
     .menu-overlay {
       transform: translateX(0);
     }
@@ -467,12 +471,12 @@ nav {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #f0f0f0;
   margin-bottom: 1.5rem;
-  
+
   .logo {
     height: 30px;
     width: auto;
   }
-  
+
   .close-btn {
     background: none;
     border: none;
@@ -480,11 +484,11 @@ nav {
     padding: 0.5rem;
     border-radius: 50%;
     transition: background-color 0.2s;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }
-    
+
     .close-icon {
       width: 24px;
       height: 24px;
@@ -503,7 +507,7 @@ nav {
 
 .nav-item {
   margin-bottom: 0.5rem;
-  
+
   .nav-link {
     display: flex;
     align-items: center;
@@ -511,20 +515,21 @@ nav {
     color: #333;
     text-decoration: none;
     border-radius: 8px;
+    gap: 1rem;
     transition: all 0.2s ease;
-    
+
     &:hover {
       background-color: #f8f9fa;
       color: #000;
     }
-    
-    .nav-icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 12px;
-      color: #666;
-    }
-    
+
+    // .nav-icon {
+    //   width: 20px;
+    //   height: 20px;
+    //   margin-right: 12px;
+    //   color: #666;
+    // }
+
     span {
       font-weight: 500;
       font-size: 0.95rem;
@@ -542,7 +547,7 @@ nav {
   display: block;
   margin-top: 1rem;
   text-decoration: none;
-  
+
   .primary-button {
     width: 100%;
     padding: 0.75rem 1.5rem;
@@ -557,7 +562,7 @@ nav {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
@@ -569,28 +574,28 @@ nav {
   margin-top: auto;
   padding-top: 1.5rem;
   border-top: 1px solid #f0f0f0;
-  
+
   .social-links {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 1rem;
-    
+
     .social-link {
       color: #666;
       transition: color 0.2s;
-      
+
       &:hover {
         color: #4f46e5;
       }
-      
+
       lucide-icon {
         width: 20px;
         height: 20px;
       }
     }
   }
-  
+
   .copyright {
     font-size: 0.75rem;
     color: #888;

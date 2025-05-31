@@ -9,6 +9,9 @@
   @media screen and (max-width: 1600px) {
     width: 100%;
   }
+  @media screen and (max-width: 1536px) {
+    width: 81%;
+  }
   @media screen and (max-width: 1440px) {
     width: 100%;
   }
@@ -22,8 +25,11 @@
 
 .sectionPadding{
   padding: 6rem 10rem;
+  @media screen and (max-width: 1536px) {
+    padding: 4rem 7rem;
+  }
   @media screen and (max-width: 1200px) {
-    padding: 4rem 9rem;
+    padding: 4rem 6rem;
   }
   @media screen and (max-width: 768px) {
     padding: 3rem 1rem;

@@ -499,77 +499,103 @@
         <div class="position-relative">
           <div
             class="swiper car-collection-swiper"
+            #carSwiper
             id="related-vehicles-swiper"
           >
             <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let car of relatedVehicleData">
+              <div
+                class="swiper-slide rounded-4"
+                *ngFor="let car of relatedVehicleData"
+              >
                 <div class="car-card rounded-4">
-                  <img
-                    src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                    [alt]="car.name"
-                    class="img-fluid rounded-4 w-100 thumbnail-image h-100"
-                  />
-                  <div class="car-info">
-                    <h4 class="car-name mb-1 size26 redhat-semibold">
-                      {{ car.name }}
-                    </h4>
-                    <h6 class="transmission text-muted size18 redhat-semibold">
-                      {{ car.transmission }}
-                    </h6>
+                  <div class="thumbnail-image">
+                    <img
+                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
+                      [alt]="car.name"
+                      class="img-fluid rounded-4 w-100 h-100"
+                    />
                   </div>
-
-                  <div
-                    class="d-flex justify-content-between border-top border-bottom"
-                    style="padding: 1rem 2rem"
-                  >
-                    <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/fuel_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.fuelType }}
-                      </h6>
-                    </div>
-                    <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/speed_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.mileage }}
-                      </h6>
-                    </div>
-                    <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/seat_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6 class="mb-0 size16 redhat-semibold">
-                        {{ car.seating_capacity }} Seats
-                      </h6>
-                    </div>
-                  </div>
-
-                  <div
-                    class="cash-container mt-2 d-flex justify-content-between align-items-center"
-                  >
-                    <div class="cash">
-                      <h6 class="text-muted mb-0 size18 redhat-semibold">
-                        <del>AED {{ car.regularRate }}</del>
-                      </h6>
-                      <h5 class="mb-0 size26 redhat-semibold">
-                        AED {{ car.dailyRate }}
-                      </h5>
-                    </div>
-                    <a
-                      href="/product/detail/{{ car.url_key }}"
-                      class="color-card-p p-0 mt-auto text-decoration-none"
-                      >View details</a
+                  <div class="card-content">
+                    <div
+                      class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
                     >
+                      <div class="car-header">
+                        <h4 class="car-name mb-1 size26 redhat-semibold">
+                          {{ car.name }}
+                        </h4>
+                        <h6
+                          class="transmission text-muted size18 redhat-semibold text-capitalize"
+                        >
+                          {{ car.transmission }}
+                        </h6>
+                      </div>
+                      <span
+                        *ngIf="car && car.isvipNumberPlate"
+                        class="size8 redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
+                        >special number plate</span
+                      >
+                    </div>
+
+                    <div
+                      class="d-flex justify-content-between border-top border-bottom p-xl-3"
+                    >
+                      <div class="text-center">
+                        <img
+                          src="{{ imageURL }}/home/collection/fuel_icon.png"
+                          class="img-fluid collection_image"
+                          alt=""
+                        />
+                        <h6
+                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                        >
+                          {{ car.fuelType }}
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img
+                          src="{{ imageURL }}/home/collection/speed_icon.png"
+                          class="img-fluid collection_image"
+                          alt=""
+                        />
+                        <h6
+                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                        >
+                          {{ car.mileage }}
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img
+                          src="{{ imageURL }}/home/collection/seat_icon.png"
+                          class="img-fluid collection_image"
+                          alt=""
+                        />
+                        <h6
+                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                        >
+                          {{ car.seating_capacity }} Seats
+                        </h6>
+                      </div>
+                    </div>
+                    <div
+                      class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-0"
+                    >
+                      <div class="cash">
+                        <h6
+                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+                        >
+                          AED {{ car.regularRate }}
+                        </h6>
+                        <h5 class="mb-0 size26 redhat-semibold">
+                          AED {{ car.dailyRate }}
+                        </h5>
+                      </div>
+                      <a
+                        [routerLink]="['/product/detail', car.url_key]"
+                        routerLinkActive="router-link-active"
+                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
+                        >view details</a
+                      >
+                    </div>
                   </div>
                 </div>
               </div>

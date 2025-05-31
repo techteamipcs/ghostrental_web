@@ -30,6 +30,12 @@
   }
 .form-top{
   top: 52%;
+  @media screen and (max-width: 1600px) {
+    top: 54%;
+  }
+  @media screen and (max-width: 1440px) {
+    top: 57%;
+  }
   @media screen and (max-width: 1024px) {
     top: 54%;
   }
@@ -54,14 +60,22 @@
     @media screen and (max-width: 1920px) {
       max-width: 500px;
       gap: 0;
-      padding: 40px 30px;
+      padding: 30px;
     }
     @media screen and (max-width: 1600px) {
-      padding: 25px 25px;
+      padding: 25px;
       max-width: 450px;
     }
+    @media screen and (max-width: 1536px) {
+      padding: 15px;
+      max-width: 400px;
+    }
     @media screen and (max-width: 1440px) {
-      padding: 24px;
+      padding: 20px;
+      max-width: 373px;
+    }
+    @media screen and (max-width: 1366px) {
+      padding: 18px;
     }
     @media (max-width: 1024px) {
       padding: 1rem;
@@ -91,6 +105,18 @@
       border-radius: 20px;
       padding: 19px 24px;
       @media screen and (max-width: 1920px) {
+        padding: 10px 15px;
+      }
+      @media screen and (max-width: 1600px) {
+        padding: 10px 12px;
+      }
+      @media screen and (max-width: 1536px) {
+        padding: 5px 12px;
+      }
+      @media screen and (max-width: 1440px) {
+        padding: 4px 18px;
+      }
+      @media screen and (max-width: 1280px) {
         padding: 10px 15px;
       }
       @media screen and (max-width: 430px) {
@@ -124,9 +150,21 @@
       border-radius: 24px;
       cursor: pointer;
       transition: background 0.3s;
-      @media (max-width: 1280px) {
-        width: 50px;
+      @media (max-width: 1536px) {
+        width: 45px;
+        height: 26px;
+      }
+      @media (max-width: 1440px) {
+        width: 45px;
         height: 25px;
+      }
+      @media (max-width: 1366px) {
+        width: 45px;
+        height: 22px;
+      }
+      @media (max-width: 1280px) {
+        width: 40px;
+        height: 20px;
       }
       @media (max-width: 768px) {
         width: 35px;
@@ -143,6 +181,21 @@
         background-color: black;
         border-radius: 50%;
         transition: transform 0.3s;
+        @media (max-width: 1536px) {
+          width: 20px;
+          height: 20px;
+          left: 2px;
+        }
+        @media (max-width: 1440px) {
+          width: 20px;
+          height: 20px;
+          left: 2px;
+        }
+        @media (max-width: 1366px) {
+          width: 18px;
+          height: 18px;
+          left: 2px;
+        }
         @media (max-width: 1280px) {
           width: 20px;
           height: 20px;
@@ -158,6 +211,15 @@
       &.active {
         &::before {
           transform: translateX(29px);
+          @media (max-width: 1536px) {
+            transform: translateX(21px);
+          }
+          @media (max-width: 1440px) {
+            transform: translateX(26px);
+          }
+          @media (max-width: 1366px) {
+            transform: translateX(26px);
+          }
           @media (max-width: 1280px) {
             transform: translateX(26px);
           }
@@ -188,10 +250,13 @@
         margin-bottom: 22px;
       }
       @media screen and (max-width: 1440px) {
-        margin-bottom: 22px;
+        margin-bottom: 18px;
+      }
+      @media screen and (max-width: 1366px) {
+        margin-bottom: 18px;  
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 22px;
+        margin-bottom: 16px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 20px;
@@ -212,10 +277,13 @@
         margin-bottom: 16px;
       }
       @media screen and (max-width: 1440px) {
+        margin-bottom: 14px;
+      }
+      @media screen and (max-width: 1366px) {
         margin-bottom: 16px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 22px;
+        margin-bottom: 16px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 20px;
@@ -236,10 +304,13 @@
         margin-bottom: 10px;
       }
       @media screen and (max-width: 1440px) {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+      }
+      @media screen and (max-width: 1366px) {
+        margin-bottom: 16px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 18px;
@@ -260,6 +331,9 @@
         margin-bottom: 12px;
       }
       @media screen and (max-width: 1440px) {
+        margin-bottom: 12px;
+      }
+      @media screen and (max-width: 1366px) {
         margin-bottom: 12px;
       }
       @media screen and (max-width: 1280px) {
@@ -284,6 +358,9 @@
         margin-bottom: 15px;
       }
       @media screen and (max-width: 1440px) {
+        margin-bottom: 12px;
+      }
+      @media screen and (max-width: 1366px) {
         margin-bottom: 15px;
       }
       @media screen and (max-width: 1280px) {
@@ -310,6 +387,9 @@
       @media screen and (max-width: 1440px) {
         margin-bottom: 10px;
       }
+      @media screen and (max-width: 1366px) {
+        margin-bottom: 10px;
+      }
       @media screen and (max-width: 1280px) {
         margin-bottom: 10px;
       }
@@ -332,6 +412,9 @@
         margin-top: 18px;
       }
       @media screen and (max-width: 1440px) {
+        margin-top: 10px;
+      }
+      @media screen and (max-width: 1366px) {
         margin-top: 18px;
       }
       @media screen and (max-width: 1280px) {
@@ -364,6 +447,9 @@
         width: 50%;
       }
       @media screen and (max-width: 1440px) {
+        width: 48%;
+      }
+      @media screen and (max-width: 1366px) {
         width: 48%;
       }
       @media screen and (max-width: 1280px) {
@@ -539,7 +625,6 @@
       height: auto;
       display: flex;
       align-items: stretch;
-      border: 1px solid #d1d1d1;
     }
   }
   .car-swiper-button-prev,
@@ -572,30 +657,54 @@
     }
   }
   .car-card {
-    // height: 527px;
-    // background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border: 1px solid #d1d1d1;
     height: 100%;
     display: flex;
     flex-direction: column;
     width: 500px;
-    
-    
-
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
     .thumbnail-image {
-      padding: 12px;
+      padding: 12px 12px 0px 12px;
+  
+      @media screen and (max-width: 1920px) {
+        padding: 12px 12px 0px 12px;
+      }
+      @media screen and (max-width: 1400px) {
+        padding: 10px 10px 0px 10px;
+      }
       @media screen and (max-width: 1200px) {
-        padding: 8px;
+        padding: 10px 10px 0px 10px;
+      }
+      @media screen and (max-width: 1024px) {
+        padding: 10px 10px 0px 10px;
       }
       @media screen and (max-width: 768px) {
-        padding: 4px;
+        padding: 8px 8px 0px 8px;
       }
     }
-    .cash {
-      h6 {
-        text-decoration: line-through;
-      }
+  }
+  .card-content {
+    padding: 26px;
+  
+    @media screen and (max-width: 1920px) {
+      padding: 12px;
+    }
+    @media screen and (max-width: 1400px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 1200px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 8px;
     }
   }
 }
@@ -627,6 +736,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 1536px) {
+      max-width: 814px;
+    }
   }
   // .features-grid {
   //   display: grid;
@@ -678,18 +790,37 @@
       grid-template-columns: 1fr;
     }
   }
+  .thumbnail-image {
+    padding: 12px;
+    @media screen and (max-width: 1200px) {
+      padding: 8px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 4px;
+    }
+  }
+  .card-content {
+    padding: 0 26px 26px 26px;
+
+    @media screen and (max-width: 1024px) {
+      padding: 0 20px 20px 20px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 0 10px 10px 10px;
+    }
+  }
   .trending-car-card {
-    width: 500px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 100%;
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
-    height: 100%;
-    padding: 1rem;
+    width:100%;
     cursor: pointer;
-    transition: transform 0.3s ease, border 0.3s ease;
+    border-radius: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease,border 0.3s ease;
     &:hover {
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
       border: 1px solid white;
+      border-radius: 1rem;
     }
   }
 

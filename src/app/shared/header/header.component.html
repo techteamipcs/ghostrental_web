@@ -91,11 +91,9 @@
                 src="{{ imageURL }}/images/logo/nav-logo.svg"
                 alt="Logo"
                 class="logo"
+                style="filter: brightness(0)"
               />
             </a>
-            <button class="close-btn" (click)="closeMenu()">
-              <lucide-icon name="x" class="close-icon"></lucide-icon>
-            </button>
           </div>
 
           <ul class="nav-menu">
@@ -131,7 +129,7 @@
 
             <li class="nav-item" (click)="closeMenu()">
               <a href="/contact" class="nav-button">
-                <button class="primary-button">
+                <button class="black-button w-100 size18 redhat-bold">
                   <lucide-icon name="phone" class="mr-2"></lucide-icon>
                   Contact Us
                 </button>

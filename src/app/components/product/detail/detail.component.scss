@@ -1,5 +1,8 @@
 .product-detail {
   padding: 12rem 7.3rem 5rem 7.3rem;
+  @media screen and (max-width: 1536px) {
+    padding: 10rem 5rem 5rem 5rem;
+  }
   @media screen and (max-width: 1200px) {
     padding: 10rem 4rem 4rem 4rem;
   }
@@ -12,6 +15,12 @@
 
   .gallery-height{
     height: 692px;
+    @media screen and (max-width: 1536px) {
+      height: 500px;
+    }
+    @media screen and (max-width: 1440px) {
+      height: 560px;
+    }
     @media screen and (max-width: 1200px) {
       height: 500px;
     }
@@ -307,7 +316,7 @@
 }
 // collections
 .collection {
-  padding: 5rem 2rem 5rem 7rem;
+  padding: 5rem 0rem 5rem 7rem;
   @media screen and (max-width: 1200px) {
     padding-left: 3.75rem;
   }
@@ -431,24 +440,54 @@
     }
   }
   .car-card {
-    width: 500px;
-    height: 527px;
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border: 1px solid #d1d1d1;
     height: 100%;
     display: flex;
     flex-direction: column;
-    img {
-      border-radius: 8px;
-      margin-bottom: 15px;
+    width: 500px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
     }
-    .cash {
-      h6 {
-        text-decoration: line-through;
+    .thumbnail-image {
+      padding: 12px 12px 0px 12px;
+  
+      @media screen and (max-width: 1920px) {
+        padding: 12px 12px 0px 12px;
       }
+      @media screen and (max-width: 1400px) {
+        padding: 10px 10px 0px 10px;
+      }
+      @media screen and (max-width: 1200px) {
+        padding: 10px 10px 0px 10px;
+      }
+      @media screen and (max-width: 1024px) {
+        padding: 10px 10px 0px 10px;
+      }
+      @media screen and (max-width: 768px) {
+        padding: 8px 8px 0px 8px;
+      }
+    }
+  }
+  .card-content {
+    padding: 26px;
+  
+    @media screen and (max-width: 1920px) {
+      padding: 12px;
+    }
+    @media screen and (max-width: 1400px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 1200px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 10px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 8px;
     }
   }
 }

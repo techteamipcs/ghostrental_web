@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selecteddropaddredd: any;
   availableStartDate: any;
   locationData: any = [];
-  pickupLocations:any = [];
-  dropLocations:any = [];
+  pickupLocations: any = [];
+  dropLocations: any = [];
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 4 },
+          1280: { slidesPerView: 4.5 },
         },
       });
     }
@@ -134,7 +134,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initYachtSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       new Swiper('.yacht-collection-swiper', {
-        slidesPerView: 4.5,
         loop: true,
         spaceBetween: 20,
         navigation: {
@@ -144,7 +143,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          992: { slidesPerView: 4 },
+          1280: { slidesPerView: 4.5 },
         },
       });
     }

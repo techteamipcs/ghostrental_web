@@ -30,3 +30,19 @@
   font-size: 20px;
 }
 
+
+.footer-gap{
+  gap: 128px;
+  @media screen and (max-width: 1536px) {
+    gap: 90px;
+  }
+  @media screen and (max-width: 1200px) {
+    gap: 64px;
+  }
+  @media screen and (max-width: 768px) {
+    gap: 48px;
+  }
+  @media screen and (max-width: 420px) {
+    gap: 24px;
+  }
+}
