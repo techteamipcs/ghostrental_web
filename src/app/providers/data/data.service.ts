@@ -262,6 +262,15 @@ export class DataService {
     );
   };
 
+  getAllLocations = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/location/getAllLocation';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   
 
   logout() {

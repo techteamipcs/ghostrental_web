@@ -49,7 +49,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedpickaddress: any;
   selecteddropaddredd: any;
   availableStartDate: any;
-
+  locationData: any = [];
+  pickupLocations:any = [];
+  dropLocations:any = [];
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -99,6 +101,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getBodyTypes();
     this.getModels();
     this.getBrands();
+    this.getLocations();
     this.initCarSwiper();
     this.initYachtSwiper();
     this.initTrendingSwiper();
@@ -374,6 +377,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
           if (this.listBrands && this.listBrands.length > 0) {
             this.filteredBrands = this.listBrands.filter((model) => model.type == this.vehicletype);
           }
+        }
+      }
+    });
+  }
+
+  getLocations() {
+    let obj = {};
+    this.dataservice.getAllLocations(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.locationData = response.result;
+          this.pickupLocations = this.locationData;
+          this.dropLocations = this.locationData;
         }
       }
     });
