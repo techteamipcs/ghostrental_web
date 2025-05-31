@@ -220,9 +220,6 @@
                     >
                       Choose Pickup Location
                     </option>
-                    <option class="size14 redhat-semibold">
-                      Airport Terminal 1
-                    </option>
                     <option *ngFor="let location of pickupLocations" class="size14 redhat-semibold">
                       {{location.name}}
                     </option>
@@ -325,6 +322,7 @@
         *ngFor="let car of cartypeData"
         class="position-relative padding-between col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
       >
+      <a [routerLink]="['/product/list', car.url_key]" class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
         <img
           src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
           [alt]="car.name"
@@ -339,6 +337,7 @@
         >
           {{ car.name }}
         </p>
+        </a>
       </div>
     </div>
   </div>

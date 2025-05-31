@@ -93,6 +93,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.scroll(0,0)
+    }
     this.initForm();
     this.getBannerData();
     this.getCarTypes();
