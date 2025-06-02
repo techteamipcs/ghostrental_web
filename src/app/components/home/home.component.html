@@ -211,7 +211,11 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
-                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
+                  <select
+                    class="form-select size14 redhat-semibold"
+                    (change)="onSelectPickupLocation($event)"
+                    required
+                  >
                     <option
                       value=""
                       disabled
@@ -220,17 +224,26 @@
                     >
                       Choose Pickup Location
                     </option>
-                    <option *ngFor="let location of pickupLocations" class="size14 redhat-semibold">
-                      {{location.name}}
+                    <option
+                      *ngFor="let location of pickupLocations"
+                      class="size14 redhat-semibold"
+                    >
+                      {{ location.name }}
                     </option>
                   </select>
                 </ng-container>
                 <ng-template #yachtPickup>
-                  <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)" required>
+                  <select
+                    class="form-select size14 redhat-semibold"
+                    (change)="onSelectPickupLocation($event)"
+                    required
+                  >
                     <option value="" disabled selected>
                       Choose Pickup Marina
                     </option>
-                    <option *ngFor="let location of pickupLocations">{{location.name}}</option>
+                    <option *ngFor="let location of pickupLocations">
+                      {{ location.name }}
+                    </option>
                   </select>
                 </ng-template>
               </div>
@@ -280,19 +293,31 @@
               </div>
               <div class="col-12 select-margin">
                 <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
-                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
+                  <select
+                    class="form-select size14 redhat-semibold"
+                    (change)="onSelectDropLocation($event)"
+                    required
+                  >
                     <option value="" disabled selected>
                       Choose Return Location
                     </option>
-                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
+                    <option *ngFor="let location of dropLocations">
+                      {{ location.name }}
+                    </option>
                   </select>
                 </ng-container>
                 <ng-template #yachtReturn>
-                  <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
+                  <select
+                    class="form-select size14 redhat-semibold"
+                    (change)="onSelectDropLocation($event)"
+                    required
+                  >
                     <option value="" disabled selected>
                       Choose Return Marina
                     </option>
-                    <option *ngFor="let location of dropLocations">{{location.name}}</option>
+                    <option *ngFor="let location of dropLocations">
+                      {{ location.name }}
+                    </option>
                   </select>
                 </ng-template>
               </div>
@@ -323,21 +348,24 @@
         class="position-relative padding-between col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
         style="cursor: pointer"
       >
-      <a [routerLink]="['/product/list', car.url_key]" class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
-        <img
-          src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
-          [alt]="car.name"
-          class="category-image"
+        <a
           [routerLink]="['/product/list', car.url_key]"
-          routerLinkActive="router-link-active"
-        />
-        <p
-          class="size18 redhat-semibold text-center type-margin text-capitalize"
-          [routerLink]="['/product/list', car.url_key]"
-          routerLinkActive="router-link-active"
+          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
         >
-          {{ car.name }}
-        </p>
+          <img
+            src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
+            [alt]="car.name"
+            class="category-image"
+            [routerLink]="['/product/list', car.url_key]"
+            routerLinkActive="router-link-active"
+          />
+          <p
+            class="size18 redhat-semibold text-center type-margin text-capitalize"
+            [routerLink]="['/product/list', car.url_key]"
+            routerLinkActive="router-link-active"
+          >
+            {{ car.name }}
+          </p>
         </a>
       </div>
     </div>
@@ -494,7 +522,7 @@
                   </div>
                   <div class="card-content">
                     <div
-                      class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
+                      class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
                     >
                       <div class="car-header">
                         <h4 class="car-name mb-1 size26 redhat-semibold">
@@ -508,13 +536,13 @@
                       </div>
                       <span
                         *ngIf="car && car.isvipNumberPlate"
-                        class="size8 redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
+                        class="size8 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
                         >special number plate</span
                       >
                     </div>
 
                     <div
-                      class="d-flex justify-content-between border-top border-bottom p-xl-3"
+                      class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2"
                     >
                       <div class="text-center">
                         <img
@@ -523,7 +551,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ car.fuelType }}
                         </h6>
@@ -535,7 +563,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ car.mileage }}
                         </h6>
@@ -547,14 +575,14 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ car.seating_capacity }} Seats
                         </h6>
                       </div>
                     </div>
                     <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-0"
+                      class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-2"
                     >
                       <div class="cash">
                         <h6
@@ -595,9 +623,9 @@
 <section class="collection">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 pe-0">
+      <div class="col-12 pb-md-5 pb-2 pe-0">
         <div
-          class="d-flex justify-content-between align-items-center mb-4 margin-right"
+          class="d-flex justify-content-between align-items-center mb-md-4 mb-2 margin-right"
         >
           <h3 class="text-capitalize size60 performa-light mb-0">
             our yacht collection
@@ -622,19 +650,28 @@
                     />
                   </div>
                   <div class="card-content">
-                    <div class="car-info pb-xl-3 p-md-3 p-2">
-                      <h4 class="car-name mb-1 size26 redhat-semibold">
-                        {{ yacht.name }}
-                      </h4>
-                      <h6
-                        class="transmission text-muted size18 redhat-semibold"
+                    <div
+                      class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
+                    >
+                      <div class="car-header">
+                        <h4 class="car-name mb-1 size26 redhat-semibold">
+                          {{ yacht.name }}
+                        </h4>
+                        <h6
+                          class="transmission text-muted size18 redhat-semibold text-capitalize"
+                        >
+                          {{ yacht.type }}
+                        </h6>
+                      </div>
+                      <span
+                        *ngIf="yacht && yacht.isvipNumberPlate"
+                        class="size8 redhat-bold text-capitalize border border-3 rounded-2 px-2 py-1"
+                        >special number plate</span
                       >
-                        {{ yacht.type }}
-                      </h6>
                     </div>
 
                     <div
-                      class="d-flex justify-content-between border-top border-bottom p-xl-3"
+                      class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2"
                     >
                       <div class="text-center">
                         <img
@@ -643,7 +680,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ yacht.length }} length
                         </h6>
@@ -655,7 +692,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ yacht.cabins }} Cabins
                         </h6>
@@ -667,20 +704,20 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
                         >
                           {{ yacht.guests }} Guests
                         </h6>
                       </div>
                     </div>
                     <div
-                      class="cash-container mt-2 d-flex justify-content-between align-items-center py-xl-3"
+                      class="cash-container mt-2 d-flex justify-content-between align-items-center py-xl-3 py-2"
                     >
                       <div class="cash">
                         <h6
                           class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
                         >
-                          <del>AED {{ yacht.regularRate }}</del>
+                          AED {{ yacht.regularRate }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold">
                           AED {{ yacht.dailyRate }}
@@ -806,7 +843,7 @@
           />
           <div class="card-content">
             <div
-              class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
+              class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
             >
               <div class="car-header">
                 <h4 class="car-name mb-1 size35 redhat-semibold white-color">
@@ -826,7 +863,7 @@
             </div>
 
             <div
-              class="car-pricing pt-xl-3 pt-0 d-flex justify-content-between align-items-end"
+              class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end"
             >
               <div class="d-flex flex-column">
                 <span
@@ -884,18 +921,29 @@
                     [alt]="car.name"
                     class="trending-car-image"
                   />
-                  <div class="car-info p-3">
-                    <h4 class="car-name size35 redhat-semibold white-color">
-                      {{ car.name }}
-                    </h4>
-                    <h6
-                      class="car-spec size24 redhat-semibold gray-light-color"
+                  <div
+                    class="car-info p-3 pb-xl-3 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="car-header">
+                      <h4
+                        class="car-name mb-1 size35 redhat-semibold white-color"
+                      >
+                        {{ car.name }}
+                      </h4>
+                      <h6
+                        class="car-spec size24 text-capitalize redhat-semibold gray-light-color"
+                      >
+                        {{ car.transmission }}
+                      </h6>
+                    </div>
+                    <span
+                      *ngIf="car && car.isvipNumberPlate"
+                      class="size8 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
+                      >special number plate</span
                     >
-                      {{ car.transmission }}
-                    </h6>
                   </div>
                   <div
-                    class="car-pricing p-3 pt-0 d-flex justify-content-between align-items-end"
+                    class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end"
                   >
                     <div class="d-flex flex-column">
                       <span

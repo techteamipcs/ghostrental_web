@@ -9,42 +9,47 @@ nav {
 
   // Default padding (for small-padding class)
   padding: 2.3rem 7.3rem;
+
   &.large-padding {
     padding: 4.3rem 7.3rem;
+
+    @media (max-width: 1600px) {
+      padding: 3rem 6rem;
+    }
+
+    @media (max-width: 1536px) {
+      padding: 2.5rem 5rem;
+    }
+
+    @media (max-width: 1024px) {
+      padding: 3rem 2rem;
+    }
+    @media (max-width: 414px) {
+      padding: 1.8rem 1.5rem;
+    }
   }
 
   @media (max-width: 1600px) {
     padding: 2rem 6rem;
-    &.large-padding {
-      padding: 3rem 6rem;
-    }
-  }
-
-  @media (max-width: 1536px) {
-    &.large-padding {
-      padding: 2.5rem 5rem;
-    }
   }
 
   @media (max-width: 1024px) {
     padding: 3.3rem 2rem;
-    &.large-padding {
-      padding: 3rem 2rem;
-    }
   }
 
   @media (max-width: 768px) {
     padding: 2rem 2rem;
   }
+
   @media (max-width: 414px) {
     padding: 3.5rem 2rem 0 2rem;
   }
-  // Default text color (white)
+ 
+
   .white {
     color: #ffffff;
     transition: color 0.3s ease;
 
-    // Dark text variant for light backgrounds
     &.dark {
       color: #000000;
 
@@ -53,14 +58,12 @@ nav {
       }
     }
 
-    // Force white text when scrolled or menu open
     .scrolled &,
     .menu-open & {
       color: #ffffff !important;
     }
   }
 
-  // Scrolled state
   &.scrolled {
     background-color: #1d1d1d !important;
     padding: 1.5rem 5rem;
@@ -69,13 +72,14 @@ nav {
     @media (max-width: 1024px) {
       padding: 1rem 2rem;
     }
+    @media (max-width: 414px) {
+      padding: 1rem;
+    }
 
-    // Force white text when scrolled
     .white {
       color: #ffffff !important;
     }
 
-    // Ensure logo is visible on dark background
     .nav-logo {
       filter: brightness(0) invert(1) !important;
     }
@@ -89,7 +93,6 @@ nav {
     }
   }
 
-  // Dark text variant for light backgrounds
   &.dark-text {
     .white {
       color: #000000;
@@ -99,14 +102,12 @@ nav {
       }
     }
 
-    // Hamburger menu color for light backgrounds
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {
       background-color: #000000;
     }
 
-    // When scrolled or menu is open, use white text
     &.scrolled,
     &.menu-open {
       .white {

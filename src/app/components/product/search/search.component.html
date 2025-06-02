@@ -485,62 +485,71 @@
                   <lucide-icon name="calendar-days" size="15"></lucide-icon>
                 </div>
 
-                <!-- Price -->
-                <div class="price-range-wrapper">
+                <!-- Price Range -->
+                <div class="price-wrapper">
                   <label
                     class="form-label size14 redhat-semibold mb-1 gray-light-color"
                   >
-                    Price (AED)
+                    Price Range (AED)
                   </label>
 
-                  <div class="price-inputs d-flex gap-2 mb-1">
-                    <input
-                      type="number"
-                      #minPriceInput
-                      id="minPrice"
-                      min="0"
-                      class="form-controls size16 redhat-semibold mb-1"
-                      [(ngModel)]="minPrice"
-                    />
-                    <input
-                      type="number"
-                      #maxPriceInput
-                      id="maxPrice"
-                      min="0"
-                      class="form-controls size16 redhat-semibold mb-1"
-                      [(ngModel)]="maxPrice"
-                    />
+                  <!-- Price Inputs -->
+                  <div class="row">
+                    <div class="col-6">
+                      <label
+                        for="minPrice"
+                        class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                        >Min</label
+                      >
+                      <input
+                        type="number"
+                        id="minPrice"
+                        [(ngModel)]="minPrice"
+                        (change)="onPriceInputChange('min')"
+                        min="0"
+                        max="{{ maxPrice - 500 }}"
+                        class="form-controls size16 redhat-semibold mb-2"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label
+                        for="maxPrice"
+                        class="form-label size14 redhat-semibold mb-1 gray-light-color"
+                        >Max</label
+                      >
+                      <input
+                        type="number"
+                        id="maxPrice"
+                        [(ngModel)]="maxPrice"
+                        (change)="onPriceInputChange('max')"
+                        min="{{ minPrice + 500 }}"
+                        max="10000"
+                        class="form-controls size16 redhat-semibold mb-2"
+                      />
+                    </div>
                   </div>
 
-                  <div
-                    class="slider d-flex gap-2 position-relative"
-                    style="width: 100%; height: 30px"
-                  >
-                    <div class="slider-track"></div>
+                  <!-- Slider -->
+                  <div class="slider" id="slider">
                     <div class="slider-range" id="slider-range"></div>
-
-                    <input
-                      type="range"
-                      #rangeMin
-                      id="rangeMin"
-                      min="0"
-                      max="10000"
-                      step="50"
-                      class="form-range position-absolute w-100"
-                      [(ngModel)]="minPrice"
-                      (input)="updateSlider()"
-                    />
-                    <input
-                      type="range"
-                      #rangeMax
-                      id="rangeMax"
-                      min="0"
-                      max="10000"
-                      step="50"
-                      class="form-range position-absolute w-100"
-                      [(ngModel)]="maxPrice"
-                      (input)="updateSlider()"
-                    />
+                    <div
+                      class="slider-thumb"
+                      id="thumb-min"
+                      role="slider"
+                      aria-valuemin="0"
+                      aria-valuemax="10000"
+                      [attr.aria-valuenow]="minPrice"
+                      tabindex="0"
+                    ></div>
+                    <div
+                      class="slider-thumb"
+                      id="thumb-max"
+                      role="slider"
+                      aria-valuemin="0"
+                      aria-valuemax="10000"
+                      [attr.aria-valuenow]="maxPrice"
+                      tabindex="0"
+                    ></div>
                   </div>
                 </div>
 
@@ -576,7 +585,7 @@
           </h6>
 
           <select
-            class="border-0 outline-none size16 redhat-semibold text-capitalize"
+            class="border-0 outline-none size16 redhat-semibold text-capitalize bg-transparent"
             (change)="onChangeSort($event)"
           >
             <option

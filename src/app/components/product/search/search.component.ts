@@ -472,9 +472,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
-          this.totolvehicle = response.count;
-          this.vehicleData = response.result;
-          this.totalItems = response.count;
+        this.totolvehicle = response.count;
+        this.vehicleData = response.result;
+        this.totalItems = response.count;
         if (response.result && response.result.length > 0) {
           this.vehicleData = response.result;
           this.updatePagedCars();

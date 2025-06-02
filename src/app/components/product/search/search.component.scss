@@ -8,6 +8,9 @@
   }
 
   @media screen and (max-width: 768px) {
+    padding: 9rem 1rem;
+  }
+  @media screen and (max-width: 576px) {
     padding: 7rem 1rem;
   }
 
@@ -23,6 +26,7 @@
   transition: all 0.3s ease-in-out;
   opacity: 0;
   visibility: hidden;
+  width: 100%;
 
   &.show {
     opacity: 1;
@@ -319,6 +323,7 @@ input[type="datetime-local"] {
   position: absolute;
   top: 100%;
   left: 0;
+  width: 100%;
 }
 
 .price-wrapper {

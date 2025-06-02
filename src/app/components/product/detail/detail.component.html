@@ -14,21 +14,20 @@
       </h1>
     </div>
 
-    <div class="container-fluid gallery-height">
+    <div class="container-fluid">
       <div class="row h-100">
-        <div class="col-xl-9 col-lg-12 mb-xl-0 mb-3 pad-right h-100">
+        <div class="col-xl-9 col-lg-12 mb-xl-0 mb-3 pad-right">
           <div class="main-image-wrapper position-relative">
             <img
               [src]="mainImage.src"
               [alt]="mainImage.alt"
-              class="img-fluid h-100 rounded-4"
+              class="img-fluid h-100 rounded-md-4 rounded-2"
               loading="lazy"
             />
             <button
               class="position-absolute top-50 translate-middle-y prev"
               (click)="prevImage()"
             >
-              <!-- <lucide-icon name="chevron-left" [size]="300" strokeWidth="1" /> -->
               <img
                 src="{{ imageURL }}/product-details/left-arrow.svg"
                 alt="Previous"
@@ -38,7 +37,6 @@
               class="position-absolute top-50 translate-middle-y next"
               (click)="nextImage()"
             >
-              <!-- <lucide-icon name="chevron-right" [size]="300" strokeWidth="1" /> -->
               <img
                 src="{{ imageURL }}/product-details/right-arrow.svg"
                 alt="Next"
@@ -66,7 +64,7 @@
           <div class="d-flex flex-xl-column h-100 gap-xl-2 gap-lg-3">
             <div
               *ngFor="let img of thumbnailImages.images; let i = index"
-              class="thumbnail-item rounded-4"
+              class="thumbnail-item rounded-md-4 rounded-2"
               [class.active]="i === 0"
               (click)="selectImage((currentIndex + i) % images.length)"
             >
@@ -96,13 +94,36 @@
             class="sticky_image rounded-4"
           />
           <div class="cash">
-            <h6 class="text-muted mb-0 size18 redhat-semibold" *ngIf="vehicleData && vehicleData.regularRate">
-              <del>AED {{vehicleData.regularRate}}</del>
+            <h6
+              class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+              *ngIf="vehicleData && vehicleData.regularRate"
+            >
+              AED {{ vehicleData.regularRate }}
             </h6>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Daily'">AED {{vehicleData.dailyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Hourly'">AED {{vehicleData.hourlyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Weekly'">AED {{vehicleData.weeklyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Monthly'">AED {{vehicleData.monthlyRate}}</h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Daily'"
+            >
+              AED {{ vehicleData.dailyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'"
+            >
+              AED {{ vehicleData.hourlyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'"
+            >
+              AED {{ vehicleData.weeklyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'"
+            >
+              AED {{ vehicleData.monthlyRate }}
+            </h5>
           </div>
         </div>
 
@@ -149,27 +170,50 @@
       <div
         class="d-xl-none d-block purchase-card mb-5 border border-1 border-black p-3 rounded-4"
       >
-        <div class="d-flex align-items-end mb-4 gap-4">
+        <div class="d-flex align-items-end mb-4 justify-content-between">
           <img
             src="{{ thumbnailImage }}"
             alt=""
             class="sticky_image rounded-4"
           />
           <div class="cash">
-            <h6 class="text-muted mb-0 size18 redhat-semibold" *ngIf="vehicleData && vehicleData.regularRate">
-              <del>AED {{vehicleData.regularRate}}</del>
+            <h6
+              class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+              *ngIf="vehicleData && vehicleData.regularRate"
+            >
+              AED {{ vehicleData.regularRate }}
             </h6>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Daily'">AED {{vehicleData.dailyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Hourly'">AED {{vehicleData.hourlyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Weekly'">AED {{vehicleData.weeklyRate}}</h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Monthly'">AED {{vehicleData.monthlyRate}}</h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Daily'"
+            >
+              AED {{ vehicleData.dailyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'"
+            >
+              AED {{ vehicleData.hourlyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'"
+            >
+              AED {{ vehicleData.weeklyRate }}
+            </h5>
+            <h5
+              class="mb-0 size26 redhat-semibold"
+              *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'"
+            >
+              AED {{ vehicleData.monthlyRate }}
+            </h5>
           </div>
         </div>
 
         <h4 class="size26 redhat-semibold m-0">BMW i7</h4>
         <p class="size18 redhat-semibold mb-2">sedan</p>
 
-        <div class="d-flex gap-5 mb-4">
+        <div class="d-flex justify-content-between mb-4">
           <div class="d-flex align-items-center">
             <img
               src="{{ imageURL }}/product-details/overview_icons/location.png"
@@ -207,66 +251,7 @@
         </div>
       </div>
 
-      <!-- <div class="col-xl-9 col-12 border-1 border-bottom p-0">
-        <div class="mb-5">
-          <h3
-            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
-          >
-            car overview
-          </h3>
-          <div class="row">
-            <ng-container *ngFor="let detail of carDetails.flat()">
-              <div
-                *ngIf="detail.value"
-                class="col-xl-3 col-lg-6 col-md-6 col-12"
-              >
-                <div class="detail-item mb-xl-3 mb-lg-2 mb-3">
-                  <img
-                    [src]="
-                      imageURL +
-                      '/product-details/overview_icons/' +
-                      detail.icon +
-                      '.png'
-                    "
-                    [alt]="detail.label"
-                    class="overview_icons"
-                  />
-                  <h5 class="size14 redhat-semibold text-capitalize mb-0">
-                    {{ detail.label }}
-                  </h5>
-                  <p class="size14 redhat-semibold text-capitalize mb-0">
-                    {{ detail.value }}
-                  </p>
-                </div>
-              </div>
-            </ng-container> 
-          </div>
-          -->
-      <!-- <div class="car-details-grid">
-            <ng-container *ngFor="let detail of carDetails.flat()">
-              <div *ngIf="detail.value" class="detail-item">
-                <img
-                  [src]="
-                    imageURL +
-                    '/product-details/overview_icons/' +
-                    detail.icon +
-                    '.png'
-                  "
-                  [alt]="detail.label"
-                  class="overview_icons"
-                />
-                <h5 class="size14 redhat-semibold text-capitalize m-0">
-                  {{ detail.label }}
-                </h5>
-                <p class="size14 redhat-semibold text-capitalize m-0">
-                  {{ detail.value }}
-                </p>
-              </div>
-            </ng-container>
-          </div> -->
-      <!-- </div> -->
-      <!-- </div> -->
-      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
+      <div class="col-xl-9 col-12 border-1 border-bottom">
         <div class="mb-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -276,7 +261,7 @@
 
           <div class="row">
             <div
-              class="col-4 mb-xl-3 mb-lg-2 mb-3"
+              class="col-lg-4 col-md-4 col-12 mb-xl-3 mb-lg-2 mb-3"
               *ngFor="let detail of carDetails.flat()"
             >
               <div class="row align-items-center">
