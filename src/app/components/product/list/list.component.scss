@@ -7,6 +7,9 @@
   top: 32%;
   left: 6%;
   transform: translateY(-32%);
+  @media (max-width: 1536px) {
+    width: 702px;
+  }
   @media (max-width: 768px) {
     top: 50%;
     width: 100%;

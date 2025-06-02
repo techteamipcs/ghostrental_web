@@ -89,7 +89,7 @@
         #stickyCard
         class="sticky-card d-xl-block d-none border border-1 border-black p-3 rounded-4"
       >
-        <div class="d-flex align-items-end mb-4 gap-4">
+        <div class="d-flex align-items-end mb-4 justify-content-between">
           <img
             src="{{ imageURL }}/product-details/bmw_main.png"
             alt=""
@@ -106,7 +106,7 @@
         <h4 class="size26 redhat-semibold m-0">BMW i7</h4>
         <p class="size18 redhat-semibold mb-2">sedan</p>
 
-        <div class="d-flex gap-5 mb-4">
+        <div class="d-flex justify-content-between mb-4">
           <div class="d-flex align-items-center">
             <img
               src="{{ imageURL }}/product-details/overview_icons/location.png"
@@ -201,7 +201,7 @@
         </div>
       </div>
 
-      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
+      <!-- <div class="col-xl-9 col-12 border-1 border-bottom p-0">
         <div class="mb-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -233,9 +233,10 @@
                   </p>
                 </div>
               </div>
-            </ng-container>
+            </ng-container> 
           </div>
-          <!-- <div class="car-details-grid">
+          -->
+      <!-- <div class="car-details-grid">
             <ng-container *ngFor="let detail of carDetails.flat()">
               <div *ngIf="detail.value" class="detail-item">
                 <img
@@ -257,6 +258,47 @@
               </div>
             </ng-container>
           </div> -->
+      <!-- </div> -->
+      <!-- </div> -->
+      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
+        <div class="mb-5">
+          <h3
+            class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
+          >
+            car overview
+          </h3>
+
+          <div class="row">
+            <div
+              class="col-4 mb-xl-3 mb-lg-2 mb-3"
+              *ngFor="let detail of carDetails.flat()"
+            >
+              <div class="row align-items-center">
+                <div class="col-2 p-0">
+                  <img
+                    [src]="
+                      imageURL +
+                      '/product-details/overview_icons/' +
+                      detail.icon +
+                      '.png'
+                    "
+                    [alt]="detail.label"
+                    class="overview_icons"
+                  />
+                </div>
+                <div class="col-4">
+                  <h5 class="size14 redhat-semibold text-capitalize mb-0">
+                    {{ detail.label }}
+                  </h5>
+                </div>
+                <div class="col-6">
+                  <p class="size14 redhat-semibold text-capitalize mb-0">
+                    {{ detail.value }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

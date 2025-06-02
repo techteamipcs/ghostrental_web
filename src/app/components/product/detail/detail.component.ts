@@ -262,13 +262,13 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
         { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
       ];
 
-      if (this.vehicleData.media_data?.length > 0) {
-        this.images.push({
-          src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
-          alt: this.vehicleData.media_data[0].name,
-          isActive: false
-        });
-      }
+      // if (this.vehicleData.media_data?.length > 0) {
+      //   this.images.push({
+      //     src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
+      //     alt: this.vehicleData.media_data[0].name,
+      //     isActive: false
+      //   });
+      // }
 
       this.vehicleData.gallery_image?.forEach(gal => {
         this.images.push({
