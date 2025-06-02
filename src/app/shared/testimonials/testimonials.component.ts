@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, NgZone, PLATFORM_ID, Inject } from '@angular/core';
 import { Swiper } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../providers/data/data.service';
 import { isPlatformBrowser } from '@angular/common';
@@ -131,49 +132,50 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     if (this.swiperRef?.nativeElement && !this.swiper) {
       try {
         if (isPlatformBrowser(this.platformId)) {
-        this.swiper = new Swiper(this.swiperRef.nativeElement, {
-          slidesPerView: 1,
-          spaceBetween: 30,
-          loop: true,
-          navigation: false,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
-          },
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          },
-          breakpoints: {
-            768: {
-              slidesPerView: 1,
-              spaceBetween: 20,
+          this.swiper = new Swiper(this.swiperRef.nativeElement, {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            modules: [Navigation, Pagination, Autoplay],
+            navigation: false,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              dynamicBullets: true,
             },
-            992: {
-              slidesPerView: 1,
-              spaceBetween: 30,
+            autoplay: {
+              delay: 2000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             },
-          },
-          on: {
-            init: () => {
+            breakpoints: {
+              768: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              992: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+              },
             },
-            slideChange: () => {
+            on: {
+              init: () => {
+              },
+              slideChange: () => {
+              },
             },
-          },
-        });
-
-        if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
-          this.nextButton.nativeElement.addEventListener('click', () => {
-            this.swiper?.slideNext();
           });
 
-          this.prevButton.nativeElement.addEventListener('click', () => {
-            this.swiper?.slidePrev();
-          });
+          if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
+            this.nextButton.nativeElement.addEventListener('click', () => {
+              this.swiper?.slideNext();
+            });
+
+            this.prevButton.nativeElement.addEventListener('click', () => {
+              this.swiper?.slidePrev();
+            });
+          }
         }
-      }
       } catch (error) {
         console.error('Error initializing Swiper:', error);
       }

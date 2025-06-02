@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, AfterVie
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { Swiper } from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      window.scroll(0,0)
+      window.scroll(0, 0)
     }
     this.initForm();
     this.getBannerData();
@@ -120,6 +120,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
         slidesPerView: 4.5,
         loop: true,
         spaceBetween: 20,
+        modules: [Navigation, Pagination, Autoplay],
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          dynamicBullets: true,
+        },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
@@ -139,6 +150,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
       new Swiper('.yacht-collection-swiper', {
         loop: true,
         spaceBetween: 20,
+        modules: [Navigation, Pagination, Autoplay],
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          dynamicBullets: true,
+        },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
@@ -158,18 +180,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
         slidesPerView: 1,
         loop: true,
         spaceBetween: 20,
-        speed: 500,
+        modules: [Navigation, Pagination, Autoplay],
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          dynamicBullets: true,
+        },
         autoplay: {
-          delay: 3000,
+          delay: 2000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         },
         navigation: {
           nextEl: '.trending-swiper-button-next',
           prevEl: '.trending-swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
         },
         breakpoints: {
           0: { slidesPerView: 1 },
@@ -397,21 +421,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onSelectPickupLocation(loc){
-    if(loc && loc.target.value){
+  onSelectPickupLocation(loc) {
+    if (loc && loc.target.value) {
       this.selectedpickaddress = loc.target.value;
-      let tempLoc = this.locationData.filter((location)=>location.name != loc.target.value);
-      if(tempLoc.length > 0){
+      let tempLoc = this.locationData.filter((location) => location.name != loc.target.value);
+      if (tempLoc.length > 0) {
         this.dropLocations = tempLoc
       }
     }
   }
 
-  onSelectDropLocation(loc){
-    if(loc && loc.target.value){
+  onSelectDropLocation(loc) {
+    if (loc && loc.target.value) {
       this.selecteddropaddredd = loc.target.value;
-      let tempLoc = this.locationData.filter((location)=>location.name != loc.target.value);
-      if(tempLoc.length > 0){
+      let tempLoc = this.locationData.filter((location) => location.name != loc.target.value);
+      if (tempLoc.length > 0) {
         this.pickupLocations = tempLoc
       }
     }
