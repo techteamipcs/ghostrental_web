@@ -91,15 +91,18 @@
       >
         <div class="d-flex align-items-end mb-4 justify-content-between">
           <img
-            src="{{ imageURL }}/product-details/bmw_main.png"
+            src="{{ thumbnailImage }}"
             alt=""
             class="sticky_image rounded-4"
           />
           <div class="cash">
-            <h6 class="text-muted mb-0 size18 redhat-semibold">
-              <del>AED 2500</del>
+            <h6 class="text-muted mb-0 size18 redhat-semibold" *ngIf="vehicleData && vehicleData.regularRate">
+              <del>AED {{vehicleData.regularRate}}</del>
             </h6>
-            <h5 class="mb-0 size26 redhat-semibold">AED 2000</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Daily'">AED {{vehicleData.dailyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Hourly'">AED {{vehicleData.hourlyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Weekly'">AED {{vehicleData.weeklyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Monthly'">AED {{vehicleData.monthlyRate}}</h5>
           </div>
         </div>
 
@@ -125,7 +128,7 @@
           </div>
         </div>
         <div class="btns">
-          <button class="w-100 bg-black rounded-3 mb-3 p-3">
+          <button class="w-100 bg-black rounded-3 mb-3 p-3" *ngIf="vehicleData">
             <a
               [routerLink]="['/contact/product', vehicleData.name]"
               class="size18 redhat-semibold text-decoration-none white-color text-capitalize"
@@ -148,15 +151,18 @@
       >
         <div class="d-flex align-items-end mb-4 gap-4">
           <img
-            src="{{ imageURL }}/product-details/bmw_main.png"
+            src="{{ thumbnailImage }}"
             alt=""
             class="sticky_image rounded-4"
           />
           <div class="cash">
-            <h6 class="text-muted mb-0 size18 redhat-semibold">
-              <del>AED 2500</del>
+            <h6 class="text-muted mb-0 size18 redhat-semibold" *ngIf="vehicleData && vehicleData.regularRate">
+              <del>AED {{vehicleData.regularRate}}</del>
             </h6>
-            <h5 class="mb-0 size26 redhat-semibold">AED 2000</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Daily'">AED {{vehicleData.dailyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Hourly'">AED {{vehicleData.hourlyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Weekly'">AED {{vehicleData.weeklyRate}}</h5>
+            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType =='Monthly'">AED {{vehicleData.monthlyRate}}</h5>
           </div>
         </div>
 
@@ -182,7 +188,7 @@
           </div>
         </div>
         <div class="btns">
-          <button class="w-100 bg-black rounded-3 mb-2 p-3">
+          <button class="w-100 bg-black rounded-3 mb-2 p-3" *ngIf="vehicleData">
             <a
               [routerLink]="['/contact/product', vehicleData.name]"
               class="size18 redhat-semibold text-decoration-none white-color text-capitalize"

@@ -47,6 +47,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = true;
   relatedvehicleIds: any = [];
   existedVehicle: any;
+  thumbnailImage: any;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
   @ViewChild('carSwiper', { static: false }) carSwiperRef!: ElementRef;
@@ -270,13 +271,24 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       //   });
       // }
 
-      this.vehicleData.gallery_image?.forEach(gal => {
-        this.images.push({
-          src: `${this.backendURl}/media/${gal.src}`,
-          alt: gal.name,
-          isActive: false
+      if (this.vehicleData.media_data?.length > 0) {
+        this.thumbnailImage = `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`
+        // this.images.push({
+        //   src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
+        //   alt: this.vehicleData.media_data[0].name,
+        //   isActive: false
+        // });
+      }
+      if(this.vehicleData.gallery_image && this.vehicleData.gallery_image.length > 0){
+        this.vehicleData.gallery_image = this.vehicleData.gallery_image.sort((a, b) => a.sequence_number - b.sequence_number);
+        this.vehicleData.gallery_image?.forEach(gal => {
+          this.images.push({
+            src: `${this.backendURl}/media/${gal.src}`,
+            alt: gal.name,
+            isActive: false
+          });
         });
-      });
+      }
 
       if (this.images.length > 0) {
         this.setActiveImageById(this.images[0]);
