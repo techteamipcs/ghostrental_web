@@ -117,7 +117,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initCarSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       new Swiper('.car-collection-swiper', {
-        slidesPerView: 4.5,
         loop: true,
         spaceBetween: 20,
         modules: [Navigation, Pagination, Autoplay],

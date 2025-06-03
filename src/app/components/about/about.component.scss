@@ -12,15 +12,18 @@
 }
 
 .banner-content{
-  width: 52%;
+  width: 71%;
 @media screen and (max-width: 1920px) {
-  width: 66%; 
+  width: 97%; 
 } 
 @media screen and (max-width: 1536px) {
   width: 63%; 
 } 
 @media screen and (max-width: 1440px) {
   width: 76%; 
+} 
+@media screen and (max-width: 1433px) {
+  width: 73%;   
 } 
 @media screen and (max-width: 1200px) {
   width: 86%;
@@ -241,6 +244,9 @@
   }
 }
 
+.signature-image{
+  object-fit: fill;
+}
 
 .table-para-width {
   width: 60%;

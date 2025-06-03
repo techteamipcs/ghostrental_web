@@ -302,6 +302,21 @@ body {
     font-size: 22px;
   }
 }
+.size80{
+  font-size: 80px;
+  @media (max-width:1536px) {
+    font-size: 64px;
+  }
+  @media (max-width:1024px) {
+    font-size: 56px;
+  }
+  @media (max-width:768px) {
+    font-size: 48px;
+  }
+  @media (max-width:430px) {
+    font-size: 32px;
+  }
+}
 .size90 {
   font-size: 90px;
   @media (max-width: 1650px) {
@@ -356,6 +371,9 @@ body {
     line-height: 45px;
   }
   @media (max-width:768px) {
+    line-height: 50px;
+  }
+  @media (max-width:430px) {
     line-height: 35px;
   }
  
@@ -477,6 +495,12 @@ body {
   }
   @media (max-width:430px) {
     padding: 10px 20px;
+  }
+
+  &:hover{
+    background-color: $color-black;
+    color: $color-white;
+    border-color: $color-black;
   }
 }
 .black-button {

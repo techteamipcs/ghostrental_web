@@ -407,8 +407,8 @@
         </div>
       </div>
     </div>
-    <div class="row topMargin">
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-4">
+    <div class="row topMargin justify-content-evenly">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/car-rental.jpg"
@@ -434,7 +434,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-4">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/yacht_rental.jpg"
@@ -459,7 +459,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-4">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/chauffeur.jpg"
@@ -501,7 +501,11 @@
           <h3 class="text-capitalize size60 performa-light mb-0">
             our car collection
           </h3>
-          <button class="black-button size18 redhat-bold">view all</button>
+          <button class="black-button size18 redhat-bold">
+            <a href="/product/search" class="white-color text-decoration-none"
+              >view all</a
+            >
+          </button>
         </div>
 
         <div class="position-relative">
@@ -511,7 +515,11 @@
                 class="swiper-slide rounded-4"
                 *ngFor="let car of ourCarCollections"
               >
-                <div class="car-card rounded-4">
+                <div
+                  class="car-card rounded-4"
+                  [routerLink]="['/product/detail', car.url_key]"
+                  routerLinkActive="router-link-active"
+                >
                   <div class="thumbnail-image">
                     <img
                       *ngIf="car.media_data && car.media_data.length > 0"
@@ -630,7 +638,11 @@
           <h3 class="text-capitalize size60 performa-light mb-0">
             our yacht collection
           </h3>
-          <button class="black-button size18 redhat-bold">view all</button>
+          <button class="black-button size18 redhat-bold">
+            <a href="/product/search" class="white-color text-decoration-none"
+              >view all</a
+            >
+          </button>
         </div>
 
         <div class="position-relative">
@@ -640,7 +652,11 @@
                 class="swiper-slide rounded-4"
                 *ngFor="let yacht of ouryatchsCollections"
               >
-                <div class="car-card rounded-4">
+                <div
+                  class="car-card rounded-4"
+                  [routerLink]="['/product/detail', yacht.url_key]"
+                  routerLinkActive="router-link-active"
+                >
                   <div class="thumbnail-image">
                     <img
                       *ngIf="yacht.media_data && yacht.media_data.length > 0"
@@ -835,7 +851,12 @@
 
     <div class="px-4 w-100 mx-auto my-0">
       <div class="trending-cars-grid">
-        <div *ngFor="let car of trendingRentalCars" class="trending-car-card">
+        <div
+          *ngFor="let car of trendingRentalCars"
+          class="trending-car-card"
+          [routerLink]="['/product/detail', car.url_key]"
+          routerLinkActive="router-link-active"
+        >
           <img
             src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
             [alt]="car.name"
@@ -915,7 +936,11 @@
           <div class="swiper car-collection-swiper" #carSwiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of trendingRentalCars">
-                <div class="trending-car-card">
+                <div
+                  class="trending-car-card"
+                  [routerLink]="['/product/detail', car.url_key]"
+                  routerLinkActive="router-link-active"
+                >
                   <img
                     src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                     [alt]="car.name"

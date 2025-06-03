@@ -251,7 +251,7 @@
         </div>
       </div>
 
-      <div class="col-xl-9 col-12 border-1 border-bottom">
+      <div class="col-xl-9 col-12 border-1 border-bottom section-width">
         <div class="mb-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -294,7 +294,7 @@
       </div>
 
       <div
-        class="col-xl-9 col-12 border-1 border-bottom p-0"
+        class="col-xl-9 col-12 border-1 border-bottom section-width"
         *ngIf="vehicleData"
       >
         <div class="my-5">
@@ -310,7 +310,7 @@
         </div>
       </div>
 
-      <div class="col-xl-9 col-12 border-1 border-bottom p-0">
+      <div class="col-xl-9 col-12 border-1 border-bottom section-width">
         <div class="my-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
@@ -493,18 +493,20 @@
         </div>
       </div>
 
-      <div class="col-xl-9 col-12 location-section">
+      <div class="col-xl-9 col-12 location-section section-width">
         <div class="mt-5">
           <h3
             class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4"
           >
             location
           </h3>
-          <p class="size18 redhat-semibold">mk ghaninam, warehouse</p>
           <p class="size18 redhat-semibold">
+            mk ghaninam, warehouse
+            <br />
             no.40 3rd al wuar, al a rja industrial area
+            <br />
+            dubai, united arab emirates
           </p>
-          <p class="size18 redhat-semibold">dubai, united arab emirates</p>
           <div class="maps">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7220.5634893502!2d55.270783!3d25.2048493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1620000000000!5m2!1sen!2sae"
@@ -540,7 +542,11 @@
                 class="swiper-slide rounded-4"
                 *ngFor="let car of relatedVehicleData"
               >
-                <div class="car-card rounded-4">
+                <div
+                  class="car-card rounded-4"
+                  [routerLink]="['/product/detail', car.url_key]"
+                  routerLinkActive="router-link-active"
+                >
                   <div class="thumbnail-image">
                     <img
                       src="{{ backendURl }}/media/{{ car.media_data[0].src }}"

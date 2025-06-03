@@ -85,7 +85,6 @@
       input[_ngcontent-ng-c2444536406] {
       width: 100%;
       border: none;
-      border-bottom: 1px solid #1d1d1d;
       padding-left: 0;
       outline: none;
       color: #1d1d1d;
@@ -281,14 +280,25 @@
 }
 
 textarea {
-  height: 270px;
+  height: 253px;
   @media screen and (max-width: 1920px) {
-    height: 270px;
+    height: 253px;
+  }
+  @media screen and (max-width: 1536px) {
+    height: 251px;
   }
   @media screen and (max-width: 1440px) {
     height: 203px;
   }
-
+  @media screen and (max-width: 1366px) {
+    height: 186px;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 176px;
+  }
+  @media screen and (max-width: 1024px) {
+    height: 215px;
+  }
   @media screen and (max-width: 768px) {
     height: 150px;
   }
@@ -321,11 +331,14 @@ textarea {
   }
 }
 .form-box-padding {
-  padding: 0.57rem;
+  padding: 0.57rem 1rem;
+  gap: 0.4rem;
   @media screen and (max-width: 1024px) {
     padding: 0.4rem;
+    gap: 0.2rem;
   }
   @media screen and (max-width: 425px) {
     padding: 0.3rem;
+    gap: 0;
   }
 }

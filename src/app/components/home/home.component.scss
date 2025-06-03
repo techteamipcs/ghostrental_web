@@ -80,6 +80,9 @@
     @media screen and (max-width: 1366px) {
       padding: 18px;
     }
+    @media screen and (max-width: 1280px) {
+      padding: 15px;
+    }
     @media (max-width: 1024px) {
       padding: 1rem;
     }
@@ -200,9 +203,9 @@
           left: 2px;
         }
         @media (max-width: 1280px) {
-          width: 20px;
-          height: 20px;
-          left: 2px;
+          width: 16px;
+          height: 16px;
+          top: 2px;
         }
         @media (max-width: 768px) {
           width: 15px;
@@ -224,7 +227,7 @@
             transform: translateX(26px);
           }
           @media (max-width: 1280px) {
-            transform: translateX(26px);
+            transform: translateX(19px);
           }
           @media (max-width: 768px) {
             transform: translateX(17px);
@@ -259,7 +262,7 @@
         margin-bottom: 18px;  
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 20px;
@@ -286,7 +289,7 @@
         margin-bottom: 16px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 20px;
@@ -313,7 +316,7 @@
         margin-bottom: 16px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 16px;
+        margin-bottom: 10px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 18px;
@@ -340,7 +343,7 @@
         margin-bottom: 12px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 11px;
+        margin-bottom: 8px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 10px;
@@ -367,7 +370,7 @@
         margin-bottom: 15px;
       }
       @media screen and (max-width: 1280px) {
-        margin-bottom: 14px;
+        margin-bottom: 10px;
       }
       @media screen and (max-width: 1024px) {
         margin-bottom: 12px;
@@ -421,10 +424,10 @@
         margin-top: 18px;
       }
       @media screen and (max-width: 1280px) {
-        margin-top: 17px;
+        margin-top: 10px;
       }
       @media screen and (max-width: 1024px) {
-        margin-top: 16px;
+        margin-top: 10px;
       }
       @media screen and (max-width: 768px) {
         margin-top: 10px;
@@ -450,23 +453,28 @@
         width: 50%;
       }
       @media screen and (max-width: 1440px) {
-        width: 54%;
-        left: 58%;
+        width: 56%;
+        left: 59%;
       }
       @media screen and (max-width: 1366px) {
-        width: 48%;
+        width: 56%;
+        left: 59%;
       }
       @media screen and (max-width: 1280px) {
-        width: 48%;
+        width: 61%;
+        left: 61%;
       }
       @media screen and (max-width: 1024px) {
-        width: 48%;
+        width: 62%;
+        left: 62%;
       }
       @media screen and (max-width: 768px) {
-        width: 48%;
+        width: 62%;
+        left: 62%;
       }
       @media screen and (max-width: 430px) {
-        width: 48%;
+        width: 63%;
+        left: 63%;
       }
     }
   }
@@ -507,8 +515,8 @@
     object-fit: contain;
     display: block;
     @media screen and (max-width: 1920px) {
-      width: 100%;
-      height: 100%;
+      width: auto;
+      height: auto;
     }
     @media screen and (max-width: 1680px) {
       width: 100%;
@@ -579,6 +587,7 @@
       margin-top: 0%;
     }
   }
+
 }
 
 // collections
@@ -658,6 +667,7 @@
     .swiper-button-icon {
       width: 24px;
       height: 24px;
+      line-height: normal;
     }
   }
   .car-card {
@@ -822,7 +832,6 @@
     border-radius: 1rem;
     transition: box-shadow 0.3s ease, transform 0.3s ease,border 0.3s ease;
     &:hover {
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
       border: 1px solid white;
       border-radius: 1rem;
     }
