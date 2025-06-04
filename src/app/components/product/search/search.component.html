@@ -32,12 +32,33 @@
             </div>
 
             <div id="desktopFilter" [class.collapsed]="isFilterCollapsed">
-              <!-- Special Number Plate -->
+              <!-- Vehicle Type -->
               <label
+                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+                >Vehicle Type</label
+              >
+              <div class="filter-section">
+                <select
+                  [(ngModel)]="vehicleType"
+                  class="form-selection size16 redhat-semibold"
+                  (change)="onChangevehicleType($event)"
+                  (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  "
+                  (blur)="onSelectBlur($event)"
+                >
+                  <option value="">Select Vehicle Type</option>
+                  <option value="Car">Car</option>
+                  <option value="Yachts">Yachts</option>
+                </select>
+                <lucide-icon name="chevron-down" size="20" />
+              </div>
+              <!-- Special Number Plate -->
+              <label *ngIf="vehicleType == 'Car'"
                 class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
                 >Special Number Plate</label
               >
-              <div class="filter-section">
+              <div class="filter-section" *ngIf="vehicleType == 'Car'">
                 <select
                   class="form-selection size16 redhat-semibold"
                   (change)="onChangeSpecialNumber($event)"
@@ -48,15 +69,14 @@
                 >
                   <option value="">Select Special Number Plate</option>
                   <option value="true">Enable</option>
-                  <option value="false">Disable</option>
+                  <!-- <option value="false">Disable</option> -->
                 </select>
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Rental Type -->
               <label
                 class="form-label gray-light-color size14 redhat-semibold mb-1"
-                >Rental Type</label
-              >
+                >Rental Type</label>
               <div class="filter-section">
                 <select
                   class="form-selection size16 redhat-semibold"
@@ -75,11 +95,10 @@
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Body Type -->
-              <label
+              <label *ngIf="vehicleType == 'Car'"
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Body Type</label
-              >
-              <div class="filter-section">
+                >Body Type</label>
+              <div class="filter-section" *ngIf="vehicleType == 'Car'">
                 <select
                   class="form-selection size16 redhat-semibold"
                   name="bodytype"
@@ -101,11 +120,11 @@
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Car Brand -->
-              <label
+              <label *ngIf="vehicleType == 'Car'"
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Brand</label
               >
-              <div class="filter-section">
+              <div class="filter-section" *ngIf="vehicleType == 'Car'">
                 <select
                   class="form-selection size16 redhat-semibold"
                   #selBrand
@@ -124,11 +143,11 @@
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Car Model -->
-              <label
+              <label *ngIf="vehicleType == 'Car'"
                 class="form-label size14 redhat-semibold mb-1 gray-light-color"
                 >Car Model</label
               >
-              <div class="filter-section">
+              <div class="filter-section" *ngIf="vehicleType == 'Car'">
                 <select
                   class="form-selection size16 redhat-semibold"
                   #selctModel
@@ -320,13 +339,35 @@
                     <lucide-icon name="x" />
                   </button>
                 </div> -->
-
                 <!-- Special Number Plate -->
                 <label
                   class="form-label gray-light-color size14 redhat-semibold mt-xl-4 mb-xl-1 mb-1"
-                  >Special Number Plate</label
+                  >Special Vehicle Type</label
                 >
                 <div class="filter-section">
+                  <select
+                    [(ngModel)]="vehicleType"
+                    class="form-selection size16 redhat-semibold"
+                    (change)="onChangevehicleType($event)"
+                    (click)="
+                      $event.stopPropagation(); toggleSelectDropdown($event)
+                    "
+                    (blur)="onSelectBlur($event)"
+                  >
+                    <option value="">Select Vehicle Type</option>
+                    <option value="Car">Car</option>
+                    <option value="Yachts">Yachts</option>
+                  </select>
+
+                  <lucide-icon name="chevron-down" size="20" />
+                </div>
+
+                <!-- Special Number Plate -->
+                <label *ngIf="vehicleType == 'Car'"
+                  class="form-label gray-light-color size14 redhat-semibold mt-xl-4 mb-xl-1 mb-1"
+                  >Special Number Plate</label
+                >
+                <div class="filter-section" *ngIf="vehicleType == 'Car'">
                   <select
                     class="form-selection size16 redhat-semibold"
                     (change)="onChangeSpecialNumber($event)"
@@ -367,11 +408,11 @@
                 </div>
 
                 <!-- Body Type -->
-                <label
+                <label *ngIf="vehicleType == 'Car'"
                   class="form-label size14 redhat-semibold mb-1 gray-light-color"
                   >Body Type</label
                 >
-                <div class="filter-section">
+                <div class="filter-section" *ngIf="vehicleType == 'Car'">
                   <select
                     class="form-selection size16 redhat-semibold"
                     name="bodytype"
@@ -393,11 +434,11 @@
                   <lucide-icon name="chevron-down" size="20" />
                 </div>
                 <!-- Car Brand -->
-                <label
+                <label *ngIf="vehicleType == 'Car'"
                   class="form-label size14 redhat-semibold mb-1 gray-light-color"
                   >Car Brand</label
                 >
-                <div class="filter-section">
+                <div class="filter-section" *ngIf="vehicleType == 'Car'">
                   <select
                     class="form-selection size16 redhat-semibold"
                     #selBrand
@@ -419,11 +460,11 @@
                   <lucide-icon name="chevron-down" size="20" />
                 </div>
                 <!-- Car Model -->
-                <label
+                <label *ngIf="vehicleType == 'Car'"
                   class="form-label size14 redhat-semibold mb-1 gray-light-color"
                   >Car Model</label
                 >
-                <div class="filter-section">
+                <div class="filter-section" *ngIf="vehicleType == 'Car'">
                   <select
                     class="form-selection size16 redhat-semibold"
                     #selctModel

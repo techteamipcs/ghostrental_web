@@ -47,9 +47,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
 
   // Pagination properties
-  currentLimit = 4;
+  currentLimit = 6;
   currentPage = 1;
-  itemsPerPage = 4;
+  itemsPerPage = 6;
   totalItems = 0;
   carTypes: any = [];
   vehicleData: any = [];
@@ -76,6 +76,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
+  vehicleType:any = 'Car';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -85,8 +86,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('rangeMax') rangeMax!: ElementRef;
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
-
-  private filterUpdate = new Subject<void>();
 
   constructor(
     private dataservice: DataService,
@@ -99,15 +98,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (this.param_type && this.param_type === 'vip') {
       this.vipNumberPlate = true;
     }
-
-    // Debounce filter updates to prevent rapid API calls
-    this.filterUpdate.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    ).subscribe(() => {
-      this.updateQueryParams();
-      this.getCarData();
-    });
   }
 
   ngOnInit() {
@@ -309,7 +299,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
     // Update the slider UI
     this.updateSlider();
-    this.filterUpdate.next();
+    // this.filterUpdate.next();
   }
 
   updatePricesFromSlider() {
@@ -448,7 +438,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   // Public method to trigger search (can be called from template)
   SearchItems() {
-    this.filterUpdate.next();
+    this.getCarData();
   }
 
   getCarData() {
@@ -456,7 +446,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       limit: this.currentLimit,
       page: this.currentPage,
       availabilityStatus: 'available',
-      vehicle_type: "Car",
+      vehicle_type: this.vehicleType,
       car_type: this.carTypes,
       bodyTypeId: this.selectedBodytype,
       brandId: this.selectedBrand,
@@ -532,7 +522,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   changeBodyType(data) {
     if (data?.target?.value) {
       this.selectedBodytype = [data.target.value];
-      this.filterUpdate.next();
     }
   }
 
@@ -543,21 +532,18 @@ export class SearchComponent implements OnInit, AfterViewInit {
       if (this.modelData && this.modelData.length > 0) {
         this.filteredModel = this.modelData.filter((item) => item.brand === data.target.value);
       }
-      this.filterUpdate.next();
     }
   }
 
   changeModel(data) {
     if (data?.target?.value) {
       this.selectedModel = [data.target.value];
-      this.filterUpdate.next();
     }
   }
 
   changeCartype(data) {
     if (data?.target?.value) {
       this.selectedCartype = [data.target.value];
-      this.filterUpdate.next();
     }
   }
 
@@ -573,21 +559,28 @@ export class SearchComponent implements OnInit, AfterViewInit {
       } else if (data.target.value === 'Monthly') {
         this.price_type = 'monthlyRate';
       }
-      this.filterUpdate.next();
     }
   }
 
   onChangeSort(data) {
     if (data?.target?.value) {
       this.sort = data.target.value;
-      this.filterUpdate.next();
     }
   }
 
   onChangeSpecialNumber(data) {
     if (data?.target?.value) {
       this.vipNumberPlate = data.target.value === 'true';
-      this.filterUpdate.next();
+    } else {
+      this.vipNumberPlate = false;
+    }
+  }
+
+  onChangevehicleType(data) {
+    if (data?.target?.value) {
+      this.vehicleType = data.target.value;
+    } else {
+      this.vehicleType = false;
     }
   }
 
