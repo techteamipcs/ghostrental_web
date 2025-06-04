@@ -1,7 +1,7 @@
 .home {
   height: 100vh;
   .content {
-    margin-top: auto;
+    margin-top: 6rem;
     @media (max-width: 1536px) {
       margin-top: 0;
     }
@@ -199,11 +199,13 @@
           width: 20px;
           height: 20px;
           left: 2px;
+          top: 2px;
         }
         @media (max-width: 1366px) {
           width: 18px;
           height: 18px;
           left: 2px;
+          top: 2px;
         }
         @media (max-width: 1280px) {
           width: 16px;
@@ -227,7 +229,7 @@
             transform: translateX(26px);
           }
           @media (max-width: 1366px) {
-            transform: translateX(26px);
+            transform: translateX(23px);
           }
           @media (max-width: 1280px) {
             transform: translateX(19px);
@@ -477,6 +479,22 @@
   }
 }
 
+
+
+// delete
+.grid{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1rem;
+    column-gap: 1rem;
+  }
+}
+// delete
+
+
+
 // category section
 .car-types-section {
 padding: 161px 197px 182px;
@@ -599,6 +617,7 @@ padding: 161px 197px 182px;
   }
   .services-images {
     border-radius: 25px;
+    padding: .6rem;
   }
 
   .topspace {
@@ -979,7 +998,7 @@ padding: 161px 197px 182px;
     top: 22%;
   }
   @media screen and (max-width: 425px) {
-    top: 22%;
+    top: 19%;
   }
 }
 .vehicle-switch {

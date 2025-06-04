@@ -342,15 +342,49 @@
   </div>
 </section>
 
+<!-- <section class="car-types-section ">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
+    Browse by Car Type
+  </h3>
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center gap fw-wrap">
+      <div
+        *ngFor="let car of cartypeData"
+        class="position-relative  d-flex flex-column align-items-center justify-content-center"
+        style="cursor: pointer"
+      >
+        <a
+          [routerLink]="['/product/list', car.url_key]"
+          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
+        >
+          <img
+            src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
+            [alt]="car.name"
+            class="category-image"
+            [routerLink]="['/product/list', car.url_key]"
+            routerLinkActive="router-link-active"
+          />
+          <p
+            class="size18 redhat-semibold text-center type-margin text-capitalize"
+            [routerLink]="['/product/list', car.url_key]"
+            routerLinkActive="router-link-active"
+          >
+            {{ car.name }}
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section> -->
 <section class="car-types-section ">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center gap">
+    <div class="grid">
       <div
         *ngFor="let car of cartypeData"
-        class="position-relative  d-flex flex-column align-items-center justify-content-center"
+        class="position-relative d-flex flex-column align-items-center justify-content-center"
         style="cursor: pointer"
       >
         <a
@@ -420,7 +454,7 @@
           <img
             src="{{ imageURL }}/home/services/car-rental.jpg"
             alt=""
-            class="services-images p-md-2 p-1 z-1 pb-md-0"
+            class="services-images z-1"
           />
           <div class="card-content h-100 d-flex flex-column">
             <h4
@@ -447,7 +481,7 @@
           <img
             src="{{ imageURL }}/home/services/yacht_rental.jpg"
             alt=""
-            class="services-images p-md-2 p-1 z-1"
+            class="services-images z-1"
           />
           <div class="card-content h-100 d-flex flex-column">
             <h4
@@ -473,7 +507,7 @@
           <img
             src="{{ imageURL }}/home/services/chauffeur.jpg"
             alt=""
-            class="services-images p-md-2 p-1 z-1"
+            class="services-images z-1"
           />
           <div class="card-content h-100 d-flex flex-column">
             <h4

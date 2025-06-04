@@ -118,7 +118,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       new Swiper('.car-collection-swiper', {
         loop: true,
-        spaceBetween: 20,
         modules: [Navigation, Pagination, Autoplay],
         pagination: {
           el: '.swiper-pagination',
@@ -135,9 +134,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
           prevEl: '.car-swiper-button-prev',
         },
         breakpoints: {
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1280: { slidesPerView: 4.5 },
+          0: { slidesPerView: 1,
+            spaceBetween: 10,
+           },
+          768: { slidesPerView: 2,
+            spaceBetween: 15,
+           },
+          1280: { slidesPerView: 4.5,
+            spaceBetween: 20,
+           },
         },
       });
     }
@@ -148,7 +153,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       new Swiper('.yacht-collection-swiper', {
         loop: true,
-        spaceBetween: 20,
         modules: [Navigation, Pagination, Autoplay],
         pagination: {
           el: '.swiper-pagination',
@@ -165,9 +169,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1280: { slidesPerView: 4.5 },
+          0: { slidesPerView: 1,
+            spaceBetween: 10,
+           },
+          768: { slidesPerView: 2,
+            spaceBetween: 15,
+           },
+          1280: { slidesPerView: 4.5,
+            spaceBetween: 20,
+           },
         },
       });
     }

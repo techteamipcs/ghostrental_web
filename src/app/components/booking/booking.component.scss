@@ -7,6 +7,12 @@
   top: 32%;
   left: 6%;
   transform: translateY(-32%);
+  @media (max-width: 1536px) {
+   top: 28%;
+  }
+  @media (max-width: 1440px) {
+   top: 28%;
+  }
   @media (max-width: 1024px) {
    width: 527px;
   }

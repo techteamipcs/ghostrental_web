@@ -279,6 +279,9 @@ nav {
           transform: translateY(12px) rotate(45deg);
           background-color: #000;
           width: 50px;
+          @media screen and (max-width: 425px) {
+            transform: translateY(8px) rotate(45deg);
+          }
         }
 
         &::after {
@@ -518,13 +521,12 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 0.5rem;
+  // border-bottom: 1px solid #f0f0f0;
   margin-bottom: 1.5rem;
 
   .logo {
-    height: 30px;
-    width: auto;
+    width: 180px;
   }
 
   .close-btn {
@@ -548,21 +550,18 @@ nav {
 }
 
 .nav-menu {
+  display: flex;
+  flex-direction: column;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  overflow-y: auto;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .nav-item {
-  margin-bottom: 0.5rem;
-
   .nav-link {
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
-    color: #333;
     text-decoration: none;
     border-radius: 8px;
     gap: 1rem;
@@ -572,14 +571,6 @@ nav {
       background-color: #f8f9fa;
       color: #000;
     }
-
-    // .nav-icon {
-    //   width: 20px;
-    //   height: 20px;
-    //   margin-right: 12px;
-    //   color: #666;
-    // }
-
   }
 }
 
@@ -596,9 +587,9 @@ nav {
 }
 
 .menu-footer {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid #f0f0f0;
+  position: absolute;
+    bottom: 0;
+    width: 100%;
 
   .social-links {
     display: flex;
@@ -607,11 +598,11 @@ nav {
     margin-bottom: 1rem;
 
     .social-link {
-      color: #666;
+      color: #1D1D1D;
       transition: color 0.2s;
 
       &:hover {
-        color: #4f46e5;
+        color: #11191F;
       }
 
       lucide-icon {

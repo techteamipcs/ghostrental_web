@@ -1,29 +1,14 @@
-<nav
-  class="position-fixed top-0 start-0 w-100 z-2"
-  [ngClass]="{ 'large-padding': hasLargePadding }"
->
-  <div
-    class="container-fluid d-flex justify-content-between align-items-center"
-  >
+<nav class="position-fixed top-0 start-0 w-100 z-2" [ngClass]="{ 'large-padding': hasLargePadding }">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
     <a href="/" class="d-flex align-items-center">
-      <img
-        src="{{ imageURL }}/images/logo/nav-logo.svg"
-        alt="Ghost Rental Logo"
-        class="nav-logo"
-        [ngClass]="{ 'dark-mode': isDarkText }"
-      />
+      <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Ghost Rental Logo" class="nav-logo"
+        [ngClass]="{ 'dark-mode': isDarkText }" />
     </a>
 
     <!-- Mobile menu button -->
-    <button
-      class="hamburger d-xl-none position-relative"
-      type="button"
-      (click)="toggleMenu($event)"
-      aria-label="Toggle navigation"
-      [class.active]="isMenuOpen"
-      [class.dark]="isDarkText && !isScrolled && !isMenuOpen"
-      [class.white-hamburger]="!isDarkText || isScrolled || isMenuOpen"
-    >
+    <button class="hamburger d-xl-none position-relative" type="button" (click)="toggleMenu($event)"
+      aria-label="Toggle navigation" [class.active]="isMenuOpen" [class.dark]="isDarkText && !isScrolled && !isMenuOpen"
+      [class.white-hamburger]="!isDarkText || isScrolled || isMenuOpen">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -32,46 +17,26 @@
     <!-- Desktop Navigation -->
     <ul class="nav d-none d-xl-flex align-items-center">
       <li>
-        <a
-          href="/"
-          class="size16 redhat-medium white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled"
-          >Home</a
-        >
+        <a href="/" class="size16 redhat-medium white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled">Home</a>
       </li>
       <li>
-        <a
-          href="/about"
-          class="size16 redhat-medium white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled"
-          >About Us</a
-        >
+        <a href="/about" class="size16 redhat-medium white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled">About Us</a>
       </li>
       <li>
-        <a
-          href="/services"
-          class="size16 redhat-medium white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled"
-          >Our Services</a
-        >
+        <a href="/services" class="size16 redhat-medium white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled">Our Services</a>
       </li>
       <li>
-        <a
-          href="/product/search"
-          class="size16 redhat-medium white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled"
-          >Our Fleets</a
-        >
+        <a href="/product/search" class="size16 redhat-medium white text-decoration-none"
+          [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
       </li>
       <li>
         <a routerLink="/contact" routerLinkActive="active">
-          <button
-            [class.black-button]="!useWhiteButton && !isScrolled"
-            [class.white-button]="useWhiteButton || isScrolled"
-            class="size18 redhat-bold"
-            [class.dark]="isDarkText && !isScrolled"
-            (click)="closeMenu()"
-          >
+          <button [class.black-button]="!useWhiteButton && !isScrolled"
+            [class.white-button]="useWhiteButton || isScrolled" class="size18 redhat-bold"
+            [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
             Contact Us
           </button>
         </a>
@@ -84,69 +49,57 @@
         <nav class="menu-container w-100 h-100">
           <div class="menu-header">
             <a href="/" class="logo-link">
-              <img
-                src="{{ imageURL }}/images/logo/nav-logo.svg"
-                alt="Logo"
-                class="logo"
-                style="filter: brightness(0)"
-              />
+              <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Logo" class="logo"
+                style="filter: brightness(0)" />
             </a>
           </div>
 
-          <ul class="nav-menu">
-            <li class="nav-item" (click)="closeMenu()">
-              <a href="/" class="nav-link size16 redhat-medium">
-                <lucide-icon name="home" class="nav-icon"></lucide-icon>
-                <span>Home</span>
-              </a>
-            </li>
+            <ul class="nav-menu">
+              <li class="nav-item" (click)="closeMenu()">
+                <a href="/" class="nav-link size16 redhat-medium">
+                  <lucide-icon name="home" class="nav-icon"></lucide-icon>
+                  <span>Home</span>
+                </a>
+              </li>
 
-            <li class="nav-item" (click)="closeMenu()">
-              <a href="/about" class="nav-link size16 redhat-medium">
-                <lucide-icon name="users" class="nav-icon"></lucide-icon>
-                <span>About Us</span>
-              </a>
-            </li>
+              <li class="nav-item" (click)="closeMenu()">
+                <a href="/about" class="nav-link size16 redhat-medium">
+                  <lucide-icon name="users" class="nav-icon"></lucide-icon>
+                  <span>About Us</span>
+                </a>
+              </li>
 
-            <li class="nav-item" (click)="closeMenu()">
-              <a href="/services" class="nav-link size16 redhat-medium">
-                <lucide-icon name="settings" class="nav-icon"></lucide-icon>
-                <span>Our Services</span>
-              </a>
-            </li>
+              <li class="nav-item" (click)="closeMenu()">
+                <a href="/services" class="nav-link size16 redhat-medium">
+                  <lucide-icon name="settings" class="nav-icon"></lucide-icon>
+                  <span>Our Services</span>
+                </a>
+              </li>
 
-            <li class="nav-item" (click)="closeMenu()">
-              <a href="/product/search" class="nav-link size16 redhat-medium">
-                <lucide-icon name="car" class="nav-icon"></lucide-icon>
-                <span>Our Fleets</span>
-              </a>
-            </li>
+              <li class="nav-item" (click)="closeMenu()">
+                <a href="/product/search" class="nav-link size16 redhat-medium">
+                  <lucide-icon name="car" class="nav-icon"></lucide-icon>
+                  <span>Our Fleets</span>
+                </a>
+              </li>
 
-            <li class="nav-divider"></li>
 
-            <li class="nav-item" (click)="closeMenu()">
-              <a href="/contact" class="nav-button">
-                <button class="black-button w-100 size18 redhat-bold">
-                  <lucide-icon name="phone" class="mr-2"></lucide-icon>
-                  Contact Us
-                </button>
-              </a>
-            </li>
-          </ul>
-
+              <li class="nav-item" (click)="closeMenu()">
+                <a href="/contact" class="nav-button">
+                  <button class="black-button w-100 size18 redhat-bold">
+                    <lucide-icon name="phone" class="mr-2"></lucide-icon>
+                    Contact Us
+                  </button>
+                </a>
+              </li>
+            </ul>
           <div class="menu-footer">
             <div class="social-links">
-              <a href="#" class="social-link"
-                ><lucide-icon name="facebook"></lucide-icon
-              ></a>
-              <a href="#" class="social-link"
-                ><lucide-icon name="instagram"></lucide-icon
-              ></a>
-              <a href="#" class="social-link"
-                ><lucide-icon name="twitter"></lucide-icon
-              ></a>
+              <a href="#" class="social-link"><lucide-icon name="facebook"></lucide-icon></a>
+              <a href="#" class="social-link"><lucide-icon name="instagram"></lucide-icon></a>
+              <a href="#" class="social-link"><lucide-icon name="twitter"></lucide-icon></a>
             </div>
-            <p class="copyright">© 2025 Ghost Rental. All rights reserved.</p>
+            <p class="copyright text-center redhat-medium size26">© 2025 Ghost Rental. All rights reserved.</p>
           </div>
         </nav>
       </div>

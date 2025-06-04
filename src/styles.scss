@@ -156,9 +156,6 @@ body {
   @media (max-width: 1024px) {
     font-size: 16px;
   }
-  @media (max-width:768px) {
-    font-size: 10px;
-  }
 }
 .size26 {
   font-size: 26px;
@@ -176,6 +173,9 @@ body {
   }
   @media (max-width:768px) {
     font-size: 16px;
+  }
+  @media (max-width:425px) {
+    font-size: 14px;
   }
 }
 .size28 {
@@ -358,11 +358,11 @@ body {
   @media (max-width:1650px) {
     line-height: 75px;
   }
-  @media (max-width:1440px) {
+  @media (max-width:1536px) {
     line-height: 70px;
   }
-  @media (max-width:1366px) {
-    line-height: 65px;
+  @media (max-width:1440px) {
+    line-height: 62px;
   }
   @media (max-width:1280px) {
     line-height: 60px;
@@ -417,7 +417,7 @@ body {
   border-color: $color-border-white;
 }
 .black-color{
-  // $color-black: #11191F;
+  // $color-black: #000000;
   color: $color-black;
 }
 .black-light-color{
