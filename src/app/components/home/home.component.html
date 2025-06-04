@@ -12,7 +12,7 @@
     <div class="position-absolute w-100 start-50 translate-middle form-top">
       <div class="row">
         <div class="col-xl-5 col-lg-5 col-md-10 col-sm-10 col-11 mx-auto">
-          <div class="content mt-lg-5 mt-md-0 mt-0" *ngIf="!bannerData">
+          <div class="content" *ngIf="!bannerData">
             <h1
               class="size90 performa-thin white-color line-height90 mb-md-3 mb-2"
             >
@@ -26,11 +26,13 @@
               to corporate events and airport transferes.
             </p>
             <button class="white-border-button size18 redhat-bold mt-md-2 mt-2">
-              Book Now
+              <a href="/contact" class="white-color text-decoration-none"
+                >Book Now</a
+              >
             </button>
           </div>
 
-          <div class="content mt-lg-5 mt-md-0 mt-0" *ngIf="bannerData">
+          <div class="content" *ngIf="bannerData">
             <h1
               class="size90 performa-thin white-color line-height90 mb-md-3 mb-2"
               [innerHtml]="bannerData.short_desc"
@@ -40,7 +42,9 @@
               [innerHtml]="bannerData.description"
             ></p>
             <button class="white-border-button size18 redhat-bold mt-md-2 mt-2">
-              Book Now
+              <a href="/contact" class="white-color text-decoration-none"
+                >Book Now</a
+              >
             </button>
           </div>
         </div>
@@ -177,7 +181,7 @@
                 <div class="position-relative">
                   <span
                     [class.d-none]="selelctedstartDate"
-                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    class="size14 redhat-semibold position-absolute text-capitalize span-holder"
                     >Date</span
                   >
                   <input
@@ -195,7 +199,7 @@
                 <div class="position-relative">
                   <span
                     [class.d-none]="selectedstartTime"
-                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    class="size14 redhat-semibold position-absolute text-capitalize span-holder"
                     >Time</span
                   >
                   <input
@@ -207,6 +211,7 @@
                     placeholder="Time"
                     required
                   />
+
                 </div>
               </div>
               <div class="col-12 select-margin">
@@ -259,7 +264,7 @@
                 <div class="position-relative">
                   <span
                     [class.d-none]="selelctedendDate"
-                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    class="size14 redhat-semibold position-absolute text-capitalize span-holder"
                     >Date</span
                   >
                   <input
@@ -277,7 +282,7 @@
                 <div class="position-relative">
                   <span
                     [class.d-none]="selectedendTime"
-                    class="size16 redhat-semibold position-absolute text-capitalize span-holder"
+                    class="size14 redhat-semibold position-absolute text-capitalize span-holder"
                     >Time</span
                   >
                   <input
@@ -337,15 +342,15 @@
   </div>
 </section>
 
-<section class="car-types-section sectionPadding">
+<section class="car-types-section ">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
-    <div class="row">
+    <div class="d-flex justify-content-between align-items-center gap">
       <div
         *ngFor="let car of cartypeData"
-        class="position-relative padding-between col-xl-2 col-md-4 col-4 d-flex flex-column align-items-center justify-content-center"
+        class="position-relative  d-flex flex-column align-items-center justify-content-center"
         style="cursor: pointer"
       >
         <a
@@ -372,13 +377,13 @@
   </div>
 </section>
 
-<section class="services sectionPadding position-relative">
+<section class="services position-relative">
   <div class="container-fluid">
-    <div class="position-relative" style="overflow: hidden; height: 540px">
+    <div class="position-relative img-height" >
       <img
         src="{{ imageURL }}/home/services/services1.png"
         alt=""
-        class="w-100 h-100 object-fit-cover rounded-4"
+        class="w-100 h-100 object-fit-fill rounded-4"
       />
 
       <div
@@ -390,30 +395,32 @@
         class="position-absolute topspace text-center d-flex flex-column justify-content-center align-items-center h-100 w-100"
       >
         <div class="col-lg-6 col-11">
-          <h3 class="size22 redhat-bold text-capitalize beige-color">
+          <h3 class="size22 redhat-bold text-capitalize beige-color mb-md-4 mb-2">
             our Services
           </h3>
-          <h2 class="size60 performa-light text-capitalize beige-color">
+          <h2 class="size60 performa-light text-capitalize beige-color mb-md-4 mb-2">
             Drive Your Dream
           </h2>
-          <p class="size20 redhat-regular white-color">
+          <p class="size20 redhat-regular white-color mb-md-4 mb-2">
             We deliver premium transportation services in Dubai and across the
             UAE for weddings, proms, conferences, and airport travel — where
             luxury meets convenience.
           </p>
-          <button class="white-button mt-4 size18 redhat-bold text-capitalize">
-            view all
+          <button class="white-button size18 redhat-bold text-capitalize">
+            <a href="/services" class="black-color text-decoration-none"
+              >view all</a
+            >
           </button>
         </div>
       </div>
     </div>
     <div class="row topMargin justify-content-evenly">
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 padding-x">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/car-rental.jpg"
             alt=""
-            class="services-images p-md-2 p-1 z-1"
+            class="services-images p-md-2 p-1 z-1 pb-md-0"
           />
           <div class="card-content h-100 d-flex flex-column">
             <h4
@@ -427,6 +434,7 @@
               across the UAE.
             </p>
             <a
+              href="/services"
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
@@ -434,7 +442,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 padding-x">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/yacht_rental.jpg"
@@ -452,14 +460,15 @@
               crew, catering options and scenic routes like Marina & Atlantis.
             </p>
             <a
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
+              href="/services"
+                class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
             </a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 px-md-5">
+      <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-4 mt-4 padding-x">
         <div class="card rounded-4 h-100 position-relative">
           <img
             src="{{ imageURL }}/home/services/chauffeur.jpg"
@@ -478,7 +487,8 @@
               transfers.
             </p>
             <a
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
+              href="/services"
+                class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
             </a>
@@ -628,7 +638,7 @@
   </div>
 </section>
 
-<section class="collection">
+<section class="collection yacht-padding">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-0">
@@ -794,7 +804,9 @@
           for those individuals, who expect nothing but the best.
         </p>
         <button class="white-button size18 redhat-bold text-capitalize">
-          know more
+          <a href="/about" class="black-color text-decoration-none"
+            >know more</a
+          >
         </button>
       </div>
     </div>
@@ -844,7 +856,7 @@
       trending rental cars
     </h3>
     <h6
-      class="text-center size18 redhat-semibold text-capitalize gray-light-color"
+      class="text-center size18 redhat-semibold text-capitalize gray-light-color mb-md-0"
     >
       rent our popular cars
     </h6>
@@ -888,7 +900,7 @@
             >
               <div class="d-flex flex-column">
                 <span
-                  class="original-price size24 redhat-semibold gray-light-color"
+                  class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through"
                   >AED {{ car.regularRate }}</span
                 >
                 <span
@@ -907,9 +919,11 @@
       </div>
     </div>
     <button
-      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-5"
+      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5"
     >
-      view all
+      <a href="/product/search" class="black-color text-decoration-none"
+        >view all</a
+      >
     </button>
   </div>
 
@@ -1010,7 +1024,9 @@
     <button
       class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1"
     >
-      view all
+      <a href="/product/search" class="black-color text-decoration-none"
+        >view all</a
+      >
     </button>
   </div>
 </section>

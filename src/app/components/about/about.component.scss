@@ -14,17 +14,15 @@
 .banner-content{
   width: 71%;
 @media screen and (max-width: 1920px) {
-  width: 97%; 
+  width: 90%; 
 } 
 @media screen and (max-width: 1536px) {
-  width: 63%; 
+  width: 96%; 
 } 
 @media screen and (max-width: 1440px) {
-  width: 76%; 
+  width: 100%; 
 } 
-@media screen and (max-width: 1433px) {
-  width: 73%;   
-} 
+
 @media screen and (max-width: 1200px) {
   width: 86%;
 }
@@ -51,6 +49,9 @@
 
 .pad-left{
   padding-left: 5rem;
+  @media screen and (max-width: 1600px) {
+    padding-left: 4rem;
+  }
   @media screen and (max-width: 1200px) {
     padding-left: 2rem;
   }
@@ -73,6 +74,9 @@
   @media screen and (max-width: 1536px) {
   padding:42px 0px 30px 30px;
   }
+  @media screen and (max-width: 1440px) {
+  padding:25px 0px 25px 20px;
+  }
   @media screen and (max-width: 1200px) {
   padding:42px 40px 25px 34px;
   }
@@ -88,6 +92,9 @@
   @media screen and (max-width: 1536px) {
     padding: 23px 32px ;
   }
+  @media screen and (max-width: 1440px) {
+    padding: 23px 20px ;
+  }
   @media screen and (max-width: 390px) {
     padding: 20px ;
   }
@@ -99,6 +106,9 @@
   }
   @media screen and (max-width: 1536px) {
     padding: 32px 30px ;
+  }
+  @media screen and (max-width: 1440px) {
+    padding: 25px 20px ;
   }
   @media screen and (max-width: 390px) {
     padding: 20px  ;
@@ -136,6 +146,9 @@
 }
 .features {
   padding: 7rem;
+  @media screen and (max-width: 1536px) {
+    padding: 4rem 7rem;
+  }
   @media screen and (max-width: 1200px) {
     padding: 4rem 9rem;
   }
@@ -177,10 +190,10 @@
     padding: 6rem 0 6rem 10.5rem;
   }
   @media screen and (max-width: 1440px) {
-    padding: 6rem 0 6rem 12.5rem;
+    padding:4rem 0 4rem 7.5rem;
   }
-  @media screen and (max-width: 1200px) {
-    padding: 4rem 0 4rem 10.5rem;
+  @media screen and (max-width: 1280px) {
+    padding: 4rem 0 4rem 5rem;
   }
   @media screen and (max-width: 768px) {
     padding: 3rem 0rem 3rem 1rem;
@@ -202,36 +215,36 @@
       width: 100%;
     }
   }
-  .col-xxl-8{
-    @media screen and (max-width: 1440px) and (min-width: 1200px) {
-      width: 50%;
-    }
-  }
-  .col-xxl-4{
-    @media screen and (max-width: 1440px) and (min-width: 1200px) {
-      width: 50%;
-    }
-  }
+  // .col-xxl-8{
+  //   @media screen and (max-width: 1440px) and (min-width: 1200px) {
+  //     width: 50%;
+  //   }
+  // }
+  // .col-xxl-4{
+  //   @media screen and (max-width: 1440px) and (min-width: 1200px) {
+  //     width: 50%;
+  //   }
+  // }
 
-  .story-image {
-    height: 100%;
-    width: 132%;
-    position: relative;
-    @media screen and (max-width: 1440px) {
-      width: 122%;
-    }
-    @media screen and (max-width: 1200px) {
-      width: 1278px;
-      left: 38px;
-    }
-    @media screen and (max-width: 768px) {
-      width: 210%;
-      left: -118px;
-    }
-    @media screen and (max-width: 425px) {
-      left: -55px;
-    }
-  }
+  // .story-image {
+  //   height: 100%;
+  //   width: 132%;
+  //   position: relative;
+  //   @media screen and (max-width: 1440px) {
+  //     width: 122%;
+  //   }
+  //   @media screen and (max-width: 1200px) {
+  //     width: 1278px;
+  //     left: 38px;
+  //   }
+  //   @media screen and (max-width: 768px) {
+  //     width: 210%;
+  //     left: -118px;
+  //   }
+  //   @media screen and (max-width: 425px) {
+  //     left: -55px;
+  //   }
+  // }
 }
 
 .signature {

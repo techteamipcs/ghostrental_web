@@ -3,14 +3,11 @@ import {
   AfterViewInit, OnDestroy, PLATFORM_ID, Inject
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../providers/data/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
-import * as moment from "moment";
 
 interface CarDetailItem {
   icon: string;
@@ -50,13 +47,11 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   thumbnailImage: any;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
-  @ViewChild('carSwiper', { static: false }) carSwiperRef!: ElementRef;
   private stickyCardElement!: HTMLElement;
   private stickyContainerElement!: HTMLElement;
   private headerOffset = 150;
   private isSticky = false;
   private isBottomReached = false;
-  private carSwiper: Swiper | null = null;
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -76,17 +71,12 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.checkSticky();
-    // Initialize car swiper after a small delay to ensure DOM is ready
-    setTimeout(() => this.initCarSwiper(), 100);
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    if (this.carSwiper) {
-      this.carSwiper.destroy();
-      this.carSwiper = null;
-    }
+
   }
 
   @HostListener('window:scroll') onWindowScroll() {
@@ -166,7 +156,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataservice.getvehiclewithIDs(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.relatedVehicleData = response.result;
+          this.relatedVehicleData = response.result.slice(0, 4);
         }
       }
     });
@@ -207,44 +197,6 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public initCarSwiper() {
-    if (isPlatformBrowser(this.platformId)) {
-      // Initialize main car swiper if element exists
-      if (this.carSwiperRef?.nativeElement) {
-        this.carSwiper = new Swiper(this.carSwiperRef.nativeElement as HTMLElement, {
-          modules: [Navigation],
-          spaceBetween: 20,
-          navigation: {
-            nextEl: '.car-swiper-button-next',
-            prevEl: '.car-swiper-button-prev'
-          },
-          loop: false,
-          breakpoints: {
-            320: { slidesPerView: 1, spaceBetween: 10 },
-            768: { slidesPerView: 2, spaceBetween: 15 },
-            1024: { slidesPerView: 4.5, spaceBetween: 20 }
-          }
-        });
-      }
-      const relatedSwiperEl = document.querySelector('.car-collection-swiper') as HTMLElement;
-      if (relatedSwiperEl && !(relatedSwiperEl as any).swiper) {
-        new Swiper(relatedSwiperEl, {
-          modules: [Navigation],
-          spaceBetween: 20,
-          navigation: {
-            nextEl: '.car-swiper-button-next',
-            prevEl: '.car-swiper-button-prev'
-          },
-          loop: true,
-          breakpoints: {
-            320: { slidesPerView: 1, },
-            768: { slidesPerView: 2, },
-            1024: { slidesPerView: 4.5, }
-          }
-        });
-      }
-    }
-  }
 
   private initializeCarDetails() {
     if (this.vehicleData) {

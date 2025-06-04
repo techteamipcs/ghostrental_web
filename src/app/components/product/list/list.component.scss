@@ -30,6 +30,10 @@
 .collection_image {
   width: 35px;
   height: 35px;
+  @media screen and (max-width: 1440px) {
+    width: 25px;
+    height: 25px;
+  }
 }
 .swiper {
   width: 100%;

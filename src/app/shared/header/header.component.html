@@ -1,9 +1,6 @@
 <nav
   class="position-fixed top-0 start-0 w-100 z-2"
-  [ngClass]="{
-    'large-padding': hasLargePadding,
-    'small-padding': !hasLargePadding
-  }"
+  [ngClass]="{ 'large-padding': hasLargePadding }"
 >
   <div
     class="container-fluid d-flex justify-content-between align-items-center"
@@ -37,7 +34,7 @@
       <li>
         <a
           href="/"
-          class="size16 redhat-semibold white text-decoration-none"
+          class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled"
           >Home</a
         >
@@ -45,7 +42,7 @@
       <li>
         <a
           href="/about"
-          class="size16 redhat-semibold white text-decoration-none"
+          class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled"
           >About Us</a
         >
@@ -53,7 +50,7 @@
       <li>
         <a
           href="/services"
-          class="size16 redhat-semibold white text-decoration-none"
+          class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled"
           >Our Services</a
         >
@@ -61,7 +58,7 @@
       <li>
         <a
           href="/product/search"
-          class="size16 redhat-semibold white text-decoration-none"
+          class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled"
           >Our Fleets</a
         >
@@ -98,28 +95,28 @@
 
           <ul class="nav-menu">
             <li class="nav-item" (click)="closeMenu()">
-              <a href="/" class="nav-link">
+              <a href="/" class="nav-link size16 redhat-medium">
                 <lucide-icon name="home" class="nav-icon"></lucide-icon>
                 <span>Home</span>
               </a>
             </li>
 
             <li class="nav-item" (click)="closeMenu()">
-              <a href="/about" class="nav-link">
+              <a href="/about" class="nav-link size16 redhat-medium">
                 <lucide-icon name="users" class="nav-icon"></lucide-icon>
                 <span>About Us</span>
               </a>
             </li>
 
             <li class="nav-item" (click)="closeMenu()">
-              <a href="/services" class="nav-link">
+              <a href="/services" class="nav-link size16 redhat-medium">
                 <lucide-icon name="settings" class="nav-icon"></lucide-icon>
                 <span>Our Services</span>
               </a>
             </li>
 
             <li class="nav-item" (click)="closeMenu()">
-              <a href="/product/search" class="nav-link">
+              <a href="/product/search" class="nav-link size16 redhat-medium">
                 <lucide-icon name="car" class="nav-icon"></lucide-icon>
                 <span>Our Fleets</span>
               </a>

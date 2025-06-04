@@ -15,6 +15,9 @@
       left: 5%;
       transform: translateY(-50%);
     }
+    @media (max-width: 1536px) {
+      top: 34%;
+    }
     @media (max-width: 1024px) {
       top: 50%;
       left: 5%;
@@ -95,7 +98,7 @@
     width: 64%;
   }
   @media screen and (max-width: 1440px){
-    width: 64%;
+    width: 70%;
   }
   @media screen and (max-width: 1280px){
     width: 100%;

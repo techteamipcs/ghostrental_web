@@ -306,6 +306,18 @@ textarea {
 
 .para-width {
   width: 72%;
+  @media screen and (max-width: 1920px) {
+    width: 72%;
+  }
+  @media screen and (max-width: 1440px) {
+    width: 67%;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 62%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 57%;
+  }
 }
 
 .alert-danger {
@@ -340,5 +352,18 @@ textarea {
   @media screen and (max-width: 425px) {
     padding: 0.3rem;
     gap: 0;
+  }
+}
+
+.sectionPadding{
+  padding:6rem 12rem;
+  @media (max-width:1440px) {
+    padding: 6rem 7rem;
+  }
+  @media (max-width:1024px) {
+    padding: 6rem 6rem;
+  }
+  @media (max-width:768px) {
+    padding: 3rem 10px;
   }
 }

@@ -84,13 +84,6 @@
 
     option {
       padding: 8px 12px;
-
-      &:hover,
-      &:focus,
-      &:checked {
-        background-color: #1d1d1d;
-        color: #fff;
-      }
     }
   }
 
@@ -142,14 +135,6 @@
 
     option {
       padding: 8px 12px;
-
-      &:hover,
-      &:focus,
-      &:checked {
-        background-color: #000000 !important;
-        color: #fff;
-      }
-
       &[value=""] {
         color: #6c757d;
       }

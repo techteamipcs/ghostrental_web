@@ -1,25 +1,22 @@
 .home {
   height: 100vh;
   .content {
-    // width: 575px;
-    // position: absolute;
-    // top: 44%;
-    // left: 8rem;
-    // transform: translateY(-50%);
+    margin-top: auto;
+    @media (max-width: 1536px) {
+      margin-top: 0;
+    }
     @media (max-width: 1024px) {
-      // width: 414px;
-      // top: 41%;
-      // left: 5%;
-      // transform: translateY(-50%);
+      margin-top: 0;
     }
     @media (max-width: 768px) {
-      // width: 100%;
-      // left: 0;
-      // padding: 1rem;
+      margin-top: 0;
     }
 
     .hero-para {
       width: 527px;
+      @media (max-width: 1536px) {
+        width: 422px;
+      }
       @media (max-width: 1024px) {
         width: 422px;
       }
@@ -97,10 +94,10 @@
       position: relative;
       z-index: 1;
 
-      option {
-        position: relative;
-        z-index: 1000;
-      }
+      // option {
+      //   position: relative;
+      //   z-index: 1000;
+      // }
     }
 
     .form-control,
@@ -128,10 +125,14 @@
       @media screen and (max-width: 430px) {
         padding: 7px 15px;
       }
-      option {
-        position: static;
-        z-index: 1000;
+      &:focus {
+        outline: none;
+        box-shadow: none;
       }
+      // option {
+      //   position: static;
+      //   z-index: 1000;
+      // }
     }
 
     .form-label {
@@ -147,6 +148,8 @@
         width: 90%;
       }
     }
+
+    
 
     .toggle-switch {
       position: relative;
@@ -439,42 +442,36 @@
 
     .span-holder {
       background-color: white;
-      width: 50%;
+      width: 90%;
       top: 50%;
       left: 50%;
       z-index: 2;
-      transform: translate(-86%, -50%);
+      transform: translate(-50%, -50%);
       transition: opacity 0.3s ease;
       pointer-events: none;
       @media screen and (max-width: 1920px) {
-        width: 50%;
+        width: 85%;
       }
       @media screen and (max-width: 1600px) {
-        width: 50%;
+        width: 80%;
       }
       @media screen and (max-width: 1440px) {
-        width: 56%;
-        left: 59%;
+        width: 80%;
       }
       @media screen and (max-width: 1366px) {
-        width: 56%;
-        left: 59%;
+        width: 80%;
       }
       @media screen and (max-width: 1280px) {
-        width: 61%;
-        left: 61%;
+        width: 80%;
       }
       @media screen and (max-width: 1024px) {
-        width: 62%;
-        left: 62%;
+        width: 80%;
       }
       @media screen and (max-width: 768px) {
-        width: 62%;
-        left: 62%;
+        width: 80%;
       }
       @media screen and (max-width: 430px) {
-        width: 63%;
-        left: 63%;
+        width: 80%;
       }
     }
   }
@@ -482,6 +479,17 @@
 
 // category section
 .car-types-section {
+padding: 161px 197px 182px;
+@media screen and (max-width: 1440px) {
+  padding: 150px 116px;
+}
+@media screen and (max-width: 1200px) {
+  padding: 100px 100px;
+}
+@media screen and (max-width: 768px) {
+  padding: 50px 50px;
+}
+
   .row {
     @media screen and (max-width: 1024px) {
       row-gap: 2rem;
@@ -543,18 +551,41 @@
       bottom: -8px;
     }
   }
+
+  .gap{
+    @media screen and (max-width: 1440px) {
+      gap: 1rem;
+    }
+    @media screen and (max-width: 1200px) {
+      gap: .5rem;
+    }
+  }
 }
 
 .services {
-  padding-left: 7rem;
-  padding-right: 7rem;
+  padding: 0 104px;
+  @media screen and (max-width: 1440px) {
+    padding:0 90px;
+  }
   @media screen and (max-width: 1200px) {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding:0 1rem;
   }
   @media screen and (max-width: 768px) {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0 .5rem;
+  }
+
+  .img-height {
+    height: 540px;
+    overflow: hidden;
+    @media screen and (max-width: 1536px) {
+      height: 400px;
+    }
+    @media screen and (max-width: 1440px) {
+      height: 330px;
+    }
+    @media screen and (max-width: 768px) {
+      height: 300px;
+    }
   }
   .card {
     transition: transform 0.3s ease;
@@ -564,7 +595,7 @@
     border-radius: 20px !important;
   }
   .card-content {
-    padding: 0 16px 16px 16px;
+    padding: 22px 16px;
   }
   .services-images {
     border-radius: 25px;
@@ -577,9 +608,15 @@
     }
   }
   .topMargin {
-    margin-top: -6%;
+    margin-top: -5%;
     padding: 0px 50px;
-    @media (max-width: 1199px) {
+    @media (max-width: 1920px) {
+      margin-top: -6%;
+    }
+    @media (max-width: 1440px) {
+      margin-top: -4%;
+    }
+    @media (max-width: 1200px) {
       margin-top: -7%;
       padding: 0px 30px;
     }
@@ -588,11 +625,21 @@
     }
   }
 
+  .padding-x{
+    padding: 0 2rem;
+    @media screen and (max-width: 1440px) {
+      padding: 0 1rem;
+    }
+  }
+
 }
 
 // collections
 .collection {
-  padding: 6rem 0rem 6rem 7rem;
+  padding-left:7rem;
+  @media screen and (max-width: 1440px) {
+    padding-left: 5rem;
+  }
   @media screen and (max-width: 1200px) {
     padding-left: 3.75rem;
   }
@@ -621,6 +668,10 @@
   .collection_image {
     width: 35px;
     height: 35px;
+    @media screen and (max-width: 1440px) {
+      width: 25px;
+      height: 25px;
+    }
   }
   .swiper {
     width: 100%;
@@ -723,9 +774,25 @@
   }
 }
 
+.yacht-padding{
+  padding-top:120px;
+  @media screen and (max-width: 1440px) {
+    padding-top: 100px;
+  }
+  @media screen and (max-width: 1200px) {
+    padding-top: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
+}
+
 // About Us section
 .about-us {
-  padding: 5rem 7.2rem;
+  padding: 0 116px;
+  @media screen and (max-width: 1440px) {
+    padding: 0 90px;
+  }
   @media screen and (max-width: 1200px) {
     padding: 4rem 9rem;
   }
@@ -734,9 +801,9 @@
   }
   .div-height {
     height: 580px;
-    // @media screen {
-    //   height: 480px;
-    // }
+      @media screen and (max-width: 1440px) {
+        height: 400px;
+      }
   }
   .about-content {
     position: relative;
@@ -753,6 +820,10 @@
     @media screen and (max-width: 1536px) {
       max-width: 814px;
     }
+    @media screen and (max-width: 1440px) {
+      max-width: 729px;
+    }
+   
   }
   // .features-grid {
   //   display: grid;
@@ -778,7 +849,10 @@
 }
 
 .trending_cars {
-  padding: 6rem 7rem;
+  padding: 200px 116px 120px;
+  @media screen and (max-width: 1440px) {
+    padding: 150px 90px 120px;
+  }
   @media screen and (max-width: 1200px) {
     padding: 4rem 5rem;
   }
@@ -794,7 +868,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
 
     @media (max-width: 1200px) {
       grid-template-columns: repeat(2, 1fr);
@@ -895,7 +969,7 @@
     top: 30%;
   }
   @media screen and (max-width: 1440px) {
-    top: 29%;
+    top: 24%;
   }
   @media screen and (max-width: 1200px) {
     top: 22%;

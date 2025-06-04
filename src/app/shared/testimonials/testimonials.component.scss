@@ -1,4 +1,18 @@
 .testimonial {
+padding: 160px 358px 195px;
+
+@media screen and (max-width: 1536px) {
+  padding: 100px ;
+}
+@media screen and (max-width: 1200px) {
+  padding: 4rem 6.25rem;
+}
+
+@media screen and (max-width: 768px) {
+  padding: 3rem 1.5rem;
+}
+
+
   .star-icon {
     width: 25px;
     height: 25px;
@@ -91,9 +105,13 @@
 }
 
 .faq {
-  padding: 5rem 23.6rem;
+  padding: 0 378px 160px;
+
+  @media screen and (max-width: 1536px) {
+    padding: 0 100px 100px;
+  }
   @media screen and (max-width: 1200px) {
-    padding: 4rem 3.75rem;
+    padding: 4rem 6.25rem;
   }
   
   @media screen and (max-width: 768px) {

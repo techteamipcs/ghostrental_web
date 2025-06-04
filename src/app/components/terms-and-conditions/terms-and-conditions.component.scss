@@ -1,10 +1,39 @@
 .sectionPadding {
-  padding: 12rem;
+  padding: 9rem 12rem 12rem;
+  @media screen and (max-width: 1536px) {
+    padding: 9rem 11rem 9rem;
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 9rem 10rem 9rem;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 6rem 5rem 6rem;
+  }
 }
-
+h1{
+  margin-bottom: 3rem;
+  @media screen and (max-width: 1536px) {
+    margin-bottom: 2rem;
+  }
+  @media screen and (max-width: 1440px) {
+    margin-bottom: 1.8rem;
+  }
+}
 h2{
   margin: 2.6rem 0;
+  @media screen and (max-width: 1536px) {
+    margin: 2rem 0;
+  }
+  @media screen and (max-width: 1440px) {
+    margin: 1.8rem 0;
+  }
 }
 p{
   margin-bottom: 2.6rem;
+  @media screen and (max-width: 1536px) {
+    margin-bottom: 2rem;
+  }
+  @media screen and (max-width: 1440px) {
+    margin-bottom: 1.8rem;
+  }
 }

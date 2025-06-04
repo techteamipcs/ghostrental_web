@@ -1,5 +1,5 @@
 .product-detail {
-  padding: 12rem 7.3rem 5rem 7.3rem;
+  padding: 10rem 7.3rem 5rem 7.3rem;
   @media screen and (max-width: 1536px) {
     padding: 10rem 5rem 5rem 5rem;
   }
@@ -22,10 +22,10 @@
       height: 560px;
     }
     @media screen and (max-width: 1200px) {
-      height: 500px;
+      height: 100%;
     }
     @media screen and (max-width: 768px) {
-      height: 400px;
+      height: 100%;
     }
   }
   .main-image-wrapper {
@@ -139,6 +139,9 @@
 
 .section-width{
   width: 70%;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 }
 
 .prev {
@@ -329,76 +332,18 @@
     }
   }
 }
-// collections
+// collections 
 .collection {
-  padding: 5rem 0rem 5rem 7rem;
+  padding: 7rem;
+  @media screen and (max-width: 1440px) {
+    padding: 6rem 6rem 0;
+  }
   @media screen and (max-width: 1200px) {
-    padding-left: 3.75rem;
+    padding: 3.75rem;
   }
 
-  .swiper {
-    padding: 1rem 0;
-  }
 
-  .swiper-wrapper {
-    padding: 1rem 0;
-  }
 
-  .swiper-slide {
-    height: auto;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border-radius: 1rem;
-      cursor: pointer;
-    }
-  }
-
-  .swiper-navigation {
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    background: #fff;
-    border: 1px solid #000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &::after {
-      display: none;
-    }
-
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
-
-    .swiper-button-icon {
-      width: 24px;
-      height: 24px;line-height: normal;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    padding: 22px;
-  }
   .margin-right {
     margin-right: 11rem;
   }
@@ -406,60 +351,19 @@
   .collection_image {
     width: 35px;
     height: 35px;
-  }
-  .swiper {
-    width: 100%;
-    padding: 10px 0;
-    overflow: hidden;
-    position: relative;
-
-    .swiper-wrapper {
-      align-items: stretch;
-      display: flex;
-      width: 100%;
-    }
-
-    .swiper-slide {
-      height: auto;
-      display: flex;
-      align-items: stretch;
+    @media screen and (max-width: 1440px) {
+      width: 25px;
+      height: 25px;
     }
   }
-  .car-swiper-button-prev,
-  .car-swiper-button-next,
-  .yacht-swiper-button-prev,
-  .yacht-swiper-button-next {
-    width: 41px;
-    height: 41px;
-    border-radius: 50%;
-    background: white;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 1rem;
-    border: 1px solid black;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: black;
-      color: white;
-    }
-    &::after {
-      display: none;
-    }
-    .swiper-button-icon {
-      width: 24px;
-      height: 24px;line-height: normal;
-    }
-  }
+ 
+  
   .car-card {
     border: 1px solid #d1d1d1;
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 100%;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {

@@ -448,6 +448,18 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.getCarData();
   }
 
+  resetFilter() {
+    this.selectedBodytype = [];
+    this.selectedBrand = [];
+    this.selectedModel = [];
+    this.selectedRentalType = null;
+    this.minPrice = 0;
+    this.maxPrice = 10000;
+    this.vipNumberPlate = false;
+    this.sort = null;
+    this.getCarData();
+  }
+
   getCarData() {
     let obj = {
       limit: this.currentLimit,

@@ -1,5 +1,20 @@
 .sectionPadding {
-    padding: 12rem;
+    padding:150px 264px 130px;
+    @media screen and (max-width: 1920px) {
+        padding: 150px 264px 130px;
+      }
+      @media screen and (max-width: 1536px) {
+        padding: 150px 146px 100px;
+      }
+      @media screen and (max-width: 1200px) {
+        padding: 150px 126px 90px;
+      }
+      @media (max-width: 1024px) {
+        padding: 150px 126px 90px;
+      }
+      @media (max-width: 768px) {
+        padding: 100px;
+      }
 }
 
 h2{

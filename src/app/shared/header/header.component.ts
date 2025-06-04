@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
     '/services',
     '/booking'
   ];
-
   isDarkText = false;
   isWhiteText = false;
   currentRoute: string = '';
@@ -79,15 +78,11 @@ export class HeaderComponent implements OnInit {
         path === route || path.startsWith(route + '/')
       );
 
-      const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
-      const isListRoute = this.listRouteRegex.test(this.currentRoute);
-      const isBookingRoute = this.bookingRouteRegex.test(this.currentRoute);
-
-      this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
-        isDetailRoute ||
-        isListRoute ||
-        isBookingRoute ||
-        this.currentRoute === '/';
+      // Only apply large padding to routes in largePaddingRoutes array
+      this.hasLargePadding = this.largePaddingRoutes.some(route => {
+        // Check if current route exactly matches or starts with the route
+        return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
+      });
 
       if (this.isBrowser) {
         window.scrollTo(0, 0);
@@ -97,6 +92,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  
   ngOnInit(): void {
     const path = this.router.url.split('?')[0];
     this.currentRoute = path;

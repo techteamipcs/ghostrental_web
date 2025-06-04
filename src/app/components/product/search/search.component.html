@@ -19,16 +19,13 @@
                 />
                 <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
               </div>
-              <!-- <button
-                class="btn gray-color p-0"
-                (click)="toggleFilter()"
+              <button
+                class=" size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent "
                 type="button"
+                (click)="resetFilter()"
               >
-                <lucide-icon
-                  [name]="isFilterCollapsed ? 'plus' : 'minus'"
-                  size="20"
-                />
-              </button> -->
+              reset
+              </button>
             </div>
 
             <div id="desktopFilter" [class.collapsed]="isFilterCollapsed">
@@ -741,9 +738,9 @@
                   >
                     <div class="cash">
                       <h6
-                        class="text-muted mb-0 size18 redhat-semibold color-card-p"
+                        class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
                       >
-                        <del>AED {{ car.regularRate }}</del>
+                        AED {{ car.regularRate }}
                       </h6>
                       <h5 class="mb-0 size26 redhat-semibold gray-color">
                         AED {{ car.dailyRate }}

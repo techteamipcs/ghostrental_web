@@ -427,7 +427,9 @@ body {
 .green-color{
   // $color-green: #89E283;
   color: $color-green;
-  border-color: $color-green;
+}
+.green-border-color{
+  border: 1px solid $color-green !important;
 }
 .beige-color{
   // $color-beige: #F8F4F0;
@@ -531,23 +533,29 @@ img{
   height: auto;
   object-fit: cover;
 }
-.sectionPadding{
-  padding:6rem 12rem;
-  @media (max-width:1440px) {
-    padding: 4rem 7rem;
-  }
-  @media (max-width:1024px) {
-    padding: 4rem 6rem;
-  }
-  @media (max-width:768px) {
-    padding: 3rem 10px;
-  }
-}
+// .sectionPadding{
+//   padding:6rem 12rem;
+//   @media (max-width:1440px) {
+//     padding: 4rem 7rem;
+//   }
+//   @media (max-width:1024px) {
+//     padding: 4rem 6rem;
+//   }
+//   @media (max-width:768px) {
+//     padding: 3rem 10px;
+//   }
+// }
 
 .bannerPadding{
   padding: 28px;
   @media (max-width:1536px) {
     padding: 24px;
+  }
+  @media (max-width:1440px) {
+    padding: 20px;
+  }
+  @media (max-width:1280px) {
+    padding: 15px;
   }
   @media (max-width:1024px) {
     padding: 20px;
