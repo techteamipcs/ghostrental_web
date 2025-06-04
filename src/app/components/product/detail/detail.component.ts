@@ -185,7 +185,6 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public checkSticky() {
     if (!this.stickyCardElement || !this.stickyContainerElement) {
-      ;
       if (isPlatformBrowser(this.platformId)) {
         const card = this.stickyCard.nativeElement;
         const container = this.stickyContainer.nativeElement;

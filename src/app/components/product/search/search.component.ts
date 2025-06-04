@@ -6,13 +6,16 @@ import {
   ViewChild,
   ViewChildren,
   ElementRef,
-  QueryList
+  QueryList,
+  PLATFORM_ID,
+  Inject
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -90,7 +93,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Initialize mobile filter as closed
     this.isMobileFilterVisible = false;
@@ -119,106 +123,108 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   initializeSlider() {
-    const minThumb = document.getElementById('thumb-min') as HTMLElement;
-    const maxThumb = document.getElementById('thumb-max') as HTMLElement;
-    const range = document.getElementById('slider-range') as HTMLElement;
-    const slider = document.getElementById('slider') as HTMLElement;
+    if (isPlatformBrowser(this.platformId)) {
+      const minThumb = document.getElementById('thumb-min') as HTMLElement;
+      const maxThumb = document.getElementById('thumb-max') as HTMLElement;
+      const range = document.getElementById('slider-range') as HTMLElement;
+      const slider = document.getElementById('slider') as HTMLElement;
 
-    if (!minThumb || !maxThumb || !range || !slider) return;
+      if (!minThumb || !maxThumb || !range || !slider) return;
 
-    let isDragging = false;
-    let activeThumb: HTMLElement | null = null;
-    let startX = 0;
-    let startLeft = 0;
+      let isDragging = false;
+      let activeThumb: HTMLElement | null = null;
+      let startX = 0;
+      let startLeft = 0;
 
-    // Set initial positions
-    this.updateSlider();
+      // Set initial positions
+      this.updateSlider();
 
-    // Mouse/Touch event handlers
-    const startDrag = (e: MouseEvent | TouchEvent, thumb: HTMLElement) => {
-      isDragging = true;
-      activeThumb = thumb;
-      startX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
-      startLeft = parseInt(activeThumb.style.left || '0');
-      document.addEventListener('mousemove', onDrag);
-      document.addEventListener('touchmove', onDrag);
-      document.addEventListener('mouseup', stopDrag);
-      document.addEventListener('touchend', stopDrag);
-    };
+      // Mouse/Touch event handlers
+      const startDrag = (e: MouseEvent | TouchEvent, thumb: HTMLElement) => {
+        isDragging = true;
+        activeThumb = thumb;
+        startX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+        startLeft = parseInt(activeThumb.style.left || '0');
+        document.addEventListener('mousemove', onDrag);
+        document.addEventListener('touchmove', onDrag);
+        document.addEventListener('mouseup', stopDrag);
+        document.addEventListener('touchend', stopDrag);
+      };
 
-    const onDrag = (e: MouseEvent | TouchEvent) => {
-      if (!isDragging || !activeThumb) return;
+      const onDrag = (e: MouseEvent | TouchEvent) => {
+        if (!isDragging || !activeThumb) return;
 
-      const sliderRect = slider.getBoundingClientRect();
-      const sliderWidth = sliderRect.width;
-      const clientX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+        const sliderRect = slider.getBoundingClientRect();
+        const sliderWidth = sliderRect.width;
+        const clientX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
 
-      // Calculate new position
-      let newLeft = startLeft + (clientX - startX);
+        // Calculate new position
+        let newLeft = startLeft + (clientX - startX);
 
-      // Constrain to slider bounds
-      newLeft = Math.max(0, Math.min(newLeft, sliderWidth));
+        // Constrain to slider bounds
+        newLeft = Math.max(0, Math.min(newLeft, sliderWidth));
 
-      // Update thumb position
-      activeThumb.style.left = `${newLeft}px`;
+        // Update thumb position
+        activeThumb.style.left = `${newLeft}px`;
 
-      // Update range fill
-      this.updateRangeFill();
+        // Update range fill
+        this.updateRangeFill();
 
-      // Update price values
-      this.updatePricesFromSlider();
-    };
+        // Update price values
+        this.updatePricesFromSlider();
+      };
 
-    const stopDrag = () => {
-      isDragging = false;
-      activeThumb = null;
-      document.removeEventListener('mousemove', onDrag);
-      document.removeEventListener('touchmove', onDrag);
-      document.removeEventListener('mouseup', stopDrag);
-      document.removeEventListener('touchend', stopDrag);
-    };
+      const stopDrag = () => {
+        isDragging = false;
+        activeThumb = null;
+        document.removeEventListener('mousemove', onDrag);
+        document.removeEventListener('touchmove', onDrag);
+        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchend', stopDrag);
+      };
 
-    // Add event listeners
-    minThumb.addEventListener('mousedown', (e) => startDrag(e, minThumb));
-    maxThumb.addEventListener('mousedown', (e) => startDrag(e, maxThumb));
-    minThumb.addEventListener('touchstart', (e) => startDrag(e, minThumb));
-    maxThumb.addEventListener('touchstart', (e) => startDrag(e, maxThumb));
+      // Add event listeners
+      minThumb.addEventListener('mousedown', (e) => startDrag(e, minThumb));
+      maxThumb.addEventListener('mousedown', (e) => startDrag(e, maxThumb));
+      minThumb.addEventListener('touchstart', (e) => startDrag(e, minThumb));
+      maxThumb.addEventListener('touchstart', (e) => startDrag(e, maxThumb));
 
-    // Handle keyboard controls
-    minThumb.setAttribute('tabindex', '0');
-    maxThumb.setAttribute('tabindex', '0');
+      // Handle keyboard controls
+      minThumb.setAttribute('tabindex', '0');
+      maxThumb.setAttribute('tabindex', '0');
 
-    const handleKeyDown = (e: KeyboardEvent, isMin: boolean) => {
-      const thumb = isMin ? minThumb : maxThumb;
-      const currentPos = parseInt(thumb.style.left || '0');
-      const sliderWidth = slider.offsetWidth;
-      const step = sliderWidth / 100; // 1% of slider width
+      const handleKeyDown = (e: KeyboardEvent, isMin: boolean) => {
+        const thumb = isMin ? minThumb : maxThumb;
+        const currentPos = parseInt(thumb.style.left || '0');
+        const sliderWidth = slider.offsetWidth;
+        const step = sliderWidth / 100; // 1% of slider width
 
-      switch (e.key) {
-        case 'ArrowLeft':
-          e.preventDefault();
-          thumb.style.left = `${Math.max(0, currentPos - step)}px`;
-          break;
-        case 'ArrowRight':
-          e.preventDefault();
-          thumb.style.left = `${Math.min(sliderWidth, currentPos + step)}px`;
-          break;
-        case 'Home':
-          e.preventDefault();
-          thumb.style.left = '0px';
-          break;
-        case 'End':
-          e.preventDefault();
-          thumb.style.left = `${sliderWidth}px`;
-          break;
-      }
+        switch (e.key) {
+          case 'ArrowLeft':
+            e.preventDefault();
+            thumb.style.left = `${Math.max(0, currentPos - step)}px`;
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            thumb.style.left = `${Math.min(sliderWidth, currentPos + step)}px`;
+            break;
+          case 'Home':
+            e.preventDefault();
+            thumb.style.left = '0px';
+            break;
+          case 'End':
+            e.preventDefault();
+            thumb.style.left = `${sliderWidth}px`;
+            break;
+        }
 
-      this.updateRangeFill();
-      this.updatePricesFromSlider();
-    };
+        this.updateRangeFill();
+        this.updatePricesFromSlider();
+      };
 
-    minThumb.addEventListener('keydown', (e) => handleKeyDown(e, true));
-    maxThumb.addEventListener('keydown', (e) => handleKeyDown(e, false));
+      minThumb.addEventListener('keydown', (e) => handleKeyDown(e, true));
+      maxThumb.addEventListener('keydown', (e) => handleKeyDown(e, false));
+    }
   }
 
 
@@ -353,27 +359,28 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 10) {
+        this.mobileFilterHeight = 'calc(100vh - 5rem)';
+      } else {
+        this.mobileFilterHeight = 'calc(100vh - 7.5rem)';
+      }
 
-    const scrollPosition = window.scrollY;
-    if (scrollPosition > 10) {
-      this.mobileFilterHeight = 'calc(100vh - 5rem)';
-    } else {
-      this.mobileFilterHeight = 'calc(100vh - 7.5rem)';
-    }
+      const filter = this.filterRef.nativeElement;
+      const results = this.resultsRef.nativeElement;
 
-    const filter = this.filterRef.nativeElement;
-    const results = this.resultsRef.nativeElement;
+      const filterHeight = filter.offsetHeight;
+      const filterTop = filter.getBoundingClientRect().top;
+      const resultsBottom = results.getBoundingClientRect().bottom;
 
-    const filterHeight = filter.offsetHeight;
-    const filterTop = filter.getBoundingClientRect().top;
-    const resultsBottom = results.getBoundingClientRect().bottom;
-
-    if (resultsBottom <= filterHeight + filterTop) {
-      filter.style.position = 'relative';
-      filter.style.bottom = '0';
-    } else {
-      filter.style.position = 'sticky';
-      filter.style.top = '11rem';
+      if (resultsBottom <= filterHeight + filterTop) {
+        filter.style.position = 'relative';
+        filter.style.bottom = '0';
+      } else {
+        filter.style.position = 'sticky';
+        filter.style.top = '11rem';
+      }
     }
   }
 
