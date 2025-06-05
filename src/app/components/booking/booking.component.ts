@@ -74,6 +74,9 @@ export class BookingComponent {
     } else {
       this.getCarData();
     }    
+    if(this.vehicle_type){
+      this.selectedbannerpage = this.vehicle_type;
+    }
     this.getBannerData();
   }
 

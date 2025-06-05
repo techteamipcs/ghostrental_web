@@ -38,6 +38,9 @@ export class ListComponent implements OnInit {
 
   ) {
     this.url_key = this.route.snapshot.paramMap.get('car_type');
+    if(this.url_key){
+      this.selectedbannerpage = this.url_key;
+    }
   }
   ngOnInit() {
     if (this.url_key) {
