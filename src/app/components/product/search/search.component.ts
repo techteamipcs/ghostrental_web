@@ -584,6 +584,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onChangeSort(data) {
     if (data?.target?.value) {
       this.sort = data.target.value;
+      this.getCarData();
     }
   }
 

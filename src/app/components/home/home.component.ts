@@ -336,7 +336,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       limit: 10,
       page: 1,
       availabilityStatus: 'available',
-      vehicle_type: "Car"
+      vehicle_type: "Car",
+      home_vehicle: true
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
@@ -364,7 +365,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       limit: 10,
       page: 1,
       availabilityStatus: 'available',
-      vehicle_type: "Yachts"
+      vehicle_type: "Yachts",
+      home_vehicle: true
     };
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
