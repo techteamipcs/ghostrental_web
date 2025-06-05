@@ -1,44 +1,51 @@
 @font-face {
   font-family: "Performa Thin";
   src: url("../../fonts/perfoma/performa-ex-thin.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
 }
 @font-face {
   font-family: "Performa Light";
   src: url("../../fonts/perfoma/performa-ex-light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
 }
 @font-face {
   font-family: "Performa Regular";
   src: url("../../fonts/perfoma/performa-regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
 }
 @font-face {
   font-family: "Performa Medium";
   src: url("../../fonts/perfoma/performa-medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
 }
 @font-face {
   font-family: "Performa SemiBold";
   src: url("../../fonts/perfoma/performa-semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
 }
 @font-face {
   font-family: "Performa Bold";
   src: url("../../fonts/perfoma/performa-bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
 }
 
 @font-face {
-  font-family: "RedHatDisplay";
-  src: url("../../fonts/RedHatDisplay-VariableFont_wght.ttf")
+  font-family: "RedHat Regular";
+  src: url("../../fonts/red-hat/RedHatDisplay-Regular.ttf")
     format("truetype");
-  font-weight: 200 700;
-  font-style: normal;
+}
+@font-face {
+  font-family: "RedHat Bold";
+  src: url("../../fonts/red-hat/RedHatDisplay-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "RedHat Light";
+  src: url("../../fonts/red-hat/RedHatDisplay-Light.ttf") format("truetype");
+  
+}
+
+@font-face {
+  font-family: "RedHat Medium";
+  src: url("../../fonts/red-hat/RedHatDisplay-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "RedHat SemiBold";
+  src: url("../../fonts/red-hat/RedHatDisplay-SemiBold.ttf")
+    format("truetype");
 }

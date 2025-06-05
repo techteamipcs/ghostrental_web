@@ -204,11 +204,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.trending-swiper-button-next',
           prevEl: '.trending-swiper-button-prev',
         },
-        breakpoints: {
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 1 },
-          992: { slidesPerView: 1 },
-        },
       });
     }
   }

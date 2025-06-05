@@ -52,7 +52,7 @@
               </div>
               <!-- Special Number Plate -->
               <label *ngIf="vehicleType == 'Car'"
-                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+                class="form-label gray-light-color size14 redhat-semibold mb-1"
                 >Special Number Plate</label
               >
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
@@ -70,6 +70,7 @@
                 </select>
                 <lucide-icon name="chevron-down" size="20" />
               </div>
+
               <!-- Rental Type -->
               <label
                 class="form-label gray-light-color size14 redhat-semibold mb-1"
@@ -206,12 +207,6 @@
 
               <!-- Price Range -->
               <div class="price-wrapper">
-                <label
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >
-                  Price Range (AED)
-                </label>
-
                 <!-- Price Inputs -->
                 <div class="row">
                   <div class="col-6">
@@ -525,12 +520,6 @@
 
                 <!-- Price Range -->
                 <div class="price-wrapper">
-                  <label
-                    class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >
-                    Price Range (AED)
-                  </label>
-
                   <!-- Price Inputs -->
                   <div class="row">
                     <div class="col-6">
@@ -656,7 +645,7 @@
         <div class="products">
           <div class="row">
             <div
-              class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4"
+              class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4"
               *ngFor="let car of vehicleData"
             >
               <div
@@ -687,7 +676,7 @@
                     </div>
                     <span
                       *ngIf="car && car.isvipNumberPlate"
-                      class="size8 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
+                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
                       >special number plate</span
                     >
                   </div>

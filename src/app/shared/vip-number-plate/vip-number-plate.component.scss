@@ -1,53 +1,72 @@
-.vip-number-plate{
+.vip-number-plate {
   padding: 200px 166px;
+
   @media screen and (max-width: 1536px) {
     padding: 150px;
   }
+
   @media screen and (max-width: 1440px) {
     padding: 120px;
   }
+
   @media screen and (max-width: 1200px) {
     padding: 100px;
   }
+
   @media screen and (max-width: 768px) {
     padding: 50px 50px;
   }
+
+  @media screen and (max-width: 430px) {
+    padding: 50px 20px;
+  }
 }
 
-.para-width{
+.para-width {
   width: 60%;
+
   @media screen and (max-width: 1920px) {
     width: 85%;
   }
+
   @media screen and (max-width: 1680px) {
     width: 100%;
   }
+
   @media screen and (max-width: 1600px) {
     width: 100%;
   }
+
   @media screen and (max-width: 1536px) {
     width: 81%;
   }
+
   @media screen and (max-width: 1440px) {
     width: 100%;
   }
+
   @media screen and (max-width: 1024px) {
     width: 85%;
   }
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }
 }
 
-.sectionPadding{
+.sectionPadding {
   padding: 6rem 10rem;
+
   @media screen and (max-width: 1536px) {
     padding: 4rem 7rem;
   }
+
   @media screen and (max-width: 1200px) {
     padding: 4rem 6rem;
   }
+
   @media screen and (max-width: 768px) {
     padding: 3rem 1rem;
   }
 }
+

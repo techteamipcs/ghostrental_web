@@ -80,7 +80,7 @@
   @media screen and (max-width: 1200px) {
   padding:42px 40px 25px 34px;
   }
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 430px) {
   padding:20px ;
   }
 }
@@ -95,7 +95,7 @@
   @media screen and (max-width: 1440px) {
     padding: 23px 20px ;
   }
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 430px) {
     padding: 20px ;
   }
 }
@@ -110,7 +110,7 @@
   @media screen and (max-width: 1440px) {
     padding: 25px 20px ;
   }
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 430px) {
     padding: 20px  ;
   }
 }
@@ -206,7 +206,7 @@
       width: 93%;
     }
     @media screen and (max-width: 1440px) {
-      width: 100%;
+      width: 94%;
     }
     @media screen and (max-width: 1200px) {
       width: 84%;
@@ -249,6 +249,9 @@
 
 .signature {
   margin: 8.5rem;
+  @media screen and (max-width: 1440px) {
+    margin: 6.3rem;
+  }
   @media screen and (max-width: 1200px) {
     margin: 100px 20px;
   }

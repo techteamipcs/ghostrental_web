@@ -11,64 +11,54 @@ body {
 //  performa Font family 
 .performa-thin {
   font-family: $perfoma-thin;
-  font-weight: 200;
 }
 
 .performa-light {
   font-family: $perfoma-light;
-  font-weight: 300;
 }
 
 .performa-regular {
   font-family: $perfoma-regular;
-  font-weight: 400;
 }
 
 .performa-medium {
   font-family: $perfoma-medium;
-  font-weight: 500;
 }
 
 .performa-semibold {
   font-family: $perfoma-semibold;
-  font-weight: 600;
 }
 
 .performa-bold {
   font-family: $perfoma-bold;
-  font-weight: 700;
 }
 
 // Red Hat Display font family  
-.redhat-thin {
-  font-family: $redhat;
-  font-weight: 200;
-}
-
 .redhat-light {
-  font-family: $redhat;
-  font-weight: 300;
+  font-family: $redhat-light;
 }
 .redhat-regular {
-  font-family: $redhat;
-  font-weight: 400;
+  font-family: $redhat-regular;
 }
 .redhat-medium {
-  font-family: $redhat;
-  font-weight: 500;
+  font-family: $redhat-medium;
 }
 .redhat-semibold {
-  font-family: $redhat;
-  font-weight: 600;
+  font-family: $redhat-semibold;
 }
 .redhat-bold {
-  font-family: $redhat;
-  font-weight: 700;
+  font-family: $redhat-bold;
 }
 
 // font sizes
 .size8{
   font-size: 8px ;
+}
+.size12{
+  font-size: 12px ;
+  @media (max-width:768px) {
+    font-size: 10px;
+  }
 }
 .size14 {
   font-size: 14px;
@@ -229,20 +219,21 @@ body {
 }
 .size35 {
   font-size: 35px;
-  @media (max-width: 1600px) {
-		font-size: 28px;
-	}
-  @media (max-width: 1440px) {
-		font-size: 26px;
-	}
-  @media (max-width: 1280px) {
-    font-size: 24px;
-  }
+
   @media (max-width:1024px) {
-    font-size: 21px;
+    font-size: 22px;
   }
   @media (max-width:768px) {
-    font-size: 12px;
+    font-size: 19px;
+  }
+}
+.size36 {
+  font-size: 36px;
+  @media (max-width:1024px) {
+    font-size: 26px;
+  }
+  @media (max-width:768px) {
+    font-size: 22px;
   }
 }
 .size42 {
@@ -290,16 +281,16 @@ body {
 .size60{
   font-size: 60px;
   @media (max-width:1536px) {
-    font-size: 44px;
+    font-size: 56px;
   }
   @media (max-width:1024px) {
-    font-size: 42px;
+    font-size: 56px;
   }
   @media (max-width:768px) {
-    font-size: 32px;
+    font-size: 48px;
   }
   @media (max-width:430px) {
-    font-size: 22px;
+    font-size: 32px;
   }
 }
 .size80{
@@ -374,7 +365,7 @@ body {
     line-height: 50px;
   }
   @media (max-width:430px) {
-    line-height: 35px;
+    line-height: 50px;
   }
  
 }
@@ -393,16 +384,12 @@ body {
 }
 .line-height26{
   line-height: 26px;
-  @media (max-width:1600px) {
+  @media (max-width:1024px) {
     line-height: 23px;
   }
-  @media (max-width:1440px) {
+  @media (max-width:430px) {
     line-height: 18px;
   }
-  @media (max-width:1280px) {
-    line-height: 16px;
-  }
-  
 }
 
 
