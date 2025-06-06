@@ -17,10 +17,14 @@
     }
 
     .hero-para {
-      width: 527px;
+      // width: 527px;
+      width: 488px;
 
       @media (max-width: 1536px) {
         width: 422px;
+      }
+      @media (max-width: 1440px) {
+        width: 386px;
       }
 
       @media (max-width: 1024px) {
@@ -39,13 +43,18 @@
 
   .form-top {
     top: 52%;
-
+    @media screen and (max-width: 1920px) {
+      top: 53%;
+    }
     @media screen and (max-width: 1600px) {
       top: 54%;
     }
 
     @media screen and (max-width: 1440px) {
-      top: 57%;
+      top: 56%;
+    }
+    @media screen and (max-width: 1280px) {
+      top: 58%;
     }
 
     @media screen and (max-width: 1024px) {
@@ -74,11 +83,14 @@
     flex-direction: column;
     gap: 1rem;
     max-width: 650px;
+    
 
     @media screen and (max-width: 1920px) {
       max-width: 500px;
       gap: 0;
-      padding: 30px;
+      padding: 20px 30px;
+      margin-left: 25px;
+      margin-top: 25px;
     }
 
     @media screen and (max-width: 1600px) {
@@ -89,6 +101,7 @@
     @media screen and (max-width: 1536px) {
       padding: 15px;
       max-width: 400px;
+      margin-top: 0px
     }
 
     @media screen and (max-width: 1440px) {
@@ -152,7 +165,7 @@
       }
 
       @media screen and (max-width: 1280px) {
-        padding: 10px 15px;
+        padding: 5px 10px;
       }
 
       @media screen and (max-width: 430px) {
@@ -281,7 +294,7 @@
           }
 
           @media (max-width: 1440px) {
-            transform: translateX(26px);
+            transform: translateX(21px);
           }
 
           @media (max-width: 1366px) {
@@ -585,6 +598,10 @@
       @media screen and (max-width: 1600px) {
         width: 80%;
       }
+      @media screen and (max-width: 1536px) {
+        width: 88%;
+        top: 52%;
+      }
 
       @media screen and (max-width: 1440px) {
         width: 80%;
@@ -595,7 +612,7 @@
       }
 
       @media screen and (max-width: 1280px) {
-        width: 80%;
+        width: 88%;
       }
 
       @media screen and (max-width: 1024px) {
@@ -739,7 +756,6 @@
 
 .services {
   padding: 0 104px;
-
   @media screen and (max-width: 1440px) {
     padding: 0 90px;
   }
@@ -779,11 +795,11 @@
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border-radius: 20px !important;
+    border-radius: 20px;
   }
 
   .card-content {
-    padding: 22px 16px;
+    padding: 22px 24px;
 
     @media screen and (max-width: 1440px) {
       padding: 20px 12px;
@@ -801,8 +817,30 @@
 
   .services-images {
     border-radius: 30px;
-    padding: .6rem;
+    padding: .6rem .6rem 0;
+    @media screen and (max-width: 1440px) {
+      padding: .5rem .5rem 0;
+    }
+    @media screen and (max-width: 768px) {
+      padding: .4rem .4rem 0;
+      border-radius: 20px;
+    }
+    @media screen and (max-width: 430px) {
+      padding: .2rem .2rem 0;
+    }
   }
+.service-para-width{
+  width: 74%;
+  @media screen and (max-width: 1440px) {
+    width: 82%;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 92%;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
+  }
+}
 
   .topspace {
     top: -5%;
@@ -843,7 +881,7 @@
     }
 
     @media (max-width: 430px) {
-      margin-top: -46%;
+      margin-top: -34%;
     }
   }
 
@@ -870,7 +908,6 @@
       padding: 0;
     }
   }
-
 }
 
 // collections
@@ -913,7 +950,7 @@
     }
 
     @media screen and (max-width: 430px) {
-      padding: 16px 16px 12px;
+      padding: 16px 10px 12px;
     }
   }
 
@@ -950,8 +987,8 @@
   .car-swiper-button-next,
   .yacht-swiper-button-prev,
   .yacht-swiper-button-next {
-    width: 41px;
-    height: 41px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: white;
     color: black;
@@ -987,46 +1024,34 @@
     width: 500px;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    padding: 12px;
+    @media screen and (max-width: 768px) {
+      padding: 10px;
+    }
 
     &:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       transform: translateY(-5px);
     }
-
-    .thumbnail-image {
-      padding: 12px 12px 0px 12px;
-
-      @media screen and (max-width: 768px) {
-        padding: 11px 11px 0px 11px;
-      }
-    }
   }
 
   .card-content {
-    padding: 26px;
+    padding: 16px 18px 0;
 
     @media screen and (max-width: 1920px) {
-      padding: 12px;
+      padding: 12px 14px 0;
     }
 
     @media screen and (max-width: 1400px) {
-      padding: 10px;
-    }
-
-    @media screen and (max-width: 1200px) {
-      padding: 10px;
-    }
-
-    @media screen and (max-width: 1024px) {
-      padding: 10px;
+      padding: 10px 12px 0;
     }
 
     @media screen and (max-width: 768px) {
-      padding: 8px;
+      padding: 8px 10px 0;
     }
 
     @media screen and (max-width: 430px) {
-      padding: 16px 16px 12px;
+      padding: 16px 10px 12px;
     }
   }
 }
@@ -1101,7 +1126,25 @@
     }
 
     .heading-width {
-      width: 73%;
+      width: 100%;
+      @media screen and (max-width: 1920px) {
+        width: 63%;
+      }
+      @media screen and (max-width: 1600px) {
+        width: 63%;
+      }
+      @media screen and (max-width: 1440px) {
+        width: 70%;
+      }
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+      @media screen and (max-width: 430px) {
+        width: 75%;
+      }
     }
 
   }
@@ -1140,43 +1183,30 @@
   .trending-cars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
     margin-top: 5rem;
+    row-gap: 5rem;
 
     @media (max-width: 1200px) {
       grid-template-columns: repeat(2, 1fr);
+      row-gap: 2rem;
+      margin-top: 3rem;
     }
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
-    }
-  }
-
-  .thumbnail-image {
-    padding: 12px;
-
-    @media screen and (max-width: 1200px) {
-      padding: 8px;
-    }
-
-    @media screen and (max-width: 768px) {
-      padding: 4px;
+      row-gap: 1rem;
     }
   }
 
   .card-content {
-    padding: 0 26px 26px 26px;
+    padding:16px 16px 27px;
 
-    @media screen and (max-width: 1024px) {
-      padding: 0 20px 20px 20px;
+    @media screen and (max-width: 1536px) {
+      padding: 12px 12px 22px;
     }
 
     @media screen and (max-width: 768px) {
-      padding: 0 10px 10px 10px;
-    }
-
-    @media screen and (max-width: 430px) {
-      padding: 16px 16px 12px;
+      padding: 10px 10px 18px;
     }
   }
 
@@ -1186,9 +1216,13 @@
     flex-direction: column;
     width: 100%;
     cursor: pointer;
+    padding: 12px;
     border-radius: 1rem;
     transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
-
+    
+    @media screen and (max-width: 768px) {
+      padding: 10px;
+    }
     &:hover {
       border: 1px solid white;
       border-radius: 1rem;
@@ -1260,20 +1294,18 @@
       flex-direction: column;
       width: 500px;
       cursor: pointer;
+      padding: 12px;
       transition: box-shadow 0.3s ease, transform 0.3s ease;
   
       &:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         transform: translateY(-5px);
       }
-  
-      .thumbnail-image {
-        padding: 12px 12px 0px 12px;
-  
-        @media screen and (max-width: 768px) {
-          padding: 11px 11px 0px 11px;
-        }
+      @media screen and (max-width: 768px) {
+        padding: 10px;
       }
+    
+  
     }
   }
 

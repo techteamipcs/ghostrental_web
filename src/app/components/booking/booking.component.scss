@@ -69,49 +69,34 @@
   flex-direction: column;
   width: 100%;
   cursor: pointer;
+  padding: 12px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
   }
-  .thumbnail-image {
-    padding: 12px 12px 0px 12px;
-
-    @media screen and (max-width: 1920px) {
-      padding: 12px 12px 0px 12px;
-    }
-    @media screen and (max-width: 1400px) {
-      padding: 10px 10px 0px 10px;
-    }
-    @media screen and (max-width: 1200px) {
-      padding: 10px 10px 0px 10px;
-    }
-    @media screen and (max-width: 1024px) {
-      padding: 10px 10px 0px 10px;
-    }
-    @media screen and (max-width: 768px) {
-      padding: 8px 8px 0px 8px;
-    }
+  @media screen and (max-width: 768px) {
+    padding: 10px;
   }
 }
 
 .card-content {
-  padding: 26px;
+  padding: 16px 18px 0;
 
   @media screen and (max-width: 1920px) {
-    padding: 12px;
+    padding: 12px 14px 0;
   }
+
   @media screen and (max-width: 1400px) {
-    padding: 10px;
+    padding: 10px 12px 0;
   }
-  @media screen and (max-width: 1200px) {
-    padding: 10px;
-  }
-  @media screen and (max-width: 1024px) {
-    padding: 10px;
-  }
+
   @media screen and (max-width: 768px) {
-    padding: 8px;
+    padding: 8px 10px 0;
+  }
+
+  @media screen and (max-width: 430px) {
+    padding: 16px 16px 12px;
   }
 }
 

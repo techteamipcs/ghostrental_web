@@ -1,7 +1,7 @@
 <section class="testimonial">
-  <div class="container mb-5">
+  <div class="container ">
     <h3
-      class="text-center text-capitalize size60 performa-light gray-color"
+      class="text-center text-capitalize size60 performa-light gray-color margin80"
     >
       What Our Customers Say
     </h3>
@@ -19,7 +19,7 @@
               />
             </div>
             <div class="col-md-6 col-lg-7 text-start">
-              <div class="mb-2 d-flex gap-2">
+              <div class="margin28 d-flex gap-2">
                 <ng-container
                   *ngFor="let star of getStars(testimonial.ratings)"
                 >
@@ -35,7 +35,7 @@
                   ></lucide-icon> -->
                 </ng-container>
               </div>
-              <h5 class="size30 redhat-regular my-4 black-color">
+              <h5 class="size30 redhat-regular margin22 black-color">
                 {{ testimonial.title }}
               </h5>
               <p class="size22 redhat-regular mb-4 color-card-p">
@@ -62,14 +62,14 @@
 </section>
 
 <section class="faq">
-  <h3 class="text-center text-capitalize size60 performa-light gray-color">
+  <h3 class="text-center text-capitalize size60 performa-light gray-color margin23">
     Frequently Asked Questions
   </h3>
-  <p class="text-center size18 redhat-semibold gray-color">
+  <p class="text-center size18 redhat-regular gray-color margin28">
     Got Questions? We've Got Answers To Help You Navigate Your Car Rental
     Experience!
   </p>
-  <div class="text-center my-4">
+  <div class="text-center margin66">
     <button class="black-button size18 redhat-bold">
       <a href="/contact" class="white-color text-decoration-none"
         >Help Center</a
@@ -78,9 +78,9 @@
 
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-lg-12 d-grid gap-3">
+      <div class="col-lg-12 d-grid">
         <div
-          class="faq-item"
+          class="faq-item margin18"
           *ngFor="let faq of faqs; let i = index"
           [class.expanded]="expandedIndex === i"
         >

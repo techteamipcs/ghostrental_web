@@ -56,7 +56,7 @@ body {
 }
 .size12{
   font-size: 12px ;
-  @media (max-width:768px) {
+  @media (max-width:1536px) {
     font-size: 10px;
   }
 }
@@ -83,20 +83,11 @@ body {
 }
 .size18 {
   font-size: 18px;
-  @media (max-width: 1600px) {
+  @media (max-width:1536px) {
     font-size: 16px;
   }
-  @media (max-width: 1536px) {
-    font-size: 14px;
-  }
-  @media (max-width: 1280px) {
-    font-size: 12px;
-  }
-  @media (max-width:768px) {
-    font-size: 12px;
-  }
   @media (max-width:425px) {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .size20 {
@@ -122,14 +113,11 @@ body {
 	@media (max-width: 1440px) {
 		font-size: 18px;
 	}
-  @media (max-width: 1280px) {
-    font-size: 16px;
-  }
   @media (max-width: 1024px) {
-    font-size: 14px;
-  } 
-  @media (max-width:768px) {
     font-size: 16px;
+  } 
+  @media (max-width:430px) {
+    font-size: 12px;
   }
 }
 .size24 {
@@ -161,12 +149,6 @@ body {
   @media (max-width: 1024px) {
     font-size: 16px;
   }
-  @media (max-width:768px) {
-    font-size: 16px;
-  }
-  @media (max-width:425px) {
-    font-size: 14px;
-  }
 }
 .size28 {
   font-size: 28px;
@@ -194,8 +176,11 @@ body {
 	@media (max-width: 1280px) {
 		font-size: 24px;
 	}
-  @media (max-width:768px) {
-    font-size: 11px;
+	@media (max-width: 1024px) {
+		font-size: 20px;
+	}
+  @media (max-width:430px) {
+    font-size: 16px;
   }
 }
 .size32 {
@@ -229,6 +214,12 @@ body {
 }
 .size36 {
   font-size: 36px;
+  @media (max-width: 1600px) {
+		font-size: 28px;
+	}
+  @media (max-width: 1440px) {
+		font-size: 26px;
+	}
   @media (max-width:1024px) {
     font-size: 26px;
   }
@@ -281,8 +272,9 @@ body {
 .size60{
   font-size: 60px;
   @media (max-width:1536px) {
-    font-size: 56px;
+    font-size: 50px;
   }
+
   @media (max-width:1024px) {
     font-size: 56px;
   }
@@ -307,6 +299,40 @@ body {
   @media (max-width:430px) {
     font-size: 32px;
   }
+}
+.size89 {
+  font-size: 89px;
+  @media (max-width: 1650px) {
+		font-size: 79px;
+	}
+
+	@media (max-width: 1600px) {
+		font-size: 75px;
+	}
+
+	@media (max-width: 1440px) {
+		font-size: 66px;
+	}
+
+	@media (max-width: 1280px) {
+		font-size: 64px;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 54px;
+	}
+
+	@media (max-width: 600px) {
+		font-size: 48px;
+	}
+
+	@media (max-width: 480px) {
+		font-size: 42px;
+	}
+
+	@media (max-width: 380px) {
+		font-size: 34px;
+	}
 }
 .size90 {
   font-size: 90px;
@@ -377,10 +403,6 @@ body {
   @media (max-width:1440px) {
     line-height: 20px;
   }
-  @media (max-width:1024px) {
-    line-height: 16px;
-  }
-  
 }
 .line-height26{
   line-height: 26px;
@@ -456,6 +478,9 @@ body {
   @media (max-width:1440px) {
     padding: 10px 30px;
   }
+  @media (max-width:1280px) {
+    padding: 5px 20px;
+  }
   @media (max-width:768px) {
     padding: 10px 40px;
   }
@@ -478,6 +503,9 @@ body {
   }
   @media (max-width:1440px) {
     padding:10px 30px;
+  }
+  @media (max-width:1280px) {
+    padding: 5px 20px;
   }
   @media (max-width:768px) {
     padding: 10px 40px;
@@ -507,6 +535,9 @@ body {
   }
   @media (max-width:1440px) {
     padding: 10px 30px;
+  }
+  @media (max-width:1280px) {
+    padding: 5px 20px;
   }
   @media (max-width:768px) {
     padding: 10px 40px;
@@ -566,3 +597,95 @@ a{
     border: none;
   }
 }
+
+
+// margins bottom
+.margin10{
+margin-bottom: 10px;
+}
+
+.margin17{
+margin-bottom: 17px;
+}
+.margin18{
+margin-bottom: 18px;
+}
+
+.margin20{
+  margin-bottom: 20px;
+}
+
+.margin22{
+margin-bottom: 22px;
+}
+.margin23{
+margin-bottom: 23px;
+  @media (max-width:430px) {
+    margin-bottom: 17px;
+  }
+}
+.margin24{
+margin-bottom: 24px;
+  @media (max-width:430px) {
+    margin-bottom: 18px;
+  }
+}
+.margin27{
+margin-bottom: 27px;
+  @media (max-width:430px) {
+    margin-bottom: 21px;
+  }
+}
+.margin28{
+margin-bottom: 28px;
+  @media (max-width:430px) {
+    margin-bottom: 22px;
+  }
+}
+.margin36{
+margin-bottom: 36px;
+  @media (max-width:430px) {
+    margin-bottom: 20px;
+  }
+}
+.margin54{
+margin-bottom: 54px;
+  @media (max-width:430px) {
+    margin-bottom: 40px;
+  }
+}
+.margin37{
+  margin-bottom: 37px;
+  @media (max-width:430px) {
+    margin-bottom: 30px;
+  }
+}
+.margin-bottom60{
+margin-bottom: 60px;
+  @media (max-width:430px) {
+    margin-bottom: 50px;
+  }
+}
+.margin66{
+margin-bottom: 66px;
+  @media (max-width:430px) {
+    margin-bottom: 50px;
+  }
+}
+
+// margin top
+.margin-top60{
+margin-top: 60px;
+@media (max-width:430px) {
+  margin-top: 50px;
+}
+}
+.margin-top80{
+margin-top: 80px;
+@media (max-width:430px) {
+  margin-top: 60px;
+}
+}
+
+// padding 
+// padding 

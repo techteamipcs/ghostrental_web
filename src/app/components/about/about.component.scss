@@ -14,15 +14,14 @@
 .banner-content{
   width: 71%;
 @media screen and (max-width: 1920px) {
-  width: 90%; 
+  width: 88%; 
 } 
 @media screen and (max-width: 1536px) {
   width: 96%; 
 } 
 @media screen and (max-width: 1440px) {
-  width: 100%; 
+  width: 95%; 
 } 
-
 @media screen and (max-width: 1200px) {
   width: 86%;
 }
@@ -69,7 +68,7 @@
   // padding: 23px 40px 177px 42px;
   padding: 23px 221px 177px 52px;
   @media screen and (max-width: 1920px) {
-  padding:42px 40px 140px 34px;
+  padding:42px 40px 130px 34px;
   }
   @media screen and (max-width: 1536px) {
   padding:42px 0px 30px 30px;
@@ -203,7 +202,7 @@
     width: 66%;
 
     @media screen and (max-width: 1920px) {
-      width: 93%;
+      width: 92%;
     }
     @media screen and (max-width: 1440px) {
       width: 94%;
@@ -301,5 +300,16 @@
   width: 89%;
   @media screen and (max-width: 1920px) {
     width: 100%;
+  }
+}
+
+.size60{
+  @media (max-width:430px) {
+    font-size: 26px;
+  }
+}
+.size18{
+  @media (max-width:430px) {
+    font-size: 12px;
   }
 }

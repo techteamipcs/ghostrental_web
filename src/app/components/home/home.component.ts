@@ -59,24 +59,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
   features = [
     {
       image: 'home/cars.png',
-      title: 'Elite Fleet',
-      description: 'Curated collection of world-class vehicles and yachts',
+      title: 'Premium Yachts and Cars',
+      description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
 
     },
     {
       image: 'home/hand.png',
-      title: 'White-Glove Service',
-      description: 'VIP-level customer service & support',
+      title: 'Family-First Service',
+      description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
     },
     {
       image: 'home/fullday.png',
-      title: '24/7 Easy Booking',
-      description: 'Seamless online booking and 24/7 availability',
+      title: 'Perfect booking experience',
+      description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
     },
     {
       image: 'home/earth.png',
-      title: 'UAE-Wide Coverage',
-      description: 'Serving Dubai and all major UAE destinations',
+      title: 'Total UAE Coverage',
+      description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }
   ];
 
@@ -105,53 +105,48 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getModels();
     this.getBrands();
     this.getLocations();
-    this.initCarSwiper();
     this.initYachtSwiper();
     this.initTrendingSwiper();
   }
 
   ngAfterViewInit() {
+    this.initCarSwiper();
 
   }
 
   public initCarSwiper() {
     if (isPlatformBrowser(this.platformId)) {
-      new Swiper('.car-collection-swiper', {
+      const swiper = new Swiper('.car-collection-swiper', {
         loop: true,
         modules: [Navigation, Pagination, Autoplay],
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
           dynamicBullets: true,
-        },
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
         },
         navigation: {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
         breakpoints: {
-          0: { slidesPerView: 1,
-            spaceBetween: 10,
-           },
-          768: { slidesPerView: 2,
-            spaceBetween: 15,
-           },
-          1280: { slidesPerView: 4.5,
-            spaceBetween: 20,
-           },
+          0: { slidesPerView: 1, spaceBetween: 10 },
+          768: { slidesPerView: 2, spaceBetween: 15 },
+          1280: { slidesPerView: 4.5, spaceBetween: 20 },
         },
       });
     }
   }
+  
 
 
   public initYachtSwiper() {
     if (isPlatformBrowser(this.platformId)) {
-      new Swiper('.yacht-collection-swiper', {
+      const swiper = new Swiper('.yacht-collection-swiper', {
         loop: true,
         modules: [Navigation, Pagination, Autoplay],
         pagination: {
@@ -159,11 +154,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
@@ -185,7 +180,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   public initTrendingSwiper() {
     if (isPlatformBrowser(this.platformId)) {
-      new Swiper('.trending-cars-swiper', {
+      const swiper = new Swiper('.trending-cars-swiper', {
         slidesPerView: 1,
         loop: true,
         spaceBetween: 20,

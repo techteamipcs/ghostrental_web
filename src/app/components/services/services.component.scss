@@ -6,7 +6,7 @@
     left: 6%;
     transform: translateY(-26%);
     @media (max-width: 1920px) {
-      top: 35%;
+      top: 33.5%;
       left: 6%;
       transform: translateY(-50%);
     }
@@ -26,13 +26,13 @@
     .heading-width{
       width: 57%;
       @media (max-width: 1920px) {
-        width: 67%;
+        width: 68%;
       }
       @media (max-width: 1600px) {
         width: 70%; 
       }
       @media (max-width: 1440px) {
-        width: 63%; 
+        width: 68%; 
       }
       @media (max-width: 1024px) {
         width: 100%; 
@@ -84,6 +84,12 @@
 
 .servicePadding{
   padding: 8rem;
+  @media screen and (max-width: 1920px){
+    padding: 8rem 14rem;
+  }
+  @media screen and (max-width: 1440px){
+    padding: 8rem 9rem;
+  }
   @media screen and (max-width: 1024px){
     padding: 70px 60px;
   }
@@ -95,13 +101,13 @@
 .para-width{
   width: 54%;
   @media screen and (max-width: 1920px){
-    width: 75%;
+    width: 78%;
   }
   @media screen and (max-width: 1536px){
     width: 64%;
   }
   @media screen and (max-width: 1440px){
-    width: 70%;
+    width: 89%;
   }
   @media screen and (max-width: 1280px){
     width: 100%;
@@ -112,35 +118,80 @@
 }
 
 .service1-width{
-  width: 63%;
-  @media screen and (max-width: 1920px){
+  // width: 63%;
+  // @media screen and (max-width: 1920px){
+  //   width: 94%;
+  // }
+  h5{
     width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 90%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 96%;
+    }
+  }
+  .para-width{
+    width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 81%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 92%;
+    }
   }
 }
 .service2-width{
-width: 62%;
-  @media screen and (max-width: 1920px){
-    width: 86%;
+// width: 62%;
+//   @media screen and (max-width: 1920px){
+//     width: 94%;
+//   }
+//   @media screen and (max-width: 1536px){
+//     width: 100%;
+//   }
+  h5{
+    width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 91%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 96%;
+    }
   }
-  @media screen and (max-width: 1536px){
-    width: 100%;
+  .para-width{
+    width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 87%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 100%;
+    }
   }
 }
 .service3-width{
-  width: 80%;
-  @media screen and (max-width: 1920px){
-    width: 86%;
+  // width: 80%;
+  // @media screen and (max-width: 1920px){
+  //   width: 86%;
+  // }
+  // @media screen and (max-width: 1536px){
+  //   width: 100%;
+  // }
+  h5{
+    width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 91%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 80%;
+    }
   }
-  @media screen and (max-width: 1536px){
-    width: 100%;
+  .para-width{
+    width: 91%;
+    @media screen and (max-width: 1920px){
+      width: 84%;
+    }
+    @media screen and (max-width: 1440px){
+      width: 95%;
+    }
   }
-}
-.service4-width{
-  width: 82%;
-  @media screen and (max-width: 1920px){
-    width: 86%;
-  }
-  @media screen and (max-width: 1536px){
-    width: 100%;
-  } 
 }

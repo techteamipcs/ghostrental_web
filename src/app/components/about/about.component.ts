@@ -21,24 +21,24 @@ export class AboutComponent {
   features = [
     {
       image: 'home/cars.png',
-      title: 'Elite Fleet',
-      description: 'Curated collection of world-class vehicles and yachts',
+      title: 'Premium Yachts and Cars',
+      description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
 
     },
     {
       image: 'home/hand.png',
-      title: 'White-Glove Service',
-      description: 'VIP-level customer service & support',
+      title: 'Family-First Service',
+      description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
     },
     {
       image: 'home/fullday.png',
-      title: '24/7 Easy Booking',
-      description: 'Seamless online booking and 24/7 availability',
+      title: 'Perfect booking experience',
+      description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
     },
     {
       image: 'home/earth.png',
-      title: 'UAE-Wide Coverage',
-      description: 'Serving Dubai and all major UAE destinations',
+      title: 'Total UAE Coverage',
+      description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }
   ];
 
