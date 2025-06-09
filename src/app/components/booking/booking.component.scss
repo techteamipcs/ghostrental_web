@@ -146,11 +146,14 @@
 }
 
 .sectionPadding{
-  padding: 6rem 7rem;
+  padding: 200px 116px 120px;
+  @media screen and (max-width: 1440px) {
+    padding: 100px 90px 0;
+  }
   @media screen and (max-width: 1200px) {
-    padding-left: 3.75rem;
+    padding: 90px 70px 0;
   }
   @media screen and (max-width: 768px) {
-    padding-left: 1.5rem;
+    padding: 60px 2rem;
   }
 }
