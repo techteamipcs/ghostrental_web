@@ -17,7 +17,7 @@
   width: 88%; 
 } 
 @media screen and (max-width: 1536px) {
-  width: 96%; 
+  width: 69%; 
 } 
 @media screen and (max-width: 1440px) {
   width: 95%; 
@@ -68,13 +68,13 @@
   // padding: 23px 40px 177px 42px;
   padding: 23px 221px 177px 52px;
   @media screen and (max-width: 1920px) {
-  padding:42px 40px 130px 34px;
+  padding:42px 48px 130px 34px;
   }
   @media screen and (max-width: 1536px) {
-  padding:42px 0px 30px 30px;
+  padding:42px 30px 30px 30px;
   }
   @media screen and (max-width: 1440px) {
-  padding:25px 0px 25px 20px;
+  padding:25px 8px 25px 20px;
   }
   @media screen and (max-width: 1200px) {
   padding:42px 40px 25px 34px;
@@ -204,6 +204,9 @@
     @media screen and (max-width: 1920px) {
       width: 92%;
     }
+    @media screen and (max-width: 1536px) {
+      width: 100%;
+    }
     @media screen and (max-width: 1440px) {
       width: 94%;
     }
@@ -248,6 +251,9 @@
 
 .signature {
   margin: 8.5rem;
+  @media screen and (max-width: 1536px) {
+    margin: 5.5rem;
+  }
   @media screen and (max-width: 1440px) {
     margin: 6.3rem;
   }
@@ -261,6 +267,9 @@
 
 .signature-image{
   object-fit: fill;
+  @media screen and (max-width: 1200px) {
+    object-fit: cover;
+  }
 }
 
 .table-para-width {
