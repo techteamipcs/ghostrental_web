@@ -215,7 +215,7 @@ export class BookingComponent {
   }
 
   onChangeSort(data) {
-     if (data) {
+     if (data?.target?.value) {
       this.sort = data.target.value;
       this.getCarData();
      }

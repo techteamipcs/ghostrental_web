@@ -7,6 +7,9 @@
     @media (max-width: 1536px) {
       margin-top: 0;
     }
+    @media (max-width: 1280px) {
+      margin-top: 1rem;
+    }
 
     @media (max-width: 1024px) {
       margin-top: 0;
@@ -19,18 +22,18 @@
     .hero-para {
       // width: 527px;
       width: 488px;
-
       @media (max-width: 1536px) {
         width: 422px;
       }
       @media (max-width: 1440px) {
         width: 386px;
       }
-
+      @media (max-width: 1280px) {
+        width: 331px;
+      }
       @media (max-width: 1024px) {
         width: 422px;
       }
-
       @media (max-width: 768px) {
         width: 50%;
       }
@@ -872,7 +875,7 @@
       margin-top: -4%;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1280px) {
       margin-top: -7%;
       padding: 0px 30px;
     }
@@ -1086,8 +1089,8 @@
     padding: 0 90px;
   }
 
-  @media screen and (max-width: 1200px) {
-    padding: 4rem 9rem;
+  @media screen and (max-width: 1280px) {
+    padding: 4rem;
   }
 
   @media screen and (max-width: 768px) {
