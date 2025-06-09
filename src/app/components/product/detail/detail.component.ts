@@ -200,28 +200,33 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private initializeCarDetails() {
     if (this.vehicleData) {
-
-      this.carDetails = [
-        { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
-        { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
-        { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
-        { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
-        { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
-        { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
-        // { icon: 'year', label: 'year', value: this.vehicleData.year },
-        { icon: 'year', label: 'year', value: new Date(this.vehicleData.year).getFullYear() },
-        { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
-        { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
-      ];
-
-      // if (this.vehicleData.media_data?.length > 0) {
-      //   this.images.push({
-      //     src: `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`,
-      //     alt: this.vehicleData.media_data[0].name,
-      //     isActive: false
-      //   });
-      // }
-
+      if (this.vehicleData.vehicle_type == 'Car') {
+        this.carDetails = [
+          { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
+          { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
+          { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
+          { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
+          { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
+          { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
+          // { icon: 'year', label: 'year', value: this.vehicleData.year },
+          { icon: 'year', label: 'year', value: new Date(this.vehicleData.year).getFullYear() },
+          { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
+          { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
+        ];
+      } else {
+        this.carDetails = [
+          { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
+          { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
+          { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
+          { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
+          { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
+          { icon: 'doors', label: 'doors', value: this.vehicleData.door_count },
+          // { icon: 'year', label: 'year', value: this.vehicleData.year },
+          { icon: 'year', label: 'year', value: new Date(this.vehicleData.year).getFullYear() },
+          { icon: 'drive', label: 'drive type', value: this.vehicleData.drive_type },
+          { icon: 'color', label: 'color', value: this.vehicleData.color_data[0]?.name }
+        ];
+      }
       if (this.vehicleData.media_data?.length > 0) {
         this.thumbnailImage = `${this.backendURl}/media/${this.vehicleData.media_data[0].src}`
         // this.images.push({
