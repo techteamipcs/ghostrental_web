@@ -123,7 +123,7 @@
   @media screen and (max-width: 1200px) {
     padding-right: 20px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 991px) {
     padding-right: 12px;
     padding-left: 12px;
   }
@@ -145,7 +145,7 @@
   @media screen and (max-width: 1200px) {
     padding-left: 20px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 991px) {
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -280,7 +280,9 @@
 }
 
 textarea {
-  height: 253px;
+  height: 231px;
+  transition: height 0.3s ease-in-out;
+ 
   @media screen and (max-width: 1920px) {
     height: 253px;
   }
@@ -291,17 +293,20 @@ textarea {
     height: 191px;
   }
   @media screen and (max-width: 1366px) {
-    height: 186px;
+    height: 210px;
   }
   @media screen and (max-width: 1280px) {
-    height: 208px;
+    height: 210px;
+  }
+  @media screen and (max-width: 1200px) {
+    height: 181px;
   }
   @media screen and (max-width: 1024px) {
     height: 215px;
   }
   @media screen and (max-width: 768px) {
     height: 150px;
-  }
+    }
 }
 
 .para-width {
@@ -322,6 +327,10 @@ textarea {
 
 .alert-danger {
   color: red;
+  position: absolute;
+  @media screen and (max-width: 991px) {
+    position: relative;
+  }
 }
 
 .margin-bottom {
@@ -356,14 +365,23 @@ textarea {
 }
 
 .sectionPadding{
-  padding:6rem 12rem;
+  padding:7rem 12rem;
   @media (max-width:1440px) {
-    padding: 6rem 7rem;
+    padding: 7rem 7rem;
   }
   @media (max-width:1024px) {
     padding: 6rem 6rem;
   }
   @media (max-width:768px) {
     padding: 6rem 1rem;
+  }
+  @media (max-width:576px) {
+    padding: 6rem 1rem;
+  }
+}
+
+.mapsTop{
+  @media (max-width:576px) {
+    padding-top: 0;
   }
 }

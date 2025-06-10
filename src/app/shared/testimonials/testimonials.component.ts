@@ -93,7 +93,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     {
       id: 'faq7',
       question: 'Can I book more than one vehicle at once?',
-      answer: 'Yes, you can book multiple luxury cars at once with GhostRental.ae. Whether it’s for a wedding convoy, VIP event, or corporate travel, our booking process is designed to handle group rentals effortlessly. Simply select your desired cars and make the booking. Our team will be happy to help if you have any questions or queries about this process.'
+      answer: 'Yes, you can book multiple luxury cars at once with Ghost Rentals Whether it’s for a wedding convoy, VIP event, or corporate travel, our booking process is designed to handle group rentals effortlessly. Simply select your desired cars and make the booking. Our team will be happy to help if you have any questions or queries about this process.'
     }
   ];
 

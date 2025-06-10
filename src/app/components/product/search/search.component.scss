@@ -11,7 +11,7 @@
     padding: 9rem 1rem;
   }
   @media screen and (max-width: 576px) {
-    padding: 7rem 1rem;
+    padding: 7rem 1rem 0;
   }
 
   &.no-scroll {
@@ -34,6 +34,7 @@ select:focus {
 
   &.show {
     opacity: 1;
+    z-index: 999;
     visibility: visible;
   }
 }
@@ -130,10 +131,10 @@ select:focus {
       }
     }
 
-    .form-selection:focus + lucide-icon,
-    .form-controls:focus + lucide-icon,
-    .form-selection.expanded + lucide-icon,
-    .form-controls.expanded + lucide-icon {
+    .form-selection:focus + lucide-icon[name="chevron-down"],
+    .form-controls:focus + lucide-icon[name="chevron-down"],
+    .form-selection.expanded + lucide-icon[name="chevron-down"],
+    .form-controls.expanded + lucide-icon[name="chevron-down"] {
       transform: translateY(-50%) rotate(180deg);
     }
 
@@ -210,6 +211,7 @@ input[type="datetime-local"] {
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
+    z-index: 2;
   }
 
   @media screen and (max-width: 768px) {

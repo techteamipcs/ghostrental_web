@@ -9,8 +9,8 @@
   @media screen and (max-width: 768px) {
     padding: 10rem 2rem 2rem 2rem;
   }
-  @media screen and (max-width: 425px) {
-    padding: 10rem 5px 2rem 5px;
+  @media screen and (max-width: 430px) {
+    padding: 6rem 0px 1rem;
   }
 
   .gallery-height{
@@ -26,6 +26,9 @@
     }
     @media screen and (max-width: 768px) {
       height: 100%;
+    }
+    @media screen and (max-width: 430px) {
+      height: 200px;
     }
   }
   .main-image-wrapper {
@@ -74,6 +77,9 @@
     @media screen and (max-width: 768px) {
       padding-right: 10px;
       padding-left: 10px;
+    }
+    @media screen and (max-width: 430px) {
+      padding: 0;
     }
   }
   
@@ -132,7 +138,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      font-weight: bold;
+      // font-weight: bold;
     }
   }
 }
@@ -183,6 +189,9 @@
   }
   @media screen and (max-width: 768px) {
     padding: 2rem 20px;
+  }
+  @media screen and (max-width: 430px) {
+    padding: 0rem 20px 2rem;
   }
 }
 .overview_icons {
@@ -249,6 +258,10 @@
     width: 150px;
     height: 100px;
   }
+  @media screen and (max-width: 430px) {
+    width: 65%;
+    height: auto;
+  }
 }
 
 
@@ -288,6 +301,10 @@
   transform: translateZ(0);
   margin-left: auto;
   margin-right: 12px;
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .sticky-card-icons {
@@ -340,6 +357,9 @@
   }
   @media screen and (max-width: 1200px) {
     padding: 3.75rem;
+  }
+  @media screen and (max-width: 430px) {
+    padding: .5rem;
   }
 
 

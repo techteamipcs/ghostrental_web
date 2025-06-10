@@ -20,9 +20,9 @@
           novalidate
         >
           <div class="row">
-            <div class="col-6">
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
-                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize mb-xl-4 mb-lg-3 mb-md-3 mb-2"
+                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize "
               >
                 <label
                   for="firstName"
@@ -37,16 +37,19 @@
                   formControlName="name"
                   name="name"
                 />
+
               </div>
               <span
-                *ngIf="submitted && hasError('name', 'required')"
-                class="alert-danger mb-4"
-                >Name is required</span
-              >
+              *ngIf="submitted && hasError('name', 'required')"
+              class="alert-danger ms-md-3 ms-2 size16 redhat-semibold"
+              >Name is required</span
+            >
+             
+              
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
-                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize mb-xl-4 mb-lg-3 mb-md-3 mb-2"
+                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
                 <label
                   for="lastName"
@@ -62,15 +65,15 @@
                   name="lastname"
                 />
               </div>
-              <span
+                <span
                 *ngIf="submitted && hasError('lastname', 'required')"
-                class="alert-danger mb-2"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold"
                 >Last is required</span
               >
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
-                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize mb-xl-4 mb-lg-3 mb-md-3 mb-2"
+                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
                 <label
                   for="email"
@@ -86,11 +89,12 @@
                   name="email"
                 />
               </div>
-              <span
+                <span
                 *ngIf="submitted && hasEmailError('email', 'required')"
-                class="alert-danger mb-2"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold"
                 >{{ hasEmailError("email", "required") }}</span
               >
+              
             </div>
             <!-- <div class="col-6">
               <div
@@ -102,9 +106,9 @@
               <span *ngIf="submitted && hasError('phone', 'required')" class="alert-danger mb-2">Phone is
                 required</span>
             </div> -->
-            <div class="col-6">
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
-                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize mb-xl-4 mb-lg-3 mb-md-3 mb-2"
+                class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
                 <label
                   for="phone"
@@ -132,12 +136,13 @@
                   formControlName="phone"
                 >
                 </ngx-intl-tel-input>
+              </div>
+
                 <span
                   *ngIf="submitted && hasPhoneNumberError('phone', 'required')"
-                  class="alert-danger mb-2"
+                  class="alert-danger ms-md-3 ms-2 size16 redhat-semibold"
                   >{{ hasPhoneNumberError("email", "required") }}</span
                 >
-              </div>
             </div>
             <div class="col-12">
               <div
@@ -259,7 +264,7 @@
   </div>
 </section>
 
-<section class="sectionPadding">
+<section class="sectionPadding mapsTop">
   <div class="maps">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.400098298194!2d55.223214776052565!3d25.122160834734654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bb7c49961e7%3A0x4b3661e383f4d582!2sGhost%20Rentals!5e0!3m2!1sen!2sin!4v1748495097567!5m2!1sen!2sin"

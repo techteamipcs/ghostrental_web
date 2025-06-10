@@ -9,6 +9,9 @@
   @media screen and (max-width: 1200px) {
     padding: 11rem 0 0 0;
   }
+  @media screen and (max-width: 414px) {
+    padding: 7rem 0 0 0;
+  }
 }
 
 .banner-content{
@@ -262,6 +265,9 @@
   }
   @media screen and (max-width: 768px) {
     margin: 100px 20px;
+  }
+  @media screen and (max-width: 414px) {
+    margin: 50px 20px;
   }
 }
 
