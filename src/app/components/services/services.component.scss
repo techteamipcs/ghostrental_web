@@ -30,12 +30,15 @@
       top: 47%;
     }
     .heading-width{
-      width: 57%;
+      width: 59%;
       @media (max-width: 1920px) {
         width: 78%;
       }
       @media (max-width: 1600px) {
         width: 70%; 
+      }
+      @media (max-width: 1536px) {
+        width: 59%; 
       }
       @media (max-width: 1440px) {
         width: 67%; 
@@ -53,7 +56,7 @@
         width: 26%;
       }
       @media (max-width: 1536px) {
-        width: 29%;
+        width: 32%;
       }
       @media (max-width: 1440px) {
         width: 33%;
@@ -117,21 +120,22 @@
 }
 
 .para-width{
-  width: 54%;
+  width: 56%;
   @media screen and (max-width: 1920px){
     width: 78%;
   }
   @media screen and (max-width: 1536px){
-    width: 64%;
+    // width: 64%;
+    width: 78%;
   }
   @media screen and (max-width: 1440px){
     width: 89%;
   }
   @media screen and (max-width: 1433px){
-    width: 72%;
+    width: 69%;
   }
   @media screen and (max-width: 1280px){
-    width: 79%;
+    width: 77%;
   }
   @media screen and (max-width: 1024px){
     width: 100%;

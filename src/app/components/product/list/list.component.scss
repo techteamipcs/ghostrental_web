@@ -2,13 +2,22 @@
   height: 100vh;
 }
 .content {
-  // width: 654px;
+  width: 31%;
   position: absolute;
   top: 32%;
   left: 6%;
   transform: translateY(-32%);
-  @media (max-width: 1536px) {
-    width: 702px;
+  @media (max-width: 1920px) {
+    width: 42%;
+  }
+  @media (max-width: 1600px) {
+    width: 33%;
+  }
+  @media (max-width: 1440px) {
+    width: 37%;
+  }
+  @media (max-width: 1280px) {
+    width: 44%;
   }
   @media (max-width: 768px) {
     top: 50%;
@@ -17,10 +26,10 @@
     transform: translateY(-50%);
   }
   .hero-para {
-    width: 495px;
+    width: 505px;
 
     @media (max-width: 1280px) {
-      width: 378px;
+      width: 453px;
     }
     @media (max-width: 768px) {
       width: 100%;

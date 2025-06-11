@@ -4,7 +4,7 @@
       *ngIf="bannerData && bannerData.media_data.length > 0"
       src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
-      class="w-100 h-100 rounded-4"
+      class="w-100 h-100 bannerImage"
       loading="lazy"
       decoding="async"
     />
@@ -12,22 +12,22 @@
       *ngIf="!bannerData"
       src="{{ imageURL }}/products/product1.png"
       alt="Limousine on road"
-      class="w-100 h-100 rounded-4"
+      class="w-100 h-100 bannerImage"
       loading="lazy"
       decoding="async"
     />
 
    
-    <div class="content" *ngIf="!bannerData">
-      <h1 class="size89 performa-thin white-color">Smart Stylish City-Ready</h1>
+    <!-- <div class="content" *ngIf="!bannerData">
+      <h1 class="size89 performa-thin white-color text-capitalize">Smart Stylish City-Ready</h1>
       <p class="size20 redhat-regular beige-color">
         Effortless driving for urban explorers—luxury hatchbacks that combine
         performance and practicality in one compact package.
       </p>
-    </div>
-    <div class="content" *ngIf="bannerData">
+    </div> -->
+    <div class="content " *ngIf="bannerData">
       <h1
-        class="size89 performa-thin white-color"
+        class="size89 performa-thin white-color text-capitalize"
         [innerHTML]="bannerData.short_desc"
       ></h1>
       <p
