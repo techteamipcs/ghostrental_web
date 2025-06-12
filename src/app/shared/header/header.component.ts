@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     '/product/search',
     '/terms',
     '/contact',
-    '/product/detail',
+    '/product',
     '/services'
   ];
 
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   isBrowser: boolean;
   hasLargePadding = false;
   largePaddingRoutes = ['/', '/product/list', '/services', '/booking'];
-  detailRouteRegex = /^\/detail\//;
+  detailRouteRegex = /^\/product\//;
   listRouteRegex = /^\/product\/list/;
   bookingRouteRegex = /^\/booking/;
 
@@ -65,6 +65,12 @@ export class HeaderComponent implements OnInit {
       const path = event.url.split('?')[0];
       this.currentRoute = path;
 
+      // Get url_key parameter if on product detail page
+      const urlKey = this.router.url.split('/').pop();
+      if (path.startsWith('/product/') && urlKey) {
+        this.currentRoute = `/product/${urlKey}`;
+      }
+
       const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
         path === route || path.startsWith(route + '/')
       );
@@ -79,10 +85,16 @@ export class HeaderComponent implements OnInit {
       );
 
       // Only apply large padding to routes in largePaddingRoutes array
-      this.hasLargePadding = this.largePaddingRoutes.some(route => {
-        // Check if current route exactly matches or starts with the route
-        return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
-      });
+      // this.hasLargePadding = this.largePaddingRoutes.some(route => {
+      //   // Check if current route exactly matches or starts with the route
+      //   return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
+      // });
+      this.hasLargePadding =
+        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
+        this.listRouteRegex.test(this.currentRoute) ||
+        this.bookingRouteRegex.test(this.currentRoute) ||
+        this.detailRouteRegex.test(this.currentRoute);
+
 
       if (this.isBrowser) {
         window.scrollTo(0, 0);
@@ -92,7 +104,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  
+
   ngOnInit(): void {
     const path = this.router.url.split('?')[0];
     this.currentRoute = path;
@@ -111,11 +123,18 @@ export class HeaderComponent implements OnInit {
     const isListRoute = this.listRouteRegex.test(this.currentRoute);
     const isBookingRoute = this.bookingRouteRegex.test(this.currentRoute);
 
-    this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
-      isDetailRoute ||
-      isListRoute ||
-      isBookingRoute ||
-      this.currentRoute === '/';
+    // this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
+    //   isDetailRoute ||
+    //   isListRoute ||
+    //   isBookingRoute ||
+    //   this.currentRoute === '/';
+
+    this.hasLargePadding =
+  this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
+  isDetailRoute ||
+  isListRoute ||
+  isBookingRoute;
+
 
     this.updateTextColor();
   }

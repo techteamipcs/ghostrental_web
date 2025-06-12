@@ -299,12 +299,18 @@ nav {
           @media screen and (max-width: 425px) {
             transform: translateY(13px) rotate(45deg);
           }
+          @media screen and (max-width: 384px) {
+            transform: translateY(11px) rotate(45deg);
+          }
         }
 
         &::after {
           transform: translateY(-17px) rotate(-45deg);
           background-color: #000;
           width: 50px;
+          @media screen and (max-width: 384px) {
+            transform: translateY(-14px) rotate(-45deg);
+          }
         }
       }
 
@@ -340,7 +346,7 @@ nav {
 
     @media screen and (max-width: 430px) {
       width: 24px;
-      height: 3.5px;
+      height: 3px;
     }
 
     &::before {
@@ -355,7 +361,7 @@ nav {
 
       @media screen and (max-width: 430px) {
         width: 40px;
-        height: 3.5px;
+        height: 3px;
       }
     }
 
@@ -371,7 +377,7 @@ nav {
 
       @media screen and (max-width: 430px) {
         width: 50%;
-        height: 3.5px;
+        height: 3px;
       }
     }
 
@@ -552,6 +558,9 @@ nav {
 
   @media screen and (max-width: 1024px) {
     padding: 2.4rem 0rem;
+  }
+  @media screen and (max-width: 384px) {
+    padding:.4rem 0rem;
   }
   
 

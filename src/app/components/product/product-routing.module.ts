@@ -9,14 +9,14 @@ const routes: Routes = [
     path: '',
     component: ListComponent
   },
-  {
-    path: 'detail',
-    component: DetailComponent
-  },
-  {
-    path: 'detail/:url_key',
-    component: DetailComponent
-  },
+  // {
+  //   path: 'detail',
+  //   component: DetailComponent
+  // },
+  // {
+  //   path: 'detail/:url_key',
+  //   component: DetailComponent
+  // },
   {
     path: 'list',
     component: ListComponent
@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'search/:type',
     component: SearchComponent
+  },
+  {
+    path: ':url_key',
+    component: DetailComponent
   },
   {
     path: '**',

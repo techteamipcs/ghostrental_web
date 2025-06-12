@@ -293,7 +293,7 @@ textarea {
     height: 191px;
   }
   @media screen and (max-width: 1366px) {
-    height: 210px;
+    height: 191px;
   }
   @media screen and (max-width: 1280px) {
     height: 210px;
@@ -381,7 +381,7 @@ textarea {
 }
 
 .mapsTop{
-  @media (max-width:576px) {
+  @media (max-width:1366px) {
     padding-top: 0;
   }
 }

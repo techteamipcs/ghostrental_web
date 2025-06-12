@@ -1,49 +1,45 @@
-<section class="min-vh-100 sectionPadding search-container">
+<section class="min-h-100 sectionPadding search-container">
   <div class="container-fluid">
     <div class="row">
+
+      <!-- filter section -->
       <div class="col-xl-3 col-lg-3 filter-section">
-        <div
-          class="border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3 filter-container position-sticky filter-container"
-          style="top: 11rem; transition: all 0.3s ease"
-          #filterContainer
-          [class.collapse-height]="isFilterCollapsed"
-        >
-          <div class="desktop-filter-container custom-filter">
+        <div class="border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3 filter-container" #filterContainer [ngClass]="{
+    'position-sticky': true,
+    'position-relative': isMobileFilterVisible && isMobile
+  }">
+          <div class="filter">
             <div class="d-flex align-items-center justify-content-between">
               <div class="d-flex align-items-center gap-2">
-                <img
-                  src="{{ imageURL }}/product-details/overview_icons/filter.svg"
-                  alt="Filter"
-                  class="img-fluid"
-                  style="width: 20px"
-                />
+                <img src="{{ imageURL }}/product-details/overview_icons/filter.svg" alt="Filter" class="img-fluid"
+                  style="width: 20px" />
                 <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
               </div>
-              <button
-                class=" size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent "
-                type="button"
-                (click)="resetFilter()"
-              >
-              reset
-              </button>
+              <div class="d-flex align-items-center gap-2">
+                <button class=" size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent "
+                  type="button" (click)="resetFilter()">
+                  reset
+                </button>
+                <button class="bg-transparent gray-color p-0 border-0 d-lg-none d-block ms-auto"
+                  (click)="toggleFilter()" type="button" [attr.aria-expanded]="isMobileFilterVisible"
+                  aria-controls="filter-options">
+                  <lucide-icon [name]="isMobileFilterVisible ? 'minus' : 'plus'" size="20" />
+                </button>
+
+              </div>
             </div>
 
-            <div id="desktopFilter" [class.collapsed]="isFilterCollapsed">
+            <div id="filter-options" *ngIf="!isMobile || isMobileFilterVisible" class="filter" [ngClass]="{
+              'position-absolute top-100 start-0 w-100 shadow bg-white z-3 border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3': isMobile
+            }">
               <!-- Vehicle Type -->
-              <label
-                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
-                >Vehicle Type</label
-              >
+              <label class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0">Vehicle
+                Type</label>
               <div class="filter-section">
-                <select
-                  [(ngModel)]="vehicleType"
-                  class="form-selection size16 redhat-semibold"
-                  (change)="onChangevehicleType($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select [(ngModel)]="vehicleType" class="form-selection size16 redhat-semibold"
+                  (change)="onChangevehicleType($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Vehicle Type</option>
                   <option value="Car">Car</option>
                   <option value="Yachts">Yachts</option>
@@ -52,18 +48,11 @@
               </div>
               <!-- Special Number Plate -->
               <label *ngIf="vehicleType == 'Car'"
-                class="form-label gray-light-color size14 redhat-semibold mb-1"
-                >Special Number Plate</label
-              >
+                class="form-label gray-light-color size14 redhat-semibold mb-1">Special Number Plate</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold"
-                  (change)="onChangeSpecialNumber($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select class="form-selection size16 redhat-semibold" (change)="onChangeSpecialNumber($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Special Number Plate</option>
                   <option value="true">Enable</option>
                   <!-- <option value="false">Disable</option> -->
@@ -72,18 +61,11 @@
               </div>
 
               <!-- Rental Type -->
-              <label
-                class="form-label gray-light-color size14 redhat-semibold mb-1"
-                >Rental Type</label>
+              <label class="form-label gray-light-color size14 redhat-semibold mb-1">Rental Type</label>
               <div class="filter-section">
-                <select
-                  class="form-selection size16 redhat-semibold"
-                  (change)="changeRentalType($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select class="form-selection size16 redhat-semibold" (change)="changeRentalType($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Rental Type</option>
                   <option value="Daily">Daily</option>
                   <option value="Hourly">Hourly</option>
@@ -93,46 +75,28 @@
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Body Type -->
-              <label *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Body Type</label>
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Body
+                Type</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold"
-                  name="bodytype"
-                  #selbodyType
-                  (change)="changeBodyType($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select class="form-selection size16 redhat-semibold" name="bodytype" #selbodyType
+                  (change)="changeBodyType($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Body Type</option>
-                  <option
-                    *ngFor="let item of bodyTypeData"
-                    value="{{ item._id }}"
-                  >
+                  <option *ngFor="let item of bodyTypeData" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
                 </select>
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Car Brand -->
-              <label *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Car Brand</label
-              >
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
+                Brand</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold"
-                  #selBrand
-                  name="brand"
-                  (change)="changeBrand($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select class="form-selection size16 redhat-semibold" #selBrand name="brand"
+                  (change)="changeBrand($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Car Brand</option>
                   <option *ngFor="let item of brandData" value="{{ item._id }}">
                     {{ item.name }}
@@ -141,69 +105,40 @@
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Car Model -->
-              <label *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Car Model</label
-              >
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
+                Model</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold"
-                  #selctModel
-                  name="model"
-                  (change)="changeModel($event)"
-                  (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                <select class="form-selection size16 redhat-semibold" #selctModel name="model"
+                  (change)="changeModel($event)" (click)="
+              $event.stopPropagation(); toggleSelectDropdown($event)
+            " (blur)="onSelectBlur($event)">
                   <option value="">Select Car Model</option>
-                  <option
-                    *ngFor="let item of filteredModel"
-                    value="{{ item._id }}"
-                  >
+                  <option *ngFor="let item of filteredModel" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
                 </select>
                 <lucide-icon name="chevron-down" size="20" />
               </div>
               <!-- Date From -->
-              <label
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Date From</label
-              >
+              <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
               <div class="filter-section">
-                <span
-                  *ngIf="!availableStartDate"
-                  class="size16 redhat-semibold position-absolute text-capitalize h-50 label-text"
-                  style="background-color: #f5f5f5; pointer-events: none;"
-                  >Start date</span
-                >
+                <span *ngIf="!availableStartDate"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50 label-text"
+                  style=" pointer-events: none;">Start date</span>
 
-                <input
-                  type="datetime-local"
-                  class="form-controls size16 redhat-semibold mb-2"
-                  [(ngModel)]="availableStartDate"
-                />
+                <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2"
+                  [(ngModel)]="availableStartDate" />
                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
               <!-- Date To -->
-              <label
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Date To</label
-              >
+              <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date To</label>
               <div class="filter-section">
-                <span
-                  *ngIf="!availableendDate"
-                  class="size16 redhat-semibold position-absolute text-capitalize h-50 label-text"
-                  style="background-color: #f5f5f5; pointer-events: none;"
-                  >End date</span
-                >
+                <span *ngIf="!availableendDate"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white h-50 label-text"
+                  style=" pointer-events: none;">End date</span>
 
-                <input
-                  type="datetime-local"
-                  class="form-controls size16 redhat-semibold mb-2"
-                  [(ngModel)]="availableendDate"
-                />
+                <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2"
+                  [(ngModel)]="availableendDate" />
                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
 
@@ -212,416 +147,51 @@
                 <!-- Price Inputs -->
                 <div class="row">
                   <div class="col-6">
-                    <label
-                      for="minPrice"
-                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                      >Min</label
-                    >
-                    <input
-                      type="number"
-                      id="minPrice"
-                      [(ngModel)]="minPrice"
-                      (change)="onPriceInputChange('min')"
-                      min="0"
-                      max="{{ maxPrice - 500 }}"
-                      class="form-controls size16 redhat-semibold mb-2"
-                    />
+                    <label for="minPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Min</label>
+                    <input type="number" id="minPrice" [(ngModel)]="minPrice" (change)="onPriceInputChange('min')"
+                      min="0" max="{{ maxPrice - 500 }}" class="form-controls size16 redhat-semibold mb-2" />
                   </div>
                   <div class="col-6">
-                    <label
-                      for="maxPrice"
-                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                      >Max</label
-                    >
-                    <input
-                      type="number"
-                      id="maxPrice"
-                      [(ngModel)]="maxPrice"
-                      (change)="onPriceInputChange('max')"
-                      min="{{ minPrice + 500 }}"
-                      max="10000"
-                      class="form-controls size16 redhat-semibold mb-2"
-                    />
+                    <label for="maxPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Max</label>
+                    <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (change)="onPriceInputChange('max')"
+                      min="{{ minPrice + 500 }}" max="10000" class="form-controls size16 redhat-semibold mb-2" />
                   </div>
                 </div>
 
                 <!-- Slider -->
                 <div class="slider" id="slider">
                   <div class="slider-range" id="slider-range"></div>
-                  <div
-                    class="slider-thumb"
-                    id="thumb-min"
-                    role="slider"
-                    aria-valuemin="0"
-                    aria-valuemax="10000"
-                    [attr.aria-valuenow]="minPrice"
-                    tabindex="0"
-                  ></div>
-                  <div
-                    class="slider-thumb"
-                    id="thumb-max"
-                    role="slider"
-                    aria-valuemin="0"
-                    aria-valuemax="10000"
-                    [attr.aria-valuenow]="maxPrice"
-                    tabindex="0"
-                  ></div>
+                  <div class="slider-thumb" id="thumb-min" role="slider" aria-valuemin="0" aria-valuemax="10000"
+                    [attr.aria-valuenow]="minPrice" tabindex="0"></div>
+                  <div class="slider-thumb" id="thumb-max" role="slider" aria-valuemin="0" aria-valuemax="10000"
+                    [attr.aria-valuenow]="maxPrice" tabindex="0"></div>
                 </div>
               </div>
 
               <!-- Search Button -->
-              <button
-                class="black-button w-100 size16 redhat-semibold mt-4"
-                (click)="SearchItems()"
-              >
+              <button class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0" (click)="SearchItems()">
                 Search
               </button>
             </div>
           </div>
-
-          <div
-            class="mobile-filter-container d-xl-none d-lg-none d-md-block d-block"
-          >
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-2">
-                <img
-                  src="{{ imageURL }}/product-details/overview_icons/filter.svg"
-                  alt="Filter"
-                  class="img-fluid"
-                  style="width: 20px"
-                />
-                <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
-              </div>
-
-              <button
-                class="bg-transparent gray-color p-0 border-0"
-                style="background: transparent; border: none"
-                (click)="toggleFilter()"
-                type="button"
-              >
-                <lucide-icon
-                  [name]="isMobileFilterVisible ? 'minus' : 'plus'"
-                  size="20"
-                />
-              </button>
-            </div>
-
-            <div
-              class="mobile-filter p-3 bg-white z-index-1 d-xl-none d-lg-none d-md-block d-block border border-2 rounded-4 mt-md-2 mt-1"
-              [class.show]="isMobileFilterVisible"
-              *ngIf="isMobileFilterVisible"
-            >
-              <div class="mobile-filter-content">
-                <!-- <div
-                  class="d-flex justify-content-between align-items-center mb-4"
-                >
-                  <div class="d-flex align-items-center gap-3">
-                    <img
-                      src="{{
-                        imageURL
-                      }}/product-details/overview_icons/filter.svg"
-                      alt="Filter"
-                      class="img-fluid h-100"
-                    />
-                    <h4 class="mb-0 size18 redhat-semibold">Filter</h4>
-                  </div>
-                  <button
-                    class="btn gray-color"
-                    (click)="closeMobileFilter()"
-                    aria-label="Close"
-                  >
-                    <lucide-icon name="x" />
-                  </button>
-                </div> -->
-                <!-- Special Number Plate -->
-                <label
-                  class="form-label gray-light-color size14 redhat-semibold mt-xl-4 mb-xl-1 mb-1"
-                  >Special Vehicle Type</label
-                >
-                <div class="filter-section">
-                  <select
-                    [(ngModel)]="vehicleType"
-                    class="form-selection size16 redhat-semibold"
-                    (change)="onChangevehicleType($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Vehicle Type</option>
-                    <option value="Car">Car</option>
-                    <option value="Yachts">Yachts</option>
-                  </select>
-
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-
-                <!-- Special Number Plate -->
-                <label *ngIf="vehicleType == 'Car'"
-                  class="form-label gray-light-color size14 redhat-semibold mt-xl-4 mb-xl-1 mb-1"
-                  >Special Number Plate</label
-                >
-                <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                  <select
-                    class="form-selection size16 redhat-semibold"
-                    (change)="onChangeSpecialNumber($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Special Number Plate</option>
-                    <option value="true">Enable</option>
-                    <option value="false">Disable</option>
-                  </select>
-
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-
-                <!-- Rental Type -->
-                <label
-                  class="form-label gray-light-color size14 redhat-semibold mb-1"
-                  >Rental Type</label
-                >
-                <div class="filter-section">
-                  <select
-                    class="form-selection size16 redhat-semibold"
-                    (change)="changeRentalType($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Rental Type</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Hourly">Hourly</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Monthly">Monthly</option>
-                  </select>
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-
-                <!-- Body Type -->
-                <label *ngIf="vehicleType == 'Car'"
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >Body Type</label
-                >
-                <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                  <select
-                    class="form-selection size16 redhat-semibold"
-                    name="bodytype"
-                    #selbodyType
-                    (change)="changeBodyType($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Body Type</option>
-                    <option
-                      *ngFor="let item of bodyTypeData"
-                      value="{{ item._id }}"
-                    >
-                      {{ item.name }}
-                    </option>
-                  </select>
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-                <!-- Car Brand -->
-                <label *ngIf="vehicleType == 'Car'"
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >Car Brand</label
-                >
-                <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                  <select
-                    class="form-selection size16 redhat-semibold"
-                    #selBrand
-                    name="brand"
-                    (change)="changeBrand($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Car Brand</option>
-                    <option
-                      *ngFor="let item of brandData"
-                      value="{{ item._id }}"
-                    >
-                      {{ item.name }}
-                    </option>
-                  </select>
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-                <!-- Car Model -->
-                <label *ngIf="vehicleType == 'Car'"
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >Car Model</label
-                >
-                <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                  <select
-                    class="form-selection size16 redhat-semibold"
-                    #selctModel
-                    name="model"
-                    (change)="changeModel($event)"
-                    (click)="
-                      $event.stopPropagation(); toggleSelectDropdown($event)
-                    "
-                    (blur)="onSelectBlur($event)"
-                  >
-                    <option value="">Select Car Model</option>
-                    <option
-                      *ngFor="let item of filteredModel"
-                      value="{{ item._id }}"
-                    >
-                      {{ item.name }}
-                    </option>
-                  </select>
-                  <lucide-icon name="chevron-down" size="20" />
-                </div>
-                <!-- Date From -->
-                <label
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >Date From</label
-                >
-                <div class="filter-section">
-                  <span
-                    *ngIf="!availableStartDate"
-                    class="size16 redhat-semibold position-absolute text-capitalize h-50"
-                    style="top: 20%; left: 3%; width: 77%; background-color: #f5f5f5; pointer-events: none;"
-                    >Start date</span
-                  >
-
-                  <input
-                    type="datetime-local"
-                    class="form-controls size16 redhat-semibold mb-1"
-                    [(ngModel)]="availableStartDate"
-                  />
-                  <lucide-icon name="calendar-days" size="15"></lucide-icon>
-                </div>
-                <!-- Date To -->
-                <label
-                  class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                  >Date To</label
-                >
-                <div class="filter-section">
-                  <span
-                    *ngIf="!availableendDate"
-                    class="size16 redhat-semibold position-absolute text-capitalize h-50"
-                    style="top: 20%; left: 3%; width: 77%; background-color: #f5f5f5; pointer-events: none;"
-                    >End date</span
-                  >
-
-                  <input
-                    type="datetime-local"
-                    class="form-controls size16 redhat-semibold mb-1"
-                    [(ngModel)]="availableendDate"
-                  />
-                  <lucide-icon name="calendar-days" size="15"></lucide-icon>
-                </div>
-
-                <!-- Price Range -->
-                <div class="price-wrapper">
-                  <!-- Price Inputs -->
-                  <div class="row">
-                    <div class="col-6">
-                      <label
-                        for="minPrice"
-                        class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                        >Min</label
-                      >
-                      <input
-                        type="number"
-                        id="minPrice"
-                        [(ngModel)]="minPrice"
-                        (change)="onPriceInputChange('min')"
-                        min="0"
-                        max="{{ maxPrice - 500 }}"
-                        class="form-controls size16 redhat-semibold mb-2"
-                      />
-                    </div>
-                    <div class="col-6">
-                      <label
-                        for="maxPrice"
-                        class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                        >Max</label
-                      >
-                      <input
-                        type="number"
-                        id="maxPrice"
-                        [(ngModel)]="maxPrice"
-                        (change)="onPriceInputChange('max')"
-                        min="{{ minPrice + 500 }}"
-                        max="10000"
-                        class="form-controls size16 redhat-semibold mb-2"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Slider -->
-                  <div class="slider" id="slider">
-                    <div class="slider-range" id="slider-range"></div>
-                    <div
-                      class="slider-thumb"
-                      id="thumb-min"
-                      role="slider"
-                      aria-valuemin="0"
-                      aria-valuemax="10000"
-                      [attr.aria-valuenow]="minPrice"
-                      tabindex="0"
-                    ></div>
-                    <div
-                      class="slider-thumb"
-                      id="thumb-max"
-                      role="slider"
-                      aria-valuemin="0"
-                      aria-valuemax="10000"
-                      [attr.aria-valuenow]="maxPrice"
-                      tabindex="0"
-                    ></div>
-                  </div>
-                </div>
-
-                <!-- Search Button -->
-                <button
-                  class="black-button w-100 size16 redhat-semibold mt-4"
-                  (click)="SearchItems()"
-                  (click)="toggleFilter()"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-      <div
-        class="results-section col-xl-9 col-lg-9 col-md-12 col-12"
-        #resultsSection
-        [ngClass]="{
-          'col-xl-12 col-lg-12 col-md-12 col-12': isFilterCollapsed,
-          'col-xl-9 col-lg-9': !isFilterCollapsed
-        }"
-      >
+      <!-- results section -->
+      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12" #resultsSection [ngClass]="{
+        'col-xl-12 col-lg-12 col-md-12 col-12': isFilterCollapsed,
+        'col-xl-9 col-lg-9': !isFilterCollapsed
+      }">
         <!-- <div class="container-fluid"> -->
-        <div
-          class="d-flex justify-content-between align-items-center my-md-3 my-2"
-        >
+        <div class="d-flex justify-content-between align-items-center margin34 margin60">
           <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} vehicles
           </h6>
 
-          <select
-            class="border-0 outline-none size16 redhat-semibold text-capitalize bg-transparent"
-            (change)="onChangeSort($event)"
-          >
-            <option
-              selected
-              disabled
-              class="text-muted size14 redhat-semibold text-capitalize"
-            >
+          <select class="border-0 outline-none size16 redhat-semibold text-capitalize bg-transparent"
+            (change)="onChangeSort($event)">
+            <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
               Sort by any makes
             </option>
             <option value="A-Z" class="size14 redhat-semibold text-capitalize">
@@ -636,112 +206,92 @@
             <option value="old" class="size14 redhat-semibold text-capitalize">
               Old to New
             </option>
-            <option
-              value="relevance"
-              class="size14 redhat-semibold text-capitalize"
-            >
+            <option value="relevance" class="size14 redhat-semibold text-capitalize">
               Relevance
             </option>
           </select>
         </div>
         <div class="products">
           <div class="row">
-            <div
-              class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4"
-              *ngFor="let car of vehicleData"
-            >
-              <div
-                class="car-card rounded-4"
-                [routerLink]="['/product/detail', car.url_key]"
-                routerLinkActive="router-link-active"
-              >
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
+              *ngFor="let car of vehicleData" [routerLink]="['/product', car.url_key]"
+              routerLinkActive="router-link-active">
+              <div class="car-card" >
+
                 <img
-                  src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                  [alt]="car.name"
-                  class="img-fluid rounded-4 w-100 thumbnail-image h-100"
-                />
-                <div class="card-content">
-                  <div
-                    class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
+                [src]="backendURl + '/media/' + car.media_data[0].src"
+                [alt]="car.name"
+                class="img-fluid w-100 thumbnail-image h-100"
+              />
+                <!-- <div class="position-relative special-number-wrapper">
+                  <lucide-icon name="crown" size="20"></lucide-icon>
+
+                  <span
+                    *ngIf="car && car.isvipNumberPlate"
+                    class="special-badge size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
                   >
+                    special number plate
+                  </span>
+                
+                  <img
+                    [src]="backendURl + '/media/' + car.media_data[0].src"
+                    [alt]="car.name"
+                    class="img-fluid w-100 thumbnail-image h-100"
+                  />
+                </div> -->
+                
+
+                <div class="card-content">
+                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center">
                     <div class="car-header">
-                      <h4
-                        class="car-name mb-1 size26 redhat-semibold gray-color"
-                      >
+                      <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
                       </h4>
-                      <h6
-                        class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
-                      >
+                      <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
                         {{ car.transmission }}
                       </h6>
                     </div>
-                    <span
-                      *ngIf="car && car.isvipNumberPlate"
-                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                      >special number plate</span
-                    >
+                    <span *ngIf="car && car.isvipNumberPlate"
+                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                      plate</span>
                   </div>
 
-                  <div
-                    class="d-flex justify-content-between border-top border-bottom p-md-3 p-2"
-                  >
+                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 p-2">
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/fuel_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.fuelType }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/speed_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.mileage }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/seat_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.seating_capacity }} Seats
                       </h6>
                     </div>
                   </div>
 
-                  <div
-                    class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                  >
+                  <div class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2">
                     <div class="cash">
-                      <h6
-                        class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                      >
+                      <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                         AED {{ car.regularRate }}
                       </h6>
                       <h5 class="mb-0 size26 redhat-semibold gray-color">
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
-                    <a
-                      href="/product/detail/{{ car.url_key }}"
-                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
-                      >View details</a
-                    >
+                    <a href="/product/{{ car.url_key }}"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize">View
+                      details</a>
                   </div>
                 </div>
               </div>
@@ -749,38 +299,25 @@
           </div>
         </div>
         <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
-          <ul
-            class="pagination justify-content-center align-items-center gap-2"
-          >
+          <ul class="pagination justify-content-center align-items-center gap-2">
             <!-- Previous -->
             <li [class.disabled]="currentPage === 1">
-              <button
-                class="circle-btn filled"
-                [disabled]="currentPage === 1"
-                (click)="onPageChange(currentPage - 1)"
-              >
+              <button class="circle-btn filled" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
                 <lucide-icon name="arrow-left" />
               </button>
             </li>
 
             <!-- Page Numbers -->
             <li *ngFor="let page of getPages()">
-              <button
-                class="number-btn"
-                [class.active-page]="page === currentPage"
-                (click)="onPageChange(page)"
-              >
+              <button class="number-btn" [class.active-page]="page === currentPage" (click)="onPageChange(page)">
                 {{ page }}
               </button>
             </li>
 
             <!-- Next -->
             <li [class.disabled]="currentPage === totalPages">
-              <button
-                class="circle-btn filled"
-                [disabled]="currentPage === totalPages"
-                (click)="onPageChange(currentPage + 1)"
-              >
+              <button class="circle-btn filled" [disabled]="currentPage === totalPages"
+                (click)="onPageChange(currentPage + 1)">
                 <lucide-icon name="arrow-right" />
               </button>
             </li>
@@ -791,5 +328,6 @@
     </div>
   </div>
 </section>
+
 
 <app-testimonials></app-testimonials>

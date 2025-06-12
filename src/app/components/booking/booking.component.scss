@@ -84,6 +84,7 @@
   width: 100%;
   cursor: pointer;
   padding: 12px;
+  border-radius: 15px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -141,8 +142,10 @@
 }
 
 .circle-btn:disabled {
-  opacity: 0.3;
   cursor: not-allowed;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .number-btn {

@@ -1,9 +1,4 @@
-// .about {
-//   height: 100vh;
-//   @media screen and (max-width: 1200px) {
-//     height: auto;
-//   }
-// }
+
 .sectionPadding {
   padding: 10rem 0 0 0;
   @media screen and (max-width: 1200px) {
@@ -12,6 +7,13 @@
   @media screen and (max-width: 414px) {
     padding: 7rem 0 0 0;
   }
+}
+
+.banner-left{
+  padding-left: 28px;
+}
+.banner-right{
+  padding-right: 28px;
 }
 
 .banner-content{
@@ -32,13 +34,13 @@
   width: 95%;
 }
 @media screen and (max-width: 1024px) {
-  width: 60%;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
-  width: 60%;
+  width: 74%;
 }
 @media screen and (max-width: 430px) {
-  width: 100%;
+  width: 99%;
 }
 }
 
@@ -104,7 +106,7 @@
 .signature3-padding, .signature4-padding , .signature5-padding {
   padding: 52px 50px ;
   @media screen and (max-width: 1920px) {
-    padding: 40px 42px ;
+    padding: 40px 38px ;
   }
   @media screen and (max-width: 1536px) {
     padding: 32px 30px ;
@@ -114,6 +116,15 @@
   }
   @media screen and (max-width: 430px) {
     padding: 20px  ;
+  }
+}
+
+.about-banner{
+  @media screen and (max-width: 1200px) {
+    height:538px ;
+  }
+  @media screen and (max-width: 430px) {
+    height:481px ;
   }
 }
 
@@ -132,9 +143,13 @@
   }
   @media screen and (max-width: 1280px) {
     width: 100%;
+    padding-left: 2rem;
+  }
+  @media screen and (max-width: 800px) {
+    width: 84%;
   }
   @media screen and (max-width: 768px) {
-    width: 56%;
+    width: 70%;
     padding-left: 1rem;
   }
   @media screen and (max-width: 430px) {
@@ -147,9 +162,12 @@
   }
 }
 .features {
-  padding: 7rem;
+  padding: 4rem 24rem;
   @media screen and (max-width: 1536px) {
     padding: 4rem 7rem;
+  }
+  @media screen and (max-width: 1366px) {
+    padding: 4rem 6rem;
   }
   @media screen and (max-width: 1280px) {
     padding: 4rem;
@@ -166,13 +184,6 @@
   filter: brightness(0);
 }
 
-.about-image2 {
-  display: block;
-  @media screen and (max-width: 1200px) {
-    display: none;
-  }
-}
-
 .overlay {
   position: absolute;
   top: 0;
@@ -186,7 +197,7 @@
 .story {
   padding: 6rem 0 6rem 16.5rem;
   @media screen and (max-width: 1920px) {
-    padding: 6rem 0 6rem 14.5rem;
+    padding: 6rem 0 6rem 16.3rem;
   }
   @media screen and (max-width: 1536px) {
     padding: 6rem 0 6rem 10.5rem;
@@ -205,7 +216,7 @@
     width: 66%;
 
     @media screen and (max-width: 1920px) {
-      width: 92%;
+      width: 93%;
     }
     @media screen and (max-width: 1536px) {
       width: 100%;

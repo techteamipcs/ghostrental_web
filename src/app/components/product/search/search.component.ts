@@ -13,8 +13,6 @@ import {
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -23,31 +21,14 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, AfterViewInit {
-  toggleSelectDropdown(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
-      if (select.classList.contains('expanded')) {
-        chevron.style.transform = 'translateY(-50%)';
-      } else {
-        chevron.style.transform = 'translateY(-50%) rotate(180deg)';
-      }
-    }
-    select.classList.toggle('expanded');
-  }
 
-  onSelectBlur(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
-      chevron.style.transform = 'translateY(-50%)';
-    }
-    select.classList.remove('expanded');
-  }
   Math = Math;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
+  isMobile: boolean = false;
+  isFilterCollapsed: boolean = false;
+  isMobileFilterVisible: boolean = false;
 
   // Pagination properties
   currentLimit = 6;
@@ -74,8 +55,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   filteredModel: any = [];
   availableStartDate: any;
   availableendDate: any;
-  isFilterCollapsed = false;
-  isMobileFilterVisible: boolean = false;
   vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
@@ -97,14 +76,39 @@ export class SearchComponent implements OnInit, AfterViewInit {
      @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Initialize mobile filter as closed
-    this.isMobileFilterVisible = false;
     this.param_type = this.route.snapshot.paramMap.get('type');
     if (this.param_type && this.param_type === 'vip') {
       this.vipNumberPlate = true;
     }
   }
 
+  toggleSelectDropdown(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const chevron = select.nextElementSibling as HTMLElement;
+    if (chevron) {
+      if (select.classList.contains('expanded')) {
+        chevron.style.transform = 'translateY(-50%)';
+      } else {
+        chevron.style.transform = 'translateY(-50%) rotate(180deg)';
+      }
+    }
+    select.classList.toggle('expanded');
+  }
+
+  onSelectBlur(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const chevron = select.nextElementSibling as HTMLElement;
+    if (chevron) {
+      chevron.style.transform = 'translateY(-50%)';
+    }
+    select.classList.remove('expanded');
+  }
+ 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 991;
+      this.isMobileFilterVisible = !this.isMobile;
+    }
     // Load initial data
     this.getBrands();
     this.getCarTypes();
@@ -379,7 +383,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         filter.style.bottom = '0';
       } else {
         filter.style.position = 'sticky';
-        filter.style.top = '11rem';
+        filter.style.top = '8rem';
       }
     }
   }
@@ -446,6 +450,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   // Public method to trigger search (can be called from template)
   SearchItems() {
     this.getCarData();
+    if (this.isMobile) {
+      this.isMobileFilterVisible = false;
+    }
   }
 
   resetFilter() {
@@ -604,18 +611,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // UI Helpers
   toggleFilter(): void {
-    if (window.innerWidth <= 768) {
-      this.isMobileFilterVisible = !this.isMobileFilterVisible;
-    } else {
-      this.isFilterCollapsed = !this.isFilterCollapsed;
+    this.isMobileFilterVisible = !this.isMobileFilterVisible;
+  }
+  @HostListener('window:resize', [])
+  onResize(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth <= 991;
+      this.isMobileFilterVisible = !this.isMobile;
     }
   }
-
-  // Alias for toggleFilter for mobile view
-  openMobileFilter(): void {
-    this.toggleFilter();
-  }
-
 }

@@ -95,16 +95,17 @@
             <div
               class="col-xl-3 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4"
               *ngFor="let car of vehicleData"
+              [routerLink]="['/product', car.url_key]"
+              routerLinkActive="router-link-active"
             >
               <div
-                class="car-card rounded-4"
-                [routerLink]="['/product/detail', car.url_key]"
-                routerLinkActive="router-link-active"
+                class="car-card"
+               
               >
                 <img
                   src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
                   [alt]="car.name"
-                  class="img-fluid rounded-4 w-100 thumbnail-image h-100"
+                  class="img-fluid w-100 thumbnail-image h-100"
                 />
                 <div class="card-content">
                   <div
@@ -184,7 +185,7 @@
                       </h5>
                     </div>
                     <a
-                      [routerLink]="['/product/detail', car.url_key]"
+                      [routerLink]="['/product', car.url_key]"
                       routerLinkActive="router-link-active"
                       class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
                       >View details</a

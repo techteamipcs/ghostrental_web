@@ -1,25 +1,34 @@
 .testimonial {
-padding: 160px 358px 195px;
+  padding: 160px 358px 195px;
 
-@media screen and (max-width: 1536px) {
-  padding: 100px ;
-}
-@media screen and (max-width: 1440px) {
-  padding: 50px 100px ;
-}
-@media screen and (max-width: 1200px) {
-  padding: 4rem 6.25rem;
-}
+  @media screen and (max-width: 1536px) {
+    padding: 100px;
+  }
 
-@media screen and (max-width: 768px) {
-  padding: 3rem 1.5rem;
-}
+  @media screen and (max-width: 1440px) {
+    padding: 50px 100px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding: 4rem 6.25rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 3rem 1.5rem;
+  }
 
 
   .star-icon {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 21px;
+
+    @media screen and (max-width: 1024px) {
+      width: 16px;
+      height: 15px;
+    }
+
   }
+
   .swiper {
     width: 100%;
     height: 100%;
@@ -62,11 +71,13 @@ padding: 160px 358px 195px;
       justify-content: center;
       overflow: hidden;
       padding: 0;
+
       @media screen and (max-width: 1200px) {
         height: 300px;
         width: 300px;
         // min-width: 300px;
       }
+
       @media screen and (max-width: 768px) {
         width: 100%;
       }
@@ -100,6 +111,7 @@ padding: 160px 358px 195px;
     border: 1px solid black;
     cursor: pointer;
     transition: all 0.3s ease;
+
     &:active {
       background-color: black;
       color: white;
@@ -113,23 +125,24 @@ padding: 160px 358px 195px;
   @media screen and (max-width: 1536px) {
     padding: 0 100px 100px;
   }
+
   @media screen and (max-width: 1200px) {
     padding: 4rem 6.25rem;
   }
-  
+
   @media screen and (max-width: 768px) {
     padding: 3rem 1.5rem;
   }
-  
 
-  
+
+
   p {
     margin-bottom: 2rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .faq-list {
     max-width: 900px;
     margin: 0 auto;
@@ -142,11 +155,11 @@ padding: 160px 358px 195px;
     padding: 24px 27px;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    
+
     @media screen and (max-width: 1200px) {
       padding: 1.25rem 1.5rem;
     }
-    
+
     @media screen and (max-width: 768px) {
       padding: 1rem 1.25rem;
     }
@@ -199,6 +212,7 @@ padding: 160px 358px 195px;
         h4 {
           color: #D1D1D1;
         }
+
         span {
           transform: rotate(180deg);
         }
@@ -229,6 +243,7 @@ padding: 160px 358px 195px;
       h4 {
         color: #f3f3f3;
       }
+
       span {
         transform: rotate(180deg);
       }
@@ -251,7 +266,7 @@ padding: 160px 358px 195px;
 }
 
 
-.swiper-button-icon{
+.swiper-button-icon {
   width: 24px;
   height: 24px;
   line-height: normal;
