@@ -11,9 +11,17 @@
 
 .banner-left{
   padding-left: 28px;
+  @media screen and (max-width: 1280px) {
+    padding-left: 12px;
+  }
+
 }
 .banner-right{
   padding-right: 28px;
+  @media screen and (max-width: 1280px) {
+    padding-right: 12px;
+  }
+
 }
 
 .banner-content{
@@ -147,6 +155,9 @@
   @media screen and (max-width: 1280px) {
     width: 100%;
     padding-left: 2rem;
+  }
+  @media screen and (max-width: 1024px) {
+    padding-left: 1.5rem;
   }
   @media screen and (max-width: 800px) {
     width: 84%;

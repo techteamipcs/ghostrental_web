@@ -361,6 +361,9 @@ body {
   @media (max-width:1280px) {
     font-size: 56px;
   }
+  @media (max-width:1024px) {
+    font-size: 46px;
+  }
 
   // @media (max-width:768px) {
   //   font-size: 24px;
@@ -569,7 +572,8 @@ body {
 
 // common button styles
 .white-button {
-  width: max-content;
+  width: 100%;
+  max-width: max-content;
   border: 2px solid $color-white;
   color: $color-black;
   background-color: $color-white;
@@ -601,7 +605,8 @@ body {
 }
 
 .white-border-button {
-  width: max-content;
+  width: 100%;
+  max-width: max-content;
   border: 2px solid $color-white;
   color: $color-white;
   background-color: transparent;
@@ -638,7 +643,8 @@ body {
 }
 
 .black-button {
-  width: max-content;
+  width: 100%;
+  max-width: max-content;
   border: 2px solid $color-gray;
   color: $color-gray-beige;
   background-color: $color-gray;
@@ -828,6 +834,9 @@ a {
 
 .margin-bottom60 {
   margin-bottom: 60px;
+  @media (max-width:1280px) {
+    margin-bottom: 40px;
+  }
 
   @media (max-width:430px) {
     margin-bottom: 20px;
@@ -837,8 +846,8 @@ a {
 .margin66 {
   margin-bottom: 66px;
 
-  @media (max-width:430px) {
-    margin-bottom: 50px;
+  @media (max-width:1024px) {
+    margin-bottom: 35px;
   }
 }
 
@@ -855,10 +864,6 @@ a {
   margin-top: 40px;
 
   @media (max-width:1280px) {
-    margin-top: 44px;
-  }
-
-  @media (max-width:430px) {
     margin-top: 20px;
   }
 }

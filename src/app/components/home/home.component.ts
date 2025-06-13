@@ -141,7 +141,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
     }
   }
-  
+
 
 
   public initYachtSwiper() {
@@ -164,15 +164,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
-          0: { slidesPerView: 1,
+          0: {
+            slidesPerView: 1,
             spaceBetween: 10,
-           },
-          768: { slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 2,
             spaceBetween: 15,
-           },
-          1200: { slidesPerView: 4.5,
+          },
+          1280: {
+            slidesPerView: 4.5,
             spaceBetween: 20,
-           },
+          },
         },
       });
     }

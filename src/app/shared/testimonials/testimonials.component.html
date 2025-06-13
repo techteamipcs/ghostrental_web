@@ -1,5 +1,5 @@
 <section class="testimonial">
-  <div class="container ">
+  <div class="container">
     <h3
       class="text-center text-capitalize size60 performa-light gray-color margin80"
     >
@@ -9,16 +9,16 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let testimonial of testimonialsData">
           <div class="row justify-content-center justify-content-md-normal">
-            <div
-              class="col-12 col-xl-4 text-center mb-3 mb-md-2 img-container"
-            >
+            <div class="col-12 col-xl-4 text-center mb-3 mb-md-2 img-container">
               <img
                 src="{{ backendURL }}/{{ testimonial.image }}"
                 alt="Customer Testimonial"
                 class="rounded-4 img-fluid testimonial-img"
               />
             </div>
-            <div class="col-8 col-xl-7 text-start d-flex flex-column align-items-center align-items-xl-start">
+            <div
+              class="col-8 col-xl-7 text-start d-flex flex-column align-items-center align-items-xl-start"
+            >
               <div class="margin28 d-flex gap-2">
                 <ng-container
                   *ngFor="let star of getStars(testimonial.ratings)"
@@ -38,7 +38,9 @@
               <h5 class="size30 redhat-regular margin22 black-color">
                 {{ testimonial.title }}
               </h5>
-              <p class="size22 redhat-regular mb-4 color-card-p text-center text-xl-start">
+              <p
+                class="size22 redhat-regular mb-4 color-card-p text-center text-xl-start"
+              >
                 {{ testimonial.text }}
               </p>
               <h6 class="size18 redhat-regular gray-color">
@@ -50,7 +52,9 @@
       </div>
     </div>
 
-    <div class="text-start gap-2 d-flex ms-4">
+    <div
+      class="text-start gap-2 d-flex ms-xl-4 justify-content-center justify-content-xl-start"
+    >
       <div #prevButton class="button swiper-button-prev">
         <lucide-icon name="arrow-left" class="swiper-button-icon" />
       </div>
@@ -62,7 +66,9 @@
 </section>
 
 <section class="faq">
-  <h3 class="text-center text-capitalize size60 performa-light gray-color margin23">
+  <h3
+    class="text-center text-capitalize size60 performa-light gray-color margin23"
+  >
     Frequently Asked Questions
   </h3>
   <p class="text-center size18 redhat-regular gray-color margin28">
@@ -73,7 +79,8 @@
     <button class="black-button size18 redhat-bold">
       <a href="/contact" class="white-color text-decoration-none"
         >Help Center</a
-      ></button>
+      >
+    </button>
   </div>
 
   <div class="container-fluid">
