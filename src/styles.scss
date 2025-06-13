@@ -372,20 +372,22 @@ body {
 
 .size80 {
   font-size: 80px;
-
   @media (max-width:1680px) {
     font-size: 76px;
   }
-
+  @media (max-width:1536px) {
+    font-size: 72px;
+  }
+  @media (max-width:1366px) {
+    font-size: 70px;
+  }
   @media (max-width:1280px) {
     // font-size: 55px;
     font-size: 64px;
   }
-
   @media (max-width:768px) {
     font-size: 40px;
   }
-
   @media (max-width:430px) {
     font-size: 32px;
   }

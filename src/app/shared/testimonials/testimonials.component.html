@@ -8,9 +8,9 @@
     <div class="swiper py-4" #swiper>
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let testimonial of testimonialsData">
-          <div class="row">
+          <div class="row justify-content-center justify-content-md-normal">
             <div
-              class="col-md-5 col-lg-4 text-center mb-3 mb-md-2 img-container"
+              class="col-12 col-xl-4 text-center mb-3 mb-md-2 img-container"
             >
               <img
                 src="{{ backendURL }}/{{ testimonial.image }}"
@@ -18,7 +18,7 @@
                 class="rounded-4 img-fluid testimonial-img"
               />
             </div>
-            <div class="col-md-6 col-lg-7 text-start">
+            <div class="col-8 col-xl-7 text-start d-flex flex-column align-items-center align-items-xl-start">
               <div class="margin28 d-flex gap-2">
                 <ng-container
                   *ngFor="let star of getStars(testimonial.ratings)"
@@ -38,7 +38,7 @@
               <h5 class="size30 redhat-regular margin22 black-color">
                 {{ testimonial.title }}
               </h5>
-              <p class="size22 redhat-regular mb-4 color-card-p">
+              <p class="size22 redhat-regular mb-4 color-card-p text-center text-xl-start">
                 {{ testimonial.text }}
               </p>
               <h6 class="size18 redhat-regular gray-color">
