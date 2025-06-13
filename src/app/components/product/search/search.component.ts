@@ -48,10 +48,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedBrand: any = [];
   selectedModel: any = [];
   selectedCartype: any = [];
-  selectedRentalType: any;
+  selectedRentalType: any = 'Daily';
   minPrice: any = 0;
   maxPrice: any = 10000;
-  price_type: any = '';
+  price_type: any = 'dailyRate';
   filteredModel: any = [];
   availableStartDate: any;
   availableendDate: any;
@@ -459,7 +459,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBodytype = [];
     this.selectedBrand = [];
     this.selectedModel = [];
-    this.selectedRentalType = null;
+    this.selectedRentalType = 'Daily';
     this.minPrice = 0;
     this.maxPrice = 10000;
     this.vipNumberPlate = false;
