@@ -450,6 +450,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   // Public method to trigger search (can be called from template)
   SearchItems() {
+    
     this.getCarData();
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
