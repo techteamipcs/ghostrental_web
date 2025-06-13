@@ -40,6 +40,9 @@ nav {
     @media (max-width: 414px) {
       padding: 1.8rem 1.5rem;
     }
+    @media (max-width: 384px) {
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   // @media (max-width: 1600px) {
@@ -560,9 +563,8 @@ nav {
     padding: 2.4rem 0rem;
   }
   @media screen and (max-width: 384px) {
-    padding:.4rem 0rem;
+    padding:0.95rem 0rem;
   }
-  
 
   .logo {
     width: 180px;

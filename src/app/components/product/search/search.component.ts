@@ -51,8 +51,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedRentalType: any;
   minPrice: any = 0;
   maxPrice: any = 10000;
-  price_type: any = '';
+  // price_type: any = 'dailyRate';
   filteredModel: any = [];
+  price_type: any = '';
   availableStartDate: any;
   availableendDate: any;
   vipNumberPlate: any = '';
@@ -459,6 +460,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBodytype = [];
     this.selectedBrand = [];
     this.selectedModel = [];
+    // this.selectedRentalType = 'Daily';
+    
     this.selectedRentalType = null;
     this.minPrice = 0;
     this.maxPrice = 10000;

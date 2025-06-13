@@ -15,6 +15,9 @@
   @media screen and (max-width: 480px) {
     padding: 9rem 0px 1rem;
   }
+  @media screen and (max-width: 384px) {
+    padding: 6rem 0px 4rem;
+  }
 
   .gallery-height{
     height: 692px;
@@ -267,6 +270,10 @@
     width: 150px;
     height: 100px;
   }
+  @media screen and (max-width: 1024px) {
+    width: 222px;
+    height: 150px;
+  }
   @media screen and (max-width: 430px) {
     width: 65%;
     height: auto;
@@ -278,6 +285,7 @@
   position: absolute;
   right: 0.5rem;
   width: 400px;
+  border-radius: 15px;
   background: white;
   will-change: transform;
   backface-visibility: hidden;
@@ -309,6 +317,7 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   margin-left: auto;
+  border-radius: 15px;
   margin-right: 12px;
   @media screen and (max-width: 430px) {
     width: 100%;
