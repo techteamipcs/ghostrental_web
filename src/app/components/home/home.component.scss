@@ -1386,8 +1386,14 @@
         width: 62%;
       }
 
+      @media screen and (max-width: 800px) {
+        width: 75%;
+      }
       @media screen and (max-width: 768px) {
         width: 60%;
+      }
+      @media screen and (max-width: 602px) {
+        width: 84%;
       }
 
       @media screen and (max-width: 430px) {
