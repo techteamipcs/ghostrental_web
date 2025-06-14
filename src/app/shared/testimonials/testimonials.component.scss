@@ -17,6 +17,10 @@
     padding: 90px 60px;
   }
 
+  @media screen and (max-width: 430px) {
+    padding: 80px 20px;
+  }
+
 
   .star-icon {
     width: 22px;
@@ -87,8 +91,9 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+
         @media screen and (max-width: 1024px) {
-         object-fit: contain;
+          object-fit: contain;
         }
       }
     }
@@ -137,7 +142,16 @@
     padding: 3rem 3.5rem;
   }
 
+  @media screen and (max-width: 430px) {
+    padding: 2rem 19px 5rem;
+  }
 
+  h3 {
+    @media screen and (max-width: 430px) {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+  }
 
   p {
     margin-bottom: 2rem;
@@ -275,8 +289,8 @@
   line-height: normal;
 }
 
-.size60{
- @media screen and (max-width: 768px){
-   font-size: 36px;
-  } 
+.size60 {
+  @media screen and (max-width: 768px) {
+    font-size: 36px;
+  }
 }

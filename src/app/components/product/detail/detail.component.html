@@ -152,107 +152,110 @@
           </div>
         </div>
       </div>
-      <div class="d-xl-none d-block purchase-card mb-5 border border-1 border-black p-md-4 p-2 ">
-        <div class="d-flex justify-content-between mb-4">
-          <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
-          <div class="d-flex flex-column justify-content-between">
-            <div>
-              <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
-              <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
+      <div class="d-xl-none d-block px-4">
+        <div class="border border-1 border-black p-md-4 p-2 purchase-card mb-5">
+          <div class="d-flex justify-content-between mb-4">
+            <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
+            <div class="d-flex flex-column justify-content-between me-3 me-md-0">
+              <div>
+                <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
+                <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
+              </div>
+              <div class="">
+                <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+                <h6 class="mb-0 size26 redhat-semibold  gray-color"
+                  *ngIf="vehicleData && vehicleData.regularRateDaily">
+                  <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
+                </h6>
+              </div>
+            </div>
+            <!-- <div class="cash">
+              <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+                *ngIf="vehicleData && vehicleData.regularRateDaily">
+                AED {{ vehicleData.regularRateDaily }}
+              </h6>
+              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Daily'">
+                AED {{ vehicleData.dailyRate }}
+              </h5>
+              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'">
+                AED {{ vehicleData.hourlyRate }}
+              </h5>
+              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'">
+                AED {{ vehicleData.weeklyRate }}
+              </h5>
+              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'">
+                AED {{ vehicleData.monthlyRate }}
+              </h5>
+            </div> -->
+          
+          </div>
+          <div class="d-flex align-items-center justify-content-between margin17">
+            <div class=" ">
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+              <h6 class="mb-0 size20 redhat-semibold gray-color"
+                *ngIf="vehicleData && vehicleData.regularRateHourly">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateHourly }}
+              </h6>
             </div>
             <div class="">
-              <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
-              <h6 class="mb-0 size26 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.regularRateDaily">
-                <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
+              <h6 class="mb-0 size20 redhat-semibold  gray-color"
+                *ngIf="vehicleData && vehicleData.regularRateWeekly">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateWeekly }}
+              </h6>
+            </div>
+            <div class="">
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
+              <h6 class="mb-0 size20 redhat-semibold  gray-color"
+                *ngIf="vehicleData && vehicleData.regularRateMonthly">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateMonthly }}
               </h6>
             </div>
           </div>
-          <!-- <div class="cash">
-            <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
-              *ngIf="vehicleData && vehicleData.regularRateDaily">
-              AED {{ vehicleData.regularRateDaily }}
-            </h6>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Daily'">
-              AED {{ vehicleData.dailyRate }}
-            </h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'">
-              AED {{ vehicleData.hourlyRate }}
-            </h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'">
-              AED {{ vehicleData.weeklyRate }}
-            </h5>
-            <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'">
-              AED {{ vehicleData.monthlyRate }}
-            </h5>
-          </div> -->
-        
-        </div>
-        <div class="d-flex align-items-center justify-content-between margin17">
-          <div class=" ">
-            <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
-            <h6 class="mb-0 size20 redhat-semibold gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateHourly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateHourly }}
-            </h6>
+  
+          <!-- <h4 class="size26 redhat-semibold m-0">{{ vehicleData.name }}</h4>
+          <p class="size18 redhat-semibold mb-2">{{ vehicleData.bodytype_data[0].name }}</p> -->
+  
+          <div class="d-flex justify-content-between mb-4">
+            <div class="d-flex align-items-center">
+              <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
+                class="sticky-card-icons me-1" />
+              <p class="size14 redhat-regular m-0">get directions</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
+              <p class="size14 redhat-regular m-0">+971 800 44678</p>
+            </div>
           </div>
-          <div class="">
-            <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
-            <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateWeekly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateWeekly }}
-            </h6>
-          </div>
-          <div class="">
-            <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
-            <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateMonthly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateMonthly }}
-            </h6>
+          <div class="btns">
+            <div
+              class="w-100 bg-black border border-1 rounded-3 mb-3 p-2 p-md-3 text-center d-flex justify-content-center align-items-center"
+              *ngIf="vehicleData">
+              <a [routerLink]="['/contact/product', vehicleData.name]"
+                class="size18 redhat-semibold text-decoration-none white-color text-capitalize">
+                send a mail
+              </a>
+            </div>
+            <div
+              class="w-100 bg-white rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
+              <a href="https://wa.me/971555555555"
+                class="size18 redhat-semibold green-color text-decoration-none text-capitalize">
+                book via whatsapp
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- <h4 class="size26 redhat-semibold m-0">{{ vehicleData.name }}</h4>
-        <p class="size18 redhat-semibold mb-2">{{ vehicleData.bodytype_data[0].name }}</p> -->
-
-        <div class="d-flex justify-content-between mb-4">
-          <div class="d-flex align-items-center">
-            <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
-              class="sticky-card-icons me-1" />
-            <p class="size14 redhat-regular m-0">get directions</p>
-          </div>
-          <div class="d-flex align-items-center justify-content-center">
-            <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
-            <p class="size14 redhat-regular m-0">+971 800 44678</p>
-          </div>
-        </div>
-        <div class="btns">
-          <div
-            class="w-100 bg-black border border-1 rounded-3 mb-3 p-2 p-md-3 text-center d-flex justify-content-center align-items-center"
-            *ngIf="vehicleData">
-            <a [routerLink]="['/contact/product', vehicleData.name]"
-              class="size18 redhat-semibold text-decoration-none white-color text-capitalize">
-              send a mail
-            </a>
-          </div>
-          <div
-            class="w-100 bg-white rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
-            <a href="https://wa.me/971555555555"
-              class="size18 redhat-semibold green-color text-decoration-none text-capitalize">
-              book via whatsapp
-            </a>
-          </div>
-        </div>
       </div>
 
       <div class="col-xl-9 col-12 border-1 border-bottom section-width">
-        <div class="mb-3 mb-md-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4">
+        <div class="">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
             {{vehicleData.vehicle_type}} overview
           </h3>
 
           <div class="row">
-            <div class="col-lg-4 col-md-4 col-12 mb-xl-3 mb-lg-2 mb-3" *ngFor="let detail of carDetails.flat()">
+            <div class="col-lg-4 col-md-4 col-12 margin31" *ngFor="let detail of carDetails.flat()">
               <div class="row align-items-center">
                 <div class="col-2 p-0">
                   <img [src]="
@@ -263,12 +266,12 @@
                     " [alt]="detail.label" class="overview_icons" />
                 </div>
                 <div class="col-4">
-                  <h5 class="size14 redhat-semibold text-capitalize mb-0">
+                  <h5 class="redhat-semibold text-capitalize mb-0" style="font-size: 14px;">
                     {{ detail.label }}
                   </h5>
                 </div>
                 <div class="col-6">
-                  <p class="size14 redhat-semibold text-capitalize mb-0">
+                  <p class="redhat-semibold text-capitalize mb-0" style="font-size: 14px;">
                     {{ detail.value }}
                   </p>
                 </div>
@@ -279,8 +282,8 @@
       </div>
 
       <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
-        <div class="my-3 my-md-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4">
+        <div class="margin40">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
             description
           </h3>
           <p class="size18 redhat-semibold mb-5" [innerHtml]="vehicleData.description"></p>
@@ -288,12 +291,12 @@
       </div>
 
       <div class="col-xl-9 col-12 border-1 border-bottom section-width">
-        <div class="my-3 my-md-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4">
+        <div class="margin40">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
             features
           </h3>
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Interior
@@ -308,7 +311,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   exterior
@@ -324,7 +327,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Safety
@@ -339,7 +342,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Comfort & Convenience
@@ -441,8 +444,8 @@
       </div>
 
       <div class="col-xl-9 col-12 location-section section-width">
-        <div class="mt-3 mt-md-5">
-          <h3 class="size26 redhat-semibold text-capitalize mb-xl-5 mb-lg-4 mb-md-4 mb-4">
+        <div class="margin40">
+          <h3 class="size26 redhat-semibold text-capitalize">
             location
           </h3>
           <p class="size18 redhat-semibold">
@@ -493,7 +496,7 @@
                       plate</span>
                   </div>
 
-                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 p-2">
+                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3">
                     <div class="text-center">
                       <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
                         alt="" />

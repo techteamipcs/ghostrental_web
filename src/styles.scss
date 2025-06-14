@@ -180,7 +180,7 @@ body {
     font-size: 24px;
   }
 
-  @media (max-width: 1440px) {
+@media (max-width: 1440px) {
     font-size: 21px;
   }
 
@@ -499,6 +499,9 @@ body {
   @media (max-width:1024px) {
     line-height: 25px;
   }
+  @media (max-width:430px) {
+    line-height: 16px;
+  }
 }
 
 .line-height26 {
@@ -572,40 +575,41 @@ body {
 
 // common button styles
 .white-button {
-  width: 100%;
-  max-width: max-content;
+  display: block;
+  width: max-content;
   border: 2px solid $color-white;
   color: $color-black;
   background-color: $color-white;
   border-radius: 100px;
-  padding: 14px 68.5px;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
 
-  @media (max-width:1600px) {
-    padding: 14px 40px;
-  }
+  // @media (max-width:1600px) {
+  //   padding: 14px 40px;
+  // }
 
-  @media (max-width:1440px) {
-    padding: 10px 30px;
-  }
+  // @media (max-width:1440px) {
+  //   padding: 10px 30px;
+  // }
 
   @media (max-width:1280px) {
-    padding: 5px 20px;
+    padding: 14px 50px;
   }
 
-  @media (max-width:768px) {
-    padding: 10px 40px;
-  }
+  // @media (max-width:768px) {
+  //   padding: 10px 40px;
+  // }
 
   @media (max-width:430px) {
-    padding: 10px 20px;
+    padding: 12px 25px;
   }
 }
 
 .white-border-button {
   width: 100%;
+  display: block;
   max-width: max-content;
   border: 2px solid $color-white;
   color: $color-white;
@@ -615,24 +619,24 @@ body {
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
-  @media (max-width:1600px) {
+  // @media (max-width:1600px) {
+  //   padding: 14px 50px;
+  // }
+
+  // @media (max-width:1440px) {
+  //   padding: 10px 30px;
+  // }
+
+  @media (max-width:1280px) {
     padding: 14px 50px;
   }
 
-  @media (max-width:1440px) {
-    padding: 10px 30px;
-  }
-
-  @media (max-width:1280px) {
-    padding: 5px 20px;
-  }
-
-  @media (max-width:768px) {
-    padding: 10px 40px;
-  }
+  // @media (max-width:768px) {
+  //   padding: 10px 40px;
+  // }
 
   @media (max-width:430px) {
-    padding: 10px 20px;
+    padding: 12px 40px;
   }
 
   &:hover {
@@ -645,33 +649,34 @@ body {
 .black-button {
   width: 100%;
   max-width: max-content;
+  display: block;
   border: 2px solid $color-gray;
   color: $color-gray-beige;
   background-color: $color-gray;
   border-radius: 100px;
-  padding: 14px 68.5px;
+  padding: 18px 70px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
 
-  @media (max-width:1600px) {
-    padding: 14px 50px;
-  }
+  // @media (max-width:1600px) {
+  //   padding: 14px 50px;
+  // }
 
-  @media (max-width:1440px) {
-    padding: 10px 30px;
-  }
+  // @media (max-width:1440px) {
+  //   padding: 10px 30px;
+  // }
 
-  @media (max-width:1280px) {
-    padding: 5px 20px;
-  }
+  // @media (max-width:1280px) {
+  //   padding: 5px 20px;
+  // }
 
-  @media (max-width:768px) {
-    padding: 10px 40px;
-  }
+  // @media (max-width:768px) {
+  //   padding: 10px 40px;
+  // }
 
   @media (max-width:430px) {
-    padding: 10px 20px;
+    padding: 12px 40px;
   }
 }
 
@@ -759,6 +764,9 @@ a {
 
 .margin22 {
   margin-bottom: 22px;
+  @media (max-width:430px) {
+    margin-bottom: 10px;
+  }
 }
 
 .margin23 {
@@ -786,16 +794,11 @@ a {
 .margin28 {
   margin-bottom: 28px;
   @media (max-width:430px) {
-    margin-bottom: 22px;
+    margin-bottom: 16px;
   }
 }
 
-.margin34 {
-  margin-bottom: 34px;
-  @media (max-width:430px) {
-    margin-bottom: 28px;
-  }
-}
+.ma 
 .margin36 {
   margin-bottom: 36px;
   @media (max-width:430px) {
@@ -811,6 +814,13 @@ a {
   }
 }
 
+.margin41 {
+  margin-bottom: 41px;
+
+  @media (max-width:430px) {
+    margin-bottom: 63px;
+  }
+}
 .margin42 {
   margin-bottom: 42px;
 
@@ -908,4 +918,9 @@ a {
 
 .thumbnail-image{
   border-radius: 10px;
+}
+
+select:focus {
+  outline: none;
+  border: none;
 }

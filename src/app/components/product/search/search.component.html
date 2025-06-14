@@ -4,7 +4,7 @@
 
       <!-- filter section -->
       <div class="col-xl-3 col-lg-3 filter-section">
-        <div class="border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3 filter-container" #filterContainer [ngClass]="{
+        <div class="border border-2 p-xl-4 p-md-3 p-3 filter-container" #filterContainer [ngClass]="{
     'position-sticky': true,
     'position-relative': isMobileFilterVisible && isMobile
   }">
@@ -23,7 +23,7 @@
                 <button class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
                   (click)="toggleFilter()" type="button" [attr.aria-expanded]="isMobileFilterVisible"
                   aria-controls="filter-options">
-                  <lucide-icon [name]="isMobileFilterVisible ? 'minus' : 'plus'" size="20" />
+                  <lucide-icon [name]="isMobileFilterVisible ? 'minus' : 'plus'" size="20"  style="display: flex;"/>
                 </button>
               </div>
             </div>
@@ -122,7 +122,7 @@
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
               <div class="filter-section">
                 <span *ngIf="!availableStartDate"
-                  class="size16 redhat-semibold position-absolute text-capitalize bg-transparent label-text"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;">Start date</span>
 
                 <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
@@ -133,7 +133,7 @@
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date To</label>
               <div class="filter-section">
                 <span *ngIf="!availableendDate"
-                  class="size16 redhat-semibold position-absolute text-capitalize bg-transparent label-text"
+                  class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;">End date</span>
 
                 <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
@@ -150,7 +150,7 @@
                     <div class="position-relative">
                       <input type="number" id="minPrice" [(ngModel)]="minPrice" (change)="onPriceInputChange('min')"
                         min="0" [max]="maxPrice - 500" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
-                      <span class="position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
+                      <span class="position-absolute size14 redhat-semibold color-card-p" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
                     </div>
                   </div>
                   <div class="col-6">
@@ -158,7 +158,7 @@
                     <div class="position-relative">
                       <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (change)="onPriceInputChange('max')"
                         [min]="minPrice + 500" max="10000" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
-                      <span class="position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
+                      <span class="position-absolute size14 redhat-semibold color-card-p" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
                     </div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@
         'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
       }">
         <!-- <div class="container-fluid"> -->
-        <div class="d-flex justify-content-between align-items-center margin34 margin60">
+        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60">
           <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
@@ -200,8 +200,8 @@
           </h6>
 
 
-          <select class="border-0 outline-none size16 redhat-semibold text-capitalize bg-transparent gray-color"
-            (change)="onChangeSort($event)">
+          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
+            (change)="onChangeSort($event)" style="font-size: 14px;">
             <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
               Sort by any makes
             </option>

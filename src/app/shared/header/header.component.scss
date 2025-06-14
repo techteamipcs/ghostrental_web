@@ -509,6 +509,16 @@ nav {
   }
 }
 
+.contact-pad{
+  padding: 18px 66px;
+  // @media screen and (max-width: 1024px) {
+  //   padding: 18px 46px;
+  // }
+  // @media screen and (max-width: 768px) {
+  //   padding: 18px 46px;
+  // }
+}
+
 .mobile-menu {
   position: fixed;
   top: 0;
