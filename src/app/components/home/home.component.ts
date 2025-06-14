@@ -18,6 +18,7 @@ Swiper.use([Navigation]);
 export class HomeComponent implements OnInit, AfterViewInit {
   private carSwiper: Swiper | null = null;
   private yachtSwiper: Swiper | null = null;
+  private trendingSwiper: Swiper | null = null;
   bannerData: any;
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
@@ -128,14 +129,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         breakpoints: {
           0: { slidesPerView: 1, spaceBetween: 10 },
-          768: { slidesPerView: 2, spaceBetween: 15 },
+          768: { slidesPerView: 2.5, spaceBetween: 15 },
           1200: { slidesPerView: 4.5, spaceBetween: 20 },
         },
       });
@@ -154,11 +155,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
@@ -169,7 +170,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 2.5,
             spaceBetween: 15,
           },
           1280: {
@@ -183,8 +184,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   public initTrendingSwiper() {
     if (isPlatformBrowser(this.platformId)) {
-      const swiper = new Swiper('.trending-cars-swiper', {
-        slidesPerView: 1,
+      this.trendingSwiper = new Swiper('.trending-cars-swiper', {
         loop: true,
         spaceBetween: 20,
         modules: [Navigation, Pagination, Autoplay],
@@ -202,6 +202,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.trending-swiper-button-next',
           prevEl: '.trending-swiper-button-prev',
         },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          199: {
+            slidesPerView: 1.5,
+            spaceBetween: 15,
+          },
+        },
       });
     }
   }
@@ -214,6 +224,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.yachtSwiper) {
       this.yachtSwiper?.destroy(true, true);
       this.yachtSwiper = null;
+    }
+    if (this.trendingSwiper) {
+      this.trendingSwiper?.destroy(true, true);
+      this.trendingSwiper = null;
     }
   }
 

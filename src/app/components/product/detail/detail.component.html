@@ -130,11 +130,11 @@
           <div class="d-flex align-items-center">
             <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
               class="sticky-card-icons me-1" />
-            <p class="size14 redhat-regular m-0">get directions</p>
+            <p class="size14 redhat-regular m-0 color-card-p">get directions</p>
           </div>
           <div class="d-flex align-items-center">
             <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
-            <p class="size14 redhat-regular m-0">+971 800 44678</p>
+            <p class="size14 redhat-regular m-0 color-card-p text-decoration-none">+971 800 44678</p>
           </div>
         </div>
         <div class="btns">
@@ -153,7 +153,7 @@
         </div>
       </div>
       <div class="d-xl-none d-block purchase-card mb-5 border border-1 border-black p-md-4 p-2 ">
-        <div class="d-flex align-items-end mb-2 mb-md-4 justify-content-md-between gap-3 gap-md-0">
+        <div class="d-flex justify-content-between mb-4">
           <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
           <div class="d-flex flex-column justify-content-between">
             <div>
@@ -473,7 +473,7 @@
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
         <div class="products">
           <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
+            <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
               [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active">
               <div class="car-card">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"

@@ -10,7 +10,7 @@
     padding: 10rem 4rem 2rem ;
   }
   @media screen and (max-width: 768px) {
-    padding: 10rem 2rem 2rem ;
+    padding: 10rem 3rem 2rem ;
   }
   @media screen and (max-width: 480px) {
     padding: 9rem 0px 1rem;
@@ -200,7 +200,7 @@
     padding: 2rem 5rem;
   }
   @media screen and (max-width: 768px) {
-    padding: 2rem 20px;
+    padding: 2rem 3rem;
   }
   @media screen and (max-width: 430px) {
     padding: 0rem 20px 2rem;
@@ -319,6 +319,9 @@
   margin-left: auto;
   border-radius: 15px;
   margin-right: 12px;
+  @media screen and (max-width: 768px) {
+    margin-right: 26px;
+  }
   @media screen and (max-width: 430px) {
     width: 100%;
     margin: 0;

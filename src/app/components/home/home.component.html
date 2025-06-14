@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row">
           <div
-            class="col-xl-5 col-lg-7 col-md-10 col-sm-10 col-12 ms-md-auto mx-md-auto mx-0 mb-md-0 mb-0 pad-left"
+            class="col-xl-6 col-lg-7 col-md-10 col-sm-10 col-12 pad-left"
           >
             <!-- <div class="content" *ngIf="!bannerData">
               <h1 class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize">
@@ -51,7 +51,7 @@
           </div>
 
           <div
-            class="col-xl-4 col-lg-5 col-md-7 col-sm-10 col-11 mt-lg-0 mt-md-5 mt-sm-4 mt-3 mx-auto pad-right"
+            class="col-xl-5 col-lg-5 col-md-7 col-sm-10 col-11 mx-auto pad-right"
           >
             <form
               class="form-glass gap-0 ms-md-auto mx-auto me-md-0"
@@ -350,7 +350,7 @@
   </div>
 </section>
 
-<section class="car-types-section d-lg-block d-none">
+<section class="car-types-section d-xl-block d-none">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
     Browse by Car Type
   </h3>
@@ -385,7 +385,7 @@
   </div>
 </section>
 
-<section class="car-types-section d-lg-none d-block">
+<section class="car-types-section d-xl-none d-block">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
     Browse by Car Type
   </h3>
@@ -462,10 +462,10 @@
       </div>
     </div>
     <div class="row topMargin justify-content-evenly">
-      <div class="col-lg-4 col-md-12 padding-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x">
         <div class="card h-100 position-relative">
           <img
-            src="{{ imageURL }}/home/services/car-rental.jpg"
+            src="{{ imageURL }}/home/services/car-rental.png"
             alt=""
             class="services-images z-1"
           />
@@ -489,10 +489,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 padding-x margin-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x">
         <div class="card rounded-4 h-100 position-relative">
           <img
-            src="{{ imageURL }}/home/services/yacht_rental.jpg"
+            src="{{ imageURL }}/home/services/yacht_rental.png"
             alt=""
             class="services-images z-1"
           />
@@ -515,10 +515,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-12 margin-x padding-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x">
         <div class="card rounded-4 h-100 position-relative">
           <img
-            src="{{ imageURL }}/home/services/chauffeur.jpg"
+            src="{{ imageURL }}/home/services/chauffeur.png"
             alt=""
             class="services-images z-1"
           />
@@ -651,7 +651,7 @@
                         <h6
                           class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
                         >
-                          AED {{ car.regularRate }}
+                          AED {{ car.regularRateDaily }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold">
                           AED {{ car.dailyRate }}
@@ -795,7 +795,7 @@
                         <h6
                           class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
                         >
-                          AED {{ yacht.regularRate }}
+                          AED {{ yacht.regularRateDaily }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold">
                           AED {{ yacht.dailyRate }}
@@ -894,7 +894,7 @@
       </h3>
 
       <div
-        class="row justify-content-around gap-xl-0 gap-md-3 gap-3 mt-xl-3 mt-2"
+        class="row justify-content-around mt-xl-3 mt-2"
       >
         <div
           class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-md-3 px-2"
@@ -977,7 +977,7 @@
               <div class="d-flex flex-column">
                 <span
                   class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through"
-                  >AED {{ car.regularRate }}</span
+                  >AED {{ car.regularRateDaily }}</span
                 >
                 <span
                   class="discounted-price size35 redhat-semibold white-color"
@@ -1023,7 +1023,7 @@
         </div>
 
         <div class="position-relative">
-          <div class="swiper car-collection-swiper" #carSwiper>
+          <div class="swiper trending-cars-swiper" #trendingSwiper>
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
@@ -1069,7 +1069,7 @@
                       <div class="d-flex flex-column">
                         <span
                           class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through"
-                          >AED {{ car.regularRate }}</span
+                          >AED {{ car.regularRateDaily }}</span
                         >
                         <span
                           class="discounted-price size35 redhat-semibold white-color"

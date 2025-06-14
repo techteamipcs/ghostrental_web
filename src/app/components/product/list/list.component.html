@@ -64,15 +64,17 @@
           </h6>
 
           <select
-            class="border-0 outline-none size16 redhat-semibold text-capitalize"
+            class="border-0 outline-none size16 redhat-semibold text-capitalize bg-transparent gray-color"
             (change)="onChangeSort($event)"
+           
           >
             <option
               selected
               disabled
-              class="text-muted size14 redhat-semibold text-capitalize"
+              class="text-muted size14 redhat-semibold text-capitalize bg-white"
             >
               Sort by any makes
+              <!-- <img src="{{ imageURL }}/down-arrow.svg" alt=""> -->
             </option>
             <option value="A-Z" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z

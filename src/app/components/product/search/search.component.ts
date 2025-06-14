@@ -107,7 +107,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
  
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 991;
+      this.isMobile = window.innerWidth <= 1199;
       this.isMobileFilterVisible = !this.isMobile;
     }
     // Load initial data
@@ -621,7 +621,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', [])
   onResize(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 991;
+      this.isMobile = window.innerWidth <= 1199;
       this.isMobileFilterVisible = !this.isMobile;
     }
   }

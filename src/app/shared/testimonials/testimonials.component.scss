@@ -10,11 +10,11 @@
   }
 
   @media screen and (max-width: 1200px) {
-    padding: 4rem 6.25rem;
+    padding: 120px 100px;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 3rem 1.5rem;
+    padding: 90px 60px;
   }
 
 
@@ -134,7 +134,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    padding: 3rem 1.5rem;
+    padding: 3rem 3.5rem;
   }
 
 
@@ -273,4 +273,10 @@
   width: 24px;
   height: 24px;
   line-height: normal;
+}
+
+.size60{
+ @media screen and (max-width: 768px){
+   font-size: 36px;
+  } 
 }

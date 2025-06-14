@@ -1,8 +1,11 @@
 
 .sectionPadding {
   padding: 10rem 0 0 0;
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1280px) {
     padding: 11rem 0 0 0;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 8rem 0 0 0;
   }
   @media screen and (max-width: 414px) {
     padding: 7rem 0 0 0;
@@ -12,7 +15,8 @@
 .banner-left{
   padding-left: 28px;
   @media screen and (max-width: 1280px) {
-    padding-left: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 }
@@ -45,7 +49,7 @@
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  width: 74%;
+  width: 100%;
 }
 @media screen and (max-width: 610px) {
   width: 84%;
@@ -53,6 +57,45 @@
 @media screen and (max-width: 430px) {
   width: 99%;
 }
+}
+
+
+.about-content2 {
+  width: 63%;
+  height: 100%;
+  display: flex;
+  @media screen and (max-width: 1920px) {
+    width:82%;
+  }
+  @media screen and (max-width: 1536px) {
+    width:93%;
+  }
+  @media screen and (max-width: 1440px) {
+    width:90%;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    padding-left: 2rem;
+  }
+  @media screen and (max-width: 1024px) {
+    padding-left:80px;
+    width: 62%;
+  }
+  @media screen and (max-width: 800px) {
+    width: 84%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 59%;
+    padding-left: 57px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    padding-left: .5rem;
+  }
+  @media screen and (max-width: 375px) {
+    width: 100%;
+    padding-left: 0;
+  }
 }
 
 .about-image-container {
@@ -70,11 +113,14 @@
   @media screen and (max-width: 1200px) {
     padding-left: 2rem;
   }
+  @media screen and (max-width: 1024px) {
+    padding-left: 88px; 
+  }
   @media screen and (max-width: 768px) {
-    padding-left: 1.5rem; 
+    padding-left: 66px; 
   }
   @media screen and (max-width: 425px) {
-    padding-left: 1rem; 
+    padding-left: 55px; 
   }
   @media screen and (max-width: 375px) {
     padding-left: .5rem; 
@@ -139,42 +185,6 @@
   }
 }
 
-.about-content2 {
-  width: 63%;
-  height: 100%;
-  display: flex;
-  @media screen and (max-width: 1920px) {
-    width:82%;
-  }
-  @media screen and (max-width: 1536px) {
-    width:93%;
-  }
-  @media screen and (max-width: 1440px) {
-    width:90%;
-  }
-  @media screen and (max-width: 1280px) {
-    width: 100%;
-    padding-left: 2rem;
-  }
-  @media screen and (max-width: 1024px) {
-    padding-left: 1.5rem;
-  }
-  @media screen and (max-width: 800px) {
-    width: 84%;
-  }
-  @media screen and (max-width: 768px) {
-    width: 70%;
-    padding-left: 1rem;
-  }
-  @media screen and (max-width: 430px) {
-    width: 100%;
-    padding-left: .5rem;
-  }
-  @media screen and (max-width: 375px) {
-    width: 100%;
-    padding-left: 0;
-  }
-}
 .features {
   padding: 4rem 24rem;
   @media screen and (max-width: 1536px) {
@@ -186,8 +196,11 @@
   @media screen and (max-width: 1280px) {
     padding: 4rem;
   }
+  @media screen and (max-width: 1024px) {
+    padding: 3rem 100px;
+  }
   @media screen and (max-width: 768px) {
-    padding: 3rem 10px;
+    padding: 3rem 80px;
   }
 }
 
@@ -223,7 +236,7 @@
     padding: 4rem 0 4rem 5rem;
   }
   @media screen and (max-width: 768px) {
-    padding: 3rem 0rem 3rem 1rem;
+    padding: 3rem 0rem 3rem 3rem;
   }
 
   .story-content{
@@ -286,10 +299,10 @@
     margin: 6.3rem;
   }
   @media screen and (max-width: 1200px) {
-    margin: 100px 20px;
+    margin: 60px 20px;
   }
   @media screen and (max-width: 768px) {
-    margin: 100px 20px;
+    margin: 30px 20px;
   }
   @media screen and (max-width: 414px) {
     margin: 50px 20px;
@@ -343,6 +356,13 @@
   }
 }
 
+.size80 {
+  @media (max-width:768px) {
+    font-size: 56px;
+  }
+}
+
+
 .size60{
   @media (max-width:430px) {
     font-size: 26px;
@@ -353,3 +373,4 @@
     font-size: 12px;
   }
 }
+
