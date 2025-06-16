@@ -14,6 +14,21 @@ import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2';
+
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
 
 @Component({
   selector: 'app-search',
@@ -48,7 +63,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedBrand: any = [];
   selectedModel: any = [];
   selectedCartype: any = [];
-  today:string = '';
+  today: string = '';
+  selelctedstartDate: string = '';
+  selelctedendDate: string = '';
+  pickuptoday: string;
+  dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
   maxPrice: any = 10000;
@@ -60,7 +79,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
-  vehicleType:any = 'Car';
+  vehicleType: any = 'Car';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -75,7 +94,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     private dataservice: DataService,
     private route: ActivatedRoute,
     private router: Router,
-     @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Initialize mobile filter as closed
     this.param_type = this.route.snapshot.paramMap.get('type');
@@ -83,7 +102,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.vipNumberPlate = true;
     }
     const todayDate = new Date();
-    this.today = todayDate.toISOString().split('T')[0];
+    // this.today = todayDate.toISOString().split('T')[0];
+    const year = todayDate.getFullYear();
+    const month = String(todayDate.getMonth() + 1).padStart(2, '0');
+    const day = String(todayDate.getDate()).padStart(2, '0');
+    const hours = String(todayDate.getHours()).padStart(2, '0');
+    const minutes = String(todayDate.getMinutes()).padStart(2, '0');
+
+    this.pickuptoday = `${year}-${month}-${day}T${hours}:${minutes}`;
+    this.dropofftoday = `${year}-${month}-${day}T${hours}:${minutes}`;
   }
 
   toggleSelectDropdown(event: Event): void {
@@ -107,7 +134,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
     select.classList.remove('expanded');
   }
- 
+
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 1199;
@@ -453,7 +480,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   // Public method to trigger search (can be called from template)
   SearchItems() {
-    
+
     this.getCarData();
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
@@ -465,7 +492,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBrand = [];
     this.selectedModel = [];
     // this.selectedRentalType = 'Daily';
-    
+
     this.selectedRentalType = null;
     this.minPrice = 0;
     this.maxPrice = 10000;
@@ -628,4 +655,25 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.isMobileFilterVisible = !this.isMobile;
     }
   }
+
+
+  onSelectPickupDate() {
+    if (this.selelctedstartDate) {
+      this.dropofftoday = this.selelctedstartDate;
+    }
+  }
+
+  onSelectDropDate() {
+    if (!this.selelctedstartDate) {
+      Toast.fire({
+        title: 'Please select pickup date first!',
+        icon: 'warning',
+      });
+      this.selelctedendDate = '';
+      this.availableendDate = '';
+    } else {
+      this.availableendDate = this.selelctedendDate;
+    }
+  }
+
 }
