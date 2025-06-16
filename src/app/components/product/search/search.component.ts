@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   maxPrice: any = 10000;
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
-  price_type: any = '';
+  price_type: any = 'dailyRate';
   availableStartDate: any;
   availableendDate: any;
   vipNumberPlate: any = '';
