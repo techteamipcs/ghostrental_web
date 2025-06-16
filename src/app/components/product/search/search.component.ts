@@ -515,8 +515,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
       price_type: this.price_type,
-      startDate: this.availableStartDate,
-      endDate: this.availableendDate,
+      startDate: this.selelctedstartDate,
+      endDate: this.selelctedendDate,
       sort: this.sort,
       isvipNumberPlate: this.vipNumberPlate
     };
