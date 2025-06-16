@@ -6,6 +6,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2'
 
 Swiper.use([Navigation]);
 
@@ -26,6 +27,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   brandsData: any = [];
   isCar: boolean = true;
   today: string;
+  pickuptoday: string;
+  dropofftoday: string;
   maxDate: string;
   reservationForm!: FormGroup;
   isVehicleYacht = false;
@@ -91,6 +94,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.today = todayDate.toISOString().split('T')[0];
     const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));
     this.maxDate = futureDate.toISOString().split('T')[0];
+    this.pickuptoday = this.today;
+    this.dropofftoday = this.today;
   }
 
   ngOnInit() {
@@ -458,4 +463,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
+  onSelectPickupDate() {
+    if(this.selelctedstartDate){
+      this.dropofftoday = this.selelctedstartDate;
+    }
+  }
+
+  onSelectDropDate() {
+    if(!this.selelctedstartDate){
+      Swal.fire({
+        title: 'Please select pickup date first!',
+        position: "top-end",
+        icon: 'error'
+      });
+      this.selelctedendDate = '';
+    }
+  }
 }
+

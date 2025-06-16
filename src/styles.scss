@@ -63,12 +63,9 @@ body {
   font-size: 12px;
 
   @media (max-width:1536px) {
-    font-size: 10px;
-  }
-
-  @media (max-width:1280px) {
     font-size: 8px;
   }
+
 }
 
 .size14 {
@@ -358,9 +355,9 @@ body {
     font-size: 58px;
   }
 
-  // @media (max-width:1440px) {
-  //   font-size: 45px;
-  // }
+  @media (max-width:1440px) {
+    font-size: 50px;
+  }
 
   @media (max-width:1280px) {
     font-size: 56px;
@@ -586,13 +583,14 @@ body {
   text-transform: capitalize;
   transition: all 0.3s ease;
 
-  // @media (max-width:1600px) {
-  //   padding: 14px 40px;
-  // }
+  @media (max-width:1600px) {
+    padding: 16px 60px;
+  }
 
-  // @media (max-width:1440px) {
-  //   padding: 10px 30px;
-  // }
+  @media (max-width:1440px) {
+    padding: 7px 40px;
+
+  }
 
   @media (max-width:1280px) {
     padding: 14px 50px;
@@ -619,13 +617,15 @@ body {
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
-  // @media (max-width:1600px) {
-  //   padding: 14px 50px;
-  // }
 
-  // @media (max-width:1440px) {
-  //   padding: 10px 30px;
-  // }
+  @media (max-width:1600px) {
+    padding: 16px 60px;
+  }
+
+  @media (max-width:1440px) {
+    padding: 7px 40px;
+
+  }
 
   @media (max-width:1280px) {
     padding: 14px 50px;
@@ -659,21 +659,21 @@ body {
   text-transform: capitalize;
   transition: all 0.3s ease;
 
-  // @media (max-width:1600px) {
-  //   padding: 14px 50px;
-  // }
+  @media (max-width:1600px) {
+    padding: 16px 60px;
+  }
 
-  // @media (max-width:1440px) {
-  //   padding: 10px 30px;
-  // }
+  @media (max-width:1440px) {
+    padding: 7px 40px;
+  }
 
-  // @media (max-width:1280px) {
-  //   padding: 5px 20px;
-  // }
+  @media (max-width:1280px) {
+    padding: 5px 20px;
+  }
 
-  // @media (max-width:768px) {
-  //   padding: 10px 40px;
-  // }
+  @media (max-width:768px) {
+    padding: 10px 40px;
+  }
 
   @media (max-width:430px) {
     padding: 12px 40px;
@@ -749,6 +749,12 @@ a {
 .margin10 {
   margin-bottom: 10px;
 }
+.margin14 {
+  margin-bottom: 14px;
+@media (max-width:1440px) {
+  margin-bottom: 10px;
+}
+}
 
 .margin17 {
   margin-bottom: 17px;
@@ -798,7 +804,12 @@ a {
   }
 }
 
-.ma 
+.margin34 {
+  margin-bottom: 34px;
+  @media (max-width:430px) {
+    margin-bottom: 20px;
+  }
+}
 .margin36 {
   margin-bottom: 36px;
   @media (max-width:430px) {

@@ -34,6 +34,7 @@
     "ngx-bootstrap": "^12.0.0",
     "ngx-intl-tel-input": "^16.0.1",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.22.0",
     "swiper": "^11.2.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

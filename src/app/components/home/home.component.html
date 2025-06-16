@@ -1,21 +1,13 @@
 <section class="home bannerPadding">
   <div class="container-fluid position-relative p-0 h-100">
-    <img
-      *ngIf="bannerData && bannerData.media_data.length > 0"
-      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
-      alt="Limousine on road"
-      class="w-100 h-100"
-      style="border-radius: 30px"
-      loading="lazy"
-      decoding="async"
-    />
+    <img *ngIf="bannerData && bannerData.media_data.length > 0"
+      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}" alt="Limousine on road" class="w-100 h-100"
+      style="border-radius: 30px" loading="lazy" decoding="async" />
 
     <div class="position-absolute w-100 start-50 translate-middle form-top">
       <div class="container-fluid">
         <div class="row">
-          <div
-            class="col-xl-6 col-lg-7 col-md-10 col-sm-10 col-12 pad-left"
-          >
+          <div class="col-xl-6 col-lg-7 col-md-10 col-sm-12 col-12 pad-left">
             <!-- <div class="content" *ngIf="!bannerData">
               <h1 class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize">
                 Turn Every Trip Into Ultimate Reality
@@ -29,225 +21,138 @@
             </div> -->
 
             <div class="content" *ngIf="bannerData">
-              <h1
-                class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize"
-                [innerHtml]="bannerData.short_desc"
-              ></h1>
-              <p
-                class="size20 redhat-regular hero-para beige-color line-height26 mb-md-4 mb-2"
-                [innerHtml]="bannerData.description"
-              ></p>
-              <a
-                href="/contact"
-                class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block"
-                >Book Now</a
-              >
-              <a
-                href="/contact"
-                class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none"
-                >Book Now</a
-              >
+              <h1 class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize"
+                [innerHtml]="bannerData.short_desc"></h1>
+              <p class="size20 redhat-regular hero-para beige-color line-height26 mb-md-4 mb-2"
+                [innerHtml]="bannerData.description"></p>
+              <a href="/contact"
+                class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block">Book
+                Now</a>
+              <a href="/contact"
+                class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a>
             </div>
           </div>
 
-          <div
-            class="col-xl-5 col-lg-5 col-md-7 col-sm-10 col-11 mx-auto pad-right"
-          >
-            <form
-              class="form-glass gap-0 ms-md-auto mx-auto me-md-0"
-              (submit)="onSubmit()"
-            >
+          <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
+            <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0" (submit)="onSubmit()">
               <h2 class="text-center size28 redhat-bold black-color">
                 Quick Reservation
               </h2>
 
-              <div
-                class="d-flex justify-content-center align-items-center gap-2 toggle"
-              >
-                <span class="redhat-bold text-uppercase m-0 black-color"
-                  >CARS</span
-                >
-                <div
-                  class="toggle-switch"
-                  id="vehicleToggle"
-                  (click)="toggleVehicle()"
-                  [class.active]="isVehicleYacht"
-                  tabindex="0"
-                  role="switch"
-                  [attr.aria-checked]="isVehicleYacht"
-                  (keydown.enter)="toggleVehicle()"
-                  (keydown.space)="toggleVehicle()"
-                ></div>
-                <span class="redhat-bold text-uppercase m-0 black-color"
-                  >YACHTS</span
-                >
+              <div class="d-flex justify-content-center align-items-center gap-2 toggle">
+                <span class="redhat-bold text-uppercase m-0 black-color">CARS</span>
+                <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
+                  tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht" (keydown.enter)="toggleVehicle()"
+                  (keydown.space)="toggleVehicle()"></div>
+                <span class="redhat-bold text-uppercase m-0 black-color">YACHTS</span>
               </div>
 
               <div class="row type-margin">
                 <div class="col-6" *ngIf="!isVehicleYacht">
-                  <select
-                    class="form-select size14 redhat-semibold"
-                    required
-                    (change)="selectData('body_type', $event)"
-                  >
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      class="size14 redhat-semibold"
-                    >
-                      Type
-                    </option>
-                    <option
-                      value="{{ bodytype.url_key }}"
-                      class="size14 redhat-semibold"
-                      *ngFor="let bodytype of filteredBodytype"
-                    >
-                      {{ bodytype.name }}
-                    </option>
-                  </select>
+                  <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" required
+                      (change)="selectData('body_type', $event)">
+                      <option value="" disabled selected class="size14 redhat-semibold">
+                        Type
+                      </option>
+                      <option value="{{ bodytype.url_key }}" class="size14 redhat-semibold"
+                        *ngFor="let bodytype of filteredBodytype">
+                        {{ bodytype.name }}
+                      </option>
+                    </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                 </div>
                 <div class="col-6" *ngIf="!isVehicleYacht">
-                  <select
-                    class="form-select size14 redhat-semibold"
-                    required
-                    (change)="selectData('brand', $event)"
-                  >
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      class="size14 redhat-semibold"
-                    >
-                      Brands
-                    </option>
-                    <option
-                      value="{{ brand.url_key }}"
-                      class="size14 redhat-semibold"
-                      *ngFor="let brand of filteredBrands"
-                    >
-                      {{ brand.name }}
-                    </option>
-                  </select>
+                  <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" required (change)="selectData('brand', $event)">
+                      <option value="" disabled selected class="size14 redhat-semibold">
+                        Brands
+                      </option>
+                      <option value="{{ brand.url_key }}" class="size14 redhat-semibold"
+                        *ngFor="let brand of filteredBrands">
+                        {{ brand.name }}
+                      </option>
+                    </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                 </div>
 
                 <div class="col-6" *ngIf="isVehicleYacht">
-                  <select class="form-select size14 redhat-semibold" required>
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      class="size14 redhat-semibold"
-                    >
-                      Type
-                    </option>
-                    <option
-                      class="size14 redhat-semibold"
-                      value="{{ bodytype.url_key }}"
-                      *ngFor="let bodytype of filteredBodytype"
-                    >
+                  <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" required>
+                      <option value="" disabled selected class="size14 redhat-semibold">
+                        Type
+                      </option>
+                      <option class="size14 redhat-semibold" value="{{ bodytype.url_key }}"
+                      *ngFor="let bodytype of filteredBodytype">
                       {{ bodytype.name }}
                     </option>
                   </select>
+                  <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                </div>
                 </div>
                 <div class="col-6" *ngIf="isVehicleYacht">
+                  <div class="position-relative">
                   <select class="form-select size14 redhat-semibold" required>
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      class="size14 redhat-semibold"
-                    >
+                    <option value="" disabled selected class="size14 redhat-semibold">
                       Model
                     </option>
-                    <option
-                      class="size14 redhat-semibold"
-                      value="{{ model.url_key }}"
-                      class="size14 redhat-semibold"
-                      *ngFor="let model of filteredBrands"
-                    >
+                    <option class="size14 redhat-semibold" value="{{ model.url_key }}" class="size14 redhat-semibold"
+                      *ngFor="let model of filteredBrands">
                       {{ model.name }}
                     </option>
                   </select>
+                  <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
                 </div>
               </div>
+            </div>
 
-              <div
-                class="section-title size18 redhat-bold black-color label-margin"
-              >
+              <div class="section-title size18 redhat-bold black-color label-margin">
                 Pickup
               </div>
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
-                    <span
-                      [class.d-none]="selelctedstartDate"
+                    <span [class.d-none]="selelctedstartDate"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder"
-                      style="pointer-events: none"
-                      >Date</span
-                    >
-                    <input
-                      type="date"
-                      id="startDate"
-                      [min]="today"
-                      [(ngModel)]="selelctedstartDate"
-                      (ngModelChange)="onDateChange($event)"
-                      name="selelctedstartDate"
-                      class="form-control size14 redhat-semibold input-margin"
-                      required
-                    />
+                      style="pointer-events: none">Date</span>
+                    <input type="date" id="startDate" [min]="pickuptoday" [(ngModel)]="selelctedstartDate"
+                      (ngModelChange)="onSelectPickupDate()" name="selelctedstartDate"
+                      class="form-control size14 redhat-semibold input-margin" required />
 
                     <lucide-icon name="calendar-days"></lucide-icon>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="position-relative">
-                    <span
-                      [class.d-none]="selectedstartTime"
+                    <span [class.d-none]="selectedstartTime"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder"
-                      style="pointer-events: none"
-                      >Time</span
-                    >
-                    <input
-                      type="time"
-                      id="startTime"
-                      [(ngModel)]="selectedstartTime"
-                      name="selectedstartTime"
-                      class="form-control size14 redhat-semibold"
-                      placeholder="Time"
-                      required
-                    />
+                      style="pointer-events: none">Time</span>
+                    <input type="time" id="startTime" [(ngModel)]="selectedstartTime" name="selectedstartTime"
+                      class="form-control size14 redhat-semibold" placeholder="Time" required />
+                      <lucide-icon name="clock"></lucide-icon>
                   </div>
                 </div>
                 <div class="col-12 select-margin">
                   <ng-container *ngIf="!isVehicleYacht; else yachtPickup">
-                    <select
-                      class="form-select size14 redhat-semibold"
-                      (change)="onSelectPickupLocation($event)"
-                      required
-                    >
-                      <option
-                        value=""
-                        disabled
-                        selected
-                        class="size14 redhat-semibold"
-                      >
+                    <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
+                      required>
+                      <option value="" disabled selected class="size14 redhat-semibold">
                         Choose Pickup Location
                       </option>
-                      <option
-                        *ngFor="let location of pickupLocations"
-                        class="size14 redhat-semibold"
-                      >
+                      <option *ngFor="let location of pickupLocations" class="size14 redhat-semibold">
                         {{ location.name }}
                       </option>
                     </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                   </ng-container>
                   <ng-template #yachtPickup>
-                    <select
-                      class="form-select size14 redhat-semibold"
-                      (change)="onSelectPickupLocation($event)"
-                      required
-                    >
+                    <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
+                      required>
                       <option value="" disabled selected>
                         Choose Pickup Marina
                       </option>
@@ -255,63 +160,40 @@
                         {{ location.name }}
                       </option>
                     </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                   </ng-template>
                 </div>
               </div>
 
-              <div
-                class="section-title size18 redhat-bold black-color label-margin"
-              >
+              <div class="section-title size18 redhat-bold black-color label-margin">
                 Return
               </div>
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
-                    <span
-                      [class.d-none]="selelctedendDate"
+                    <span [class.d-none]="selelctedendDate"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder "
-                      style="pointer-events: none"
-                      >Date</span
-                    >
-                    <input
-                      type="date"
-                      id="endDate"
-                      [min]="today"
-                      [(ngModel)]="selelctedendDate"
-                      name="selelctedendDate"
-                      class="form-control size14 redhat-semibold input-margin"
-                      placeholder="Date"
-                      required
-                    />
+                      style="pointer-events: none">Date</span>
+                    <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate" name="selelctedendDate"
+                      class="form-control size14 redhat-semibold input-margin"  (ngModelChange)="onSelectDropDate()" placeholder="Date" required />
                     <lucide-icon name="calendar-days"></lucide-icon>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="position-relative">
-                    <span
-                      [class.d-none]="selectedendTime"
+                    <span [class.d-none]="selectedendTime"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder"
-                      style="pointer-events: none"
-                      >Time</span
-                    >
-                    <input
-                      type="time"
-                      id="endTime"
-                      [(ngModel)]="selectedendTime"
-                      name="selectedendTime"
-                      class="form-control size14 redhat-semibold"
-                      placeholder="Time"
-                      required
-                    />
+                      style="pointer-events: none">Time</span>
+                    <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
+                      class="form-control size14 redhat-semibold" placeholder="Time" required />
+                      <lucide-icon name="clock"></lucide-icon>
                   </div>
                 </div>
                 <div class="col-12 select-margin">
                   <ng-container *ngIf="!isVehicleYacht; else yachtReturn">
-                    <select
-                      class="form-select size14 redhat-semibold"
-                      (change)="onSelectDropLocation($event)"
-                      required
-                    >
+                    <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                       <option value="" disabled selected>
                         Choose Return Location
                       </option>
@@ -319,13 +201,12 @@
                         {{ location.name }}
                       </option>
                     </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                   </ng-container>
                   <ng-template #yachtReturn>
-                    <select
-                      class="form-select size14 redhat-semibold"
-                      (change)="onSelectDropLocation($event)"
-                      required
-                    >
+                    <div class="position-relative">
+                    <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)" required>
                       <option value="" disabled selected>
                         Choose Return Marina
                       </option>
@@ -333,15 +214,14 @@
                         {{ location.name }}
                       </option>
                     </select>
+                    <img src="{{ imageURL }}/down-arrow.svg" alt="" class="down-arrow">
+                  </div>
                   </ng-template>
                 </div>
               </div>
 
-              <button
-                type="submit"
-                class="black-button d-flex mx-auto size18 redhat-bold btn-margin"
-                (click)="goToResults()"
-              >
+              <button type="submit" class="black-button d-flex mx-auto size18 redhat-bold btn-margin"
+                (click)="goToResults()">
                 Book Now
               </button>
             </form>
@@ -358,27 +238,14 @@
   </h3>
   <div class="container-fluid">
     <div class="d-flex align-items-center gap">
-      <div
-        *ngFor="let car of cartypeData"
-        class="position-relative d-flex flex-column align-items-center justify-content-center"
-        style="cursor: pointer"
-      >
-        <a
-          [routerLink]="['/product/list', car.url_key]"
-          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
-        >
-          <img
-            src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
-            [alt]="car.name"
-            class="category-image"
-            [routerLink]="['/product/list', car.url_key]"
-            routerLinkActive="router-link-active"
-          />
-          <p
-            class="redhat-semibold text-center type-margin text-capitalize"
-            [routerLink]="['/product/list', car.url_key]"
-            routerLinkActive="router-link-active"
-          >
+      <div *ngFor="let car of cartypeData"
+        class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
+        <a [routerLink]="['/product/list', car.url_key]"
+          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
+          <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
+            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
+          <p class="redhat-semibold text-center type-margin text-capitalize"
+            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active">
             {{ car.name }}
           </p>
         </a>
@@ -393,27 +260,14 @@
   </h3>
   <div class="container-fluid">
     <div class="grid-category">
-      <div
-        *ngFor="let car of cartypeData"
-        class="position-relative d-flex flex-column align-items-center justify-content-center"
-        style="cursor: pointer"
-      >
-        <a
-          [routerLink]="['/product/list', car.url_key]"
-          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize"
-        >
-          <img
-            src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
-            [alt]="car.name"
-            class="category-image"
-            [routerLink]="['/product/list', car.url_key]"
-            routerLinkActive="router-link-active"
-          />
-          <p
-            class="redhat-semibold text-center type-margin text-capitalize"
-            [routerLink]="['/product/list', car.url_key]"
-            routerLinkActive="router-link-active"
-          >
+      <div *ngFor="let car of cartypeData"
+        class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
+        <a [routerLink]="['/product/list', car.url_key]"
+          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
+          <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
+            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
+          <p class="redhat-semibold text-center type-margin text-capitalize"
+            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active">
             {{ car.name }}
           </p>
         </a>
@@ -425,40 +279,27 @@
 <section class="services position-relative">
   <div class="container-fluid">
     <div class="position-relative img-height">
-      <img
-        src="{{ imageURL }}/home/services/services1.png"
-        alt=""
-        class="w-100 h-100 rounded-4"
-      />
+      <img src="{{ imageURL }}/home/services/services1.png" alt="" class="w-100 h-100 rounded-4" />
+
+      <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4" style="background-color: rgba(0, 0, 0, 0.7)">
+      </div>
 
       <div
-        class="position-absolute top-0 start-0 w-100 h-100 rounded-4"
-        style="background-color: rgba(0, 0, 0, 0.7)"
-      ></div>
-
-      <div
-        class="position-absolute topspace text-center d-flex flex-column justify-content-md-center align-items-center h-100 w-100"
-      >
+        class="position-absolute topspace text-center d-flex flex-column justify-content-md-center align-items-center h-100 w-100">
         <div class="col-lg-8 col-11">
           <h3 class="size22 redhat-bold text-capitalize beige-color margin22">
             our Services
           </h3>
-          <h2
-            class="size60 performa-light text-capitalize beige-color margin24"
-          >
+          <h2 class="size60 performa-light text-capitalize beige-color margin24">
             That Redefine Luxury Travel
           </h2>
-          <p
-            class="size20 redhat-regular white-color margin22 service-para-width mx-auto"
-          >
+          <p class="size20 redhat-regular white-color margin22 service-para-width mx-auto">
             We specialize in luxury car hire & yacht rental across UAE, creating
             complete luxury experiences with personalized attention beyond
             simple rentals.
           </p>
           <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto">
-            <a href="/services" class="black-color text-decoration-none"
-              >view all</a
-            >
+            <a href="/services" class="black-color text-decoration-none">view all</a>
           </button>
         </div>
       </div>
@@ -466,15 +307,9 @@
     <div class="row topMargin justify-content-evenly">
       <div class="col-xl-4 col-lg-8 col-md-10 padding-x">
         <div class="card h-100 position-relative">
-          <img
-            src="{{ imageURL }}/home/services/car-rental.png"
-            alt=""
-            class="services-images z-1"
-          />
+          <img src="{{ imageURL }}/home/services/car-rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3"
-            >
+            <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Car Rental Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
@@ -482,10 +317,8 @@
               Choose Rolls-Royce, Lamborghini & Range Rover with free UAE
               delivery.
             </p>
-            <a
-              href="/services"
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
-            >
+            <a href="/services"
+              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto">
               know more
             </a>
           </div>
@@ -493,25 +326,17 @@
       </div>
       <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x">
         <div class="card rounded-4 h-100 position-relative">
-          <img
-            src="{{ imageURL }}/home/services/yacht_rental.png"
-            alt=""
-            class="services-images z-1"
-          />
+          <img src="{{ imageURL }}/home/services/yacht_rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3"
-            >
+            <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Yacht Rental Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
               Sail by Dubai's famous landmarks such as Palm Jumeirah, Burj Al
               Arab, and Atlantis on our crewed and catered luxury yachts.
             </p>
-            <a
-              href="/services"
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
-            >
+            <a href="/services"
+              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto">
               know more
             </a>
           </div>
@@ -519,15 +344,9 @@
       </div>
       <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x">
         <div class="card rounded-4 h-100 position-relative">
-          <img
-            src="{{ imageURL }}/home/services/chauffeur.png"
-            alt=""
-            class="services-images z-1"
-          />
+          <img src="{{ imageURL }}/home/services/chauffeur.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
-            <h4
-              class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3"
-            >
+            <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Chauffeur Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
@@ -535,10 +354,8 @@
               chauffeur services in Dubai provide unparalleled elegance for
               every trip.
             </p>
-            <a
-              href="/services"
-              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
-            >
+            <a href="/services"
+              class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto">
               know more
             </a>
           </div>
@@ -554,126 +371,83 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-md-0">
-        <div
-          class="d-flex justify-content-between align-items-center margin-bottom60 margin-right"
-        >
+        <div class="d-flex justify-content-between align-items-center margin-bottom60 margin-right">
           <h3 class="text-capitalize size60 performa-light mb-0">
             Our Luxury Cars For Rent
           </h3>
           <button class="black-button size18 redhat-bold d-none d-lg-block">
-            <a href="/product/search" class="white-color text-decoration-none"
-              >view all</a
-            >
+            <a href="/product/search" class="white-color text-decoration-none">view all</a>
           </button>
         </div>
 
         <div class="position-relative">
           <div class="swiper car-collection-swiper" #carSwiper>
             <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                *ngFor="let car of ourCarCollections"
-                [routerLink]="['/product', car.url_key]"
-                routerLinkActive="router-link-active"
-              >
+              <div class="swiper-slide" *ngFor="let car of ourCarCollections" [routerLink]="['/product', car.url_key]"
+                routerLinkActive="router-link-active">
                 <div class="car-card">
                   <div class="thumbnail-image">
-                    <img
-                      *ngIf="car.media_data && car.media_data.length > 0"
-                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                      [alt]="car.name"
-                      class="img-fluid thumbnail-image w-100 h-100"
-                    />
+                    <img *ngIf="car.media_data && car.media_data.length > 0"
+                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
+                      class="img-fluid thumbnail-image w-100 h-100" />
                   </div>
                   <div class="card-content">
-                    <div
-                      class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
-                    >
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
                       <div class="car-header">
                         <h4 class="car-name mb-1 size26 redhat-semibold">
                           {{ car.name }}
                         </h4>
-                        <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize m-0"
-                        >
+                        <h6 class="transmission text-muted size18 redhat-semibold text-capitalize m-0">
                           {{ car.transmission }}
                         </h6>
                       </div>
-                      <span
-                        *ngIf="car && car.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                        >special number plate</span
-                      >
+                      <span *ngIf="car && car.isvipNumberPlate"
+                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                        plate</span>
                     </div>
 
-                    <div
-                      class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2"
-                    >
+                    <div class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2">
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/fuel_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ car.fuelType }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/speed_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ car.mileage }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/seat_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ car.seating_capacity }} Seats
                         </h6>
                       </div>
                     </div>
-                    <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-2"
-                    >
+                    <div class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-2">
                       <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
-                        >
+                        <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through">
                           AED {{ car.regularRateDaily }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold">
                           AED {{ car.dailyRate }}
                         </h5>
                       </div>
-                      <a
-                        [routerLink]="['/product', car.url_key]"
-                        routerLinkActive="router-link-active"
-                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
-                        >view details</a
-                      >
+                      <a [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active"
+                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">view
+                        details</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            class="d-flex justify-content-between align-items-center margin-top40"
-          >
+          <div class="d-flex justify-content-between align-items-center margin-top40">
             <div class="text-start gap-2 d-flex">
               <div class="button car-swiper-button-prev" #carSwiperPrev>
                 <lucide-icon name="arrow-left" class="swiper-button-icon" />
@@ -683,9 +457,7 @@
               </div>
             </div>
             <button class="black-button size18 redhat-bold d-block d-lg-none">
-              <a href="/product/search" class="white-color text-decoration-none"
-                >view all</a
-              >
+              <a href="/product/search" class="white-color text-decoration-none">view all</a>
             </button>
           </div>
         </div>
@@ -698,117 +470,76 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-md-0">
-        <div
-          class="d-flex justify-content-between align-items-center margin-bottom60 margin-right"
-        >
+        <div class="d-flex justify-content-between align-items-center margin-bottom60 margin-right">
           <h3 class="text-capitalize size60 performa-light mb-0">
             Our Luxury Yacht Charter
           </h3>
           <button class="black-button size18 redhat-bold d-none d-lg-block">
-            <a href="/product/search" class="white-color text-decoration-none"
-              >view all</a
-            >
+            <a href="/product/search" class="white-color text-decoration-none">view all</a>
           </button>
         </div>
 
         <div class="position-relative">
           <div class="swiper yacht-collection-swiper" #yachtSwiper>
             <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                *ngFor="let yacht of ouryatchsCollections"
-                [routerLink]="['/product', yacht.url_key]"
-                routerLinkActive="router-link-active"
-              >
+              <div class="swiper-slide" *ngFor="let yacht of ouryatchsCollections"
+                [routerLink]="['/product', yacht.url_key]" routerLinkActive="router-link-active">
                 <div class="car-card">
                   <div class="thumbnail-image">
-                    <img
-                      *ngIf="yacht.media_data && yacht.media_data.length > 0"
-                      src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}"
-                      [alt]="yacht.name"
-                      class="img-fluid thumbnail-image w-100 h-100"
-                    />
+                    <img *ngIf="yacht.media_data && yacht.media_data.length > 0"
+                      src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}" [alt]="yacht.name"
+                      class="img-fluid thumbnail-image w-100 h-100" />
                   </div>
                   <div class="card-content">
-                    <div
-                      class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
-                    >
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
                       <div class="car-header">
                         <h4 class="car-name mb-1 size26 redhat-semibold">
                           {{ yacht.name }}
                         </h4>
-                        <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize m-0"
-                        >
+                        <h6 class="transmission text-muted size18 redhat-semibold text-capitalize m-0">
                           {{ yacht.type }}
                         </h6>
                       </div>
-                      <span
-                        *ngIf="yacht && yacht.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                        >special number plate</span
-                      >
+                      <span *ngIf="yacht && yacht.isvipNumberPlate"
+                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                        plate</span>
                     </div>
 
-                    <div
-                      class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2"
-                    >
+                    <div class="d-flex justify-content-between border-top border-bottom p-xl-3 p-md-2 p-2">
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/fuel_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ yacht.length }} length
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/speed_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ yacht.cabins }} Cabins
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/home/collection/seat_icon.png"
-                          class="img-fluid collection_image"
-                          alt=""
-                        />
-                        <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image"
+                          alt="" />
+                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize">
                           {{ yacht.guests }} Guests
                         </h6>
                       </div>
                     </div>
-                    <div
-                      class="cash-container mt-2 d-flex justify-content-between align-items-center py-xl-3 py-2"
-                    >
+                    <div class="cash-container mt-2 d-flex justify-content-between align-items-center py-xl-3 py-2">
                       <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
-                        >
+                        <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through">
                           AED {{ yacht.regularRateDaily }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold">
                           AED {{ yacht.dailyRate }}
                         </h5>
                       </div>
-                      <a
-                        [routerLink]="['/product', yacht.url_key]"
-                        routerLinkActive="router-link-active"
-                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize"
-                        >view details</a
-                      >
+                      <a [routerLink]="['/product', yacht.url_key]" routerLinkActive="router-link-active"
+                        class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">view
+                        details</a>
                     </div>
                   </div>
                 </div>
@@ -816,9 +547,7 @@
             </div>
           </div>
 
-          <div
-            class="d-flex justify-content-between align-items-center margin-top40"
-          >
+          <div class="d-flex justify-content-between align-items-center margin-top40">
             <div class="text-start gap-2 d-flex">
               <div class="button yacht-swiper-button-prev">
                 <lucide-icon name="arrow-left" class="swiper-button-icon" />
@@ -828,9 +557,7 @@
               </div>
             </div>
             <button class="black-button size18 redhat-bold d-block d-lg-none">
-              <a href="/product/search" class="white-color text-decoration-none"
-                >view all</a
-              >
+              <a href="/product/search" class="white-color text-decoration-none">view all</a>
             </button>
           </div>
         </div>
@@ -839,28 +566,18 @@
   </div>
 </section>
 
-<app-brands
-  title="Find Your Perfect Ride"
-  titleClass="text-center size60 performa-light text-capitalize margin-bottom60"
-></app-brands>
+<app-brands title="Find Your Perfect Ride"
+  titleClass="text-center size60 performa-light text-capitalize margin-bottom60"></app-brands>
 
 <section class="about-us w-100 position-relative overflow-hidden">
   <div class="d-flex flex-column w-100">
     <div class="position-relative w-100 div-height">
-      <div
-        class="w-100 h-100 top-0 start-0 position-absolute z-2 rounded-4"
-        style="background-color: rgba(0, 0, 0, 0.5)"
-      ></div>
-      <img
-        src="{{ imageURL }}/home/about_us.png"
-        alt="Luxury car and yacht rental"
-        class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1 d-none d-lg-block"
-      />
-      <img
-        src="{{ imageURL }}/home/about_us2.jpg"
-        alt="Luxury car and yacht rental"
-        class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1 d-block d-lg-none"
-      />
+      <div class="w-100 h-100 top-0 start-0 position-absolute z-2 rounded-4"
+        style="background-color: rgba(0, 0, 0, 0.5)"></div>
+      <img src="{{ imageURL }}/home/about_us.png" alt="Luxury car and yacht rental"
+        class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1 d-none d-lg-block" />
+      <img src="{{ imageURL }}/home/about_us2.jpg" alt="Luxury car and yacht rental"
+        class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1 d-block d-lg-none" />
       <div class="about-content z-3">
         <h3 class="size22 redhat-bold text-capitalize white-color margin22">
           about us
@@ -868,23 +585,17 @@
         <!-- <h1 class="size60 performa-light text-capitalize white-color line-height90 heading-width margin24">
           Driven By Luxury. Defined By Experience.
         </h1> -->
-        <h2
-          class="size60 performa-light text-capitalize white-color line-height90 heading-width margin24"
-        >
+        <h2 class="size60 performa-light text-capitalize white-color line-height90 heading-width margin24">
           Pure Luxury. Pure Perfection.
         </h2>
-        <p
-          class="size20 redhat-regular text-center white-color line-height26 margin17"
-        >
+        <p class="size20 redhat-regular text-center white-color line-height26 margin17">
           At Ghost Rentals, we turn luxury car hire and yacht rentals into
           customized experiences that we design with family-level love. We
           provide UAE's safest, fastest luxury services through real attention
           to detail that creates stunning relationships with every customer.
         </p>
         <button class="white-button size18 redhat-bold text-capitalize">
-          <a href="/about" class="black-color text-decoration-none"
-            >know more</a
-          >
+          <a href="/about" class="black-color text-decoration-none">know more</a>
         </button>
       </div>
     </div>
@@ -895,26 +606,14 @@
         Why Should You Rent With Us?
       </h3>
 
-      <div
-        class="row justify-content-around mt-xl-3 mt-2"
-      >
-        <div
-          class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-md-3 px-2"
-          *ngFor="let feature of features"
-        >
-          <img
-            [src]="imageURL + '/' + feature.image"
-            [alt]="feature.title"
-            class="feature-icon d-flex mx-auto margin54"
-          />
-          <h4
-            class="size26 redhat-semibold white-color text-center mb-xl-3 mb-md-2 mb-1"
-          >
+      <div class="row justify-content-around mt-xl-3 mt-2">
+        <div class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-md-3 px-2" *ngFor="let feature of features">
+          <img [src]="imageURL + '/' + feature.image" [alt]="feature.title"
+            class="feature-icon d-flex mx-auto margin54" />
+          <h4 class="size26 redhat-semibold white-color text-center mb-xl-3 mb-md-2 mb-1">
             {{ feature.title }}
           </h4>
-          <p
-            class="size18 redhat-semibold white-color text-center line-height30"
-          >
+          <p class="size18 redhat-semibold white-color text-center line-height30">
             {{ feature.description }}
           </p>
         </div>
@@ -923,85 +622,53 @@
   </div>
 </section>
 
-<section
-  class="trending_cars sectionPadding w-100 position-relative overflow-hidden"
->
+<section class="trending_cars sectionPadding w-100 position-relative overflow-hidden">
   <div class="black-bg"></div>
   <div class="container-fluid swiper-desktop">
-    <h3
-      class="text-center size60 performa-light white-color text-capitalize mb-4"
-    >
+    <h3 class="text-center size60 performa-light white-color text-capitalize mb-4">
       trending rental cars
     </h3>
-    <h6
-      class="text-center size18 redhat-semibold text-capitalize gray-light-color mb-md-0"
-    >
+    <h6 class="text-center size18 redhat-semibold text-capitalize gray-light-color mb-md-0">
       rent our popular cars
     </h6>
 
     <div class="w-100 mx-auto my-0">
       <div class="trending-cars-grid">
-        <div
-          *ngFor="let car of trendingRentalCars"
-          class="trending-car-card"
-          [routerLink]="['/product', car.url_key]"
-          routerLinkActive="router-link-active"
-        >
-          <img
-            src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-            [alt]="car.name"
-            class="img-fluid trending-main-image h-100"
-          />
+        <div *ngFor="let car of trendingRentalCars" class="trending-car-card" [routerLink]="['/product', car.url_key]"
+          routerLinkActive="router-link-active">
+          <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
+            class="img-fluid trending-main-image h-100" />
           <div class="card-content">
-            <div
-              class="car-info margin27 d-flex justify-content-between align-items-center"
-            >
+            <div class="car-info margin27 d-flex justify-content-between align-items-center">
               <div class="car-header">
                 <h4 class="car-name mb-1 size35 redhat-semibold white-color">
                   {{ car.name }}
                 </h4>
-                <h6
-                  class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0"
-                >
+                <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
                   {{ car.transmission }}
                 </h6>
               </div>
-              <span
-                *ngIf="car && car.isvipNumberPlate"
-                class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                >special number plate</span
-              >
+              <span *ngIf="car && car.isvipNumberPlate"
+                class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special
+                number plate</span>
             </div>
 
-            <div
-              class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end"
-            >
+            <div class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end">
               <div class="d-flex flex-column">
-                <span
-                  class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through"
-                  >AED {{ car.regularRateDaily }}</span
-                >
-                <span
-                  class="discounted-price size35 redhat-semibold white-color"
-                  >AED {{ car.dailyRate }}</span
-                >
+                <span class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through">AED {{
+                  car.regularRateDaily }}</span>
+                <span class="discounted-price size35 redhat-semibold white-color">AED {{ car.dailyRate }}</span>
               </div>
-              <a
-                href="/product/{{ car.url_key }}"
-                class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize"
-                >View details</a
-              >
+              <a href="/product/{{ car.url_key }}"
+                class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize">View
+                details</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <button
-      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5"
-    >
-      <a href="/product/search" class="black-color text-decoration-none"
-        >view all</a
-      >
+    <button class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5">
+      <a href="/product/search" class="black-color text-decoration-none">view all</a>
     </button>
   </div>
 
@@ -1009,17 +676,11 @@
   <div class="container-fluid swiper-mobile">
     <div class="row">
       <div class="col-12 pb-4">
-        <div
-          class="d-flex flex-column justify-content-between align-items-center mb-4"
-        >
-          <h3
-            class="text-center size60 performa-light white-color text-capitalize mb-4"
-          >
+        <div class="d-flex flex-column justify-content-between align-items-center mb-4">
+          <h3 class="text-center size60 performa-light white-color text-capitalize mb-4">
             trending rental cars
           </h3>
-          <h6
-            class="text-center size18 redhat-semibold text-capitalize gray-light-color"
-          >
+          <h6 class="text-center size18 redhat-semibold text-capitalize gray-light-color">
             rent our popular cars
           </h6>
         </div>
@@ -1027,62 +688,39 @@
         <div class="position-relative">
           <div class="swiper trending-cars-swiper" #trendingSwiper>
             <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                *ngFor="let car of trendingRentalCars"
-                [routerLink]="['/product', car.url_key]"
-                routerLinkActive="router-link-active"
-              >
+              <div class="swiper-slide" *ngFor="let car of trendingRentalCars" [routerLink]="['/product', car.url_key]"
+                routerLinkActive="router-link-active">
                 <div class="trending-car-card">
                   <div class="thumbnail-image">
-                    <img
-                      *ngIf="car.media_data && car.media_data.length > 0"
-                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                      [alt]="car.name"
-                      class="img-fluid trending-main-image w-100 h-100"
-                    />
+                    <img *ngIf="car.media_data && car.media_data.length > 0"
+                      src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
+                      class="img-fluid trending-main-image w-100 h-100" />
                   </div>
 
                   <div class="card-content">
-                    <div
-                      class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center"
-                    >
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
                       <div class="car-header">
-                        <h4
-                          class="car-name mb-1 size35 redhat-semibold white-color"
-                        >
+                        <h4 class="car-name mb-1 size35 redhat-semibold white-color">
                           {{ car.name }}
                         </h4>
-                        <h6
-                          class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0"
-                        >
+                        <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
                           {{ car.transmission }}
                         </h6>
                       </div>
-                      <span
-                        *ngIf="car && car.isvipNumberPlate"
-                        class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                        >special number plate</span
-                      >
+                      <span *ngIf="car && car.isvipNumberPlate"
+                        class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special
+                        number plate</span>
                     </div>
-                    <div
-                      class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end"
-                    >
+                    <div class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end">
                       <div class="d-flex flex-column">
                         <span
-                          class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through"
-                          >AED {{ car.regularRateDaily }}</span
-                        >
-                        <span
-                          class="discounted-price size35 redhat-semibold white-color"
-                          >AED {{ car.dailyRate }}</span
-                        >
+                          class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through">AED
+                          {{ car.regularRateDaily }}</span>
+                        <span class="discounted-price size35 redhat-semibold white-color">AED {{ car.dailyRate }}</span>
                       </div>
-                      <a
-                        href="/product/{{ car.url_key }}"
-                        class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize"
-                        >View details</a
-                      >
+                      <a href="/product/{{ car.url_key }}"
+                        class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize">View
+                        details</a>
                     </div>
                   </div>
                 </div>
@@ -1106,12 +744,8 @@
         </div>
       </div>
     </div>
-    <button
-      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1"
-    >
-      <a href="/product/search" class="black-color text-decoration-none"
-        >view all</a
-      >
+    <button class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1">
+      <a href="/product/search" class="black-color text-decoration-none">view all</a>
     </button>
   </div>
 </section>

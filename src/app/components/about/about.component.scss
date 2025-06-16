@@ -1,6 +1,6 @@
 
 .sectionPadding {
-  padding: 10rem 0 0 0;
+  padding: 9.4rem 0 0 0;
   @media screen and (max-width: 1280px) {
     padding: 11rem 0 0 0;
   }
@@ -112,9 +112,7 @@
 
 .pad-left{
   padding-left: 5rem;
-  @media screen and (max-width: 1600px) {
-    padding-left: 4rem;
-  }
+
   @media screen and (max-width: 1200px) {
     padding-left: 2rem;
   }
@@ -243,24 +241,24 @@
 }
 
 .story {
-  padding: 6rem 0 6rem 16.5rem;
+  padding: 0rem 0 6rem 16.5rem;
   @media screen and (max-width: 1920px) {
-    padding: 6rem 0 6rem 16.3rem;
+    padding: 0rem 0 6rem 16.3rem;
   }
   @media screen and (max-width: 1536px) {
-    padding: 6rem 0 6rem 10.5rem;
+    padding: 0rem 0 6rem 10.5rem;
   }
   @media screen and (max-width: 1440px) {
-    padding:4rem 0 4rem 7.5rem;
+    padding:0rem 0 4rem 7.5rem;
   }
   @media screen and (max-width: 1280px) {
-    padding: 4rem 0 4rem 5rem;
+    padding: 0rem 0 4rem 5rem;
   }
   @media screen and (max-width: 768px) {
-    padding: 3rem 0rem 3rem 3rem;
+    padding: 0rem 0 3rem 3rem;
   }
   @media screen and (max-width: 430px) {
-    padding:2rem 0;
+    padding:0rem 0 2rem;
   }
 
   .story-content{
