@@ -189,6 +189,7 @@
                     <input
                       type="date"
                       id="startDate"
+                      [min]="today"
                       [(ngModel)]="selelctedstartDate"
                       (ngModelChange)="onDateChange($event)"
                       name="selelctedstartDate"
@@ -275,6 +276,7 @@
                     <input
                       type="date"
                       id="endDate"
+                      [min]="today"
                       [(ngModel)]="selelctedendDate"
                       name="selelctedendDate"
                       class="form-control size14 redhat-semibold input-margin"

@@ -48,6 +48,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedBrand: any = [];
   selectedModel: any = [];
   selectedCartype: any = [];
+  today:string = '';
   selectedRentalType: any;
   minPrice: any = 0;
   maxPrice: any = 10000;
@@ -81,6 +82,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (this.param_type && this.param_type === 'vip') {
       this.vipNumberPlate = true;
     }
+    const todayDate = new Date();
+    this.today = todayDate.toISOString().split('T')[0];
   }
 
   toggleSelectDropdown(event: Event): void {
