@@ -274,3 +274,16 @@
     font-size: 18px;
   }
 }
+
+.down-arrow{
+  width: 20px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: #fff;
+  transform: translateY(-50%);
+  pointer-events: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}

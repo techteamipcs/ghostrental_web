@@ -43,7 +43,8 @@
                   <option value="Car">Car</option>
                   <option value="Yachts">Yachts</option>
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
               <!-- Special Number Plate -->
               <label *ngIf="vehicleType == 'Car'"
@@ -56,7 +57,8 @@
                   <option value="true">Enable</option>
                   <!-- <option value="false">Disable</option> -->
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
 
               <!-- Rental Type -->
@@ -71,7 +73,8 @@
                   <option value="Weekly">Weekly</option>
                   <option value="Monthly">Monthly</option>
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
               <!-- Body Type -->
               <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Body
@@ -86,7 +89,8 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
               <!-- Car Brand -->
               <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
@@ -101,7 +105,8 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
               <!-- Car Model -->
               <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
@@ -116,7 +121,8 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <lucide-icon name="chevron-down" size="20" />
+                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                   />
               </div>
               <!-- Date From -->
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
@@ -199,11 +205,11 @@
             No Data Found
           </h6>
 
-
+          <div class="d-flex align-items-center gap-2 position-relative sort" style="cursor: pointer;">
           <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
             (change)="onChangeSort($event)" style="font-size: 14px;">
             <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
-              Sort by any makes
+              Sort by any makes &nbsp;
             </option>
             <option value="A-Z" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z
@@ -221,6 +227,10 @@
               Relevance
             </option>
           </select>
+
+          
+          <img src="{{ imageURL }}/down-arrow.svg" class="img-fluid down-arrow" alt="" />
+        </div>
         </div>
         <div class="products">
           <div class="row">

@@ -10,6 +10,18 @@ import Swal from 'sweetalert2'
 
 Swiper.use([Navigation]);
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
 
 @Component({
   selector: 'app-home',
@@ -142,7 +154,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         breakpoints: {
           0: { slidesPerView: 1, spaceBetween: 10 },
           768: { slidesPerView: 2.5, spaceBetween: 15 },
-          1200: { slidesPerView: 4.5, spaceBetween: 20 },
+          1280: { slidesPerView: 4.5, spaceBetween: 20 },
         },
       });
     }
@@ -469,13 +481,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.dropofftoday = this.selelctedstartDate;
     }
   }
-
+  
   onSelectDropDate() {
     if(!this.selelctedstartDate){
-      Swal.fire({
+      Toast.fire({
         title: 'Please select pickup date first!',
-        position: "top-end",
-        icon: 'error'
+        icon: 'warning',
       });
       this.selelctedendDate = '';
     }

@@ -136,6 +136,16 @@ select:focus {
       transition: transform 0.2s ease-in-out;
     }
 
+    .down-arrow{
+      width: 14px;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      transition: transform 0.2s ease-in-out;
+    }
 
     lucide-icon[name="calendar-days"] {
       position: absolute;
@@ -155,12 +165,23 @@ select:focus {
       @media screen and (max-width: 768px) {
         top: 9%;
       }
+
+      :ng-deep{
+       svg{
+        width: 15px;
+        height: auto;
+       } 
+      }
     }
 
     .form-selection:focus+lucide-icon[name="chevron-down"],
     .form-controls:focus+lucide-icon[name="chevron-down"],
     .form-selection.expanded+lucide-icon[name="chevron-down"],
-    .form-controls.expanded+lucide-icon[name="chevron-down"] {
+    .form-controls.expanded+lucide-icon[name="chevron-down"],
+    .form-selection:focus+.down-arrow,
+    .form-controls:focus+.down-arrow,
+    .form-selection.expanded+.down-arrow,
+    .form-controls.expanded+.down-arrow {
       transform: translateY(-50%) rotate(180deg);
     }
 
@@ -460,4 +481,20 @@ input[type="datetime-local"] {
   @media screen and (max-width: 1199px) {
     min-height: 35px;
   }
+}
+
+.sort{
+  
+.down-arrow{
+  width: 20px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: #fff;
+  transform: translateY(-50%);
+  pointer-events: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
 }

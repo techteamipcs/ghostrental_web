@@ -1,23 +1,12 @@
 <section class="product bannerPadding">
   <div class="container-fluid position-relative p-0 h-100">
-    <img
-      *ngIf="bannerData && bannerData.media_data.length > 0"
-      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
-      alt="Limousine on road"
-      class="w-100 h-100 bannerImage"
-      loading="lazy"
-      decoding="async"
-    />
-    <img
-      *ngIf="!bannerData"
-      src="{{ imageURL }}/products/product1.png"
-      alt="Limousine on road"
-      class="w-100 h-100 bannerImage"
-      loading="lazy"
-      decoding="async"
-    />
+    <img *ngIf="bannerData && bannerData.media_data.length > 0"
+      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}" alt="Limousine on road"
+      class="w-100 h-100 bannerImage" loading="lazy" decoding="async" />
+    <img *ngIf="!bannerData" src="{{ imageURL }}/products/product1.png" alt="Limousine on road"
+      class="w-100 h-100 bannerImage" loading="lazy" decoding="async" />
 
-   
+
     <!-- <div class="content" *ngIf="!bannerData">
       <h1 class="size89 performa-thin white-color text-capitalize">Smart Stylish City-Ready</h1>
       <p class="size20 redhat-regular beige-color">
@@ -26,14 +15,8 @@
       </p>
     </div> -->
     <div class="content " *ngIf="bannerData">
-      <h1
-        class="size89 performa-thin white-color text-capitalize margin14"
-        [innerHTML]="bannerData.short_desc"
-      ></h1>
-      <p
-        class="size20 redhat-regular hero-para beige-color mb-0"
-        [innerHTML]="bannerData.description"
-      ></p>
+      <h1 class="size89 performa-thin white-color text-capitalize margin14" [innerHTML]="bannerData.short_desc"></h1>
+      <p class="size20 redhat-regular hero-para beige-color mb-0" [innerHTML]="bannerData.description"></p>
     </div>
   </div>
 </section>
@@ -47,155 +30,108 @@
       Explore our all car collection
     </h3>
     <div class="row">
-      <div
-        class="results-section col-xl-12 col-lg-12 col-md-12 col-12"
-        #resultsSection
-      >
-        <div
-          class="d-flex justify-content-sm-between justify-content-end align-items-center margin42"
-        >
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p" *ngIf="vehicleData && vehicleData.length > 0">
+      <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
+        <div class="d-flex justify-content-sm-between justify-content-end align-items-center margin42">
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+            *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} vehicles
           </h6>
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p" *ngIf="vehicleData && vehicleData.length == 0">
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+            *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
           </h6>
 
-          <select
-            class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
-            (change)="onChangeSort($event)" style="font-size: 14px;"
-           
-          >
-            <option
-              selected
-              disabled
-              class="text-muted size14 redhat-semibold text-capitalize bg-white"
-            >
-              Sort by any makes
-              <!-- <img src="{{ imageURL }}/down-arrow.svg" alt=""> -->
-            </option>
-            <option value="A-Z" class="size14 redhat-semibold text-capitalize">
-              Sort by A - Z
-            </option>
-            <option value="H-L" class="size14 redhat-semibold text-capitalize">
-              Price: High to Low
-            </option>
-            <option value="L-H" class="size14 redhat-semibold text-capitalize">
-              Price: Low to High
-            </option>
-            <option value="old" class="size14 redhat-semibold text-capitalize">
-              Old to New
-            </option>
-            <option
-              value="relevance"
-              class="size14 redhat-semibold text-capitalize"
-            >
-              Relevance
-            </option>
-          </select>
+
+
+          <div class="d-flex align-items-center gap-2 position-relative" style="cursor: pointer;">
+
+            <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
+              (change)="onChangeSort($event)" style="font-size: 14px;">
+              <option selected disabled class="text-muted size14 redhat-semibold text-capitalize bg-white">
+                Sort by any makes &nbsp; &nbsp;
+                <!-- <img src="{{ imageURL }}/down-arrow.svg" alt=""> -->
+              </option>
+              <option value="A-Z" class="size14 redhat-semibold text-capitalize">
+                Sort by A - Z
+              </option>
+              <option value="H-L" class="size14 redhat-semibold text-capitalize">
+                Price: High to Low
+              </option>
+              <option value="L-H" class="size14 redhat-semibold text-capitalize">
+                Price: Low to High
+              </option>
+              <option value="old" class="size14 redhat-semibold text-capitalize">
+                Old to New
+              </option>
+              <option value="relevance" class="size14 redhat-semibold text-capitalize">
+                Relevance
+              </option>
+            </select>
+
+            <img src="{{ imageURL }}/down-arrow.svg" class="img-fluid down-arrow" alt="" />
+          </div>
+
         </div>
         <div class="products">
           <div class="row">
-            <div
-              class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4"
-              *ngFor="let car of vehicleData"
-              
-              [routerLink]="['/product', car.url_key]"
-              routerLinkActive="router-link-active"
-            >
-              <div
-                class="car-card"
-              >
-                <img
-                  src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
-                  [alt]="car.name"
-                  class="img-fluid thumbnail-image w-100 "
-                />
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData"
+              [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active">
+              <div class="car-card">
+                <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
+                  class="img-fluid thumbnail-image w-100 " />
                 <div class="card-content">
-                  <div
-                    class="car-info pb-xl-3 d-flex justify-content-between align-items-center"
-                  >
+                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center">
                     <div class="car-header">
-                      <h4
-                        class="car-name mb-1 size26 redhat-semibold gray-color"
-                      >
+                      <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
                       </h4>
-                      <h6
-                        class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
-                      >
+                      <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
                         {{ car.transmission }}
                       </h6>
                     </div>
-                    <span
-                      *ngIf="car && car.isvipNumberPlate"
-                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1"
-                      >special number plate</span
-                    >
+                    <span *ngIf="car && car.isvipNumberPlate"
+                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                      plate</span>
                   </div>
 
-                  <div
-                    class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3"
-                  >
+                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3">
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/fuel_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.fuelType }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/speed_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.mileage }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img
-                        src="{{ imageURL }}/home/collection/seat_icon.png"
-                        class="img-fluid collection_image"
-                        alt=""
-                      />
-                      <h6
-                        class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                      >
+                      <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image"
+                        alt="" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.seating_capacity }} Seats
                       </h6>
                     </div>
                   </div>
 
-                  <div
-                    class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                  >
+                  <div class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2">
                     <div class="cash">
-                      <h6
-                        class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                      >
+                      <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                         AED {{ car.regularRateDaily }}
                       </h6>
                       <h5 class="mb-0 size26 redhat-semibold gray-color">
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
-                    <a
-                      [routerLink]="['/product', car.url_key]"
-                      routerLinkActive="router-link-active"
-                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
-                      >View details</a
-                    >
+                    <a [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize">View
+                      details</a>
                   </div>
                 </div>
               </div>
@@ -204,38 +140,25 @@
         </div>
         <!-- <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1"> -->
         <nav aria-label="Page navigation" class="mt-4">
-          <ul
-            class="pagination justify-content-center align-items-center gap-2"
-          >
+          <ul class="pagination justify-content-center align-items-center gap-2">
             <!-- Previous -->
             <li [class.disabled]="currentPage === 1">
-              <button
-                class="circle-btn filled"
-                [disabled]="currentPage === 1"
-                (click)="onPageChange(currentPage - 1)"
-              >
+              <button class="circle-btn filled" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
                 <lucide-icon name="arrow-left" />
               </button>
             </li>
 
             <!-- Page Numbers -->
             <li *ngFor="let page of getPages()">
-              <button
-                class="number-btn"
-                [class.active-page]="page === currentPage"
-                (click)="onPageChange(page)"
-              >
+              <button class="number-btn" [class.active-page]="page === currentPage" (click)="onPageChange(page)">
                 {{ page }}
               </button>
             </li>
 
             <!-- Next -->
             <li [class.disabled]="currentPage === totalPages">
-              <button
-                class="circle-btn filled"
-                [disabled]="currentPage === totalPages"
-                (click)="onPageChange(currentPage + 1)"
-              >
+              <button class="circle-btn filled" [disabled]="currentPage === totalPages"
+                (click)="onPageChange(currentPage + 1)">
                 <lucide-icon name="arrow-right" />
               </button>
             </li>
