@@ -125,15 +125,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getLocations();
     this.initYachtSwiper();
     this.initTrendingSwiper();
+    this.initCarSwiper();
   }
 
   ngAfterViewInit() {
-    this.initCarSwiper();
-    AOS.init({
-        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-        once: true, // whether animation should happen only once - while scrolling down
-        mirror: true, // whether elements should animate out while scrolling past them
+    if (isPlatformBrowser(this.platformId)) {
+      AOS.init({
+        once: true,
+        mirror: true,
+        easing: 'ease',
       });
+    }
   }
 
   public initCarSwiper() {

@@ -15,7 +15,7 @@ import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2';
-
+import AOS from 'aos';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -156,6 +156,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.onScroll();
     this.initializeSlider();
   }
+
 
   initializeSlider() {
     if (isPlatformBrowser(this.platformId)) {

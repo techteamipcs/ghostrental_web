@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as AOS from 'aos';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-list',
@@ -35,6 +37,8 @@ export class ListComponent implements OnInit {
     private dataservice: DataService,
     public route: ActivatedRoute,
     public router: Router,
+    
+    @Inject(PLATFORM_ID) private platformId: Object
 
   ) {
     this.url_key = this.route.snapshot.paramMap.get('car_type');
@@ -51,6 +55,16 @@ export class ListComponent implements OnInit {
     this.getBannerData();
   }
 
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      AOS.init({
+        once: true,
+        mirror: true,
+        easing: 'ease',
+      });
+    }
+  } 
   get totalPages(): number {
     return Math.ceil(this.totolvehicle / this.itemsPerPage);
   }

@@ -26,7 +26,8 @@
 
     .hero-para {
       // width: 527px;
-      width: 488px;
+      // width: 488px;
+      width: 478px;
 
       @media (max-width: 1536px) {
         width: 422px;
@@ -1085,6 +1086,9 @@
 
     @media (max-width: 768px) {
       top: 0%;
+    }
+    @media (max-width: 601px) {
+      top: 13%;
     }
 
     @media (max-width: 430px) {

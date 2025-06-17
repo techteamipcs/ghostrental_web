@@ -13,11 +13,14 @@ nav {
   //   padding: 1rem 3rem;
   // }
 
+  @media (max-width: 1440px) {
+    padding: 1rem 3rem;
+  }
   @media (max-width: 1024px) {
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
   }
 
-  @media (max-width: 414px) {
+  @media (max-width: 430px) {
     padding: 1rem;
   }
 
@@ -36,19 +39,19 @@ nav {
 
     @media (max-width: 1440px) {
       // padding: 2.5rem 2rem;
-      padding: 1rem 3rem;
+      padding: 1.3rem 3rem;
     }
     @media (max-width: 1280px) {
       padding: 1rem 2rem;
     }
     @media (max-width: 1024px) {
-      // padding: 2.5rem 42px;
-      padding: 1rem 2rem;
+      padding: 2.5rem 42px;
+      // padding: 1rem 2rem;
     }
 
-    @media (max-width: 414px) {
-      // padding: 1.8rem 1.5rem;
-      padding: 1rem;
+    @media (max-width: 430px) {
+      padding: 1.5rem 1.5rem;
+      // padding: 1rem;
     }
     // @media (max-width: 384px) {
     //   padding: 1.5rem 0.5rem;

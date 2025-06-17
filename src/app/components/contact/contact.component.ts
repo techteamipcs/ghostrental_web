@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
@@ -7,6 +7,8 @@ import { environment } from '../../../environments/environment';
 import { ContactService } from '../../providers/contact/contact.service';
 import { PageService } from '../../providers/page/page.service';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
+import { isPlatformBrowser } from '@angular/common';
+import * as AOS from 'aos';
 export { };
 declare global {
 	interface Window {
@@ -40,7 +42,8 @@ export class ContactComponent {
 		private metaTagService: Meta,
 		private titleService: Title,
 		private contactservice: ContactService,
-		private pageservice: PageService
+		private pageservice: PageService,
+		 @Inject(PLATFORM_ID) private platformId: Object
 	) {
 		this.addcontactForm = this.formBuilder.group({
 			name: ['', Validators.required],
@@ -51,6 +54,7 @@ export class ContactComponent {
 		});
 		this.get_PageMeta();
 		this.prod = this.route.snapshot.params['prod'];
+
 	}
 
 	public hasError = (controlName: string, errorName: string) => {
@@ -141,6 +145,13 @@ export class ContactComponent {
 
 	}
 	ngAfterViewInit() {
+		if (isPlatformBrowser(this.platformId)) {
+			AOS.init({
+			  once: true,
+			  mirror: true,
+			  easing: 'ease',
+			});
+		}
     this.route.fragment.subscribe((fragment) => {
       setTimeout(() => {
         if (fragment === 'calendly') {

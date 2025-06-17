@@ -1,22 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../providers/data/data.service';
+import { isPlatformBrowser } from '@angular/common';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
-export class AboutComponent {
+export class AboutComponent implements AfterViewInit {
   imageURL: string = `${environment.url}/assets`;
   bannerData: any;
   constructor(
-    private dataservice: DataService
+    private dataservice: DataService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
   }
   ngOnInit() {
     this.getBannerData();
   }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      AOS.init({
+        once: true,
+        mirror: true,
+        easing: 'ease',
+      });
+    }
+  }
+
 
   features = [
     {

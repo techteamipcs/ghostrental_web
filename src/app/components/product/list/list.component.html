@@ -23,29 +23,32 @@
 
 <section class="min-vh-100 sectionPadding">
   <div class="container-fluid">
-    <h3 *ngIf="cartypeData" class="size60 performa-light text-capitalize margin24">
+    <h3 *ngIf="cartypeData" class="size60 performa-light text-capitalize margin24" data-aos="fade-up" data-aos-duration="1000">
       Explore our {{ cartypeData.name }} car collection
     </h3>
-    <h3 *ngIf="!cartypeData" class="size60 performa-light text-capitalize margin24">
+    <h3 *ngIf="!cartypeData" class="size60 performa-light text-capitalize margin24" data-aos="fade-up" data-aos-duration="1000">
       Explore our all car collection
     </h3>
     <div class="row">
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
         <div class="d-flex justify-content-sm-between justify-content-end align-items-center margin42">
           <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          data-aos="fade-up" data-aos-duration="1000"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} vehicles
           </h6>
           <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          data-aos="fade-up" data-aos-duration="1000"
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
           </h6>
 
 
 
-          <div class="d-flex align-items-center gap-2 position-relative" style="cursor: pointer;">
+          <div class="d-flex align-items-center gap-2 position-relative" style="cursor: pointer;"
+          data-aos="fade-up" data-aos-duration="1000">
 
             <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
               (change)="onChangeSort($event)" style="font-size: 14px;">
@@ -78,7 +81,7 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData"
               [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active">
-              <div class="car-card">
+              <div class="car-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="100">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid thumbnail-image w-100 " />
                 <div class="card-content">
@@ -138,8 +141,7 @@
             </div>
           </div>
         </div>
-        <!-- <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1"> -->
-        <nav aria-label="Page navigation" class="mt-4">
+        <nav aria-label="Page navigation" class="mt-4" data-aos="fade-up" data-aos-duration="1000">
           <ul class="pagination justify-content-center align-items-center gap-2">
             <!-- Previous -->
             <li [class.disabled]="currentPage === 1">
