@@ -22,9 +22,9 @@
 
             <div class="content" *ngIf="bannerData">
               <h1 class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize"
-                [innerHtml]="bannerData.short_desc"></h1>
+                [innerHtml]="bannerData.short_desc" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500"></h1>
               <p class="size20 redhat-regular hero-para beige-color line-height26 mb-md-4 mb-2"
-                [innerHtml]="bannerData.description"></p>
+                [innerHtml]="bannerData.description" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500"></p>
               <a href="/contact"
                 class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block">Book
                 Now</a>
@@ -240,7 +240,7 @@
     <div class="d-flex align-items-center gap">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a [routerLink]="['/product/list', car.url_key]" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
@@ -262,7 +262,7 @@
     <div class="grid-category">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a [routerLink]="['/product/list', car.url_key]" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500"
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
@@ -305,7 +305,7 @@
       </div>
     </div>
     <div class="row topMargin justify-content-evenly">
-      <div class="col-xl-4 col-lg-8 col-md-10 padding-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500">
         <div class="card h-100 position-relative">
           <img src="{{ imageURL }}/home/services/car-rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
@@ -324,7 +324,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500">
         <div class="card rounded-4 h-100 position-relative">
           <img src="{{ imageURL }}/home/services/yacht_rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
@@ -342,7 +342,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x">
+      <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x" data-aos="fade-up" data-aos-ease="ease" data-aos-duration="1500" data-aos-delay="500">
         <div class="card rounded-4 h-100 position-relative">
           <img src="{{ imageURL }}/home/services/chauffeur.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">

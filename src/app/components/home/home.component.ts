@@ -7,7 +7,7 @@ import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2'
-
+import * as AOS from 'aos';
 Swiper.use([Navigation]);
 
 const Toast = Swal.mixin({
@@ -129,7 +129,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.initCarSwiper();
-
+    AOS.init({
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: true, // whether elements should animate out while scrolling past them
+      });
   }
 
   public initCarSwiper() {
