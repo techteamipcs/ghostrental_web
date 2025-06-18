@@ -253,7 +253,7 @@
 .maps {
   width: 100%;
   margin: 20px 0;
-  border-radius: 8px;
+  // border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   @media screen and (max-width: 768px) {
@@ -272,8 +272,10 @@
   width: 222px;
   height: 157px;
   @media screen and (max-width: 1536px) {
-    width: 150px;
-    height: 100px;
+    // width: 150px;
+    // height: 100px;
+    width: 160px;
+    height: 120px;
   }
   @media screen and (max-width: 1024px) {
     width: 222px;
@@ -311,10 +313,7 @@
   }
 
   @media screen and (max-width: 1536px) {
-    width: 322px;
-  }
-  @media screen and (max-width: 1528px) {
-    width: 350px;
+    width: 345px;
   }
 }
 
