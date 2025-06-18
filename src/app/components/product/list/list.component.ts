@@ -57,13 +57,13 @@ export class ListComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      AOS.init({
-        once: true,
-        mirror: true,
-        easing: 'ease',
-      });
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   AOS.init({
+    //     once: true,
+    //     mirror: true,
+    //     easing: 'ease',
+    //   });
+    // }
   } 
   get totalPages(): number {
     return Math.ceil(this.totolvehicle / this.itemsPerPage);

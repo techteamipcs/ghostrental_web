@@ -34,11 +34,15 @@ export class BrandsComponent {
   }
 
   getBrands() {
-    let obj = {};
+    let obj = {
+      type: 'car' 
+    };
     this.dataservice.getBrands(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.brandsData = response.result;
+          this.brandsData = response.result.filter((brand: any) => 
+            !brand.type || brand.type === 'car' || brand.type === 'Car'
+          );
         }
       }
     });
