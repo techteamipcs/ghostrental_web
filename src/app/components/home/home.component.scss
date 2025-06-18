@@ -60,7 +60,11 @@
     padding-left: 131px;
 
     @media screen and (max-width: 1536px) {
-      padding-left: 108px;
+      // padding-left: 108px;
+      padding-left: 90px;
+    }
+    @media screen and (max-width: 1280px) {
+      padding-left: 85px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -170,6 +174,7 @@
 
     @media screen and (max-width: 1280px) {
       padding: 15px;
+      margin-top: 0px;
     }
 
     @media (max-width: 1024px) {
@@ -862,6 +867,7 @@
 
     @media screen and (max-width: 1200px) {
       grid-template-columns: repeat(3, 1fr);
+      row-gap: 2rem;
     }
 
     @media screen and (max-width: 768px) {
@@ -1140,11 +1146,11 @@
       margin-top: 0 30px;
     }
 
-    @media screen and (max-width: 1280px) {
-      margin-top: 20px;
-    }
+    // @media screen and (max-width: 1280px) {
+    //   margin-top: 20px;
+    // }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       margin-top: 30px;
     }
   }
@@ -1327,9 +1333,12 @@
 .yacht-padding {
   padding-top: 120px;
 
-  @media screen and (max-width: 1440px) {
-    padding-top: 100px;
+  @media screen and (max-width: 1536px) {
+    padding-top: 70px;
   }
+  // @media screen and (max-width: 1440px) {
+  //   padding-top: 100px;
+  // }
 
   @media screen and (max-width: 1200px) {
     padding-top: 60px;
@@ -1402,7 +1411,8 @@
     align-items: center;
 
     @media screen and (max-width: 1536px) {
-      max-width: 814px;
+      // max-width: 814px;
+      max-width: 833px;
     }
 
     @media screen and (max-width: 1440px) {
@@ -1414,7 +1424,8 @@
     }
 
     @media screen and (max-width: 1024px) {
-      max-width: 750px;
+      // max-width: 750px;
+      max-width: 745px;
     }
 
     @media screen and (max-width: 430px) {
@@ -1433,7 +1444,7 @@
       }
 
       @media screen and (max-width: 1536px) {
-        width: 61%;
+        width: 66%;
       }
 
       @media screen and (max-width: 1440px) {
@@ -1445,7 +1456,8 @@
       }
 
       @media screen and (max-width: 1280px) {
-        width: 46%;
+        // width: 46%;
+        width: 59%;
       }
 
       @media screen and (max-width: 1024px) {
@@ -1490,7 +1502,7 @@
   padding: 200px 116px 120px;
 
   @media screen and (max-width: 1536px) {
-    padding: 150px 100px 120px;
+    padding: 100px 100px 120px;
   }
 
   @media screen and (max-width: 1440px) {

@@ -29,10 +29,12 @@
   @media screen and (max-width: 1920px) {
     top: 43%;
    left: 6.8%;
+   width: 48%;
  }
  @media screen and (max-width: 1536px) {
    top: 39.5%;
-   left: 7%;
+  //  left: 7%;
+  left: 5.9%;
  }
  @media screen and (max-width: 1440px) {
    top: 42%;
@@ -43,13 +45,16 @@
   left: 7.8%;
  }
   @media (max-width: 1280px) {
-    left: 5%;
-    padding: 0;
-    width: 100%;
+    left: 6.3%;
+    // padding: 0;
   }
   @media (max-width: 1024px) {
+    width: 100%;
     left: 3.5%;
     top: 34%;
+  }
+  @media (max-width: 768px) {
+    top: 30.5%;
   }
   @media (max-width: 480px) {
     padding: 0 15px;

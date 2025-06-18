@@ -1,11 +1,11 @@
 .brands {
   padding: 172px 200px 200px;
   @media screen and (max-width: 1536px) {
-    padding: 150px;
-  }
-  @media screen and (max-width: 1440px) {
     padding: 100px 150px;
   }
+  // @media screen and (max-width: 1440px) {
+  //   padding: 100px 150px;
+  // }
   @media screen and (max-width: 1200px) {
     padding: 100px;
   }

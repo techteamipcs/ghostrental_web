@@ -243,7 +243,7 @@
     <div class="d-flex align-items-center gap">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer"
-        data-aos="flip-up">
+        data-aos="fade-up">
         <a [routerLink]="['/product/list', car.url_key]"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
@@ -266,7 +266,7 @@
     <div class="grid-category">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer"
-        data-aos="flip-up">
+        data-aos="fade-up">
         <a [routerLink]="['/product/list', car.url_key]"
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
@@ -291,7 +291,7 @@
 
       <div
         class="position-absolute topspace text-center d-flex flex-column justify-content-md-center align-items-center h-100 w-100">
-        <div class="col-lg-8 col-11">
+        <div class="col-lg-9 col-11">
           <h3 class="size22 redhat-bold text-capitalize beige-color margin22" data-aos="fade-up" data-aos-duration="1000">
             our Services
           </h3>
@@ -310,7 +310,7 @@
       </div>
     </div>
     <div class="row topMargin justify-content-evenly">
-      <div class="col-xl-4 col-lg-8 col-md-10 padding-x" data-aos="flip-up" data-aos-duration="1000">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x" data-aos="fade-up" data-aos-duration="1000">
         <div class="card h-100 position-relative" >
           <img src="{{ imageURL }}/home/services/car-rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
@@ -329,7 +329,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x" data-aos="flip-up" data-aos-duration="1500">
+      <div class="col-xl-4 col-lg-8 col-md-10 padding-x margin-x" data-aos="fade-up" data-aos-duration="1500">
         <div class="card rounded-4 h-100 position-relative">
           <img src="{{ imageURL }}/home/services/yacht_rental.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
@@ -347,7 +347,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x" data-aos="flip-up" data-aos-duration="2000">
+      <div class="col-xl-4 col-lg-8 col-md-10 margin-x padding-x" data-aos="fade-up" data-aos-duration="2000">
         <div class="card rounded-4 h-100 position-relative">
           <img src="{{ imageURL }}/home/services/chauffeur.png" alt="" class="services-images z-1" />
           <div class="card-content h-100 d-flex flex-column">
@@ -380,7 +380,7 @@
           <h3 class="text-capitalize size60 performa-light mb-0" data-aos="fade-up">
             Our Luxury Cars For Rent
           </h3>
-          <button class="black-button size18 redhat-bold d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
+          <button class="black-button size18 redhat-bold d-none d-lg-block" data-aos="fade-up" data-aos-duration="1000">
             <a href="/product/search" class="white-color text-decoration-none">view all</a>
           </button>
         </div>
@@ -390,7 +390,7 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of ourCarCollections" [routerLink]="['/product', car.url_key]"
                 routerLinkActive="router-link-active">
-                <div class="car-card" data-aos="flip-left" data-aos-duration="1000">
+                <div class="car-card" data-aos="fade-up" data-aos-duration="1000">
                   <div class="thumbnail-image">
                     <img *ngIf="car.media_data && car.media_data.length > 0"
                       src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
@@ -461,7 +461,7 @@
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
-            <button class="black-button size18 redhat-bold d-block d-lg-none">
+            <button class="black-button size18 redhat-bold d-block d-lg-none mx-2 mx-sm-3 mx-md-4 mx-lg-0">
               <a href="/product/search" class="white-color text-decoration-none">view all</a>
             </button>
           </div>
@@ -479,7 +479,7 @@
           <h3 class="text-capitalize size60 performa-light mb-0" data-aos="fade-up" data-aos-duration="1000">
             Our Luxury Yacht Charter
           </h3>
-          <button class="black-button size18 redhat-bold d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
+          <button class="black-button size18 redhat-bold d-none d-lg-block" data-aos="fade-up" data-aos-duration="1000">
             <a href="/product/search" class="white-color text-decoration-none">view all</a>
           </button>
         </div>
@@ -489,7 +489,7 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let yacht of ouryatchsCollections"
                 [routerLink]="['/product', yacht.url_key]" routerLinkActive="router-link-active">
-                <div class="car-card" data-aos="flip-left" data-aos-duration="1000">
+                <div class="car-card" data-aos="fade-up" data-aos-duration="1000">
                   <div class="thumbnail-image">
                     <img *ngIf="yacht.media_data && yacht.media_data.length > 0"
                       src="{{ backendURl }}/media/{{ yacht.media_data[0].src }}" [alt]="yacht.name"
@@ -612,7 +612,7 @@
       </h3>
 
       <div class="row justify-content-around mt-xl-3 mt-2">
-        <div class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-md-3 px-2" *ngFor="let feature of features" >
+        <div class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-lg-2 px-2" *ngFor="let feature of features" >
           <img [src]="imageURL + '/' + feature.image" [alt]="feature.title" data-aos="fade-up" data-aos-duration="1000"
             class="feature-icon d-flex mx-auto margin54" />
           <h4 class="size26 redhat-semibold white-color text-center mb-xl-3 mb-md-2 mb-1" data-aos="fade-up" data-aos-duration="1500">
@@ -640,7 +640,7 @@
     <div class="w-100 mx-auto my-0">
       <div class="trending-cars-grid">
         <div *ngFor="let car of trendingRentalCars" class="trending-car-card" [routerLink]="['/product', car.url_key]"
-          routerLinkActive="router-link-active" data-aos="flip-left" data-aos-duration="1000">
+          routerLinkActive="router-link-active" data-aos="fade-up" data-aos-duration="1000">
           <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
             class="img-fluid trending-main-image h-100" />
           <div class="card-content">
@@ -695,7 +695,7 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let car of trendingRentalCars" [routerLink]="['/product', car.url_key]"
                 routerLinkActive="router-link-active">
-                <div class="trending-car-card" data-aos="flip-left" data-aos-duration="1000">
+                <div class="trending-car-card" data-aos="fade-up" data-aos-duration="1000">
                   <div class="thumbnail-image">
                     <img *ngIf="car.media_data && car.media_data.length > 0"
                       src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
