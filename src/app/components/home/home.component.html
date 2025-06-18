@@ -42,8 +42,12 @@
               <div class="d-flex justify-content-center align-items-center gap-2 toggle">
                 <span class="redhat-bold text-uppercase m-0 black-color">CARS</span>
                 <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
-                  tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht" (keydown.enter)="toggleVehicle()"
-                  (keydown.space)="toggleVehicle()"></div>
+                  tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht" 
+                  [attr.aria-label]="isVehicleYacht ? 'Switch to cars' : 'Switch to yachts'"
+                  aria-labelledby="toggleLabel"
+                  (keydown.enter)="toggleVehicle()" (keydown.space)="toggleVehicle()">
+                  <span class="visually-hidden">{{ isVehicleYacht ? 'Yachts' : 'Cars' }} selected</span>
+                </div>
                 <span class="redhat-bold text-uppercase m-0 black-color">YACHTS</span>
               </div>
 
