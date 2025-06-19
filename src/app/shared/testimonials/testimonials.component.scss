@@ -6,11 +6,11 @@
   }
 
   @media screen and (max-width: 1440px) {
-    padding: 50px 100px;
+    padding: 130px 100px 100px;
   }
 
   @media screen and (max-width: 1200px) {
-    padding: 120px 100px;
+    padding: 120px 100px 100px;
   }
 
   @media screen and (max-width: 768px) {
@@ -21,6 +21,25 @@
     padding: 80px 8px;
   }
 
+  h3 {
+    margin-bottom: 80px;
+
+    @media screen and (max-width: 1536px) {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 1440px) {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      margin-bottom: 60px;
+    }
+
+    @media screen and (max-width: 430px) {
+      margin-bottom: 32px;
+    }
+  }
 
   .star-icon {
     width: 22px;
@@ -69,21 +88,34 @@
     .img-container {
       height: 400px;
       width: 400px;
-      // min-width: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 0;
 
+      @media screen and (max-width: 1536px) {
+        height: 300px;
+        width: 300px;
+      }
+      @media screen and (max-width: 1440px) {
+        height: 300px;
+        width: 300px;
+      }
       @media screen and (max-width: 1200px) {
         height: 300px;
         width: 300px;
-        // min-width: 300px;
       }
-
+      @media screen and (max-width: 768px) {
+        height: 300px;
+        width: 300px;
+      }
       @media screen and (max-width: 1024px) {
-        width: max-content;
+        width: 300px;
+        height: 300px
+      }
+      @media screen and (max-width: 430px) {
+        width: 300px;
+        height: 300px
       }
 
       .testimonial-img {
@@ -91,7 +123,6 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-
         @media screen and (max-width: 1024px) {
           object-fit: contain;
         }
@@ -125,6 +156,39 @@
       color: white;
     }
   }
+
+  .margin-left {
+    margin-left: 5rem;
+
+    @media screen and (max-width: 1920px) {
+      margin-left: 3.5rem;
+    }
+
+    @media screen and (max-width: 1536px) {
+      margin-left: 8rem;
+    }
+
+    @media screen and (max-width: 1440px) {
+      margin-left:6.5rem;
+    }
+
+    @media screen and (max-width: 1433px) {
+      margin-left: 7rem;
+    }
+
+    @media screen and (max-width: 1366px) {
+      margin-left: 5.5rem;
+    }
+
+    @media screen and (max-width: 1280px) {
+      margin-left: 5rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+      margin-left: 1rem;
+    }
+
+  }
 }
 
 .faq {
@@ -147,9 +211,16 @@
   }
 
   h3 {
+    margin-bottom: 23px;
+
+    @media screen and (max-width: 1024px) {
+      margin-bottom: 18px;
+    }
+
     @media screen and (max-width: 430px) {
       margin-left: 16px;
       margin-right: 16px;
+      margin-bottom: 10px;
     }
   }
 

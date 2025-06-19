@@ -1,15 +1,15 @@
 <section class="testimonial">
   <div class="container">
     <h3
-      class="text-center text-capitalize size60 performa-light gray-color margin80"
+      class="text-center text-capitalize size60 performa-light gray-color"
     >
       What Our Family of Clients Say
     </h3>
     <div class="swiper py-md-4" #swiper>
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let testimonial of testimonialsData">
-          <div class="row justify-content-center justify-content-lg-between">
-            <div class="col-12 col-sm-9 col-md-9 col-lg-7 text-center mb-3 mb-md-2 img-container">
+          <div class="row justify-content-center gap-md-4">
+            <div class="col-12 col-sm-9 col-md-9 col-lg-4 text-center mb-3 mb-md-2 img-container">
               <img
                 src="{{ backendURL }}/{{ testimonial.image }}"
                 alt="Customer Testimonial"
@@ -17,7 +17,7 @@
               />
             </div>
             <div
-              class="col-12 col-sm-9 col-md-9 col-lg-7 d-flex flex-column "
+              class="col-12 col-sm-9 col-md-7 col-lg-7 d-flex flex-column "
             >
               <div class="margin28 d-flex gap-2">
                 <ng-container
@@ -53,7 +53,7 @@
     </div>
 
     <div
-      class="text-start gap-2 d-flex ms-lg-4 ms-md-4 ms-sm-3 justify-content-center justify-content-lg-start"
+      class="text-start gap-2 d-flex justify-content-center justify-content-xl-start margin-left"
     >
       <div #prevButton class="button swiper-button-prev">
         <lucide-icon name="arrow-left" class="swiper-button-icon" />
@@ -67,7 +67,7 @@
 
 <section class="faq" id="faq">
   <h3
-    class="text-center text-capitalize size60 performa-light gray-color margin23"
+    class="text-center text-capitalize size60 performa-light gray-color"
   >
     Frequently Asked Questions
   </h3>

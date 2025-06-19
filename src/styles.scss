@@ -757,10 +757,16 @@ a {
 
 .margin17 {
   margin-bottom: 17px;
+@media (max-width:1440px) {
+  margin-bottom: 10px;
+}
 }
 
 .margin18 {
   margin-bottom: 18px;
+@media (max-width:1440px) {
+  margin-bottom: 10px;
+}
 }
 
 .margin20 {
@@ -906,12 +912,16 @@ a {
 .margin-top80 {
   margin-top: 80px;
 
-  @media (max-width:1440px) {
+  // @media (max-width:1440px) {
+  //   margin-top: 60px;
+  // }
+
+  @media (max-width:1024px) {
     margin-top: 60px;
   }
 
   @media (max-width:430px) {
-    margin-top: 50px;
+    margin-top: 80px;
   }
 }
 

@@ -8,7 +8,7 @@ import { DataService } from '../../providers/data/data.service';
   styleUrl: './brands.component.scss'
 })
 export class BrandsComponent {
-  @Input() title: string = 'explore our premium brands';
+  @Input() h3: string = 'explore our premium brands';
   @Input() titleClass: string = 'text-center size22 performa-light text-capitalize mb-5';
   @Input() buttonTitle: string = 'show all';
   imageURL: string = `${environment.url}/assets/brands`;

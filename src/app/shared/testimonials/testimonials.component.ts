@@ -24,35 +24,35 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     {
       image: 'testimonials/image1.jpg',
       rating: 5,
-      title: '"Exceptional Service From Start To Finish!"',
+      h3: '"Exceptional Service From Start To Finish!"',
       content: 'Rented A Rolls-Royce For My Wedding, And Everything Was Flawless. The Car Was Immaculate, The Chauffeur Was Professional, And The Whole Process Was Seamless.',
       name: 'M24 (Dorai Harrison)'
     },
     {
       image: 'testimonials/image2.jpg',
       rating: 4,
-      title: '"Perfect Wedding Day!"',
+      h3: '"Perfect Wedding Day!"',
       content: 'The limousine service was outstanding. The chauffeur was very professional and the car was in perfect condition. Highly recommend!',
       name: 'John Smith'
     },
     {
       image: 'testimonials/image3.jpg',
       rating: 5,
-      title: '"Best Corporate Event Experience"',
+      h3: '"Best Corporate Event Experience"',
       content: 'We rented multiple luxury cars for our corporate event. The service was exceptional and our guests were very impressed.',
       name: 'Sarah Johnson'
     },
     {
       image: 'testimonials/image4.jpg',
       rating: 4,
-      title: '"Perfect for Family Vacation"',
+      h3: '"Perfect for Family Vacation"',
       content: 'The car was comfortable and the service was excellent. The team was very helpful throughout our vacation.',
       name: 'Lisa Chen'
     },
     {
       image: 'testimonials/image5.jpg',
       rating: 5,
-      title: '"Great Business Trip Experience"',
+      h3: '"Great Business Trip Experience"',
       content: 'Perfect service for our business trip. The cars were always on time and in excellent condition. Very professional team.',
       name: 'Robert Smith'
     }

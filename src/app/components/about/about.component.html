@@ -42,7 +42,7 @@
 </section>
 
 <app-brands
-  title="Pick Your Premium Ride From Top Brands"
+  h3="Pick Your Premium Ride From Top Brands"
   titleClass="text-center size22 redhat-bold text-capitalize mb-4 mb-md-5"
   buttonTitle="view all"
 ></app-brands>
@@ -120,17 +120,19 @@
   </div>
 </section>
 
-<section class="signature position-relative">
+<section class="signature">
+  <!-- <div class=" position-relative signature-image-container">
   <div class="position-absolute top-0 start-0 h-100 w-100">
     <img
       src="{{ imageURL }}/about/about.png"
       alt=""
       class="h-100 rounded-4 signature-image"
-    />
+    /> -->
     <!-- <span class="overlay"></span> -->
-  </div>
+  <!-- </div>
+  </div> -->
 
-  <div class="container-fluid position-relative h-100">
+  <div class="container-fluid position-relative h-100 bg-img" style="background-image: url({{ imageURL }}/about/about.png)">
     <div class="row h-100">
       <div class="col-xl-8 col-lg-8" style="border-right: 1px solid #f3f3f359">
         <div class="row h-100">

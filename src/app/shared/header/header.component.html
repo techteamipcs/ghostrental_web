@@ -33,7 +33,7 @@
           [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
       </li>
       <li>
-        <a routerLink="/contact" routerLinkActive="active">
+        <a routerLink="/contact" routerLinkActive="active" class="d-block">
           <button [class.black-button]="!useWhiteButton && !isScrolled"
             [class.white-button]="useWhiteButton || isScrolled" class="size18 redhat-bold contact-pad"
             [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
@@ -85,7 +85,7 @@
 
 
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/contact" class="nav-button">
+                <a href="/contact" class="nav-button d-block" >
                   <button class="black-button w-100 size18 redhat-bold">
                     <!-- <lucide-icon name="phone" class="mr-2"></lucide-icon> -->
                     Contact Us
