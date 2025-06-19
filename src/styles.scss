@@ -595,9 +595,9 @@ body {
     padding: 14px 50px;
   }
 
-  // @media (max-width:768px) {
-  //   padding: 10px 40px;
-  // }
+  @media (max-width:768px) {
+    padding: 10px 40px;
+  }
 
   @media (max-width:430px) {
     padding: 12px 25px;
@@ -612,7 +612,7 @@ body {
   color: $color-white;
   background-color: transparent;
   border-radius: 100px;
-  padding: 18px 70px;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;
@@ -630,9 +630,9 @@ body {
     padding: 14px 50px;
   }
 
-  // @media (max-width:768px) {
-  //   padding: 10px 40px;
-  // }
+  @media (max-width:768px) {
+    padding: 10px 40px;
+  }
 
   @media (max-width:430px) {
     padding: 12px 40px;
@@ -653,7 +653,7 @@ body {
   color: $color-gray-beige;
   background-color: $color-gray;
   border-radius: 100px;
-  padding: 18px 70px;
+  padding: 18px 66px;
   cursor: pointer;
   text-transform: capitalize;
   transition: all 0.3s ease;

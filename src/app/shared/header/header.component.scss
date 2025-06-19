@@ -83,6 +83,11 @@ nav {
   .white {
     color: #ffffff;
     transition: color 0.3s ease;
+    font-weight: 500;
+
+    &.active {
+      font-weight: 700;
+    }
 
     &.dark {
       color: #000000;
@@ -90,11 +95,19 @@ nav {
       &:hover {
         opacity: 0.8;
       }
+      
+      &.active {
+        font-weight: 700;
+      }
     }
 
     .scrolled &,
     .menu-open & {
       color: #ffffff !important;
+      
+      &.active {
+        font-weight: 700;
+      }
     }
   }
 

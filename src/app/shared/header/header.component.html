@@ -17,19 +17,19 @@
     <!-- Desktop Navigation -->
     <ul class="nav d-none d-xl-flex align-items-center">
       <li>
-        <a href="/" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Home</a>
       </li>
       <li>
-        <a href="/about" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/about" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">About Us</a>
       </li>
       <li>
-        <a href="/services" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/services" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Our Services</a>
       </li>
       <li>
-        <a href="/product/search" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/product/search" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
       </li>
       <li>
@@ -56,36 +56,35 @@
 
             <ul class="nav-menu">
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/" class="nav-link size16 redhat-medium">
+                <a routerLink="/" routerLinkActive="active" class="nav-link size16 redhat-medium">
                   <!-- <lucide-icon name="home" class="nav-icon"></lucide-icon> -->
                   <span>Home</span>
                 </a>
               </li>
 
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/about" class="nav-link size16 redhat-medium">
+                <a routerLink="/about" routerLinkActive="active" class="nav-link size16 redhat-medium">
                   <!-- <lucide-icon name="users" class="nav-icon"></lucide-icon> -->
                   <span>About Us</span>
                 </a>
               </li>
 
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/services" class="nav-link size16 redhat-medium">
+                <a routerLink="/services" routerLinkActive="active" class="nav-link size16 redhat-medium">
                   <!-- <lucide-icon name="settings" class="nav-icon"></lucide-icon> -->
                   <span>Our Services</span>
                 </a>
               </li>
 
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/product/search" class="nav-link size16 redhat-medium">
+                <a routerLink="/product/search" routerLinkActive="active" class="nav-link size16 redhat-medium">
                   <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
                   <span>Our Fleets</span>
                 </a>
               </li>
 
-
               <li class="nav-item" (click)="closeMenu()">
-                <a href="/contact" class="nav-button d-block" >
+                <a routerLink="/contact" routerLinkActive="active" class="nav-button d-block">
                   <button class="black-button w-100 size18 redhat-bold">
                     <!-- <lucide-icon name="phone" class="mr-2"></lucide-icon> -->
                     Contact Us
