@@ -117,13 +117,10 @@ select:focus {
 
     .label-text {
       top: 20%;
-      left: 2%;
+      left: 2.5%;
       width: 77%;
-
-      @media screen and (max-width: 1536px) {
-        top: 20%;
-        left: 2%;
-        width: 77%;
+      @media screen and (max-width: 1920px) {
+        left: 3.5%;
       }
     }
 

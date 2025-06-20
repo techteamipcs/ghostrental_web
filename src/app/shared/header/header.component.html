@@ -17,28 +17,26 @@
     <!-- Desktop Navigation -->
     <ul class="nav d-none d-xl-flex align-items-center">
       <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Home</a>
       </li>
       <li>
-        <a routerLink="/about" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/about" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">About Us</a>
       </li>
       <li>
-        <a routerLink="/services" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/services" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Our Services</a>
       </li>
       <li>
-        <a routerLink="/product/search" routerLinkActive="active" class="size16 redhat-medium white text-decoration-none"
+        <a routerLink="/product/search" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
       </li>
       <li>
-        <a routerLink="/contact" routerLinkActive="active" class="d-block">
-          <button [class.black-button]="!useWhiteButton && !isScrolled"
-            [class.white-button]="useWhiteButton || isScrolled" class="size18 redhat-bold contact-pad"
-            [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
+        <a routerLink="/contact" routerLinkActive="active" class="d-block" [class.black-button]="!useWhiteButton && !isScrolled"
+        [class.white-button]="useWhiteButton || isScrolled" class="size18 redhat-bold"
+        [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
             Contact Us
-          </button>
         </a>
       </li>
     </ul>
@@ -84,11 +82,8 @@
               </li>
 
               <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/contact" routerLinkActive="active" class="nav-button d-block">
-                  <button class="black-button w-100 size18 redhat-bold">
-                    <!-- <lucide-icon name="phone" class="mr-2"></lucide-icon> -->
+                <a routerLink="/contact" routerLinkActive="active" class="nav-button d-block black-button w-100 size18 redhat-bold">
                     Contact Us
-                  </button>
                 </a>
               </li>
             </ul>

@@ -573,8 +573,8 @@ body {
 .white-button {
   display: block;
   width: max-content;
-  border: 2px solid $color-white;
   color: $color-black;
+  border: none;
   background-color: $color-white;
   border-radius: 100px;
   padding: 18px 66px;
@@ -587,8 +587,7 @@ body {
   }
 
   @media (max-width:1440px) {
-    padding: 7px 40px;
-
+    padding: 12px 40px;
   }
 
   @media (max-width:1280px) {
@@ -622,18 +621,14 @@ body {
   }
 
   @media (max-width:1440px) {
-    padding: 7px 40px;
-
+    padding: 12px 40px;
   }
-
   @media (max-width:1280px) {
     padding: 14px 50px;
   }
-
   @media (max-width:768px) {
     padding: 10px 40px;
   }
-
   @media (max-width:430px) {
     padding: 12px 40px;
   }
@@ -649,7 +644,7 @@ body {
   width: 100%;
   max-width: max-content;
   display: block;
-  border: 2px solid $color-gray;
+  border: none;
   color: $color-gray-beige;
   background-color: $color-gray;
   border-radius: 100px;
@@ -663,11 +658,11 @@ body {
   }
 
   @media (max-width:1440px) {
-    padding: 7px 40px;
+    padding: 12px 40px;
   }
 
   @media (max-width:1280px) {
-    padding: 5px 20px;
+    padding: 14px 50px;
   }
 
   @media (max-width:768px) {
@@ -947,4 +942,29 @@ select:focus {
 
 a{
   text-decoration: none !important;
+}
+
+
+nav{
+  .white {
+    color: #ffffff;
+    transition: color 0.3s ease;
+    font-weight: normal;
+
+    &.active {
+      font-family: $redhat-bold;
+    }
+
+    &.dark {
+      color: #000000;
+
+      &:hover {
+        opacity: 0.8;
+      }
+      
+      &.active {
+        font-family: $redhat-bold;
+      }
+    }
+  }
 }

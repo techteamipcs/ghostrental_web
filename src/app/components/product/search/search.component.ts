@@ -481,7 +481,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   // Public method to trigger search (can be called from template)
   SearchItems() {
-
     this.getCarData();
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
@@ -493,7 +492,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBrand = [];
     this.selectedModel = [];
     // this.selectedRentalType = 'Daily';
-
+    this.selelctedstartDate = '';
+    this.selelctedendDate = '';
     this.selectedRentalType = null;
     this.minPrice = 0;
     this.maxPrice = 10000;
