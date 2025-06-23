@@ -59,17 +59,21 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     public actRoute: ActivatedRoute,
     public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object
   ) {
+  }
+
+  ngOnInit() {
+    // this.actRoute.queryParams.subscribe((params) => {
+		// 	 this.getCarData();
+		// });
+    // this.actRoute.params.subscribe(params => {
+      
+    //   this.checkSticky();
+		// });
     this.url_key = this.actRoute.snapshot.paramMap.get('url_key');
     if (this.url_key) {
       this.getVehicleData();
     }
-  }
-
-  ngOnInit() {
-    this.actRoute.queryParams.subscribe((params) => {
-			 this.getCarData();
-		});
-   
+    this.getCarData();
   }
 
   ngAfterViewInit() {
@@ -119,7 +123,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     return { images: thumbnails };
   }
 
-  private getVehicleData() {
+  getVehicleData() {
     const obj = { url_key: this.url_key };
     this.dataservice.getSingleVehicleDataByUrlKey(obj)
       .pipe(takeUntil(this.destroy$))
@@ -286,6 +290,12 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       .replace(/[^a-z0-9\s]/g, '')
       .replace(/\s+/g, '-');
     return ['/product', slug];
+  }
+
+  onclickrelateproduct(url){
+    this.router.navigateByUrl('product/'+url).then(()=>{
+      window.location.reload();
+    })
   }
 
 }
