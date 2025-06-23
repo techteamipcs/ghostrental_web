@@ -66,7 +66,10 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getCarData();
+    this.actRoute.queryParams.subscribe((params) => {
+			 this.getCarData();
+		});
+   
   }
 
   ngAfterViewInit() {
