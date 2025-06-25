@@ -50,35 +50,30 @@ nav {
   }
 
   &.large-padding {
-    padding: 45px 90px;
-
+    padding: 70px 90px;
     @media (max-width: 1920px) {
-      padding: 40px 90px;
+      padding: 70px 90px;
     }
     @media (max-width: 1600px) {
       padding: 3rem 6rem;
     }
-
     @media (max-width: 1536px) {
-      padding:2rem 90px;
+      padding:3rem 90px;
     }
-
     @media (max-width: 1440px) {
-      padding: 2rem 3rem;
+      padding: 3rem 3rem;
     }
-    @media (max-width: 1366px) {
-      // padding: 1.7rem 3rem;
-      padding: 2rem 3rem;
-    }
+    // @media (max-width: 1366px) {
+    //   padding: 2rem 3rem;
+    // }
     @media (max-width: 1280px) {
-      padding: 1.5rem 2rem;
+      padding: 2.5rem 2rem;
     }
     @media (max-width: 1024px) {
       padding: 2.5rem 42px;
     }
-
     @media (max-width: 430px) {
-      padding: 1.5rem 1.5rem;
+      padding: 1.8rem 1.5rem;
     }
   }
 
@@ -198,13 +193,13 @@ nav {
       width: 250px;
     }
 
-    @media (max-width: 1024px) {
-      width: 268px;
-    }
+    // @media (max-width: 1024px) {
+    //   width: 268px;
+    // }
 
-    @media (max-width: 430px) {
-      width: 180px;
-    }
+    // @media (max-width: 430px) {
+    //   width: 180px;
+    // }
   }
 
   .dark-mode {
@@ -726,3 +721,12 @@ nav {
 }
 
 // Responsive adjustments
+
+.size16 {
+  font-size: 16px;
+
+  @media (max-width: 1600px) {
+    font-size: 14px;
+  }
+
+}
