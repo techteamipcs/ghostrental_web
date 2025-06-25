@@ -40,9 +40,11 @@ export class BrandsComponent {
     this.dataservice.getBrands(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.brandsData = response.result.filter((brand: any) => 
-            !brand.type || brand.type === 'car' || brand.type === 'Car'
-          );
+          response.result.forEach((brand,index) => {
+            if(brand && brand.type =='Car' && brand.image && brand.image.length > 0 && this.brandsData.length < 8 ){
+              this.brandsData.push(brand);
+            }
+          });
         }
       }
     });

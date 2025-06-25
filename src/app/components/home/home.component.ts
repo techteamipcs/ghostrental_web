@@ -660,5 +660,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.isPopupOpen = false;
       }
     }
+
+    getAdditionalReq() {
+      let obj = {};
+      this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
+        if (response.code == 200) {
+          if (response.result && response.result.length > 0) {
+            this.listBodytype = response.result;
+            if (this.listBodytype && this.listBodytype.length > 0) {
+              this.filteredBodytype = this.listBodytype.filter((bodytype) => bodytype.type == this.vehicletype);
+            }
+          }
+        }
+      });
+  }
+  
+  sendWhatsappmsg() {
+    let obj = {};
+    this.dataservice.sendWhatappMessage(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          let result = response.result;
+        }
+      }
+    });
+  }
 }
 

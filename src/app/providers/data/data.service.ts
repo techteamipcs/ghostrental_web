@@ -271,6 +271,25 @@ export class DataService {
     );
   };
 
+
+  getAdditionalReq = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/bodytype/getAllBodytype';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
+  sendWhatappMessage = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/home/sendwhatsappmsg';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
+
   
 
   logout() {
