@@ -39,7 +39,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
       image: 'testimonials/image3.jpg',
       rating: 5,
       h3: '"Best Corporate Event Experience"',
-      content: 'We rented multiple luxury cars for our corporate event. The service was exceptional and our guests were very impressed.',
+      content: 'We rented multiple Luxury cars for our corporate event. The service was exceptional and our guests were very impressed.',
       name: 'Sarah Johnson'
     },
     {
@@ -62,40 +62,41 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
   faqs = [
     {
       id: 'faq1',
-      question: 'How can I pay for my car rental?',
-      answer: 'We have multiple payment options, including Visa, MasterCard, cash, American Express, online banking, and Bitcoin.'
+      question: 'How can I pay at Ghost Rentals?',
+      answer: 'We accept Visa, MasterCard, AmEx, Cash, online banking & Bitcoin - choose what works best for you at Ghost Rentals!'
     },
     {
       id: 'faq2',
-      question: 'Which vehicles can I rent from Luxury Supercars?',
-      answer: 'We offer an elite fleet of luxury and exotic cars for rent in Dubai, including top brands like Ferrari, Lamborghini, Rolls-Royce, Bentley, and McLaren. All our vehicles are insured, clean and well maintained and our help desk can be contacted on a 24-hours basis. Please browse through our site to check out the complete range of cars that we offer.'
+      question: 'Which luxury supercars can I rent from Ghost Rentals?',
+      answer: 'At Ghost Rentals, we offer an extensive fleet of premium & economy vehicles - all fully insured, impeccably maintained & inspected. Our 24/7 support team is always ready to help. Browse our complete catalog of luxury cars & yachts with no deposit required at the lowest market prices!'
     },
     {
       id: 'faq3',
-      question: 'Can a reservation be modified or cancelled?',
-      answer: 'You may modify or terminate your existing reservation by getting in touch with one of our customer service representatives. We kindly request that all changes be made at least 48 hours. In any event, if the customer cancels or modifies their booking within 48 hours, an additional fee may be charged. Our team is available 24/7 to assist you with a smooth and flexible booking experience across the UAE.'
+      question: 'How can I modify or cancel my Ghost Rentals reservation?',
+      answer: 'Yes, you can modify or cancel your reservation by contacting our customer service team. All changes must be made at least 48 hours in advance. Modifications or cancellations requested with less than 48 hours notice may incur additional fees.'
     },
     {
       id: 'faq4',
-      question: 'What about late return fees?',
-      answer: 'Our luxury car rentals in Dubai operate on a 24-hour cycle with a 1-hour grace period for returns. However, after the grace period, hourly charges will be applicable. After 3 hours, full-day late charges will be applicable. Please note: surcharges, protection fees, and optional add-ons do not include a grace period for such things; full-day charges apply immediately upon delay.'
+      question: 'What are Ghost Rentals late return fees and policies?',
+      answer: 'We rent vehicles on a 24-hour basis with a 1-hour grace period for returns. After that, hourly charges apply. Beyond 3 hours late, full-day charges apply. No grace period for surcharges, fees, protections, or optional equipment - full-day late charges apply immediately for these items.'
     },
     {
       id: 'faq5',
-      question: 'Is roadside assistance offered in case I have problems with my car?',
-      answer: 'We offer 24/7 roadside assistance for all our luxury car rentals across Dubai and the UAE. If you have difficulties with your rental car, please contact our team immediately. If there are any minor problems that can be addressed on the spot, we will dispatch our operations team to assist you right away. In the unlikely event that your car faces a malfunction, get in touch with our sales department for car replacement or assistance. However, in this case, do not leave your vehicle and wait for service or the police to arrive.'
+      question: 'Does Ghost Rentals provide roadside assistance if I encounter issues with my rental car?',
+      answer: 'If you encounter issues with your Ghost Rentals vehicle, call us immediately. For minor problems, our operations team will assist on-site. For major malfunctions, we\'ll provide replacement or roadside assistance. Never abandon your vehicle - stay with the car and wait for our service team or authorities. Our 24/7 support ensures you\'re never stranded during your rental.'
     },
     {
       id: 'faq6',
-      question: 'How do I book a Dubai luxury car rental?',
-      answer: 'The booking process for Dubai luxury car rental is easy and straightforward. Simply visit our website, select your desired luxury car, enter your payment details, and make the reservation.'
+      question: 'How do I book Car and Yacht rental with Ghost Rentals?',
+      answer: 'Booking with Ghost Rentals is simple: visit ghostrentals.ae, select your car, call us or email info@ghostrentals.ae. No deposit required* with lowest prices!'
     },
     {
       id: 'faq7',
-      question: 'Can I book more than one vehicle at once?',
-      answer: 'Yes, you can book multiple luxury cars at once with Ghost Rentals Whether it’s for a wedding convoy, VIP event, or corporate travel, our booking process is designed to handle group rentals effortlessly. Simply select your desired cars and make the booking. Our team will be happy to help if you have any questions or queries about this process.'
+      question: 'Can I book multiple vehicles at once from Ghost Rentals?',
+      answer: 'Yes, you can book multiple vehicles at once with Ghost Rentals. Simply select your desired cars and complete the booking. Our team is ready to assist with any questions.'
     }
   ];
+  
 
   constructor(private ngZone: NgZone, public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object) { }
 

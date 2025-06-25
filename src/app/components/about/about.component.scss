@@ -1,11 +1,4 @@
-// Background image container styles
-.bg-img {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  z-index: 1;
-}
+
 
 .sectionPadding {
   // padding: 9.4rem 0 0 0;
@@ -254,7 +247,7 @@
   padding: 4rem 24rem;
 
   @media screen and (max-width: 1920px) {
-    padding: 4rem 7rem;
+    padding: 4rem 10rem;
   }
 
   @media screen and (max-width: 1600px) {

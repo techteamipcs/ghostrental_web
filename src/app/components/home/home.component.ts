@@ -165,9 +165,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
-
-
   public initYachtSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       const swiper = new Swiper('.yacht-collection-swiper', {

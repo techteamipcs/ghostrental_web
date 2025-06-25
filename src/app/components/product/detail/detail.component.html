@@ -281,12 +281,40 @@
         </div>
       </div>
 
-      <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
+      <!-- <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
         <div class="margin40">
           <h3 class="size26 redhat-semibold text-capitalize margin42">
             description
           </h3>
           <p class="size18 redhat-semibold mb-5" [innerHtml]="vehicleData.description"></p>
+        </div>
+      </div> -->
+
+      <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
+        <div class="margin40">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
+            description
+          </h3>
+          <p class="size18 redhat-semibold mb-5">
+            With Ghost Rentals any trip turns into an exciting adventure. Rent a — 
+            <span class=" redhat-bold">
+
+              {{ vehicleData.name }} 
+            </span>
+            car in UAE for -  
+            
+            <span class=" redhat-bold">
+              {{ vehicleData.regularRateDaily }} AED
+            </span> per day, 
+            <span class=" redhat-bold">
+              {{ vehicleData.regularRateWeekly }} AED
+            </span> per week, 
+            <span class=" redhat-bold">
+              {{ vehicleData.regularRateMonthly }} AED
+            </span> per month.
+            
+            Experience the unmatched performance and Luxury on the city roads in a supercar with excellent customized services. From delivering the cleanest vehicle to ensuring on time delivery we focus on every detail to make your ride the best. So what's holding you back, book now with us! For any queries, please contact us.
+          </p>
         </div>
       </div>
 
@@ -477,12 +505,12 @@
         <div class="products">
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
-              (click)="onclickrelateproduct(car.url_key)">
+            (click)="onclickrelateproduct(car.url_key)">
               <div class="car-card">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid thumbnail-image w-100" />
                 <div class="card-content">
-                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center">
+                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center position-relative">
                     <div class="car-header">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
@@ -492,7 +520,7 @@
                       </h6>
                     </div>
                     <span *ngIf="car && car.isvipNumberPlate"
-                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                      class="size12 redhat-bold text-capitalize special-number px-2 py-1">special number
                       plate</span>
                   </div>
 
@@ -529,7 +557,8 @@
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
-                    <a  class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize">View
+                    <a (click)="onclickrelateproduct(car.url_key)"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize">View
                       details</a>
                   </div>
                 </div>

@@ -9,7 +9,7 @@
     <div class="content" *ngIf="!bannerData">
       <h1 class="size89 performa-thin white-color line-height90 text-capitalize">Smart Stylish City-Ready</h1>
       <p class="size20 redhat-regular beige-color line-height26">
-        Effortless driving for urban explorers—luxury hatchbacks that combine
+        Effortless driving for urban explorers—Luxury hatchbacks that combine
         performance and practicality in one compact package.
       </p>
     </div>
@@ -76,7 +76,7 @@
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid w-100 thumbnail-image" />
                 <div class="card-content">
-                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center">
+                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center position-relative">
                     <div class="car-header">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
@@ -86,7 +86,7 @@
                       </h6>
                     </div>
                     <span *ngIf="car && car.isvipNumberPlate"
-                      class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                      class="size12 redhat-bold text-capitalize px-2 py-1 special-number">special number
                       plate</span>
                   </div>
 

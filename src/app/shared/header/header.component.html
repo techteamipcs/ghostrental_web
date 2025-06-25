@@ -33,8 +33,9 @@
           [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
       </li>
       <li>
-        <a routerLink="/contact" routerLinkActive="active" class="d-block" [class.black-button]="!useWhiteButton && !isScrolled"
-        [class.white-button]="useWhiteButton || isScrolled" class="size18 redhat-bold"
+        <a routerLink="/contact" routerLinkActive="active" class="d-block size18 redhat-bold contact-button"
+        [class.black-button]="!useWhiteButton && !isScrolled"
+        [class.white-button]="useWhiteButton || isScrolled"
         [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
             Contact Us
         </a>

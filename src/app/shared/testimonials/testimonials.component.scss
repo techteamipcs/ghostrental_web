@@ -189,6 +189,39 @@
     }
 
   }
+
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: black;
+      color: white;
+    }
+
+    &::after {
+      display: none;
+    }
+
+    .swiper-button-icon {
+      width: 24px;
+      height: 24px;
+      line-height: normal;
+    }
+  }
+
 }
 
 .faq {

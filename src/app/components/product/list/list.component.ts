@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
   Math = Math;
@@ -50,6 +50,7 @@ export class ListComponent implements OnInit {
     if (this.url_key) {
       this.getCarTypes();
     } else {
+      this.getAllCarTypes();
       this.getCarData();
     }
     this.getBannerData();
@@ -146,6 +147,14 @@ export class ListComponent implements OnInit {
     });
   }
 
+  getAllCarTypes() {
+    this.dataservice.getCarTypes({}).subscribe((response) => {
+      if (response.code == 200) {
+        this.cartypeData = response.result;
+      }
+    });
+  }
+  
   onChangeSort(data) {
     if (data) {
       this.sort = data.target.value;

@@ -7,11 +7,24 @@ import * as AOS from 'aos';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+  styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements AfterViewInit {
   imageURL: string = `${environment.url}/assets`;
   bannerData: any;
+
+  // Getter for background image style
+  get backgroundImageStyle() {
+    return {
+      'background-image': `url('${this.imageURL}/about/about.png')`,
+      'background-size': 'cover',
+      'background-position': 'center',
+      'background-repeat': 'no-repeat',
+      'position': 'relative',
+      'z-index': '1',
+      'border-radius': '20px'
+    };
+  }
   constructor(
     private dataservice: DataService,
     @Inject(PLATFORM_ID) private platformId: Object

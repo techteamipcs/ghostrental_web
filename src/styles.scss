@@ -574,12 +574,11 @@ body {
   display: block;
   width: max-content;
   color: $color-black;
-  border: none;
+  border: 1px solid  $color-black;
   background-color: $color-white;
   border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
-  text-transform: capitalize;
   transition: all 0.3s ease;
 
   @media (max-width:1600px) {
@@ -601,6 +600,12 @@ body {
   @media (max-width:430px) {
     padding: 12px 25px;
   }
+
+  &:hover {
+    color: $color-gray-beige;
+  background-color: $color-gray;
+    border: 1px solid $color-gray-beige;
+  }
 }
 
 .white-border-button {
@@ -613,7 +618,6 @@ body {
   border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
-  text-transform: capitalize;
   transition: all 0.3s ease;
 
   @media (max-width:1600px) {
@@ -644,13 +648,12 @@ body {
   width: 100%;
   max-width: max-content;
   display: block;
-  border: none;
   color: $color-gray-beige;
   background-color: $color-gray;
+  border: 1px solid $color-gray-beige;
   border-radius: 100px;
   padding: 18px 66px;
   cursor: pointer;
-  text-transform: capitalize;
   transition: all 0.3s ease;
 
   @media (max-width:1600px) {
@@ -672,6 +675,12 @@ body {
   @media (max-width:430px) {
     padding: 12px 40px;
   }
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-black;
+    border: 1px solid $color-black;
+  }
 }
 
 img {
@@ -679,19 +688,6 @@ img {
   height: auto;
   object-fit: cover;
 }
-
-// .sectionPadding{
-//   padding:6rem 12rem;
-//   @media (max-width:1440px) {
-//     padding: 4rem 7rem;
-//   }
-//   @media (max-width:1024px) {
-//     padding: 4rem 6rem;
-//   }
-//   @media (max-width:768px) {
-//     padding: 3rem 10px;
-//   }
-// }
 
 .bannerPadding {
   padding: 28px;
@@ -967,4 +963,13 @@ nav{
       }
     }
   }
+}
+
+
+.special-number{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px solid #070707;
+  border-radius: 5px 5px 0 0;
 }

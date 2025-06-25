@@ -13,7 +13,7 @@
                 Turn Every Trip Into Ultimate Reality
               </h1>
               <p class="size20 redhat-regular hero-para beige-color line-height26 mmargin36">
-                Ghost Rentals - Dubai's luxury car rental & yacht rental! Create unforgettable memories at weddings,
+                Ghost Rentals - Dubai's Luxury car rental & yacht rental! Create unforgettable memories at weddings,
                 events, or while exploring UAE. We don't just transport - we ensure you arrive as the main attraction!
               </p>
               <a href="/contact" class="white-color text-decoration-none white-border-button size18 redhat-bold  d-none d-lg-block">Book Now</a>
@@ -21,8 +21,8 @@
             </div> -->
 
             <div class="content" *ngIf="bannerData">
-              <h1 class="size89 performa-thin white-color  text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
-              <p class="size20 redhat-regular hero-para beige-color line-height26 "
+              <h1 class="size89 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
+              <p class="size22 redhat-regular hero-para beige-color line-height26 "
                 [innerHtml]="bannerData.description"></p>
               <a href="/contact"
                 class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block">Book
@@ -39,14 +39,14 @@
               </h2>
 
               <div class="d-flex justify-content-center align-items-center gap-2 toggle">
-                <span class="redhat-bold text-uppercase m-0 black-color">CARS</span>
+                <span class="redhat-bold text-capitalize m-0 black-color">cars</span>
                 <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
                   tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht"
                   [attr.aria-label]="isVehicleYacht ? 'Switch to cars' : 'Switch to yachts'"
                   aria-labelledby="toggleLabel" (keydown.enter)="toggleVehicle()" (keydown.space)="toggleVehicle()">
                   <span class="visually-hidden">{{ isVehicleYacht ? 'Yachts' : 'Cars' }} selected</span>
                 </div>
-                <span class="redhat-bold text-uppercase m-0 black-color">YACHTS</span>
+                <span class="redhat-bold text-capitalize m-0 black-color">yachts</span>
               </div>
 
               <div class="row type-margin">
@@ -110,9 +110,9 @@
                 </div>
               </div>
 
-              <div class="section-title size18 redhat-bold black-color label-margin">
+              <h3 class="section-title size18 redhat-bold black-color label-margin text-capitalize">
                 Pickup
-              </div>
+              </h3>
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
@@ -168,9 +168,9 @@
                 </div>
               </div>
 
-              <div class="section-title size18 redhat-bold black-color label-margin">
-                Return
-              </div>
+              <h3 class="section-title size18 redhat-bold black-color label-margin text-capitalize">
+                Drop
+              </h3>
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
@@ -199,7 +199,7 @@
                       <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
                         required>
                         <option value="" disabled selected>
-                          Choose Return Location
+                          Choose Drop Location
                         </option>
                         <option *ngFor="let location of dropLocations">
                           {{ location.name }}
@@ -225,8 +225,9 @@
                 </div>
               </div>
 
-              <button type="submit" class="black-button d-flex mx-auto size18 redhat-bold btn-margin"
+              <button type="submit" class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
                 (click)="goToResults()">
+                <img src="{{ imageURL }}/home/whatsapp.svg" alt="whatsapp" class="whatsapp-icon img-fluid" />
                 Book Now
               </button>
             </form>
@@ -300,9 +301,9 @@
             That Redefine Luxury Travel
           </h2>
           <p class="size20 redhat-regular white-color service-para-width mx-auto" data-aos-duration="2000">
-            We specialize in luxury car hire & yacht rental across UAE, creating
-            complete luxury experiences with personalized attention beyond
-            simple rentals.
+            We specialize in Luxury Car hire & Yacht Rental across UAE, creating
+            complete Luxury experiences with personalized attention beyond
+            simple Rentals.
           </p>
           <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto" routerLink="/services">
             view all
@@ -319,7 +320,7 @@
               Luxury Car Rental Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              Find the best luxury car rentals in Dubai with Ghost Rentals.
+              Find the best Luxury Car Rentals in Dubai with Ghost Rentals.
               Choose Rolls-Royce, Lamborghini & Range Rover with free UAE
               delivery.
             </p>
@@ -339,7 +340,7 @@
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
               Sail by Dubai's famous landmarks such as Palm Jumeirah, Burj Al
-              Arab, and Atlantis on our crewed and catered luxury yachts.
+              Arab, and Atlantis on our crewed and catered Luxury Yachts.
             </p>
             <a href="/services"
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto">
@@ -356,7 +357,7 @@
               Luxury Chauffeur Services
             </h4>
             <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
-              At Ghost Rentals, we excel at luxury travel. Our top- notch luxury
+              At Ghost Rentals, we excel at Luxury travel. Our top- notch Luxury
               chauffeur services in Dubai provide unparalleled elegance for
               every trip.
             </p>
@@ -381,7 +382,7 @@
           <h3 class="text-capitalize size60 performa-light mb-0">
             Our Luxury Cars For Rent
           </h3>
-          <button routerLink="/product/search" class="black-button size18 redhat-bold d-none d-lg-block" data-aos-duration="1000">view all</button>
+          <button routerLink="/product/search" class="black-button size18 redhat-bold d-none d-lg-block text-capitalize" data-aos-duration="1000">view all</button>
         </div>
 
         <div class="position-relative">
@@ -396,7 +397,7 @@
                       class="img-fluid thumbnail-image w-100 h-100" />
                   </div>
                   <div class="card-content">
-                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center position-relative">
                       <div class="car-header">
                         <h4 class="car-name mb-1 size26 redhat-semibold">
                           {{ car.name }}
@@ -406,7 +407,7 @@
                         </h6>
                       </div>
                       <span *ngIf="car && car.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                        class="size12 redhat-bold text-capitalize special-number px-2 py-1">special number
                         plate</span>
                     </div>
 
@@ -460,7 +461,7 @@
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
-            <button routerLink="/product/search" class="black-button size18 redhat-bold d-block d-lg-none mx-2 mx-sm-3 mx-md-4 mx-lg-0">
+            <button routerLink="/product/search" class="black-button size18 redhat-bold d-block d-lg-none mx-2 mx-sm-3 mx-md-4 mx-lg-0 text-capitalize">
               view all
             </button>
           </div>
@@ -478,7 +479,7 @@
           <h3 class="text-capitalize size60 performa-light mb-0" data-aos-duration="1000">
             Our Luxury Yacht Charter
           </h3>
-          <button routerLink="/product/search" class="black-button size18 redhat-bold d-none d-lg-block" data-aos-duration="1000">view all</button>
+          <button routerLink="/product/search" class="black-button size18 redhat-bold d-none d-lg-block text-capitalize" data-aos-duration="1000">view all</button>
         </div>
 
         <div class="position-relative">
@@ -493,7 +494,7 @@
                       class="img-fluid thumbnail-image w-100 h-100" />
                   </div>
                   <div class="card-content">
-                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center position-relative">
                       <div class="car-header">
                         <h4 class="car-name mb-1 size26 redhat-semibold">
                           {{ yacht.name }}
@@ -503,7 +504,7 @@
                         </h6>
                       </div>
                       <span *ngIf="yacht && yacht.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special number
+                        class="size12 redhat-bold text-capitalize special-number px-2 py-1">special number
                         plate</span>
                     </div>
 
@@ -558,7 +559,7 @@
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
-            <button routerLink="/product/search" class="black-button size18 redhat-bold d-block d-lg-none">
+            <button routerLink="/product/search" class="black-button size18 redhat-bold d-block d-lg-none text-capitalize">
               view all
             </button>
           </div>
@@ -593,9 +594,9 @@
           Pure Luxury. Pure Perfection.
         </h2>
         <p class="size20 redhat-regular text-center white-color line-height26 margin17" data-aos-duration="2000">
-          At Ghost Rentals, we turn luxury car hire and yacht rentals into
+          At Ghost Rentals, we turn Luxury Car hire and Yacht Rentals into
           customized experiences that we design with family-level love. We
-          provide UAE's safest, fastest luxury services through real attention
+          provide UAE's safest, fastest Luxury services through real attention
           to detail that creates stunning relationships with every customer.
         </p>
         <button routerLink="/about" class="white-button size18 redhat-bold text-capitalize" data-aos-duration="2500">
@@ -643,7 +644,7 @@
           <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
             class="img-fluid trending-main-image h-100" />
           <div class="card-content">
-            <div class="car-info margin27 d-flex justify-content-between align-items-center">
+            <div class="car-info margin27 d-flex justify-content-between align-items-center position-relative">
               <div class="car-header">
                 <h4 class="car-name mb-1 size35 redhat-semibold white-color">
                   {{ car.name }}
@@ -653,7 +654,7 @@
                 </h6>
               </div>
               <span *ngIf="car && car.isvipNumberPlate"
-                class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special
+                class="size12 white-color redhat-bold text-capitalize special-number px-2 py-1">special
                 number plate</span>
             </div>
 
@@ -702,7 +703,7 @@
                   </div>
 
                   <div class="card-content">
-                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center">
+                    <div class="car-info pb-xl-3 pb-2 d-flex justify-content-between align-items-center position-relative">
                       <div class="car-header">
                         <h4 class="car-name mb-1 size35 redhat-semibold white-color">
                           {{ car.name }}
@@ -712,7 +713,7 @@
                         </h6>
                       </div>
                       <span *ngIf="car && car.isvipNumberPlate"
-                        class="size12 white-color redhat-bold text-capitalize border border-1 rounded-2 px-2 py-1">special
+                        class="size12 white-color redhat-bold text-capitalize special-number px-2 py-1">special
                         number plate</span>
                     </div>
                     <div class="car-pricing pt-xl-3 pt-2 d-flex justify-content-between align-items-end">
