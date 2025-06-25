@@ -172,21 +172,22 @@
 </section>
 
 
-<section class="car-types-section">
+
+<section class="car-types-section d-xl-block d-none">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
-    <div class="car-type-wrapper">
-      <div *ngFor="let car of cartypeData"
-        class="position-relative d-flex flex-column align-items-center justify-content-center"
-        style="cursor: pointer">
+    <div class="d-flex align-items-center gap">
+      <div *ngFor="let car of cartypeDataList"
+        [class.activeCategory]="car._id === activeCategoryId"
+        class="position-relative d-flex flex-column align-items-center justify-content-center category-card" 
+        style="cursor: pointer"
+        (click)="activeCategory(car._id)">
         <a [routerLink]="['/product/list', car.url_key]"
-          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
-          <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
-            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
-          <p class="redhat-semibold text-center type-margin text-capitalize"
-            [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active">
+          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
+          <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
+          <p class="redhat-semibold text-center type-margin text-capitalize">
             {{ car.name }}
           </p>
         </a>
@@ -195,5 +196,27 @@
   </div>
 </section>
 
+<section class="car-types-section d-xl-none d-block">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
+    Browse by Car Type
+  </h3>
+  <div class="container-fluid">
+    <div class="grid-category">
+      <div *ngFor="let car of cartypeDataList"
+        [class.activeCategory]="car._id === activeCategoryId"
+        class="position-relative d-flex flex-column align-items-center justify-content-center category-card" 
+        style="cursor: pointer"
+        (click)="activeCategory(car._id)">
+        <a [routerLink]="['/product/list', car.url_key]"
+          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
+          <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
+          <p class="redhat-semibold text-center type-margin text-capitalize">
+            {{ car.name }}
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-testimonials></app-testimonials>

@@ -27,10 +27,12 @@ export class ListComponent implements OnInit {
   trendingRentalCars: any = [];
   bannerData: any;
   cartypeData: any;
+  cartypeDataList: any;
   url_key: any;
   carTypes: any = [];
   selectedbannerpage = 'product';
   sort: any;
+  activeCategoryId: string = '';  // Add this line to track active category
 
 
   constructor(
@@ -49,6 +51,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     if (this.url_key) {
       this.getCarTypes();
+      this.getAllCarTypes();
     } else {
       this.getAllCarTypes();
       this.getCarData();
@@ -137,7 +140,8 @@ export class ListComponent implements OnInit {
         if (response.result && response.result.length > 0) {
           this.cartypeData = response.result[0];
           if (this.cartypeData) {
-            this.carTypes.push(this.cartypeData._id);
+            this.carTypes = [this.cartypeData._id];
+            this.activeCategoryId = this.cartypeData._id;  // Set active category when loading specific category
             this.selectedbannerpage = this.cartypeData.name;
             this.getCarData();
             this.getBannerData();
@@ -146,14 +150,20 @@ export class ListComponent implements OnInit {
       }
     });
   }
+  activeCategory(id: string) {
+    this.activeCategoryId = id; 
+    this.carTypes = [id];
+    this.getCarData();
+  }
 
   getAllCarTypes() {
     this.dataservice.getCarTypes({}).subscribe((response) => {
       if (response.code == 200) {
-        this.cartypeData = response.result;
+        this.cartypeDataList = response.result;
       }
     });
   }
+ 
   
   onChangeSort(data) {
     if (data) {
