@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   useWhiteButton = false;
   isBrowser: boolean;
   hasLargePadding = false;
-  largePaddingRoutes = ['/', '/product/list', '/services', '/booking'];
+  largePaddingRoutes = ['/', '/services', '/booking'];
   detailRouteRegex = /^\/product\//;
   listRouteRegex = /^\/product\/list/;
   bookingRouteRegex = /^\/booking/;

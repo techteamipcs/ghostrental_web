@@ -69,23 +69,14 @@
 <section class="details" *ngIf="vehicleData">
   <div class="container-fluid">
     <div class="row sticky-container" #stickyContainer>
-      <div #stickyCard class="sticky-card d-xl-block d-none border border-1 border-black p-4 ">
-        <div class="d-flex mb-4 justify-content-between">
-          <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
-
-
-          <div class="d-flex flex-column justify-content-between">
-            <div>
-              <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
-              <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
+      <div class="d-xl-block d-none border border-1 border-black p-4 sticky-card" #stickyCard>
+          <div class="row">
+            <div class="col mb-md-4">
+              <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
             </div>
-            <div class="">
-              <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
-              <h6 class="mb-0 size26 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.regularRateDaily">
-                <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
-              </h6>
-            </div>
+          <div class="col mb-md-4 d-flex flex-column justify-content-end">
+            <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
+            <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
           </div>
         </div>
         <!-- <div class="cash">
@@ -103,11 +94,11 @@
           </h5>
         </div> -->
         <div class="d-flex align-items-center justify-content-between margin17">
-          <div class=" ">
-            <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
-            <h6 class="mb-0 size20 redhat-semibold gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateHourly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateHourly }}
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+            <h6 class="mb-0 size26 redhat-semibold  gray-color"
+              *ngIf="vehicleData && vehicleData.regularRateDaily">
+              <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
             </h6>
           </div>
           <div class="">
@@ -152,6 +143,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="d-xl-none d-block px-4">
         <div class="border border-1 border-black p-md-4 p-2 purchase-card mb-5">
           <div class="d-flex justify-content-between mb-4">

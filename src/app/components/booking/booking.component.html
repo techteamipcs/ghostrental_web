@@ -7,14 +7,14 @@
       class="w-100 h-100 bannerImage" loading="lazy" decoding="async" />
 
     <div class="content" *ngIf="!bannerData">
-      <h1 class="size89 performa-thin white-color line-height90 text-capitalize">Smart Stylish City-Ready</h1>
+      <h1 class="size88 performa-thin white-color line-height90 text-capitalize">Smart Stylish City-Ready</h1>
       <p class="size20 redhat-regular beige-color line-height26">
         Effortless driving for urban explorers—Luxury hatchbacks that combine
         performance and practicality in one compact package.
       </p>
     </div>
     <div class="content" *ngIf="bannerData">
-      <h1 class="size89 performa-thin white-color text-capitalize" [innerHTML]="bannerData.short_desc"></h1>
+      <h1 class="size88 performa-thin white-color text-capitalize" [innerHTML]="bannerData.short_desc"></h1>
       <p class="size20 redhat-regular hero-para beige-color" [innerHTML]="bannerData.description"></p>
     </div>
   </div>

@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-xl-6 col-lg-7 col-md-10 col-sm-12 col-12 pad-left">
             <!-- <div class="content" *ngIf="!bannerData">
-              <h1 class="size89 performa-thin white-color mb-md-3 mb-2 text-capitalize">
+              <h1 class="size88 performa-thin white-color mb-md-3 mb-2 text-capitalize">
                 Turn Every Trip Into Ultimate Reality
               </h1>
               <p class="size20 redhat-regular hero-para beige-color line-height26 mmargin36">
@@ -22,8 +22,8 @@
             </div> -->
 
             <div class="content" *ngIf="bannerData">
-              <h1 class="size89 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
-              <p class="size22 redhat-regular hero-para beige-color "
+              <h1 class="size88 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
+              <p class="size20 redhat-regular hero-para beige-color line-height26"
                 [innerHtml]="bannerData.description"></p>
               <a href="/contact"
                 class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block">Book
@@ -227,13 +227,95 @@
               </div>
 
               <button type="submit" class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
-                (click)="goToResults()">
+                (click)="openPopup()">
                 <img src="{{ imageURL }}/home/whatsapp.svg" alt="whatsapp" class="whatsapp-icon img-fluid" />
                 Book Now
               </button>
             </form>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup($event)">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <div class="w-100 d-flex justify-content-end mb-md-3">
+        <button class="hamburger position-relative" type="button" (click)="closePopup($event)"
+          aria-label="Toggle navigation" [class.active]="isPopupOpen">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div class="form-container">
+        <form [formGroup]="addcontactForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+          <div class="row">
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+              <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize ">
+                <label for="firstName" class="form-label gray-light-color m-0 size16 redhat-medium">first Name</label>
+                <input id="firstName" type="text" class="border-0 outline-0 gray-color size18 redhat-semibold"
+                  placeholder="first Name" formControlName="name" name="name" />
+
+              </div>
+              <span *ngIf="submitted && hasError('name', 'required')"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">Name is required</span>
+
+
+            </div>
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+              <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize">
+                <label for="lastName" class="form-label gray-light-color m-0 size16 redhat-medium">last name</label>
+                <input id="lastName" type="text" class="border-0 outline-0 gray-color size18 redhat-semibold"
+                  placeholder="last name" formControlName="lastname" name="lastname" />
+              </div>
+              <span *ngIf="submitted && hasError('lastname', 'required')"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">Last is required</span>
+            </div>
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+              <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize">
+                <label for="email" class="form-label gray-light-color m-0 size16 redhat-medium">email</label>
+                <input id="email" type="email" class="border-0 outline-0 gray-color size18 redhat-semibold"
+                  placeholder="email" formControlName="email" name="email" />
+              </div>
+              <span *ngIf="submitted && hasEmailError('email', 'required')"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">{{ hasEmailError("email", "required") }}</span>
+
+            </div>
+            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+              <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize">
+                <label for="phone" class="form-label gray-light-color m-0 size16 redhat-medium">Phone</label>
+                <ngx-intl-tel-input id="floatingInput" class="interphone size18 redhat-semibold" id="floatingInput"
+                  [cssClass]="'custom-intl-tel-input'" [enableAutoCountrySelect]="true" [enablePlaceholder]="false"
+                  [searchCountryFlag]="true" [preferredCountries]="preferredCountries" [searchCountryField]="[
+                    SearchCountryField.Iso2,
+                    SearchCountryField.Name
+                  ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedArabEmirates"
+                  [phoneValidation]="true" [separateDialCode]="true" name="phone" formControlName="phone">
+                </ngx-intl-tel-input>
+              </div>
+
+              <span *ngIf="submitted && hasPhoneNumberError('phone', 'required')"
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">{{ hasPhoneNumberError("email", "required")
+                }}</span>
+            </div>
+            <div class="col-12">
+              <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize">
+                <label for="message" class="form-label gray-light-color m-0 size16 redhat-medium">Message</label>
+                <textarea style="resize: none" id="message" class="border-0 outline-0 gray-color size18 redhat-semibold"
+                  placeholder="Message" formControlName="message" name="message"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="alert alert-success alert-dismissable mt-4" style="text-align: center" *ngIf="msg_success">
+                {{ throw_msg }}
+              </div>
+              <button class="black-button size18 redhat-bold mt-xl-3 mt-lg-3 my-md-3 my-2">
+                send message
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

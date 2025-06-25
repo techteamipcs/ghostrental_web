@@ -1,13 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, AfterViewInit, HostListener, inject, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
-import { Swiper } from 'swiper';
+import { Swiper } from 'swiper';     
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2'
 import * as AOS from 'aos';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import { ContactService } from '../../providers/contact/contact.service';
+
+
 Swiper.use([Navigation]);
 
 const Toast = Swal.mixin({
@@ -68,6 +72,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
   locationData: any = [];
   pickupLocations: any = [];
   dropLocations: any = [];
+  showPopup: boolean = false;
+  throw_msg: any;
+  addcontactForm: FormGroup;
+  submitted: boolean = false;
+  msg_success: boolean = false;
+  msg_danger: boolean = false;
+  prod: any;
+  isvalidSubmit: boolean = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  separateDialCode = false;
+  preferredCountries: CountryISO[] = [CountryISO.India, CountryISO.UnitedStates, CountryISO.UnitedKingdom, CountryISO.UnitedArabEmirates];
+  isPopupOpen: boolean = false;
+
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -97,11 +115,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private dataservice: DataService,
     public router: Router,
+    private contactservice: ContactService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.addcontactForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      phone: ['', Validators.required],
+      message: ['', Validators.required],
+    });
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
     const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));
@@ -137,6 +163,91 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //   });
     // }
   }
+  onSubmit() {
+    this.submitted = true;
+    let obj = this.addcontactForm.value;
+    if (this.prod) {
+      obj['product'] = this.prod;
+    }
+    if (this.addcontactForm.invalid) {
+      return;
+    }
+    if (this.isvalidSubmit == false) {
+      return
+    }
+    obj['phone'] = obj.phone.internationalNumber;
+    this.contactservice.addContact(obj).subscribe(
+      (response) => {
+        if (response.code == 200) {
+          this.throw_msg = response.message;
+          this.msg_success = true;
+          this.submitted = true;
+          setTimeout(() => {
+            this.submitted = false;
+            this.addcontactForm.reset();
+            this.isvalidSubmit = true;
+          }, 5000);
+        }
+        else if (response.code == 400) {
+          this.throw_msg = response.message;
+          this.addcontactForm.reset();
+          this.msg_danger = true;
+        }
+      },
+    );
+
+  }
+  public hasError = (controlName: string, errorName: string) => {
+		return this.addcontactForm.controls[controlName].hasError(errorName);
+	};
+  public hasEmailError = (controlName: string, errorName: string) => {
+    if (this.addcontactForm.controls['email'].value == "") {
+      return "Email is required";
+    } else if (this.addcontactForm.controls['email'].status == "INVALID") {
+      return "Invalid Email";
+    } else {
+      return this.addcontactForm.controls['email'].hasError(errorName);
+    }
+  };
+
+  public hasPhoneNumberError = (controlName: string, errorName: string) => {
+    if (this.addcontactForm.controls['phone'].value == "") {
+      return "Phone Number is required";
+    } else if (this.addcontactForm.controls['phone'].status == "INVALID") {
+      return "Invalid Phone Number";
+    } else {
+      return this.addcontactForm.controls['phone'].hasError(errorName);
+    }
+  };
+
+  openPopup() {
+    this.showPopup = true;
+    if (isPlatformBrowser(this.platformId)) {
+      // Store the current scroll position
+      const scrollY = window.scrollY;
+      // Add class to body to prevent scrolling
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  closePopup(event: MouseEvent) {
+    event?.preventDefault();
+    event?.stopPropagation();
+    this.showPopup = false;
+    if (isPlatformBrowser(this.platformId)) {
+      // Restore the scroll position and reset styles
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }
+  
 
   public initCarSwiper() {
     if (isPlatformBrowser(this.platformId)) {
@@ -237,6 +348,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
+    // Clean up Swiper instances
     if (this.carSwiper) {
       this.carSwiper?.destroy(true, true);
       this.carSwiper = null;
@@ -249,10 +361,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.trendingSwiper?.destroy(true, true);
       this.trendingSwiper = null;
     }
+    
+    // Clean up popup state if still open
+    this.showPopup = false;
+    
+    // Only access document in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('popup-open');
+    }
   }
 
   initForm() {
-    this.reservationForm = this.fb.group({
+    this.reservationForm = this.formBuilder.group({
       vehicleType: ['Car'],
       type: [''],
       model: [''],
@@ -327,10 +447,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
 
-  onSubmit() {
-    console.log('Submitted');
-    console.log(this.reservationForm.value);
-  }
+  // onSubmit() {
+  //   console.log('Submitted');
+  //   console.log(this.reservationForm.value);
+  // }
 
   getBannerData() {
     let obj = {};
@@ -480,13 +600,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   onSelectPickupDate() {
-    if(this.selelctedstartDate){
+    if (this.selelctedstartDate) {
       this.dropofftoday = this.selelctedstartDate;
     }
   }
-  
+
   onSelectDropDate() {
-    if(!this.selelctedstartDate){
+    if (!this.selelctedstartDate) {
       Toast.fire({
         title: 'Please select pickup date first!',
         icon: 'warning',
@@ -494,5 +614,51 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.selelctedendDate = '';
     }
   }
+
+
+
+    toggleMenu(event?: Event): void {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+  
+      this.isPopupOpen = !this.isPopupOpen;
+  
+      if (this.isPopupOpen) {
+      } else {
+        this.closeMenu();
+      }
+  
+    }
+  
+    closeMenu(): void {
+      this.isPopupOpen = false;
+      const menuItems = document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
+      menuItems.forEach((item) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(20px)';
+      });
+    }
+  
+    @HostListener('document:click', ['$event'])
+    onClick(event: Event): void {
+      const target = event.target as HTMLElement;
+      const menuButton = document.querySelector('.navbar-toggler');
+      const menu = document.querySelector('.mobile-menu');
+  
+      if (this.isPopupOpen &&
+        !target.closest('.mobile-menu') &&
+        !target.closest('.navbar-toggler')) {
+        this.toggleMenu();
+      }
+    }
+  
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+      if (window.innerWidth >= 768) {
+        this.isPopupOpen = false;
+      }
+    }
 }
 
