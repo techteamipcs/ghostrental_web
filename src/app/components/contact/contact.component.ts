@@ -145,13 +145,13 @@ export class ContactComponent {
 
 	}
 	ngAfterViewInit() {
-		if (isPlatformBrowser(this.platformId)) {
-			AOS.init({
-			  once: true,
-			  mirror: true,
-			  easing: 'ease',
-			});
-		}
+		// if (isPlatformBrowser(this.platformId)) {
+		// 	AOS.init({
+		// 	  once: true,
+		// 	  mirror: true,
+		// 	  easing: 'ease',
+		// 	});
+		// }
     this.route.fragment.subscribe((fragment) => {
       setTimeout(() => {
         if (fragment === 'calendly') {

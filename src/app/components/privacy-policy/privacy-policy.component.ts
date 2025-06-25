@@ -12,13 +12,13 @@ export class PrivacyPolicyComponent implements AfterViewInit {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
     ngAfterViewInit() {
-      if (isPlatformBrowser(this.platformId)) {
-        AOS.init({
-          once: true,
-          mirror: true,
-          easing: 'ease',
-        });
-      }
+      // if (isPlatformBrowser(this.platformId)) {
+      //   AOS.init({
+      //     once: true,
+      //     mirror: true,
+      //     easing: 'ease',
+      //   });
+      // }
     }
   
 }

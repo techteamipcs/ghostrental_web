@@ -181,26 +181,26 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public checkSticky() {
-    if (!this.stickyCardElement || !this.stickyContainerElement) {
-      if (isPlatformBrowser(this.platformId)) {
-        const card = this.stickyCard.nativeElement;
-        const container = this.stickyContainer.nativeElement;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const containerRect = container.getBoundingClientRect();
-        const containerBottom = containerRect.bottom + scrollTop - this.headerOffset - 20;
-        const startSticky = containerRect.top + scrollTop - this.headerOffset;
-        const stopSticky = containerBottom - card.offsetHeight;
+    if (!isPlatformBrowser(this.platformId) || !this.stickyCard?.nativeElement || !this.stickyContainer?.nativeElement) {
+      return;
+    }
 
-        if (scrollTop > startSticky && scrollTop < stopSticky) {
-          card.classList.add('stuck');
-          card.classList.remove('bottom-reached');
-        } else if (scrollTop >= stopSticky) {
-          card.classList.remove('stuck');
-          card.classList.add('bottom-reached');
-        } else {
-          card.classList.remove('stuck', 'bottom-reached');
-        }
-      }
+    const card = this.stickyCard.nativeElement;
+    const container = this.stickyContainer.nativeElement;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const containerRect = container.getBoundingClientRect();
+    const containerBottom = containerRect.bottom + scrollTop - this.headerOffset - 20;
+    const startSticky = containerRect.top + scrollTop - this.headerOffset;
+    const stopSticky = containerBottom - card.offsetHeight;
+
+    if (scrollTop > startSticky && scrollTop < stopSticky) {
+      card.classList.add('stuck');
+      card.classList.remove('bottom-reached');
+    } else if (scrollTop >= stopSticky) {
+      card.classList.remove('stuck');
+      card.classList.add('bottom-reached');
+    } else {
+      card.classList.remove('stuck', 'bottom-reached');
     }
   }
 

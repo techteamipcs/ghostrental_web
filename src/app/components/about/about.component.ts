@@ -9,7 +9,7 @@ import * as AOS from 'aos';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements AfterViewInit {
+export class AboutComponent  {
   imageURL: string = `${environment.url}/assets`;
   bannerData: any;
 
@@ -34,15 +34,15 @@ export class AboutComponent implements AfterViewInit {
     this.getBannerData();
   }
 
-  ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      AOS.init({
-        once: true,
-        mirror: true,
-        easing: 'ease',
-      });
-    }
-  }
+  // ngAfterViewInit() {
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     AOS.init({
+  //       once: true,
+  //       mirror: true,
+  //       easing: 'ease',
+  //     });
+  //   }
+  // }
 
 
   features = [
