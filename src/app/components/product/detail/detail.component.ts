@@ -45,6 +45,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   relatedvehicleIds: any = [];
   existedVehicle: any;
   thumbnailImage: any;
+  baseUrl:any;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
   private stickyCardElement!: HTMLElement;
@@ -59,6 +60,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     public actRoute: ActivatedRoute,
     public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.baseUrl = environment.url;
   }
 
   ngOnInit() {
