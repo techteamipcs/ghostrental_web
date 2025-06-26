@@ -19,7 +19,6 @@ nav {
   // }
   
   padding: 45px 90px;
-  
   background-color: #1D1D1D;
   @media (max-width: 1920px) {
     // padding: 40px 90px;
@@ -77,6 +76,10 @@ nav {
     }
   }
 
+.menu-container{
+  background-color: #f3f3f3;
+}
+
   .white {
     color: #F3F3F3;
     transition: color 0.3s ease;
@@ -98,29 +101,59 @@ nav {
   &.scrolled {
     background-color: #1d1d1d !important;
     // padding: 20px 90px;
-    padding: 32px 90px;
+    // padding: 32px 90px;
+    padding: 45px 90px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    @media (max-width: 1536px) {
-      padding: 15px 90px;
-    }
+    // @media (max-width: 1536px) {
+    //   padding: 15px 90px;
+    // }
 
+    // @media (max-width: 1440px) {
+    //   padding: 1rem 3rem;
+    // }
+    // @media (max-width: 1366px) {
+    //   padding: 1rem 3rem;
+    // }
+
+    // @media (max-width: 1280px) {
+    //   padding: 1rem 2rem;
+    // }
+
+    // @media (max-width: 1024px) {
+    //   padding: 1rem 2rem;
+    // }
+
+    // @media (max-width: 430px) {
+    //   padding: 1rem;
+    // }
+    @media (max-width: 1920px) {
+      // padding: 40px 90px;
+      padding: 28px 90px;
+    }
+    @media (max-width: 1600px) {
+      padding: 3rem 6rem;
+    }
+  
+    @media (max-width: 1536px) {
+      padding:2rem 90px;
+    }
+  
     @media (max-width: 1440px) {
-      padding: 1rem 3rem;
+      padding: 2rem 3rem;
     }
     @media (max-width: 1366px) {
-      padding: 1rem 3rem;
+      // padding: 1.7rem 3rem;
+      padding: 2rem 3rem;
     }
-
     @media (max-width: 1280px) {
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
     }
-
     @media (max-width: 1024px) {
-      padding: 1rem 2rem;
+      padding: 2.5rem 42px;
     }
-
+  
     @media (max-width: 430px) {
-      padding: 1rem;
+      padding: 1.5rem 1.5rem;
     }
 
     .white {
@@ -132,14 +165,7 @@ nav {
     }
   }
 
-  &.about-page {
-    background-color: #000;
-    padding: 2rem 5rem;
 
-    @media (max-width: 1024px) {
-      padding: 1.5rem 2rem;
-    }
-  }
 
   // &.dark-text {
   //   .white {
@@ -186,14 +212,22 @@ nav {
     @media (max-width: 1440px) {
       width: 220px;
     }
+    @media (max-width: 1366px) {
+      width: 210px;
+    }
+    @media (max-width: 1280px) {
+      width: 200px;
+    }
+    @media (max-width: 1024px) {
+      width: 180px;
+    }
+    @media (max-width: 768px) {
+      width: 160px;
+    }
+    @media (max-width: 430px) {
+      width: 140px;
+    }
 
-    // @media (max-width: 1024px) {
-    //   width: 268px;
-    // }
-
-    // @media (max-width: 430px) {
-    //   width: 180px;
-    // }
   }
 
   .dark-mode {
@@ -297,140 +331,126 @@ nav {
     background: transparent;
     border: 0;
     margin: 0;
-    z-index: 1001;
     height: 50px;
     width: 50px;
-
+  
     &.dark {
-
       .hamburger-inner,
       .hamburger-inner::before,
       .hamburger-inner::after {
         background-color: #000;
       }
     }
-
+  
     &.white-hamburger {
-
       .hamburger-inner,
       .hamburger-inner::before,
       .hamburger-inner::after {
-        background-color: white;
+        background-color: #fff;
       }
     }
-
+  
     &.active {
       .hamburger-inner {
         background-color: transparent;
-
+  
         &::before {
           transform: translateY(12px) rotate(45deg);
           background-color: #000;
           width: 50px;
-
+  
           @media screen and (max-width: 425px) {
             transform: translateY(13px) rotate(45deg);
           }
+  
           @media screen and (max-width: 384px) {
             transform: translateY(11px) rotate(45deg);
           }
         }
-
+  
         &::after {
           transform: translateY(-17px) rotate(-45deg);
           background-color: #000;
           width: 50px;
+  
           @media screen and (max-width: 384px) {
             transform: translateY(-14px) rotate(-45deg);
           }
         }
       }
-
-      // Override dark class when active to ensure X is black
+  
       &.dark {
-        .hamburger-inner {
-
-          &::before,
-          &::after {
-            background-color: #000;
-          }
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+          background-color: #000;
         }
       }
     }
   }
-
+  
   .hamburger-box {
     width: 50px;
     height: auto;
     display: inline-block;
+    position: relative;
   }
-
+  
   .hamburger-inner {
     display: block;
-    // top: 50%;
-    // margin-top: -1.5px;
     width: 30px;
     height: 5px;
     background-color: #fff;
     border-radius: 50px;
     position: absolute;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
+  
     @media screen and (max-width: 430px) {
       width: 24px;
       height: 3px;
     }
-
-    &::before {
+  
+    &::before,
+    &::after {
       content: "";
       display: block;
-      width: 50px;
-      height: 5px;
+      position: absolute;
       background-color: #fff;
       border-radius: 50px;
-      position: absolute;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
+    }
+  
+    &::before {
+      width: 50px;
+      height: 5px;
+      top: -15px;
+  
       @media screen and (max-width: 430px) {
         width: 40px;
         height: 3px;
       }
-    }
-
-    &::after {
-      content: "";
-      display: block;
-      width: 50%;
-      height: 5px;
-      background-color: #fff;
-      border-radius: 50px;
-      position: absolute;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-      @media screen and (max-width: 430px) {
-        width: 50%;
-        height: 3px;
-      }
-    }
-
-    &::before {
-      top: -15px;
-
+  
       @media screen and (max-width: 414px) {
         top: -12px;
       }
     }
-
+  
     &::after {
+      width: 50%;
+      height: 5px;
       bottom: -15px;
       top: auto;
-
+  
+      @media screen and (max-width: 430px) {
+        width: 50%;
+        height: 3px;
+      }
+  
       @media screen and (max-width: 414px) {
         bottom: -12px;
       }
     }
   }
-
+  
   // Mobile Navigation
   .mobile-menu {
     position: fixed;
@@ -534,6 +554,113 @@ nav {
         transform: translateY(0);
       }
     }
+
+    .close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      margin: 0;
+      height: 50px;
+      width: 50px;
+      position: relative;
+    
+
+      &.active {
+        .close-inner {
+          background-color: transparent;
+    
+          &::before {
+            transform: translateY(12px) rotate(45deg);
+            background-color: #000;
+            width: 50px;
+    
+            @media screen and (max-width: 430px) {
+              transform: translateY(8px) rotate(45deg);
+            }
+    
+            @media screen and (max-width: 384px) {
+              transform: translateY(11px) rotate(45deg);
+            }
+          }
+    
+          &::after {
+            transform: translateY(-17px) rotate(-45deg);
+            
+            background-color: #000;
+            width: 50px;
+            @media screen and (max-width: 384px) {
+              transform: translateY(-14px) rotate(-45deg);
+            }
+          }
+        }
+      }
+    }
+    
+    .close-box {
+      width: 50px;
+      height: auto;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .close-inner {
+      display: block;
+      width: 30px;
+      height: 5px;
+      background-color: #fff;
+      border-radius: 50px;
+      position: absolute;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+      @media screen and (max-width: 430px) {
+        width: 24px;
+        height: 3px;
+      }
+    
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    
+      &::before {
+        width: 50px;
+        height: 5px;
+        top: -15px;
+    
+        @media screen and (max-width: 430px) {
+          width: 40px;
+          height: 3px;
+        }
+    
+        @media screen and (max-width: 414px) {
+          top: -12px;
+        }
+      }
+    
+      &::after {
+        width: 50%;
+        height: 5px;
+        bottom: -15px;
+        top: auto;
+    
+        @media screen and (max-width: 430px) {
+          width: 50%;
+          height: 3px;
+        }
+    
+        @media screen and (max-width: 414px) {
+          bottom: -12px;
+        }
+      }
+    }
   }
 }
 
@@ -617,10 +744,6 @@ nav {
   }
   @media screen and (max-width: 384px) {
     padding:0.95rem 0rem;
-  }
-
-  .logo {
-    width: 180px;
   }
 
   .close-btn {

@@ -16,8 +16,8 @@
     <!-- Desktop Navigation -->
     <ul class="nav d-none d-xl-flex align-items-center">
       <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isScrolled">Home</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          class="size16 redhat-regular white text-decoration-none" [class.dark]="isScrolled">Home</a>
       </li>
       <li>
         <a routerLink="/about" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
@@ -28,13 +28,14 @@
           [class.dark]="isScrolled">Our Services</a>
       </li>
       <li>
-        <a routerLink="/product/search" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isScrolled">Our Fleets</a>
+        <a routerLink="/product/search" routerLinkActive="active"
+          class="size16 redhat-regular white text-decoration-none" [class.dark]="isScrolled">Our Fleets</a>
       </li>
       <li>
-        <a routerLink="/contact" routerLinkActive="active" class="d-block size18 redhat-bold  contact-button white-button"
-        [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
-            Contact Us
+        <a routerLink="/contact" routerLinkActive="active"
+          class="d-block size18 redhat-bold  contact-button white-button" [class.dark]="isDarkText && !isScrolled"
+          (click)="closeMenu()">
+          Contact Us
         </a>
       </li>
     </ul>
@@ -42,49 +43,58 @@
     <!-- Mobile Navigation -->
     <div class="mobile-menu" [class.active]="isMenuOpen" (click)="closeMenu()">
       <div class="menu-overlay" (click)="$event.stopPropagation()">
-        <nav class="menu-container w-100 h-100">
-          <div class="menu-header">
+        <nav class="menu-container w-100 h-100 ">
+          <div class="menu-header d-flex justify-content-between align-items-center">
             <a href="/" class="logo-link">
-              <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Logo" class="logo"
+              <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Logo" class="nav-logo"
                 style="filter: brightness(0)" />
             </a>
+            <!-- Mobile menu button -->
+            <button class="close d-xl-none position-relative" type="button" (click)="toggleMenu($event)"
+              aria-label="Toggle navigation" [class.active]="isMenuOpen" [class.dark]="isScrolled && !isMenuOpen"
+              [class.white-hamburger]="!isDarkText || isScrolled || isMenuOpen">
+              <span class="close-box">
+                <span class="close-inner"></span>
+              </span>
+            </button>
           </div>
 
-            <ul class="nav-menu">
-              <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/" routerLinkActive="active" class="nav-link size16 redhat-medium">
-                  <!-- <lucide-icon name="home" class="nav-icon"></lucide-icon> -->
-                  <span>Home</span>
-                </a>
-              </li>
+          <ul class="nav-menu">
+            <li class="nav-item" (click)="closeMenu()">
+              <a routerLink="/" routerLinkActive="active" class="nav-link size16 redhat-medium">
+                <!-- <lucide-icon name="home" class="nav-icon"></lucide-icon> -->
+                <span>Home</span>
+              </a>
+            </li>
 
-              <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/about" routerLinkActive="active" class="nav-link size16 redhat-medium">
-                  <!-- <lucide-icon name="users" class="nav-icon"></lucide-icon> -->
-                  <span>About Us</span>
-                </a>
-              </li>
+            <li class="nav-item" (click)="closeMenu()">
+              <a routerLink="/about" routerLinkActive="active" class="nav-link size16 redhat-medium">
+                <!-- <lucide-icon name="users" class="nav-icon"></lucide-icon> -->
+                <span>About Us</span>
+              </a>
+            </li>
 
-              <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/services" routerLinkActive="active" class="nav-link size16 redhat-medium">
-                  <!-- <lucide-icon name="settings" class="nav-icon"></lucide-icon> -->
-                  <span>Our Services</span>
-                </a>
-              </li>
+            <li class="nav-item" (click)="closeMenu()">
+              <a routerLink="/services" routerLinkActive="active" class="nav-link size16 redhat-medium">
+                <!-- <lucide-icon name="settings" class="nav-icon"></lucide-icon> -->
+                <span>Our Services</span>
+              </a>
+            </li>
 
-              <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/product/search" routerLinkActive="active" class="nav-link size16 redhat-medium">
-                  <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
-                  <span>Our Fleets</span>
-                </a>
-              </li>
+            <li class="nav-item" (click)="closeMenu()">
+              <a routerLink="/product/search" routerLinkActive="active" class="nav-link size16 redhat-medium">
+                <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
+                <span>Our Fleets</span>
+              </a>
+            </li>
 
-              <li class="nav-item" (click)="closeMenu()">
-                <a routerLink="/contact" routerLinkActive="active" class="nav-button d-block black-button w-100 size18 redhat-bold">
-                    Contact Us
-                </a>
-              </li>
-            </ul>
+            <li class="nav-item" (click)="closeMenu()">
+              <a routerLink="/contact" routerLinkActive="active"
+                class="nav-button d-block black-button w-100 size18 redhat-bold">
+                Contact Us
+              </a>
+            </li>
+          </ul>
           <div class="menu-footer">
             <div class="social-links">
               <a href="#" class="social-link"><lucide-icon name="facebook"></lucide-icon></a>

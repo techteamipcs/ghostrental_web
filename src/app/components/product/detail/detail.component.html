@@ -96,23 +96,23 @@
         <div class="d-flex align-items-center justify-content-between margin17">
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
-            <h6 class="mb-0 size26 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateDaily">
-              <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
+            <h6 class="mb-0 size20 redhat-semibold  gray-color"
+              *ngIf="vehicleData && vehicleData.dailyRate">
+              <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
             </h6>
           </div>
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
             <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateWeekly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateWeekly }}
+              *ngIf="vehicleData && vehicleData.weeklyRate">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.weeklyRate }}
             </h6>
           </div>
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
             <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateMonthly">
-              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateMonthly }}
+              *ngIf="vehicleData && vehicleData.monthlyRate">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.monthlyRate }}
             </h6>
           </div>
         </div>
@@ -121,7 +121,7 @@
           <div class="d-flex align-items-center">
             <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
               class="sticky-card-icons me-1" />
-            <p class="size14 redhat-regular m-0 color-card-p">get directions</p>
+            <p class="size14 redhat-regular m-0 color-card-p text-capitalize">get directions</p>
           </div>
           <div class="d-flex align-items-center">
             <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
@@ -186,22 +186,22 @@
             <div class=" ">
               <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
               <h6 class="mb-0 size20 redhat-semibold gray-color"
-                *ngIf="vehicleData && vehicleData.regularRateHourly">
-                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateHourly }}
+                *ngIf="vehicleData && vehicleData.hourlyRate">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.hourlyRate }}
               </h6>
             </div>
             <div class="">
               <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
               <h6 class="mb-0 size20 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.regularRateWeekly">
-                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateWeekly }}
+                *ngIf="vehicleData && vehicleData.weeklyRate">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.weeklyRate }}
               </h6>
             </div>
             <div class="">
               <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
               <h6 class="mb-0 size20 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.regularRateMonthly">
-                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateMonthly }}
+                *ngIf="vehicleData && vehicleData.monthlyRate">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.monthlyRate }}
               </h6>
             </div>
           </div>
@@ -213,7 +213,7 @@
             <div class="d-flex align-items-center">
               <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
                 class="sticky-card-icons me-1" />
-              <p class="size14 redhat-regular m-0">get directions</p>
+              <p class="size14 redhat-regular m-0 text-capitalize">get directions</p>
             </div>
             <div class="d-flex align-items-center justify-content-center">
               <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
@@ -274,21 +274,21 @@
         </div>
       </div>
 
-      <!-- <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
-        <div class="margin40">
-          <h3 class="size26 redhat-semibold text-capitalize margin42">
-            description
-          </h3>
-          <p class="size18 redhat-semibold mb-5" [innerHtml]="vehicleData.description"></p>
-        </div>
-      </div> -->
-
       <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
         <div class="margin40">
           <h3 class="size26 redhat-semibold text-capitalize margin42">
             description
           </h3>
-          <!-- <p class="size18 redhat-semibold mb-5">
+          <p class="size14 redhat-semibold csmb30" [innerHtml]="vehicleData.description"></p>
+        </div>
+      </div>
+
+       <!-- <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
+        <div class="margin40">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
+            description
+          </h3>
+         <p class="size18 redhat-semibold mb-5">
             With Ghost Rentals any trip turns into an exciting adventure. Rent a — 
             <span class=" redhat-bold">
 
@@ -307,11 +307,12 @@
             </span> per month.
             
             Experience the unmatched performance and Luxury on the city roads in a supercar with excellent customized services. From delivering the cleanest vehicle to ensuring on time delivery we focus on every detail to make your ride the best. So what's holding you back, book now with us! For any queries, please contact us.
-          </p> -->
+          </p> 
           <p class="size14 redhat-semibold csmb30">With Ghost Rentals any trip turns into an exciting adventure. Rent a —-------- car in UAE for - per day, per week or per month. Experience the unmatched performance and luxury on the city roads in a supercar with excellent customized services.</p>
           <p class="size14 redhat-semibold">From delivering the cleanest vehicle to ensuring on time delivery we focus on every detail to make your ride the best. So what's holding you back, book now with us! For any queries, please contact us.</p>
         </div>
       </div>
+      -->
 
       <div class="col-xl-9 col-12 border-1 border-bottom section-width">
         <div class="margin40">

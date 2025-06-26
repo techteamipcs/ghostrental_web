@@ -299,7 +299,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             slidesPerView: 4.5,
             spaceBetween: 20
           },
-          1920: {
+          1921: {
             slidesPerView: 5.5,
             spaceBetween: 20
           }
@@ -327,18 +327,38 @@ export class HomeComponent implements OnInit, AfterViewInit {
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
-          0: {
-            slidesPerView: 1,
-            spaceBetween: 10,
+          0: { 
+            slidesPerView: 1.2, 
+            spaceBetween: 10 
+          },
+          430: { 
+            slidesPerView: 1.3, 
+            spaceBetween: 10 
+          },
+           575: { 
+            slidesPerView: 1.8, 
+            spaceBetween: 15 
           },
           768: {
             slidesPerView: 2.5,
-            spaceBetween: 15,
+            spaceBetween: 20
+            },
+          992: { 
+            slidesPerView: 3.5, 
+            spaceBetween: 15 
           },
-          1280: {
+          1280: { 
+            slidesPerView: 4.5, 
+            spaceBetween: 20 
+          },
+          1400: {
             slidesPerView: 4.5,
-            spaceBetween: 20,
+            spaceBetween: 20
           },
+          1921: {
+            slidesPerView: 5.5,
+            spaceBetween: 20
+          }
         },
       });
     }
