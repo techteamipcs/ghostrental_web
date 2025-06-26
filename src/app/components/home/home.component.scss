@@ -1545,6 +1545,9 @@
 .collection {
   padding-left: 7rem;
   padding-top: 5rem;
+  @media screen and (max-width: 1600px) {
+    padding-left: 6rem;
+  }
   @media screen and (max-width: 1440px) {
     padding-left: 5rem;
     padding-top: 3rem;
