@@ -1038,7 +1038,11 @@ nav {
   width: 100%;
   height: 100%;
   // background-color: rgba(0, 0, 0, 0.2);
-  background: transparent linear-gradient(180deg, #000000cc 0%, #00000000 100%)
+  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, #00000000 100%)
     0% 0% no-repeat padding-box;
   border-radius: 30px;
+  z-index: 1;
+}
+.zindex2{
+z-index: 2;
 }
