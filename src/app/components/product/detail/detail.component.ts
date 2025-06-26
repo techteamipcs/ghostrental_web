@@ -212,7 +212,7 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.vehicleData.vehicle_type == 'Car') {
         this.carDetails = [
           { icon: 'body', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
-          { icon: 'mileage', label: 'mileage', value: this.vehicleData.mileage },
+          { icon: 'mileage', label: 'maximum distance', value: this.vehicleData.mileage },
           { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
           { icon: 'transmission', label: 'transmission', value: this.vehicleData.transmission },
           { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
