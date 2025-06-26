@@ -34,11 +34,10 @@
           </div>
 
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
-            <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0" (submit)="onSubmit()">
+            <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
               <h2 class="text-center size28 redhat-bold black-color">
                 Quick Reservation
               </h2>
-
               <div class="d-flex justify-content-center align-items-center gap-2 toggle">
                 <span class="redhat-bold text-capitalize m-0 black-color">cars</span>
                 <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
@@ -320,6 +319,7 @@
     </div>
   </div>
 </section>
+
 
 <section class="car-types-section d-xl-block d-none">
   <h3 class="text-center mb-3 size22 redhat-bold text-capitalize">
