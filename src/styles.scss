@@ -615,6 +615,7 @@ body {
   width: max-content;
   color: $color-black;
   // border: 1px solid $color-black;
+  border: none;
   background-color: $color-white;
   border-radius: 100px;
   cursor: pointer;
@@ -690,6 +691,7 @@ body {
   max-width: max-content;
   display: block;
   color: $color-gray-beige;
+  border: none;
   background-color: $color-gray;
   // border: 1px solid $color-gray-beige;
   border-radius: 100px;
