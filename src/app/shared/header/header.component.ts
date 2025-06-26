@@ -44,10 +44,10 @@ export class HeaderComponent implements OnInit {
   useWhiteButton = false;
   isBrowser: boolean;
   hasLargePadding = false;
-  largePaddingRoutes = ['/', '/services', '/booking'];
   detailRouteRegex = /^\/product\//;
   listRouteRegex = /^\/product\/list/;
   bookingRouteRegex = /^\/booking/;
+  largePaddingRoutes = ['/', '/services', this.bookingRouteRegex, this.listRouteRegex];
 
   constructor(
     private router: Router,
@@ -90,10 +90,9 @@ export class HeaderComponent implements OnInit {
       //   return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
       // });
       this.hasLargePadding =
-        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
-        this.listRouteRegex.test(this.currentRoute) ||
-        this.bookingRouteRegex.test(this.currentRoute) ||
-        this.detailRouteRegex.test(this.currentRoute);
+        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ,
+        this.listRouteRegex.test(this.currentRoute) ,
+        this.bookingRouteRegex.test(this.currentRoute);
 
 
       if (this.isBrowser) {
@@ -130,11 +129,7 @@ export class HeaderComponent implements OnInit {
     //   this.currentRoute === '/';
 
     this.hasLargePadding =
-  this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
-  isDetailRoute ||
-  isListRoute ||
-  isBookingRoute;
-
+  this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ;
 
     this.updateTextColor();
   }

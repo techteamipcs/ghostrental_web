@@ -284,7 +284,8 @@ textarea {
   transition: height 0.3s ease-in-out;
  
   @media screen and (max-width: 1920px) {
-    height: 253px;
+    // height: 253px;
+    height: 281px;
   }
   @media screen and (max-width: 1536px) {
     // height: 251px;
@@ -368,7 +369,8 @@ textarea {
 }
 
 .sectionPadding{
-  padding:7rem 12rem;
+  // padding:7rem 12rem;
+  padding:12rem 18rem;
   @media (max-width:1440px) {
     padding: 7rem 7rem;
   }

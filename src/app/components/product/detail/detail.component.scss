@@ -26,7 +26,10 @@
   }
 
   .gallery-height {
-    height: 692px;
+    height: 900px;
+    @media(max-width:1920px){
+      height: 692px;
+    }
 
     @media screen and (max-width: 1536px) {
       height: 500px;

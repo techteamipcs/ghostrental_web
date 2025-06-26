@@ -1,6 +1,5 @@
 nav {
   z-index: 1000;
-  background-color: transparent;
   transition: all 0.3s ease;
   position: fixed;
   top: 0;
@@ -20,8 +19,11 @@ nav {
   // }
   
   padding: 45px 90px;
+  
+  background-color: #1D1D1D;
   @media (max-width: 1920px) {
-    padding: 40px 90px;
+    // padding: 40px 90px;
+    padding: 28px 90px;
   }
   @media (max-width: 1600px) {
     padding: 3rem 6rem;
@@ -50,8 +52,8 @@ nav {
   }
 
   &.large-padding {
-    padding: 45px 90px;
-
+    padding: 70px 90px;
+  background-color: transparent;
     @media (max-width: 1920px) {
       padding: 70px 90px;
     }
@@ -64,9 +66,6 @@ nav {
     @media (max-width: 1440px) {
       padding: 3rem 3rem;
     }
-    // @media (max-width: 1366px) {
-    //   padding: 2rem 3rem;
-    // }
     @media (max-width: 1280px) {
       padding: 2.5rem 2rem;
     }
@@ -81,11 +80,6 @@ nav {
   .white {
     color: #F3F3F3;
     transition: color 0.3s ease;
-    // font-weight: 500;
-
-    // &.active {
-    //   font-weight: 700;
-    // }
 
     &.dark {
       color: #000000;
@@ -93,25 +87,18 @@ nav {
       &:hover {
         opacity: 0.8;
       }
-      
-      // &.active {
-      //   font-weight: 700;
-      // }
     }
 
     .scrolled &,
     .menu-open & {
       color: #ffffff !important;
-      
-      // &.active {
-      //   font-weight: 700;
-      // }
     }
   }
 
   &.scrolled {
     background-color: #1d1d1d !important;
-    padding: 20px 90px;
+    // padding: 20px 90px;
+    padding: 32px 90px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     @media (max-width: 1536px) {
       padding: 15px 90px;
@@ -154,34 +141,34 @@ nav {
     }
   }
 
-  &.dark-text {
-    .white {
-      color: #000000;
+  // &.dark-text {
+  //   .white {
+  //     color: #000000;
 
-      &:hover {
-        opacity: 0.8;
-      }
-    }
+  //     &:hover {
+  //       opacity: 0.8;
+  //     }
+  //   }
 
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: #000000;
-    }
+  //   .hamburger-inner,
+  //   .hamburger-inner::before,
+  //   .hamburger-inner::after {
+  //     background-color: #000000;
+  //   }
 
-    &.scrolled,
-    &.menu-open {
-      .white {
-        color: #F3F3F3 !important;
-      }
+  //   &.scrolled,
+  //   &.menu-open {
+  //     .white {
+  //       color: #F3F3F3 !important;
+  //     }
 
-      .hamburger-inner,
-      .hamburger-inner::before,
-      .hamburger-inner::after {
-        background-color: #ffffff;
-      }
-    }
-  }
+  //     .hamburger-inner,
+  //     .hamburger-inner::before,
+  //     .hamburger-inner::after {
+  //       background-color: #ffffff;
+  //     }
+  //   }
+  // }
 
   .nav-logo {
     // width: 268px;
@@ -190,9 +177,15 @@ nav {
     object-fit: contain;
     transition: all 0.3s ease;
 
-    // @media (max-width: 1600px) {
-    //   width: 250px;
-    // }
+    @media (max-width: 1600px) {
+      width: 250px;
+    }
+    @media (max-width: 1536px) {
+      width: 230px;
+    }
+    @media (max-width: 1440px) {
+      width: 220px;
+    }
 
     // @media (max-width: 1024px) {
     //   width: 268px;

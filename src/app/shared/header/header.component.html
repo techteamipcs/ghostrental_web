@@ -1,13 +1,12 @@
 <nav class="position-fixed top-0 start-0 w-100 z-5" [ngClass]="{ 'large-padding': hasLargePadding }">
   <div class="container-fluid d-flex justify-content-between align-items-center">
     <a href="/" class="d-flex align-items-center">
-      <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Ghost Rental Logo" class="nav-logo"
-        [ngClass]="{ 'dark-mode': isDarkText }" />
+      <img src="{{ imageURL }}/images/logo/nav-logo.svg" alt="Ghost Rental Logo" class="nav-logo" />
     </a>
 
     <!-- Mobile menu button -->
     <button class="hamburger d-xl-none position-relative" type="button" (click)="toggleMenu($event)"
-      aria-label="Toggle navigation" [class.active]="isMenuOpen" [class.dark]="isDarkText && !isScrolled && !isMenuOpen"
+      aria-label="Toggle navigation" [class.active]="isMenuOpen" [class.dark]="isScrolled && !isMenuOpen"
       [class.white-hamburger]="!isDarkText || isScrolled || isMenuOpen">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
@@ -18,24 +17,22 @@
     <ul class="nav d-none d-xl-flex align-items-center">
       <li>
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled">Home</a>
+          [class.dark]="isScrolled">Home</a>
       </li>
       <li>
         <a routerLink="/about" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled">About Us</a>
+          [class.dark]="isScrolled">About Us</a>
       </li>
       <li>
         <a routerLink="/services" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled">Our Services</a>
+          [class.dark]="isScrolled">Our Services</a>
       </li>
       <li>
         <a routerLink="/product/search" routerLinkActive="active" class="size16 redhat-regular white text-decoration-none"
-          [class.dark]="isDarkText && !isScrolled">Our Fleets</a>
+          [class.dark]="isScrolled">Our Fleets</a>
       </li>
       <li>
-        <a routerLink="/contact" routerLinkActive="active" class="d-block size18 redhat-bold contact-button"
-        [class.black-button]="!useWhiteButton && !isScrolled"
-        [class.white-button]="useWhiteButton || isScrolled"
+        <a routerLink="/contact" routerLinkActive="active" class="d-block size18 redhat-bold  contact-button white-button"
         [class.dark]="isDarkText && !isScrolled" (click)="closeMenu()">
             Contact Us
         </a>
