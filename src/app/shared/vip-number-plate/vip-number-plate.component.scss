@@ -6,7 +6,7 @@
   }
 
   @media screen and (max-width: 1440px) {
-    padding: 120px;
+    padding: 120px 85px;
   }
 
   @media screen and (max-width: 1200px) {
@@ -17,8 +17,8 @@
     padding: 50px 60px;
   }
 
-  @media screen and (max-width: 430px) {
-    padding: 50px 20px;
+  @media screen and (max-width: 480px) {
+    padding: 50px 15px;
   }
 }
 
@@ -41,12 +41,12 @@
   //   width: 81%;
   // }
 
-  // @media screen and (max-width: 1440px) {
-  //   width: 85%;
-  // }
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+  }
 
   @media screen and (max-width: 1024px) {
-    width: 85%;
+    width: 93%;
   }
 
   @media screen and (max-width: 768px) {
@@ -74,14 +74,48 @@
   @media (max-width: 1600px) {
     font-size: 48px !important;
   }
+   @media (max-width: 1199px) {
+    font-size: 38px !important;
+  }
+   @media (max-width: 767px) {
+    font-size: 32px !important;
+  }
+   @media (max-width: 480px) {
+    font-size: 28px !important;
+  }
+    @media (max-width: 360px) {
+    font-size: 26px !important;
+  }
+  
 }
 .size36 {
   @media (max-width: 1600px) {
     font-size: 26px !important;
   }
+   @media (max-width: 1199px) {
+    font-size: 20px !important;
+  }
+   @media (max-width: 767px) {
+    font-size: 18px !important;
+  }
+    @media (max-width: 480px) {
+    font-size: 16px !important;
+  }
+ 
 }
 .size18 {
   @media (max-width: 1600px) {
     font-size: 16px !important;
+  }
+   @media (max-width: 1199px) {
+    font-size: 14px !important;
+  }
+   @media (max-width: 767px) {
+    line-height: normal;
+  }
+}
+.margin37{
+  @media(max-width:1199px){
+    margin-bottom: 25px;
   }
 }
