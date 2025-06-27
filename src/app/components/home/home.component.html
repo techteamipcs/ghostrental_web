@@ -329,7 +329,7 @@
     <div class="d-flex align-items-center gap">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
@@ -351,7 +351,7 @@
     <div class="grid-category">
       <div *ngFor="let car of cartypeData"
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />

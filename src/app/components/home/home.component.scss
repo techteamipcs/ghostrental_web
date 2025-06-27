@@ -238,10 +238,11 @@
 
     @media (max-width: 768px) {
       margin-top: 1rem;
+      padding: 20px 26px;
     }
 
     @media (max-width: 430px) {
-      padding: 22px 19px;
+      padding: 20px;
       max-width: 300px;
     }
 
@@ -393,7 +394,8 @@
         @media (max-width: 768px) {
           width: 15px;
           height: 15px;
-          left: 1px;
+          left: 3px;
+          top: 3px;
         }
 
         @media (max-width: 430px) {
@@ -425,7 +427,7 @@
           }
 
           @media (max-width: 768px) {
-            transform: translateX(17px);
+            transform: translateX(14px);
           }
 
           @media (max-width: 430px) {
