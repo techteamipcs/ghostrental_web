@@ -13,7 +13,7 @@ export class BrandsComponent {
   @Input() buttonTitle: string = 'show all';
   imageURL: string = `${environment.url}/assets/brands`;
   backendURl = `${environment.baseUrl}/public`;
-  brandsData:any = [];
+  brandsData: any = [];
   brands = [
     { name: 'Bentley', imageUrl: `${this.imageURL}/bentley.png` },
     { name: 'BMW', imageUrl: `${this.imageURL}/bmw.png` },
@@ -35,13 +35,14 @@ export class BrandsComponent {
 
   getBrands() {
     let obj = {
-      type: 'car' 
+      type: 'car'
     };
     this.dataservice.getBrands(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          response.result.forEach((brand,index) => {
-            if(brand && brand.type =='Car' && brand.image && brand.image.length > 0 && this.brandsData.length < 8 ){
+          response.result.forEach((brand, index) => {
+            // if(brand && brand.type =='Car' && brand.image && brand.image.length > 0 && this.brandsData.length < 8 ){
+            if (brand && brand.type === 'Car' && brand.image && brand.image.length > 0) {
               this.brandsData.push(brand);
             }
           });

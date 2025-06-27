@@ -1,12 +1,17 @@
 <section class="brands">
   <div class="container-fluid p-0">
-    <h3 [ngClass]="titleClass" >
+    <h3 [ngClass]="titleClass" data-aos="fade-up" data-aos-duration="1000">
       {{ h3 }}
     </h3>
     <div
       class="d-flex justify-content-center align-items-center flex-wrap brands-gap"
     >
-      <div class="brand-item" *ngFor="let brand of brandsData">
+      <div
+        class="brand-item"
+        *ngFor="let brand of brandsData"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
         <img
           *ngIf="brand.image.length > 0 && brand.image[0].src"
           src="{{ backendURl }}/brand/{{ brand.image[0].src }}"
@@ -16,8 +21,11 @@
         <h4 class="brand-name redhat-semibold">{{ brand.name }}</h4>
       </div>
     </div>
-    <button routerLink="/product/search"
+    <button
+      routerLink="/product/search"
       class="black-button d-flex mx-auto size18 redhat-bold margin-top60 text-capitalize"
+      data-aos="fade-up"
+      data-aos-duration="2000"
     >
       show all
     </button>

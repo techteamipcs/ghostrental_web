@@ -96,7 +96,7 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
       answer: 'Yes, you can book multiple vehicles at once with Ghost Rentals. Simply select your desired cars and complete the booking. Our team is ready to assist with any questions.'
     }
   ];
-  
+
 
   constructor(private ngZone: NgZone, public dataservice: DataService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -144,11 +144,11 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
               clickable: true,
               dynamicBullets: true,
             },
-            autoplay: {
-              delay: 2000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
+            // autoplay: {
+            //   delay: 2000,
+            //   disableOnInteraction: false,
+            //   pauseOnMouseEnter: true,
+            // },
             breakpoints: {
               768: {
                 slidesPerView: 1,
