@@ -412,52 +412,38 @@ body {
   font-size: 80px;
 
   @media (max-width: 1680px) {
-    font-size: 76px;
+    font-size: 50px;
   }
-
-  @media (max-width: 1536px) {
-    font-size: 72px;
-  }
-
-  @media (max-width: 1366px) {
-    font-size: 70px;
-  }
-
-  @media (max-width: 1280px) {
-    // font-size: 55px;
-    font-size: 64px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 40px;
-  }
-
   @media (max-width: 430px) {
-    font-size: 32px;
+    font-size: 30px;
   }
+
 }
 
 .size88 {
   font-size: 88px;
 
   @media (max-width: 1650px) {
-    font-size: 56px;
+    font-size: 54px;
   }
+  // @media (max-width: 1440px) {
+  //   font-size: 44px;
+  // }
 
-  @media (max-width: 1280px) {
-    font-size: 64px;
-  }
+  // @media (max-width: 1280px) {
+  //   font-size: 64px;
+  // }
 
-  @media (max-width: 768px) {
-    font-size: 60px;
+  @media (max-width: 1199px) {
+    font-size: 48px;
   }
 
   @media (max-width: 480px) {
-    font-size: 42px;
+    font-size: 34px;
   }
 
   @media (max-width: 384px) {
-    font-size: 34px;
+    font-size: 32px;
   }
 }
 
@@ -617,8 +603,8 @@ body {
   display: block;
   width: max-content;
   color: $color-black;
-  // border: 1px solid $color-black;
-  border: none;
+  border: 1px solid $color-black;
+  // border: none;
   background-color: $color-white;
   border-radius: 100px;
   cursor: pointer;
@@ -643,8 +629,9 @@ body {
   }
   &:hover {
     color: $color-gray-beige;
-    background-color: $color-gray;
-    // border: 1px solid $color-gray-beige;
+    // background-color: $color-gray;
+    background-color: transparent;
+    border: 1px solid $color-gray-beige;
   }
 }
 
@@ -694,9 +681,9 @@ body {
   max-width: max-content;
   display: block;
   color: $color-gray-beige;
-  border: none;
+  // border: none;
   background-color: $color-gray;
-  // border: 1px solid $color-gray-beige;
+  border: 1px solid $color-gray-beige;
   border-radius: 100px;
   // padding: 18px 66px;
   cursor: pointer;
@@ -726,9 +713,9 @@ body {
   }
 
   &:hover {
-    background-color: $color-white;
+    background-color: transparent;
     color: $color-black;
-    // border: 1px solid $color-black;
+    border: 1px solid $color-black;
   }
 }
 

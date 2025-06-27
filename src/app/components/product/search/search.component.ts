@@ -64,18 +64,18 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedModel: any = [];
   selectedCartype: any = [];
   today: string = '';
-  selelctedstartDate: string = '';
-  selelctedendDate: string = '';
+  selectedStartDate: string = '';
+  selectedEndDate: string = '';
   pickuptoday: string;
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 10000;
+  maxPrice: any = 10000; 
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
   price_type: any = 'dailyRate';
   availableStartDate: any;
-  availableendDate: any;
+  availableEndDate: any;
   vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
@@ -154,11 +154,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.onScroll();
-    this.initializeSlider();
+    setTimeout(() => {
+      this.initializeSlider();
+    });
   }
 
 
   initializeSlider() {
+    this.updateSlider();
     if (isPlatformBrowser(this.platformId)) {
       const minThumb = document.getElementById('thumb-min') as HTMLElement;
       const maxThumb = document.getElementById('thumb-max') as HTMLElement;
@@ -173,7 +176,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
       let startLeft = 0;
 
       // Set initial positions
-      this.updateSlider();
 
       // Mouse/Touch event handlers
       const startDrag = (e: MouseEvent | TouchEvent, thumb: HTMLElement) => {
@@ -291,7 +293,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (!minThumb || !maxThumb || !range || !slider) return;
 
     const minPos = parseFloat(minThumb.style.left) || 0;
-    const maxPos = parseFloat(maxThumb.style.left) || 0;
+    const maxPos = parseFloat(maxThumb.style.left) || 100;
     const sliderWidth = slider.offsetWidth;
 
     // Ensure min is always left of max
@@ -492,13 +494,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBrand = [];
     this.selectedModel = [];
     // this.selectedRentalType = 'Daily';
-    this.selelctedstartDate = '';
-    this.selelctedendDate = '';
+    this.selectedStartDate = '';
+    this.selectedEndDate = '';
     this.selectedRentalType = null;
     this.minPrice = 0;
     this.maxPrice = 10000;
     this.vipNumberPlate = false;
     this.sort = null;
+    this.updateSlider();
     this.getCarData();
   }
 
@@ -516,8 +519,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
       price_type: this.price_type,
-      startDate: this.selelctedstartDate,
-      endDate: this.selelctedendDate,
+      startDate: this.selectedStartDate,
+      endDate: this.selectedEndDate,
       sort: this.sort,
       isvipNumberPlate: this.vipNumberPlate
     };
@@ -659,21 +662,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 
   onSelectPickupDate() {
-    if (this.selelctedstartDate) {
-      this.dropofftoday = this.selelctedstartDate;
+    if (this.selectedStartDate) {
+      this.dropofftoday = this.selectedStartDate;
     }
   }
 
   onSelectDropDate() {
-    if (!this.selelctedstartDate) {
+    if (!this.selectedStartDate) {
       Toast.fire({
         title: 'Please select pickup date first!',
         icon: 'warning',
       });
-      this.selelctedendDate = '';
-      this.availableendDate = '';
+      this.selectedEndDate = '';
+      this.availableEndDate = '';
     } else {
-      this.availableendDate = this.selelctedendDate;
+      this.availableEndDate = this.selectedEndDate;
     }
   }
 

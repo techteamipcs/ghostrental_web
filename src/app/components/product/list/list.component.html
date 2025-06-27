@@ -34,14 +34,14 @@
     <div class="row">
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
         <div class="d-flex justify-content-sm-between justify-content-end align-items-center margin42">
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p "
              
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
-            {{ totalItems }} vehicles
+            {{ totalItems }} Vehicles
           </h6>
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p text-capitalize"
              
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
@@ -186,7 +186,7 @@
         class="position-relative d-flex flex-column align-items-center justify-content-center category-card" 
         style="cursor: pointer"
         (click)="activeCategory(car._id)">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
           <p class="redhat-semibold text-center type-margin text-capitalize">
@@ -209,7 +209,7 @@
         class="position-relative d-flex flex-column align-items-center justify-content-center category-card" 
         style="cursor: pointer"
         (click)="activeCategory(car._id)">
-        <a [routerLink]="['/product/list', car.url_key]"
+        <a href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
           <p class="redhat-semibold text-center type-margin text-capitalize">

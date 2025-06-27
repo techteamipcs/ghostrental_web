@@ -90,8 +90,8 @@ export class HeaderComponent implements OnInit {
       //   return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
       // });
       this.hasLargePadding =
-        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ,
-        this.listRouteRegex.test(this.currentRoute) ,
+        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
+        this.listRouteRegex.test(this.currentRoute) ||
         this.bookingRouteRegex.test(this.currentRoute);
 
 

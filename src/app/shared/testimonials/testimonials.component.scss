@@ -82,10 +82,10 @@
       display: flex;
       align-items: center;
       margin: 0;
-      justify-content: space-evenly;
-      @media screen and (max-width: 820px) {
-        justify-content: flex-start;
-      }
+      justify-content: center;
+      // @media screen and (max-width: 820px) {
+      //   justify-content: center;
+      // }
     }
 
     .img-container {
@@ -164,33 +164,28 @@
     margin-left: 5rem;
 
     @media screen and (max-width: 1920px) {
-      margin-left: 3.5rem;
+      margin-left: 4rem;
     }
 
     @media screen and (max-width: 1536px) {
-      margin-left: 6.5rem;
+      margin-left: 8.7rem;
     }
 
     @media screen and (max-width: 1440px) {
-      margin-left:5.5rem;
+      margin-left:7.5rem;
     }
-
-    @media screen and (max-width: 1433px) {
-      margin-left: 5.6rem;
-    }
-
     @media screen and (max-width: 1366px) {
-      margin-left: 4.5rem;
+      margin-left: 6.5rem;
     }
-
     @media screen and (max-width: 1280px) {
-      margin-left: 4.5rem;
+      margin-left: 5.5rem;
     }
-
     @media screen and (max-width: 1024px) {
-      margin-left: 2rem;
+      margin-left: 2.3rem;
     }
-
+    @media screen and (max-width: 768px) {
+      margin-left:0;
+    }
   }
 
 

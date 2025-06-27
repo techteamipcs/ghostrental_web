@@ -30,7 +30,8 @@
 
             <div id="filter-options" *ngIf="!isMobile || isMobileFilterVisible" class="filter" [ngClass]="{
               'position-absolute top-100 start-0 w-100 shadow bg-white z-3 border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3': isMobile
-            }">
+            }"
+            >
               <!-- Vehicle Type -->
               <label class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0">Vehicle
                 Type</label>
@@ -155,14 +156,14 @@
               <!-- Date From -->
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
               <div class="filter-section">
-                <span *ngIf="!selelctedstartDate"
+                <span *ngIf="!selectedStartDate"
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;"
                   >Start date</span>
 
                   <input type="datetime-local"
                   class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
-                  [(ngModel)]="selelctedstartDate"
+                  [(ngModel)]="selectedStartDate"
                   [min]="pickuptoday"
                   (ngModelChange)="onSelectPickupDate()"
                 />
@@ -172,12 +173,12 @@
               <!-- Date To -->
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date To</label>
               <div class="filter-section">
-                <span *ngIf="!selelctedendDate"
+                <span *ngIf="!selectedEndDate"
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;">End date</span>
 
                 <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
-                  [min]="dropofftoday" [(ngModel)]="selelctedendDate"
+                  [min]="dropofftoday" [(ngModel)]="selectedEndDate"
                   (ngModelChange)="onSelectDropDate()"
                   />
                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
@@ -230,20 +231,21 @@
       }">
         <!-- <div class="container-fluid"> -->
         <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60">
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1"
+          style="font-size: 14px;"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
-            {{ totalItems }} vehicles
+            {{ totalItems }} Vehicles
           </h6>
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p"
+          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p text-capitalize"
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
           </h6>
 
-          <div class="d-flex align-items-center gap-2 position-relative sort" style="cursor: pointer;">
+          <div class="d-flex align-items-center position-relative sort" style="cursor: pointer;">
           <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
-            (change)="onChangeSort($event)" style="font-size: 14px;">
+            (change)="onChangeSort($event)" style="font-size: 14px; appearance: none;">
             <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
               Sort by any makes &nbsp;
             </option>

@@ -3,7 +3,7 @@
 }
 .bannerImage{
   @media screen and (max-width: 1280px){
-    transform: scaleX(-1);
+   object-position: center;
     transition: transform 0.3s ease-in-out;
   }
 }
@@ -56,7 +56,9 @@
     top: 34%;
   }
   @media (max-width: 768px) {
-    top: 30.5%;
+    top: 30%;
+      left: 6%;
+      transform: translateY(-50%);
   }
   @media (max-width: 480px) {
     padding: 0 15px;

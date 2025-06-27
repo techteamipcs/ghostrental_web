@@ -11,7 +11,7 @@
       </h1>
     </div>
 
-    <div class="container-fluid gallery-height">
+    <!-- <div class="container-fluid gallery-height">
       <div class="row h-100">
         <div class="col-xl-9 col-lg-12 mb-xl-0 mb-md-3 mb-2 pad-right h-100">
           <div class="main-image-wrapper position-relative">
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     <!-- <div class="gallery-height d-grid">
@@ -98,7 +98,7 @@
             <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
             <h6 class="mb-0 size20 redhat-semibold  gray-color"
               *ngIf="vehicleData && vehicleData.dailyRate">
-              <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
             </h6>
           </div>
           <div class="">
@@ -119,12 +119,15 @@
 
         <div class="d-flex justify-content-between mb-4">
           <div class="d-flex align-items-center">
-            <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
-              class="sticky-card-icons me-1" />
+            <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+              <img src="{{ imageURL }}/product-details/overview_icons/location.svg" alt="location" />
+            </div>
             <p class="size14 redhat-regular m-0 color-card-p text-capitalize">get directions</p>
           </div>
           <div class="d-flex align-items-center">
-            <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
+            <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+              <img src="{{ imageURL }}/product-details/overview_icons/call.svg" alt="call"/>
+            </div>
             <p class="size14 redhat-regular m-0 color-card-p text-decoration-none">+971 800 44678</p>
           </div>
         </div>
@@ -183,11 +186,11 @@
           
           </div>
           <div class="d-flex align-items-center justify-content-between margin17">
-            <div class=" ">
-              <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
-              <h6 class="mb-0 size20 redhat-semibold gray-color"
-                *ngIf="vehicleData && vehicleData.hourlyRate">
-                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.hourlyRate }}
+            <div class="">
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+              <h6 class="mb-0 size20 redhat-semibold  gray-color"
+                *ngIf="vehicleData && vehicleData.dailyRate">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
               </h6>
             </div>
             <div class="">
@@ -211,12 +214,15 @@
   
           <div class="d-flex justify-content-between mb-4">
             <div class="d-flex align-items-center">
-              <img src="{{ imageURL }}/product-details/overview_icons/location.png" alt=""
-                class="sticky-card-icons me-1" />
+              <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+                <img src="{{ imageURL }}/product-details/overview_icons/location.svg" alt="location" />
+              </div>
               <p class="size14 redhat-regular m-0 text-capitalize">get directions</p>
             </div>
             <div class="d-flex align-items-center justify-content-center">
-              <img src="{{ imageURL }}/product-details/overview_icons/call.png" alt="" class="sticky-card-icons me-1" />
+              <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+                <img src="{{ imageURL }}/product-details/overview_icons/call.svg" alt="call" />
+              </div>
               <p class="size14 redhat-regular m-0">+971 800 44678</p>
             </div>
           </div>
@@ -255,7 +261,7 @@
                       imageURL +
                       '/product-details/overview_icons/' +
                       detail.icon +
-                      '.png'
+                      '.svg'
                     " [alt]="detail.label" class="overview_icons" />
                 </div>
                 <div class="col-4">
