@@ -96,34 +96,34 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     this.checkSticky();
   }
 
-  get mainImage(): CarImage {
-    return this.images[this.currentIndex] || { src: '', alt: '', isActive: false };
-  }
+  // get mainImage(): CarImage {
+  //   return this.images[this.currentIndex] || { src: '', alt: '', isActive: false };
+  // }
 
-  get thumbnailImages() {
-    const maxThumbnails = 3;
-    const thumbnails = [];
-    const totalImages = this.images.length;
+  // get thumbnailImages() {
+  //   const maxThumbnails = 3;
+  //   const thumbnails = [];
+  //   const totalImages = this.images.length;
 
-    if (totalImages > 0) {
-      thumbnails.push({
-        src: this.mainImage.src,
-        alt: this.mainImage.alt
-      });
-    }
+  //   if (totalImages > 0) {
+  //     thumbnails.push({
+  //       src: this.mainImage.src,
+  //       alt: this.mainImage.alt
+  //     });
+  //   }
 
-    for (let i = 1; i < maxThumbnails && i < totalImages; i++) {
-      const nextIndex = (this.currentIndex + i) % totalImages;
-      thumbnails.push({
-        src: this.images[nextIndex].src,
-        alt: this.images[nextIndex].alt,
-        showCount: i === maxThumbnails - 1 && totalImages > maxThumbnails,
-        count: totalImages - maxThumbnails + 1
-      });
-    }
+  //   for (let i = 1; i < maxThumbnails && i < totalImages; i++) {
+  //     const nextIndex = (this.currentIndex + i) % totalImages;
+  //     thumbnails.push({
+  //       src: this.images[nextIndex].src,
+  //       alt: this.images[nextIndex].alt,
+  //       showCount: i === maxThumbnails - 1 && totalImages > maxThumbnails,
+  //       count: totalImages - maxThumbnails + 1
+  //     });
+  //   }
 
-    return { images: thumbnails };
-  }
+  //   return { images: thumbnails };
+  // }
 
   getVehicleData() {
     const obj = { url_key: this.url_key };

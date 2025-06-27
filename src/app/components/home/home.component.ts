@@ -85,6 +85,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   separateDialCode = false;
   preferredCountries: CountryISO[] = [CountryISO.India, CountryISO.UnitedStates, CountryISO.UnitedKingdom, CountryISO.UnitedArabEmirates];
   isPopupOpen: boolean = false;
+  @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
+
+
+
 
   onDateChange(event: any) {
     // This method is triggered when the date input changes
@@ -155,6 +159,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    // Initialize AOS if needed
     // if (isPlatformBrowser(this.platformId)) {
     //   AOS.init({
     //     once: true,
@@ -162,6 +167,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //     easing: 'ease',
     //   });
     // }
+    
+    // Initialize Bootstrap Carousel
+    if (isPlatformBrowser(this.platformId) && (window as any).bootstrap) {
+      const carouselEl = document.getElementById('trendingCarsCarousel');
+      if (carouselEl) {
+        this.carouselInstance = new (window as any).bootstrap.Carousel(carouselEl, {
+          interval: false,
+          touch: true
+        });
+      }
+    }
   }
   onSubmit() {
     this.submitted = true;
@@ -196,6 +212,39 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
     );
 
+  }
+
+
+  private carouselInstance: any;
+
+  prevSlide() {
+    if (this.carouselInstance) {
+      this.carouselInstance.prev();
+    } else {
+      // Fallback to jQuery if needed
+      const carouselEl = document.getElementById('trendingCarsCarousel');
+      if (carouselEl) {
+        const bsCarousel = (window as any).bootstrap.Carousel.getInstance(carouselEl);
+        if (bsCarousel) {
+          bsCarousel.prev();
+        }
+      }
+    }
+  }
+  
+  nextSlide() {
+    if (this.carouselInstance) {
+      this.carouselInstance.next();
+    } else {
+      // Fallback to jQuery if needed
+      const carouselEl = document.getElementById('trendingCarsCarousel');
+      if (carouselEl) {
+        const bsCarousel = (window as any).bootstrap.Carousel.getInstance(carouselEl);
+        if (bsCarousel) {
+          bsCarousel.next();
+        }
+      }
+    }
   }
   public hasError = (controlName: string, errorName: string) => {
 		return this.addcontactForm.controls[controlName].hasError(errorName);
@@ -367,31 +416,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initTrendingSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
-        loop: true,
+        slidesPerView: 1,
         spaceBetween: 20,
+        loop: true,
+        centeredSlides: true,
         modules: [Navigation, Pagination, Autoplay],
+        navigation: false,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
           dynamicBullets: true,
         },
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-        navigation: {
-          nextEl: '.trending-swiper-button-next',
-          prevEl: '.trending-swiper-button-prev',
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-            spaceBetween: 10,
+        on: {
+          init: () => {
           },
-          430: {
-            slidesPerView: 1.5,
-            spaceBetween: 15,
+          slideChange: () => {
           },
         },
       });
@@ -737,4 +776,3 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 }
-

@@ -809,6 +809,13 @@
     }
   }
 
+
+  .form-button{
+    background-color: transparent !important; 
+ :hover{
+   background-color: black !important;
+ }
+  }
   // contact popup
   .form-container {
     input:focus,
@@ -2160,14 +2167,14 @@
       border-radius: 15px;
       display: flex;
       flex-direction: column;
-      width: 500px;
+      width: 600px;
       cursor: pointer;
       padding: 12px;
       transition: box-shadow 0.3s ease, transform 0.3s ease;
 
       &:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transform: translateY(-5px);
+        // transform: translateY(-5px);
       }
 
       @media screen and (max-width: 768px) {
@@ -2181,6 +2188,8 @@
   //     display: block;
   //   }
   // }
+
+  
 }
 
 .black-bg {

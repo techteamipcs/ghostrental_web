@@ -11,11 +11,11 @@
       </h1>
     </div>
 
-    <!-- <div class="container-fluid gallery-height">
+    <div class="container-fluid gallery-height">
       <div class="row h-100">
         <div class="col-xl-9 col-lg-12 mb-xl-0 mb-md-3 mb-2 pad-right h-100">
           <div class="main-image-wrapper position-relative">
-            <img [src]="mainImage.src" [alt]="mainImage.alt" class="img-fluid h-100" loading="lazy" />
+            <img [src]="images[currentIndex].src" [alt]="images[currentIndex].alt" class="img-fluid h-100" loading="lazy" />
             <button class="position-absolute top-50 translate-middle-y prev" (click)="prevImage()">
               <img src="{{ imageURL }}/product-details/left-arrow.svg" alt="Previous" />
             </button>
@@ -27,17 +27,17 @@
 
         <div class="col-xl-3 col-lg-12 pad-left h-100">
           <div class="d-flex flex-xl-column gap-xl-4 gap-lg-3 gap-md-3 gap-2 thumbnail-height">
-            <div *ngFor="let img of thumbnailImages.images; let i = index" class="thumbnail-item"
-              [class.active]="i === 0" (click)="selectImage((currentIndex + i) % images.length)">
+            <div class="thumbnail-item" *ngFor="let img of images | slice:0:3; let i = index; let last = last" 
+                 (click)="selectImage(i)">
               <img [src]="img.src" [alt]="img.alt" loading="lazy" />
-              <div *ngIf="img.showCount" class="remaining-count-overlay">
-                +{{ img.count }}
+              <div *ngIf="last && images.length > 3" class="remaining-count-overlay">
+                +{{images.length - 3}}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
 
     <!-- <div class="gallery-height d-grid">
@@ -496,11 +496,11 @@
 
 <section class=" collection">
   <div class="container-fluid">
-    <h3 class="text-capitalize size60 performa-light margin42">related listings</h3>
+    <h3 class="text-capitalize size60 performa-light margin42 " data-aos="fade-up" data-aos-duration="1000">related listings</h3>
 
     <div class="row">
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
-        <div class="products">
+        <div class="products" data-aos="fade-up" data-aos-duration="1000">
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
             (click)="onclickrelateproduct(car.url_key)">

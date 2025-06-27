@@ -1,8 +1,7 @@
 import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../providers/data/data.service';
-import { isPlatformBrowser } from '@angular/common';
-import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-about',
@@ -34,15 +33,7 @@ export class AboutComponent  {
     this.getBannerData();
   }
 
-  // ngAfterViewInit() {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     AOS.init({
-  //       once: true,
-  //       mirror: true,
-  //       easing: 'ease',
-  //     });
-  //   }
-  // }
+
 
 
   features = [
