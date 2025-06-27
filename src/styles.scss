@@ -171,20 +171,20 @@ body {
   font-size: 24px;
 
   @media (max-width: 1600px) {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   @media (max-width: 1440px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @media (max-width: 1280px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 768px) {
     font-size: 16px;
   }
+
+  // @media (max-width: 768px) {
+  //   font-size: 16px;
+  // }
 
   @media (max-width: 430px) {
     font-size: 14px;
@@ -290,12 +290,12 @@ body {
 .size35 {
   font-size: 35px;
 
-  @media (max-width: 1280px) {
-    font-size: 32px;
+  @media (max-width: 1600px) {
+    font-size: 28px;
   }
 
-  @media (max-width: 768px) {
-    font-size: 19px;
+  @media (max-width: 1440px) {
+    font-size: 24px;
   }
 
   @media (max-width: 430px) {
@@ -1035,4 +1035,16 @@ nav {
 }
 .zindex2{
 z-index: 2;
+}
+.sectionmb{
+  margin-bottom: 80px;
+  @media(max-width:1600px){
+    margin-bottom: 60px;
+  }
+  @media(max-width:991px){
+    margin-bottom: 50px;
+  }
+  @media(max-width:575px){
+    margin-bottom: 30px;
+  }  
 }
