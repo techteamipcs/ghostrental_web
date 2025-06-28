@@ -21,7 +21,7 @@
     }
 
     @media (max-width: 1280px) {
-      margin-top: 1rem;
+      margin-top: 0;
     }
 
     @media (max-width: 1024px) {
@@ -46,7 +46,7 @@
       }
 
       @media (max-width: 1280px) {
-        width: 331px;
+        width: 374px;
       }
 
       @media (max-width: 1024px) {
@@ -160,7 +160,7 @@
     }
 
     @media screen and (max-width: 1280px) {
-      top: 58%;
+      top: 54%;
     }
 
     @media screen and (max-width: 1024px) {
@@ -926,10 +926,7 @@
     }
   }
 
-  .white-button:hover {
-    background-color: black;
-    color: #f3f3f3;
-  }
+
   .alert-danger {
     color: red;
     position: absolute;
@@ -1077,6 +1074,9 @@
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       @media screen and (max-width: 1536px) {
         padding: 20px;
         max-width: 500px;
@@ -1981,7 +1981,7 @@
       }
 
       @media screen and (max-width: 1024px) {
-        width: 62%;
+        width: 70%;
       }
 
       @media screen and (max-width: 800px) {
@@ -2001,7 +2001,7 @@
       }
 
       @media screen and (max-width: 384px) {
-        width: 86%;
+        width: 64%;
       }
 
       @media screen and (max-width: 360px) {
@@ -2053,21 +2053,30 @@
   }
 
   .about-pad{
-    padding: 0rem 5.5rem;
-    @media screen and (max-width: 1536px) {
-      padding: 0rem 4rem;
-    }
-    @media screen and (max-width: 1440px) {
-      padding: 0rem 3rem;
-    }
-    @media screen and (max-width: 1280px) {
+    padding: 0rem 3rem;
+    @media screen and (max-width: 1920px) {
       padding: 0rem 2rem;
     }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1680px) {
+      padding: 0rem 2rem;
+    }
+    @media screen and (max-width: 1536px) {
       padding: 0rem 1rem;
     }
-    @media screen and (max-width: 768px) {
-      padding: 0rem 0;
+    @media screen and (max-width: 1440px) {
+      padding: 0rem ;
+    }
+    @media screen and (max-width: 1280px) {
+      padding: 0rem ;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 0rem 4rem;
+    }
+    @media screen and (max-width: 820px) {
+      padding: 0rem 1rem;
+    }
+    @media screen and (max-width: 430px) {
+      padding: 0rem 1rem;
     }
   }
 }

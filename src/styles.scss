@@ -258,7 +258,14 @@ body {
   font-size: 32px;
 
   @media (max-width: 1600px) {
-    font-size: 28px;
+    font-size: 26px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 22px;
+  }
+  @media (max-width: 768px) {
+    font-size: 20px;
   }
 
   // @media (max-width: 1440px) {
@@ -383,6 +390,15 @@ body {
   @media (max-width: 1536px) {
     font-size: 54px;
   }
+  @media (max-width: 1024px) {
+    font-size: 45px;
+  }
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+  @media (max-width: 430px) {
+    font-size: 30px;
+  }
 
   // @media (max-width: 1440px) {
   //   font-size: 50px;
@@ -496,44 +512,31 @@ body {
     line-height: 62px;
   }
 
-  @media (max-width: 1280px) {
-    line-height: 60px;
-  }
-
   @media (max-width: 1024px) {
-    line-height: 45px;
-  }
-
-  @media (max-width: 768px) {
-    line-height: 50px;
-  }
-
-  @media (max-width: 430px) {
-    line-height: 50px;
+    line-height: normal;
   }
 }
 
 .line-height30 {
   line-height: 30px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1680px) {
     line-height: 25px;
   }
-
-  @media (max-width: 430px) {
-    line-height: 16px;
+  @media (max-width: 1024px) {
+    line-height: normal;
   }
 }
 
 .line-height26 {
   line-height: 26px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1680px) {
     line-height: 23px;
   }
 
-  @media (max-width: 430px) {
-    line-height: 18px;
+  @media (max-width: 1024px) {
+    line-height: normal;
   }
 }
 
@@ -601,7 +604,8 @@ body {
   position: relative;
   width: max-content;
   color: $color-black;
-  border: 1px solid $color-black;
+  // border: 1px solid $color-black;
+  border: none;
   background-color: $color-white;
   border-radius: 100px;
   cursor: pointer;
@@ -641,7 +645,7 @@ body {
 
   &:hover {
     color: $color-gray-beige;
-    border: 1px solid $color-black;
+    // border: 1px solid $color-black;
 
     &::before {
       transform-origin: left center; 
@@ -719,7 +723,8 @@ body {
   color: $color-gray-beige;
   // border: none;
   background-color: $color-gray;
-  border: 1px solid $color-gray-beige;
+  // border: 1px solid $color-gray-beige;
+  border: none;
   border-radius: 100px;
   // padding: 18px 66px;
   cursor: pointer;
@@ -765,9 +770,9 @@ body {
   }
 
   &:hover {
-    background-color: transparent;
+    // background-color: transparent;
     color: $color-black;
-    border: 1px solid $color-black;
+    // border: 1px solid $color-black;
 
     &::before {
       transform-origin: left center;

@@ -101,7 +101,7 @@
       overflow: hidden;
       margin-right: 30px;
 
-      @media screen and (max-width: 1536px) {
+      @media screen and (max-width: 1680px) {
         height: 300px;
         width: 300px;
       }
@@ -117,10 +117,9 @@
       //   height: 300px;
       //   width: 300px;
       // }
-      // @media screen and (max-width: 1024px) {
-      //   width: 300px;
-      //   height: 300px
-      // }
+      @media screen and (max-width: 1024px) {
+        margin-right: 0px;
+      }
       // @media screen and (max-width: 430px) {
       //   width: 300px;
       //   height: 300px
@@ -169,7 +168,14 @@
     margin-left: 5.5rem;
 
     @media screen and (max-width: 1920px) {
-      margin-left: 4rem;
+      margin-left: 6rem;
+    }
+
+    @media screen and (max-width: 1680px) {
+      margin-left: 3.3rem;
+    }
+    @media screen and (max-width: 1600px) {
+      margin-left: 2.3rem;
     }
 
     @media screen and (max-width: 1536px) {
@@ -182,7 +188,7 @@
       margin-left: 5.5rem;
     }
     @media screen and (max-width: 1024px) {
-      margin-left: 2.3rem;
+      margin-left: 4.3rem;
     }
     @media screen and (max-width: 768px) {
       margin-left:0;

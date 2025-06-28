@@ -112,15 +112,15 @@
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">about us</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/services"
+                <a href="/services"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">services</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/product/search"
+                <a href="/product/search"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">Our cars</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/product/search"
+                <a href="/product/search"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">our yachts</a>
               </li>
             </ul>
@@ -128,27 +128,27 @@
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">Support</h4>
             <ul class="nav d-flex flex-column">
-              <li class="nav-item ">
-                <a href="#faq" class="text-decoration-none white-color size16 redhat-regular text-capitalize">FAQ</a>
+              <li class="nav-item">
+                <a [routerLink]="['/']" fragment="faq" class="text-decoration-none white-color size16 redhat-regular text-capitalize" (click)="scrollToFAQ($event)">FAQ</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/privacy"
+                <a href="/privacy"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">privacy policy</a>
               </li>
               
               <li class="nav-item ">
-                <a routerLink="/terms"
+                <a href="/terms"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">terms & conditions</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/contact"
+                <a href="/contact"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">contact us</a>
               </li>
             </ul>
           </div>
-          <div class="social-section">
+          <div class="social-section d-flex flex-column align-items-center">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">get social</h4>
-            <ul class=" nav d-flex flex-column align-items-center justify-content-center">
+            <ul class=" nav d-flex flex-column justify-content-center">
               <li class="nav-item ">
                 <a href="#"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">

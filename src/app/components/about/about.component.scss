@@ -207,6 +207,9 @@ height: 100%;
   @media screen and (max-width: 1200px) {
     padding: 42px 40px 25px 34px;
   }
+  @media screen and (max-width: 820px) {
+    padding: 23px 40px 25px 20px;
+  }
 
   @media screen and (max-width: 430px) {
     padding: 12px 12px 30px;
@@ -311,6 +314,9 @@ height: 100%;
     @media screen and (max-width: 1536px) {
       font-size: 16px;
     }
+    @media screen and (max-width: 1280px) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -409,29 +415,29 @@ height: 100%;
   @media screen and (max-width: 430px) {
     padding: 0px 15px 30px;
   }
-  .size60 {
-    font-size: 60px;
+  // .size60 {
+  //   font-size: 60px;
 
-    @media screen and (max-width: 1536px) {
-      font-size: 50px;
-    }
-    @media screen and (max-width: 1440px) {
-      font-size: 48px;
-    }
-    @media screen and (max-width: 1366px) {
-      font-size: 45px;
-    }
-    @media screen and (max-width: 1280px) {
-      font-size: 43px;
-    }
-    @media screen and (max-width: 1199px) {
-      font-size: 42px;
-    }
+  //   @media screen and (max-width: 1536px) {
+  //     font-size: 50px;
+  //   }
+  //   @media screen and (max-width: 1440px) {
+  //     font-size: 48px;
+  //   }
+  //   @media screen and (max-width: 1366px) {
+  //     font-size: 45px;
+  //   }
+  //   @media screen and (max-width: 1280px) {
+  //     font-size: 43px;
+  //   }
+  //   @media screen and (max-width: 1199px) {
+  //     font-size: 42px;
+  //   }
 
-    @media screen and (max-width: 430px) {
-      font-size: 26px;
-    }
-  }
+  //   @media screen and (max-width: 430px) {
+  //     font-size: 26px;
+  //   }
+  // }
 
   .size32 {
     font-size: 32px;
@@ -621,3 +627,31 @@ height: 100%;
   }
 }
  
+
+.about-pad{
+  padding: 0rem 3rem;
+  @media screen and (max-width: 1920px) {
+    padding: 0rem 2rem;
+  }
+  @media screen and (max-width: 1680px) {
+    padding: 0rem 2rem;
+  }
+  @media screen and (max-width: 1536px) {
+    padding: 0rem 1rem;
+  }
+  @media screen and (max-width: 1440px) {
+    padding: 0rem ;
+  }
+  @media screen and (max-width: 1280px) {
+    padding: 0rem ;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0rem 4rem;
+  }
+  @media screen and (max-width: 820px) {
+    padding: 0rem 1rem;
+  }
+  @media screen and (max-width: 430px) {
+    padding: 0rem 1rem;
+  }
+}

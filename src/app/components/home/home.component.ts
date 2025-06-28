@@ -159,15 +159,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Initialize AOS if needed
-    // if (isPlatformBrowser(this.platformId)) {
-    //   AOS.init({
-    //     once: true,
-    //     mirror: true,
-    //     easing: 'ease',
-    //   });
-    // }
-    
+
     // Initialize Bootstrap Carousel
     if (isPlatformBrowser(this.platformId) && (window as any).bootstrap) {
       const carouselEl = document.getElementById('trendingCarsCarousel');

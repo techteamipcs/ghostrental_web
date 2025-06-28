@@ -1,6 +1,6 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import * as AOS from 'aos';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -8,20 +8,15 @@ import * as AOS from 'aos';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent  implements OnInit{
   title = 'ghost-rental';
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  
-    ngAfterViewInit() {
+  ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      AOS.init({
-        once: true,
-        mirror: true,
-        easing: 'ease',
-      });
+      AOS.init();
     }
   }
 }

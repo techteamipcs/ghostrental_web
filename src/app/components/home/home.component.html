@@ -29,27 +29,23 @@
               <a href="/contact" class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a>
             </div> -->
 
-            <div class="content" *ngIf="bannerData">
+            <div class="content" *ngIf="bannerData" >
               <h1
                 class="size88 performa-thin white-color text-capitalize"
                 [innerHtml]="bannerData.short_desc"
-                data-aos="fade-up"
               ></h1>
               <p
                 class="size20 redhat-regular hero-para beige-color line-height26"
                 [innerHtml]="bannerData.description"
-                data-aos="fade-up"
               ></p>
               <a
                 href="/contact"
                 class="white-color text-decoration-none white-border-button size18 redhat-bold d-none d-lg-block"
-                data-aos="fade-up"
                 >Book Now</a
               >
               <a
                 href="/contact"
                 class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none"
-                data-aos="fade-up"
                 >Book Now</a
               >
             </div>
@@ -60,7 +56,6 @@
           >
             <form
               class="form-glass gap-0 ms-md-auto mx-auto me-md-0"
-              data-aos="fade-up"
             >
               <h2 class="text-center size28 redhat-bold black-color">
                 Quick Reservation
@@ -453,7 +448,7 @@
           novalidate
         >
           <div class="row">
-            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+            <div class="col-lg-6 col-12 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
                 class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
@@ -477,7 +472,7 @@
                 >Name is required</span
               >
             </div>
-            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+            <div class="col-lg-6 col-12 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
                 class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
@@ -501,7 +496,7 @@
                 >Last is required</span
               >
             </div>
-            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+            <div class="col-lg-6 col-12 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
                 class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
@@ -525,7 +520,7 @@
                 >{{ hasEmailError("email", "required") }}</span
               >
             </div>
-            <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
+            <div class="col-lg-6 col-12 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div
                 class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize"
               >
@@ -1237,7 +1232,7 @@
 
       <div class="row justify-content-around mt-xl-3 mt-2">
         <div
-          class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 about-pad"
+          class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 "
           *ngFor="let feature of features"
           data-aos="fade-up"
           data-aos-duration="1500"
@@ -1254,7 +1249,7 @@
             {{ feature.title }}
           </h4>
           <p
-            class="size18 redhat-semibold white-color text-center line-height30"
+            class="size18 redhat-semibold white-color text-center line-height30 about-pad"
           >
             {{ feature.description }}
           </p>
