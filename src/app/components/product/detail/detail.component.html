@@ -148,10 +148,10 @@
       </div>
 
 
-      <div class="d-xl-none d-block px-4">
-        <div class="border border-1 border-black p-md-4 p-2 purchase-card mb-5">
-          <div class="d-flex justify-content-between mb-4">
-            <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
+      <div class="d-xl-none d-block px-sm-4 p-0">
+        <div class="border border-1 border-black p-md-4 p-3 purchase-card mb-5">
+          <div class="d-sm-flex d-block justify-content-between mb-4">
+            <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image mb-sm-0 mb-4" />
             <div class="d-flex flex-column justify-content-between me-3 me-md-0">
               <div>
                 <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
@@ -187,7 +187,7 @@
           </div>
           <div class="d-flex align-items-center justify-content-between margin17">
             <div class="">
-              <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+              <span class="size14 redhat-medium color-card-p text-capitalize">per day</span>
               <h6 class="mb-0 size20 redhat-semibold  gray-color"
                 *ngIf="vehicleData && vehicleData.dailyRate">
                 <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
@@ -212,8 +212,8 @@
           <!-- <h4 class="size26 redhat-semibold m-0">{{ vehicleData.name }}</h4>
           <p class="size18 redhat-semibold mb-2">{{ vehicleData.bodytype_data[0].name }}</p> -->
   
-          <div class="d-flex justify-content-between mb-4">
-            <div class="d-flex align-items-center">
+          <div class="d-sm-flex d-flex justify-content-between mb-4">
+            <div class="d-flex align-items-center my-sm-0 my-3 justify-content-center pe-3">
               <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
                 <img src="{{ imageURL }}/product-details/overview_icons/location.svg" alt="location" />
               </div>

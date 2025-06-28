@@ -318,6 +318,7 @@
     // height: 100px;
     width: 160px;
     height: 120px;
+    margin-right:10px;
   }
 
   @media screen and (max-width: 1024px) {
@@ -325,8 +326,8 @@
     height: 150px;
   }
 
-  @media screen and (max-width: 430px) {
-    width: 65%;
+  @media screen and (max-width: 575px) {
+    width: 100%;
     height: auto;
   }
 }
@@ -352,13 +353,16 @@
     @media screen and (max-width: 1440px) {
       right: 5.95rem;
     }
+    @media screen and (max-width: 1300px) {
+      right: 2rem;
+    }
   }
 
   &.bottom-reached {
     position: absolute;
     top: auto;
     bottom: 2rem;
-    right: 0.5rem;
+    // right: 0.5rem;
   }
 
   @media screen and (max-width: 1536px) {
@@ -368,6 +372,9 @@
   @media screen and (max-width: 1440px) {
     width: 360px;
     right: 0rem;
+  }
+  @media screen and (max-width: 1300px) {
+    right: -4rem;
   }
 }
 
@@ -390,6 +397,9 @@
   @media screen and (max-width: 430px) {
     width: 100%;
     // margin: 0;
+  }
+  @media screen and (max-width: 324px) {
+    padding: 10px !important;
   }
 }
 
@@ -598,8 +608,22 @@ ul {
 .circle{
   width: 50px;
   height: 50px;
+  @media(max-width:1199px){
+    width: 40px;
+    height: 40px;
+  }
+   @media(max-width:380px){
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .sticky-card-icons {
   padding: 13px;
+  @media(max-width:1199px){
+    padding: 9px;
+  }
+  @media(max-width:380px){
+    padding: 6px;
+  }
  }
