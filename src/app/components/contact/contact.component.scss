@@ -137,8 +137,8 @@
     padding-left: 12px;
   }
   @media screen and (max-width: 425px) {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right:0px;
+    padding-left: 0px;
   }
 }
 
@@ -160,8 +160,8 @@
     margin-top: 20px;
   }
   @media screen and (max-width: 425px) {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right:0px;
   }
 }
 
@@ -294,24 +294,24 @@ textarea {
   transition: height 0.3s ease-in-out;
 
   @media screen and (max-width: 1920px) {
-    // height: 253px;
+    // height: 269px;
     height: 239px;
   }
   @media screen and (max-width: 1600px) {
-    height: 261px;
-    // height: 230px;
+    // height: 261px;
+    height: 225px;
   }
   @media screen and (max-width: 1440px) {
     // height: 191px;
-    height: 234px;
+    height: 202px;
   }
   // @media screen and (max-width: 1366px) {
   //   // height: 191px;
   //   height: 234px;
   // }
-  @media screen and (max-width: 1280px) {
-    height: 232px;
-  }
+  // @media screen and (max-width: 1280px) {
+  //   height: 232px;
+  // }
   @media screen and (max-width: 1200px) {
     height: 218px;
   }
@@ -383,17 +383,26 @@ textarea {
 
 .sectionPadding {
   // padding:7rem 12rem;
-  padding: 10rem 15rem;
+  padding: 14rem 15rem 8rem;
+  @media(min-width:1921px){
+    padding:14rem 20rem 8rem;
+  }
+  @media(max-width:1600px){
+    padding:14rem 12rem 8rem;
+  }
   @media (max-width: 1440px) {
-    padding: 7rem 7rem;
+    padding: 10rem 7rem 7rem;
   }
   @media (max-width: 1024px) {
-    padding: 6rem 6rem;
+    padding: 10rem 6rem 6rem;
   }
   @media (max-width: 768px) {
-    padding: 6rem 1rem;
+    padding: 9rem 2rem;
   }
   @media (max-width: 576px) {
+    padding: 6rem 1.5rem;
+  }
+   @media (max-width: 480px) {
     padding: 6rem 1rem;
   }
 }
