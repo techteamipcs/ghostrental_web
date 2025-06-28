@@ -292,26 +292,19 @@
 textarea {
   height: 215px;
   transition: height 0.3s ease-in-out;
-
   @media screen and (max-width: 1920px) {
-    // height: 269px;
     height: 239px;
   }
   @media screen and (max-width: 1600px) {
-    // height: 261px;
     height: 225px;
   }
+  @media screen and (max-width: 1536px) {
+    height: 222px;
+  }
   @media screen and (max-width: 1440px) {
-    // height: 191px;
     height: 202px;
   }
-  // @media screen and (max-width: 1366px) {
-  //   // height: 191px;
-  //   height: 234px;
-  // }
-  // @media screen and (max-width: 1280px) {
-  //   height: 232px;
-  // }
+
   @media screen and (max-width: 1200px) {
     height: 218px;
   }
