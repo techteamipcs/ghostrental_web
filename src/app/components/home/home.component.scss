@@ -810,12 +810,7 @@
     }
   }
 
-  .form-button {
-    background-color: transparent !important;
-    :hover {
-      background-color: black !important;
-    }
-  }
+ 
   // contact popup
   .form-container {
     input:focus,
@@ -928,6 +923,10 @@
     }
   }
 
+  .white-button:hover {
+    background-color: black;
+    color: #f3f3f3;
+  }
   .alert-danger {
     color: red;
     position: absolute;
