@@ -2,7 +2,7 @@
   height: 100vh;
 
   .content {
-    margin-top: 7.3rem;
+    margin-top: 3rem;
 
     @media (max-width: 1920px) {
       // margin-top: 5rem;
@@ -105,8 +105,11 @@
   }
 
   .pad-left {
-    padding-left: 131px;
-
+    padding-left: 13rem;
+    @media screen and (max-width: 1920px) {
+      // padding-left: 108px;
+      padding-left: 131px;
+    }
     @media screen and (max-width: 1536px) {
       // padding-left: 108px;
       padding-left: 90px;
@@ -180,7 +183,7 @@
     -webkit-backdrop-filter: blur(35px);
     fill-opacity: 49%;
     border-radius: 30px;
-    padding: 42px 36px;
+    padding: 46px 36px 42px;
     width: 100%;
     // position: absolute;
     top: 50%;
@@ -1226,12 +1229,14 @@
   .category-image {
     width: auto;
     height: auto;
+    transform: scale(1.25);
     object-fit: contain;
     display: block;
 
     @media screen and (max-width: 1920px) {
       width: auto;
       height: auto;
+      transform: scale(1);
     }
 
     @media screen and (max-width: 1680px) {
@@ -1257,12 +1262,15 @@
 
   .type-margin {
     position: absolute;
-    bottom: -1.5px;
+    bottom: -21px;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
     width: 100%;
-
+    
+    @media screen and (max-width: 1920px) {
+      bottom: -1.5px;
+    }
     @media screen and (max-width: 1024px) {
       // bottom: 18.5px;
       bottom: 7.5px;
@@ -1278,7 +1286,7 @@
   }
 
   .gap {
-    gap: 4rem;
+    gap: 7rem;
     justify-content: center;
 
     @media screen and (max-width: 1920px) {
@@ -1334,6 +1342,8 @@
     padding: 0;
   }
 
+ 
+
   .img-height {
     overflow: hidden;
     // object-fit: fill;
@@ -1372,8 +1382,12 @@
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border-radius: 20px;
-    transition: transform 0.3s ease;
     border: 1px solid #d1d1d1;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
   }
 
   .card-content {
@@ -1447,8 +1461,11 @@
   }
 
   .topspace {
-    top: -5%;
+    top: -11%;
 
+    @media (max-width: 1920px) {
+      top: -5%;
+    }
     @media (max-width: 768px) {
       top: 0%;
     }
@@ -1856,8 +1873,10 @@
   }
 
   .div-height {
-    height: 580px;
-
+    height: 800px;    
+    @media screen and (max-width: 1920px) {
+      height: 580px;
+    }
     @media screen and (max-width: 1440px) {
       height: 488px;
     }
@@ -1905,7 +1924,6 @@
   .about-content {
     position: relative;
     z-index: 1;
-    max-width: 900px;
     text-align: center;
     padding: 2rem;
     margin: 0 auto;
@@ -1914,7 +1932,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    max-width: 995px;
     @media screen and (max-width: 1536px) {
       // max-width: 814px;
       max-width: 833px;
@@ -1939,10 +1957,10 @@
     }
 
     .heading-width {
-      width: 65%;
+      width: 59%;
 
       @media screen and (max-width: 1920px) {
-        width: 63%;
+        width: 59%;
       }
 
       @media screen and (max-width: 1600px) {
@@ -2032,6 +2050,25 @@
     width: 64px;
     height: 64px;
     object-fit: contain;
+  }
+
+  .about-pad{
+    padding: 0rem 5.5rem;
+    @media screen and (max-width: 1536px) {
+      padding: 0rem 4rem;
+    }
+    @media screen and (max-width: 1440px) {
+      padding: 0rem 3rem;
+    }
+    @media screen and (max-width: 1280px) {
+      padding: 0rem 2rem;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 0rem 1rem;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 0rem 0;
+    }
   }
 }
 

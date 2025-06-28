@@ -14,10 +14,11 @@ export class AppComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
+  
     ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       AOS.init({
-        once: false,
+        once: true,
         mirror: true,
         easing: 'ease',
       });

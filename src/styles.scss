@@ -598,37 +598,55 @@ body {
 // common button styles
 .white-button {
   display: block;
+  position: relative;
   width: max-content;
   color: $color-black;
   border: 1px solid $color-black;
-  // border: none;
   background-color: $color-white;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 2;
+  overflow: hidden;
 
   padding: 18px 66px;
-  @media (max-width:1600px) {
+
+  @media (max-width: 1600px) {
     padding: 16px 60px;
   }
-
-  @media (max-width:1440px) {
+  @media (max-width: 1440px) {
     padding: 9px 40px;
-
   }
-
-  @media (max-width:1280px) {
+  @media (max-width: 1280px) {
     padding: 14px 50px;
   }
-
-  @media (max-width:430px) {
+  @media (max-width: 430px) {
     padding: 12px 25px;
   }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; // Always full width
+    height: 100%;
+    background-color: $color-black;
+    border-radius: 100px;
+    transform: scaleX(0); 
+    transform-origin: right center; 
+    transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+    z-index: -1;
+  }
+
   &:hover {
     color: $color-gray-beige;
-    // background-color: $color-gray;
-    background-color: transparent;
-    border: 1px solid $color-gray-beige;
+    border: 1px solid $color-black;
+
+    &::before {
+      transform-origin: left center; 
+      transform: scale(1); 
+    }
   }
 }
 
@@ -643,6 +661,8 @@ body {
   // padding: 18px 66px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 
   padding: 18px 66px;
   @media (max-width:1600px) {
@@ -666,10 +686,29 @@ body {
     padding: 12px 25px;
   }
 
-  &:hover {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: $color-black;
+    border-radius: 100px;
+    transform: scaleX(0); 
+    transform-origin: right center; 
+    transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+    z-index: -1;
+  }
+
+  &:hover {
     color: $color-white;
     border: 2px solid $color-black;
+
+    &::before {
+      transform-origin: left center; 
+      transform: scale(1); 
+    }
   }
 }
 
@@ -685,8 +724,9 @@ body {
   // padding: 18px 66px;
   cursor: pointer;
   transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
 
-    
   padding: 18px 66px;
   @media (max-width:1600px) {
     padding: 16px 60px;
@@ -709,10 +749,30 @@ body {
     padding: 12px 25px;
   }
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    border-radius: 100px;
+    transform: scaleX(0); 
+    transform-origin: right center; 
+    transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+    z-index: -1;
+  }
+
   &:hover {
     background-color: transparent;
     color: $color-black;
     border: 1px solid $color-black;
+
+    &::before {
+      transform-origin: left center;
+      transform: scale(1);
+    }
   }
 }
 

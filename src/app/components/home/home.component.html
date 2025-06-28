@@ -410,8 +410,9 @@
 
               <button
                 type="submit"
-                class="form-button white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
+                class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
                 (click)="openPopup()"
+                
               >
                 <img
                   src="{{ imageURL }}/home/whatsapp.svg"
@@ -743,6 +744,7 @@
           class="card h-100 position-relative"
           data-aos="fade-up"
           data-aos-duration="1000"
+          routerLink="/services"
         >
           <img
             src="{{ imageURL }}/home/services/car-rental.png"
@@ -774,6 +776,7 @@
           class="card rounded-4 h-100 position-relative"
           data-aos="fade-up"
           data-aos-duration="1500"
+          routerLink="/services"
         >
           <img
             src="{{ imageURL }}/home/services/yacht_rental.png"
@@ -804,6 +807,7 @@
           class="card rounded-4 h-100 position-relative"
           data-aos="fade-up"
           data-aos-duration="2000"
+          routerLink="/services"
         >
           <img
             src="{{ imageURL }}/home/services/chauffeur.png"
@@ -1168,7 +1172,7 @@
     <div class="position-relative w-100 div-height">
       <div
         class="w-100 h-100 top-0 start-0 position-absolute z-2 rounded-4"
-        style="background-color: rgba(0, 0, 0, 0.5)"
+        style="background-color: rgba(0, 0, 0, 0.3)"
       ></div>
       <img
         src="{{ imageURL }}/home/about_us.png"
@@ -1199,9 +1203,11 @@
           Pure Luxury. Pure Perfection.
         </h2>
         <p
-          class="size20 redhat-regular text-center white-color line-height26 margin17"
+          class="size20 redhat-regular text-center white-color line-height26 margin17 "
           data-aos="fade-up"
           data-aos-duration="2000"
+          style="letter-spacing: .9px;"
+
         >
           At Ghost Rentals, we turn Luxury Car hire and Yacht Rentals into
           customized experiences that we design with family-level love. We
@@ -1231,7 +1237,7 @@
 
       <div class="row justify-content-around mt-xl-3 mt-2">
         <div
-          class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 px-lg-2 px-2"
+          class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 about-pad"
           *ngFor="let feature of features"
           data-aos="fade-up"
           data-aos-duration="1500"
