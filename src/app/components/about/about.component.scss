@@ -19,6 +19,7 @@
 }
 
 .banner-left {
+  height: 100%;
   padding-left: 28px;
 
   @media screen and (max-width: 1280px) {
@@ -35,7 +36,7 @@
 
 .banner-right {
   padding-right: 28px;
-
+height: 100%;
   @media screen and (max-width: 1280px) {
     padding-right: 12px;
   }
@@ -43,30 +44,30 @@
 }
 
 .banner-content {
-  width: 60%;
+  width: 993px;
 
-  @media screen and (max-width: 1920px) {
-    width: 88%;
+  @media screen and (max-width: 1680px) {
+    width: 580px;
   }
 
-  @media screen and (max-width: 1536px) {
-    // width: 93%;
-    width: 62%;
-  }
+  // @media screen and (max-width: 1536px) {
+  //   // width: 93%;
+  //   width: 62%;
+  // }
 
-  @media screen and (max-width: 1440px) {
-    // width: 100%;
-    width: 68%;
-  }
+  // @media screen and (max-width: 1440px) {
+  //   // width: 100%;
+  //   width: 68%;
+  // }
 
-  @media screen and (max-width: 1366px) {
-    // width: 100%;
-    width: 71%;
-  }
+  // @media screen and (max-width: 1366px) {
+  //   // width: 100%;
+  //   width: 71%;
+  // }
 
-  @media screen and (max-width: 1280px) {
-    width: 76%;
-  }
+  // @media screen and (max-width: 1280px) {
+  //   width: 76%;
+  // }
 
   @media screen and (max-width: 1024px) {
     width: 77%;
@@ -88,13 +89,21 @@
     width: 100%;
   }
 }
-
+.about-content1{
+  padding-top:5rem;
+  @media(max-width:1920px){
+    padding-top:1.5rem;
+  }
+  @media(max-width:1199px){
+    padding-top:0;
+  }
+}
 
 .about-content2 {
   width: 63%;
   height: 100%;
   display: flex;
-
+  
   @media screen and (max-width: 1920px) {
     width: 82%;
   }
@@ -151,8 +160,13 @@
 }
 
 .pad-left {
-  padding-left: 5rem;
-
+  padding-left: 8rem;
+  @media screen and (max-width: 1920px) {
+    padding-left: 6rem;
+  }
+  @media screen and (max-width: 1600px) {
+    padding-left: 5rem;
+  }
   @media screen and (max-width: 1200px) {
     padding-left: 2rem;
   }
@@ -242,6 +256,11 @@
 }
 
 .about-banner {
+   height: 667px;
+  overflow: hidden;
+  @media(max-width:1600px){
+    height: 490px;
+  }
   @media screen and (max-width: 1200px) {
     height: 538px;
   }
@@ -601,3 +620,4 @@
     margin-left: 0;
   }
 }
+ 
