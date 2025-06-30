@@ -357,10 +357,9 @@ body {
     font-size: 32px;
   }
 
-  // @media (max-width: 1280px) {
-  //   font-size: 30px;
-  //   // font-size: 36px;
-  // }
+  @media (max-width: 1280px) {
+    font-size: 30px;
+  }
 
   // @media (max-width: 430px) {
   //   font-size: 32px;
@@ -628,7 +627,7 @@ body {
     padding: 9px 40px;
   }
   @media (max-width: 1280px) {
-    padding: 14px 50px;
+    padding: 8px 35px;
   }
   @media (max-width: 430px) {
     padding: 12px 25px;
@@ -685,7 +684,7 @@ body {
   }
 
   @media (max-width:1280px) {
-    padding: 14px 50px;
+    padding: 8px 35px;
   }
 
   // @media (max-width:768px) {
@@ -749,7 +748,7 @@ body {
   }
 
   @media (max-width:1280px) {
-    padding: 14px 50px;
+    padding: 8px 35px;
   }
 
   // @media (max-width:768px) {
@@ -890,7 +889,7 @@ a {
 .margin24 {
   margin-bottom: 24px;
 
-  @media (max-width: 430px) {
+  @media (max-width: 1536px) {
     margin-bottom: 18px;
   }
 }
@@ -946,8 +945,16 @@ a {
 .margin42 {
   margin-bottom: 42px;
 
-  @media (max-width: 430px) {
-    margin-bottom: 35px;
+  @media (max-width: 1280px) {
+    margin-bottom:24px;
+  }
+
+}
+.margin48 {
+  margin-bottom: 48px;
+
+  @media (max-width: 1536px) {
+    margin-bottom: 25px;
   }
 }
 
@@ -1118,4 +1125,8 @@ z-index: 2;
   @media(max-width:575px){
     margin-bottom: 30px;
   }  
+}
+
+.collection-padding{
+  padding:20px 0;
 }

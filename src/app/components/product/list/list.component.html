@@ -39,7 +39,7 @@
   </div>
 </section>
 
-<section class="min-vh-100 sectionPadding">
+<section class="sectionPadding">
   <div class="container-fluid">
     <h3
       *ngIf="cartypeData"
@@ -146,9 +146,9 @@
                   [alt]="car.name"
                   class="img-fluid thumbnail-image w-100"
                 />
-                <div class="card-content">
+                <div class="card-content h-100 d-flex flex-column justify-content-center h-100">
                   <div
-                    class="car-info pb-xl-3 d-flex justify-content-between align-items-center position-relative"
+                    class="car-info margin20 d-flex justify-content-between align-items-center position-relative"
                   >
                     <div class="car-header">
                       <h4
@@ -170,7 +170,7 @@
                   </div>
 
                   <div
-                    class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3"
+                    class="d-flex justify-content-between border-top border-bottom collection-padding"
                   >
                     <div class="text-center">
                       <img
@@ -211,7 +211,7 @@
                   </div>
 
                   <div
-                    class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                    class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
                   >
                     <div class="cash">
                       <h6
@@ -287,13 +287,12 @@
     Browse by Car Type
   </h3>
   <div class="container-fluid">
-    <div class="d-flex align-items-center gap">
+    <div class="d-flex align-items-center gap" data-aos="fade-up"
+    data-aos-duration="1500">
       <div
         *ngFor="let car of cartypeDataList"
         [class.activeCategory]="car._id === activeCategoryId"
         class="position-relative d-flex flex-column align-items-center justify-content-center category-card"
-        data-aos="fade-up"
-        data-aos-duration="1500"
         style="cursor: pointer"
         (click)="activeCategory(car._id)"
       >
@@ -324,13 +323,12 @@
     Browse by Car Type
   </h3>
   <div class="container-fluid">
-    <div class="grid-category">
+    <div class="grid-category" data-aos="fade-up"
+    data-aos-duration="1500">
       <div
         *ngFor="let car of cartypeDataList"
         [class.activeCategory]="car._id === activeCategoryId"
         class="position-relative d-flex flex-column align-items-center justify-content-center category-card"
-        data-aos="fade-up"
-        data-aos-duration="1500"
         style="cursor: pointer"
         (click)="activeCategory(car._id)"
       >

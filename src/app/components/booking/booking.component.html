@@ -75,8 +75,8 @@
               <div class="car-card">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid w-100 thumbnail-image" />
-                <div class="card-content">
-                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center position-relative">
+                <div class="card-content h-100 d-flex flex-column justify-content-center h-100">
+                  <div class="car-info margin20 d-flex justify-content-between align-items-center position-relative">
                     <div class="car-header">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
@@ -90,7 +90,7 @@
                       plate</span>
                   </div>
 
-                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3">
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding">
                     <div class="text-center">
                       <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
                         alt="" />
@@ -114,7 +114,7 @@
                     </div>
                   </div>
 
-                  <div class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2">
+                  <div class="cash-container  d-flex justify-content-between align-items-center pt-md-3 pt-2">
                     <div class="cash">
                       <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                         AED {{ car.regularRateDaily }}

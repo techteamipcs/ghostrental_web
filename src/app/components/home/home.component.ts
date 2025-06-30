@@ -332,7 +332,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             slidesPerView: 3.5, 
             spaceBetween: 15 
           },
-          1280: { 
+          1281: { 
             slidesPerView: 4.5, 
             spaceBetween: 20 
           },
@@ -388,7 +388,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             slidesPerView: 3.5, 
             spaceBetween: 15 
           },
-          1280: { 
+          1281: { 
             slidesPerView: 4.5, 
             spaceBetween: 20 
           },

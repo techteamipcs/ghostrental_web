@@ -96,24 +96,12 @@
   }
 }
 
-.products {
-  padding: 0;
-
-  @media screen and (max-width: 1920px) {
-    padding: 0 30px;
-  }
-
-  @media screen and (max-width: 430px) {
-    padding: 0;
-  }
-}
-
 .collection_image {
   width: 35px;
   height: 35px;
   margin-bottom: 5px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1536px) {
     width: 25px;
     height: 25px;
   }
@@ -273,6 +261,9 @@
     padding: 100px 90px 0;
   }
 
+  @media screen and (max-width: 1280px) {
+    padding: 100px 55px 0;
+  }
   @media screen and (max-width: 1200px) {
     padding: 90px 70px 0;
   }
@@ -283,42 +274,6 @@
 
   @media screen and (max-width: 480px) {
     padding: 60px 5px;
-  }
-}
-
-
-
-
-.size16 {
-  font-size: 16px;
-
-  @media (max-width:1280px) {
-    font-size: 14px;
-  }
-}
-
-
-.size26 {
-  font-size: 26px;
-
-  @media (max-width: 1600px) {
-    font-size: 24px;
-  }
-
-  @media (max-width: 1440px) {
-    font-size: 21px;
-  }
-
-  @media (max-width: 1280px) {
-    font-size: 22px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 430px) {
-    font-size: 18px;
   }
 }
 
@@ -335,21 +290,19 @@
   transition: transform 0.2s ease-in-out;
 }
 
-
-
 .car-types-section {
-  padding: 161px 197px 182px;
+  padding: 50px 197px 50px;
 
   @media screen and (max-width: 1536px) {
-    padding: 150px 116px;
+    padding: 50px 116px;
   }
 
   @media screen and (max-width: 1440px) {
-    padding: 90px 116px 100px;
+    padding: 50px 116px;
   }
 
   @media screen and (max-width: 1200px) {
-    padding: 100px 100px;
+    padding: 50px 100px;
   }
 
   @media screen and (max-width: 768px) {
@@ -507,4 +460,19 @@
     transform: scale(1.1);
     opacity: 1;
   }
+}
+
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(0, 0, 0, 0.2);
+  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, #00000000 100%)
+    0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  z-index: 1;
 }

@@ -9,6 +9,9 @@
     padding: 8rem 5rem 0;
   }
 
+  @media screen and (max-width: 1280px) {
+    padding: 8rem 3rem 0;
+  }
   @media screen and (max-width: 1200px) {
     padding: 10rem 2rem 0;
   }

@@ -30,7 +30,7 @@
             <div class="thumbnail-item" *ngFor="let img of images | slice:0:3; let i = index; let last = last" 
                  (click)="selectImage(i)">
               <img [src]="img.src" [alt]="img.alt" loading="lazy" />
-              <div *ngIf="last && images.length > 3" class="remaining-count-overlay">
+              <div *ngIf="last && images.length > 3" class="remaining-count-overlay size18 redhat-semibold white-color">
                 +{{images.length - 3}}
               </div>
             </div>
@@ -140,7 +140,7 @@
           </div>
           <div class="w-100 bg-green-color rounded-pill p-3 green-border-color cstpadding text-center">
             <a href="https://wa.me/971555555555"
-              class="size18 redhat-semibold  text-decoration-none text-capitalize white-color">
+              class="size18 redhat-semibold text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
               <img class="whatsappicon me-1" src="{{ baseUrl }}/assets/home/whatsapp-white.svg" alt="whatsapp icon" width="28" height="28" /> book via whatsapp
             </a>
           </div>
@@ -238,7 +238,7 @@
             <div
               class="w-100 bg-green-color rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
               <a href="https://wa.me/971555555555"
-                class="size18 redhat-semibold  text-decoration-none text-capitalize white-color">
+                class="size18 redhat-semibold  text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
                 <img class="whatsappicon me-1" src="{{ baseUrl }}/assets/home/whatsapp-white.svg" alt="whatsapp icon" width="20" height="20" />book via whatsapp
               </a>
             </div>
@@ -326,8 +326,8 @@
             features
           </h3>
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
-              <div class="d-flex flex-column">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="interior && interior.length > 0">
+              <div class="d-flex flex-column" >
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Interior
                 </h6>
@@ -341,7 +341,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="exterior && exterior.length > 0">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   exterior
@@ -357,7 +357,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="safety && safety.length > 0">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Safety
@@ -372,7 +372,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="comfort && comfort.length > 0">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Comfort & Convenience
@@ -504,11 +504,11 @@
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
             (click)="onclickrelateproduct(car.url_key)">
-              <div class="car-card">
+              <div class="car-card ">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid thumbnail-image w-100" />
-                <div class="card-content">
-                  <div class="car-info pb-xl-3 d-flex justify-content-between align-items-center position-relative">
+                <div class="card-content h-100 d-flex flex-column justify-content-center">
+                  <div class="car-info margin20 d-flex justify-content-between align-items-center position-relative">
                     <div class="car-header">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         {{ car.name }}
@@ -522,7 +522,7 @@
                       plate</span>
                   </div>
 
-                  <div class="d-flex justify-content-between border-top border-bottom p-md-3 px-2 py-3">
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding">
                     <div class="text-center">
                       <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
                         alt="" />
@@ -546,7 +546,7 @@
                     </div>
                   </div>
 
-                  <div class="cash-container mt-2 d-flex justify-content-between align-items-center pt-md-3 pt-2">
+                  <div class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2">
                     <div class="cash">
                       <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                         AED {{ car.regularRateDaily }}

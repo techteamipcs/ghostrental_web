@@ -8,6 +8,9 @@
   @media screen and (max-width: 1366px) {
     padding: 7rem 5rem 3rem;
   }
+  @media screen and (max-width: 1280px) {
+    padding: 10rem 5rem 3rem;
+  }
 
   @media screen and (max-width: 1200px) {
     padding: 10rem 4rem 2rem;
@@ -181,8 +184,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      // font-weight: bold;
     }
   }
 }
@@ -615,6 +616,10 @@ ul {
   @media(max-width:1535px){
     width: 40px;
     height: 40px;
+  }
+  @media(max-width:1366px){
+    width: 35px;
+    height: 35px;
   }
    @media(max-width:380px){
     width: 30px;
