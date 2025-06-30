@@ -344,11 +344,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
         slidesPerView: 'auto', // This allows slides to size naturally
         centeredSlides: false, // Ensure slides are not centered
         breakpoints: {

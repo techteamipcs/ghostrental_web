@@ -618,7 +618,7 @@ body {
   position: relative;
   width: max-content;
   color: $color-black;
-  border: 1px solid $color-white;
+  border: 2px solid $color-white;
   // border: none;
   background-color: $color-white;
   border-radius: 100px;
@@ -659,7 +659,7 @@ body {
 
   &:hover {
     color: $color-gray-beige;
-    border: 1px solid $color-gray-beige;
+    border: 2px solid $color-gray-beige;
     background-color: transparent;
 
     &::before {
@@ -737,7 +737,7 @@ body {
   display: block;
   color: $color-gray-beige;
   background-color: $color-gray;
-  border: 1px solid $color-black;
+  border: 2px solid $color-black;
   border-radius: 100px;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -784,6 +784,7 @@ body {
 
   &:hover {
     color: $color-black;
+    border: 2px solid $color-black;
     background-color: transparent;
 
     &::before {
@@ -873,6 +874,9 @@ a {
   }
 }
 
+.margin15 {
+  margin-bottom: 15px;
+}
 .margin20 {
   margin-bottom: 20px;
 }
@@ -1101,6 +1105,7 @@ nav {
   right: 0;
   border: 1px solid #070707;
   border-radius: 5px 5px 0 0;
+  color: #1D1D1D;
 }
 
 .overlay {
