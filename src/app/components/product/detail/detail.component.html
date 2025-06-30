@@ -502,8 +502,8 @@
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
         <div class="products" data-aos="fade-up" data-aos-duration="1000">
           <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData"
-            (click)="onclickrelateproduct(car.url_key)">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData">
+            <a href="/product/{{ car.url_key }}" class="text-decoration-none">
               <div class="car-card ">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid thumbnail-image w-100" />
@@ -561,6 +561,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>

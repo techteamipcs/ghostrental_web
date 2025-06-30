@@ -137,9 +137,8 @@
             <div
               class=" col-lg-3 col-md-6 col-12 mb-xl-5 mb-4"
               *ngFor="let car of vehicleData"
-              [routerLink]="['/product', car.url_key]"
-              routerLinkActive="router-link-active"
             >
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none">
               <div class="car-card">
                 <img
                   src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
@@ -232,6 +231,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>

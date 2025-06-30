@@ -871,9 +871,8 @@
               <div
                 class="swiper-slide"
                 *ngFor="let car of ourCarCollections"
-                [routerLink]="['/product', car.url_key]"
-                routerLinkActive="router-link-active"
               >
+                <a href="product/{{ car.url_key }}" class="text-decoration-none">
                 <div
                   class="car-card"
                   data-aos="fade-up"
@@ -892,18 +891,18 @@
                       class="car-info margin20 d-flex justify-content-between align-items-center position-relative"
                     >
                       <div class="car-header">
-                        <h4 class="car-name mb-1 size26 redhat-semibold">
+                        <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                           {{ car.name }}
                         </h4>
                         <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize m-0"
+                          class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p"
                         >
                           {{ car.transmission }}
                         </h6>
                       </div>
                       <span
                         *ngIf="car && car.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize special-number px-2 py-1"
+                        class="size12 redhat-bold text-capitalize special-number px-2 py-1 color-card-p"
                         >special number plate</span
                       >
                     </div>
@@ -918,7 +917,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ car.fuelType }}
                         </h6>
@@ -930,7 +929,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ car.mileage }}
                         </h6>
@@ -942,7 +941,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ car.seating_capacity }} Seats
                         </h6>
@@ -953,11 +952,11 @@
                     >
                       <div class="cash">
                         <h6
-                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through color-card-p"
                         >
                           AED {{ car.regularRateDaily }}
                         </h6>
-                        <h5 class="mb-0 size26 redhat-semibold">
+                        <h5 class="mb-0 size26 redhat-semibold gray-color">
                           AED {{ car.dailyRate }}
                         </h5>
                       </div>
@@ -970,6 +969,7 @@
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
           </div>
@@ -1030,9 +1030,8 @@
               <div
                 class="swiper-slide"
                 *ngFor="let yacht of ouryatchsCollections"
-                [routerLink]="['/product', yacht.url_key]"
-                routerLinkActive="router-link-active"
               >
+              <a href="product/{{ yacht.url_key }}" class="text-decoration-none">
                 <div
                   class="car-card"
                   data-aos="fade-up"
@@ -1051,18 +1050,18 @@
                       class="car-info margin20 d-flex justify-content-between align-items-center position-relative"
                     >
                       <div class="car-header">
-                        <h4 class="car-name mb-1 size26 redhat-semibold">
+                        <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                           {{ yacht.name }}
                         </h4>
                         <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize m-0"
+                          class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p"
                         >
                           {{ yacht.type }}
                         </h6>
                       </div>
                       <span
                         *ngIf="yacht && yacht.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize special-number px-2 py-1"
+                        class="size12 redhat-bold text-capitalize special-number px-2 py-1 gray-color"
                         >special number plate</span
                       >
                     </div>
@@ -1077,7 +1076,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ yacht.length }} length
                         </h6>
@@ -1089,7 +1088,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ yacht.cabins }} Cabins
                         </h6>
@@ -1101,7 +1100,7 @@
                           alt=""
                         />
                         <h6
-                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize"
+                          class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
                           {{ yacht.guests }} Guests
                         </h6>
@@ -1112,11 +1111,11 @@
                     >
                       <div class="cash">
                         <h6
-                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
+                          class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through color-card-p"
                         >
                           AED {{ yacht.regularRateDaily }}
                         </h6>
-                        <h5 class="mb-0 size26 redhat-semibold">
+                        <h5 class="mb-0 size26 redhat-semibold gray-color">
                           AED {{ yacht.dailyRate }}
                         </h5>
                       </div>
@@ -1129,6 +1128,7 @@
                     </div>
                   </div>
                 </div>
+              </a>
               </div>
             </div>
           </div>
@@ -1291,11 +1291,10 @@
             <div
               *ngFor="let car of trendingRentalCars"
               class="col-xxl-4 col-xl-4 col-lg-6"
-              [routerLink]="['/product', car.url_key]"
-              routerLinkActive="router-link-active"
               data-aos="fade-up"
               data-aos-duration="2000"
             >
+            <a href="/product/{{ car.url_key }}" class="text-decoration-none">
               <div class="trending-car-card sectionmb">
                 <img
                   src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
@@ -1346,6 +1345,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>
@@ -1393,6 +1393,7 @@
                 [routerLink]="['/product', car.url_key]"
                 routerLinkActive="router-link-active"
               >
+                <a href="/product/{{ car.url_key }}" class="text-decoration-none">
                 <div
                   class="trending-car-card"
                   data-aos="fade-up"
@@ -1450,6 +1451,7 @@
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
           </div>

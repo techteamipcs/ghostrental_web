@@ -272,8 +272,8 @@
         <div class="products">
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
-              *ngFor="let car of vehicleData" [routerLink]="['/product', car.url_key]"
-              routerLinkActive="router-link-active">
+              *ngFor="let car of vehicleData">
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none">
               <div class="car-card">
 
                 <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"
@@ -350,6 +350,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>
