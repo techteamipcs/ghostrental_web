@@ -224,18 +224,18 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
         ];
       } else {
         this.carDetails = [
-          { icon: 'ship', label: 'body', value: this.vehicleData.bodytype_data[0]?.name },
+          { icon: 'ship', label: 'ship', value: this.vehicleData.bodytype_data[0]?.name },
           { icon: 'length', label: 'length', value: this.vehicleData.length },
-          { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
+          // { icon: 'fuel', label: 'fuel type', value: this.vehicleData.fuelType },
           { icon: 'engine', label: 'engine', value: this.vehicleData.engine_size },
           { icon: 'year', label: 'year', value: new Date(this.vehicleData.year).getFullYear() },
-          { icon: 'material', label: 'hull material', value: this.vehicleData.hull_material },
-          { icon: 'flag', label: 'flag', value: this.vehicleData.flag },
-          { icon: 'crew', label: 'crew included', value: this.vehicleData.crew_included ? 'Yes' : 'No' },
+          // { icon: 'material', label: 'hull material', value: this.vehicleData.hull_material },
+          // { icon: 'flag', label: 'flag', value: this.vehicleData.flag },
+          { icon: 'guests', label: 'crew included', value: this.vehicleData.crew_included ? 'Yes' : 'No' },
           { icon: 'guests', label: 'guest capacity', value: this.vehicleData.guest_capacity },
-          { icon: 'water', label: 'water capacity', value: this.vehicleData.water_capacity },
+          // { icon: 'water', label: 'water capacity', value: this.vehicleData.water_capacity },
           { icon: 'fuel', label: 'fuel capacity', value: this.vehicleData.fuel_capacity },
-          { icon: 'builder', label: 'builder', value: this.vehicleData.builder }
+          // { icon: 'builder', label: 'builder', value: this.vehicleData.builder }
         ];
       }
       if (this.vehicleData.media_data?.length > 0) {
