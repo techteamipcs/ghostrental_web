@@ -29,7 +29,7 @@
             </div>
 
             <div id="filter-options" *ngIf="!isMobile || isMobileFilterVisible" class="filter" [ngClass]="{
-              'position-absolute top-100 start-0 w-100 shadow bg-white z-3 border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3': isMobile
+              'position-absolute top-100 start-0 w-100 shadow bg-white  border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3': isMobile
             }"
             >
               <!-- Vehicle Type -->
@@ -230,7 +230,7 @@
         'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
       }">
         <!-- <div class="container-fluid"> -->
-        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60">
+        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 ">
           <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1 size22"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
@@ -242,8 +242,8 @@
             No Data Found
           </h6>
 
-          <div class="d-flex align-items-center position-relative sort" style="cursor: pointer; z-index: -1;">
-          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
+          <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;">
+          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color cselect"
             (change)="onChangeSort($event)" style="font-size: 14px; appearance: none;">
             <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
               Sort by any makes &nbsp;
@@ -344,9 +344,9 @@
                         AED {{ car.dailyRate }}
                       </h5>
                     </div>
-                    <a href="/product/{{ car.url_key }}"
-                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize">View
-                      details</a>
+                    <button routerLink="/product/{{ car.url_key }}"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt">View
+                      details</button>
                   </div>
                 </div>
               </div>
