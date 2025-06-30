@@ -1,7 +1,8 @@
 import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
+import { DOCUMENT, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter, first } from 'rxjs/operators';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -19,21 +20,48 @@ export class FooterComponent {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
+  ngOnInit() {
+    // Handle fragment navigation after route changes
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      const urlTree = this.router.parseUrl(this.router.url);
+      if (urlTree.fragment) {
+        this.scrollToElement(urlTree.fragment);
+      }
+    });
+  }
+
   scrollToFAQ(event: Event): void {
     if (!this.isBrowser) return;
     
     event.preventDefault();
     
-    // Navigate to home with fragment
-    this.router.navigate(['/'], { fragment: 'faq' }).then(() => {
-      // After navigation, scroll to the element
-      const element = this.document.getElementById('faq');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    // Get current route without query params or fragment
+    const currentRoute = this.router.url.split('?')[0].split('#')[0];
+    
+    // If already on the current page with the fragment, just scroll
+    if (this.router.url.includes('faq')) {
+      this.scrollToElement('faq');
+      return;
+    }
+    
+    // Navigate to current page with fragment
+    this.router.navigate([currentRoute], { fragment: 'faq' });
   }
-   isActive = false;
+  
+  private scrollToElement(id: string): void {
+    if (!this.isBrowser) return;
+    
+    const element = this.document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn(`Element with ID '${id}' not found.`);
+    }
+  }
+
+  isActive = false;
 
   setActive(state: boolean): void {
     this.isActive = state;

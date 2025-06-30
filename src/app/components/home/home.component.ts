@@ -7,7 +7,6 @@ import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2'
-import * as AOS from 'aos';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { ContactService } from '../../providers/contact/contact.service';
 
@@ -345,24 +344,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         slidesPerView: 'auto', // This allows slides to size naturally
         centeredSlides: false, // Ensure slides are not centered
         breakpoints: {
           0: { 
-            slidesPerView: 1.2, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
           430: { 
-            slidesPerView: 1.3, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
            575: { 
-            slidesPerView: 1.8, 
+            slidesPerView: 1, 
             spaceBetween: 15 
           },
           768: {
@@ -399,26 +398,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
           0: { 
-            slidesPerView: 1.2, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
           430: { 
-            slidesPerView: 1.3, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
            575: { 
-            slidesPerView: 1.8, 
+            slidesPerView: 1, 
             spaceBetween: 15 
           },
           768: {

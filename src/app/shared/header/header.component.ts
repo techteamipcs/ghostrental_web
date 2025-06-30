@@ -1,16 +1,8 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  Renderer2,
-  Inject,
-  ChangeDetectorRef,
-  PLATFORM_ID
-} from '@angular/core';
+import { Component, HostListener, OnInit, Renderer2, Inject, ChangeDetectorRef, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { environment } from '../../../environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -20,8 +12,12 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   isScrolled = false;
-  isMenuOpen: boolean = false;
-  darkTextRoutes = [
+  isMenuOpen = false;
+  isDarkText = false;
+  hasLargePadding = false;
+  
+  // Routes that should have dark text by default
+  private darkTextRoutes = [
     '/about',
     '/privacy',
     '/testimonials',
@@ -32,22 +28,24 @@ export class HeaderComponent implements OnInit {
     '/services'
   ];
 
-  whiteTextRoutes = [
+  // Routes that should have white text by default
+  private whiteTextRoutes = [
     '/',
     '/product/list',
     '/services',
     '/booking'
   ];
-  isDarkText = false;
-  isWhiteText = false;
-  currentRoute: string = '';
-  useWhiteButton = false;
-  isBrowser: boolean;
-  hasLargePadding = false;
-  detailRouteRegex = /^\/product\//;
-  listRouteRegex = /^\/product\/list/;
-  bookingRouteRegex = /^\/booking/;
-  largePaddingRoutes = ['/', '/services', this.bookingRouteRegex, this.listRouteRegex];
+
+  // Routes that should have large padding
+  private largePaddingRoutes = [
+    '/',
+    '/services',
+    '/booking',
+    '/product/list'
+  ];
+
+  private currentRoute = '';
+  private isBrowser: boolean;
 
   constructor(
     private router: Router,
@@ -57,92 +55,50 @@ export class HeaderComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+    this.setupRouterEvents();
+  }
 
+  ngOnInit(): void {
+    this.updateRouteState(this.router.url);
+  }
+
+  private setupRouterEvents(): void {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      // Get the path without query parameters
       const path = event.url.split('?')[0];
-      this.currentRoute = path;
-
-      // Get url_key parameter if on product detail page
-      const urlKey = this.router.url.split('/').pop();
-      if (path.startsWith('/product/') && urlKey) {
-        this.currentRoute = `/product/${urlKey}`;
-      }
-
-      const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
-        path === route || path.startsWith(route + '/')
-      );
-      const shouldHaveDarkText = this.darkTextRoutes.some(route =>
-        path === route || path.startsWith(route + '/')
-      );
-
-      this.isDarkText = shouldHaveDarkText && !shouldHaveWhiteText;
-
-      this.useWhiteButton = this.whiteTextRoutes.some(route =>
-        path === route || path.startsWith(route + '/')
-      );
-
-      // Only apply large padding to routes in largePaddingRoutes array
-      // this.hasLargePadding = this.largePaddingRoutes.some(route => {
-      //   // Check if current route exactly matches or starts with the route
-      //   return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
-      // });
-      this.hasLargePadding =
-        this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ||
-        this.listRouteRegex.test(this.currentRoute) ||
-        this.bookingRouteRegex.test(this.currentRoute);
-
-
+      this.updateRouteState(path);
+      
       if (this.isBrowser) {
         window.scrollTo(0, 0);
       }
+      
       this.updateTextColor();
       this.changeDetector.detectChanges();
     });
   }
 
-
-  ngOnInit(): void {
-    const path = this.router.url.split('?')[0];
+  private updateRouteState(path: string): void {
     this.currentRoute = path;
-
-    const shouldHaveWhiteText = this.whiteTextRoutes.some(route =>
+    this.isDarkText = this.darkTextRoutes.some(route => 
+      path === route || path.startsWith(route + '/')
+    ) && !this.whiteTextRoutes.some(route => 
       path === route || path.startsWith(route + '/')
     );
-    const shouldHaveDarkText = this.darkTextRoutes.some(route =>
+
+    this.hasLargePadding = this.largePaddingRoutes.some(route => 
       path === route || path.startsWith(route + '/')
     );
-
-    this.isDarkText = shouldHaveDarkText && !shouldHaveWhiteText;
-    this.useWhiteButton = shouldHaveWhiteText;
-
-    const isDetailRoute = this.detailRouteRegex.test(this.currentRoute);
-    const isListRoute = this.listRouteRegex.test(this.currentRoute);
-    const isBookingRoute = this.bookingRouteRegex.test(this.currentRoute);
-
-    // this.hasLargePadding = this.largePaddingRoutes.some(route => this.currentRoute.includes(route)) ||
-    //   isDetailRoute ||
-    //   isListRoute ||
-    //   isBookingRoute ||
-    //   this.currentRoute === '/';
-
-    this.hasLargePadding =
-  this.largePaddingRoutes.some(route => this.currentRoute === route || this.currentRoute.startsWith(route + '/')) ;
-
-    this.updateTextColor();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    if (this.isBrowser) {
-      const wasScrolled = this.isScrolled;
-      this.isScrolled = window.scrollY > 50;
-      this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
-      this.updateTextColor();
-      this.changeDetector.detectChanges();
-    }
+    if (!this.isBrowser) return;
+    
+    this.isScrolled = window.scrollY > 50;
+    this.renderer[this.isScrolled ? 'addClass' : 'removeClass'](this.document.body, 'header-scrolled');
+    this.updateTextColor();
+    this.changeDetector.detectChanges();
   }
 
   private updateTextColor(): void {
@@ -163,14 +119,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  selectLink(route: string): void {
-    this.router.navigate([route]);
-  }
-
-  aboutPage(): void {
-    this.router.navigate(['/about']);
-  }
-
   toggleMenu(event?: Event): void {
     if (event) {
       event.preventDefault();
@@ -180,25 +128,20 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
 
     if (this.isMenuOpen) {
-      this.renderer.addClass(this.document.body, 'menu-open');
-      this.renderer.addClass(this.document.documentElement, 'menu-open');
-      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
-      this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
-
-      if (this.isBrowser) {
-        setTimeout(() => {
-          const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
-          menuItems.forEach((item) => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateX(0)';
-          });
-        }, 50);
-      }
+      this.openMenu();
     } else {
       this.closeMenu();
     }
 
     this.changeDetector.detectChanges();
+  }
+
+  private openMenu(): void {
+    this.renderer.addClass(this.document.body, 'menu-open');
+    this.renderer.addClass(this.document.documentElement, 'menu-open');
+    this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
+    this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
+    this.animateMenuItems();
   }
 
   closeMenu(): void {
@@ -207,7 +150,24 @@ export class HeaderComponent implements OnInit {
     this.renderer.removeClass(this.document.documentElement, 'menu-open');
     this.renderer.removeStyle(this.document.body, 'overflow');
     this.renderer.removeStyle(this.document.documentElement, 'overflow');
+    this.resetMenuItems();
+  }
 
+  private animateMenuItems(): void {
+    if (!this.isBrowser) return;
+    
+    setTimeout(() => {
+      const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
+      menuItems.forEach((item) => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateX(0)';
+      });
+    }, 50);
+  }
+
+  private resetMenuItems(): void {
+    if (!this.isBrowser) return;
+    
     const menuItems = this.document.querySelectorAll<HTMLElement>('.mobile-menu .nav li');
     menuItems.forEach((item) => {
       item.style.opacity = '0';
@@ -229,10 +189,9 @@ export class HeaderComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any): void {
-    if (this.isBrowser && window.innerWidth >= 768) {
-      this.isMenuOpen = false;
-      this.renderer.removeStyle(this.document.body, 'overflow');
+  onResize(): void {
+    if (this.isBrowser && window.innerWidth >= 1200) {
+      this.closeMenu();
     }
   }
 }

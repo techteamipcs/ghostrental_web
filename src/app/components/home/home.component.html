@@ -737,9 +737,11 @@
       <div class="col-xl-4 col-lg-4 col-md-10 padding-x margin-x">
         <div
           class="card h-100 position-relative"
+          style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="1000"
-          routerLink="/services"
+          [routerLink]="['/services']"
+          [fragment]="'car-service'"
         >
           <img
             src="{{ imageURL }}/home/services/car-rental.png"
@@ -758,7 +760,7 @@
               delivery.
             </p>
             <a
-              href="/services"
+              href="/services#car-service"
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
@@ -769,9 +771,11 @@
       <div class="col-xl-4 col-lg-4 col-md-10 padding-x margin-x">
         <div
           class="card rounded-4 h-100 position-relative"
+          style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="1500"
-          routerLink="/services"
+          [routerLink]="['/services']"
+          [fragment]="'yacht-service'"
         >
           <img
             src="{{ imageURL }}/home/services/yacht_rental.png"
@@ -789,7 +793,7 @@
               Arab, and Atlantis on our crewed and catered Luxury Yachts.
             </p>
             <a
-              href="/services"
+              href="/services#yacht-service"
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
@@ -800,9 +804,11 @@
       <div class="col-xl-4 col-lg-4 col-md-10 margin-x padding-x">
         <div
           class="card rounded-4 h-100 position-relative"
+          style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="2000"
-          routerLink="/services"
+          [routerLink]="['/services']"
+          [fragment]="'chauffeur-service'"
         >
           <img
             src="{{ imageURL }}/home/services/chauffeur.png"
@@ -821,7 +827,7 @@
               every trip.
             </p>
             <a
-              href="/services"
+              href="/services#chauffeur-service"
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more

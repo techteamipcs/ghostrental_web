@@ -54,9 +54,6 @@ body {
 .redhat-bold {
   font-family: $redhat-bold;
 }
-.redhat-extra-bold {
-  font-family: $redhat-extra-bold;
-}
 
 // font sizes
 .size8 {
@@ -372,6 +369,18 @@ body {
   @media (max-width: 1680px) {
     font-size: 44px;
   }
+  @media (max-width: 1440px) {
+    font-size: 38px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 32px;
+  }
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+  @media (max-width: 430px) {
+    font-size: 22px;
+  }
 
   // @media (max-width: 1280px) {
   //   font-size: 34px;
@@ -469,7 +478,7 @@ body {
   font-size: 90px;
 
   @media (max-width: 1650px) {
-    font-size: 80px;
+    font-size:75px;
   }
 
   @media (max-width: 1600px) {
@@ -477,7 +486,7 @@ body {
   }
 
   @media (max-width: 1440px) {
-    font-size: 60px;
+    font-size: 62px;
   }
 
   @media (max-width: 1280px) {
@@ -736,6 +745,7 @@ body {
   transition: all 0.3s ease;
   overflow: hidden;
   position: relative;
+  z-index: 1;
 
   padding: 18px 66px;
   @media (max-width:1600px) {
