@@ -10,7 +10,8 @@
       </div>
 
       <div class="col-lg-8 pe-">
-        <div class="footer-gap d-flex justify-content-lg-end justify-content-center flex-lg-row flex-column text-center text-lg-start">
+        <div
+          class="footer-gap d-flex justify-content-lg-end justify-content-center flex-lg-row flex-column text-center text-lg-start">
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">company</h4>
             <ul class="nav d-flex flex-column ">
@@ -40,16 +41,18 @@
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">Support</h4>
             <ul class="nav d-flex flex-column">
               <li class="nav-item">
-                <a [routerLink]="['/']" fragment="faq" class="text-decoration-none white-color size16 redhat-regular text-capitalize" (click)="scrollToFAQ($event)">FAQ</a>
+                <a [routerLink]="['/']" fragment="faq"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  (click)="scrollToFAQ($event)">FAQ</a>
               </li>
               <li class="nav-item ">
                 <a href="/privacy"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">privacy policy</a>
               </li>
-              
+
               <li class="nav-item ">
-                <a href="/terms"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize">terms & conditions</a>
+                <a href="/terms" class="text-decoration-none white-color size16 redhat-regular text-capitalize">terms &
+                  conditions</a>
               </li>
               <li class="nav-item ">
                 <a href="/contact"
@@ -106,13 +109,19 @@
   <div class="container-fluid marginTop128">
     <div class="row">
       <div class="col-lg-4">
-        <p class="copyright text-center redhat-regular size16 white-color text-lg-start text-center mb-lg-0 mb-3">© 2025, All Rights Reserved Ghost Rentals</p>
+        <p class="copyright text-center redhat-regular size16 white-color text-lg-start text-center mb-lg-0 mb-3">©
+          2025, All Rights Reserved Ghost Rentals</p>
       </div>
       <div class="col-lg-8">
-        <p class="copyright text-center redhat-regular size16 white-color text-lg-end text-center mb-0 d-flex justify-content-lg-end justify-content-center align-items-center gap-1">Design and Developed
-          With<img src="{{ imageURL }}/heart.png" alt="heart" class="footer-social-icon">by<a
-            href="https://pixtar.ae/"
-            class="text-decoration-none white-color size16 redhat-bold text-capitalize">Pixtar</a></p>
+        <p
+          class="copyright text-center redhat-regular size16 white-color text-lg-end text-center mb-0 d-flex justify-content-lg-end justify-content-center align-items-center gap-1">
+          Design and Developed With
+          <img #heartIcon class="heart" width="18" height="16" loading="lazy" [src]="getImagePath()"
+            (mouseenter)="setActive(true)" (mouseleave)="setActive(false)" style="width:18px;">
+          by <strong> <a href="https://www.pixtar.ae" class="customlink mb-0 " target="_blank"
+              class="text-decoration-none white-color size16 redhat-semibold"
+              style="font-weight:normal;">Pixtar.ae</a></strong>
+        </p>
       </div>
     </div>
   </div>

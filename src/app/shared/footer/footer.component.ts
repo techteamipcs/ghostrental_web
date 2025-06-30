@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class FooterComponent {
   imageURL: string = `${environment.url}/assets`;
   private isBrowser: boolean;
-
+@ViewChild('heartIcon', {static: false}) heartIcon!: ElementRef<HTMLImageElement>;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
@@ -32,5 +32,14 @@ export class FooterComponent {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  }
+   isActive = false;
+
+  setActive(state: boolean): void {
+    this.isActive = state;
+  }
+
+  getImagePath(): string {
+    return `${this.imageURL}/heart_${this.isActive ? 'active' : 'inactive'}.svg`;
   }
 }
