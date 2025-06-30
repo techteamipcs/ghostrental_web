@@ -89,6 +89,17 @@ export class ContactService {
       );
   };
 
+  addQuickSearch = (moreData:any): Observable<any> => {
+    const endpoint = environment.baseUrl+'/api/home/addquicksearch';
+    return this.http
+      .post(endpoint, moreData)
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+  };
+
   logout()
   {
     localStorage.clear();
