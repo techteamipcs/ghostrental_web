@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   
   // Routes that should have dark text by default
   private darkTextRoutes = [
-    '/about',
+    
     '/privacy',
     '/testimonials',
     '/product/search',
@@ -31,14 +31,17 @@ export class HeaderComponent implements OnInit {
   // Routes that should have white text by default
   private whiteTextRoutes = [
     '/',
+    '/about',
     '/product/list',
     '/services',
     '/booking'
+    
   ];
 
   // Routes that should have large padding
   private largePaddingRoutes = [
     '/',
+    '/about',
     '/services',
     '/booking',
     '/product/list'

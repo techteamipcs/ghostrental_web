@@ -1,4 +1,54 @@
-<section class="about sectionPadding">
+<section class="services bannerPadding">
+  <div class="container-fluid position-relative p-0 h-100">
+    <div class="overlay"></div>
+
+    <!-- <img
+      src="{{ imageURL }}/services/services_banner.png"
+      alt="Limousine on road"
+      class="w-100 h-100 bannerImage"
+      loading="lazy"
+      decoding="async"
+    /> -->
+<video
+						#myVideo
+						width="100%"
+						muted
+						autoplay
+						style="cursor: pointer; height:100%; width:100%;  object-fit: cover;    border-radius: 20px; "
+					>
+						<source
+							src="{{ imageURL }}/about/aboutus.mp4"
+							type="video/mp4"
+						/>
+						<source
+							src="{{ imageURL }}/about/aboutus.mp4"
+							type="video/ogg"
+						/>
+						Your browser does not support the video tag.
+					</video>
+    <div class="content zindex2">
+      <h1
+        class="size88 performa-thin white-color heading-width"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+         Driven By Luxury 
+        <span class="d-block">Fueled By Experience</span>
+      </h1>
+      <p
+        class="size20 redhat-regular beige-color"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        Ghost Rentals delivers Luxury Car, Yacht, and Chauffeur Services in
+            Dubai and across the UAE.
+      </p>
+      <!-- <button class="size18 redhat-bold white-border-button">book now</button> -->
+    </div>
+  </div>
+</section>
+
+<!-- <section class="about sectionPadding">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-lg-10 col-xl-8 pad-left mb-xl-5 mb-lg-3 mb-2">
@@ -55,7 +105,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <app-brands
   h3="Pick Your Premium Ride From Top Brands"
