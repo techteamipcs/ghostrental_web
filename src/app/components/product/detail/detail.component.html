@@ -132,15 +132,15 @@
           </div>
         </div>
         <div class="btns">
-          <div class="w-100 bg-black border border-1 rounded-pill mb-3 p-3 cstpadding text-center" *ngIf="vehicleData">
+          <div class="w-100  mb-3 text-center" *ngIf="vehicleData">
             <a [routerLink]="['/contact/product', vehicleData.name]"
-              class="size18 redhat-semibold text-decoration-none white-color text-capitalize">
+              class="size18 redhat-semibold text-decoration-none black-button text-capitalize">
               send a mail
             </a>
           </div>
-          <div class="w-100 bg-green-color rounded-pill p-3 green-border-color cstpadding text-center">
+          <div class="w-100  text-center">
             <a href="https://wa.me/971555555555"
-              class="size18 redhat-semibold text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
+              class="size18 redhat-semibold text-decoration-none rounded-pill cstpadding text-capitalize bg-green-color green-border-color white-color d-flex align-items-center justify-content-center whatsappbtn">
               <img class="whatsappicon me-1" src="{{ baseUrl }}/assets/home/whatsapp-white.svg" alt="whatsapp icon" width="28" height="28" /> book via whatsapp
             </a>
           </div>
