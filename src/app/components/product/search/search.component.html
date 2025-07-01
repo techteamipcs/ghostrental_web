@@ -191,7 +191,7 @@
                   <div class="col-6">
                     <label for="minPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Min</label>
                     <div class="position-relative">
-                      <input type="number" id="minPrice" [(ngModel)]="minPrice" (change)="onPriceInputChange('min')"
+                      <input type="number" id="minPrice" [(ngModel)]="minPrice" (click)="onPriceInputChange('min')"
                         min="0" [max]="maxPrice - 500" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
                       <span class="position-absolute size14 redhat-semibold color-card-p" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
                     </div>
@@ -199,20 +199,23 @@
                   <div class="col-6">
                     <label for="maxPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Max</label>
                     <div class="position-relative">
-                      <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (change)="onPriceInputChange('max')"
-                        [min]="minPrice + 500" max="10000" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
+                      <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (click)="onPriceInputChange('max')"
+                        [min]="minPrice + 500" max="100000" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
                       <span class="position-absolute size14 redhat-semibold color-card-p" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Slider -->
-                <div class="slider" id="slider">
+                <!-- <div class="slider" id="slider">
                   <div class="slider-range" id="slider-range"></div>
                   <div class="slider-thumb" id="thumb-min" role="slider" aria-valuemin="0" aria-valuemax="10000"
                     [attr.aria-valuenow]="minPrice" tabindex="0"></div>
                   <div class="slider-thumb" id="thumb-max" role="slider" aria-valuemin="0" aria-valuemax="10000"
                     [attr.aria-valuenow]="maxPrice" tabindex="0"></div>
+                </div> -->
+                <div *ngIf="sliderVisible">
+                  <ngx-slider class="ngxslider" *ngIf="sliderVisible" [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ngx-slider>
                 </div>
               </div>
 

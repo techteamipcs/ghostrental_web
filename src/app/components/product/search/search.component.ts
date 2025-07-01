@@ -15,7 +15,7 @@ import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2';
-import AOS from 'aos';
+import { Options } from '@angular-slider/ngx-slider';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -89,7 +89,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('rangeMax') rangeMax!: ElementRef;
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
-
+  value: number = 40;
+  highValue: number = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+  };
+  sliderVisible:any = false;
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
@@ -139,6 +145,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 1199;
       this.isMobileFilterVisible = !this.isMobile;
+      setTimeout(() => {
+      // this.initializeSlider();
+        this.sliderVisible = true
+      },200);
     }
     // Load initial data
     this.getBrands();
@@ -154,9 +164,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.onScroll();
-    setTimeout(() => {
-      this.initializeSlider();
-    });
   }
 
 
@@ -388,7 +395,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.getCarData();
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
     }
   }
 
@@ -409,16 +418,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
       const results = this.resultsRef.nativeElement;
 
       const filterHeight = filter.offsetHeight;
-      const filterTop = filter.getBoundingClientRect().top;
-      const resultsBottom = results.getBoundingClientRect().bottom;
+      // const filterTop = filter.getBoundingClientRect().top;
+      // const resultsBottom = results.getBoundingClientRect().bottom;
 
-      if (resultsBottom <= filterHeight + filterTop) {
-        filter.style.position = 'relative';
-        filter.style.bottom = '0';
-      } else {
-        filter.style.position = 'sticky';
-        filter.style.top = '8rem';
-      }
+      // if (resultsBottom <= filterHeight + filterTop) {
+      //   filter.style.position = 'relative';
+      //   filter.style.bottom = '0';
+      // } else {
+      //   filter.style.position = 'sticky';
+      //   filter.style.top = '8rem';
+      // }
     }
   }
 

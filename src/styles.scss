@@ -1142,3 +1142,15 @@ z-index: 2;
 .collection-padding{
   padding:20px 0;
 }
+
+.ngx-slider .ngx-slider-pointer {
+  background-color: #d1d1d1 !important;
+}
+
+.ngx-slider .ngx-slider-selection {
+  background: #d1d1d1 !important;
+}
+
+.ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
+  background-color: #181717 !important;
+}

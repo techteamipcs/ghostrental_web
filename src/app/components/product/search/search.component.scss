@@ -526,3 +526,8 @@ input[type="datetime-local"] {
 .cselect{
   padding:5px;
 }
+:ng-deep{
+  .ngx-slider .ngx-slider-pointer{
+    background-color: #d1d1d1 !important;
+  }
+}
