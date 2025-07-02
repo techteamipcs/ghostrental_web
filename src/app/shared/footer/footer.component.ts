@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild, HostListener } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DOCUMENT, isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
@@ -11,6 +11,14 @@ import { filter, first } from 'rxjs/operators';
 export class FooterComponent {
   imageURL: string = `${environment.url}/assets`;
   private isBrowser: boolean;
+  isImageVisible = false;
+   // Listen to window scroll
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const scrollY = window.scrollY || window.pageYOffset;
+    this.isImageVisible = scrollY >= 100;
+  }
+  
 @ViewChild('heartIcon', {static: false}) heartIcon!: ElementRef<HTMLImageElement>;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -69,5 +77,8 @@ export class FooterComponent {
 
   getImagePath(): string {
     return `${this.imageURL}/heart_${this.isActive ? 'active' : 'inactive'}.svg`;
+  }
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
