@@ -126,6 +126,9 @@ select:focus {
       @media screen and (max-width: 1920px) {
         left: 3.5%;
       }
+      @media screen and (max-width: 1199px) {
+        left: 2%;
+      }
       @media screen and (max-width: 1024px) {
         left: 1.5%;
       }
@@ -530,4 +533,8 @@ input[type="datetime-local"] {
   .ngx-slider .ngx-slider-pointer{
     background-color: #d1d1d1 !important;
   }
+}
+.cardblock{
+  position: relative;
+  z-index: -1;
 }

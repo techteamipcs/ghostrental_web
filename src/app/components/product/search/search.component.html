@@ -187,7 +187,7 @@
               <!-- Price Range -->
               <div class="price-wrapper">
                 <!-- Price Inputs -->
-                <div class="row g-2">
+                <div class="row g-2 mb-4">
                   <div class="col-6">
                     <label for="minPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Min</label>
                     <div class="position-relative">
@@ -276,7 +276,7 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
               *ngFor="let car of vehicleData">
-              <a href="/product/{{ car.url_key }}" class="text-decoration-none">
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock">
               <div class="car-card">
 
                 <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"

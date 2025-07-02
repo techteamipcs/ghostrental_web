@@ -1144,13 +1144,17 @@ z-index: 2;
 }
 
 .ngx-slider .ngx-slider-pointer {
-  background-color: #d1d1d1 !important;
+  background-color: #1d1d1d !important;
 }
 
 .ngx-slider .ngx-slider-selection {
-  background: #d1d1d1 !important;
+  background: #000 !important;
 }
 
 .ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
-  background-color: #181717 !important;
+  background-color: #d1d1d1 !important;
+}
+.ngx-slider-bubble{
+  color: #1d1d1d !important;
+  font-family: $redhat-regular;
 }
