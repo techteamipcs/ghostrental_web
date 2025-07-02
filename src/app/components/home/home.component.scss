@@ -1224,8 +1224,12 @@
 
     @media screen and (max-width: 430px) {
       column-gap: 1rem;
-      row-gap: 1.5rem;
     }
+
+.csmb-25:nth-child(3),
+.csmb-25:nth-child(4) {
+  margin-bottom: 25px;
+}
   }
 
   .car-icon {
@@ -1636,32 +1640,31 @@
 
 // collections
 .collection {
-  padding-left: 7rem;
-  padding-top: 5rem;
+  padding:12.5rem 0rem 0 7rem;
   @media screen and (max-width: 1600px) {
-    padding-left: 6rem;
+    padding: 12.5rem 0rem 0 6rem;
   }
   @media screen and (max-width: 1536px) {
-    padding-top: 3rem;
+    padding: 12.5rem 0rem 0 3rem;
   }
   @media screen and (max-width: 1440px) {
-    padding-left: 5rem;
-    padding-top: 3rem;
+    padding: 5rem 0rem 0 3rem;
   }
 
   @media screen and (max-width: 1200px) {
-    padding-left: 60px;
-    padding-top: 2rem;
+    padding: 2rem 0rem 0 3.5rem;
   }
 
   @media screen and (max-width: 1024px) {
-    padding-left: 48px;
-    padding-top: 2rem;
+    padding: 2rem 0rem 0 3rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 2rem 0rem 0 2rem;
   }
 
   @media screen and (max-width: 430px) {
-    padding: 20px;
-    padding-top: 2rem;
+    padding:2rem 0 0 1.5rem;
   }
 
   .margin-right {
@@ -2008,11 +2011,11 @@
       }
 
       @media screen and (max-width: 768px) {
-        width: 60%;
+        width: 57%;
       }
 
       @media screen and (max-width: 602px) {
-        width: 84%;
+        width: 76%;
       }
 
       @media screen and (max-width: 430px) {
@@ -2102,6 +2105,16 @@
 
 .trending_cars {
   padding: 200px 0px 120px;
+
+  .swiper-slide {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    
+    @media screen and (max-width: 768px) {
+      padding: 0 20px;
+    }
+  }
 
   @media screen and (max-width: 1536px) {
     padding: 100px 0px 120px;
@@ -2210,6 +2223,9 @@
       padding: 0;
     }
 
+    .swiper-slide {
+      max-width: 100%;
+    }
     .margin-right {
       margin-right: 11rem;
     }

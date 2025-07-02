@@ -1,7 +1,6 @@
 <section class="min-h-100 sectionPadding search-container">
   <div class="container-fluid">
     <div class="row">
-
       <!-- filter section -->
       <div class="col-xl-3 col-lg-5 filter-section">
         <div class="border border-2 p-xl-4 p-md-3 p-3 filter-container" #filterContainer [ngClass]="{
@@ -125,34 +124,6 @@
                 <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
-
-
-               <!-- Date From -->
-               <!-- <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
-               <div class="filter-section">
-                 <span *ngIf="!availableStartDate"
-                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-                   style=" pointer-events: none;"
-                   >Start date</span>
- 
-                 <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
-                   [(ngModel)]="availableStartDate" 
-                   />
-                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
-               </div> -->
-               <!-- Date To -->
-               <!-- <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date To</label>
-               <div class="filter-section">
-                 <span *ngIf="!availableendDate"
-                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-                   style=" pointer-events: none;">End date</span>
- 
-                 <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
-                   [(ngModel)]="availableendDate" />
-                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
-               </div> -->
-
-
               <!-- Date From -->
               <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
               <div class="filter-section">
@@ -314,26 +285,46 @@
                       plate</span>
                   </div>
 
-                  <div class="d-flex justify-content-between border-top border-bottom collection-padding">
+                  <!-- Car Information -->
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="!car.vehicleType || car.vehicleType === 'car'">
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image" alt="Fuel Type" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
-                        {{ car.fuelType }}
+                        {{ car.fuelType || 'N/A' }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image" alt="Mileage" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
-                        {{ car.mileage }}
+                        {{ car.mileage || 'N/A' }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image" alt="Seats" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
-                        {{ car.seating_capacity }} Seats
+                        {{ car.seating_capacity || 'N/A' }} Seats
+                      </h6>
+                    </div>
+                  </div>
+
+                  <!-- Yacht Information -->
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicleType === 'Yachts' || car.vehicleType === 'yacht'">
+                    <div class="text-center">
+                      <img src="{{ imageURL }}/home/collection/length.svg" class="img-fluid collection_image" alt="Length" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                        {{ car.length || 'N/A' }} mtr
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img src="{{ imageURL }}/home/collection/year.svg" class="img-fluid collection_image" alt="Year" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                        {{ car.year || 'N/A' }}
+                      </h6>
+                    </div>
+                    <div class="text-center">
+                      <img src="{{ imageURL }}/home/collection/guests.svg" class="img-fluid collection_image" alt="Capacity" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                        {{ car.guests || 'N/A' }} Guests
                       </h6>
                     </div>
                   </div>

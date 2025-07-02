@@ -645,7 +645,7 @@ ul {
   max-width: 100%;
   overflow: hidden;
   &:hover{
-    border: 1px solid #F3F3F3;
+    border: 2px solid #F3F3F3;
   }
  }
  .whatsappbtn{
@@ -655,7 +655,6 @@ ul {
 
   @media (max-width:1440px) {
     padding: 9px 40px;
-
   }
 
   @media (max-width:1280px) {
@@ -668,7 +667,7 @@ ul {
   background-color: #00fb009c;
   color: #fff;
   padding: 18px 20px;
-  border: 1px solid #00fb009c;
+  // border: 1px solid #00fb009c;
   border-radius: 35px;
   transition: color 0.3s ease;
   overflow: hidden;

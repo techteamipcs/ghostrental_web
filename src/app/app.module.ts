@@ -34,7 +34,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
     ServicesComponent,
-    BookingComponent
+    // BookingComponent
   ],
   imports: [
     BrowserModule,

@@ -144,11 +144,11 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
               clickable: true,
               dynamicBullets: true,
             },
-            autoplay: {
-              delay: 2000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
+            // autoplay: {
+            //   delay: 2000,
+            //   disableOnInteraction: false,
+            //   pauseOnMouseEnter: true,
+            // },
             breakpoints: {
               768: {
                 slidesPerView: 1,

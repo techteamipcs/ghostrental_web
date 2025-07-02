@@ -2,7 +2,7 @@
   <div class="container-fluid position-relative p-0 h-100">
     <div class="overlay"></div>
     <img
-      *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='image'"
+    *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='image'"
       src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
       class="w-100 h-100"
@@ -11,24 +11,24 @@
       decoding="async"
     />
     <video *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='video'"
-						#myVideo
-						width="100%"
-						muted
-						autoplay
-            loop
-            playsinline
-						style="cursor: pointer; height:100%; width:100%;  object-fit: cover;    border-radius: 20px; "
-					>
-						<source
-							src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
-							type="video/mp4"
-						/>
-						<source
-							src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
-							type="video/ogg"
-						/>
-						Your browser does not support the video tag.
-					</video>
+      #myVideo
+      width="100%"
+      muted
+      autoplay
+      loop
+      playsinline
+      style="cursor: pointer; height:100%; width:100%;  object-fit: cover;    border-radius: 20px; "
+    >
+      <source
+        src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
+        type="video/mp4"
+      />
+      <source
+        src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}"
+        type="video/ogg"
+      />
+      Your browser does not support the video tag.
+    </video>
 
     <div
       class="position-absolute w-100 start-50 translate-middle form-top zindex2"
@@ -36,6 +36,17 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl-6 col-lg-7 col-md-10 col-sm-12 col-12 pad-left">
+            <!-- <div class="content" *ngIf="!bannerData">
+              <h1 class="size88 performa-thin white-color mb-md-3 mb-2 text-capitalize">
+                Turn Every Trip Into Ultimate Reality
+              </h1>
+              <p class="size20 redhat-regular hero-para beige-color line-height26 mmargin36">
+                Ghost Rentals - Dubai's Luxury car rental & yacht rental! Create unforgettable memories at weddings,
+                events, or while exploring UAE. We don't just transport - we ensure you arrive as the main attraction!
+              </p>
+              <a href="/contact" class="white-color text-decoration-none white-border-button size18 redhat-bold  d-none d-lg-block">Book Now</a>
+              <a href="/contact" class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a>
+            </div> -->
 
             <div class="content" *ngIf="bannerData" >
               <h1
@@ -659,7 +670,7 @@
     <div class="grid-category">
       <div
         *ngFor="let car of cartypeData"
-        class="position-relative d-flex flex-column align-items-center justify-content-center"
+        class="position-relative d-flex flex-column align-items-center justify-content-center csmb-25"
         style="cursor: pointer"
         data-aos="fade-up"
         data-aos-duration="1500"
@@ -1079,38 +1090,38 @@
                     >
                       <div class="text-center">
                         <img
-                          src="{{ imageURL }}/home/collection/fuel_icon.png"
+                          src="{{ imageURL }}/home/collection/year.svg"
                           class="img-fluid collection_image"
                           alt=""
                         />
                         <h6
                           class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
-                          {{ yacht.length }} length
+                          {{ yacht.year }}
                         </h6>
                       </div>
                       <div class="text-center">
                         <img
-                          src="{{ imageURL }}/home/collection/speed_icon.png"
+                          src="{{ imageURL }}/home/collection/length.svg"
                           class="img-fluid collection_image"
                           alt=""
                         />
                         <h6
                           class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
-                          {{ yacht.cabins }} Cabins
+                          {{ yacht.length }} meter
                         </h6>
                       </div>
                       <div class="text-center">
                         <img
-                          src="{{ imageURL }}/home/collection/seat_icon.png"
+                          src="{{ imageURL }}/home/collection/guests.svg"
                           class="img-fluid collection_image"
                           alt=""
                         />
                         <h6
                           class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
                         >
-                          {{ yacht.guests }} Guests
+                          {{ yacht.guests }} capacity
                         </h6>
                       </div>
                     </div>

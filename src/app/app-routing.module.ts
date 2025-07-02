@@ -17,14 +17,14 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent
   },
-  {
-    path: 'booking',
-    component: BookingComponent
-  },
-  {
-    path: 'booking/:type',
-    component: BookingComponent
-  },
+  // {
+  //   path: 'booking',
+  //   component: BookingComponent
+  // },
+  // {
+  //   path: 'booking/:type',
+  //   component: BookingComponent
+  // },
   {
     path: 'services',
     component: ServicesComponent

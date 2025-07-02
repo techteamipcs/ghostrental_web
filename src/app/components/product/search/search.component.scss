@@ -1,5 +1,6 @@
 .search-container {
   padding: 13rem 7rem 0;
+  position: relative;
 
   @media screen and (max-width: 1536px) {
     padding: 10rem 5rem 0;
@@ -72,6 +73,24 @@ select:focus {
   &.collapse-height {
     height: 50px !important;
     overflow: hidden;
+  }
+
+  &.position-sticky {
+    position: sticky;
+    top: 120px; /* Adjust this value based on your header height */
+    // max-height: calc(100vh - 140px); /* Adjust based on your needs */
+    // overflow-y: auto;
+    z-index: 10;
+    background: white;
+    
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 
   .form-selection,

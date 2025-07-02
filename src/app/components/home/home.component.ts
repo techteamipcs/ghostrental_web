@@ -448,7 +448,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initTrendingSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
         spaceBetween: 20,
         loop: true,
         centeredSlides: true,
@@ -458,12 +458,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           el: '.swiper-pagination',
           clickable: true,
           dynamicBullets: true,
-        },
-        on: {
-          init: () => {
-          },
-          slideChange: () => {
-          },
         },
       });
     }
