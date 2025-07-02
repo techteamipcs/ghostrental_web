@@ -286,7 +286,7 @@
                   </div>
 
                   <!-- Car Information -->
-                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="vehicleType == 'Car'">
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type == 'Car'">
                     <div class="text-center">
                       <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image" alt="Fuel Type" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
@@ -308,7 +308,7 @@
                   </div>
 
                   <!-- Yacht Information -->
-                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="vehicleType === 'Yachts'">
+                  <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type === 'Yachts'">
                     <div class="text-center">
                       <img src="{{ imageURL }}/home/collection/length.svg" class="img-fluid collection_image" alt="Length" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
