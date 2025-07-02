@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 10000; 
+  maxPrice: any = 5000; 
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
   price_type: any = 'dailyRate';
@@ -655,6 +655,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.vehicleType = data.target.value;
     } else {
       this.vehicleType = false;
+    }
+    if(this.vehicleType=='Yachts'){
+      this.maxPrice = 1000000;
     }
   }
 
