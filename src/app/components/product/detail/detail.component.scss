@@ -444,18 +444,18 @@
 
 // collections 
 .collection {
-  padding: 7rem;
+  padding: 0rem 7rem 7rem 7rem;
 
   @media screen and (max-width: 1600px) {
-    padding: 6rem 5rem 0;
+    padding: 0rem 6rem ;
   }
 
   @media screen and (max-width: 1200px) {
-    padding: 3.75rem;
+    padding: 0 3.75rem;
   }
 
   @media screen and (max-width: 430px) {
-    padding: .5rem;
+    padding: 0 .5rem;
   }
 
 
@@ -467,7 +467,8 @@
   .collection_image {
     width: 35px;
     height: 35px;
-    margin-bottom: 5px;
+  object-fit: contain;
+  margin-bottom: 5px;
 
     @media screen and (max-width: 1440px) {
       width: 25px;
@@ -644,9 +645,9 @@ ul {
  .black-button{
   max-width: 100%;
   overflow: hidden;
-  &:hover{
-    border: 2px solid #F3F3F3;
-  }
+  // &:hover{
+  //   border: 2px solid #F3F3F3;
+  // }
  }
  .whatsappbtn{
   @media (max-width:1600px) {

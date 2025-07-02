@@ -1703,6 +1703,7 @@
     width: 35px;
     height: 35px;
     margin-bottom: 5px;
+    object-fit: contain;
 
     @media screen and (max-width: 1536px) {
       width: 30px;
@@ -2234,6 +2235,9 @@
       width: 35px;
       height: 35px;
       margin-bottom: 5px;
+
+  object-fit: contain;
+
 
       @media screen and (max-width: 1536px) {
         width: 30px;

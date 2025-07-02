@@ -10,6 +10,7 @@ import { filter, first } from 'rxjs/operators';
 })
 export class FooterComponent {
   imageURL: string = `${environment.url}/assets`;
+  heartURL: string = `${environment.url}/assets/images/icons`;
   private isBrowser: boolean;
   isImageVisible = false;
    // Listen to window scroll
@@ -76,7 +77,7 @@ export class FooterComponent {
   }
 
   getImagePath(): string {
-    return `${this.imageURL}/heart_${this.isActive ? 'active' : 'inactive'}.svg`;
+    return `${this.heartURL}/heart_${this.isActive ? 'active' : 'inactive'}.svg`;
   }
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

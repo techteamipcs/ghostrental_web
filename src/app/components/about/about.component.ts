@@ -38,23 +38,23 @@ export class AboutComponent  {
 
   features = [
     {
-      image: 'home/cars.png',
+      image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
       description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
 
     },
     {
-      image: 'home/hand.png',
+      image: 'images/icons/hand.png',
       title: 'Family-First Service',
       description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
     },
     {
-      image: 'home/fullday.png',
+      image: 'images/icons/fullday.png',
       title: 'Perfect booking experience',
       description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
     },
     {
-      image: 'home/earth.png',
+      image: 'images/icons/earth.png',
       title: 'Total UAE Coverage',
       description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }

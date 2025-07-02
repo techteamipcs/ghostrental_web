@@ -10,7 +10,7 @@
           <div class="filter">
             <div class="d-flex align-items-center justify-content-between">
               <div class="d-flex align-items-center gap-2">
-                <img src="{{ imageURL }}/product-details/overview_icons/filter.svg" alt="Filter" class="img-fluid"
+                <img src="{{ imageURL }}/images/icons/filter.svg"  alt="Filter" class="img-fluid"
                   style="width: 20px" />
                 <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
               </div>
@@ -43,7 +43,7 @@
                   <option value="Car">Car</option>
                   <option value="Yachts">Yachts</option>
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
               <!-- Special Number Plate -->
@@ -57,7 +57,7 @@
                   <option value="true">Enable</option>
                   <!-- <option value="false">Disable</option> -->
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
 
@@ -73,7 +73,7 @@
                   <option value="Weekly">Weekly</option>
                   <option value="Monthly">Monthly</option>
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
               <!-- Body Type -->
@@ -89,7 +89,7 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
               <!-- Car Brand -->
@@ -105,7 +105,7 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
               <!-- Car Model -->
@@ -121,7 +121,7 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <img src="{{ imageURL }}/down-arrow.svg" alt="Arrow Down" class="down-arrow"
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
                    />
               </div>
               <!-- Date From -->
@@ -240,7 +240,7 @@
           </select>
 
           
-          <img src="{{ imageURL }}/down-arrow.svg" class="img-fluid down-arrow" alt="" />
+          <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
         </div>
         </div>
         <div class="products">
@@ -270,7 +270,7 @@
                 </div> -->
 
 
-                <div class="card-content h-100 d-flex flex-column justify-content-center h-100">
+                <div class="card-content h-100 d-flex flex-column justify-content-center">
                   <div class="car-info  d-flex justify-content-between align-items-center position-relative">
                     <div class="car-header margin15">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
@@ -288,19 +288,19 @@
                   <!-- Car Information -->
                   <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type == 'Car'">
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/fuel_icon.png" class="img-fluid collection_image" alt="Fuel Type" />
+                      <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image" alt="Fuel Type" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.fuelType || 'N/A' }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/speed_icon.png" class="img-fluid collection_image" alt="Mileage" />
-                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                      <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image" alt="Mileage" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize">
                         {{ car.mileage || 'N/A' }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/seat_icon.png" class="img-fluid collection_image" alt="Seats" />
+                      <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image" alt="Seats" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.seating_capacity || 'N/A' }} Seats
                       </h6>
@@ -310,19 +310,19 @@
                   <!-- Yacht Information -->
                   <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type === 'Yachts'">
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/length.svg" class="img-fluid collection_image" alt="Length" />
-                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
-                        {{ car.length || 'N/A' }} mtr
+                      <img src="{{ imageURL }}/images/icons/length.svg" class="img-fluid collection_image" alt="Length" />
+                      <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p ">
+                        {{ car.length || 'N/A' }} Mtr
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/year.svg" class="img-fluid collection_image" alt="Year" />
+                      <img src="{{ imageURL }}/images/icons/year.svg" class="img-fluid collection_image" alt="Year" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.year || 'N/A' }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/home/collection/guests.svg" class="img-fluid collection_image" alt="Capacity" />
+                      <img src="{{ imageURL }}/images/icons/crew.svg" class="img-fluid collection_image" alt="Capacity" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.guest_capacity || 'N/A' }} Guests
                       </h6>
