@@ -2,14 +2,14 @@
   <div class="container-fluid position-relative p-0 h-100">
     <div class="overlay"></div>
 
-    <!-- <img
-      src="{{ imageURL }}/services/services_banner.png"
+    <img *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='image'"
+      src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
       class="w-100 h-100 bannerImage"
       loading="lazy"
       decoding="async"
-    /> -->
-<video
+    />
+<video *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='video'"
 						#myVideo
 						width="100%"
 						muted
@@ -19,11 +19,11 @@
 						style="cursor: pointer; height:100%; width:100%;  object-fit: cover;    border-radius: 20px; "
 					>
 						<source
-							src="{{ imageURL }}/about/aboutus.mp4"
+							src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
 							type="video/mp4"
 						/>
 						<source
-							src="{{ imageURL }}/about/aboutus.mp4"
+							src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
 							type="video/ogg"
 						/>
 						Your browser does not support the video tag.

@@ -11,7 +11,7 @@ import { DataService } from '../../providers/data/data.service';
 export class AboutComponent  {
   imageURL: string = `${environment.url}/assets`;
   bannerData: any;
-
+  backendURl = `${environment.baseUrl}/public`;
   // Getter for background image style
   get backgroundImageStyle() {
     return {
