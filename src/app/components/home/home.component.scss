@@ -151,6 +151,9 @@
     @media screen and (max-width: 768px) {
       padding-right: 0px;
     }
+    @media screen and (max-width: 430px) {
+      padding-left: 0px;
+    }
   }
 
   .form-top {
@@ -254,8 +257,8 @@
     }
 
     @media (max-width: 430px) {
-      padding: 20px;
-      max-width: 300px;
+      padding: 15px;
+      max-width: 100%;
     }
 
     .form-select {
@@ -1355,6 +1358,9 @@
     padding: 0 80px;
   }
 
+  @media screen and (max-width: 767px) {
+    padding: 0 50px;
+  }
   @media screen and (max-width: 430px) {
     padding: 0;
   }
@@ -1495,10 +1501,12 @@
     @media (max-width: 601px) {
       top: 13%;
     }
-
-    @media (max-width: 430px) {
-      top: 13%;
+    @media (max-width: 480px) {
+      top: 10%;
     }
+    // @media (max-width: 430px) {
+    //   top: 13%;
+    // }
 
     h3 {
       margin-bottom: 22px;
@@ -1663,8 +1671,8 @@
     padding: 2rem 0rem 0 2rem;
   }
 
-  @media screen and (max-width: 430px) {
-    padding:2rem 0 0 1.5rem;
+  @media screen and (max-width: 480px) {
+    padding:2rem 1rem 0 1rem;
   }
 
   .margin-right {

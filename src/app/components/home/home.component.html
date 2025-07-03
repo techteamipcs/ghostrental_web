@@ -581,11 +581,11 @@
           </button>
         </div>
 
-        <div class="position-relative">
+        <div class="position-relative" data-aos="fade-up" data-aos-duration="1500">
           <div class="swiper yacht-collection-swiper" #yachtSwiper>
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let yacht of ouryatchsCollections">
-                <div class="car-card" data-aos="fade-up" data-aos-duration="1500"
+                <div class="car-card" 
                   [routerLink]="['/product', yacht.url_key]" routerLinkActive="router-link-active">
                   <div class="thumbnail-image">
                     <img *ngIf="yacht.media_data && yacht.media_data.length > 0"
@@ -649,7 +649,7 @@
           </div>
 
           <div class="d-flex justify-content-between align-items-center margin-top40">
-            <div class="text-start gap-2 d-flex" data-aos="fade-up" data-aos-duration="2000">
+            <div class="text-start gap-2 d-flex" >
               <div class="button yacht-swiper-button-prev">
                 <lucide-icon name="arrow-left" class="swiper-button-icon" />
               </div>
@@ -657,7 +657,7 @@
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
-            <button routerLink="/product/search" data-aos="fade-up" data-aos-duration="2000"
+            <button routerLink="/product/search" 
               class="black-button size18 redhat-bold d-block d-lg-none text-capitalize">
               view all
             </button>
