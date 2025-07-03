@@ -171,4 +171,10 @@ export class ListComponent implements OnInit {
       this.getCarData();
     }
   }
+
+
+  getFirstTwoWords(name:string) : string{
+    if(!name) return "";
+    return name.split(' ').slice(0,2).join(' ');
+  }
 }

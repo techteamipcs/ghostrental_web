@@ -300,4 +300,9 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
+  getFirstTwoWords(name:string) : string{
+    if(!name) return "";
+    return name.split(' ').slice(0,2).join(' ');
+  }
+
 }

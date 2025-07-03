@@ -498,7 +498,8 @@
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                           {{ car.name.substring(0, 18) }}...
+                           <!-- {{ car.name.substring(0, 18) }}... -->
+                           {{ getFirstTwoWords(car.name) }}
                         </h4>
                         <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
                           {{ car.transmission }}
@@ -753,7 +754,9 @@
                   <div class="car-info  d-flex justify-content-between position-relative">
                     <div class="car-header margin27">
                       <h4 class="car-name mb-1 size35 redhat-semibold white-color">
-                         {{ car.name.substring(0, 18) }}...
+                         <!-- {{ car.name.substring(0, 18) }}... -->
+                         {{ getFirstTwoWords(car.name) }}
+
                       </h4>
                       <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
                         {{ car.transmission }}
@@ -820,7 +823,7 @@
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size35 redhat-semibold white-color">
-                           {{ car.name.substring(0, 18) }}...
+                           {{ getFirstTwoWords(car.name) }}
                         </h4>
                         <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
                           {{ car.transmission }}

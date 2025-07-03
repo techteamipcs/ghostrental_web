@@ -720,4 +720,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
+  getFirstTwoWords(name:string) : string{
+    if(!name) return "";
+    return name.split(' ').slice(0,2).join(' ');
+  }
+
 }
