@@ -746,6 +746,7 @@
           <div class="row">
             <div *ngFor="let car of trendingRentalCars" class="col-xxl-4 col-xl-4 col-lg-6" data-aos="fade-up"
               data-aos-duration="2000">
+              <a href="/product/{{car.url_key}}">
               <div class="trending-car-card sectionmb">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                   class="img-fluid trending-main-image" />
@@ -780,6 +781,7 @@
                   </div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>
