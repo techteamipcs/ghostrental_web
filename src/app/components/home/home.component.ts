@@ -344,11 +344,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         slidesPerView: 'auto', // This allows slides to size naturally
         centeredSlides: false, // Ensure slides are not centered
         breakpoints: {
@@ -398,11 +398,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
+        // autoplay: {
+        //   delay: 2000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
@@ -450,9 +450,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
         slidesPerView: 'auto',
         spaceBetween: 20,
-        loop: true,
-        centeredSlides: true,
         modules: [Navigation, Pagination, Autoplay],
+        loop: true,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        centeredSlides: true,
         navigation: false,
         pagination: {
           el: '.swiper-pagination',
@@ -802,5 +807,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  goToVehiclePage(type: string) {
+    this.router.navigate(['/product/search'], { queryParams: { type } });
   }
 }

@@ -96,4 +96,9 @@ export class FooterComponent {
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+
+    goToVehiclePage(type: string) {
+    this.router.navigate(['/product/search'], { queryParams: { type } });
+  }
 }

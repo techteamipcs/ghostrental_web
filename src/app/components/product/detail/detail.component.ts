@@ -231,8 +231,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
           { icon: 'year', label: 'year', value: new Date(this.vehicleData.year).getFullYear() },
           // { icon: 'material', label: 'hull material', value: this.vehicleData.hull_material },
           // { icon: 'flag', label: 'flag', value: this.vehicleData.flag },
-          { icon: 'guests', label: 'crew included', value: this.vehicleData.crew_included ? 'Yes' : 'No' },
-          { icon: 'guests', label: 'guest capacity', value: this.vehicleData.guest_capacity },
+          { icon: 'crew', label: 'crew included', value: this.vehicleData.crew_included ? 'Yes' : 'No' },
+          { icon: 'crew', label: 'guest capacity', value: this.vehicleData.guest_capacity },
           // { icon: 'water', label: 'water capacity', value: this.vehicleData.water_capacity },
           // { icon: 'fuel', label: 'fuel capacity', value: this.vehicleData.fuel_capacity },
           // { icon: 'builder', label: 'builder', value: this.vehicleData.builder }

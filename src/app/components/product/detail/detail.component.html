@@ -15,7 +15,8 @@
       <div class="row h-100">
         <div class="col-xl-9 col-lg-12 mb-xl-0 mb-md-3 mb-2 pad-right h-100">
           <div class="main-image-wrapper position-relative">
-            <img [src]="images[currentIndex].src" [alt]="images[currentIndex].alt" class="img-fluid h-100" loading="lazy" />
+            <img [src]="images[currentIndex].src" [alt]="images[currentIndex].alt" class="img-fluid h-100"
+              loading="lazy" />
             <button class="position-absolute top-50 translate-middle-y prev" (click)="prevImage()">
               <img src="{{ imageURL }}/images/icons/left-arrow.svg" alt="Previous" />
             </button>
@@ -27,8 +28,8 @@
 
         <div class="col-xl-3 col-lg-12 pad-left h-100">
           <div class="d-flex flex-xl-column gap-xl-4 gap-lg-3 gap-md-3 gap-2 thumbnail-height">
-            <div class="thumbnail-item" *ngFor="let img of images | slice:0:3; let i = index; let last = last" 
-                 (click)="selectImage(i)">
+            <div class="thumbnail-item" *ngFor="let img of images | slice:0:3; let i = index; let last = last"
+              (click)="selectImage(i)">
               <img [src]="img.src" [alt]="img.alt" loading="lazy" />
               <div *ngIf="last && images.length > 3" class="remaining-count-overlay size18 redhat-semibold white-color">
                 +{{images.length - 3}}
@@ -70,63 +71,71 @@
   <div class="container-fluid">
     <div class="row sticky-container" #stickyContainer>
       <div class="d-xl-block d-none border border-1 border-black p-4 sticky-card" #stickyCard>
-          <div class="row">
-            <div class="col mb-md-4">
-              <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
-            </div>
+        <div class="row">
+          <div class="col mb-md-4">
+            <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image" />
+          </div>
           <div class="col mb-md-4 d-flex flex-column justify-content-end">
-            <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
+            <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}
+            </p>
             <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
           </div>
         </div>
-        <!-- <div class="cash">
-          <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Daily'">
-            AED {{ vehicleData.regularRateDaily }}
-          </h5>
-          <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'">
-            AED {{ vehicleData.regularRateHourly }}
-          </h5>
-          <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'">
-            AED {{ vehicleData.regularRateWeekly }}
-          </h5>
-          <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'">
-            AED {{ vehicleData.regularRateMonthly }}
-          </h5>
-        </div> -->
-        <div class="d-flex align-items-center justify-content-between margin17">
+
+
+
+        <div class="d-flex align-items-center justify-content-between margin17"
+          *ngIf="vehicleData.vehicle_type === 'Car'">
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
-            <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.dailyRate">
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.dailyRate">
               <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
             </h6>
           </div>
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
-            <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.weeklyRate">
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.weeklyRate">
               <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.weeklyRate }}
             </h6>
           </div>
           <div class="">
             <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
-            <h6 class="mb-0 size20 redhat-semibold  gray-color"
-              *ngIf="vehicleData && vehicleData.monthlyRate">
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.monthlyRate">
               <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.monthlyRate }}
+            </h6>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between margin17"
+          *ngIf="vehicleData.vehicle_type === 'Yachts'">
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateDaily">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily
+              }}
+            </h6>
+          </div>
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateHourly">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateHourly
+              }}
             </h6>
           </div>
         </div>
 
         <div class="d-flex justify-content-between mb-4">
           <div class="d-flex align-items-center">
-            <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+            <div
+              class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
               <img src="{{ imageURL }}/images/icons/location.svg" alt="location" />
             </div>
             <p class="size14 redhat-regular m-0 color-card-p text-capitalize">get directions</p>
           </div>
           <div class="d-flex align-items-center">
-            <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
-              <img src="{{ imageURL }}/images/icons/call.svg" alt="call"/>
+            <div
+              class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+              <img src="{{ imageURL }}/images/icons/call.svg" alt="call" />
             </div>
             <p class="size14 redhat-regular m-0 color-card-p text-decoration-none">+971 800 44678</p>
           </div>
@@ -141,7 +150,8 @@
           <div class="w-100  text-center">
             <a href="https://wa.me/971555555555"
               class="size18 redhat-semibold text-decoration-none rounded-pill  text-capitalize bg-green-color green-border-color white-color d-flex align-items-center justify-content-center whatsappbtn">
-              <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon" width="28" height="28" /> book via whatsapp
+              <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon"
+                width="28" height="28" /> book via whatsapp
             </a>
           </div>
         </div>
@@ -154,14 +164,15 @@
             <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image mb-sm-0 mb-4" />
             <div class="d-flex flex-column justify-content-between me-3 me-md-0">
               <div>
-                <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name }}</p>
+                <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{ vehicleData.bodytype_data[0].name
+                  }}</p>
                 <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
               </div>
               <div class="">
                 <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
-                <h6 class="mb-0 size26 redhat-semibold  gray-color"
-                  *ngIf="vehicleData && vehicleData.regularRateDaily">
-                  <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily }}
+                <h6 class="mb-0 size26 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateDaily">
+                  <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{
+                  vehicleData.regularRateDaily }}
                 </h6>
               </div>
             </div>
@@ -183,44 +194,61 @@
                 AED {{ vehicleData.monthlyRate }}
               </h5>
             </div> -->
-          
+
           </div>
-          <div class="d-flex align-items-center justify-content-between margin17">
+          <div class="d-flex align-items-center justify-content-between margin17"
+            *ngIf="vehicleData.vehicle_type === 'Car'">
             <div class="">
               <span class="size14 redhat-medium color-card-p text-capitalize">per day</span>
-              <h6 class="mb-0 size20 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.dailyRate">
+              <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.dailyRate">
                 <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
               </h6>
             </div>
             <div class="">
               <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
-              <h6 class="mb-0 size20 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.weeklyRate">
+              <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.weeklyRate">
                 <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.weeklyRate }}
               </h6>
             </div>
             <div class="">
               <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
-              <h6 class="mb-0 size20 redhat-semibold  gray-color"
-                *ngIf="vehicleData && vehicleData.monthlyRate">
+              <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.monthlyRate">
                 <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.monthlyRate }}
               </h6>
             </div>
           </div>
-  
+          <div class="d-flex align-items-center justify-content-between margin17"
+            *ngIf="vehicleData.vehicle_type === 'Yachts'">
+            <div class="">
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+              <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateDaily">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.regularRateDaily
+                }}
+              </h6>
+            </div>
+            <div class="">
+              <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+              <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateHourly">
+                <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{
+                vehicleData.regularRateHourly }}
+              </h6>
+            </div>
+          </div>
+
           <!-- <h4 class="size26 redhat-semibold m-0">{{ vehicleData.name }}</h4>
           <p class="size18 redhat-semibold mb-2">{{ vehicleData.bodytype_data[0].name }}</p> -->
-  
+
           <div class="d-sm-flex d-flex justify-content-between mb-4">
             <div class="d-flex align-items-center my-sm-0 my-3 justify-content-center pe-3">
-              <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+              <div
+                class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
                 <img src="{{ imageURL }}/images/icons/location.svg" alt="location" />
               </div>
               <p class="size14 redhat-regular m-0 text-capitalize">get directions</p>
             </div>
             <div class="d-flex align-items-center justify-content-center">
-              <div class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+              <div
+                class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
                 <img src="{{ imageURL }}/images/icons/call.svg" alt="call" />
               </div>
               <p class="size14 redhat-regular m-0">+971 800 44678</p>
@@ -239,7 +267,8 @@
               class="w-100 bg-green-color rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
               <a href="https://wa.me/971555555555"
                 class="size18 redhat-semibold  text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
-                <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon" width="20" height="20" />book via whatsapp
+                <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon"
+                  width="20" height="20" />book via whatsapp
               </a>
             </div>
           </div>
@@ -254,7 +283,7 @@
           </h3>
 
           <div class="row">
-          <div class="col-lg-4 col-md-4 col-12 margin31" *ngFor="let detail of carDetails.flat()">
+            <div class="col-lg-4 col-md-4 col-12 margin31" *ngFor="let detail of carDetails.flat()">
               <div class="row align-items-center">
                 <div class="col-2 p-0">
                   <img [src]="
@@ -289,7 +318,7 @@
         </div>
       </div>
 
-       <!-- <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
+      <!-- <div class="col-xl-9 col-12 border-1 border-bottom section-width" *ngIf="vehicleData">
         <div class="margin40">
           <h3 class="size26 redhat-semibold text-capitalize margin42">
             description
@@ -320,14 +349,15 @@
       </div>
       -->
 
-      <div class="col-xl-9 col-12 border-1 border-bottom section-width"  *ngIf="vehicleData && vehicleData.feature_data && vehicleData.feature_data.length > 0">
+      <div class="col-xl-9 col-12 border-1 border-bottom section-width"
+        *ngIf="vehicleData && vehicleData.feature_data && vehicleData.feature_data.length > 0">
         <div class="margin40">
           <h3 class="size26 redhat-semibold text-capitalize margin42">
             features
           </h3>
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="interior && interior.length > 0">
-              <div class="d-flex flex-column" >
+              <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   Interior
                 </h6>
@@ -387,7 +417,8 @@
                 </ul>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="vehicleData.vehicle_type =='Yachts' && vehicleData.feature_data && vehicleData.feature_data.length > 0">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3"
+              *ngIf="vehicleData.vehicle_type =='Yachts' && vehicleData.feature_data && vehicleData.feature_data.length > 0">
               <div class="d-flex flex-column">
                 <h6 class="size18 redhat-semibold text-capitalize mb-3">
                   SPECIAL ADD-ONS
@@ -501,7 +532,10 @@
             dubai, united arab emirates
           </p>
           <div class="maps">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.4000982981856!2d55.22321477595085!3d25.122160834734917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bb7c49961e7%3A0x4b3661e383f4d582!2sGhost%20Rentals!5e0!3m2!1sen!2sin!4v1750942590319!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.4000982981856!2d55.22321477595085!3d25.122160834734917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bb7c49961e7%3A0x4b3661e383f4d582!2sGhost%20Rentals!5e0!3m2!1sen!2sin!4v1750942590319!5m2!1sen!2sin"
+              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -511,7 +545,8 @@
 
 <section class=" collection">
   <div class="container-fluid">
-    <h3 class="text-capitalize size60 performa-light margin42 " data-aos="fade-up" data-aos-duration="1000">related listings</h3>
+    <h3 class="text-capitalize size60 performa-light margin42 " data-aos="fade-up" data-aos-duration="1000">related
+      listings</h3>
 
     <div class="row">
       <div class="results-section col-xl-12 col-lg-12 col-md-12 col-12" #resultsSection>
@@ -519,13 +554,15 @@
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData">
               <div class="car-card " [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active">
+                <div class="thumbnail-image-container">
                 <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
-                  class="img-fluid thumbnail-image w-100" />
+                  class="img-fluid thumbnail-image w-100 h-100" />
+                </div>
                 <div class="card-content h-100 d-flex flex-column justify-content-center">
-                  <div class="car-info  d-flex justify-content-between align-items-center position-relative">
+                  <div class="car-info  d-flex justify-content-between position-relative">
                     <div class="car-header margin15">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                        {{ car.name }}
+                         {{ car.name.substring(0, 18) }}...
                       </h4>
                       <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
                         {{ car.transmission }}
@@ -538,22 +575,19 @@
 
                   <div class="d-flex justify-content-between border-top border-bottom collection-padding">
                     <div class="text-center">
-                      <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image" alt="" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.fuelType }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image" alt="" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.mileage }}
                       </h6>
                     </div>
                     <div class="text-center">
-                      <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image"
-                        alt="" />
+                      <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image" alt="" />
                       <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                         {{ car.seating_capacity }} Seats
                       </h6>
@@ -585,3 +619,264 @@
 </section>
 
 <app-testimonials></app-testimonials>
+
+
+<!-- <section class="details" *ngIf="vehicleData">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+        <div class=" border-1 border-bottom">
+          <h3 class="size26 redhat-semibold text-capitalize margin42">
+            {{vehicleData.vehicle_type}} overview
+          </h3>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12 margin31" *ngFor="let detail of carDetails.flat()">
+              <div class="row align-items-center">
+                <div class="col-2 p-0">
+                  <img [src]="
+                          imageURL +
+                          '/images/icons/' +
+                          detail.icon +
+                          '.svg'
+                        " [alt]="detail.label" class="overview_icons" />
+                </div>
+                <div class="col-4">
+                  <h5 class="redhat-bold text-capitalize mb-0" style="font-size: 14px;">
+                    {{ detail.label }}
+                  </h5>
+                </div>
+                <div class="col-6">
+                  <p class="redhat-semibold text-capitalize mb-0" style="font-size: 14px;">
+                    {{ detail.value }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class=" border-1 border-bottom" *ngIf="vehicleData">
+          <div class="margin40">
+            <h3 class="size26 redhat-semibold text-capitalize margin42">
+              description
+            </h3>
+            <p class="size14 redhat-semibold csmb30" [innerHtml]="vehicleData.description"></p>
+          </div>
+        </div>
+
+
+        <div class="border-1 border-bottom"
+          *ngIf="vehicleData && vehicleData.feature_data && vehicleData.feature_data.length > 0">
+          <div class="margin40">
+            <h3 class="size26 redhat-semibold text-capitalize margin42">
+              features
+            </h3>
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="interior && interior.length > 0">
+                <div class="d-flex flex-column">
+                  <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                    Interior
+                  </h6>
+                  <ul class="list-unstyled">
+                    <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of interior">
+                      <img src="{{ imageURL }}/images/icons/tick.svg" alt="" class="features_icons" />
+                      <p class="size14 redhat-semibold text-capitalize m-0">
+                        {{ item.name }}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="exterior && exterior.length > 0">
+                <div class="d-flex flex-column">
+                  <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                    exterior
+                  </h6>
+                  <ul class="list-unstyled">
+                    <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of exterior">
+                      <img src="{{ imageURL }}/images/icons/tick.svg" alt="" class="features_icons" />
+                      <p class="size14 redhat-semibold text-capitalize m-0">
+                        {{ item.name }}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="safety && safety.length > 0">
+                <div class="d-flex flex-column">
+                  <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                    Safety
+                  </h6>
+                  <ul class="list-unstyled">
+                    <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of safety">
+                      <img src="{{ imageURL }}/images/icons/tick.svg" alt="" class="features_icons" />
+                      <p class="size14 redhat-semibold text-capitalize m-0">
+                        {{ item.name }}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3" *ngIf="comfort && comfort.length > 0">
+                <div class="d-flex flex-column">
+                  <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                    Comfort & Convenience
+                  </h6>
+                  <ul class="list-unstyled">
+                    <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of comfort">
+                      <img src="{{ imageURL }}/images/icons/tick.svg" alt="" class="features_icons" />
+                      <p class="size14 redhat-semibold text-capitalize m-0">
+                        {{ item.name }}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3"
+                *ngIf="vehicleData.vehicle_type =='Yachts' && vehicleData.feature_data && vehicleData.feature_data.length > 0">
+                <div class="d-flex flex-column">
+                  <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                    SPECIAL ADD-ONS
+                  </h6>
+                  <ul class="list-unstyled">
+                    <li class="d-flex gap-4 align-items-center mb-3" *ngFor="let item of vehicleData.feature_data">
+                      <img src="{{ imageURL }}/images/icons/tick.svg" alt="" class="features_icons" />
+                      <p class="size14 redhat-semibold text-capitalize m-0">
+                        {{ item.name }}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-section ">
+          <div class="margin40">
+            <h3 class="size26 redhat-semibold text-capitalize margin42">
+              location
+            </h3>
+            <p class="size18 redhat-semibold text-capitalize">
+              mk ghaninam, warehouse
+              <br />
+              no.40 3rd al wuar, al a rja industrial area
+              <br />
+              dubai, united arab emirates
+            </p>
+            <div class="maps">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.4000982981856!2d55.22321477595085!3d25.122160834734917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bb7c49961e7%3A0x4b3661e383f4d582!2sGhost%20Rentals!5e0!3m2!1sen!2sin!4v1750942590319!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class=" px-sm-4 p-0">
+          <div class="border border-1 border-black p-md-4 p-3 purchase-card mb-5">
+            <div class="d-sm-flex d-block justify-content-between mb-4">
+              <img src="{{ thumbnailImage }}" alt="" class="sticky_image thumbnail-image mb-sm-0 mb-4" />
+              <div class="d-flex flex-column justify-content-between me-3 me-md-0">
+                <div>
+                  <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">{{
+                    vehicleData.bodytype_data[0].name
+                    }}</p>
+                  <h4 class="size26 redhat-semibold m-0 gray-color">{{ vehicleData.name }}</h4>
+                </div>
+                <div class="">
+                  <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+                  <h6 class="mb-0 size26 redhat-semibold  gray-color"
+                    *ngIf="vehicleData && vehicleData.regularRateDaily">
+                    <span class="size16 redhat-semibold gray-color text-uppercase">AED</span> {{
+                    vehicleData.regularRateDaily }}
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between margin17"
+              *ngIf="vehicleData.vehicle_type === 'Car'">
+              <div class="">
+                <span class="size14 redhat-medium color-card-p text-capitalize">per day</span>
+                <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.dailyRate">
+                  <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate }}
+                </h6>
+              </div>
+              <div class="">
+                <span class=" size14 redhat-medium color-card-p text-capitalize">per week</span>
+                <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.weeklyRate">
+                  <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.weeklyRate }}
+                </h6>
+              </div>
+              <div class="">
+                <span class=" size14 redhat-medium color-card-p text-capitalize">per month</span>
+                <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.monthlyRate">
+                  <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.monthlyRate }}
+                </h6>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between margin17"
+              *ngIf="vehicleData.vehicle_type === 'Yachts'">
+              <div class="">
+                <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+                <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.regularRateDaily">
+                  <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{
+                  vehicleData.regularRateDaily
+                  }}
+                </h6>
+              </div>
+              <div class="">
+                <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+                <h6 class="mb-0 size20 redhat-semibold  gray-color"
+                  *ngIf="vehicleData && vehicleData.regularRateHourly">
+                  <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{
+                  vehicleData.regularRateHourly
+                  }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="d-sm-flex d-flex justify-content-between mb-4">
+              <div class="d-flex align-items-center my-sm-0 my-3 justify-content-center pe-3">
+                <div
+                  class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+                  <img src="{{ imageURL }}/images/icons/location.svg" alt="location" />
+                </div>
+                <p class="size14 redhat-regular m-0 text-capitalize">get directions</p>
+              </div>
+              <div class="d-flex align-items-center justify-content-center">
+                <div
+                  class="circle rounded-pill bg-black d-flex align-items-center justify-content-center me-1 sticky-card-icons">
+                  <img src="{{ imageURL }}/images/icons/call.svg" alt="call" />
+                </div>
+                <p class="size14 redhat-regular m-0">+971 800 44678</p>
+              </div>
+            </div>
+            <div class="btns">
+              <div
+                class="w-100 bg-black border border-1 rounded-3 mb-3 p-2 p-md-3 text-center d-flex justify-content-center align-items-center"
+                *ngIf="vehicleData">
+                <a [routerLink]="['/contact/product', vehicleData.name]"
+                  class="size18 redhat-semibold text-decoration-none white-color text-capitalize">
+                  send a mail
+                </a>
+              </div>
+              <div
+                class="w-100 bg-green-color rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
+                <a href="https://wa.me/971555555555"
+                  class="size18 redhat-semibold  text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
+                  <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg"
+                    alt="whatsapp icon" width="20" height="20" />book via whatsapp
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

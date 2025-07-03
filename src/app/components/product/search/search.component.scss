@@ -527,11 +527,11 @@ input[type="datetime-local"] {
 .down-arrow{
   width: 20px;
   height: auto;
-  // position: absolute;
-  // top: 50%;
-  // right: 0;
-  // background: #fff;
-  // transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: #fff;
+  transform: translateY(-50%);
   pointer-events: none;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -553,7 +553,7 @@ input[type="datetime-local"] {
     background-color: #d1d1d1 !important;
   }
 }
-.cardblock{
-  position: relative;
-  z-index: 0;
-}
+// .cardblock{
+//   position: relative;
+//   z-index: 0;
+// }

@@ -73,9 +73,9 @@
         </div>
         <div class="products">
           <div class="row">
-            <div class=" col-lg-3 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData">
-              <div class="car-card card">
-                <div class="card-header">
+            <div class=" col-xl-3 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData">
+              <div class="car-card">
+                <div class="thumbnail-image-container">
                   <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                     class="img-fluid thumbnail-image w-100" />
                 </div>
@@ -84,7 +84,7 @@
                     <div class="car-info  d-flex justify-content-between align-items-center position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                          {{ car.name }}
+                           {{ car.name.substring(0, 10) }}...
                         </h4>
                         <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
                           {{ car.transmission }}
@@ -94,7 +94,7 @@
                         class="size12 redhat-bold text-capitalize special-number px-2 py-1">special number plate</span>
                     </div>
 
-                    <div class="d-flex justify-content-between border-top border-bottom collection-padding">
+                    <!-- <div class="d-flex justify-content-between border-top border-bottom collection-padding">
                       <div class="text-center">
                         <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image" alt="" />
                         <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
@@ -111,6 +111,48 @@
                         <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image" alt="" />
                         <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.seating_capacity }} Seats
+                        </h6>
+                      </div>
+                    </div> -->
+                    <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type == 'Car'">
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image" alt="Fuel Type" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                          {{ car.fuelType || 'N/A' }}
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image" alt="Mileage" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize">
+                          {{ car.mileage || 'N/A' }}
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image" alt="Seats" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                          {{ car.seating_capacity || 'N/A' }} Seats
+                        </h6>
+                      </div>
+                    </div>
+  
+                    <!-- Yacht Information -->
+                    <div class="d-flex justify-content-between border-top border-bottom collection-padding" *ngIf="car.vehicle_type === 'Yachts'">
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/length.svg" class="img-fluid collection_image" alt="Length" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p ">
+                          {{ car.length || 'N/A' }} Mtr
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/year.svg" class="img-fluid collection_image" alt="Year" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                          {{ car.year || 'N/A' }}
+                        </h6>
+                      </div>
+                      <div class="text-center">
+                        <img src="{{ imageURL }}/images/icons/crew.svg" class="img-fluid collection_image" alt="Capacity" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
+                          {{ car.guest_capacity || 'N/A' }} Guests
                         </h6>
                       </div>
                     </div>
@@ -178,7 +220,7 @@
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
           <p class="redhat-semibold text-center type-margin text-capitalize">
-            {{ car.name }}
+             {{ car.name}}
           </p>
         </a>
       </div>
@@ -199,7 +241,7 @@
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image" />
           <p class="redhat-semibold text-center type-margin text-capitalize">
-            {{ car.name }}
+             {{ car.name }}
           </p>
         </a>
       </div>
