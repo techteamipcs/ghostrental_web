@@ -18,7 +18,7 @@ nav {
   //   padding: 1rem;
   // }
   
-  padding: 30px 100px;
+  padding: 20px 100px;
   background-color: #1D1D1D;
   @media (max-width: 1920px) {
     padding: 20px 90px;
@@ -90,7 +90,7 @@ nav {
 
   &.scrolled {
     background-color: #1d1d1d !important;
-    padding: 30px 100px;
+    padding: 20px 100px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     @media (max-width: 1920px) {
       padding: 20px 90px;
