@@ -6,21 +6,22 @@ import { filter, first } from 'rxjs/operators';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss' 
+  styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   imageURL: string = `${environment.url}/assets`;
   heartURL: string = `${environment.url}/assets/images/icons`;
   private isBrowser: boolean;
   isImageVisible = false;
-   // Listen to window scroll
+  activeLink = '';
+  // Listen to window scroll
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     const scrollY = window.scrollY || window.pageYOffset;
     this.isImageVisible = scrollY >= 100;
   }
-  
-@ViewChild('heartIcon', {static: false}) heartIcon!: ElementRef<HTMLImageElement>;
+
+  @ViewChild('heartIcon', { static: false }) heartIcon!: ElementRef<HTMLImageElement>;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
@@ -39,29 +40,42 @@ export class FooterComponent {
         this.scrollToElement(urlTree.fragment);
       }
     });
+    this.setActiveFromUrl();
+  }
+  setActivemenu(link: string) {
+    this.activeLink = link;
   }
 
+  setActiveFromUrl() {
+    const currentUrl = window.location.pathname;
+    if (currentUrl.includes('about')) {
+      this.activeLink = 'about';
+    } else if (currentUrl.includes('services')) {
+      this.activeLink = 'services';
+    }
+    // Add more conditions as needed
+  }
   scrollToFAQ(event: Event): void {
     if (!this.isBrowser) return;
-    
+
     event.preventDefault();
-    
+
     // Get current route without query params or fragment
     const currentRoute = this.router.url.split('?')[0].split('#')[0];
-    
+
     // If already on the current page with the fragment, just scroll
     if (this.router.url.includes('faq')) {
       this.scrollToElement('faq');
       return;
     }
-    
+
     // Navigate to current page with fragment
     this.router.navigate([currentRoute], { fragment: 'faq' });
   }
-  
+
   private scrollToElement(id: string): void {
     if (!this.isBrowser) return;
-    
+
     const element = this.document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

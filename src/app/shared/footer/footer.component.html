@@ -14,25 +14,25 @@
           class="footer-gap d-flex justify-content-lg-end justify-content-center flex-lg-row flex-column text-center text-lg-start">
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">company</h4>
-            <ul class="nav d-flex flex-column ">
+            <ul class="nav d-flex flex-column footer-menu">
               <li class="nav-item ">
-                <a routerLink="/"
+                <a href=" " (click)="setActivemenu(' ')" [ngClass]="{ 'active': activeLink === '' }"
                   class="text-decoration-none white-color size16  redhat-regular text-capitalize">Home</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/about"
+                <a href="/about" (click)="setActivemenu('about')" [ngClass]="{ 'active': activeLink === 'about' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">about us</a>
               </li>
               <li class="nav-item ">
-                <a href="/services"
+                <a href="/services" (click)="setActivemenu('services')" [ngClass]="{ 'active': activeLink === 'services' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">services</a>
               </li>
               <li class="nav-item ">
-                <a href="/product/search"
+                <a href="/product/search" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">Our cars</a>
               </li>
               <li class="nav-item ">
-                <a href="/product/search"
+                <a href="/product/search" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">our yachts</a>
               </li>
             </ul>
