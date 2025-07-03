@@ -106,15 +106,14 @@
     </button>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid" data-aos="fade-up" data-aos-duration="2000">
     <div class="row justify-content-center">
       <div class="col-lg-12 d-grid">
         <div
           class="faq-item margin18"
           *ngFor="let faq of faqs; let i = index"
           [class.expanded]="expandedIndex === i"
-          data-aos="fade-up"
-          data-aos-duration="2000"
+          
         >
           <div class="faq-question m-0" (click)="toggleAccordion(i)">
             <h4 class="size26 redhat-medium m-0 gray-color">
