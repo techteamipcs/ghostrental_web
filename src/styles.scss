@@ -1070,25 +1070,25 @@ a {
   // }
 }
 
-.thumbnail-image-container{
-  width: auto;
-  height: 350px;
-  @media (max-width: 1920px) {
-    height: 237px;
-  }
-  @media (max-width: 1536px) {
-    height: 190px;
-  }
-  @media (max-width: 1440px) {
-    height: 160px;
-  }
-  @media (max-width: 1366px) {
-    height: 150px;
-  }
-  @media (max-width: 1024px) {
-    height: 200px;
-  }
-}
+// .thumbnail-image-container{
+//   width: auto;
+//   height: 350px;
+//   @media (max-width: 1920px) {
+//     height: 237px;
+//   }
+//   @media (max-width: 1536px) {
+//     height: 190px;
+//   }
+//   @media (max-width: 1440px) {
+//     height: 160px;
+//   }
+//   @media (max-width: 1366px) {
+//     height: 150px;
+//   }
+//   @media (max-width: 1024px) {
+//     height: 200px;
+//   }
+// }
 
 .thumbnail-image {
   border-radius: 10px;

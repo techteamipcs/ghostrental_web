@@ -1271,7 +1271,10 @@
 
     &:hover {
       transition: transform 0.3s ease;
-      transform: translateX(5px) scale(1.01);
+      transform: translateX(10px) scale(1.30);
+      @media screen and (max-width: 1920px) {
+        transform: translateX(5px) scale(1.02);
+      }
     }
   }
 

@@ -1,7 +1,9 @@
 .search-container {
-  padding: 13rem 7rem 0;
+  padding: 13rem 24rem 0;
   position: relative;
-
+  @media screen and (max-width: 1920px) {
+    padding: 13rem 7rem 0;
+  }
   @media screen and (max-width: 1536px) {
     padding: 10rem 5rem 0;
   }

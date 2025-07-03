@@ -17,6 +17,7 @@ export class FooterComponent {
   // Listen to window scroll
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
+    if (typeof window === 'undefined') return;
     const scrollY = window.scrollY || window.pageYOffset;
     this.isImageVisible = scrollY >= 100;
   }
@@ -31,22 +32,25 @@ export class FooterComponent {
   }
 
   ngOnInit() {
-    // Handle fragment navigation after route changes
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      const urlTree = this.router.parseUrl(this.router.url);
-      if (urlTree.fragment) {
-        this.scrollToElement(urlTree.fragment);
-      }
-    });
-    this.setActiveFromUrl();
+    if (this.isBrowser) {
+      // Handle fragment navigation after route changes
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe(() => {
+        const urlTree = this.router.parseUrl(this.router.url);
+        if (urlTree.fragment) {
+          this.scrollToElement(urlTree.fragment);
+        }
+      });
+      this.setActiveFromUrl();
+    }
   }
   setActivemenu(link: string) {
     this.activeLink = link;
   }
 
   setActiveFromUrl() {
+    if (typeof window === 'undefined') return;
     const currentUrl = window.location.pathname;
     if (currentUrl.includes('about')) {
       this.activeLink = 'about';
