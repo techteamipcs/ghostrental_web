@@ -678,14 +678,14 @@ ul {
     content: "";
     position: absolute;
     height: 100%;
-    width: 0%;
+    width:100%;
     top: 0;
     left: -40px;
-    transform: skewX(0);  
+    transform: scaleX(0);  
     transform-origin: left center;
     background-color: #25D366;
     z-index: -1;
-    transition: all 1s;
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   &:hover {
@@ -693,8 +693,7 @@ ul {
 
     &::before {
       transform-origin: right center;
-      // transform: scaleX(1);
-      width: 150%;
+      transform: scaleX(1);
     }
   }
  }
