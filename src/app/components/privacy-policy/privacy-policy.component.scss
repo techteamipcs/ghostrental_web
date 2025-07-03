@@ -16,10 +16,10 @@
         padding: 120px 50px 90px;
       }
       @media (max-width: 768px) {
-        padding: 100px 50px;
+        padding: 150px 50px 100px;
       }
       @media (max-width: 602px) {
-        padding: 100px 40px;
+        padding: 120px 40px 100px;
       }
       @media (max-width: 430px) {
         padding: 90px 8px 50px;
@@ -28,23 +28,26 @@
 
 .heading-width{
     width: 54%;
+    margin-bottom: 80px;
     @media screen and (max-width: 1920px) {
         width: 80%;
+        margin-bottom: 60px;
     }
     @media screen and (max-width: 1536px) {
-        width: 56%;
+        width: 76%;
+        margin-bottom: 50px;
     }
     @media screen and (max-width: 1440px) {
-        width: 62%;
-    }
-    @media screen and (max-width: 1433px) {
-        width: 61%;
+        width: 70%;
+        margin-bottom: 40px;
     }
     @media screen and (max-width: 1366px) {
-        width: 65%;
+        width: 73%;
+        margin-bottom: 30px;
     }
     @media screen and (max-width: 1280px) {
-        width:81%;
+        width:65%;
+        margin-bottom: 20px;
     }
     @media screen and (max-width: 1024px) {
         width: 69%;
@@ -56,7 +59,7 @@
         width: 100%;
     }
     @media screen and (max-width: 430px) {
-        width: 100%;
+        width: 69%;
     }
 }
 
@@ -77,4 +80,8 @@ p{
     @media screen and (max-width: 430px) {
       margin-bottom: 1rem;
     }
+}
+
+li::marker {
+  font-family: "RedHat Bold" !important;
 }

@@ -15,7 +15,7 @@ import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2';
-import AOS from 'aos';
+import { Options } from '@angular-slider/ngx-slider';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -46,9 +46,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   isMobileFilterVisible: boolean = false;
 
   // Pagination properties
-  currentLimit = 6;
+  currentLimit = 12;
   currentPage = 1;
-  itemsPerPage = 6;
+  itemsPerPage = 12;
   totalItems = 0;
   carTypes: any = [];
   vehicleData: any = [];
@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 10000; 
+  maxPrice: any = 100000; 
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
   price_type: any = 'dailyRate';
@@ -79,7 +79,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   vipNumberPlate: any = '';
   sort: any = '';
   param_type: any;
-  vehicleType: any = 'Car';
+  vehicleType: any = '';
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -89,7 +89,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('rangeMax') rangeMax!: ElementRef;
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
+  value: number = 40;
+  highValue: number = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+  };
+  sliderVisible:any = false;
 
+
+  
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
@@ -139,24 +148,46 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 1199;
       this.isMobileFilterVisible = !this.isMobile;
+      setTimeout(() => {
+        this.sliderVisible = true;
+      }, 200);
     }
-    // Load initial data
-    this.getBrands();
-    this.getCarTypes();
-    this.getModels();
-    this.getBodyTypes();
-
-    // Subscribe to query params
-    this.route.queryParams.subscribe(params => {
-      this.processQueryParams(params);
+    Promise.all([
+      this.getBrands(),
+      this.getCarTypes(),
+      this.getModels(),
+      this.getBodyTypes()
+    ]).then(() => {
+      this.route.queryParams.subscribe(params => {
+        this.processQueryParams(params);
+        const type = params['type'];
+        if (type) {
+          this.setVehicleType(type);
+          this.SearchItems();
+        }
+      });
     });
+  }
+  
+  
+  setVehicleType(type: string) {
+    this.vehicleType = type;
+    if(this.vehicleType=='Car'){
+      this.maxPrice = 5000;
+      this.currentLimit = 6;
+      this.currentPage = 1;
+      this.itemsPerPage = 6;
+    }
+    if(this.vehicleType=='Yachts'){
+      this.maxPrice = 1000000;
+      this.currentLimit = 6;
+      this.currentPage = 1;
+      this.itemsPerPage = 6;
+    }
   }
 
   ngAfterViewInit(): void {
     this.onScroll();
-    setTimeout(() => {
-      this.initializeSlider();
-    });
   }
 
 
@@ -388,7 +419,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.getCarData();
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
     }
   }
 
@@ -409,16 +442,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
       const results = this.resultsRef.nativeElement;
 
       const filterHeight = filter.offsetHeight;
-      const filterTop = filter.getBoundingClientRect().top;
-      const resultsBottom = results.getBoundingClientRect().bottom;
+      // const filterTop = filter.getBoundingClientRect().top;
+      // const resultsBottom = results.getBoundingClientRect().bottom;
 
-      if (resultsBottom <= filterHeight + filterTop) {
-        filter.style.position = 'relative';
-        filter.style.bottom = '0';
-      } else {
-        filter.style.position = 'sticky';
-        filter.style.top = '8rem';
-      }
+      // if (resultsBottom <= filterHeight + filterTop) {
+      //   filter.style.position = 'relative';
+      //   filter.style.bottom = '0';
+      // } else {
+      //   filter.style.position = 'sticky';
+      //   filter.style.top = '8rem';
+      // }
     }
   }
 
@@ -488,8 +521,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.isMobileFilterVisible = false;
     }
   }
+  
 
   resetFilter() {
+    this.vehicleType = '';
+    this.carTypes = '';
     this.selectedBodytype = [];
     this.selectedBrand = [];
     this.selectedModel = [];
@@ -498,12 +534,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedEndDate = '';
     this.selectedRentalType = null;
     this.minPrice = 0;
-    this.maxPrice = 10000;
+    this.maxPrice = 100000;
     this.vipNumberPlate = false;
     this.sort = null;
     this.updateSlider();
     this.getCarData();
   }
+
 
   getCarData() {
     let obj = {
@@ -641,13 +678,16 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onChangevehicleType(data) {
-    if (data?.target?.value) {
-      this.vehicleType = data.target.value;
-    } else {
-      this.vehicleType = false;
-    }
-  }
+  // onChangevehicleType(data) {
+  //   if (data?.target?.value) {
+  //     this.vehicleType = data.target.value;
+  //   } else {
+  //     this.vehicleType = false;
+  //   }
+  //   if(this.vehicleType=='Yachts'){
+  //     this.maxPrice = 1000000;
+  //   }
+  // }
 
   toggleFilter(): void {
     this.isMobileFilterVisible = !this.isMobileFilterVisible;

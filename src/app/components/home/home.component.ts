@@ -7,7 +7,6 @@ import { DataService } from '../../providers/data/data.service';
 import { Router } from '@angular/router';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2'
-import * as AOS from 'aos';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { ContactService } from '../../providers/contact/contact.service';
 
@@ -67,7 +66,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedstartTime: any;
   selectedendTime: any;
   selectedpickaddress: any;
-  selecteddropaddredd: any;
+  selecteddropaddress: any;
   availableStartDate: any;
   locationData: any = [];
   pickupLocations: any = [];
@@ -83,6 +82,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   separateDialCode = false;
+  isReservationFilled = true;
   preferredCountries: CountryISO[] = [CountryISO.India, CountryISO.UnitedStates, CountryISO.UnitedKingdom, CountryISO.UnitedArabEmirates];
   isPopupOpen: boolean = false;
   @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
@@ -96,23 +96,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   features = [
     {
-      image: 'home/cars.png',
+      image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
       description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
 
     },
     {
-      image: 'home/hand.png',
+      image: 'images/icons/hand.png',
       title: 'Family-First Service',
       description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
     },
     {
-      image: 'home/fullday.png',
+      image: 'images/icons/fullday.png',
       title: 'Perfect booking experience',
       description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
     },
     {
-      image: 'home/earth.png',
+      image: 'images/icons/earth.png',
       title: 'Total UAE Coverage',
       description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }
@@ -173,9 +173,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   onSubmit() {
     this.submitted = true;
+    let tempData = { };
+    if(this.vehicletype ){
+      tempData['Vehicle'] = this.vehicletype;
+    }
+    if(this.selelctedbrand) {
+      tempData['Brand'] = this.selelctedbrand;
+    }
+    if(this.selelctedbodytype) {
+      tempData['Type'] = this.selelctedbodytype;
+    }
+    if(this.selelctedmodel) {
+      tempData['Model'] = this.selelctedmodel;
+    }
+    if(this.selectedpickaddress ) {
+      tempData['Pick Address'] = this.selectedpickaddress;
+    }
+    if(this.selecteddropaddress) {
+      tempData['Drop Address'] = this.selecteddropaddress;
+    }
     let obj = this.addcontactForm.value;
     if (this.prod) {
       obj['product'] = this.prod;
+    }
+    if(tempData){
+      obj['seacrh_data'] = tempData;
     }
     if (this.addcontactForm.invalid) {
       return;
@@ -184,7 +206,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       return
     }
     obj['phone'] = obj.phone.internationalNumber;
-    this.contactservice.addContact(obj).subscribe(
+    this.contactservice.addQuickSearch(obj).subscribe(
       (response) => {
         if (response.code == 200) {
           this.throw_msg = response.message;
@@ -262,7 +284,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
 
   openPopup() {
+    let isValid = true;
+    if(!this.vehicletype  || !this.selectedpickaddress || !this.selecteddropaddress){
+      isValid = false;
+    }
+    if(this.vehicletype == 'Car' && !this.selelctedbrand) {
+      isValid = false;
+    }
+    if(this.vehicletype == 'Car' && !this.selelctedbodytype) {
+      isValid = false;
+    }
+    if(this.vehicletype == 'Yachts' && !this.selelctedmodel) {
+      isValid = false;
+    }
+    if(!isValid){
+      this.isReservationFilled = false;
+      return;
+    }
     this.showPopup = true;
+    this.isReservationFilled = true;
     if (isPlatformBrowser(this.platformId)) {
       // Store the current scroll position
       const scrollY = window.scrollY;
@@ -304,24 +344,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
           nextEl: '.car-swiper-button-next',
           prevEl: '.car-swiper-button-prev',
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         slidesPerView: 'auto', // This allows slides to size naturally
         centeredSlides: false, // Ensure slides are not centered
         breakpoints: {
           0: { 
-            slidesPerView: 1.2, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
           430: { 
-            slidesPerView: 1.3, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
            575: { 
-            slidesPerView: 1.8, 
+            slidesPerView: 1, 
             spaceBetween: 15 
           },
           768: {
@@ -358,26 +398,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
         },
         breakpoints: {
           0: { 
-            slidesPerView: 1.2, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
           430: { 
-            slidesPerView: 1.3, 
+            slidesPerView: 1, 
             spaceBetween: 10 
           },
            575: { 
-            slidesPerView: 1.8, 
+            slidesPerView: 1, 
             spaceBetween: 15 
           },
           768: {
@@ -408,22 +448,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initTrendingSwiper() {
     if (isPlatformBrowser(this.platformId)) {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
         spaceBetween: 20,
-        loop: true,
-        centeredSlides: true,
         modules: [Navigation, Pagination, Autoplay],
+        loop: true,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        centeredSlides: true,
         navigation: false,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
           dynamicBullets: true,
-        },
-        on: {
-          init: () => {
-          },
-          slideChange: () => {
-          },
         },
       });
     }
@@ -498,6 +537,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.selelctedbodytype = event.target.value;
     } else if (type == 'brand') {
       this.selelctedbrand = event.target.value;
+    }  else if (type == 'model') {
+      this.selelctedmodel = event.target.value;
     }
   }
 
@@ -511,7 +552,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         startDate: this.mergeDateTime(this.selectedstartTime, this.selelctedstartDate),
         endDate: this.mergeDateTime(this.selectedendTime, this.selelctedendDate),
         pick_address: this.selectedpickaddress,
-        drop_address: this.selecteddropaddredd
+        drop_address: this.selecteddropaddress
       }
     });
   }
@@ -673,7 +714,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onSelectDropLocation(loc) {
     if (loc && loc.target.value) {
-      this.selecteddropaddredd = loc.target.value;
+      this.selecteddropaddress = loc.target.value;
       let tempLoc = this.locationData.filter((location) => location.name != loc.target.value);
       if (tempLoc.length > 0) {
         this.pickupLocations = tempLoc
@@ -766,5 +807,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  goToVehiclePage(type: string) {
+    this.router.navigate(['/product/search'], { queryParams: { type } });
   }
 }

@@ -14,25 +14,25 @@
           class="footer-gap d-flex justify-content-lg-end justify-content-center flex-lg-row flex-column text-center text-lg-start">
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">company</h4>
-            <ul class="nav d-flex flex-column ">
+            <ul class="nav d-flex flex-column footer-menu">
               <li class="nav-item ">
-                <a routerLink="/"
+                <a href=" " (click)="setActivemenu(' ')" [ngClass]="{ 'active': activeLink === '' }"
                   class="text-decoration-none white-color size16  redhat-regular text-capitalize">Home</a>
               </li>
               <li class="nav-item ">
-                <a routerLink="/about"
+                <a href="/about" (click)="setActivemenu('about')" [ngClass]="{ 'active': activeLink === 'about' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">about us</a>
               </li>
               <li class="nav-item ">
-                <a href="/services"
+                <a href="/services" (click)="setActivemenu('services')" [ngClass]="{ 'active': activeLink === 'services' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">services</a>
               </li>
               <li class="nav-item ">
-                <a href="/product/search"
+                <a href="/product/search" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">Our cars</a>
               </li>
               <li class="nav-item ">
-                <a href="/product/search"
+                <a href="/product/search" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">our yachts</a>
               </li>
             </ul>
@@ -64,41 +64,50 @@
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">get social</h4>
             <ul class=" nav d-flex flex-column justify-content-center">
               <li class="nav-item ">
-                <a href="#"
+                <a href="https://www.instagram.com/ghost.rentals/?hl=en"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">
                   <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/social/instagram.svg" alt="Instagram" class="footer-social-icon ">
+                    <img src="{{ imageURL }}/images/icons/instagram.svg" alt="Instagram" class="footer-social-icon ">
                   </div>
                   <h4 class="size16 redhat-regular text-capitalize mb-0">Instagram</h4>
                 </a>
               </li>
               <li class="nav-item ">
-                <a href="#"
+                <a href="https://www.facebook.com/Ghostrentalsdubai"
                   class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
                   <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/social/facebook.svg" alt="Facebook" class="footer-social-icon ">
+                    <img src="{{ imageURL }}/images/icons/facebook.svg" alt="Facebook" class="footer-social-icon ">
                   </div>
                   <h4 class="size16 redhat-regular text-capitalize mb-0">Facebook</h4>
                 </a>
               </li>
               <li class="nav-item ">
-                <a href="#"
+                <a href="https://www.tiktok.com/@ghostrentals"
                   class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
                   <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/social/youtube.svg" alt="Youtube" class="footer-social-icon ">
+                      <img src="{{ imageURL }}/images/icons/tiktok.svg" alt="TikTok" class="footer-social-icon tiktok">
+                  </div>  
+                  <h4 class="size16 redhat-regular text-capitalize mb-0">TikTok</h4>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
+                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+                  <div class="social-icon-div me-2">
+                      <img src="{{ imageURL }}/images/icons/youtube.svg" alt="Youtube" class="footer-social-icon ">
                   </div>
                   <h4 class="size16 redhat-regular text-capitalize mb-0">Youtube</h4>
                 </a>
               </li>
-              <li class="nav-item list-style-none">
+              <!-- <li class="nav-item list-style-none">
                 <a href="#"
                   class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
                   <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/social/telegram.svg" alt="Telegram" class="footer-social-icon ">
+                    <img src="{{ imageURL }}/images/icons/telegram.svg" alt="Telegram" class="footer-social-icon ">
                   </div>
                   <h4 class="size16 redhat-regular text-capitalize mb-0">Telegram</h4>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -126,3 +135,9 @@
     </div>
   </div>
 </section>
+
+<!-- Scroller car image on scroll 100px from top -->
+
+<!-- <a href="javascript:void(0)" (click)="scrollToTop()" class="back-to-top d-flex align-items-center justify-content-center active" [class.active]="isImageVisible">
+  <img class="" src="{{ imageURL }}/home/movetop.png">
+</a> -->

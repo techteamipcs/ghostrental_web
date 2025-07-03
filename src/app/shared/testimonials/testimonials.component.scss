@@ -105,11 +105,15 @@
         height: 300px;
         width: 300px;
       }
+       @media screen and (max-width: 575px) {
+        height: 300px;
+        width: 100%;
+      }
       @media screen and (max-width: 1536px) {
         margin-right: 30px;
         margin-left: 190px;
       }
-      @media screen and (max-width: 1433px) {
+      @media screen and (max-width: 1440px) {
        margin-left: 150px;
       }
       @media screen and (max-width: 1366px) {
@@ -147,9 +151,9 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-        @media screen and (max-width: 1024px) {
-          object-fit: contain;
-        }
+        // @media screen and (max-width: 1024px) {
+        //   object-fit: contain;
+        // }
       }
     }
 
@@ -198,19 +202,19 @@
     @media screen and (max-width: 1536px) {
       margin-left: 13.8rem;
     }
-    @media screen and (max-width: 1433px) {
+    @media screen and (max-width: 1440px) {
       margin-left: 11.5rem;
     }
     @media screen and (max-width: 1366px) {
-      margin-left: 6.5rem;
+      margin-left: 8.5rem;
     }
     @media screen and (max-width: 1280px) {
       margin-left: 7.2rem;
     }
     @media screen and (max-width: 1024px) {
-      margin-left: 4.3rem;
+      margin-left: 2.3rem;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 991px) {
       margin-left:0;
     }
   }
@@ -340,7 +344,7 @@
       overflow: hidden;
       // transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1),
       //   opacity 0.6s ease, margin 0.6s ease;
-      transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), margin 0.6s ease;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.6s ease;
       will-change: max-height;
       // opacity: 0;
       margin: 0;
@@ -349,7 +353,7 @@
       p {
         // opacity: 0;
         transform: translateY(-100px);
-        transition: transform 0.6s ease;
+        transition: transform 0.9s ease;
       }
     }
 

@@ -8,6 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { LucideAngularModule, ArrowLeft, ArrowRight, Minus, Plus, Star, CalendarDays, ChevronDown, Crown } from 'lucide-angular';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LucideAngularModule, ArrowLeft, ArrowRight, Minus, Plus, Star, Calendar
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    NgxSliderModule,
     LucideAngularModule.pick({ Star, ArrowRight, ArrowLeft, Plus, Minus, CalendarDays, ChevronDown, Crown }),
   ],
 

@@ -16,7 +16,11 @@ export class AppComponent  implements OnInit{
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      AOS.init();
+      AOS.init(
+        {
+          once:true,
+        }
+      );
     }
   }
 }

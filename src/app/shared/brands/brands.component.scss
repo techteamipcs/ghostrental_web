@@ -1,7 +1,7 @@
 .brands {
   padding: 120px 200px 200px;
   @media screen and (max-width: 1920px) {
-    padding: 150px 200px 200px;
+    padding: 150px 100px 200px;
   }
   @media screen and (max-width: 1536px) {
     padding: 100px 150px;
@@ -18,8 +18,8 @@
   @media screen and (max-width: 768px) {
     padding: 3rem 60px;
   }
-  @media screen and (max-width: 414px) {
-    padding: 2rem 2rem;
+  @media screen and (max-width: 430px) {
+    padding: 4rem 2rem 2rem;
   }
 
   .brands-gap {

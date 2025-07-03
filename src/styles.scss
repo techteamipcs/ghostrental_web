@@ -54,9 +54,6 @@ body {
 .redhat-bold {
   font-family: $redhat-bold;
 }
-.redhat-extra-bold {
-  font-family: $redhat-extra-bold;
-}
 
 // font sizes
 .size8 {
@@ -117,7 +114,9 @@ body {
   @media (max-width: 1600px) {
     font-size: 16px;
   }
-
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
   // @media (max-width: 1280px) {
   //   font-size: 18px;
   // }
@@ -215,7 +214,9 @@ body {
   @media (max-width: 1600px) {
     font-size: 24px;
   }
-
+  @media (max-width: 430px) {
+    font-size: 20px;
+  }
   // @media (max-width: 1440px) {
   //   font-size: 24px;
   // }
@@ -372,6 +373,18 @@ body {
   @media (max-width: 1680px) {
     font-size: 44px;
   }
+  @media (max-width: 1440px) {
+    font-size: 38px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 32px;
+  }
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+  @media (max-width: 430px) {
+    font-size: 22px;
+  }
 
   // @media (max-width: 1280px) {
   //   font-size: 34px;
@@ -401,10 +414,13 @@ body {
   @media (max-width: 768px) {
     font-size: 36px;
   }
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     font-size: 30px;
   }
 
+  @media (max-width: 430px) {
+    font-size: 24px;
+  }  
   // @media (max-width: 1440px) {
   //   font-size: 50px;
   // }
@@ -435,7 +451,6 @@ body {
   @media (max-width: 430px) {
     font-size: 30px;
   }
-
 }
 
 .size88 {
@@ -461,7 +476,7 @@ body {
   }
 
   @media (max-width: 384px) {
-    font-size: 32px;
+    font-size: 30px;
   }
 }
 
@@ -469,7 +484,7 @@ body {
   font-size: 90px;
 
   @media (max-width: 1650px) {
-    font-size: 80px;
+    font-size:75px;
   }
 
   @media (max-width: 1600px) {
@@ -477,7 +492,7 @@ body {
   }
 
   @media (max-width: 1440px) {
-    font-size: 60px;
+    font-size: 62px;
   }
 
   @media (max-width: 1280px) {
@@ -609,8 +624,8 @@ body {
   position: relative;
   width: max-content;
   color: $color-black;
-  // border: 1px solid $color-black;
-  border: none;
+  border: 2px solid $color-black;
+  // border: none;
   background-color: $color-white;
   border-radius: 100px;
   cursor: pointer;
@@ -644,13 +659,14 @@ body {
     border-radius: 100px;
     transform: scaleX(0); 
     transform-origin: right center; 
-    transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+    transition: transform 0.45s cubic-bezier(0.785,0.135,0.15,0.86);
     z-index: -1;
   }
 
   &:hover {
     color: $color-gray-beige;
-    // border: 1px solid $color-black;
+    border: 2px solid $color-gray-beige;
+    background-color: transparent;
 
     &::before {
       transform-origin: left center; 
@@ -672,7 +688,7 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-
+z-index: 2;
   padding: 18px 66px;
   @media (max-width:1600px) {
     padding: 16px 60px;
@@ -712,7 +728,7 @@ body {
 
   &:hover {
     color: $color-white;
-    border: 2px solid $color-black;
+    border: 2px solid $color-white;
 
     &::before {
       transform-origin: left center; 
@@ -726,16 +742,15 @@ body {
   max-width: max-content;
   display: block;
   color: $color-gray-beige;
-  // border: none;
   background-color: $color-gray;
-  // border: 1px solid $color-gray-beige;
-  border: none;
+  border: 2px solid $color-black;
   border-radius: 100px;
-  // padding: 18px 66px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   overflow: hidden;
+z-index: 2;
   position: relative;
+  isolation: isolate;
 
   padding: 18px 66px;
   @media (max-width:1600px) {
@@ -762,22 +777,23 @@ body {
   &::before {
     content: '';
     position: absolute;
-    top: 0%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $color-white;
+    background-color: #FAF9F6;
+    // background-color: $color-white;
     border-radius: 100px;
-    transform: scaleX(0); 
-    transform-origin: right center; 
-    transition: transform .45s cubic-bezier(.785,.135,.15,.86);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     z-index: -1;
   }
 
   &:hover {
-    // background-color: transparent;
     color: $color-black;
-    // border: 1px solid $color-black;
+    border: 2px solid $color-black;
+    background-color: transparent;
 
     &::before {
       transform-origin: left center;
@@ -866,6 +882,9 @@ a {
   }
 }
 
+.margin15 {
+  margin-bottom: 15px;
+}
 .margin20 {
   margin-bottom: 20px;
 }
@@ -1051,6 +1070,26 @@ a {
   // }
 }
 
+.thumbnail-image-container{
+  width: auto;
+  height: 350px;
+  @media (max-width: 1920px) {
+    height: 237px;
+  }
+  @media (max-width: 1536px) {
+    height: 190px;
+  }
+  @media (max-width: 1440px) {
+    height: 160px;
+  }
+  @media (max-width: 1366px) {
+    height: 150px;
+  }
+  @media (max-width: 1024px) {
+    height: auto;
+  }
+}
+
 .thumbnail-image {
   border-radius: 10px;
 }
@@ -1094,6 +1133,7 @@ nav {
   right: 0;
   border: 1px solid #070707;
   border-radius: 5px 5px 0 0;
+  color: #1D1D1D;
 }
 
 .overlay {
@@ -1103,8 +1143,9 @@ nav {
   width: 100%;
   height: 100%;
   // background-color: rgba(0, 0, 0, 0.2);
-  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, #00000000 100%)
-    0% 0% no-repeat padding-box;
+  background: transparent
+    linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, #00000000 100%) 0% 0%
+    no-repeat padding-box;
   border-radius: 20px;
   z-index: 1;
 }
@@ -1129,4 +1170,42 @@ z-index: 2;
 
 .collection-padding{
   padding:20px 0;
+}
+
+.ngx-slider .ngx-slider-pointer {
+  background-color: #fff !important;
+  border: 1px solid #1d1d1d !important;
+  outline: none !important;
+  width: 24px !important;
+  height: 24px !important;
+  // padding: 25px !important;
+  // border: 30px;
+  top:-12px !important;
+  &:hover,&:focus{
+    width: 28px !important;
+    height: 28px !important;
+    top:-13px !important
+  }
+}
+
+.ngx-slider .ngx-slider-selection {
+  background: #000 !important;
+}
+
+.ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
+  content: none; 
+}
+.ngx-slider-bubble{
+  color: #1d1d1d !important;
+  font-family: $redhat-regular;
+}
+.footer-menu {
+  li {
+    a.active {
+      font-family: $redhat-bold;
+    }
+    &:hover a {
+      font-family: $redhat-bold;
+    }
+  }
 }

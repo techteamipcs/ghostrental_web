@@ -279,6 +279,7 @@
   width: 25px;
   height: 25px;
   object-fit: contain;
+  filter: brightness(0);
   @media screen and (max-width: 768px) {
     width: 20px;
     height: 20px;
@@ -405,3 +406,4 @@ textarea {
     padding-top: 0;
   }
 }
+
