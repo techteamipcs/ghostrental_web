@@ -100,6 +100,7 @@
             data-aos="fade-up"
             data-aos-duration="2000"
             data-text="Explore Cars"
+            (click)="goToVehiclePage('Car')"
           >
             <span>Explore Cars</span>
           </button>
@@ -179,6 +180,7 @@
             data-aos="fade-up"
             data-aos-duration="2000"
             data-text="Explore Yachts"
+            (click)="goToVehiclePage('Yachts')"
           >
             <span>Explore Yachts</span>
           </button>
@@ -255,7 +257,7 @@
             <li>- Real-time GPS Tracking & 24/7 Dispatch Support</li>
           </ul>
           <button
-            routerLink="/product/search"
+            routerLink="/contact"
             class="size18 redhat-bold white-button"
             data-aos="fade-up"
             data-aos-duration="2000"

@@ -237,10 +237,17 @@
               </div>
               <span *ngIf="!isReservationFilled" class="alert-danger position-relative redhat-regular size14">Please
                 select all required details correctly to continue</span>
-              <button type="submit" class="form-white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
+              <!-- <button type="submit"  class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
                 (click)="openPopup()" data-text="Book Now">
                 <img src="{{ imageURL }}/images/icons/whatsapp.svg" alt="whatsapp" class="whatsapp-icon img-fluid" />
                 <span>Book Now</span>
+              </button> -->
+
+
+              <button type="submit" (click)="openPopup()" data-text="Book Now"
+                class="black-button d-flex mx-auto size18 redhat-bold btn-margin">
+                <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon" />
+                <span>book now</span>
               </button>
             </form>
           </div>
@@ -472,7 +479,7 @@
 
 <app-vip-number-plate></app-vip-number-plate>
 
-<section class="collection">
+<section class="collection" *ngIf="ourCarCollections && ourCarCollections.length > 0">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-md-0">
@@ -503,10 +510,10 @@
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                           <!-- {{ car.name.substring(0, 18) }}... -->
-                          {{ getFirstTwoWords(car.name) }}
+                          {{ getFirstTwoWords(car.name) }}...
                         </h4>
                         <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
-                          {{ car.transmission }}
+                          {{ car.transmission || "NA" }}
                         </h6>
                       </div>
                       <span *ngIf="car && car.isvipNumberPlate"
@@ -522,7 +529,7 @@
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image" alt="" />
+                        <img src="{{ imageURL }}/images/icons/mileage.svg" class="img-fluid collection_image" alt="" />
                         <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
                           {{ car.mileage }}
                         </h6>
@@ -554,10 +561,10 @@
           </div>
           <div class="d-flex justify-content-between align-items-center margin-top40">
             <div class="text-start gap-2 d-flex">
-              <div class="button car-swiper-button-prev" #carSwiperPrev>
+              <div class="button car-swiper-button-prev" >
                 <lucide-icon name="arrow-left" class="swiper-button-icon" />
               </div>
-              <div class="button car-swiper-button-next" #carSwiperNext>
+              <div class="button car-swiper-button-next" >
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
@@ -603,10 +610,10 @@
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                          {{ yacht.name }}
+                          {{ getFirstTwoWords(yacht.name) }}...
                         </h4>
                         <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
-                          {{ yacht.type }}
+                          {{ yacht.type || "NA" }}
                         </h6>
                       </div>
                       <span *ngIf="yacht && yacht.isvipNumberPlate"
@@ -760,7 +767,7 @@
                     <div class="car-header margin27">
                       <h4 class="car-name mb-1 size35 redhat-semibold white-color">
                         <!-- {{ car.name.substring(0, 18) }}... -->
-                        {{ getFirstTwoWords(car.name) }}
+                        {{ getFirstTwoWords(car.name) }}...
 
                       </h4>
                       <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
@@ -828,7 +835,7 @@
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size35 redhat-semibold white-color">
-                          {{ getFirstTwoWords(car.name) }}
+                          {{ getFirstTwoWords(car.name) }}...
                         </h4>
                         <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
                           {{ car.transmission }}

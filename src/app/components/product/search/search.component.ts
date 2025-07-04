@@ -50,6 +50,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   currentPage = 1;
   itemsPerPage = 12;
   totalItems = 0;
+  private previousVehicleType: string; // Track previous vehicle type for pagination
   carTypes: any = [];
   vehicleData: any = [];
   pagedCars: any[] = [];
@@ -544,6 +545,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 
   getCarData() {
+    // Reset to first page whenever vehicle type changes
+    if (this.previousVehicleType !== this.vehicleType) {
+      this.currentPage = 1;
+      this.previousVehicleType = this.vehicleType;
+    }
+  
     let obj = {
       limit: this.currentLimit,
       page: this.currentPage,
@@ -725,5 +732,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if(!name) return "";
     return name.split(' ').slice(0,2).join(' ');
   }
+
 
 }

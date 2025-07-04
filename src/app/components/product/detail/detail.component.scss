@@ -643,29 +643,6 @@ ul {
   }
  }
 
- .whatsapp-button {
-  position: relative;
-  text-align: center;
-
-  .whatsappicon {
-    position: absolute;
-    top: 50%;
-    left: 26%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease, z-index 0.3s ease;
-
-    @media (max-width: 1600px) {
-      width: 24px;
-      height: 24px;
-    }
-
-    @media (max-width: 1199px) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-}
  .whatsappbtn{
   @media (max-width:1600px) {
     padding: 16px 60px;

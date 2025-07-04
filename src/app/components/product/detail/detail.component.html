@@ -147,7 +147,7 @@
               <span>send a mail</span>
             </button>
           </div>
-          <div class="w-100  text-center whatsapp-button">
+          <div class="w-100  text-center position-relative text-center">
             <a href="https://wa.me/971555555555"
             class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize" data-text="book a whatsapp">
             <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
@@ -273,7 +273,7 @@
                   width="20" height="20" />book via whatsapp
               </button>
             </div> -->
-            <div class="w-100 text-center whatsapp-button ">
+            <div class="w-100 text-center position-relative text-center">
               <a href="https://wa.me/971555555555"
               class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize whatsappbtn" data-text="book a whatsapp">
               <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
@@ -575,7 +575,7 @@
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                           <!-- {{ car.name.substring(0, 18) }}... -->
-                          {{ getFirstTwoWords(car.name) }}
+                          {{ getFirstTwoWords(car.name) }}...
 
                         </h4>
                         <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
@@ -619,7 +619,7 @@
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image"
+                        <img src="{{ imageURL }}/images/icons/mileage.svg" class="img-fluid collection_image"
                           alt="Mileage" />
                         <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize">
                           {{ car.mileage || 'N/A' }}

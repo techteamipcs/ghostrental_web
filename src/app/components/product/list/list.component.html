@@ -84,7 +84,7 @@
                     <div class="car-info  d-flex justify-content-between align-items-center position-relative">
                       <div class="car-header margin15">
                         <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                           {{ getFirstTwoWords(car.name) }}
+                           {{ getFirstTwoWords(car.name) }}...
                         </h4>
                        
                         <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
@@ -123,7 +123,7 @@
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/speed.svg" class="img-fluid collection_image" alt="Mileage" />
+                        <img src="{{ imageURL }}/images/icons/mileage.svg" class="img-fluid collection_image" alt="Mileage" />
                         <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize">
                           {{ car.mileage || 'N/A' }}
                         </h6>

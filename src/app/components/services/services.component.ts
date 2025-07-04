@@ -1,22 +1,18 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, first } from 'rxjs/operators';
-import * as AOS from 'aos';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
-export class ServicesComponent implements OnInit, AfterViewInit {
+export class ServicesComponent implements OnInit {
   imageURL: string = `${environment.url}/assets`;
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
     private route: ActivatedRoute,
     private router: Router,
-    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit() {
@@ -35,13 +31,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       });
     });
   }
-  ngAfterViewInit() {
-    // if (isPlatformBrowser(this.platformId)) {
-    //   AOS.init({
-    //     once: true,
-    //     mirror: true,
-    //     easing: 'ease',
-    //   });
-    // }
+  goToVehiclePage(type: string) {
+    this.router.navigate(['/product/search'], { queryParams: { type } });
   }
 }
