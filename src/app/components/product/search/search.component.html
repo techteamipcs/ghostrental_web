@@ -37,7 +37,7 @@
               <div class="filter-section">
                 <select [(ngModel)]="vehicleType" class="form-selection size16 redhat-semibold bg-white gray-color" (click)="
               $event.stopPropagation(); toggleSelectDropdown($event)
-            " (blur)="onSelectBlur($event)">
+            " (blur)="onSelectBlur($event)" (change)="getCarData()">
                   <option value="">Select Vehicle Type</option>
                   <option value="Car">Car</option>
                   <option value="Yachts">Yachts</option>
