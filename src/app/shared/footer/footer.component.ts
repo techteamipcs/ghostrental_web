@@ -57,6 +57,15 @@ export class FooterComponent {
     } else if (currentUrl.includes('services')) {
       this.activeLink = 'services';
     }
+    else if (currentUrl.includes('privacy')) {
+      this.activeLink = 'privacy';
+    }
+    else if (currentUrl.includes('contact')) {
+      this.activeLink = 'contact';
+    }
+    else if (currentUrl.includes('terms')) {
+      this.activeLink = 'terms';
+    }
     // Add more conditions as needed
   }
   scrollToFAQ(event: Event): void {

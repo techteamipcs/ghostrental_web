@@ -114,3 +114,11 @@ ul{
     border-radius: 4px;
     transition: all 0.4s;
 }
+.supportlinks{
+  li{
+    width: 144px;
+    @media(max-width:991px){
+      width: 100%;
+    }
+  }
+}

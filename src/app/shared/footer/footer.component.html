@@ -39,23 +39,23 @@
           </div>
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">Support</h4>
-            <ul class="nav d-flex flex-column">
+            <ul class="nav d-flex flex-column footer-menu supportlinks">
               <li class="nav-item">
-                <a [routerLink]="['/']" fragment="faq"
+                <a href="/#faq" fragment="faq"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize"
-                  (click)="scrollToFAQ($event)">FAQ</a>
+                  >FAQ</a>
               </li>
-              <li class="nav-item ">
-                <a href="/privacy"
+              <li class="nav-item faq-link">
+                <a href="/privacy" (click)="setActivemenu('privacy')" [ngClass]="{ 'active': activeLink === 'privacy' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">privacy policy</a>
               </li>
 
               <li class="nav-item ">
-                <a href="/terms" class="text-decoration-none white-color size16 redhat-regular text-capitalize">terms &
+                <a href="/terms" class="text-decoration-none white-color size16 redhat-regular text-capitalize" (click)="setActivemenu('terms')" [ngClass]="{ 'active': activeLink === 'terms' }">terms &
                   conditions</a>
               </li>
               <li class="nav-item ">
-                <a href="/contact"
+                <a href="/contact" (click)="setActivemenu('contact')" [ngClass]="{ 'active': activeLink === 'contact' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">contact us</a>
               </li>
             </ul>
@@ -127,9 +127,9 @@
           Design and Developed With
           <img #heartIcon class="heart" width="18" height="16" loading="lazy" [src]="getImagePath()"
             (mouseenter)="setActive(true)" (mouseleave)="setActive(false)" style="width:18px;">
-          by <strong> <a href="https://www.pixtar.ae" class="customlink mb-0 " target="_blank"
+          By <strong> <a href="https://www.pixtar.ae" class="customlink mb-0 " target="_blank"
               class="text-decoration-none white-color size16 redhat-semibold"
-              style="font-weight:normal;">Pixtar.ae</a></strong>
+              style="font-weight:normal;">Pixtar</a></strong>
         </p>
       </div>
     </div>
