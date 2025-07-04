@@ -520,6 +520,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
     }
+		window.scrollTo(0, 0);
   }
   
 
