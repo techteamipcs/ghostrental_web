@@ -142,16 +142,17 @@
         </div>
         <div class="btns">
           <div class="w-100  mb-3 text-center" *ngIf="vehicleData">
-            <a [routerLink]="['/contact/product', vehicleData.name]"
-              class="size18 redhat-semibold text-decoration-none black-button text-capitalize">
-              send a mail
-            </a>
+            <button [routerLink]="['/contact/product', vehicleData.name]"
+              class="size18 redhat-semibold text-decoration-none black-button text-capitalize w-100" data-text="send a mail">
+              <span>send a mail</span>
+            </button>
           </div>
-          <div class="w-100  text-center">
+          <div class="w-100  text-center whatsapp-button">
             <a href="https://wa.me/971555555555"
-              class="size18 redhat-semibold text-decoration-none rounded-pill  text-capitalize  d-flex align-items-center justify-content-center whatsappbtn">
-              <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon"
-                width="28" height="28" /> book via whatsapp
+            class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize" data-text="book a whatsapp">
+            <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
+            <img src="{{ imageURL }}/images/icons/whatsapp-green.svg" alt="whatsapp" class="whatsappicon green" />
+            <span>book a whatsapp</span>
             </a>
           </div>
         </div>
@@ -256,19 +257,28 @@
           </div>
           <div class="btns">
             <div
-              class="w-100 bg-black border border-1 rounded-3 mb-3 p-2 p-md-3 text-center d-flex justify-content-center align-items-center"
+              class="w-100 mb-3  text-center "
               *ngIf="vehicleData">
-              <a [routerLink]="['/contact/product', vehicleData.name]"
-                class="size18 redhat-semibold text-decoration-none white-color text-capitalize">
-                send a mail
-              </a>
+              <button [routerLink]="['/contact/product', vehicleData.name]"
+                class="size18 redhat-semibold text-decoration-none black-button text-capitalize whatsappbtn w-100" data-text="send a mail">
+                <span>send a mail</span>
+              </button>
             </div>
-            <div
-              class="w-100 bg-green-color rounded-3 p-2 p-md-3 green-border-color text-center d-flex justify-content-center align-items-center">
-              <a href="https://wa.me/971555555555"
-                class="size18 redhat-semibold  text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center">
+            <!-- <div
+              class="w-100 p-2 p-md-3 text-center d-flex justify-content-center align-items-center">
+              <button href="https://wa.me/971555555555"
+                class="size18 redhat-semibold text-decoration-none text-capitalize white-color d-flex align-items-center justify-content-center green-button"
+                data-text="book via whatsapp">
                 <img class="whatsappicon me-1" src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp icon"
                   width="20" height="20" />book via whatsapp
+              </button>
+            </div> -->
+            <div class="w-100 text-center whatsapp-button ">
+              <a href="https://wa.me/971555555555"
+              class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize whatsappbtn" data-text="book a whatsapp">
+              <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
+              <img src="{{ imageURL }}/images/icons/whatsapp-green.svg" alt="whatsapp" class="whatsappicon green" />
+              <span>book a whatsapp</span>
               </a>
             </div>
           </div>
@@ -555,7 +565,7 @@
             <div class="col-xl-3 col-lg-6 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of relatedVehicleData">
               <a href="/product/{{car.url_key}}">
                 <!-- [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active" -->
-                <div class="car-card " >
+                <div class="car-card ">
                   <div class="thumbnail-image-container">
                     <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
                       class="img-fluid thumbnail-image w-100 h-100" />

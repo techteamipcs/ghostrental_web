@@ -32,8 +32,12 @@
               <h1 class="size88 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
               <p class="size20 redhat-regular hero-para beige-color line-height26" [innerHtml]="bannerData.description">
               </p>
-              <a href="/contact" class="white-color text-decoration-none white-border-button size18 redhat-bold">Book
-                Now</a>
+              <!-- <a href="/contact" class="white-color text-decoration-none white-button size18 redhat-bold">Book
+                Now</a> -->
+
+              <button routerLink="/contact" class="white-button size18 redhat-bold" data-text="Book Now">
+                <span>Book Now</span>
+              </button>
               <!-- <a href="/contact"
                 class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a> -->
             </div>
@@ -233,10 +237,10 @@
               </div>
               <span *ngIf="!isReservationFilled" class="alert-danger position-relative redhat-regular size14">Please
                 select all required details correctly to continue</span>
-              <button type="submit" class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
-                (click)="openPopup()">
+              <button type="submit" class="form-white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
+                (click)="openPopup()" data-text="Book Now">
                 <img src="{{ imageURL }}/images/icons/whatsapp.svg" alt="whatsapp" class="whatsapp-icon img-fluid" />
-                Book Now
+                <span>Book Now</span>
               </button>
             </form>
           </div>
@@ -396,8 +400,8 @@
             simple Rentals.
           </p>
           <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto" routerLink="/services"
-            data-aos="fade-up" data-aos-duration="2500">
-            view all
+            data-aos="fade-up" data-aos-duration="2500" data-text="view all">
+            <span>view all</span>
           </button>
         </div>
       </div>
@@ -478,8 +482,8 @@
           </h3>
           <button (click)="goToVehiclePage('Car')"
             class="black-button size18 redhat-bold d-none d-lg-block text-capitalize" data-aos="fade-up"
-            data-aos-duration="1000">
-            view all
+            data-aos-duration="1000" data-text="view all">
+            <span>view all</span>
           </button>
         </div>
 
@@ -558,8 +562,9 @@
               </div>
             </div>
             <button (click)="goToVehiclePage('Car')"
-              class="black-button size18 redhat-bold d-block d-lg-none mx-2 mx-sm-3 mx-md-4 mx-lg-0 text-capitalize">
-              view all
+              class="black-button size18 redhat-bold d-block d-lg-none mx-2 mx-sm-3 mx-md-4 mx-lg-0 text-capitalize"
+              data-text="view all">
+              <span>view all</span>
             </button>
           </div>
         </div>
@@ -578,8 +583,8 @@
           </h3>
           <button (click)="goToVehiclePage('Yachts')"
             class="black-button size18 redhat-bold d-none d-lg-block text-capitalize" data-aos="fade-up"
-            data-aos-duration="1000">
-            view all
+            data-aos-duration="1000" data-text="view all">
+            <span>view all</span>
           </button>
         </div>
 
@@ -658,8 +663,8 @@
               </div>
             </div>
             <button (click)="goToVehiclePage('Yachts')"
-              class="black-button size18 redhat-bold d-block d-lg-none text-capitalize">
-              view all
+              class="black-button size18 redhat-bold d-block d-lg-none text-capitalize" data-text="view all">
+              <span>view all</span>
             </button>
           </div>
         </div>
@@ -699,8 +704,8 @@
           to detail that creates stunning relationships with every customer.
         </p>
         <button routerLink="/about" class="white-button size18 redhat-bold text-capitalize" data-aos="fade-up"
-          data-aos-duration="2500">
-          know more
+          data-aos-duration="2500" data-text="know more">
+          <span>know more</span>
         </button>
       </div>
     </div>
@@ -784,8 +789,8 @@
           </div>
         </div>
         <button routerLink="/product/search" data-aos="fade-up" data-aos-duration="2000"
-          class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5">
-          view all
+          class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5" data-text="view all">
+          <span>view all</span>
         </button>
       </div>
     </div>
@@ -867,8 +872,8 @@
       </div>
     </div>
     <button routerLink="/product/search" data-aos="fade-up" data-aos-duration="2000"
-      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1">
-      view all
+      class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1" data-text="view all">
+      <span>view all</span>
     </button>
   </div>
 </section>

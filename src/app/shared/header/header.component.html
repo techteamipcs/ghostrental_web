@@ -73,15 +73,16 @@
         >
       </li>
       <li>
-        <a
+        <button
           routerLink="/contact"
           routerLinkActive="active"
           class="d-block size18 redhat-bold contact-button white-button"
           [class.dark]="isDarkText && !isScrolled"
           (click)="closeMenu()"
+data-text="Contact Us"
         >
-          Contact Us
-        </a>
+        <span>Contact Us</span>
+        </button>
       </li>
     </ul>
 

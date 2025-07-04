@@ -642,13 +642,30 @@ ul {
     padding:14px 35px !important;
   }
  }
- .black-button{
-  max-width: 100%;
-  overflow: hidden;
-  // &:hover{
-  //   border: 2px solid #F3F3F3;
-  // }
- }
+
+ .whatsapp-button {
+  position: relative;
+  text-align: center;
+
+  .whatsappicon {
+    position: absolute;
+    top: 50%;
+    left: 26%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, z-index 0.3s ease;
+
+    @media (max-width: 1600px) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 1199px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+}
  .whatsappbtn{
   @media (max-width:1600px) {
     padding: 16px 60px;
@@ -665,35 +682,35 @@ ul {
   @media (max-width:430px) {
     padding: 12px 25px;
   }
-  // background-color: #25D366;
-  color: #25D366;
-  padding: 18px 20px;
-  border: 1px solid #25D366;
-  border-radius: 35px;
-  transition: color 0.3s ease;
-  overflow: hidden;
-  position: relative;
-  isolation: isolate;
-  &::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width:100%;
-    top: 0;
-    left: -40px;
-    transform: scaleX(0);  
-    transform-origin: left center;
-    background-color: #25D366;
-    z-index: -1;
-    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+  // // background-color: #25D366;
+  // color: #25D366;
+  // padding: 18px 20px;
+  // border: 1px solid #25D366;
+  // border-radius: 35px;
+  // transition: color 0.3s ease;
+  // overflow: hidden;
+  // position: relative;
+  // isolation: isolate;
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   height: 100%;
+  //   width:100%;
+  //   top: 0;
+  //   left: -40px;
+  //   transform: scaleX(0);  
+  //   transform-origin: left center;
+  //   background-color: #25D366;
+  //   z-index: -1;
+  //   transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  // }
 
-  &:hover {
-    color: #fff;
+  // &:hover {
+  //   color: #fff;
 
-    &::before {
-      transform-origin: right center;
-      transform: scaleX(1);
-    }
-  }
+  //   &::before {
+  //     transform-origin: right center;
+  //     transform: scaleX(1);
+  //   }
+  // }
  }

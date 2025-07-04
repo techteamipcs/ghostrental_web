@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 100000; 
+  maxPrice: any = 150000; 
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
   price_type: any = 'dailyRate';
@@ -93,7 +93,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   highValue: number = 10000;
   options: Options = {
     floor: 0,
-    ceil: 100000,
+    ceil: 150000,
   };
   sliderVisible:any = false;
 
@@ -179,7 +179,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.itemsPerPage = 6;
     }
     if(this.vehicleType=='Yachts'){
-      this.maxPrice = 1000000;
+      this.maxPrice = 1500000;
       this.currentLimit = 6;
       this.currentPage = 1;
       this.itemsPerPage = 6;
@@ -535,7 +535,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedEndDate = '';
     this.selectedRentalType = null;
     this.minPrice = 0;
-    this.maxPrice = 100000;
+    this.maxPrice = 150000;
     this.vipNumberPlate = false;
     this.sort = null;
     this.updateSlider();

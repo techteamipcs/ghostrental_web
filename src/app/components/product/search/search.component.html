@@ -170,7 +170,7 @@
                     <label for="maxPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Max</label>
                     <div class="position-relative">
                       <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (click)="onPriceInputChange('max')"
-                        [min]="minPrice + 500" max="100000" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
+                        [min]="minPrice + 500" max="150000" class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
                       <span class="position-absolute size14 redhat-semibold color-card-p" style="right: 10px; top: 50%; transform: translateY(-50%);">AED</span>
                     </div>
                   </div>
@@ -190,9 +190,10 @@
               </div>
 
               <!-- Search Button -->
-              <button class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0 d-flex mx-auto" (click)="SearchItems()">
-                Search
+              <button class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0" (click)="SearchItems()" data-text="Search">
+                <span>Search</span>
               </button>
+          
             </div>
           </div>
         </div>
