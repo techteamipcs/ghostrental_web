@@ -35,7 +35,7 @@
               <!-- <a href="/contact" class="white-color text-decoration-none white-button size18 redhat-bold">Book
                 Now</a> -->
 
-              <button routerLink="/contact" class="white-button size18 redhat-bold" data-text="Book Now">
+              <button routerLink="/contact" class="white-button size18 redhat-bold text-capitalize" data-text="Book Now">
                 <span>Book Now</span>
               </button>
               <!-- <a href="/contact"
@@ -244,10 +244,23 @@
               </button> -->
 
 
-              <button type="submit" (click)="openPopup()" data-text="Book Now"
+              <!-- <button type="submit" (click)="openPopup()" data-text="Book Now"
                 class="black-button d-flex mx-auto size18 redhat-bold btn-margin">
                 <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon" />
                 <span>book now</span>
+              </button> -->
+              <button type="submit" (click)="openPopup()" data-text="Book Now"
+              class="form-black-button d-flex mx-auto size18 redhat-bold btn-margin text-capitalize" data-text="book a whatsapp" 
+              (mouseenter)="setIsHovered(true)"
+              (mouseleave)="setIsHovered(false)">
+              <span>
+                <img 
+                  src="{{ imageURL }}/images/icons/whatsapp-white.svg" 
+                  alt="whatsapp" 
+                  className="whatsappicon"
+                />
+                book a whatsapp
+              </span>
               </button>
             </form>
           </div>
@@ -406,7 +419,7 @@
             complete Luxury experiences with personalized attention beyond
             simple Rentals.
           </p>
-          <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto" routerLink="/services"
+          <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto text-capitalize" routerLink="/services"
             data-aos="fade-up" data-aos-duration="2500" data-text="view all">
             <span>view all</span>
           </button>

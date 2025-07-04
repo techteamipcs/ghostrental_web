@@ -147,12 +147,19 @@
               <span>send a mail</span>
             </button>
           </div>
-          <div class="w-100  text-center position-relative text-center">
+          <div class="w-100 text-center position-relative">
             <a href="https://wa.me/971555555555"
-            class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize" data-text="book a whatsapp">
-            <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
-            <img src="{{ imageURL }}/images/icons/whatsapp-green.svg" alt="whatsapp" class="whatsappicon green" />
-            <span>book a whatsapp</span>
+            class="size18 redhat-semibold green-button text-decoration-none w-100 text-capitalize" data-text="book a whatsapp" 
+            (mouseenter)="setIsHovered(true)"
+            (mouseleave)="setIsHovered(false)">
+            <span>
+              <img 
+                src="{{getImagePath()}}" 
+                alt="whatsapp" 
+                className="whatsappicon"
+              />
+              book a whatsapp
+            </span>
             </a>
           </div>
         </div>
@@ -273,12 +280,27 @@
                   width="20" height="20" />book via whatsapp
               </button>
             </div> -->
-            <div class="w-100 text-center position-relative text-center">
+            <!-- <div class="w-100 text-center position-relative text-center">
               <a href="https://wa.me/971555555555"
               class="size18 redhat-semibold text-decoration-none green-button w-100 text-capitalize whatsappbtn" data-text="book a whatsapp">
               <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon white" />
               <img src="{{ imageURL }}/images/icons/whatsapp-green.svg" alt="whatsapp" class="whatsappicon green" />
               <span>book a whatsapp</span>
+              </a>
+            </div> -->
+            <div class="w-100 text-center position-relative">
+              <a href="https://wa.me/971555555555"
+              class="size18 redhat-semibold green-button text-decoration-none w-100 text-capitalize" data-text="book a whatsapp" 
+              (mouseenter)="setIsHovered(true)"
+              (mouseleave)="setIsHovered(false)">
+              <span>
+                <img 
+                  src="{{getImagePath()}}" 
+                  alt="whatsapp" 
+                  className="whatsappicon"
+                />
+                book a whatsapp
+              </span>
               </a>
             </div>
           </div>

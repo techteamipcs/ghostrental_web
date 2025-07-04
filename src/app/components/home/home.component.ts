@@ -86,10 +86,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isReservationFilled = true;
   preferredCountries: CountryISO[] = [CountryISO.India, CountryISO.UnitedStates, CountryISO.UnitedKingdom, CountryISO.UnitedArabEmirates];
   isPopupOpen: boolean = false;
+  isHovered = false;
+  // whatsappURL =  `${environment.url}/assets/images/icons`;
   @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
-
-
-
 
   onDateChange(event: any) {
     // This method is triggered when the date input changes
@@ -873,4 +872,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(!name) return "";
     return name.split(' ').slice(0,2).join(' ');
   }
+
+
+  setIsHovered(isHovered: boolean) {
+    this.isHovered = isHovered;
+  }
+  // getImagePath(): string {
+  //   return `${this.whatsappURL}/whatsapp-${this.isHovered ? 'white' : 'green'}.svg`;
+  // }
 }

@@ -86,7 +86,7 @@
           routerLink="/contact"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="d-block size18 redhat-bold contact-button white-button"
+          class="d-block size18 redhat-bold contact-button white-button text-capitalize"
           [class.active]="router.isActive('/contact', true)"
           [class.dark]="isDarkText && !isScrolled"
           (click)="closeMenu()"
@@ -177,7 +177,7 @@
               <a
                 href="/contact"
                 routerLinkActive="active"
-                class="nav-button d-block black-button w-100 size18 redhat-bold text-center"
+                class="nav-button d-block black-button w-100 size18 redhat-bold text-center text-capitalize"
                 (click)="closeMenu()"
                 data-text="Contact Us"
               >

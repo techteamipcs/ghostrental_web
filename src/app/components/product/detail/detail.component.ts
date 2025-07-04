@@ -46,6 +46,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   existedVehicle: any;
   thumbnailImage: any;
   baseUrl:any;
+  isHovered = false;
+  whatsappURL =  `${environment.url}/assets/images/icons`;
   @ViewChild('stickyCard') stickyCard!: ElementRef;
   @ViewChild('stickyContainer') stickyContainer!: ElementRef;
   private stickyCardElement!: HTMLElement;
@@ -303,6 +305,13 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   getFirstTwoWords(name:string) : string{
     if(!name) return "";
     return name.split(' ').slice(0,2).join(' ');
+  }
+
+  setIsHovered(isHovered: boolean) {
+    this.isHovered = isHovered;
+  }
+  getImagePath(): string {
+    return `${this.whatsappURL}/whatsapp-${this.isHovered ? 'white' : 'green'}.svg`;
   }
 
 }

@@ -648,16 +648,11 @@ body {
   border: 2px solid white;
   background: transparent;
   color: white;
-  text-transform: uppercase;
   border-radius: 100px;
   cursor: pointer;
   overflow: hidden;
   z-index: 1;
   transition: color 0.4s ease;
-
-
-
-
   padding: 18px 66px;
 
   @media (max-width: 1600px) {
@@ -677,9 +672,8 @@ body {
   }
 
 
-  a {
+  &:hover, &:active, &:focus { 
     border: 2px solid white;
-
   }
 
   span {
@@ -734,7 +728,6 @@ body {
   border: 2px solid black;
   background: transparent;
   color: black;
-  text-transform: uppercase;
   border-radius: 100px;
   cursor: pointer;
   overflow: hidden;
@@ -759,7 +752,7 @@ body {
     padding: 12px 25px;
   }
 
-  a {
+  &:hover, &:active, &:focus {
     border: 2px solid black;
   }
 
@@ -807,44 +800,15 @@ body {
     clip-path: inset(0 0 0 0);
   }
 
-  .whatsappicon {
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease, z-index 0.3s ease;
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
-
-    @media (max-width: 1600px) {
-      width: 24px;
-      height: 24px;
-    }
-
-    @media (max-width: 1199px) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  &:hover {
-    .whatsappicon {
-      filter: invert(0);
-      z-index: 3;
-    }
-  }
-
 }
 
 
-.green-button {
+ .green-button {
   position: relative;
   padding: 18px 66px;
   border: 2px solid #25D366;
   background: transparent;
   color: #25D366;
-  text-transform: uppercase;
   border-radius: 100px;
   cursor: pointer;
   overflow: hidden;
@@ -876,21 +840,16 @@ body {
   }
 
 
-  &:hover {
+  &:hover, &:active, &:focus {
     border: 2px solid #25D366;
   }
+  
 
-  .whatsappicon {
-    position: absolute;
-    top: 50%;
-    left: 26%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease, z-index 0.3s ease;
-
-    @media (max-width: 1600px) {
-      width: 24px;
-      height: 24px;
-    }
+  img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
 
     @media (max-width: 1199px) {
       width: 20px;
@@ -902,6 +861,9 @@ body {
     position: relative;
     z-index: 2;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   &::before {
@@ -920,7 +882,7 @@ body {
     content: attr(data-text);
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 54.5%;
     transform: translate(-50%, -50%);
     color: white;
     z-index: 2;
@@ -928,6 +890,21 @@ body {
     white-space: nowrap;
     clip-path: inset(0 100% 0 0);
     transition: clip-path 0.6s ease;
+    @media (max-width: 1536px) {
+      left: 55.5%;
+    }
+    @media (max-width: 1024px) {
+      left: 54.5%;
+    }
+    @media (max-width: 768px) {
+      left: 54.5%;
+    }
+    @media (max-width: 430px) {
+      left: 54.5%;
+    }
+    @media (max-width: 384px) {
+      left: 55%;
+    }
   }
 
   &:hover::before {
@@ -939,15 +916,123 @@ body {
     clip-path: inset(0 0 0 0);
   }
 
-  &:hover {
-    .green {
-      z-index: 1;
+
+}
+
+.form-black-button {
+  position: relative;
+  display: inline-block;
+  border: 2px solid black;
+  background: transparent;
+  color: black;
+  border-radius: 100px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease;
+
+  padding: 18px 66px;
+
+  @media (max-width: 1600px) {
+    padding: 16px 60px;
+  }
+
+  @media (max-width: 1440px) {
+    padding: 9px 40px;
+  }
+
+  @media (max-width: 1280px) {
+    padding: 8px 35px;
+  }
+
+  @media (max-width: 430px) {
+    padding: 12px 25px;
+  }
+
+  &:hover, &:active, &:focus {
+    border: 2px solid black;
+  }
+
+  span {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.6s ease;
+    border-radius: 100px;
+    z-index: 1;
+  }
+
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 2;
+    pointer-events: none;
+    white-space: nowrap;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.6s ease;
+
+    @media (max-width: 1536px) {
+      left: 56%;
+    }
+    @media (max-width: 1440px) {
+      left: 57.5%;
     }
 
-    .white {
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  &:hover::after {
+    clip-path: inset(0 0 0 0);
+  }
+
+  img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+    filter: invert(1);
+
+    @media (max-width: 1600px) {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 1199px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    img {
+      filter: invert(0);
       z-index: 3;
     }
   }
+
 }
 
 
