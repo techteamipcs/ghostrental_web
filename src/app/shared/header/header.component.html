@@ -32,9 +32,7 @@
     </button>
 
     <!-- Desktop Navigation -->
-    <ul
-      class="nav d-none d-xl-flex align-items-center"
-    >
+    <ul class="nav d-none d-xl-flex align-items-center">
       <li>
         <a
           href="/"
@@ -43,47 +41,59 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
+          [class.active]="router.isActive('/', true)"
           >Home</a
         >
       </li>
       <li>
         <a
+          href="/about"
           routerLink="/about"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
+          [class.active]="router.isActive('/about', true)"
           >About Us</a
         >
       </li>
       <li>
         <a
+          href="/services"
           routerLink="/services"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
+          [class.active]="router.isActive('/services', false)"
           >Our Services</a
         >
       </li>
       <li>
         <a
+          href="/product/search"
           routerLink="/product/search"
           routerLinkActive="active"
+          [class.active]="router.url.startsWith('/product')"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
           >Our Fleets</a
         >
       </li>
       <li>
-        <button
+        <a
+          href="/contact"
           routerLink="/contact"
           routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="d-block size18 redhat-bold contact-button white-button"
+          [class.active]="router.isActive('/contact', true)"
           [class.dark]="isDarkText && !isScrolled"
           (click)="closeMenu()"
-data-text="Contact Us"
+          data-text="Contact Us"
         >
-        <span>Contact Us</span>
-        </button>
+          <span>Contact Us</span>
+        </a>
       </li>
     </ul>
 

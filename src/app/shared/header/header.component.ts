@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
   private isBrowser: boolean;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
     private changeDetector: ChangeDetectorRef,
