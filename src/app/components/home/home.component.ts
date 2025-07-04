@@ -219,11 +219,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(this.selelctedstartDate ) {
       tempData['Pickup Date'] = this.selelctedstartDate;
     }
-    if(this.selelctedendDate) {
-      tempData['Pick Time'] = this.selelctedendDate;
+    if(this.selectedstartTime) {
+      tempData['Pick Time'] = this.selectedstartTime;
     }
-    if(this.selectedstartTime ) {
-      tempData['Drop Date'] = this.selectedstartTime;
+    if(this.selelctedendDate ) {
+      tempData['Drop Date'] = this.selelctedendDate;
     }
     if(this.selectedendTime) {
       tempData['Drop Time'] = this.selectedendTime;
@@ -245,14 +245,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.contactservice.addQuickSearch(obj).subscribe(
       (response) => {
         if (response.code == 200) {
-          this.sendContactEmial(obj);
           this.throw_msg = response.message;
           this.msg_success = true;
           this.submitted = true;
           setTimeout(() => {
+            // this.sendContactEmial(obj);
             this.submitted = false;
             this.addcontactForm.reset();
             this.isvalidSubmit = true;
+            window.location.reload();
           }, 5000);
         }
         else if (response.code == 400) {
@@ -270,13 +271,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 		if (!data) {
 			return;
 		}
-		obj['phone'] = obj.phone.internationalNumber;
 		this.contactservice.addContact(obj).subscribe(
 			(response) => {
 				if (response.code == 200) {
 					this.throw_msg = response.message;
 					this.msg_success = true;
-          this.showPopup = false;
 				}
 				else if (response.code == 400) {
 					this.throw_msg = response.message;
