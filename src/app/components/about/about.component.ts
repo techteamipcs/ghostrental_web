@@ -1,7 +1,8 @@
 import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../providers/data/data.service';
-
+import { PageService } from '../../providers/page/page.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -26,12 +27,35 @@ export class AboutComponent  {
   }
   constructor(
     private dataservice: DataService,
+    public pageservice: PageService,
+    private metaTagService: Meta,
+    private titleService: Title,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
   }
   ngOnInit() {
+    this.get_PageMeta();
     this.getBannerData();
   }
+
+  get_PageMeta() {
+		let obj = { pageName: 'about-us' };
+		this.pageservice.getpageWithName(obj).subscribe((response) => {
+			if (response.body.code == 200) {
+				this.titleService.setTitle(response?.body.result.meta_title);
+				this.metaTagService.updateTag({
+					name: 'description',
+					content: response?.body.result.meta_description,
+				});
+				this.metaTagService.updateTag({
+					name: 'keywords',
+					content: response?.body.result.meta_keywords,
+				});
+			} else if (response.code == 400) {
+			} else {
+			}
+		});
+	}
 
 
 

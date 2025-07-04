@@ -9,7 +9,8 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2'
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { ContactService } from '../../providers/contact/contact.service';
-
+import { PageService } from '../../providers/page/page.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 Swiper.use([Navigation]);
 
@@ -123,6 +124,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private dataservice: DataService,
     public router: Router,
     private contactservice: ContactService,
+    public pageservice: PageService,
+    private metaTagService: Meta,
+    private titleService: Title,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.addcontactForm = this.formBuilder.group({
@@ -138,6 +142,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.maxDate = futureDate.toISOString().split('T')[0];
     this.pickuptoday = this.today;
     this.dropofftoday = this.today;
+    this.get_PageMeta();
   }
 
   ngOnInit() {
@@ -157,6 +162,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.initTrendingSwiper();
     this.initCarSwiper();
   }
+
+  get_PageMeta() {
+		let obj = { pageName: 'home' };
+		this.pageservice.getpageWithName(obj).subscribe((response) => {
+			if (response.body.code == 200) {
+				this.titleService.setTitle(response?.body.result.meta_title);
+				this.metaTagService.updateTag({
+					name: 'description',
+					content: response?.body.result.meta_description,
+				});
+				this.metaTagService.updateTag({
+					name: 'keywords',
+					content: response?.body.result.meta_keywords,
+				});
+			} else if (response.code == 400) {
+			} else {
+			}
+		});
+	}
 
   ngAfterViewInit() {
 
@@ -187,10 +211,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       tempData['Model'] = this.selelctedmodel;
     }
     if(this.selectedpickaddress ) {
-      tempData['Pick Address'] = this.selectedpickaddress;
+      tempData['Pickup Address'] = this.selectedpickaddress;
     }
     if(this.selecteddropaddress) {
       tempData['Drop Address'] = this.selecteddropaddress;
+    }
+    if(this.selelctedstartDate ) {
+      tempData['Pickup Date'] = this.selelctedstartDate;
+    }
+    if(this.selelctedendDate) {
+      tempData['Pick Time'] = this.selelctedendDate;
+    }
+    if(this.selectedstartTime ) {
+      tempData['Drop Date'] = this.selectedstartTime;
+    }
+    if(this.selectedendTime) {
+      tempData['Drop Time'] = this.selectedendTime;
     }
     let obj = this.addcontactForm.value;
     if (this.prod) {
@@ -209,6 +245,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.contactservice.addQuickSearch(obj).subscribe(
       (response) => {
         if (response.code == 200) {
+          this.sendContactEmial(obj);
           this.throw_msg = response.message;
           this.msg_success = true;
           this.submitted = true;
@@ -228,6 +265,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  sendContactEmial(data) {
+		let obj = data;
+		if (!data) {
+			return;
+		}
+		obj['phone'] = obj.phone.internationalNumber;
+		this.contactservice.addContact(obj).subscribe(
+			(response) => {
+				if (response.code == 200) {
+					this.throw_msg = response.message;
+					this.msg_success = true;
+          this.showPopup = false;
+				}
+				else if (response.code == 400) {
+					this.throw_msg = response.message;
+					this.msg_danger = true;
+				}
+			},
+		);
+	}
 
   private carouselInstance: any;
 

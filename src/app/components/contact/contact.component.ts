@@ -91,23 +91,22 @@ export class ContactComponent {
 	}
 
 	get_PageMeta() {
-		let obj = { pageName: 'contact' };
-		this.pageservice.getpageWithName(obj).subscribe(
-			(response) => {
-				if (response.body.code == 200 && response?.body.result) {
-					this.titleService.setTitle(response?.body.result.meta_title);
-					this.metaTagService.addTags([
-						{ name: 'description', content: response?.body.result.meta_description },
-						{ name: 'keywords', content: response?.body.result.meta_keywords },
-					]);
-				} else if (response.body.code == 400) {
-				}
-				else {
-
-				}
-
-			},
-		);
+		let obj = { pageName: 'contact-us' };
+		this.pageservice.getpageWithName(obj).subscribe((response) => {
+			if (response.body.code == 200) {
+				this.titleService.setTitle(response?.body.result.meta_title);
+				this.metaTagService.updateTag({
+					name: 'description',
+					content: response?.body.result.meta_description,
+				});
+				this.metaTagService.updateTag({
+					name: 'keywords',
+					content: response?.body.result.meta_keywords,
+				});
+			} else if (response.code == 400) {
+			} else {
+			}
+		});
 	}
 
 	onSubmit() {
