@@ -5,10 +5,7 @@
   <div
     class="container-fluid d-flex justify-content-between align-items-center"
   >
-    <a
-      href="/"
-      class="d-flex align-items-center"
-    >
+    <a href="/" class="d-flex align-items-center">
       <img
         src="{{ imageURL }}/images/logo/nav-logo.svg"
         alt="Ghost Rental Logo"
@@ -36,53 +33,45 @@
       <li>
         <a
           href="/"
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
+          [class.active]="router.isActive('/', true)"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
-          [class.active]="router.isActive('/', true)"
           >Home</a
         >
       </li>
       <li>
         <a
-          href="/about"
           routerLink="/about"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
-          [class.active]="router.isActive('/about', true)"
           >About Us</a
         >
       </li>
       <li>
         <a
-          href="/services"
           routerLink="/services"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
-          [class.active]="router.isActive('/services', false)"
           >Our Services</a
         >
       </li>
       <li>
         <a
-          href="/product/search"
           routerLink="/product/search"
           routerLinkActive="active"
-          [class.active]="router.url.startsWith('/product')"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
+          [class.active]="router.isActive('/product/', false)"
           >Our Fleets</a
         >
       </li>
       <li>
         <a
-          href="/contact"
           routerLink="/contact"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -132,8 +121,8 @@
             <li class="nav-item" (click)="closeMenu()">
               <a
                 href="/"
-                routerLinkActive="active"
-                class="nav-link size16 redhat-medium"
+                [class.active]="router.isActive('/', true)"
+                class="size16 redhat-medium text-decoration-none gray-color"
               >
                 <!-- <lucide-icon name="home" class="nav-icon"></lucide-icon> -->
                 <span>Home</span>
@@ -143,8 +132,8 @@
             <li class="nav-item" (click)="closeMenu()">
               <a
                 href="/about"
-                routerLinkActive="active"
-                class="nav-link size16 redhat-medium"
+                [class.active]="router.isActive('/about', false)"
+                class="size16 redhat-medium text-decoration-none gray-color"
               >
                 <!-- <lucide-icon name="users" class="nav-icon"></lucide-icon> -->
                 <span>About Us</span>
@@ -154,8 +143,8 @@
             <li class="nav-item" (click)="closeMenu()">
               <a
                 href="/services"
-                routerLinkActive="active"
-                class="nav-link size16 redhat-medium"
+                [class.active]="router.isActive('/services', false)"
+                class="size16 redhat-medium text-decoration-none gray-color"
               >
                 <!-- <lucide-icon name="settings" class="nav-icon"></lucide-icon> -->
                 <span>Our Services</span>
@@ -165,8 +154,8 @@
             <li class="nav-item" (click)="closeMenu()">
               <a
                 href="/product/search"
-                routerLinkActive="active"
-                class="nav-link size16 redhat-medium"
+                [class.active]="router.isActive('/product/search', false)"
+                class="size16 redhat-medium text-decoration-none gray-color"
               >
                 <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
                 <span>Our Fleets</span>
@@ -176,7 +165,6 @@
             <li class="nav-item" (click)="closeMenu()">
               <a
                 href="/contact"
-                routerLinkActive="active"
                 class="nav-button d-block black-button w-100 size18 redhat-bold text-center text-capitalize"
                 (click)="closeMenu()"
                 data-text="Contact Us"
@@ -236,8 +224,8 @@
                  
               </ul> -->
             </div>
-            <p class="copyright text-center redhat-medium size18">
-              © 2025 Ghost Rental. All rights reserved.
+            <p class="copyright text-center redhat-medium size16">
+              © 2025, All Rights Reserved Ghost Rentals
             </p>
           </div>
         </nav>

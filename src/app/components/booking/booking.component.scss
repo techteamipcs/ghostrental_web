@@ -53,10 +53,16 @@
   height: 35px;
   margin-bottom: 5px;
   object-fit: contain;
+
+  @media screen and (max-width: 1536px) {
+    width: 30px;
+    height: 30px;
+  }
   @media screen and (max-width: 1440px) {
     width: 25px;
     height: 25px;
   }
+
   @media screen and (max-width: 430px) {
     width: 32px;
     height: 32px;

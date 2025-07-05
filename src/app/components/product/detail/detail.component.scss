@@ -464,12 +464,18 @@
     margin-right: 11rem;
   }
 
+  
+
   .collection_image {
     width: 35px;
     height: 35px;
-  object-fit: contain;
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+    object-fit: contain;
 
+    @media screen and (max-width: 1536px) {
+      width: 30px;
+      height: 30px;
+    }
     @media screen and (max-width: 1440px) {
       width: 25px;
       height: 25px;
