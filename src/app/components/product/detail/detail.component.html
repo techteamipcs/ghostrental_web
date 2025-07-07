@@ -101,7 +101,7 @@
   <div class="container-fluid">
     <div class="row sticky-container" #stickyContainer>
       <div
-        class="d-xl-block d-none border border-1 border-black p-4 sticky-card"
+        class="d-xl-block d-none border border-1 border-black sticky-card"
         #stickyCard
       >
         <div class="row">
@@ -170,39 +170,33 @@
           </div>
         </div>
 
-        <div
-          class="d-flex align-items-center justify-content-between margin17"
-          *ngIf="vehicleData.vehicle_type === 'Yachts'"
-        >
-          <div class="">
-            <span class="size14 redhat-medium color-card-p text-capitalize"
-              >per day</span
-            >
-            <h6
-              class="mb-0 size20 redhat-semibold gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateDaily"
-            >
-              <span class="size16 redhat-regular gray-color text-uppercase"
-                >AED</span
-              >
-              {{ vehicleData.regularRateDaily }}
-            </h6>
-          </div>
-          <div class="">
-            <span class="size14 redhat-medium color-card-p text-capitalize"
-              >per hour</span
-            >
-            <h6
-              class="mb-0 size20 redhat-semibold gray-color"
-              *ngIf="vehicleData && vehicleData.regularRateHourly"
-            >
-              <span class="size16 redhat-regular gray-color text-uppercase"
-                >AED</span
-              >
-              {{ vehicleData.regularRateHourly }}
-            </h6>
-          </div>
+        <div class="d-flex align-items-center justify-content-between margin17"
+        *ngIf="vehicleData.vehicle_type === 'Yachts'">
+       
+        <div class="">
+          <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+          <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.hourlyRate">
+            <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.hourlyRate
+            }}
+          </h6>
         </div>
+        
+        <div class="">
+          <span class=" size14 redhat-medium color-card-p text-capitalize">half day</span>
+          <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.halfdayRate">
+            <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.halfdayRate
+            }}
+          </h6>
+        </div>
+
+        <div class="">
+          <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+          <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.dailyRate">
+            <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate
+            }}
+          </h6>
+        </div>
+      </div>
 
         <div class="d-flex justify-content-between mb-4">
           <div class="d-flex align-items-center">
@@ -283,7 +277,7 @@
                   {{ vehicleData.name }}
                 </h4>
               </div>
-              <div class="">
+              <!-- <div class="">
                 <span class="size14 redhat-medium color-card-p text-capitalize"
                   >per day</span
                 >
@@ -296,7 +290,7 @@
                   >
                   {{ vehicleData.regularRateDaily }}
                 </h6>
-              </div>
+              </div> -->
             </div>
             <!-- <div class="cash">
               <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
