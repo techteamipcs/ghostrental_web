@@ -236,6 +236,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(this.selectedendTime) {
       tempData['Drop Time'] = this.selectedendTime;
     }
+    if(this.selectedYatchSize ){
+    tempData['Size'] = this.vehicletype;
+    }
+    if(this.selectedYatchSeats) {
+      tempData['Seats'] = this.selectedYatchSeats;
+    }
+    if(this.selectedYatchHours) {
+      tempData['Hours'] = this.selectedYatchHours;
+    }
+    if(this.selectedYatchAddOns && this.selectedYatchAddOns.length > 0) {
+      let tempspl = [];
+      this.selectedYatchAddOns.forEach((spladds)=>{
+        tempspl.push(spladds.name)
+      });
+      tempData['Special Add-ons'] = tempspl;
+    }
     let obj = this.addcontactForm.value;
     if (this.prod) {
       obj['product'] = this.prod;
@@ -349,7 +365,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   openPopup() {
     let isValid = true;
-    if(!this.vehicletype  || !this.selectedpickaddress || !this.selecteddropaddress){
+    if(this.vehicletype == 'Car' && !this.selectedpickaddress && !this.selecteddropaddress){
       isValid = false;
     }
     if(this.vehicletype == 'Car' && !this.selelctedbrand) {
@@ -358,7 +374,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(this.vehicletype == 'Car' && !this.selelctedbodytype) {
       isValid = false;
     }
-    if(this.vehicletype == 'Yachts' && !this.selelctedmodel) {
+    if(this.vehicletype == 'Yachts' && !this.selelctedbodytype) {
+      isValid = false;
+    }
+    if(this.vehicletype == 'Yachts' && !this.selectedYatchSize) {
+      isValid = false;
+    }
+    if(this.vehicletype == 'Yachts' && !this.selectedYatchSeats) {
+      isValid = false;
+    }
+    if(this.vehicletype == 'Yachts' && !this.selectedYatchHours) {
       isValid = false;
     }
     if(!isValid){
@@ -521,7 +546,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         },
-        centeredSlides: true,
+        centeredSlides: false,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          481: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+           575: {
+            slidesPerView: 1.5,
+            spaceBetween: 15
+          },
+          768: {
+            slidesPerView: 2.5,
+            spaceBetween: 20
+            },
+        },
         navigation: false,
         pagination: {
           el: '.swiper-pagination',
@@ -609,6 +652,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.selelctedmodel = event.target.value;
     } else if (type == 'feature') {
       this.selectedYatchAddOns.push(event.target.value);
+    } else if (type == 'size') {
+      this.selectedYatchSize = event.target.value;
+    } else if (type == 'seats') {
+      this.selectedYatchSeats = event.target.value;
+    } else if (type == 'hours') {
+      this.selectedYatchHours = event.target.value;
     }
   }
 

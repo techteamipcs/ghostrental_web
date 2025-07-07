@@ -108,13 +108,13 @@
                 </div>
                 <div class="col-6 label-margin" *ngIf="isVehicleYacht">
                   <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('model', $event)" required>
+                    <select class="form-select size14 redhat-semibold" (change)="selectData('size', $event)" required>
                       <option value="" disabled selected class="size14 redhat-semibold">
                         Sizes
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ model }}" class="size14 redhat-semibold"
-                        *ngFor="let model of yatchSizes">
-                        {{ model }}
+                      <option class="size14 redhat-semibold" value="{{ size }}" class="size14 redhat-semibold"
+                        *ngFor="let size of yatchSizes">
+                        {{ size }}
                       </option>
                     </select>
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
@@ -123,14 +123,14 @@
 
                 <div class="col-6" *ngIf="isVehicleYacht">
                   <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
+                    <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
                       required>
                       <option value="" disabled selected class="size14 redhat-semibold">
                         Seats
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ bodytype }}"
-                        *ngFor="let bodytype of yatchSeats">
-                        {{ bodytype }}
+                      <option class="size14 redhat-semibold" value="{{ seat }}"
+                        *ngFor="let seat of yatchSeats">
+                        {{ seat }}
                       </option>
                     </select>
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
@@ -138,13 +138,13 @@
                 </div>
                 <div class="col-6" *ngIf="isVehicleYacht">
                   <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('model', $event)" required>
+                    <select class="form-select size14 redhat-semibold" (change)="selectData('hours', $event)" required>
                       <option value="" disabled selected class="size14 redhat-semibold">
                         Hours
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ model }}" class="size14 redhat-semibold"
-                        *ngFor="let model of yatchHours">
-                        {{ model }}
+                      <option class="size14 redhat-semibold" value="{{ hours }}" class="size14 redhat-semibold"
+                        *ngFor="let hours of yatchHours">
+                        {{ hours }}
                       </option>
                     </select>
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
