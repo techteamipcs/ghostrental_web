@@ -35,7 +35,8 @@
               <!-- <a href="/contact" class="white-color text-decoration-none white-button size18 redhat-bold">Book
                 Now</a> -->
 
-              <button routerLink="/contact" class="white-button size18 redhat-bold text-capitalize" data-text="Book Now">
+              <button routerLink="/contact" class="white-button size18 redhat-bold text-capitalize"
+                data-text="Book Now">
                 <span>Book Now</span>
               </button>
               <!-- <a href="/contact"
@@ -109,7 +110,7 @@
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('model', $event)" required>
                       <option value="" disabled selected class="size14 redhat-semibold">
-                        Model *
+                        Yatch Size (Feet wise) *
                       </option>
                       <option class="size14 redhat-semibold" value="{{ model.url_key }}" class="size14 redhat-semibold"
                         *ngFor="let model of filteredBrands">
@@ -234,6 +235,7 @@
                     </div>
                   </ng-template>
                 </div>
+  
               </div>
               <span *ngIf="!isReservationFilled" class="alert-danger position-relative redhat-regular size14">Please
                 select all required details correctly to continue</span>
@@ -250,17 +252,12 @@
                 <span>book now</span>
               </button> -->
               <button type="submit" (click)="openPopup()" data-text="Book Now"
-              class="form-black-button d-flex mx-auto size18 redhat-bold btn-margin text-capitalize" data-text="book a whatsapp" 
-              (mouseenter)="setIsHovered(true)"
-              (mouseleave)="setIsHovered(false)">
-              <span>
-                <img 
-                  src="{{ imageURL }}/images/icons/whatsapp-white.svg" 
-                  alt="whatsapp" 
-                  className="whatsappicon"
-                />
-                book a whatsapp
-              </span>
+                class="form-black-button d-flex mx-auto size18 redhat-bold btn-margin text-capitalize"
+                data-text="book on whatsapp" (mouseenter)="setIsHovered(true)" (mouseleave)="setIsHovered(false)">
+                <span>
+                  <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" className="whatsappicon" />
+                  book on whatsapp
+                </span>
               </button>
             </form>
           </div>
@@ -339,8 +336,8 @@
               <div class="alert alert-success alert-dismissable mt-4" style="text-align: center" *ngIf="msg_success">
                 {{ throw_msg }}
               </div>
-              <button class="black-button size18 redhat-bold mt-xl-3 mt-lg-3 my-md-3 my-2 text-capitalize">
-                send message
+             <button class="black-button size18 redhat-bold mt-xl-3 mt-lg-3 mt-3 text-capitalize" data-text="send message">
+                <span>send message</span>
               </button>
             </div>
           </div>
@@ -419,8 +416,8 @@
             complete Luxury experiences with personalized attention beyond
             simple Rentals.
           </p>
-          <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto text-capitalize" routerLink="/services"
-            data-aos="fade-up" data-aos-duration="2500" data-text="view all">
+          <button class="white-button size18 redhat-bold text-capitalize d-flex mx-auto text-capitalize"
+            routerLink="/services" data-aos="fade-up" data-aos-duration="2500" data-text="view all">
             <span>view all</span>
           </button>
         </div>
@@ -574,10 +571,10 @@
           </div>
           <div class="d-flex justify-content-between align-items-center margin-top40">
             <div class="text-start gap-2 d-flex">
-              <div class="button car-swiper-button-prev" >
+              <div class="button car-swiper-button-prev">
                 <lucide-icon name="arrow-left" class="swiper-button-icon" />
               </div>
-              <div class="button car-swiper-button-next" >
+              <div class="button car-swiper-button-next">
                 <lucide-icon name="arrow-right" class="swiper-button-icon" />
               </div>
             </div>
