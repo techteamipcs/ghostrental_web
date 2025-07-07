@@ -2425,9 +2425,43 @@ input {
     padding: 10px;
   }
   .ng-select-container.ng-placeholder{
-    opacity: 1;
+    display: block;
+  }
+  .ng-value{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: grey;
+    padding: 0 5px;
+    border-radius: 5px;
+
   }
   .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-value-container .ng-placeholder{
     opacity: 0;
+    display: none;
+  }
+  .ng-select .ng-select-container .ng-value-container{
+   gap: 5px; 
+  }
+
+  .ng-select .ng-clear-wrapper .ng-clear{
+    font-size: 24px !important;
+    line-height: normal !important;
+    cursor: pointer;
+
+  }
+}
+
+
+.close-arrow{
+  cursor: pointer;
+  font-size: 20px !important;
+  @media screen and (max-width: 1024px) {
+    font-size: 20px !important;
+  }
+  svg{
+    width: 20px;
+    height: 20px;
   }
 }
