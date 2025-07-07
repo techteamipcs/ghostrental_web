@@ -295,7 +295,7 @@
 
                   <!-- new dropdown -->
                   <div class="position-relative">
-                      <div class="form-select d-flex align-items-center" (click)="toggleDropdown($event)">
+                      <div class="form-select d-flex align-items-center size14 redhat-semibold" (click)="toggleDropdown($event)">
                         <span class="selected-items">
                           {{ getSelectedAddonsLabel() }}
                         </span>
@@ -305,8 +305,8 @@
                              class="down-arrow ms-auto" />
                       </div>
                       
-                      <div class="dropdown-menu" [class.show]="isDropdownOpen">
-                        <div *ngFor="let addon of filteredFeatures" class="form-check mb-2">
+                      <div class="dropdown-menu size14 redhat-semibold" [class.show]="isDropdownOpen">
+                        <div *ngFor="let addon of filteredFeatures" class="form-check mb-2 size14 redhat-semibold d-flex align-items-center" style="gap: 5px">
                           <input
                             type="checkbox"
                             class="form-check-input"

@@ -2559,7 +2559,16 @@ input {
     border-radius: 20px;
     padding: 1rem 1.5rem;
     overflow-y: scroll;
-    height: 200px;
+    height: 180px;
+    @media screen and (max-width: 1440px) {
+      padding: .5rem;
+    }
+    @media screen and (max-width: 1024px) {
+      height: 150px;
+    }
+    @media screen and (max-width: 768px) {
+      height: 120px;
+    }
   }
 
   .form-check-input {
