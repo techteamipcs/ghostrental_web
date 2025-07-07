@@ -403,8 +403,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //   document.body.style.overflow = 'hidden';
     // }
     let tempspl = [];
-    if(this.selectedYatchAddOns && this.selectedYatchAddOns.length > 0) {
-      this.selectedYatchAddOns.forEach((spladds)=>{
+    if(this.selectedAddons && this.selectedAddons.length > 0) {
+      this.selectedAddons.forEach((spladds)=>{
         tempspl.push(spladds.name)
       });
     }
@@ -1005,6 +1005,9 @@ toggleSelection(addon: {url_key: string, name: string}, event: Event): void {
   }
   
   this.selectedAddons = updatedAddons;
+  if (event) {
+    this.selectedYatchAddOns.push(event.target);
+  }
 }
 
 isSelected(addon: {url_key: string, name: string}): boolean {
