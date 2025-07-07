@@ -184,7 +184,7 @@
                 <div class="col-12 label-margin">
                   <ng-container *ngIf="!isVehicleYacht;">
                     <div class="position-relative">
-                      <input type="text" name="pickup" id="pickup" class="form-control size14 redhat-semibold" placeholder="Pickup location" required>
+                      <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup" class="form-control size14 redhat-semibold" placeholder="Pickup location" required>
 
                       <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
                         required>
@@ -243,7 +243,7 @@
                 <div class="col-12 select-margin">
                   <ng-container *ngIf="!isVehicleYacht;">
                     <div class="position-relative">
-                      <input type="text" name="drop" id="drop" class="form-control size14 redhat-semibold" placeholder="Drop location" required>
+                      <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop" class="form-control size14 redhat-semibold" placeholder="Drop location" required>
 
                       <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
                         required>
