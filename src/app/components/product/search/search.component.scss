@@ -298,16 +298,19 @@ input[type="datetime-local"] {
     padding: 12px 14px 0;
   }
 
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1536px) {
+    padding: 10px 12px 0;
+  }
+  @media screen and (max-width: 1366px) {
     padding: 10px 12px 0;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 8px 10px 0;
+    padding: 8px 12px 0;
   }
 
   @media screen and (max-width: 430px) {
-    padding: 16px 16px 12px;
+    padding: 16px 12px 0;
   }
 
   h4,h6{

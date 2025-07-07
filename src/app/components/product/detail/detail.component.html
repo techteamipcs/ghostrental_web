@@ -117,7 +117,7 @@
               {{ vehicleData.bodytype_data[0].name }}
             </p>
             <h4 class="size26 redhat-semibold m-0 gray-color">
-              {{ vehicleData.name }}
+              {{ getFirstTwoWords(vehicleData.name) }}...
             </h4>
           </div>
         </div>
@@ -267,51 +267,20 @@
             <div
               class="d-flex flex-column justify-content-between me-3 me-md-0"
             >
-              <div>
                 <p
                   class="size18 redhat-semibold mb-0 color-card-p text-capitalize"
                 >
                   {{ vehicleData.bodytype_data[0].name }}
                 </p>
                 <h4 class="size26 redhat-semibold m-0 gray-color">
-                  {{ vehicleData.name }}
+                  {{ getFirstTwoWords(vehicleData.name) }}...
                 </h4>
-              </div>
-              <!-- <div class="">
-                <span class="size14 redhat-medium color-card-p text-capitalize"
-                  >per day</span
-                >
-                <h6
-                  class="mb-0 size26 redhat-semibold gray-color"
-                  *ngIf="vehicleData && vehicleData.regularRateDaily"
-                >
-                  <span class="size16 redhat-semibold gray-color text-uppercase"
-                    >AED</span
-                  >
-                  {{ vehicleData.regularRateDaily }}
-                </h6>
-              </div> -->
+
             </div>
-            <!-- <div class="cash">
-              <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through"
-                *ngIf="vehicleData && vehicleData.regularRateDaily">
-                AED {{ vehicleData.regularRateDaily }}
-              </h6>
-              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Daily'">
-                AED {{ vehicleData.dailyRate }}
-              </h5>
-              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Hourly'">
-                AED {{ vehicleData.hourlyRate }}
-              </h5>
-              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Weekly'">
-                AED {{ vehicleData.weeklyRate }}
-              </h5>
-              <h5 class="mb-0 size26 redhat-semibold" *ngIf="vehicleData && vehicleData.rentalType == 'Monthly'">
-                AED {{ vehicleData.monthlyRate }}
-              </h5>
-            </div> -->
+
           </div>
-          <div
+
+          <!-- <div
             class="d-flex align-items-center justify-content-between margin17"
             *ngIf="vehicleData.vehicle_type === 'Car'"
           >
@@ -357,8 +326,57 @@
                 {{ vehicleData.monthlyRate }}
               </h6>
             </div>
-          </div>
+          </div> -->
+          
           <div
+          class="d-flex align-items-center justify-content-between margin17"
+          *ngIf="vehicleData.vehicle_type === 'Car'"
+        >
+          <div class="">
+            <span class="size14 redhat-medium color-card-p text-capitalize"
+              >per day</span
+            >
+            <h6
+              class="mb-0 size20 redhat-semibold gray-color"
+              *ngIf="vehicleData && vehicleData.dailyRate"
+            >
+              <span class="size16 redhat-regular gray-color text-uppercase"
+                >AED</span
+              >
+              {{ vehicleData.dailyRate }}
+            </h6>
+          </div>
+          <div class="">
+            <span class="size14 redhat-medium color-card-p text-capitalize"
+              >per week</span
+            >
+            <h6
+              class="mb-0 size20 redhat-semibold gray-color"
+              *ngIf="vehicleData && vehicleData.weeklyRate"
+            >
+              <span class="size16 redhat-regular gray-color text-uppercase"
+                >AED</span
+              >
+              {{ vehicleData.weeklyRate }}
+            </h6>
+          </div>
+          <div class="">
+            <span class="size14 redhat-medium color-card-p text-capitalize"
+              >per month</span
+            >
+            <h6
+              class="mb-0 size20 redhat-semibold gray-color"
+              *ngIf="vehicleData && vehicleData.monthlyRate"
+            >
+              <span class="size16 redhat-regular gray-color text-uppercase"
+                >AED</span
+              >
+              {{ vehicleData.monthlyRate }}
+            </h6>
+          </div>
+        </div>
+          
+          <!-- <div
             class="d-flex align-items-center justify-content-between margin17"
             *ngIf="vehicleData.vehicle_type === 'Yachts'"
           >
@@ -390,11 +408,37 @@
                 {{ vehicleData.regularRateHourly }}
               </h6>
             </div>
+          </div> -->
+
+
+          <div class="d-flex align-items-center justify-content-between margin17"
+          *ngIf="vehicleData.vehicle_type === 'Yachts'">
+         
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">per hour</span>
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.hourlyRate">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.hourlyRate
+              }}
+            </h6>
           </div>
-
-          <!-- <h4 class="size26 redhat-semibold m-0">{{ vehicleData.name }}</h4>
-          <p class="size18 redhat-semibold mb-2">{{ vehicleData.bodytype_data[0].name }}</p> -->
-
+          
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">half day</span>
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.halfdayRate">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.halfdayRate
+              }}
+            </h6>
+          </div>
+  
+          <div class="">
+            <span class=" size14 redhat-medium color-card-p text-capitalize">per day</span>
+            <h6 class="mb-0 size20 redhat-semibold  gray-color" *ngIf="vehicleData && vehicleData.dailyRate">
+              <span class="size16 redhat-regular gray-color text-uppercase">AED</span> {{ vehicleData.dailyRate
+              }}
+            </h6>
+          </div>
+        </div>
+        
           <div class="d-sm-flex d-flex justify-content-between mb-4">
             <div
               class="d-flex align-items-center my-sm-0 my-3 justify-content-center pe-3"
