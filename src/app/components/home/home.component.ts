@@ -410,13 +410,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
     let tempspladdons = JSON.stringify(tempspl);
     if(this.vehicletype == 'Car'){
-      const message = `Hello Ghost Rentals Dubai!\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${this.selectedendTime},\nSpecial Add-ons:${tempspladdons}\nThank you for choosing Ghost Rentals!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${this.selectedendTime},\nSpecial Add-ons:${tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     } else {
-      const message = `Hello Ghost Rentals Dubai!\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nSeats: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate},\nSpecial Add-ons: ${this.selectedYatchAddOns},\nSpecial Add-ons:${tempspladdons}\nThank you for choosing Ghost Rentals!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nSeats: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate},\nSpecial Add-ons: ${this.selectedYatchAddOns},\nSpecial Add-ons:${tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;

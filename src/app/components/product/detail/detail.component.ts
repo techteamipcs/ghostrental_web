@@ -315,4 +315,12 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
     return `${this.whatsappURL}/whatsapp-${this.isHovered ? 'white' : 'green'}.svg`;
   }
 
+  openPopup() {
+    const message = `Hello Ghost Rentals! I'm interested in booking through your website and would like assistance with\n Vehicle: ${this.vehicleData.name}\n\n Thank you for choosing Ghost Rentals!`;
+    const encodedMsg = encodeURIComponent(message);
+    const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
+    const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+    window.open(waUrl, '_blank');
+  }
+
 }
