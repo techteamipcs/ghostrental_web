@@ -271,6 +271,14 @@ export class DataService {
     );
   };
 
+  getAllFeatures = (data: any): Observable<any> => {
+    const endpoint = environment.baseUrl + '/api/feature/getAllFeature';
+    return this.http.post(endpoint, data).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  };
 
   getAdditionalReq = (data: any): Observable<any> => {
     const endpoint = environment.baseUrl + '/api/bodytype/getAllBodytype';

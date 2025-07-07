@@ -87,9 +87,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
   preferredCountries: CountryISO[] = [CountryISO.India, CountryISO.UnitedStates, CountryISO.UnitedKingdom, CountryISO.UnitedArabEmirates];
   isPopupOpen: boolean = false;
   isHovered = false;
+  featuresList:any = [];
+  filteredFeatures: any = [];
+  yatchSizes = ['40 – 130+ ft','30 – 100+ ft'];
+  yatchSeats = ['4','8','12','14','16','20','22','24',];
+  yatchHours = ['4 – 8 hours','4 – 24+ hours'];
   // whatsappURL =  `${environment.url}/assets/images/icons`;
   @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
-
+  selectedYatchSize: any;
+  selectedYatchSeats: any;
+  selectedYatchHours: any;
+  selectedYatchAddOns: any;
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -156,6 +164,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getBodyTypes();
     this.getModels();
     this.getBrands();
+    this.getFeatures();
     this.getLocations();
     this.initYachtSwiper();
     this.initTrendingSwiper();
@@ -583,7 +592,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.filteredModels = this.listModels.filter((model) => model.type == this.vehicletype);
     }
     if (this.listBrands && this.listBrands.length > 0) {
-      this.filteredBrands = this.listBrands.filter((model) => model.type == this.vehicletype);
+      this.filteredBrands = this.listBrands.filter((brand) => brand.type == this.vehicletype);
+    }
+    if (this.featuresList && this.featuresList.length > 0) {
+      this.filteredFeatures = this.featuresList.filter((feature) => feature.vehicle_type == this.vehicletype);
     }
   }
 
@@ -752,6 +764,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.locationData = response.result;
           this.pickupLocations = this.locationData;
           this.dropLocations = this.locationData;
+        }
+      }
+    });
+  }
+
+   getFeatures() {
+    let obj = {};
+    this.dataservice.getAllFeatures(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.featuresList = response.result;
+          if (this.featuresList && this.featuresList.length > 0) {
+            this.filteredFeatures = this.featuresList.filter((feature) => feature.vehicle_type == this.vehicletype);
+          }
         }
       }
     });
