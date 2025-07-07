@@ -89,15 +89,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isHovered = false;
   featuresList:any = [];
   filteredFeatures: any = [];
-  yatchSizes = ['40 – 130+ ft','30 – 100+ ft'];
-  yatchSeats = ['4','8','12','14','16','20','22','24',];
-  yatchHours = ['4 – 8 hours','4 – 24+ hours'];
+  yatchSizes = ['52','65','72','75','105','250'];
+  yatchSeats = ['8','10','12','20','25','40','100'];
+  yatchHours = ['4','8','12','16','24'];
   // whatsappURL =  `${environment.url}/assets/images/icons`;
   @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
   selectedYatchSize: any;
   selectedYatchSeats: any;
   selectedYatchHours: any;
-  selectedYatchAddOns: any;
+  selectedYatchAddOns: any = [];
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -579,6 +579,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   toggleVehicle() {
+    this.selectedYatchAddOns=[];
     this.isVehicleYacht = !this.isVehicleYacht;
     if (!this.isVehicleYacht) {
       this.vehicletype = "Car";
@@ -606,6 +607,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.selelctedbrand = event.target.value;
     }  else if (type == 'model') {
       this.selelctedmodel = event.target.value;
+    } else if (type == 'feature') {
+      this.selectedYatchAddOns.push(event.target.value);
     }
   }
 
