@@ -279,7 +279,7 @@
                     Special Add-ons
                   </h3>
 
-                  <ng-select class="form-select size14 redhat-semibold position-relative" [items]="filteredFeatures" bindLabel="name" placeholder="" appendTo="body"
+                  <!-- <ng-select class="form-select size14 redhat-semibold position-relative" [items]="filteredFeatures" bindLabel="name" placeholder="" appendTo="body"
                     [multiple]="true" [addTag]="true" [(ngModel)]="selectedYatchAddOns" name="selectedYatchAddOns"
                     placeholder="Choose Special Add-ons" [hideSelected]="true">
 
@@ -291,34 +291,38 @@
                     </ng-template>
 
                     <lucide-icon name="x" />
-                  </ng-select>
-                </div>
+                  </ng-select> -->
 
-
-                <!-- example -->
-                <div class="dropdown">
-                  <button
-                    class="btn btn-outline-primary dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {{ getSelectedAddonsLabel() || 'Select Add-ons' }}
-                  </button>
-                  <ul class="dropdown-menu p-2" style="min-width: 250px;">
-                    <li *ngFor="let addon of filteredFeatures">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          [id]="addon"
-                          [checked]="isSelected(addon)"
-                          (change)="toggleSelection(addon)"
-                        />
-                        <label class="form-check-label" [for]="addon">{{ addon.name }}</label>
+                  <!-- new dropdown -->
+                  <div class="col-12">
+                    <div class="position-relative">
+                      <div class="form-select d-flex align-items-center" (click)="toggleDropdown($event)">
+                        <span class="selected-items">
+                          {{ getSelectedAddonsLabel() }}
+                        </span>
+                        <img src="{{ imageURL }}/images/icons/down-arrow.svg" 
+                             [class.rotated]="isDropdownOpen" 
+                             alt="" 
+                             class="down-arrow ms-auto" />
                       </div>
-                    </li>
-                  </ul>
+                      
+                      <div class="dropdown-menu" [class.show]="isDropdownOpen">
+                        <div *ngFor="let addon of filteredFeatures" class="form-check mb-2">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            [id]="'addon-' + addon.url_key"
+                            [checked]="isSelected(addon)"
+                            (click)="$event.stopPropagation()"
+                            (change)="toggleSelection(addon, $event)"
+                          />
+                          <label class="form-check-label" [for]="'addon-' + addon.url_key">
+                            {{ addon.name }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
          

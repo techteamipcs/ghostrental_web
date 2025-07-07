@@ -127,6 +127,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
+    private elementRef: ElementRef,
     private formBuilder: FormBuilder,
     private dataservice: DataService,
     public router: Router,
@@ -958,4 +959,54 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // getImagePath(): string {
   //   return `${this.whatsappURL}/whatsapp-${this.isHovered ? 'white' : 'green'}.svg`;
   // }
+
+  isDropdownOpen = false;
+selectedAddons: Array<{url_key: string, name: string}> = [];
+
+
+toggleDropdown(event?: Event): void {
+  if (event) {
+    event.stopPropagation();
+  }
+  this.isDropdownOpen = !this.isDropdownOpen;
+}
+
+toggleSelection(addon: {url_key: string, name: string}, event: Event): void {
+  event.stopPropagation();
+  
+  // Create a new array to trigger change detection
+  const updatedAddons = [...this.selectedAddons];
+  const index = updatedAddons.findIndex(a => a.url_key === addon.url_key);
+  
+  if (index > -1) {
+    updatedAddons.splice(index, 1);
+  } else {
+    updatedAddons.push({...addon});
+  }
+  
+  this.selectedAddons = updatedAddons;
+}
+
+isSelected(addon: {url_key: string, name: string}): boolean {
+  return this.selectedAddons.some(a => a.url_key === addon.url_key);
+}
+
+getSelectedAddonsLabel(): string {
+  if (!this.selectedAddons || this.selectedAddons.length === 0) {
+    return 'Choose Special Add-ons';
+  } else if (this.selectedAddons.length === 1) {
+    return this.selectedAddons[0].name;
+  } else {
+    return `${this.selectedAddons.length} add-ons selected`;
+  }
+}
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: Event): void {
+  if (this.isDropdownOpen && !this.elementRef.nativeElement.contains(event.target)) {
+    this.isDropdownOpen = false;
+  }
+}
+
+
 }
