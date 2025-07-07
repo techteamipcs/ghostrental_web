@@ -74,6 +74,7 @@
         <div class="products">
           <div class="row">
             <div class=" col-xl-3 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData">
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock">
               <div class="car-card">
                 <div class="thumbnail-image-container">
                   <img src="{{ backendURl }}/media/{{ car.media_data[0].src }}" [alt]="car.name"
@@ -175,6 +176,7 @@
                   </div>
                 </div>
               </div>
+              </a>
             </div>
           </div>
         </div>
