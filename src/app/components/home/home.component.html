@@ -43,7 +43,6 @@
                 class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a> -->
             </div>
           </div>
-
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
             <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
               <h2 class="text-center size28 redhat-bold black-light-color">
@@ -59,7 +58,6 @@
                 </div>
                 <span class="redhat-bold text-capitalize m-0 black-light-color">yachts</span>
               </div>
-
               <div class="row type-margin">
                 <div class="col-6" *ngIf="!isVehicleYacht">
                   <div class="position-relative">
@@ -90,7 +88,6 @@
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
                   </div>
                 </div>
-
                 <div class="col-6 label-margin" *ngIf="isVehicleYacht">
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
@@ -120,13 +117,12 @@
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
                   </div>
                 </div>
-
                 <div class="col-6" *ngIf="isVehicleYacht">
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
                       required>
                       <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Seats
+                        Pax
                       </option>
                       <option class="size14 redhat-semibold black-light-color" value="{{ seat }}"
                         *ngFor="let seat of yatchSeats">
@@ -150,11 +146,7 @@
                     <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
                   </div>
                 </div>
-
-
-
               </div>
-
               <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
                 Pickup
               </h3>
@@ -637,7 +629,7 @@
                       <div class="text-center">
                         <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image" alt="" />
                         <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
-                          {{ car.seating_capacity }} Seats
+                          {{ car.seating_capacity }} Pax
                         </h6>
                       </div>
                     </div>

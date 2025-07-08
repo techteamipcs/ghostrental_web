@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isHovered = false;
   featuresList:any = [];
   filteredFeatures: any = [];
-  yatchSizes = ['52','65','72','75','105','250'];
+  yatchSizes = ['Up To 30 ft','31-49 ft','50-69 ft','70-99 ft','100-149 ft','> 150 ft'];
   yatchSeats = ['8','10','12','20','25','40','100'];
   yatchHours = ['4','8','12','16','24'];
   // whatsappURL =  `${environment.url}/assets/images/icons`;
@@ -366,7 +366,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   openPopup() {
     let isValid = true;
-    if(this.vehicletype == 'Car' && !this.selectedpickaddress && !this.selecteddropaddress){
+    if(this.vehicletype == 'Car' && !this.selectedpickaddress){
+      isValid = false;
+    }
+    if(this.vehicletype == 'Car' && !this.selecteddropaddress){
       isValid = false;
     }
     if(this.vehicletype == 'Car' && !this.selelctedbrand) {
@@ -385,6 +388,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       isValid = false;
     }
     if(this.vehicletype == 'Yachts' && !this.selectedYatchHours) {
+      isValid = false;
+    }
+    if(!this.selelctedstartDate) {
       isValid = false;
     }
     if(!isValid){
@@ -408,15 +414,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
         tempspl.push(spladds.name)
       });
     }
-    let tempspladdons = JSON.stringify(tempspl);
+    let tempspladdons
+    if(tempspl && tempspl.length > 0){
+      tempspladdons = JSON.stringify(tempspl).replace(/"/g, '');
+    }     
     if(this.vehicletype == 'Car'){
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${this.selectedendTime},\nSpecial Add-ons:${tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${!this.selectedendTime? '':this.selectedendTime},${!tempspladdons ? '':'\nSpecial Add-ons: '+tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     } else {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nSeats: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate},\nSpecial Add-ons: ${this.selectedYatchAddOns},\nSpecial Add-ons:${tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nPax: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},${!tempspladdons ? '':'\nSpecial Add-ons: '+tempspladdons}\n\nThank you for choosing Ghost Rentals!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
@@ -643,7 +652,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   toggleVehicle() {
-    this.selectedYatchAddOns=[];
+    this.selectedYatchAddOns = [];
+    this.selectedAddons = [];
     this.isVehicleYacht = !this.isVehicleYacht;
     if (!this.isVehicleYacht) {
       this.vehicletype = "Car";
@@ -844,7 +854,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
    getFeatures() {
     let obj = {};
-    this.dataservice.getAllFeatures(obj).subscribe((response) => {
+    this.dataservice.getSpecialAddons(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
           this.featuresList = response.result;

@@ -316,11 +316,19 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openPopup() {
-    const message = `Hello Ghost Rentals! I'm interested in booking through your website and would like assistance with\n Vehicle: ${this.vehicleData.name}\n\n Thank you for choosing Ghost Rentals!`;
-    const encodedMsg = encodeURIComponent(message);
-    const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
-    const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
-    window.open(waUrl, '_blank');
+    if(this.vehicleData && this.vehicleData.vehicle_type == 'Car'){
+      const message = `Hello! I'm interested in booking this ${this.vehicleData.name} car.\n\nCould you please help me with:\n - Is this car available for my dates\n - Free UAE delivery service\n - Chauffeur services if needed \n\nI'm looking to elevate my drive with your premium fleet.\n\nThank you!`;
+      const encodedMsg = encodeURIComponent(message);
+      const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+    } else {
+      const message = `Hello! I'm interested in booking this ${this.vehicleData.name} Yacht.\n\nCould you please help me with:\n - Available yachts for my dates\n - Crew and catering options\n - Dubai landmarks cruise routes (Palm Jumeirah, Burj Al Arab, Atlantis) \n\nI'm looking to elevate my drive with your premium fleet.\n\nThank you!`;
+      const encodedMsg = encodeURIComponent(message);
+      const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+    }
   }
 
 }
