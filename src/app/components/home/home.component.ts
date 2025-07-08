@@ -115,12 +115,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'Building Lasting Relationships Through Exceptional Service.',
     },
     {
-      image: 'images/icons/247-black.svg',
+      image: 'images/icons/247-white.svg',
       title: 'Booking Experience',
       description: 'Instant Booking With 24/7 Service Assistance.',
     },
     {
-      image: 'images/icons/map-black.svg',
+      image: 'images/icons/map-white.svg',
       title: 'UAE Coverage',
       description: 'Our Services Will Arrive At Your Doorstep Across Every UAE Emirate.',
     }
