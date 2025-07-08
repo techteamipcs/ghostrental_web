@@ -132,7 +132,7 @@
                   >Start date</span>
 
                   <input type="datetime-local"
-                  class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
+                  class="form-controls size16 redhat-semibold  bg-transparent gray-color date-height"
                   [(ngModel)]="selectedStartDate"
                   [min]="pickuptoday"
                   (ngModelChange)="onSelectPickupDate()"
@@ -147,7 +147,7 @@
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;">End date</span>
 
-                <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
+                <input type="datetime-local" class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
                   [min]="dropofftoday" [(ngModel)]="selectedEndDate"
                   (ngModelChange)="onSelectDropDate()"
                   />
@@ -198,61 +198,63 @@
           </div>
         </div>
       </div>
+
+      
       <!-- results section -->
-      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12" #resultsSection [ngClass]="{
+      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12 position-relative" #resultsSection [ngClass]="{
         'col-xl-12 col-lg-12 col-md-12 col-12': isFilterCollapsed,
         'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
       }">
         <!-- <div class="container-fluid"> -->
-        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 ">
-          <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1" style="font-size: 14px;"
-            *ngIf="vehicleData && vehicleData.length > 0">
-            Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
-            {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
-            {{ totalItems }} Vehicles
-          </h6>
-          <!-- <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize"
-            *ngIf="vehicleData && vehicleData.length == 0">
-            No Data Found
-          </h6> -->
-
-          <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;" *ngIf="vehicleData && vehicleData.length > 0">
-          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent color-card-p cselect"
-            (change)="onChangeSort($event)" style="font-size: 14px;">
-            <option selected disabled class="text-muted size14 redhat-semibold text-capitalize ">
-              Sort by any makes &nbsp;
-            </option>
-            <!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
-              Sort by A - Z
-            </option> -->
-            <option value="H-L" class="size14 redhat-semibold text-capitalize color-card-p">
-              Price: High to Low
-            </option>
-            <option value="L-H" class="size14 redhat-semibold text-capitalize color-card-p">
-              Price: Low to High
-            </option>
-            <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
-              Old to New
-            </option>
-            <option value="relevance" class="size14 redhat-semibold text-capitalize color-card-p">
-              Relevance
-            </option>
-          </select>
-
-          
-          <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
-        </div>
-        </div>
+            <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section"> 
+              <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1" style="font-size: 14px;"
+                *ngIf="vehicleData && vehicleData.length > 0">
+                Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+                {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
+                {{ totalItems }} Vehicles
+              </h6>
+              <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize "
+                *ngIf="vehicleData && vehicleData.length <= 0">
+                No Data Found
+              </h6>
+    
+              <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;" *ngIf="vehicleData && vehicleData.length > 0">
+              <select class="border-0 outline-none redhat-semibold text-capitalize bg-white color-card-p cselect "
+                (change)="onChangeSort($event)" style="font-size: 14px;">
+                <option selected disabled class="text-muted size14 redhat-semibold text-capitalize ">
+                  Sort by any makes &nbsp;
+                </option>
+                <!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
+                  Sort by A - Z
+                </option> -->
+                <option value="H-L" class="size14 redhat-semibold text-capitalize color-card-p">
+                  Price: High to Low
+                </option>
+                <option value="L-H" class="size14 redhat-semibold text-capitalize color-card-p">
+                  Price: Low to High
+                </option>
+                <!-- <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
+                  Old to New
+                </option> -->
+                <option value="relevance" class="size14 redhat-semibold text-capitalize color-card-p">
+                  Relevance
+                </option>
+              </select>
+    
+              
+              <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
+            </div>
+          </div>
         <div class="products">
-          <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
+          <!-- <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
             *ngIf="vehicleData && vehicleData.length == 0">
             Coming soon...
-          </h6>
+          </h6> -->
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
               *ngFor="let car of vehicleData">
-              <!-- <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock"> -->
-              <div class="car-card" [routerLink]="['/product', car.url_key]">
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock">
+              <div class="car-card" >
 
                 <div class="thumbnail-image-container">
                 <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"
@@ -370,7 +372,7 @@
                   </div>
                 </div>
               </div>
-            <!-- </a> -->
+            </a>
             </div>
           </div>
         <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
