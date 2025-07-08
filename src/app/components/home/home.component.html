@@ -11,10 +11,10 @@
       <source src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}" type="video/ogg" />
       Your browser does not support the video tag.
     </video>
-
-    <div class="position-absolute w-100 start-50 translate-middle form-top zindex2">
-      <div class="container-fluid">
-        <div class="row">
+<!-- start-50 translate-middle form-top -->
+    <div class="position-absolute w-100 form-top zindex2 h-100">
+      <div class="container-fluid h-100">
+        <div class="row h-100">
           <div class="col-xl-6 col-lg-7 col-md-10 col-sm-12 col-12 pad-left">
             <!-- <div class="content" *ngIf="!bannerData">
               <h1 class="size88 performa-thin white-color mb-md-3 mb-2 text-capitalize">
@@ -27,8 +27,8 @@
               <a href="/contact" class="white-color text-decoration-none white-border-button size18 redhat-bold  d-none d-lg-block">Book Now</a>
               <a href="/contact" class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a>
             </div> -->
-
-            <div class="content" *ngIf="bannerData">
+<div class="d-flex h-100 justify-content-center">
+            <div class="content " *ngIf="bannerData">
               <h1 class="size88 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
               <p class="size20 redhat-regular hero-para beige-color line-height26" [innerHtml]="bannerData.description">
               </p>
@@ -42,6 +42,7 @@
               <!-- <a href="/contact"
                 class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a> -->
             </div>
+</div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
             <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
@@ -233,7 +234,7 @@
                     <!-- <lucide-icon name="clock"></lucide-icon> -->
                   </div>
                 </div>
-                <div class="col-12 select-margin">
+                <div class="col-12 type-margin">
                   <ng-container *ngIf="!isVehicleYacht;">
                     <div class="position-relative">
                       <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop" class="form-control size14 redhat-semibold black-light-color" placeholder="Drop location" required>
