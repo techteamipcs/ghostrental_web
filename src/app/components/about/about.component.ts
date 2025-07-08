@@ -64,7 +64,7 @@ export class AboutComponent  {
     {
       image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
-      description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
+      description: 'Premium Cars and Yacht Rentals suitable for family use.',
 
     },
     {
@@ -74,7 +74,7 @@ export class AboutComponent  {
     },
     {
       image: 'images/icons/fullday.png',
-      title: 'Perfect booking experience',
+      title: 'Perfect Booking Experience',
       description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
     },
     {

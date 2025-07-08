@@ -291,10 +291,13 @@
 }
 
 textarea {
-  height: 215px;
+  height: 241px;
   transition: height 0.3s ease-in-out;
+  @media screen and (max-width: 2048px) {
+    height: 241px;
+  }
   @media screen and (max-width: 1920px) {
-    height: 239px;
+    height: 241px;
   }
   @media screen and (max-width: 1600px) {
     height: 225px;
@@ -321,18 +324,27 @@ textarea {
 }
 
 .para-width {
-  width: 72%;
-  @media screen and (max-width: 1920px) {
-    width: 72%;
+  width: 46%;
+  @media screen and (max-width: 2048px) {
+    width: 66%;
   }
   @media screen and (max-width: 1440px) {
     width: 67%;
   }
-  @media screen and (max-width: 1200px) {
-    width: 62%;
+  @media screen and (max-width: 1536px) {
+    width: 76%;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 83%;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
   }
   @media screen and (max-width: 768px) {
     width: 57%;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
   }
 }
 

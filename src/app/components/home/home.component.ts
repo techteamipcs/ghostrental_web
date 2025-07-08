@@ -107,18 +107,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     {
       image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
-      description: 'Rolls-Royce, Ferrari, Lamborghini, Yachts Suitable For Family Use.',
+      description: 'Premium Cars and Yacht Rentals suitable for family use.',
 
     },
     {
       image: 'images/icons/hand.png',
       title: 'Family-First Service',
-      description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
+      description: 'Building Lasting Relationships Through Exceptional Service.',
     },
     {
       image: 'images/icons/fullday.png',
-      title: 'Perfect booking experience',
-      description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
+      title: 'Booking Experience',
+      description: 'instant 24/7 booking access for instant luxury rental convenience in dubai',
     },
     {
       image: 'images/icons/earth.png',
