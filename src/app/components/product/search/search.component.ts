@@ -16,6 +16,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Options } from '@angular-slider/ngx-slider';
+import { PageService } from '../../../providers/page/page.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -104,6 +106,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     private dataservice: DataService,
     private route: ActivatedRoute,
     private router: Router,
+    public pageservice: PageService,
+    private metaTagService: Meta,
+    private titleService: Title,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Initialize mobile filter as closed
@@ -121,6 +126,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
     this.pickuptoday = `${year}-${month}-${day}T${hours}:${minutes}`;
     this.dropofftoday = `${year}-${month}-${day}T${hours}:${minutes}`;
+    this.get_PageMeta();
   }
 
   toggleSelectDropdown(event: Event): void {
@@ -169,7 +175,24 @@ export class SearchComponent implements OnInit, AfterViewInit {
       });
     });
   }
-  
+  get_PageMeta() {
+		let obj = { pageName: 'products' };
+		this.pageservice.getpageWithName(obj).subscribe((response) => {
+			if (response.body.code == 200) {
+				this.titleService.setTitle(response?.body.result.meta_title);
+				this.metaTagService.updateTag({
+					name: 'description',
+					content: response?.body.result.meta_description,
+				});
+				this.metaTagService.updateTag({
+					name: 'keywords',
+					content: response?.body.result.meta_keywords,
+				});
+			} else if (response.code == 400) {
+			} else {
+			}
+		});
+	}
   
   setVehicleType(type: string) {
     this.vehicleType = type;
