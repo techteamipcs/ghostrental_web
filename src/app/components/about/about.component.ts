@@ -63,7 +63,7 @@ export class AboutComponent  {
     {
       image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
-      description: 'Premium Cars and Yacht Rentals suitable for family use.',
+      description: 'Premium Cars and Yacht Rentals Suitable for Family Use.',
     },
     {
       image: 'images/icons/hand.png',
@@ -73,7 +73,7 @@ export class AboutComponent  {
     {
       image: 'images/icons/247-black.svg',
       title: 'Booking Experience',
-      description: 'instant booking with 24/7 service assistance.',
+      description: 'Instant Booking With 24/7 Service Assistance.',
     },
     {
       image: 'images/icons/map-black.svg',
