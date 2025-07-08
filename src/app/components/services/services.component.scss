@@ -26,6 +26,26 @@
       top: 43.5%;
       left: 86px;
     }
+    @media screen and (max-width: 1440px) {
+      top: 47%;
+      left: 69px;
+     } 
+    @media screen and (max-width: 1280px) {
+      top: 47%;
+      left: 85px;
+    }
+    @media screen and (max-width: 1024px) {
+      top: 47%;
+      left: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      top: 47%;
+      left: 48px;
+    }
+    @media screen and (max-width: 430px) {
+      top: 47%;
+      left: 20px;
+    }
 
     // position: absolute;
     // transform: translateY(-50%);
@@ -129,7 +149,7 @@
       }
 
       @media (max-width: 1440px) {
-        width: 35%;
+        width: 34%;
       }
 
       @media (max-width: 1366px) {
