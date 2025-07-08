@@ -2552,7 +2552,21 @@ input {
 }
 
 ::ng-deep {
-
+  .dropdown-menu{
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #000 #fff;
+    // -ms-overflow-style: none;
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+    // &::-webkit-scrollbar-track {
+    //   display: none;
+    // }
+    // &::-webkit-scrollbar-thumb {
+    //   display: none;
+    // }
+  }
   .dropdown-menu.show {
     display: block;
     width: 100%;
@@ -2571,14 +2585,13 @@ input {
     }
   }
 
-  .form-check-input {
+  .form-check-box {
     &:focus {
       box-shadow: none !important;
     }
 
     &:checked {
-      background-color: #000;
-      border-color: #000;
+      accent-color: #000 !important;
     }
     &:active{
      border-color: #000 !important; 

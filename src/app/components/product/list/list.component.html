@@ -39,12 +39,13 @@
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} Vehicles
           </h6>
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p text-capitalize"
+          <!-- <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p text-capitalize"
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
-          </h6>
+          </h6> -->
+          
 
-          <div class="d-flex align-items-center gap-2 position-relative" style="cursor: pointer">
+          <div class="d-flex align-items-center gap-2 position-relative" style="cursor: pointer" *ngIf="vehicleData && vehicleData.length > 0">
             <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color"
               (change)="onChangeSort($event)" style="font-size: 14px">
               <option selected disabled class="text-muted size14 redhat-semibold text-capitalize bg-white">
@@ -71,6 +72,10 @@
             <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
           </div>
         </div>
+        <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
+            *ngIf="vehicleData && vehicleData.length == 0">
+            Coming soon...
+          </h6>
         <div class="products">
           <div class="row">
             <div class=" col-xl-3 col-lg-4 col-md-6 col-12 mb-xl-5 mb-4" *ngFor="let car of vehicleData">
@@ -179,7 +184,7 @@
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation" class="mt-4">
+      <nav aria-label="Page navigation" class="mt-4" *ngIf="vehicleData && vehicleData.length > 0">
         <ul class="pagination justify-content-center align-items-center gap-2">
           <!-- Previous -->
           <li [class.disabled]="currentPage === 1">

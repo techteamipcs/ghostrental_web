@@ -46,18 +46,18 @@
 
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
             <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
-              <h2 class="text-center size28 redhat-bold black-color">
+              <h2 class="text-center size28 redhat-bold black-light-color">
                 Quick Reservation
               </h2>
               <div class="d-flex justify-content-center align-items-center gap-2 toggle">
-                <span class="redhat-bold text-capitalize m-0 black-color">cars</span>
+                <span class="redhat-bold text-capitalize m-0 black-light-color">cars</span>
                 <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
                   tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht" [attr.aria-label]="
                     isVehicleYacht ? 'Switch to cars' : 'Switch to yachts'
                   " aria-labelledby="toggleLabel" (keydown.enter)="toggleVehicle()" (keydown.space)="toggleVehicle()">
                   <span class="visually-hidden">{{ isVehicleYacht ? "Yachts" : "Cars" }} selected</span>
                 </div>
-                <span class="redhat-bold text-capitalize m-0 black-color">yachts</span>
+                <span class="redhat-bold text-capitalize m-0 black-light-color">yachts</span>
               </div>
 
               <div class="row type-margin">
@@ -65,10 +65,10 @@
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" required
                       (change)="selectData('body_type', $event)">
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Type *
                       </option>
-                      <option value="{{ bodytype.url_key }}" class="size14 redhat-semibold"
+                      <option value="{{ bodytype.url_key }}" class="size14 redhat-semibold black-light-color"
                         *ngFor="let bodytype of filteredBodytype">
                         {{ bodytype.name }}
                       </option>
@@ -79,10 +79,10 @@
                 <div class="col-6" *ngIf="!isVehicleYacht">
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" required (change)="selectData('brand', $event)">
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Brands *
                       </option>
-                      <option value="{{ brand.url_key }}" class="size14 redhat-semibold"
+                      <option value="{{ brand.url_key }}" class="size14 redhat-semibold black-light-color"
                         *ngFor="let brand of filteredBrands">
                         {{ brand.name }}
                       </option>
@@ -95,10 +95,10 @@
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
                       required>
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Type *
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ bodytype.url_key }}"
+                      <option class="size14 redhat-semibold black-light-color" value="{{ bodytype.url_key }}"
                         *ngFor="let bodytype of filteredBodytype">
                         {{ bodytype.name }}
                       </option>
@@ -109,10 +109,10 @@
                 <div class="col-6 label-margin" *ngIf="isVehicleYacht">
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('size', $event)" required>
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Sizes
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ size }}" class="size14 redhat-semibold"
+                      <option class="size14 redhat-semibold black-light-color" value="{{ size }}"
                         *ngFor="let size of yatchSizes">
                         {{ size }}
                       </option>
@@ -125,10 +125,10 @@
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
                       required>
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Seats
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ seat }}"
+                      <option class="size14 redhat-semibold black-light-color" value="{{ seat }}"
                         *ngFor="let seat of yatchSeats">
                         {{ seat }}
                       </option>
@@ -139,10 +139,10 @@
                 <div class="col-6" *ngIf="isVehicleYacht">
                   <div class="position-relative">
                     <select class="form-select size14 redhat-semibold" (change)="selectData('hours', $event)" required>
-                      <option value="" disabled selected class="size14 redhat-semibold">
+                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
                         Hours
                       </option>
-                      <option class="size14 redhat-semibold" value="{{ hours }}" class="size14 redhat-semibold"
+                      <option class="size14 redhat-semibold black-light-color" value="{{ hours }}"
                         *ngFor="let hours of yatchHours">
                         {{ hours }}
                       </option>
@@ -155,18 +155,18 @@
 
               </div>
 
-              <h3 class="section-title size18 redhat-bold black-color label-margin text-capitalize">
+              <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
                 Pickup
               </h3>
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
                     <span [class.d-none]="selelctedstartDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder"
+                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
                       style="pointer-events: none">Date</span>
                     <input type="date" id="startDate" [min]="pickuptoday" [(ngModel)]="selelctedstartDate"
                       (ngModelChange)="onSelectPickupDate()" name="selelctedstartDate"
-                      class="form-control size14 redhat-semibold input-margin" required />
+                      class="form-control size14 redhat-semibold input-margin black-light-color" required />
 
                     <!-- <lucide-icon name="calendar-days"></lucide-icon> -->
                   </div>
@@ -174,17 +174,18 @@
                 <div class="col-6">
                   <div class="position-relative">
                     <span [class.d-none]="selectedstartTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder"
+                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
                       style="pointer-events: none">Time</span>
                     <input type="time" id="startTime" [(ngModel)]="selectedstartTime" name="selectedstartTime"
-                      class="form-control size14 redhat-semibold" placeholder="Time" required />
+                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time"
+                      required />
                     <!-- <lucide-icon name="clock"></lucide-icon> -->
                   </div>
                 </div>
                 <div class="col-12 label-margin">
                   <ng-container *ngIf="!isVehicleYacht;">
                     <div class="position-relative">
-                      <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup" class="form-control size14 redhat-semibold" placeholder="Pickup location" required>
+                      <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup" class="form-control size14 redhat-semibold black-light-color" placeholder="Pickup location" required>
 
                       <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
                         required>
@@ -215,17 +216,17 @@
                 </div>
               </div>
 
-              <h3 class="section-title size18 redhat-bold black-color label-margin text-capitalize" *ngIf="!isVehicleYacht;">
+              <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color" *ngIf="!isVehicleYacht;">
                 Drop
               </h3>
               <div class="row" *ngIf="!isVehicleYacht;">
                 <div class="col-6">
                   <div class="position-relative">
                     <span [class.d-none]="selelctedendDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder"
+                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
                       style="pointer-events: none">Date</span>
                     <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate"
-                      name="selelctedendDate" class="form-control size14 redhat-semibold input-margin"
+                      name="selelctedendDate" class="form-control size14 redhat-semibold input-margin black-light-color"
                       (ngModelChange)="onSelectDropDate()" placeholder="Date" required />
                     <!-- <lucide-icon name="calendar-days"></lucide-icon> -->
                   </div>
@@ -233,17 +234,17 @@
                 <div class="col-6">
                   <div class="position-relative">
                     <span [class.d-none]="selectedendTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder"
+                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
                       style="pointer-events: none">Time</span>
                     <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
-                      class="form-control size14 redhat-semibold" placeholder="Time" required />
+                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time" required />
                     <!-- <lucide-icon name="clock"></lucide-icon> -->
                   </div>
                 </div>
                 <div class="col-12 select-margin">
                   <ng-container *ngIf="!isVehicleYacht;">
                     <div class="position-relative">
-                      <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop" class="form-control size14 redhat-semibold" placeholder="Drop location" required>
+                      <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop" class="form-control size14 redhat-semibold black-light-color" placeholder="Drop location" required>
 
                       <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
                         required>
@@ -275,7 +276,7 @@
               </div>
               <div class="row"> 
                 <div class="col-12">
-                  <h3 class="section-title size18 redhat-bold black-color label-margin text-capitalize">
+                  <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
                     Special Add-ons
                   </h3>
 
@@ -295,8 +296,8 @@
 
                   <!-- new dropdown -->
                   <div class="position-relative">
-                      <div class="form-select d-flex align-items-center size14 redhat-semibold" (click)="toggleDropdown($event)">
-                        <span class="selected-items">
+                      <div class="form-select d-flex align-items-center size14 redhat-semibold " (click)="toggleDropdown($event)">
+                        <span class="selected-items black-light-color">
                           {{ getSelectedAddonsLabel() }}
                         </span>
                         <img src="{{ imageURL }}/images/icons/down-arrow.svg" 
@@ -305,17 +306,17 @@
                              class="down-arrow ms-auto" />
                       </div>
                       
-                      <div class="dropdown-menu size14 redhat-semibold" [class.show]="isDropdownOpen">
-                        <div *ngFor="let addon of filteredFeatures" class="form-check mb-2 size14 redhat-semibold d-flex align-items-center" style="gap: 5px">
+                      <div class="dropdown-menu size14 redhat-semibold black-light-color" [class.show]="isDropdownOpen">
+                        <div *ngFor="let addon of filteredFeatures" class=" mb-2 size14 redhat-semibold d-flex align-items-center black-light-color" style="gap: 5px">
                           <input
                             type="checkbox"
-                            class="form-check-input"
+                            class="form-check-box"
                             [id]="'addon-' + addon.url_key"
                             [checked]="isSelected(addon)"
                             (click)="$event.stopPropagation()"
                             (change)="toggleSelection(addon, $event)"
                           />
-                          <label class="form-check-label" [for]="'addon-' + addon.url_key">
+                          <label class="form-check-label size14 redhat-semibold black-light-color" [for]="'addon-' + addon.url_key">
                             {{ addon.name }}
                           </label>
                         </div>
@@ -340,7 +341,7 @@
                 <span>book now</span>
               </button> -->
               <button type="submit" (click)="openPopup()" data-text="Book Now"
-                class="form-black-button d-flex mx-auto size18 redhat-bold btn-margin text-capitalize"
+                class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize"
                 data-text="book on whatsapp" (mouseenter)="setIsHovered(true)" (mouseleave)="setIsHovered(false)">
                 <span>
                   <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" className="whatsappicon" />
@@ -437,7 +438,7 @@
 </section>
 
 <section class="car-types-section d-xl-block d-none">
-  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize" data-aos="fade-up" data-aos-duration="1000">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up" data-aos-duration="1000">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
@@ -449,7 +450,7 @@
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
-          <p class="redhat-semibold text-center type-margin text-capitalize"
+          <p class="redhat-semibold text-center type-margin text-capitalize black-light-color"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active">
             {{ car.name }}
           </p>
@@ -460,7 +461,7 @@
 </section>
 
 <section class="car-types-section d-xl-none d-block">
-  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize" data-aos="fade-up" data-aos-duration="1000">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up" data-aos-duration="1000">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
@@ -472,7 +473,7 @@
           class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize">
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
-          <p class="redhat-semibold text-center type-margin text-capitalize"
+          <p class="redhat-semibold text-center type-margin text-capitalize black-light-color"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active">
             {{ car.name }}
           </p>
@@ -583,7 +584,7 @@
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-md-0">
         <div class="d-flex justify-content-between align-items-center margin-bottom60 margin-right">
-          <h3 class="text-capitalize size60 performa-light mb-0" data-aos="fade-up" data-aos-duration="1000">
+          <h3 class="text-capitalize size60 performa-light mb-0 gray-color" data-aos="fade-up" data-aos-duration="1000">
             Our Luxury Cars For Rent
           </h3>
           <button (click)="goToVehiclePage('Car')"
@@ -684,7 +685,7 @@
     <div class="row">
       <div class="col-12 pb-md-5 pb-2 pe-md-0">
         <div class="d-flex justify-content-between align-items-center margin-bottom60 margin-right">
-          <h3 class="text-capitalize size60 performa-light mb-0" data-aos="fade-up" data-aos-duration="1000">
+          <h3 class="text-capitalize size60 performa-light mb-0 gray-color" data-aos="fade-up" data-aos-duration="1000">
             Our Luxury Yacht Charter
           </h3>
           <button (click)="goToVehiclePage('Yachts')"
@@ -780,7 +781,7 @@
 </section>
 
 <app-brands h3="Find Your Perfect Ride"
-  titleClass="text-center size60 performa-light text-capitalize margin-bottom60"></app-brands>
+  titleClass="text-center size60 performa-light text-capitalize margin-bottom60 gray-color"></app-brands>
 
 <section class="about-us w-100 position-relative overflow-hidden">
   <div class="d-flex flex-column w-100">
@@ -792,13 +793,13 @@
       <img src="{{ imageURL }}/home/about_us2.jpg" alt="Luxury car and yacht rental"
         class="rounded-4 position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-1 d-block d-lg-none" />
       <div class="about-content z-3">
-        <h3 class="size22 redhat-bold text-capitalize white-color margin22" data-aos="fade-up" data-aos-duration="1000">
+        <h3 class="size22 redhat-bold text-capitalize beige-color margin22" data-aos="fade-up" data-aos-duration="1000">
           about us
         </h3>
         <!-- <h1 class="size60 performa-light text-capitalize white-color line-height90 heading-width margin24">
           Driven By Luxury. Defined By Experience.
         </h1> -->
-        <h2 class="size60 performa-light text-capitalize white-color line-height90 heading-width margin24"
+        <h2 class="size60 performa-light text-capitalize beige-color line-height90 heading-width margin24"
           data-aos="fade-up" data-aos-duration="1500">
           Pure Luxury. Pure Perfection.
         </h2>
@@ -818,7 +819,7 @@
 
     <div class="black-bg"></div>
     <div class="container-fluid margin-top80 padding-x">
-      <h3 class="text-center size60 performa-light white-color" data-aos="fade-up" data-aos-duration="1000">
+      <h3 class="text-center size60 performa-light beige-color" data-aos="fade-up" data-aos-duration="1000">
         Why Should You Rent With Us?
       </h3>
 
@@ -830,7 +831,7 @@
           <h4 class="size26 redhat-semibold white-color text-center mb-xl-3 mb-md-2 mb-1 text-capitalize">
             {{ feature.title }}
           </h4>
-          <p class="size18 redhat-semibold white-color text-center line-height30 about-pad">
+          <p class="size18 redhat-semibold gray-light-color text-center line-height30 about-pad">
             {{ feature.description }}
           </p>
         </div>
@@ -844,7 +845,7 @@
   <div class="container-fluid swiper-desktop d-lg-block d-none">
     <div class="row">
       <div class="col-md-10 col-sm-11 col-11 mx-auto">
-        <h3 class="text-center size60 performa-light white-color text-capitalize mb-4" data-aos="fade-up"
+        <h3 class="text-center size60 performa-light beige-color text-capitalize mb-4" data-aos="fade-up"
           data-aos-duration="1000">
           trending rental cars
         </h3>
@@ -864,7 +865,7 @@
                 <div class="card-content">
                   <div class="car-info  d-flex justify-content-between position-relative">
                     <div class="car-header margin27">
-                      <h4 class="car-name mb-1 size35 redhat-semibold white-color">
+                      <h4 class="car-name mb-1 size35 redhat-semibold beige-color">
                         <!-- {{ car.name.substring(0, 18) }}... -->
                         {{ getFirstTwoWords(car.name) }}...
 
@@ -883,7 +884,7 @@
                       <span
                         class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through">AED
                         {{ car.regularRateDaily }}</span>
-                      <span class="discounted-price size35 redhat-semibold white-color">AED {{ car.dailyRate }}</span>
+                      <span class="discounted-price size35 redhat-semibold beige-color">AED {{ car.dailyRate }}</span>
                     </div>
                     <a [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active"
                       class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize">View
@@ -907,7 +908,7 @@
     <div class="row">
       <div class="col-12 pb-4">
         <div class="d-flex flex-column justify-content-between align-items-center mb-4">
-          <h3 class="text-center size60 performa-light white-color text-capitalize mb-4" data-aos="fade-up"
+          <h3 class="text-center size60 performa-light beige-color text-capitalize mb-4" data-aos="fade-up"
             data-aos-duration="1000">
             trending rental cars
           </h3>
@@ -933,7 +934,7 @@
                   <div class="card-content">
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
-                        <h4 class="car-name mb-1 size35 redhat-semibold white-color">
+                        <h4 class="car-name mb-1 size35 redhat-semibold beige-color">
                           {{ getFirstTwoWords(car.name) }}...
                         </h4>
                         <h6 class="car-spec size24 text-capitalize redhat-semibold gray-light-color m-0">
@@ -949,7 +950,7 @@
                         <span
                           class="original-price size24 redhat-semibold gray-light-color text-decoration-line-through">AED
                           {{ car.regularRateDaily }}</span>
-                        <span class="discounted-price size35 redhat-semibold white-color">AED {{ car.dailyRate }}</span>
+                        <span class="discounted-price size35 redhat-semibold beige-color">AED {{ car.dailyRate }}</span>
                       </div>
                       <a [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active"
                         class="p-0 mt-auto text-decoration-none gray-light-color size16 redhat-semibold text-capitalize">View
