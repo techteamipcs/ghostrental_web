@@ -73,12 +73,12 @@ export class AboutComponent  {
     {
       image: 'images/icons/247-black.svg',
       title: 'Booking Experience',
-      description: 'instant booking with 24/7 service assistance',
+      description: 'instant booking with 24/7 service assistance.',
     },
     {
       image: 'images/icons/map-black.svg',
       title: 'UAE Coverage',
-      description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
+      description: 'Our Services Will Arrive At Your Doorstep Across Every UAE Emirate.',
     }
   ];
 
