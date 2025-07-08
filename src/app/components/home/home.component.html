@@ -45,6 +45,7 @@
 </div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
+            <div class="d-flex h-100 align-items-center">
             <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
               <h2 class="text-center size28 redhat-bold black-light-color">
                 Quick Reservation
@@ -154,9 +155,9 @@
               <div class="row">
                 <div class="col-6">
                   <div class="position-relative">
-                    <span [class.d-none]="selelctedstartDate"
+                    <!-- <span [class.d-none]="selelctedstartDate"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span>
+                      style="pointer-events: none">Date</span> -->
                     <input type="date" id="startDate" [min]="pickuptoday" [(ngModel)]="selelctedstartDate"
                       (ngModelChange)="onSelectPickupDate()" name="selelctedstartDate"
                       class="form-control size14 redhat-semibold input-margin black-light-color" required />
@@ -166,9 +167,9 @@
                 </div>
                 <div class="col-6">
                   <div class="position-relative">
-                    <span [class.d-none]="selectedstartTime"
+                    <!-- <span [class.d-none]="selectedstartTime"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span>
+                      style="pointer-events: none">Time</span> -->
                     <input type="time" id="startTime" [(ngModel)]="selectedstartTime" name="selectedstartTime"
                       class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time"
                       required />
@@ -215,9 +216,9 @@
               <div class="row" *ngIf="!isVehicleYacht;">
                 <div class="col-6">
                   <div class="position-relative">
-                    <span [class.d-none]="selelctedendDate"
+                    <!-- <span [class.d-none]="selelctedendDate"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span>
+                      style="pointer-events: none">Date</span> -->
                     <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate"
                       name="selelctedendDate" class="form-control size14 redhat-semibold input-margin black-light-color"
                       (ngModelChange)="onSelectDropDate()" placeholder="Date" required />
@@ -226,9 +227,9 @@
                 </div>
                 <div class="col-6">
                   <div class="position-relative">
-                    <span [class.d-none]="selectedendTime"
+                    <!-- <span [class.d-none]="selectedendTime"
                       class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span>
+                      style="pointer-events: none">Time</span> -->
                     <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
                       class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time" required />
                     <!-- <lucide-icon name="clock"></lucide-icon> -->
@@ -342,6 +343,7 @@
                 </span>
               </button>
             </form>
+            </div>
           </div>
         </div>
       </div>
