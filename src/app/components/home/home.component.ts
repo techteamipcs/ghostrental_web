@@ -116,13 +116,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'Building Lasting Relationships Through Exceptional Service.',
     },
     {
-      image: 'images/icons/fullday.png',
+      image: 'images/icons/247-white.svg',
       title: 'Booking Experience',
-      description: 'instant 24/7 booking access for instant luxury rental convenience in dubai',
+      description: 'instant booking with 24/7 service assistance',
     },
     {
-      image: 'images/icons/earth.png',
-      title: 'Total UAE Coverage',
+      image: 'images/icons/map-white.svg',
+      title: 'UAE Coverage',
       description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }
   ];

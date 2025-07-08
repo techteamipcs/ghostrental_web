@@ -2014,8 +2014,8 @@
   .padding-x {
     padding: 0 10rem;
 
-    @media screen and (max-width: 1920px) {
-      padding: 0;
+    @media screen and (max-width: 2048px) {
+      padding: 0 ;
     }
 
     h3 {

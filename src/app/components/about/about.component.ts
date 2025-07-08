@@ -59,27 +59,25 @@ export class AboutComponent  {
 
 
 
-
   features = [
     {
       image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
       description: 'Premium Cars and Yacht Rentals suitable for family use.',
-
     },
     {
       image: 'images/icons/hand.png',
       title: 'Family-First Service',
-      description: 'Building Lasting Relationships Through Exceptional Luxury Service.',
+      description: 'Building Lasting Relationships Through Exceptional Service.',
     },
     {
-      image: 'images/icons/fullday.png',
-      title: 'Perfect Booking Experience',
-      description: '24/7 Booking Access For Instant Luxury Rental Convenience In Dubai',
+      image: 'images/icons/247-black.svg',
+      title: 'Booking Experience',
+      description: 'instant booking with 24/7 service assistance',
     },
     {
-      image: 'images/icons/earth.png',
-      title: 'Total UAE Coverage',
+      image: 'images/icons/map-black.svg',
+      title: 'UAE Coverage',
       description: 'Complete UAE Service Accompanied By Luxury Delivered To Your House.',
     }
   ];
