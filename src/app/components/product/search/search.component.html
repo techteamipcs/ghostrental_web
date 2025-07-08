@@ -199,22 +199,22 @@
         </div>
       </div>
       <!-- results section -->
-      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12" #resultsSection [ngClass]="{
+      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12 position-relative" #resultsSection [ngClass]="{
         'col-xl-12 col-lg-12 col-md-12 col-12': isFilterCollapsed,
         'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
       }">
         <!-- <div class="container-fluid"> -->
-        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 ">
+        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section">
           <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1" style="font-size: 14px;"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} Vehicles
           </h6>
-          <!-- <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize"
+          <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize"
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
-          </h6> -->
+          </h6> 
 
           <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;" *ngIf="vehicleData && vehicleData.length > 0">
           <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent color-card-p cselect"
@@ -231,9 +231,9 @@
             <option value="L-H" class="size14 redhat-semibold text-capitalize color-card-p">
               Price: Low to High
             </option>
-            <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
+            <!-- <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
               Old to New
-            </option>
+            </option> -->
             <option value="relevance" class="size14 redhat-semibold text-capitalize color-card-p">
               Relevance
             </option>
@@ -244,10 +244,10 @@
         </div>
         </div>
         <div class="products">
-          <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
+          <!-- <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
             *ngIf="vehicleData && vehicleData.length == 0">
             Coming soon...
-          </h6>
+          </h6> -->
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
               *ngFor="let car of vehicleData">
