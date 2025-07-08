@@ -316,14 +316,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openPopup() {
-    if(this.vehicleData && this.vehicleData.vehicle_type == 'Car'){
-      const message = `Hello! I'm interested in booking this ${this.vehicleData.name} car.\n\nCould you please help me with:\n - Is this car available for my dates\n - Free UAE delivery service\n - Chauffeur services if needed \n\nI'm looking to elevate my drive with your premium fleet.\n\nThank you!`;
-      const encodedMsg = encodeURIComponent(message);
-      const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
-      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
-      window.open(waUrl, '_blank');
-    } else {
-      const message = `Hello! I'm interested in booking this ${this.vehicleData.name}.\n\nCould you please help me with:\n - Is this Yacht available for my dates\n - Crew and catering options\n - Dubai landmarks cruise routes\n\nI'm looking to elevate my drive with your premium fleet.\n\nThank you!`;
+    if(this.vehicleData ){
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking ${this.vehicleData.name} ${this.vehicleData.model_data[0].name}.\n\nClick here : ${this.baseUrl}/product/${this.vehicleData.url_key}\n\nCould you please help me with:\n - Is this car available for my dates?\n - Free UAE delivery service.\n - Chauffeur services if needed.\n\nI'm looking to Elevate my Drive with your Executive fleet!.\n\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;

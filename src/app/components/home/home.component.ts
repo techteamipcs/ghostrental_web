@@ -98,6 +98,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedYatchSeats: any;
   selectedYatchHours: any;
   selectedYatchAddOns: any = [];
+  minDate: any;
   onDateChange(event: any) {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
@@ -144,13 +145,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
       phone: ['', Validators.required],
       message: ['', Validators.required],
     });
-    const todayDate = new Date();
-    this.today = todayDate.toISOString().split('T')[0];
-    const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));
-    this.maxDate = futureDate.toISOString().split('T')[0];
-    this.pickuptoday = this.today;
-    this.dropofftoday = this.today;
+    // const todayDate = new Date();
+    // this.today = todayDate.toISOString().split('T')[0];
+    // const futureDate = new Date(todayDate.setFullYear(todayDate.getFullYear() + 1));
+    // this.maxDate = futureDate.toISOString().split('T')[0];
+    // this.pickuptoday = this.today;
+    // this.dropofftoday = this.today;
     this.get_PageMeta();
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    this.minDate = `${yyyy}-${mm}-${dd}`;
+    this.pickuptoday = this.minDate;
+    this.dropofftoday = this.minDate;
   }
 
   ngOnInit() {
@@ -409,9 +417,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //   document.body.style.overflow = 'hidden';
     // }
     let tempspl = [];
+    let tempvar:any = '';
     if(this.selectedAddons && this.selectedAddons.length > 0) {
-      this.selectedAddons.forEach((spladds)=>{
-        tempspl.push(spladds.name)
+      this.selectedAddons.forEach((spladds,index)=>{
+        tempspl.push(index+'. '+spladds.name+'\n');
+        index = index + 1;
+        tempvar += index+'. '+spladds.name+'\n';
       });
     }
     let tempspladdons
@@ -419,13 +430,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       tempspladdons = JSON.stringify(tempspl).replace(/"/g, '');
     }     
     if(this.vehicletype == 'Car'){
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${!this.selectedendTime? '':this.selectedendTime},${!tempspladdons ? '':'\nSpecial Add-ons: '+tempspladdons}\n\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nBrand: ${this.selelctedbrand},\nPickup Address: ${this.selectedpickaddress},\nDrop Address: ${this.selecteddropaddress},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},\nDrop Date: ${this.selelctedendDate} ${!this.selectedendTime? '':this.selectedendTime},\n${!tempspladdons ? '':'Special Add-ons: \n'+tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     } else {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nPax: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},${!tempspladdons ? '':'\nSpecial Add-ons: '+tempspladdons}\n\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype},\nSize: ${this.selectedYatchSize},\nPax: ${this.selectedYatchSeats},\nHours: ${this.selectedYatchHours},\nPickup Date: ${this.selelctedstartDate} ${!this.selectedstartTime? '':this.selectedstartTime},\n${!tempspladdons ? '':'Special Add-ons: \n'+tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
@@ -888,7 +899,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onSelectPickupDate() {
     if (this.selelctedstartDate) {
-      this.dropofftoday = this.selelctedstartDate;
+      const today = new Date(this.selelctedstartDate);
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      this.minDate = `${yyyy}-${mm}-${dd}`;
+      this.dropofftoday = this.minDate;
     }
   }
 
