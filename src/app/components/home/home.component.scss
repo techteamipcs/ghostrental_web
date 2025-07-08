@@ -2667,3 +2667,14 @@ input {
 .card-body{
   padding: 0;
 }
+::ng-deep{
+  input::placeholder {
+  color: #11191F;       /* light gray placeholder color */
+  opacity: 1;        /* ensure full opacity */
+}
+
+/* Optional: target only text inputs */
+input[type="text"]::placeholder {
+  color: #11191F;
+}
+}
