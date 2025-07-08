@@ -517,11 +517,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
           clickable: true,
           dynamicBullets: true,
         },
-        // autoplay: {
-        //   delay: 2000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
         navigation: {
           nextEl: '.yacht-swiper-button-next',
           prevEl: '.yacht-swiper-button-prev',
