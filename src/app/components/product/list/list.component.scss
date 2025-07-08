@@ -192,7 +192,7 @@
 
 }
 
-.card-content {
+.card-content{
   padding: 16px 18px 0;
 
   @media screen and (max-width: 1920px) {
@@ -484,8 +484,24 @@
 .car-card{
   .card-footer{
     border: 0;
-    padding: 0;
     background-color: transparent;
+    padding: 0px 18px 0;
+
+    @media screen and (max-width: 1920px) {
+      padding: 0px 14px 0;
+    }
+  
+    @media screen and (max-width: 1400px) {
+      padding: 0px 12px 0;
+    }
+  
+    @media screen and (max-width: 768px) {
+      padding: 0px 10px 0;
+    }
+  
+    @media screen and (max-width: 430px) {
+      padding: 0px 16px 12px;
+    }
   }
   .card-header{
     border: 0;

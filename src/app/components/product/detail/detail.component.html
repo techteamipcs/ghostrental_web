@@ -5,11 +5,11 @@
         *ngIf="
           vehicleData.bodytype_data && vehicleData.bodytype_data.length > 0
         "
-        class="size22 redhat-semibold text-uppercase mb-2"
+        class="size22 redhat-semibold text-uppercase mb-2 color-card-p " 
       >
         {{ vehicleData.bodytype_data[0].name }}
       </h3>
-      <h1 class="size46 performa-light mb-4">
+      <h1 class="size46 performa-light mb-4 gray-color">
         {{ vehicleData.name }}
       </h1>
     </div>
@@ -113,11 +113,11 @@
             />
           </div>
           <div class="col mb-md-4 d-flex flex-column justify-content-end p-0">
-            <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize">
+            <p class="size18 redhat-semibold mb-0 color-card-p text-capitalize ">
               {{ vehicleData.bodytype_data[0].name }}
             </p>
             <h4 class="size26 redhat-semibold m-0 gray-color">
-              {{ getFirstTwoWords(vehicleData.name) }}...
+              {{ vehicleData.name }}
             </h4>
           </div>
         </div>
@@ -273,7 +273,7 @@
                   {{ vehicleData.bodytype_data[0].name }}
                 </p>
                 <h4 class="size26 redhat-semibold m-0 gray-color">
-                  {{ getFirstTwoWords(vehicleData.name) }}...
+                  {{ vehicleData.name }}
                 </h4>
 
             </div>
@@ -515,7 +515,7 @@
 
       <div class="col-xl-9 col-12 border-1 border-bottom section-width">
         <div class="">
-          <h3 class="size26 redhat-semibold text-capitalize margin42">
+          <h3 class="size26 redhat-semibold text-capitalize margin42 gray-color">
             {{ vehicleData.vehicle_type }} overview
           </h3>
 
@@ -534,7 +534,7 @@
                 </div>
                 <div class="col-4">
                   <h5
-                    class="redhat-bold text-capitalize mb-0"
+                    class="redhat-bold text-capitalize mb-0 gray-color"
                     style="font-size: 14px"
                   >
                     {{ detail.label }}
@@ -542,7 +542,7 @@
                 </div>
                 <div class="col-6">
                   <p
-                    class="redhat-semibold text-capitalize mb-0"
+                    class="redhat-semibold text-capitalize mb-0 gray-color"
                     style="font-size: 14px"
                   >
                     {{ detail.value }}
@@ -559,11 +559,11 @@
         *ngIf="vehicleData"
       >
         <div class="margin40">
-          <h3 class="size26 redhat-semibold text-capitalize margin42">
+          <h3 class="size26 redhat-semibold text-capitalize margin42 gray-color">
             description
           </h3>
           <p
-            class="size14 redhat-semibold csmb30"
+            class="size14 redhat-semibold csmb30 gray-color"
             [innerHtml]="vehicleData.description"
           ></p>
         </div>
@@ -609,7 +609,7 @@
         "
       >
         <div class="margin40">
-          <h3 class="size26 redhat-semibold text-capitalize margin42">
+          <h3 class="size26 redhat-semibold text-capitalize margin42 gray-color">
             features
           </h3>
           <div class="row">
@@ -619,7 +619,7 @@
               *ngIf="interior && interior.length > 0"
             >
               <div class="d-flex flex-column">
-                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3 gray-color">
                   Interior
                 </h6>
                 <ul class="list-unstyled">
@@ -632,7 +632,7 @@
                       alt=""
                       class="features_icons"
                     />
-                    <p class="size14 redhat-semibold text-capitalize m-0">
+                    <p class="size14 redhat-semibold text-capitalize m-0 gray-color">
                       {{ item.name }}
                     </p>
                   </li>
@@ -640,11 +640,11 @@
               </div>
             </div>
             <div
-              class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3"
+              class="col-xl-3 col-lg-3 col-md-3 col-6 mb-sm-0 mb-3 "
               *ngIf="exterior && exterior.length > 0"
             >
               <div class="d-flex flex-column">
-                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3 gray-color">
                   exterior
                 </h6>
                 <ul class="list-unstyled">
@@ -657,7 +657,7 @@
                       alt=""
                       class="features_icons"
                     />
-                    <p class="size14 redhat-semibold text-capitalize m-0">
+                    <p class="size14 redhat-semibold text-capitalize m-0 gray-color">
                       {{ item.name }}
                     </p>
                   </li>
@@ -670,7 +670,7 @@
               *ngIf="safety && safety.length > 0"
             >
               <div class="d-flex flex-column">
-                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3 gray-color">
                   Safety
                 </h6>
                 <ul class="list-unstyled">
@@ -683,7 +683,7 @@
                       alt=""
                       class="features_icons"
                     />
-                    <p class="size14 redhat-semibold text-capitalize m-0">
+                    <p class="size14 redhat-semibold text-capitalize m-0 gray-color">
                       {{ item.name }}
                     </p>
                   </li>
@@ -695,7 +695,7 @@
               *ngIf="comfort && comfort.length > 0"
             >
               <div class="d-flex flex-column">
-                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3 gray-color">
                   Comfort & Convenience
                 </h6>
                 <ul class="list-unstyled">
@@ -708,7 +708,7 @@
                       alt=""
                       class="features_icons"
                     />
-                    <p class="size14 redhat-semibold text-capitalize m-0">
+                    <p class="size14 redhat-semibold text-capitalize m-0 gray-color">
                       {{ item.name }}
                     </p>
                   </li>
@@ -725,7 +725,7 @@
               "
             >
               <div class="d-flex flex-column">
-                <h6 class="size18 redhat-semibold text-capitalize mb-3">
+                <h6 class="size18 redhat-semibold text-capitalize mb-3 gray-color">
                   Special Add-ons
                 </h6>
                 <ul class="list-unstyled">
@@ -738,7 +738,7 @@
                       alt=""
                       class="features_icons"
                     />
-                    <p class="size14 redhat-semibold text-capitalize m-0">
+                    <p class="size14 redhat-semibold text-capitalize m-0 gray-color">
                       {{ item.name }}
                     </p>
                   </li>
@@ -833,10 +833,10 @@
 
       <div class="col-xl-9 col-12 location-section section-width">
         <div class="margin40">
-          <h3 class="size26 redhat-semibold text-capitalize margin42">
+          <h3 class="size26 redhat-semibold text-capitalize margin42 gray-color">
             location
           </h3>
-          <p class="size18 redhat-semibold text-capitalize">
+          <p class="size18 redhat-semibold text-capitalize gray-color">
             mk ghaninam, warehouse
             <br />
             no.40 3rd al wuar, al a rja industrial area
@@ -863,7 +863,7 @@
 <section class="collection">
   <div class="container-fluid">
     <h3
-      class="text-capitalize size60 performa-light margin42"
+      class="text-capitalize size60 performa-light margin42 gray-color"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
@@ -882,7 +882,7 @@
               *ngFor="let car of relatedVehicleData"
             >
                 <!-- [routerLink]="['/product', car.url_key]" routerLinkActive="router-link-active" -->
-                <div class="car-card" routerLink="product/{{ car.url_key }}">
+                <div class="car-card" (click)="onclickrelateproduct(car.url_key)">
                   <div class="thumbnail-image-container">
                     <img
                       src="{{ backendURl }}/media/{{ car.media_data[0].src }}"
@@ -901,12 +901,19 @@
                           class="car-name mb-1 size26 redhat-semibold gray-color"
                         >
                           <!-- {{ car.name.substring(0, 18) }}... -->
-                          {{ getFirstTwoWords(car.name) }}...
+                          {{ car.name }}
                         </h4>
                         <h6
                           class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                          *ngIf="car.vehicle_type == 'Car'"
                         >
                           {{ car.transmission }}
+                        </h6>
+                        <h6
+                          class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                          *ngIf="car.vehicle_type == 'Yachts'"
+                        >
+                          {{ car.bodytype_data[0].name }}
                         </h6>
                       </div>
                       <span
@@ -1006,6 +1013,7 @@
 
                     <div
                       class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                      *ngIf="car.vehicle_type === 'Car'"
                     >
                       <div class="cash">
                         <h6
@@ -1015,6 +1023,26 @@
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold gray-color">
                           AED {{ car.dailyRate }}
+                        </h5>
+                      </div>
+                      <a
+                        (click)="onclickrelateproduct(car.url_key)"
+                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
+                        >View details</a
+                      >
+                    </div>
+                    <div
+                      class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                      *ngIf="car.vehicle_type === 'Yachts'"
+                    >
+                      <div class="cash">
+                        <h6
+                          class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
+                        >
+                          AED {{ car.regularRateHourly }}
+                        </h6>
+                        <h5 class="mb-0 size26 redhat-semibold gray-color">
+                          AED {{ car.hourlyRate }}
                         </h5>
                       </div>
                       <a

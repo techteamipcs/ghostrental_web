@@ -12,7 +12,7 @@
               <div class="d-flex align-items-center gap-2">
                 <img src="{{ imageURL }}/images/icons/filter.svg"  alt="Filter" class="img-fluid"
                   style="width: 20px" />
-                <h6 class="mb-0 size18 redhat-semibold">Filter</h6>
+                <h6 class="mb-0 size18 redhat-semibold gray-color">Filter</h6>
               </div>
               <div class="d-flex align-items-center gap-2">
                 <button class=" size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent  gray-color"
@@ -211,30 +211,30 @@
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} Vehicles
           </h6>
-          <h6 class="mb-0 size22 redhat-bold d-md-block d-none color-card-p text-capitalize"
+          <!-- <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize"
             *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
-          </h6>
+          </h6> -->
 
-          <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;">
-          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent gray-color cselect"
+          <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer;" *ngIf="vehicleData && vehicleData.length > 0">
+          <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent color-card-p cselect"
             (change)="onChangeSort($event)" style="font-size: 14px;">
-            <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
+            <option selected disabled class="text-muted size14 redhat-semibold text-capitalize ">
               Sort by any makes &nbsp;
             </option>
             <!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z
             </option> -->
-            <option value="H-L" class="size14 redhat-semibold text-capitalize">
+            <option value="H-L" class="size14 redhat-semibold text-capitalize color-card-p">
               Price: High to Low
             </option>
-            <option value="L-H" class="size14 redhat-semibold text-capitalize">
+            <option value="L-H" class="size14 redhat-semibold text-capitalize color-card-p">
               Price: Low to High
             </option>
-            <option value="old" class="size14 redhat-semibold text-capitalize">
+            <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
               Old to New
             </option>
-            <option value="relevance" class="size14 redhat-semibold text-capitalize">
+            <option value="relevance" class="size14 redhat-semibold text-capitalize color-card-p">
               Relevance
             </option>
           </select>
@@ -244,11 +244,15 @@
         </div>
         </div>
         <div class="products">
+          <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
+            *ngIf="vehicleData && vehicleData.length == 0">
+            Coming soon...
+          </h6>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
               *ngFor="let car of vehicleData">
-              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock">
-              <div class="car-card">
+              <!-- <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock"> -->
+              <div class="car-card" [routerLink]="['/product', car.url_key]">
 
                 <div class="thumbnail-image-container">
                 <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"
@@ -278,10 +282,15 @@
                     <div class="car-header margin15">
                       <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
                         <!-- {{ car.name.substring(0, 18) }}... -->
-                        {{ getFirstTwoWords(car.name) }}...
+                        {{ car.name }}
                       </h4>
-                      <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p">
-                        {{ car.transmission || 'N/A' }}
+                      <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                      *ngIf="car.vehicle_type == 'Car'">
+                        {{ car.transmission  }}
+                      </h6>
+                      <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                      *ngIf="car.vehicle_type == 'Yachts'">
+                        {{ car.bodytype_data[0].name}}
                       </h6>
                     </div>
                     <span *ngIf="car && car.isvipNumberPlate"
@@ -333,7 +342,7 @@
                     </div>
                   </div>
 
-                  <div class="cash-container  d-flex justify-content-between align-items-center pt-md-3 pt-2">
+                  <div class="cash-container  d-flex justify-content-between align-items-center pt-md-3 pt-2" *ngIf="car.vehicle_type === 'Car'">
                     <div class="cash">
                       <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                         AED {{ car.regularRateDaily }}
@@ -346,9 +355,22 @@
                       class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt">View
                       details</button>
                   </div>
+                  <div class="cash-container  d-flex justify-content-between align-items-center pt-md-3 pt-2" *ngIf="car.vehicle_type === 'Yachts'">
+                    <div class="cash">
+                      <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
+                        AED {{ car.regularRateHourly }}
+                      </h6>
+                      <h5 class="mb-0 size26 redhat-semibold gray-color">
+                        AED {{ car.hourlyRate }}
+                      </h5>
+                    </div>
+                    <button routerLink="/product/{{ car.url_key }}"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt">View
+                      details</button>
+                  </div>
                 </div>
               </div>
-            </a>
+            <!-- </a> -->
             </div>
           </div>
         <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">

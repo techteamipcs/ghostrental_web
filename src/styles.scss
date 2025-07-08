@@ -1465,12 +1465,10 @@ nav {
 }
 
 .footer-menu {
-  li {
-    a.active {
-      font-family: $redhat-bold;
-    }
-
-    &:hover a {
+  a{
+    transition: font-family 3s ease;
+    will-change: font-family;
+    &:hover, &.active {
       font-family: $redhat-bold;
     }
   }
