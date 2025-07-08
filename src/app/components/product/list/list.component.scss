@@ -10,89 +10,112 @@
 }
 
 .content {
-  width: 52%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: absolute;
   transform: translateY(-50%);
-  top: 37%;
-  left: 8%;
 
-  // top: 50%;
-  // left: 6%;
-  // transform: translateY(-50%);
-  // padding: 0 30px;
-  // @media (max-width: 1920px) {
-  //   width: 47%;
-  //   // width: 42%;
-  // }
-  // @media (max-width: 1600px) {
-  //   width: 33%;
-  // }
+  left: 200px;
+  top: 46%;
+
+  @media screen and (max-width: 2048px) {
+    left: 200px;
+    top: 45%;
+  }
 
   @media screen and (max-width: 1920px) {
-    top: 43%;
-    left: 6.8%;
-    width: 48%;
+    top: 44%;
+    left: 125px;
   }
 
   @media screen and (max-width: 1536px) {
-    top: 42%;
-    left: 5.9%;
+    top: 43.5%;
+    left: 86px;
+  }
+}
+
+// .content {
+//   width: 52%;
+//   position: absolute;
+//   transform: translateY(-50%);
+//   top: 37%;
+//   left: 8%;
+
+
+//   @media (max-width: 2048px) {
+//     top: 45.5%;
+//     left: 10%;
+//   }
+//   @media screen and (max-width: 1920px) {
+//     // top: 43%;
+//       top: 44%;
+//       left: 6.7%;
+//     // left: 6.8%;
+//     // width: 48%;
+//   }
+
+//   @media screen and (max-width: 1536px) {
+//     top: 42%;
+//     left: 5.9%;
+//   }
+
+//   @media screen and (max-width: 1440px) {
+//     //  top: 42%;
+//     //  left: 4.8%;
+//     top: 45%;
+//       left: 6%;
+//   }
+
+//   @media screen and (max-width: 1366px) {
+//     top: 42.5%;
+//     left: 7.8%;
+//   }
+
+//   @media (max-width: 1280px) {
+//     left: 6.3%;
+//     // padding: 0;
+//   }
+
+//   @media (max-width: 1024px) {
+//     width: 100%;
+//     left: 3.5%;
+//     top: 34%;
+//   }
+
+//   @media (max-width: 768px) {
+//     top: 30%;
+//     left: 6%;
+//   }
+
+//   @media (max-width: 480px) {
+//     padding: 0 15px;
+//     left: 0;
+//   }
+
+//   // @media (max-width: 768px) {
+//   //   top: 50%;
+//   //   width: 100%;
+//   //   left: 5%;
+//   //   transform: translateY(-50%);
+//   // }
+// }
+
+.hero-para {
+  width: 576px;
+  padding-left: 6px;
+
+  @media (max-width:1920px) {
+    width: 580px;
   }
 
-  @media screen and (max-width: 1440px) {
-    //  top: 42%;
-    //  left: 4.8%;
-    top: 40%;
-    left: 6%
+  @media (max-width:991px) {
+    width: 450px;
   }
 
-  @media screen and (max-width: 1366px) {
-    top: 42.5%;
-    left: 7.8%;
-  }
-
-  @media (max-width: 1280px) {
-    left: 6.3%;
-    // padding: 0;
-  }
-
-  @media (max-width: 1024px) {
+  @media (max-width:480px) {
     width: 100%;
-    left: 3.5%;
-    top: 34%;
-  }
-
-  @media (max-width: 768px) {
-    top: 30%;
-    left: 6%;
-  }
-
-  @media (max-width: 480px) {
-    padding: 0 15px;
-    left: 0;
-  }
-
-  // @media (max-width: 768px) {
-  //   top: 50%;
-  //   width: 100%;
-  //   left: 5%;
-  //   transform: translateY(-50%);
-  // }
-  .hero-para {
-    width: 576px;
-    padding-left: 6px;
-
-    @media (max-width:1920px) {
-      width: 505px;
-    }
-
-    @media (max-width:991px) {
-      width: 450px;
-    }
-
-    @media (max-width:480px) {
-      width: 100%;
-    }
   }
 }
 
@@ -106,6 +129,7 @@
     width: 28px;
     height: 28px;
   }
+
   @media screen and (max-width: 1440px) {
     width: 25px;
     height: 25px;
@@ -192,7 +216,7 @@
 
 }
 
-.card-content{
+.card-content {
   padding: 16px 18px 0;
 
   @media screen and (max-width: 1920px) {
@@ -269,6 +293,7 @@
   @media screen and (max-width: 1280px) {
     padding: 100px 55px 0;
   }
+
   @media screen and (max-width: 1200px) {
     padding: 90px 70px 0;
   }
@@ -476,13 +501,13 @@
   width: 100%;
   height: 100%;
   // background-color: rgba(0, 0, 0, 0.2);
-  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, #00000000 100%)
-    0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, #00000000 100%) 0% 0% no-repeat padding-box;
   border-radius: 20px;
   z-index: 1;
 }
-.car-card{
-  .card-footer{
+
+.car-card {
+  .card-footer {
     border: 0;
     background-color: transparent;
     padding: 0px 18px 0;
@@ -490,25 +515,27 @@
     @media screen and (max-width: 1920px) {
       padding: 0px 14px 0;
     }
-  
+
     @media screen and (max-width: 1400px) {
       padding: 0px 12px 0;
     }
-  
+
     @media screen and (max-width: 768px) {
       padding: 0px 10px 0;
     }
-  
+
     @media screen and (max-width: 430px) {
       padding: 0px 16px 12px;
     }
   }
-  .card-header{
+
+  .card-header {
     border: 0;
     padding: 0;
     background-color: transparent;
   }
-  .card-body{
+
+  .card-body {
     padding: 0;
   }
 }
