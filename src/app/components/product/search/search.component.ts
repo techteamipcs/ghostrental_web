@@ -73,10 +73,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 150000; 
+  maxPrice: any = 20000; 
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
-  price_type: any = 'dailyRate';
+  price_type: any = '';
   availableStartDate: any;
   availableEndDate: any;
   vipNumberPlate: any = '';
@@ -93,10 +93,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
   value: number = 40;
-  highValue: number = 10000;
+  highValue: number = 20000;
   options: Options = {
     floor: 0,
-    ceil: 150000,
+    ceil: 20000,
   };
   sliderVisible:any = false;
 
@@ -169,7 +169,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.processQueryParams(params);
         const type = params['type'];
         if (type) {
-          this.setVehicleType(type);
+          this.setVehicleType();
           this.SearchItems();
         }
       });
@@ -194,20 +194,22 @@ export class SearchComponent implements OnInit, AfterViewInit {
 		});
 	}
   
-  setVehicleType(type: string) {
-    this.vehicleType = type;
+  setVehicleType() {
     if(this.vehicleType=='Car'){
-      this.maxPrice = 5000;
-      this.currentLimit = 6;
+      this.maxPrice = 10000;
+      this.currentLimit = 12;
       this.currentPage = 1;
-      this.itemsPerPage = 6;
+      this.itemsPerPage = 12;
+      this.price_type = 'dailyRate';
     }
-    if(this.vehicleType=='Yachts'){
-      this.maxPrice = 1500000;
-      this.currentLimit = 6;
+    if(this.vehicleType == 'Yachts'){
+      this.maxPrice = 20000;
+      this.currentLimit = 12;
       this.currentPage = 1;
-      this.itemsPerPage = 6;
+      this.itemsPerPage = 12;
+      this.price_type = 'hourlyRate';
     }
+    this.getCarData();
   }
 
   ngAfterViewInit(): void {
@@ -372,20 +374,20 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onPriceInputChange(type: 'min' | 'max') {
     // Ensure values are numbers
     this.minPrice = Number(this.minPrice) || 0;
-    this.maxPrice = Number(this.maxPrice) || 10000;
+    this.maxPrice = Number(this.maxPrice) || 200000;
 
     // Ensure min and max are within bounds
     if (this.minPrice < 0) this.minPrice = 0;
-    if (this.maxPrice > 10000) this.maxPrice = 10000;
+    if (this.maxPrice > 200000) this.maxPrice = 200000;
 
     // Ensure minimum gap between min and max
     const minGap = 500;
     if (this.maxPrice - this.minPrice < minGap) {
       if (type === 'min') {
         this.maxPrice = this.minPrice + minGap;
-        if (this.maxPrice > 10000) {
-          this.maxPrice = 10000;
-          this.minPrice = 10000 - minGap;
+        if (this.maxPrice > 20000) {
+          this.maxPrice = 20000;
+          this.minPrice = 20000 - minGap;
         }
       } else {
         this.minPrice = this.maxPrice - minGap;
@@ -684,8 +686,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.selectedRentalType = data.target.value;
       if (data.target.value === 'Daily') {
         this.price_type = 'dailyRate';
+        this.maxPrice = 150000;
       } else if (data.target.value === 'Hourly') {
         this.price_type = 'hourlyRate';
+        this.maxPrice = 20000;
       } else if (data.target.value === 'Weekly') {
         this.price_type = 'weeklyRate';
       } else if (data.target.value === 'Monthly') {
