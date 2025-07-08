@@ -890,8 +890,9 @@
                       class="img-fluid thumbnail-image w-100 h-100"
                     />
                   </div>
+                  <div class="card-body">
                   <div
-                    class="card-content h-100 d-flex flex-column justify-content-center"
+                    class="card-content h-100 d-flex flex-column "
                   >
                     <div
                       class="car-info d-flex justify-content-between position-relative"
@@ -1011,46 +1012,50 @@
                       </div>
                     </div>
 
-                    <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                      *ngIf="car.vehicle_type === 'Car'"
-                    >
-                      <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                        >
-                          AED {{ car.regularRateDaily }}
-                        </h6>
-                        <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ car.dailyRate }}
-                        </h5>
-                      </div>
-                      <a
-                        (click)="onclickrelateproduct(car.url_key)"
-                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
-                        >View details</a
+                  </div>
+                  </div>
+                  <div class="card-footer">
+
+                  <div
+                    class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                    *ngIf="car.vehicle_type === 'Car'"
+                  >
+                    <div class="cash">
+                      <h6
+                        class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
                       >
+                        AED {{ car.regularRateDaily }}
+                      </h6>
+                      <h5 class="mb-0 size26 redhat-semibold gray-color">
+                        AED {{ car.dailyRate }}
+                      </h5>
                     </div>
-                    <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                      *ngIf="car.vehicle_type === 'Yachts'"
+                    <a
+                      (click)="onclickrelateproduct(car.url_key)"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
+                      >View details</a
                     >
-                      <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                        >
-                          AED {{ car.regularRateHourly }}
-                        </h6>
-                        <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ car.hourlyRate }}
-                        </h5>
-                      </div>
-                      <a
-                        (click)="onclickrelateproduct(car.url_key)"
-                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
-                        >View details</a
+                  </div>
+                  <div
+                    class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                    *ngIf="car.vehicle_type === 'Yachts'"
+                  >
+                    <div class="cash">
+                      <h6
+                        class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
                       >
+                        AED {{ car.regularRateHourly }}
+                      </h6>
+                      <h5 class="mb-0 size26 redhat-semibold gray-color">
+                        AED {{ car.hourlyRate }}
+                      </h5>
                     </div>
+                    <a
+                      (click)="onclickrelateproduct(car.url_key)"
+                      class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize"
+                      >View details</a
+                    >
+                  </div>
                   </div>
                 </div>
             </div>
