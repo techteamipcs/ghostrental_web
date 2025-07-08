@@ -705,7 +705,7 @@
                           {{ yacht.name }}
                         </h4>
                         <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
-                          {{ yacht.type || "NA" }}
+                          {{ yacht.bodytype_data[0].name }}
                         </h6>
                       </div>
                       <span *ngIf="yacht && yacht.isvipNumberPlate"
@@ -736,10 +736,10 @@
                     <div class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-2">
                       <div class="cash">
                         <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through color-card-p">
-                          AED {{ yacht.regularRateDaily }}
+                          AED {{ yacht.regularRateHourly }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ yacht.dailyRate }}
+                          AED {{ yacht.hourlyRate }}
                         </h5>
                       </div>
                       <a [routerLink]="['/product', yacht.url_key]" routerLinkActive="router-link-active"
