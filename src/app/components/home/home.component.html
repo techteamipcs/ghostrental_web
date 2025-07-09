@@ -11,7 +11,7 @@
       <source src="{{ backendURl }}/banner/{{bannerData.media_data[0].src}}" type="video/ogg" />
       Your browser does not support the video tag.
     </video>
-<!-- start-50 translate-middle form-top -->
+    <!-- start-50 translate-middle form-top -->
     <div class="position-absolute w-100 form-top zindex2 h-100">
       <div class="container-fluid h-100">
         <div class="row h-100">
@@ -27,161 +27,158 @@
               <a href="/contact" class="white-color text-decoration-none white-border-button size18 redhat-bold  d-none d-lg-block">Book Now</a>
               <a href="/contact" class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a>
             </div> -->
-<div class="d-flex h-100 justify-content-center">
-            <div class="content " *ngIf="bannerData">
-              <h1 class="size88 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
-              <p class="size20 redhat-regular hero-para beige-color line-height26" [innerHtml]="bannerData.description">
-              </p>
-              <!-- <a href="/contact" class="white-color text-decoration-none white-button size18 redhat-bold">Book
+            <div class="d-flex h-100 justify-content-center">
+              <div class="content " *ngIf="bannerData">
+                <h1 class="size88 performa-thin white-color text-capitalize" [innerHtml]="bannerData.short_desc"></h1>
+                <p class="size20 redhat-regular hero-para beige-color line-height26"
+                  [innerHtml]="bannerData.description">
+                </p>
+                <!-- <a href="/contact" class="white-color text-decoration-none white-button size18 redhat-bold">Book
                 Now</a> -->
 
-              <button routerLink="/contact" class="white-button size18 redhat-bold text-capitalize"
-                data-text="Book Now">
-                <span>Book Now</span>
-              </button>
-              <!-- <a href="/contact"
+                <button routerLink="/contact" class="white-button size18 redhat-bold text-capitalize"
+                  data-text="Book Now">
+                  <span>Book Now</span>
+                </button>
+                <!-- <a href="/contact"
                 class="white-color text-decoration-none black-button size18 redhat-bold d-block d-lg-none">Book Now</a> -->
+              </div>
             </div>
-</div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
             <div class="d-flex h-100 align-items-center form-container">
-            <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
-              <h2 class="text-center size28 redhat-bold black-light-color">
-                Quick Reservation
-              </h2>
-              <div class="d-flex justify-content-center align-items-center gap-2 toggle">
-                <span class="redhat-bold text-capitalize m-0 black-light-color">cars</span>
-                <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()" [class.active]="isVehicleYacht"
-                  tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht" [attr.aria-label]="
+              <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
+                <h2 class="text-center size28 redhat-bold black-light-color">
+                  Quick Reservation
+                </h2>
+                <div class="d-flex justify-content-center align-items-center gap-2 toggle">
+                  <span class="redhat-bold text-capitalize m-0 black-light-color">cars</span>
+                  <div class="toggle-switch" id="vehicleToggle" (click)="toggleVehicle()"
+                    [class.active]="isVehicleYacht" tabindex="0" role="switch" [attr.aria-checked]="isVehicleYacht"
+                    [attr.aria-label]="
                     isVehicleYacht ? 'Switch to cars' : 'Switch to yachts'
                   " aria-labelledby="toggleLabel" (keydown.enter)="toggleVehicle()" (keydown.space)="toggleVehicle()">
-                  <span class="visually-hidden">{{ isVehicleYacht ? "Yachts" : "Cars" }} selected</span>
-                </div>
-                <span class="redhat-bold text-capitalize m-0 black-light-color">yachts</span>
-              </div>
-              <div class="row type-margin">
-                <div class="col-6" *ngIf="!isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" required
-                      (change)="selectData('body_type', $event)">
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Type *
-                      </option>
-                      <option value="{{ bodytype.name }}" class="size14 redhat-semibold black-light-color"
-                        *ngFor="let bodytype of filteredBodytype">
-                        {{ bodytype.name }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    <span class="visually-hidden">{{ isVehicleYacht ? "Yachts" : "Cars" }} selected</span>
                   </div>
+                  <span class="redhat-bold text-capitalize m-0 black-light-color">yachts</span>
                 </div>
-                <div class="col-6" *ngIf="!isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" required (change)="selectData('brand', $event)">
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Brands *
-                      </option>
-                      <option value="{{ brand.name }}" class="size14 redhat-semibold black-light-color"
-                        *ngFor="let brand of filteredBrands">
-                        {{ brand.name }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                  </div>
-                </div>
-                <div class="col-6 label-margin" *ngIf="isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
-                      required>
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Type *
-                      </option>
-                      <option class="size14 redhat-semibold black-light-color" value="{{ bodytype.name }}"
-                        *ngFor="let bodytype of filteredBodytype">
-                        {{ bodytype.name }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                  </div>
-                </div>
-                <div class="col-6 label-margin" *ngIf="isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('size', $event)" required>
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Sizes
-                      </option>
-                      <option class="size14 redhat-semibold black-light-color" value="{{ size }}"
-                        *ngFor="let size of yatchSizes">
-                        {{ size }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                  </div>
-                </div>
-                <div class="col-6" *ngIf="isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
-                      required>
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Pax
-                      </option>
-                      <option class="size14 redhat-semibold black-light-color" value="{{ seat }}"
-                        *ngFor="let seat of yatchSeats">
-                        {{ seat }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                  </div>
-                </div>
-                <div class="col-6" *ngIf="isVehicleYacht">
-                  <div class="position-relative">
-                    <select class="form-select size14 redhat-semibold" (change)="selectData('hours', $event)" required>
-                      <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                        Hours
-                      </option>
-                      <option class="size14 redhat-semibold black-light-color" value="{{ hours }}"
-                        *ngFor="let hours of yatchHours">
-                        {{ hours }}
-                      </option>
-                    </select>
-                    <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                  </div>
-                </div>
-              </div>
-              <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
-                Pickup
-              </h3>
-              <div class="row">
-                <div class="col-6">
-                  <div class="position-relative">
-                    <!-- <span [class.d-none]="selelctedstartDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span> -->
-                    <input type="date" id="startDate" [min]="pickuptoday" [(ngModel)]="selelctedstartDate"
-                      (ngModelChange)="onSelectPickupDate()" name="selelctedstartDate"
-                      class="form-control size14 redhat-semibold input-margin black-light-color" required />
-
-                    <!-- <lucide-icon name="calendar-days"></lucide-icon> -->
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="position-relative">
-                    <!-- <span [class.d-none]="selectedstartTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span> -->
-                    <input type="time" id="startTime" [(ngModel)]="selectedstartTime" name="selectedstartTime"
-                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time"
-                      required />
-                    <!-- <lucide-icon name="clock"></lucide-icon> -->
-                  </div>
-                </div>
-                <div class="col-12 label-margin">
-                  <ng-container *ngIf="!isVehicleYacht;">
+                <div class="row type-margin">
+                  <div class="col-6" *ngIf="!isVehicleYacht">
                     <div class="position-relative">
-                      <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup" class="form-control size14 redhat-semibold black-light-color" placeholder="Pickup location" required>
+                      <select class="form-select size14 redhat-semibold" required
+                        (change)="selectData('body_type', $event)">
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Type *
+                        </option>
+                        <option value="{{ bodytype.name }}" class="size14 redhat-semibold black-light-color"
+                          *ngFor="let bodytype of filteredBodytype">
+                          {{ bodytype.name }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                  <div class="col-6" *ngIf="!isVehicleYacht">
+                    <div class="position-relative">
+                      <select class="form-select size14 redhat-semibold" required
+                        (change)="selectData('brand', $event)">
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Brands *
+                        </option>
+                        <option value="{{ brand.name }}" class="size14 redhat-semibold black-light-color"
+                          *ngFor="let brand of filteredBrands">
+                          {{ brand.name }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                  <div class="col-6 label-margin" *ngIf="isVehicleYacht">
+                    <div class="position-relative">
+                      <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
+                        required>
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Type *
+                        </option>
+                        <option class="size14 redhat-semibold black-light-color" value="{{ bodytype.name }}"
+                          *ngFor="let bodytype of filteredBodytype">
+                          {{ bodytype.name }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                  <div class="col-6 label-margin" *ngIf="isVehicleYacht">
+                    <div class="position-relative">
+                      <select class="form-select size14 redhat-semibold" (change)="selectData('size', $event)" required>
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Sizes
+                        </option>
+                        <option class="size14 redhat-semibold black-light-color" value="{{ size }}"
+                          *ngFor="let size of yatchSizes">
+                          {{ size }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                  <div class="col-6" *ngIf="isVehicleYacht">
+                    <div class="position-relative">
+                      <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
+                        required>
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Pax
+                        </option>
+                        <option class="size14 redhat-semibold black-light-color" value="{{ seat }}"
+                          *ngFor="let seat of yatchSeats">
+                          {{ seat }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                  <div class="col-6" *ngIf="isVehicleYacht">
+                    <div class="position-relative">
+                      <select class="form-select size14 redhat-semibold" (change)="selectData('hours', $event)"
+                        required>
+                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
+                          Hours
+                        </option>
+                        <option class="size14 redhat-semibold black-light-color" value="{{ hours }}"
+                          *ngFor="let hours of yatchHours">
+                          {{ hours }}
+                        </option>
+                      </select>
+                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
+                    </div>
+                  </div>
+                </div>
+                <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
+                  Pickup
+                </h3>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="position-relative">
+                      <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="pickupDate"
+                        [owlDateTime]="pickupDate" [(ngModel)]="formData.pickupDate"  (click)="onSelectPickupLocation($event)"/>
+                      <owl-date-time #pickupDate [pickerType]="'calendar'"></owl-date-time>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="position-relative">
+                      <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="pickupTime"
+                        [owlDateTime]="pickupTime" [(ngModel)]="formData.pickupTime" />
+                      <owl-date-time #pickupTime [pickerType]="'timer'"></owl-date-time>
+                    </div>
+                  </div>
+                  <div class="col-12 label-margin">
+                    <ng-container *ngIf="!isVehicleYacht;">
+                      <div class="position-relative">
+                        <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup"
+                          class="form-control size14 redhat-semibold black-light-color" placeholder="Pickup location"
+                          required>
 
-                      <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
+                        <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
                         required>
                         <option value="" disabled selected class="size14 redhat-semibold">
                           Choose Pickup Location *
@@ -191,9 +188,9 @@
                         </option>
                       </select>
                       <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" /> -->
-                    </div>
-                  </ng-container>
-                  <!-- <ng-template #yachtPickup>
+                      </div>
+                    </ng-container>
+                    <!-- <ng-template #yachtPickup>
                     <div class="position-relative">
                       <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
                         required>
@@ -207,40 +204,36 @@
                       <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
                     </div>
                   </ng-template> -->
+                  </div>
                 </div>
-              </div>
 
-              <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color" *ngIf="!isVehicleYacht;">
-                Drop
-              </h3>
-              <div class="row" *ngIf="!isVehicleYacht;">
-                <div class="col-6">
-                  <div class="position-relative">
-                    <!-- <span [class.d-none]="selelctedendDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span> -->
-                    <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate"
-                      name="selelctedendDate" class="form-control size14 redhat-semibold input-margin black-light-color"
-                      (ngModelChange)="onSelectDropDate()" placeholder="Date" required />
-                    <!-- <lucide-icon name="calendar-days"></lucide-icon> -->
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="position-relative">
-                    <!-- <span [class.d-none]="selectedendTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span> -->
-                    <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
-                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time" required />
-                    <!-- <lucide-icon name="clock"></lucide-icon> -->
-                  </div>
-                </div>
-                <div class="col-12 type-margin">
-                  <ng-container *ngIf="!isVehicleYacht;">
+                <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color"
+                  *ngIf="!isVehicleYacht;">
+                  Drop
+                </h3>
+                <div class="row" *ngIf="!isVehicleYacht;">
+                  <div class="col-6">
                     <div class="position-relative">
-                      <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop" class="form-control size14 redhat-semibold black-light-color" placeholder="Drop location" required>
+                      <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="dropDate"
+                        [owlDateTime]="dropDate" [(ngModel)]="formData.dropDate"/>
+                      <owl-date-time #dropDate [pickerType]="'calendar'"></owl-date-time>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="position-relative">
+                      <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="dropTime"
+                        [owlDateTime]="dropTime" [(ngModel)]="formData.dropTime" />
+                      <owl-date-time #dropTime [pickerType]="'timer'"></owl-date-time>
+                    </div>
+                  </div>
+                  <div class="col-12 type-margin">
+                    <ng-container *ngIf="!isVehicleYacht;">
+                      <div class="position-relative">
+                        <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop"
+                          class="form-control size14 redhat-semibold black-light-color" placeholder="Drop location"
+                          required>
 
-                      <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
+                        <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
                         required>
                         <option value="" disabled selected>
                           Choose Drop Location *
@@ -250,9 +243,9 @@
                         </option>
                       </select>
                       <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" /> -->
-                    </div>
-                  </ng-container>
-                  <!-- <ng-template #yachtReturn>
+                      </div>
+                    </ng-container>
+                    <!-- <ng-template #yachtReturn>
                     <div class="position-relative">
                       <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
                         required>
@@ -266,15 +259,15 @@
                       <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
                     </div>
                   </ng-template> -->
+                  </div>
                 </div>
-              </div>
-              <div class="row"> 
-                <div class="col-12">
-                  <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
-                    Special Add-ons
-                  </h3>
+                <div class="row">
+                  <div class="col-12">
+                    <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
+                      Special Add-ons
+                    </h3>
 
-                  <!-- <ng-select class="form-select size14 redhat-semibold position-relative" [items]="filteredFeatures" bindLabel="name" placeholder="" appendTo="body"
+                    <!-- <ng-select class="form-select size14 redhat-semibold position-relative" [items]="filteredFeatures" bindLabel="name" placeholder="" appendTo="body"
                     [multiple]="true" [addTag]="true" [(ngModel)]="selectedYatchAddOns" name="selectedYatchAddOns"
                     placeholder="Choose Special Add-ons" [hideSelected]="true">
 
@@ -288,61 +281,59 @@
                     <lucide-icon name="x" />
                   </ng-select> -->
 
-                  <!-- new dropdown -->
-                  <div class="position-relative">
-                      <div class="form-select d-flex align-items-center size14 redhat-semibold " (click)="toggleDropdown($event)">
+                    <!-- new dropdown -->
+                    <div class="position-relative">
+                      <div class="form-select d-flex align-items-center size14 redhat-semibold "
+                        (click)="toggleDropdown($event)">
                         <span class="selected-items black-light-color">
                           {{ getSelectedAddonsLabel() }}
                         </span>
-                        <img src="{{ imageURL }}/images/icons/down-arrow.svg" 
-                             [class.rotated]="isDropdownOpen" 
-                             alt="" 
-                             class="down-arrow ms-auto" />
+                        <img src="{{ imageURL }}/images/icons/down-arrow.svg" [class.rotated]="isDropdownOpen" alt=""
+                          class="down-arrow ms-auto" />
                       </div>
-                      
+
                       <div class="dropdown-menu size14 redhat-semibold black-light-color" [class.show]="isDropdownOpen">
-                        <div *ngFor="let addon of filteredFeatures" class=" mb-2 size14 redhat-semibold d-flex align-items-center black-light-color" style="gap: 5px">
-                          <input
-                            type="checkbox"
-                            class="form-check-box"
-                            [id]="'addon-' + addon.url_key"
-                            [checked]="isSelected(addon)"
-                            (click)="$event.stopPropagation()"
-                            (change)="toggleSelection(addon, $event)"
-                          />
-                          <label class="form-check-label size14 redhat-semibold black-light-color" [for]="'addon-' + addon.url_key">
+                        <div *ngFor="let addon of filteredFeatures"
+                          class=" mb-2 size14 redhat-semibold d-flex align-items-center black-light-color"
+                          style="gap: 5px">
+                          <input type="checkbox" class="form-check-box" [id]="'addon-' + addon.url_key"
+                            [checked]="isSelected(addon)" (click)="$event.stopPropagation()"
+                            (change)="toggleSelection(addon, $event)" />
+                          <label class="form-check-label size14 redhat-semibold black-light-color"
+                            [for]="'addon-' + addon.url_key">
                             {{ addon.name }}
                           </label>
                         </div>
                       </div>
                     </div>
-                </div>
+                  </div>
 
-         
-              </div>
-              <span *ngIf="!isReservationFilled" class="alert-danger position-relative redhat-regular size14 mt-2 text-center">Please
-                select all required details correctly to continue</span>
-              <!-- <button type="submit"  class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
+
+                </div>
+                <span *ngIf="!isReservationFilled"
+                  class="alert-danger position-relative redhat-regular size14 mt-2 text-center">Please
+                  select all required details correctly to continue</span>
+                <!-- <button type="submit"  class="white-button d-flex mx-auto size18 redhat-bold btn-margin align-items-center"
                 (click)="openPopup()" data-text="Book Now">
                 <img src="{{ imageURL }}/images/icons/whatsapp.svg" alt="whatsapp" class="whatsapp-icon img-fluid" />
                 <span>Book Now</span>
               </button> -->
 
 
-              <!-- <button type="submit" (click)="openPopup()" data-text="Book Now"
+                <!-- <button type="submit" (click)="openPopup()" data-text="Book Now"
                 class="black-button d-flex mx-auto size18 redhat-bold btn-margin">
                 <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon" />
                 <span>book now</span>
               </button> -->
-              <button type="submit" (click)="openPopup()" 
-                class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize"
-                data-text="Book On Whatsapp" (mouseenter)="setIsHovered(true)" (mouseleave)="setIsHovered(false)">
-                <span>
-                  <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" className="whatsappicon" />
-                  Book On Whatsapp
-                </span>
-              </button>
-            </form>
+                <button type="submit" (click)="openPopup()"
+                  class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize"
+                  data-text="Book On Whatsapp" (mouseenter)="setIsHovered(true)" (mouseleave)="setIsHovered(false)">
+                  <span>
+                    <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" className="whatsappicon" />
+                    Book On Whatsapp
+                  </span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -433,7 +424,8 @@
 </section>
 
 <section class="car-types-section d-xl-block d-none">
-  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up" data-aos-duration="1000">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up"
+    data-aos-duration="1000">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
@@ -456,7 +448,8 @@
 </section>
 
 <section class="car-types-section d-xl-none d-block">
-  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up" data-aos-duration="1000">
+  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up"
+    data-aos-duration="1000">
     Browse by Car Type
   </h3>
   <div class="container-fluid">
@@ -701,45 +694,45 @@
                       class="img-fluid thumbnail-image w-100 h-100" />
                   </div>
                   <!-- <div class="card-content h-100 d-flex flex-column justify-content-center h-100"> -->
-                    <div class="card-body">
-                  <div class="card-content">
-                    <div class="car-info  d-flex justify-content-between position-relative">
-                      <div class="car-header margin15">
-                        <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
-                          {{ yacht.name }}
-                        </h4>
-                        <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
-                          {{ yacht.bodytype_data[0].name }}
-                        </h6>
+                  <div class="card-body">
+                    <div class="card-content">
+                      <div class="car-info  d-flex justify-content-between position-relative">
+                        <div class="car-header margin15">
+                          <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
+                            {{ yacht.name }}
+                          </h4>
+                          <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
+                            {{ yacht.bodytype_data[0].name }}
+                          </h6>
+                        </div>
+                        <span *ngIf="yacht && yacht.isvipNumberPlate"
+                          class="size12 redhat-bold text-capitalize special-number px-2 py-1 gray-color">special number
+                          plate</span>
                       </div>
-                      <span *ngIf="yacht && yacht.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize special-number px-2 py-1 gray-color">special number
-                        plate</span>
-                    </div>
 
-                    <div class="d-flex justify-content-between border-top border-bottom collection-padding">
-                      <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/year.svg " class="img-fluid collection_image" alt="" />
-                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
-                          {{ yacht.year }}
-                        </h6>
-                      </div>
-                      <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/length.svg" class="img-fluid collection_image" alt="" />
-                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
-                          {{ yacht.length }}
-                        </h6>
-                      </div>
-                      <div class="text-center">
-                        <img src="{{ imageURL }}/images/icons/guests.svg" class="img-fluid collection_image" alt="" />
-                        <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
-                          {{ yacht.guest_capacity }} guests
-                        </h6>
+                      <div class="d-flex justify-content-between border-top border-bottom collection-padding">
+                        <div class="text-center">
+                          <img src="{{ imageURL }}/images/icons/year.svg " class="img-fluid collection_image" alt="" />
+                          <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
+                            {{ yacht.year }}
+                          </h6>
+                        </div>
+                        <div class="text-center">
+                          <img src="{{ imageURL }}/images/icons/length.svg" class="img-fluid collection_image" alt="" />
+                          <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
+                            {{ yacht.length }}
+                          </h6>
+                        </div>
+                        <div class="text-center">
+                          <img src="{{ imageURL }}/images/icons/guests.svg" class="img-fluid collection_image" alt="" />
+                          <h6 class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p">
+                            {{ yacht.guest_capacity }} guests
+                          </h6>
+                        </div>
                       </div>
                     </div>
-                    </div>
-                    </div>
-                    <div class="card-footer">
+                  </div>
+                  <div class="card-footer">
                     <div class="cash-container d-flex justify-content-between align-items-center pt-xl-3 pt-2">
                       <div class="cash">
                         <h6 class="text-muted mb-0 size18 redhat-semibold text-decoration-line-through color-card-p">
@@ -753,7 +746,7 @@
                         class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">view
                         details</a>
                     </div>
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>

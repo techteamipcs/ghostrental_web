@@ -103,6 +103,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // This method is triggered when the date input changes
     // The [(ngModel)] will automatically update selelctedstartDate
   }
+  // Form data structure
+  formData = {
+  type: '',
+  brand: '',
+  pickupDate: null as Date | null,
+  pickupTime: null as Date | null,
+  pickupLocation: '',
+  dropDate: null as Date | null,
+  dropTime: null as Date | null,
+  dropLocation: '',
+  addOns: ''
+};
+
   features = [
     {
       image: 'images/icons/cars.png',
