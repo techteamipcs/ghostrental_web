@@ -913,18 +913,18 @@ body {
     @media (max-width: 1536px) {
       left: 55.5%;
     }
-    @media (max-width: 1024px) {
-      left: 54.5%;
+    @media (max-width: 1199px) {
+      left: 50%;
     }
-    @media (max-width: 768px) {
-      left: 54.5%;
-    }
-    @media (max-width: 430px) {
-      left: 54.5%;
-    }
-    @media (max-width: 384px) {
-      left: 55%;
-    }
+    // @media (max-width: 768px) {
+    //   left: 54.5%;
+    // }
+    // @media (max-width: 430px) {
+    //   left: 54.5%;
+    // }
+    // @media (max-width: 384px) {
+    //   left: 55%;
+    // }
   }
 
   &:hover::before {

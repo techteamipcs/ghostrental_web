@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- filter section -->
-      <div class="col-xl-3 col-lg-5 filter-section">
+      <div class="col-xl-3 col-lg-5 filter-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="border border-2 p-xl-4 p-md-3 p-3 filter-container" #filterContainer [ngClass]="{
     'position-sticky': true,
     'position-relative': isMobileFilterVisible && isMobile
@@ -204,7 +204,7 @@
         'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
       }">
         <!-- <div class="container-fluid"> -->
-        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section">
+        <div class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section" data-aos="fade-up" data-aos-duration="1500">
           <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1" style="font-size: 14px;"
             *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
@@ -243,7 +243,7 @@
           <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
         </div>
         </div>
-        <div class="products">
+        <div class="products" data-aos="fade-up" data-aos-duration="2000">
           <!-- <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
             *ngIf="vehicleData && vehicleData.length == 0">
             Coming soon...
@@ -251,9 +251,10 @@
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
               *ngFor="let car of vehicleData">
-              <!-- <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock"> -->
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock" tabindex="0"
+              role="link">
                 <!-- [routerLink]="['/product', car.url_key]" -->
-              <div class="car-card" [routerLink]="['/product', car.url_key]">
+              <div class="car-card" >
 
                 <div class="thumbnail-image-container">
                 <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"
@@ -371,7 +372,7 @@
                   </div>
                 </div>
               </div>
-            <!-- </a> -->
+            </a>
             </div>
           </div>
         <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
