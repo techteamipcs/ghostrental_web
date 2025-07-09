@@ -270,6 +270,7 @@
       // margin-top: 24px;
       // margin-top: 0px;
     }
+
     @media (max-width: 991px) {
       margin-top: 0;
     }
@@ -281,6 +282,9 @@
     @media (max-width: 430px) {
       padding: 15px;
       max-width: 100%;
+    }
+    @media (max-width: 384px) {
+      margin-top: 0;
     }
 
     .form-select {
@@ -329,6 +333,9 @@
 
       @media screen and (max-width: 430px) {
         padding: 7px 15px;
+      }
+      @media screen and (max-width: 384px) {
+        padding: 4px 12px;
       }
 
       &:focus {
@@ -477,12 +484,12 @@
         }
       }
     }
-    // .selected-items{
-    //   color:grey;
-    //   &:focus, &:active{
-    //         color: #11191F;
-    //   }
-    // }
+// .selected-items{
+//   color:grey;
+//   &:focus, &:active{
+//         color: #11191F;
+//   }
+// }
     .size14 {
       font-size: 14px !important;
       // color:grey;
@@ -691,6 +698,9 @@
       @media screen and (max-width: 430px) {
         font-size: 14px;
       }
+      @media screen and (max-width: 384px) {
+        font-size: 8px;
+      }
     }
 
     .type-margin {
@@ -704,6 +714,9 @@
       @media screen and (max-width: 1600px) {
         margin-bottom: 10px;
       }
+      @media screen and (max-width: 384px) {
+        margin-bottom: 5px;
+      }
     }
 
     .label-margin {
@@ -715,6 +728,9 @@
 
       @media screen and (max-width: 1600px) {
         margin-bottom: 10px;
+      }
+      @media screen and (max-width: 384px) {
+        margin-bottom: 5px;
       }
     }
 
@@ -732,6 +748,9 @@
       @media screen and (max-width: 1440px) {
         margin-bottom: 10px;
       }
+      @media screen and (max-width: 384px) {
+        margin-bottom: 5px;
+      }
     }
 
     .select-margin {
@@ -743,6 +762,9 @@
 
       @media screen and (max-width: 1600px) {
         margin-bottom: 10px;
+      }
+      @media screen and (max-width: 384px) {
+        margin-bottom: 5px;
       }
     }
 
@@ -760,6 +782,9 @@
 
       @media screen and (max-width: 1440px) {
         margin-top: 20px;
+      }
+      @media screen and (max-width: 384px) {
+        margin-top: 15px;
       }
     }
 
@@ -875,6 +900,7 @@
 
   // contact popup
   .form-container {
+
     input:focus,
     textarea:focus {
       outline: none;
@@ -900,6 +926,7 @@
     }
 
     ::ng-deep {
+
       .intl-tel-input.allow-dropdown input,
       .intl-tel-input.allow-dropdown input[type="text"],
       .intl-tel-input.allow-dropdown input[type="tel"],
@@ -2358,7 +2385,7 @@
       height: 30px;
       margin-bottom: 5px;
       object-fit: contain;
-
+  
       @media screen and (max-width: 1536px) {
         width: 28px;
         height: 28px;
@@ -2447,7 +2474,7 @@
     border: 1px solid #f8f4f0;
     border-radius: 5px 5px 0 0;
     color: #f8f4f0;
-  }
+}
 }
 
 .black-bg {
@@ -2560,6 +2587,7 @@ input {
     background: grey;
     padding: 0 5px;
     border-radius: 5px;
+
   }
 
   .ng-select.ng-select-multiple
@@ -2578,8 +2606,10 @@ input {
     font-size: 24px !important;
     line-height: normal !important;
     cursor: pointer;
+
   }
 }
+
 
 .close-arrow {
   cursor: pointer;
@@ -2638,7 +2668,7 @@ input {
       accent-color: #000 !important;
     }
     &:active {
-      border-color: #000 !important;
+     border-color: #000 !important; 
     }
   }
 }
@@ -2676,10 +2706,77 @@ input {
   input::placeholder {
     color: #11191f; /* light gray placeholder color */
     opacity: 1; /* ensure full opacity */
-  }
+}
 
-  /* Optional: target only text inputs */
-  input[type="text"]::placeholder {
+/* Optional: target only text inputs */
+input[type="text"]::placeholder {
     color: #11191f;
   }
+
+  // @media (max-width: 1440px) {
+  //   font-size: 44px;
+  // }
+
+  // @media (max-width: 1280px) {
+  //   font-size: 64px;
+  // }
+
+  @media (max-width: 1199px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 34px;
+  }
+
+  @media (max-width: 384px) {
+    font-size: 20px;
+  }
+}
+
+
+
+.size28 {
+  font-size: 28px;
+  @media (max-width: 1600px) {
+    font-size: 24px;
+  }
+  @media (max-width: 430px) {
+    font-size: 20px;
+  }
+  @media (max-width: 384px) {
+    font-size: 18px;
+  }
+
+}
+
+.size20 {
+  font-size: 20px;
+
+  @media (max-width: 1600px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+  @media (max-width: 384px) {
+    font-size: 12px;
+  }
+
+}
+
+.size18 {
+  font-size: 18px;
+
+  @media (max-width: 1600px) {
+    font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+  @media (max-width: 384px) {
+    font-size: 10px;
+  }
+
 }

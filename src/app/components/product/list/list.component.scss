@@ -18,41 +18,43 @@
   transform: translateY(-50%);
 
   left: 200px;
-  top: 46%;
+  top: 50%;
 
   @media screen and (max-width: 2048px) {
     left: 200px;
-    top: 45%;
+    // top: 45%;
   }
 
   @media screen and (max-width: 1920px) {
-    top: 44%;
+    // top: 44%;
     left: 125px;
   }
 
   @media screen and (max-width: 1536px) {
-    top: 43.5%;
+    // top: 43.5%;
     left: 86px;
   }
   @media screen and (max-width: 1440px) {
-    top: 47%;
-    left: 69px;
+    // top: 47%;
+    left: 86px;
    } 
+
   @media screen and (max-width: 1280px) {
-    top: 47%;
+    // top: 47%;
     left: 85px;
   }
   @media screen and (max-width: 1024px) {
-    top: 47%;
+    // top: 47%;
     left: 40px;
   }
   @media screen and (max-width: 768px) {
-    top: 47%;
+    // top: 47%;
     left: 48px;
   }
   @media screen and (max-width: 430px) {
-    top: 47%;
-    left: 20px;
+    // top: 47%;
+    left: 0px;
+    padding: 0px 20px;
   }
 }
 
