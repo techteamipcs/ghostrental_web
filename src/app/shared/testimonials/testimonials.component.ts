@@ -10,10 +10,10 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './testimonials.component.html',
   styleUrls: ['./testimonials.component.scss']
 })
-export class TestimonialsComponent implements AfterViewInit, OnDestroy {
+export class TestimonialsComponent implements AfterViewInit {
   @ViewChild('swiper') swiperRef!: ElementRef;
-  @ViewChild('nextButton') nextButton!: ElementRef;
-  @ViewChild('prevButton') prevButton!: ElementRef;
+  @ViewChild('swiperButtonPrev') swiperButtonPrev!: ElementRef;
+  @ViewChild('swiperButtonNext') swiperButtonNext!: ElementRef;
   private swiper: Swiper | null = null;
   imageURL: string = `${environment.url}/assets`;
   backendURL: string = `${environment.baseUrl}/public`;
@@ -138,17 +138,20 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
             spaceBetween: 30,
             loop: true,
             modules: [Navigation, Pagination, Autoplay],
-            navigation: false,
+            navigation: {
+              nextEl: this.swiperButtonNext?.nativeElement,
+              prevEl: this.swiperButtonPrev?.nativeElement,
+            },
             pagination: {
               el: '.swiper-pagination',
               clickable: true,
               dynamicBullets: true,
             },
-            autoplay: {
-              delay: 2000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
+            // autoplay: {
+            //   delay: 2000,
+            //   disableOnInteraction: false,
+            //   pauseOnMouseEnter: true,
+            // },
             breakpoints: {
               768: {
                 slidesPerView: 1,
@@ -167,15 +170,15 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
             },
           });
 
-          if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
-            this.nextButton.nativeElement.addEventListener('click', () => {
-              this.swiper?.slideNext();
-            });
+          // if (this.nextButton?.nativeElement && this.prevButton?.nativeElement) {
+          //   this.nextButton.nativeElement.addEventListener('click', () => {
+          //     this.swiper?.slideNext();
+          //   });
 
-            this.prevButton.nativeElement.addEventListener('click', () => {
-              this.swiper?.slidePrev();
-            });
-          }
+          //   this.prevButton.nativeElement.addEventListener('click', () => {
+          //     this.swiper?.slidePrev();
+          //   });
+          // }
         }
       } catch (error) {
         console.error('Error initializing Swiper:', error);
@@ -183,24 +186,24 @@ export class TestimonialsComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.nextButton?.nativeElement) {
-      this.nextButton.nativeElement.removeEventListener('click', () => { });
-    }
-    if (this.prevButton?.nativeElement) {
-      this.prevButton.nativeElement.removeEventListener('click', () => { });
-    }
+  // ngOnDestroy(): void {
+  //   if (this.nextButton?.nativeElement) {
+  //     this.nextButton.nativeElement.removeEventListener('click', () => { });
+  //   }
+  //   if (this.prevButton?.nativeElement) {
+  //     this.prevButton.nativeElement.removeEventListener('click', () => { });
+  //   }
 
-    if (this.swiper) {
-      try {
-        this.swiper.destroy(true, true);
-      } catch (error) {
-        console.error('Error destroying Swiper:', error);
-      } finally {
-        this.swiper = null;
-      }
-    }
-  }
+  //   if (this.swiper) {
+  //     try {
+  //       this.swiper.destroy(true, true);
+  //     } catch (error) {
+  //       console.error('Error destroying Swiper:', error);
+  //     } finally {
+  //       this.swiper = null;
+  //     }
+  //   }
+  // }
 
   toggleAccordion(index: number): void {
     this.expandedIndex = this.expandedIndex === index ? -1 : index;
