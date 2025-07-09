@@ -13,7 +13,7 @@
     <div class="row">
       <!-- form -->
       <div class="col-xl-6 col-lg-6 col-md-12 col-12 pad-right"  >
-        <form [formGroup]="addcontactForm" (ngSubmit)="onSubmit()" method="post" novalidate>
+        <form [formGroup]="addcontactForm" (ngSubmit)="sendWhatsppMsg()" method="post" novalidate>
           <div class="row">
             <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize ">
@@ -34,7 +34,7 @@
                   placeholder="last name" formControlName="lastname" name="lastname" />
               </div>
               <span *ngIf="submitted && hasError('lastname', 'required')"
-                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">Last is required</span>
+                class="alert-danger ms-md-3 ms-2 size16 redhat-semibold">Last Name is required</span>
             </div>
             <div class="col-6 mb-xl-4 mb-lg-3 mb-md-3 mb-2">
               <div class="form-box-padding d-flex flex-column border border-1 rounded-3 text-capitalize">
@@ -87,7 +87,7 @@
               <button class="black-button size18 redhat-bold text-capitalize mt-4" type="submit" 
               data-text="Send Message"  id="maps" 
               >
-                <span>Send Message</span>
+                <span>Send On Whatsapp</span>
               </button>
             </div>
           </div>

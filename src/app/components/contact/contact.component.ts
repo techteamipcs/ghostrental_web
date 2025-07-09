@@ -35,6 +35,7 @@ export class ContactComponent {
 	CountryISO = CountryISO;
 	preferredCountries: CountryISO[] = [CountryISO.India,CountryISO.UnitedStates, CountryISO.UnitedKingdom,CountryISO.UnitedArabEmirates];
 	separateDialCode = false;
+	baseUrl:any;
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
@@ -50,10 +51,11 @@ export class ContactComponent {
       lastname: ['', Validators.required],
 			email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 			phone: ['', Validators.required],
-			message: ['', Validators.required],
+			message: [''],
 		});
 		this.get_PageMeta();
 		this.prod = this.route.snapshot.params['prod'];
+		this.baseUrl = environment.url;
 
 	}
 
@@ -158,5 +160,21 @@ export class ContactComponent {
         }
 			}, 500); // Wait for sections to be ready
     });
+  }
+
+	sendWhatsppMsg() {
+			this.submitted = true;
+			let obj = this.addcontactForm.value;
+			if (this.addcontactForm.invalid) {
+				return;
+			}
+			if(this.isvalidSubmit == false){
+				return
+			}
+      const message = `Hello Ghost Rentals Team!\n\nI hope this message finds you well. I am sending this new service inquiry through your Contact Us form from your website, and I wanted your immediate attention.\n\nHere are the details:\nName : ${obj.name} ${obj.lastname}\nEmail : ${obj.email}\nPhone : ${obj.phone.internationalNumber}${!obj.message?'':'\nMessage : '+obj.message}\n\nPlease take a moment to review the service information provided and respond at your earliest convenience. If there is any follow-up required, kindly coordinate.\n\nThank you!`;
+      const encodedMsg = encodeURIComponent(message);
+      const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
   }
 }
