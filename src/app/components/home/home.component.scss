@@ -17,7 +17,7 @@
     justify-content: center;
 
     height: 100%;
-    @media(max-width:991px){
+    @media (max-width: 991px) {
       justify-content: end;
     }
     // margin-top: 3rem;
@@ -121,7 +121,7 @@
         margin-bottom: 16px;
       }
     }
-    .white-button{
+    .white-button {
       width: max-content;
     }
   }
@@ -173,7 +173,7 @@
   }
 
   .form-top {
-    top:0;
+    top: 0;
     // top: 52%;
 
     // @media screen and (max-width: 1920px) {
@@ -270,7 +270,9 @@
       // margin-top: 24px;
       // margin-top: 0px;
     }
-
+    @media (max-width: 991px) {
+      margin-top: 0;
+    }
     @media (max-width: 768px) {
       margin-top: 1rem auto auto auto;
       padding: 20px 26px;
@@ -475,12 +477,12 @@
         }
       }
     }
-// .selected-items{
-//   color:grey;
-//   &:focus, &:active{
-//         color: #11191F;
-//   }
-// }
+    // .selected-items{
+    //   color:grey;
+    //   &:focus, &:active{
+    //         color: #11191F;
+    //   }
+    // }
     .size14 {
       font-size: 14px !important;
       // color:grey;
@@ -873,7 +875,6 @@
 
   // contact popup
   .form-container {
-
     input:focus,
     textarea:focus {
       outline: none;
@@ -899,7 +900,6 @@
     }
 
     ::ng-deep {
-
       .intl-tel-input.allow-dropdown input,
       .intl-tel-input.allow-dropdown input[type="text"],
       .intl-tel-input.allow-dropdown input[type="tel"],
@@ -943,10 +943,14 @@
         margin-left: 0;
       }
 
-      .iti.separate-dial-code[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406] {
+      .iti.separate-dial-code[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406] {
         width: 100%;
         border: none;
         padding-left: 0;
@@ -2016,7 +2020,7 @@
     padding: 0 10rem;
 
     @media screen and (max-width: 2048px) {
-      padding: 0 ;
+      padding: 0;
     }
 
     h3 {
@@ -2354,7 +2358,7 @@
       height: 30px;
       margin-bottom: 5px;
       object-fit: contain;
-  
+
       @media screen and (max-width: 1536px) {
         width: 28px;
         height: 28px;
@@ -2440,10 +2444,10 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    border: 1px solid #F8F4F0;
+    border: 1px solid #f8f4f0;
     border-radius: 5px 5px 0 0;
-    color: #F8F4F0;
-}
+    color: #f8f4f0;
+  }
 }
 
 .black-bg {
@@ -2556,10 +2560,12 @@ input {
     background: grey;
     padding: 0 5px;
     border-radius: 5px;
-
   }
 
-  .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-value-container .ng-placeholder {
+  .ng-select.ng-select-multiple
+    .ng-select-container.ng-has-value
+    .ng-value-container
+    .ng-placeholder {
     opacity: 0;
     display: none;
   }
@@ -2572,10 +2578,8 @@ input {
     font-size: 24px !important;
     line-height: normal !important;
     cursor: pointer;
-
   }
 }
-
 
 .close-arrow {
   cursor: pointer;
@@ -2592,7 +2596,7 @@ input {
 }
 
 ::ng-deep {
-  .dropdown-menu{
+  .dropdown-menu {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: #000 #fff;
@@ -2633,15 +2637,13 @@ input {
     &:checked {
       accent-color: #000 !important;
     }
-    &:active{
-     border-color: #000 !important; 
+    &:active {
+      border-color: #000 !important;
     }
   }
 }
 
-
-
-.card-footer{
+.card-footer {
   border: 0;
   background-color: transparent;
   padding: 0px 18px 0;
@@ -2662,25 +2664,22 @@ input {
     padding: 0px 16px 12px;
   }
 }
-.card-header{
+.card-header {
   border: 0;
   padding: 0;
   background-color: transparent;
 }
-.card-body{
+.card-body {
   padding: 0;
 }
-::ng-deep{
+::ng-deep {
   input::placeholder {
-  color: #11191F;       /* light gray placeholder color */
-  opacity: 1;        /* ensure full opacity */
+    color: #11191f; /* light gray placeholder color */
+    opacity: 1; /* ensure full opacity */
+  }
+
+  /* Optional: target only text inputs */
+  input[type="text"]::placeholder {
+    color: #11191f;
+  }
 }
-
-/* Optional: target only text inputs */
-input[type="text"]::placeholder {
-  color: #11191F;
-}
-}
-
-
-
