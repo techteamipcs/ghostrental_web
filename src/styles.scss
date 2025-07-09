@@ -495,10 +495,6 @@ body {
   @media (max-width: 480px) {
     font-size: 34px;
   }
-
-  @media (max-width: 384px) {
-    font-size: 30px;
-  }
 }
 
 .size90 {
@@ -1493,3 +1489,5 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

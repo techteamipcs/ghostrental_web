@@ -132,7 +132,7 @@
                   >Start date</span>
 
                   <input type="datetime-local"
-                  class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
+                  class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
                   [(ngModel)]="selectedStartDate"
                   [min]="pickuptoday"
                   (ngModelChange)="onSelectPickupDate()"
@@ -147,7 +147,7 @@
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
                   style=" pointer-events: none;">End date</span>
 
-                <input type="datetime-local" class="form-controls size16 redhat-semibold mb-2 bg-transparent gray-color date-height"
+                <input type="datetime-local" class="form-controls size16 redhat-semibold  bg-transparent gray-color date-height"
                   [min]="dropofftoday" [(ngModel)]="selectedEndDate"
                   (ngModelChange)="onSelectDropDate()"
                   />
@@ -184,7 +184,7 @@
                   <div class="slider-thumb" id="thumb-max" role="slider" aria-valuemin="0" aria-valuemax="10000"
                     [attr.aria-valuenow]="maxPrice" tabindex="0"></div>
                 </div> -->
-                <div *ngIf="sliderVisible">
+                <div *ngIf="sliderVisible" class="my-2">
                   <ngx-slider class="ngxslider" *ngIf="sliderVisible" [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ngx-slider>
                 </div>
               </div>
