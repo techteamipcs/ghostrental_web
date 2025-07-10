@@ -29,7 +29,7 @@
 .heading-width{
     width: 54%;
     margin-bottom: 80px;
-    @media screen and (max-width: 1920px) {
+    @media screen and (max-width: 2048px) {
         width: 81%;
         margin-bottom: 60px;
     }
@@ -72,8 +72,8 @@ h2{
       margin: 1rem 0;
     }
 }
-p{
-    margin-bottom: 2.6rem;
+.margin42{
+    margin-bottom:42px;
     @media screen and (max-width: 1024px) {
       margin-bottom: 1.6rem;
     }
