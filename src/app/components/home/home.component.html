@@ -160,14 +160,14 @@
                   <div class="col-6">
                     <div class="position-relative">
                       <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="pickupDate"
-                        [owlDateTime]="pickupDate" [(ngModel)]="formData.pickupDate"  (click)="onSelectPickupLocation($event)" [ngModelOptions]="{ standalone: true }"/>
+                        [owlDateTime]="pickupDate" [(ngModel)]="selelctedstartDate"  (click)="onSelectPickupLocation($event)" [ngModelOptions]="{ standalone: true }"/>
                       <owl-date-time #pickupDate [pickerType]="'calendar'"></owl-date-time>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="position-relative">
                       <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="pickupTime"
-                        [owlDateTime]="pickupTime" [(ngModel)]="formData.pickupTime" [ngModelOptions]="{ standalone: true }"/>
+                        [owlDateTime]="pickupTime" [(ngModel)]="selectedstartTime" [ngModelOptions]="{ standalone: true }"/>
                       <owl-date-time #pickupTime [pickerType]="'timer'"></owl-date-time>
                     </div>
                   </div>
@@ -215,14 +215,14 @@
                   <div class="col-6">
                     <div class="position-relative">
                       <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="dropDate"
-                        [owlDateTime]="dropDate" [(ngModel)]="formData.dropDate" [ngModelOptions]="{ standalone: true }"/>
+                        [owlDateTime]="dropDate" [(ngModel)]="selelctedendDate" [ngModelOptions]="{ standalone: true }"/>
                       <owl-date-time #dropDate [pickerType]="'calendar'"></owl-date-time>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="position-relative">
                       <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="dropTime"
-                        [owlDateTime]="dropTime" [(ngModel)]="formData.dropTime" [ngModelOptions]="{ standalone: true }"/>
+                        [owlDateTime]="dropTime" [(ngModel)]="selectedendTime" [ngModelOptions]="{ standalone: true }"/>
                       <owl-date-time #dropTime [pickerType]="'timer'"></owl-date-time>
                     </div>
                   </div>
