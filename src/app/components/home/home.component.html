@@ -173,8 +173,8 @@
                           <button type="button" class="btn btn-sm btn-light" (click)="nextMonth()">›</button>
                         </div>
                         <div class="calendar-grid">
-                          <div class="day-name" *ngFor="let day of dayNames">{{ day }}</div>
-                          <div class="day-cell" *ngFor="let date of calendarDates" [class.today]="isToday(date)"
+                          <div class="day-name size14 redhat-medium " *ngFor="let day of dayNames">{{ day }}</div>
+                          <div class="day-cell size14 redhat-medium " *ngFor="let date of calendarDates" [class.today]="isToday(date)"
                             [class.selected]="isSelectedStartDate(date)"
                             [class.disabled]="!isCurrentMonth(date) || isBeforeToday(date)"
                             (click)="!isBeforeToday(date) && isCurrentMonth(date) && selectDate(date)">
@@ -307,8 +307,8 @@
                           <button type="button" class="btn btn-sm btn-light" (click)="nextMonth()">›</button>
                         </div>
                         <div class="calendar-grid">
-                          <div class="day-name" *ngFor="let day of dayNames">{{ day }}</div>
-                          <div class="day-cell" *ngFor="let date of endCalendarDates" [class.today]="isToday(date)"
+                          <div class="day-name size14 redhat-medium " *ngFor="let day of dayNames">{{ day }}</div>
+                          <div class="day-cell size14 redhat-medium " *ngFor="let date of endCalendarDates" [class.today]="isToday(date)"
                             [class.selected]="isSelectedEndDate(date)"
                             [class.disabled]="!isEndMonth(date) || isBeforePickupDate(date)"
                             (click)="!isBeforePickupDate(date) && isEndMonth(date) && selectEndDate(date)">

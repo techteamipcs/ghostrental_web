@@ -233,7 +233,7 @@
     // margin-top: 0;
     margin-top: 70px;
 
-    @media screen and (max-width: 1920px) {
+    @media screen and (max-width: 2048px) {
       max-width: 500px;
       gap: 0;
       // padding: 20px 30px;
@@ -308,33 +308,25 @@
       z-index: 1;
       border: none;
       border-radius: 100px;
-      // padding: 19px 24px;
       padding: 17px 24px;
 
-      @media screen and (max-width: 1920px) {
-        // padding: 10px 15px;
-        // padding: 11.5px 15px;
-        // padding: 11.5px 24px;
+      @media screen and (max-width: 2048px) {
         padding: 7.5px 24px;
       }
 
       @media screen and (max-width: 1600px) {
-        // padding: 10px 12px;
         padding: 5px 23px;
       }
 
       @media screen and (max-width: 1536px) {
-        // padding: 5px 12px;
         padding: 5px 23px;
       }
 
       @media screen and (max-width: 1440px) {
-        // padding: 4px 18px;
         padding: 4px 14px;
       }
 
       @media screen and (max-width: 1280px) {
-        // padding: 5px 10px;
         padding: 5px 17px;
       }
 
@@ -2784,13 +2776,16 @@ input[type="text"]::placeholder {
   }
 
 }
-
-
-// form datet ime
 .date-selector {
+  position: relative;
+
   .custom-date-input {
     cursor: pointer;
     background: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
   }
 
   .calendar-dropdown {
@@ -2800,12 +2795,15 @@ input[type="text"]::placeholder {
     z-index: 10;
     background: white;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    width: 100%;
+    transition: all 0.3s ease;
   }
 
   .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
 
     .day-name {
       text-align: center;
@@ -2813,17 +2811,17 @@ input[type="text"]::placeholder {
 
     .day-cell {
       text-align: center;
-      padding: 6px 0;
+      padding: 8px 0;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
 
       &:hover {
         background: #f0f0f0;
       }
 
       &.today {
-        background-color: #f0f0f0;
-        color: white;
+        background-color: #e9ecef;
       }
 
       &.selected {
@@ -2840,137 +2838,207 @@ input[type="text"]::placeholder {
   pointer-events: none;
   cursor: not-allowed;
 }
-
-
 .time-selector {
+  position: relative;
+
   .custom-time-input {
     cursor: pointer;
     background-color: #fff;
-  }
-
-  .time-dropdown {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    z-index: 10;
-    background: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
     width: 100%;
+    transition: border 0.3s ease;
+
+    &:hover,
+    &:focus {
+      border-color: #11191f;
+      outline: none;
+    }
+  }
+
+  .time-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width:max-content;
+    background: #ffffff;
     border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
+    padding: 16px;
+    transition: all 0.3s ease;
+  }
 
-    select {
-      flex: 1;
+  .time-picker-header {
+    text-align: center;
+    margin-bottom: 12px;
+
+    .selected-time-display {
+      color: #444;
+      margin-bottom: 8px;
     }
 
-    .colon {
-      padding: 6px 0;
-      align-self: center;
+    .time-format-tabs {
+      display: flex;
+      justify-content: space-between;
+      /* gap: 8px; */
+      width: 100%;
+
+      .format-tab {
+        padding: 4px 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: #f8f9fa;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &.active {
+          background: #11191f;
+          color: #fff;
+          border-color: #11191f;
+        }
+
+        &:hover:not(.active) {
+          background: #e2e6ea;
+        }
+      }
     }
   }
-}
 
-.time-picker-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  min-width: 280px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  margin-top: 4px;
-}
-
-.time-picker-header {
-  text-align: center;
-  margin-bottom: 12px;
-  
-  .selected-time-display {
-    margin-bottom: 8px;
+  .time-picker-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
   }
-  
-  .time-format-tabs {
+
+  .time-section {
+    min-width: max-content;
+
+    .label {
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .time-options {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 4px 0;
+      background: #fafafa;
+
+      .time-option {
+        text-align: center;
+        padding: 4px 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 4px;
+
+        &:hover {
+          background: #f0f0f0;
+        }
+
+        &.selected {
+          background-color: #11191f;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .time-picker-actions {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    
-    .format-tab {
-      padding: 4px 12px;
-      border: 1px solid #ddd;
-      background: #f8f9fa;
-      border-radius: 4px;
+    gap: 12px;
+    margin-top: 16px;
+    width:max-content;
+
+    button {
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: none;
       cursor: pointer;
-      
-      &.active {
+      transition: background 0.2s ease;
+
+      &.cancel-btn {
+        background: #f8f9fa;
+        color: #333;
+
+        &:hover {
+          background: #e2e6ea;
+        }
+      }
+
+      &.confirm-btn {
         background: #11191f;
         color: white;
-        border-color: #11191f;
-      }
-      
-      &:hover:not(.active) {
-        background: #e9ecef;
-      }
-    }
-  }
-}
 
-.time-picker-container {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.time-section {
-  
-  .time-options {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 5px 8px;
-    width: max-content;
-    
-    &.hours {
-      .time-option {
-        text-align: right;
-        padding-right: 12px;
+        &:hover {
+          background: #000;
+        }
       }
     }
   }
-}
 
-.time-option {
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin: 2px 0;
-  transition: all 0.2s ease;
-  text-align: center;
-  
-  &:hover {
-    background-color: #f0f0f0;
+  // Animate open/close
+  .time-picker-dropdown {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    height: 0;
   }
-  
-  &.selected {
-    background-color: #11191f;
-    color: white;
+
+  .time-picker-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    height: auto;
   }
 }
 
-.time-picker-actions {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding-top: 12px;
-  border-top: 1px solid #eee;
+// Disable/selected
+.time-option.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-.custom-time-input {
-  cursor: pointer;
+// Mobile Responsive
+@media (max-width: 576px) {
+  .time-picker-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .time-section {
+    width: 100%;
+
+    .time-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .time-option {
+      margin: 0;
+      padding: 10px 0;
+    }
+  }
+
+  .time-picker-dropdown {
+    border-radius: 0;
+    width: 100vw;
+    left: -16px;
+  }
 }
 
 
-
+// Dropdown animation logic
 .calendar-dropdown,
 .time-picker-dropdown {
   opacity: 0;
@@ -2986,4 +3054,60 @@ input[type="text"]::placeholder {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+// Responsive tweaks
+@media (max-width: 576px) {
+  .calendar-dropdown,
+  .time-picker-dropdown {
+    width: 100vw;
+    left: -16px;
+    border-radius: 0;
+    padding: 16px;
+  }
+
+  .time-picker-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .time-section .time-options {
+    width: 100%;
+  }
+}
+
+
+.calendar-dropdown,
+.time-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 4px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s ease, height 0.2s ease;
+  transform-origin: top;
+}
+
+.calendar-dropdown.show,
+.time-picker-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  height: auto;
+}
+
+// DROP-UP SUPPORT
+.calendar-dropdown.drop-up,
+.time-picker-dropdown.drop-up {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 6px;
+  transform-origin: bottom;
 }
