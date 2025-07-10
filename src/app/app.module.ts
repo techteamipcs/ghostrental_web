@@ -21,8 +21,6 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { NgSelectModule } from '@ng-select/ng-select';
-// import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +48,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgxSliderModule,
     // OwlDateTimeModule,
     // OwlNativeDateTimeModule,
-    NgSelectModule,
     LucideAngularModule.pick({ Fuel, CalendarDays, RockingChair, Gauge, Star, ArrowRight, ArrowLeft, Plus, Minus, ChevronLeft, ChevronRight, X, Home, Users, Settings, Car, Phone, Facebook, Instagram, Twitter, Clock }),
   ],
   providers: [

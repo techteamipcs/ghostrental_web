@@ -45,6 +45,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12 col-11 mx-auto pad-right">
             <div class="d-flex h-100 align-items-center form-container">
               <form class="form-glass gap-0 ms-md-auto mx-auto me-md-0">
@@ -67,10 +68,10 @@
                     <div class="position-relative">
                       <select class="form-select size14 redhat-semibold" required
                         (change)="selectData('body_type', $event)">
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Type *
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Type of Cars*
                         </option>
-                        <option value="{{ bodytype.name }}" class="size14 redhat-semibold black-light-color"
+                        <option value="{{ bodytype.name }}" class="size14 redhat-medium   black-light-color"
                           *ngFor="let bodytype of filteredBodytype">
                           {{ bodytype.name }}
                         </option>
@@ -80,12 +81,12 @@
                   </div>
                   <div class="col-6" *ngIf="!isVehicleYacht">
                     <div class="position-relative">
-                      <select class="form-select size14 redhat-semibold" required
+                      <select class="form-select size14 redhat-medium " required
                         (change)="selectData('brand', $event)">
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Brands *
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Car Brands *
                         </option>
-                        <option value="{{ brand.name }}" class="size14 redhat-semibold black-light-color"
+                        <option value="{{ brand.name }}" class="size14 redhat-medium black-light-color"
                           *ngFor="let brand of filteredBrands">
                           {{ brand.name }}
                         </option>
@@ -97,10 +98,10 @@
                     <div class="position-relative">
                       <select class="form-select size14 redhat-semibold" (change)="selectData('body_type', $event)"
                         required>
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Type *
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Type of Yachts *
                         </option>
-                        <option class="size14 redhat-semibold black-light-color" value="{{ bodytype.name }}"
+                        <option class="size14 redhat-medium black-light-color" value="{{ bodytype.name }}"
                           *ngFor="let bodytype of filteredBodytype">
                           {{ bodytype.name }}
                         </option>
@@ -110,11 +111,11 @@
                   </div>
                   <div class="col-6 label-margin" *ngIf="isVehicleYacht">
                     <div class="position-relative">
-                      <select class="form-select size14 redhat-semibold" (change)="selectData('size', $event)" required>
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Sizes
+                      <select class="form-select size14 redhat-medium" (change)="selectData('size', $event)" required>
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Yacht Sizes *
                         </option>
-                        <option class="size14 redhat-semibold black-light-color" value="{{ size }}"
+                        <option class="size14 redhat-medium black-light-color" value="{{ size }}"
                           *ngFor="let size of yatchSizes">
                           {{ size }}
                         </option>
@@ -124,12 +125,12 @@
                   </div>
                   <div class="col-6" *ngIf="isVehicleYacht">
                     <div class="position-relative">
-                      <select class="form-select size14 redhat-semibold" (change)="selectData('seats', $event)"
+                      <select class="form-select size14 redhat-medium" (change)="selectData('seats', $event)"
                         required>
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Pax
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Pax *
                         </option>
-                        <option class="size14 redhat-semibold black-light-color" value="{{ seat }}"
+                        <option class="size14 redhat-medium black-light-color" value="{{ seat }}"
                           *ngFor="let seat of yatchSeats">
                           {{ seat }}
                         </option>
@@ -139,12 +140,12 @@
                   </div>
                   <div class="col-6" *ngIf="isVehicleYacht">
                     <div class="position-relative">
-                      <select class="form-select size14 redhat-semibold" (change)="selectData('hours', $event)"
+                      <select class="form-select size14 redhat-medium" (change)="selectData('hours', $event)"
                         required>
-                        <option value="" disabled selected class="size14 redhat-semibold black-light-color">
-                          Hours
+                        <option value="" disabled selected class="size14 redhat-medium black-light-color">
+                          Hours *
                         </option>
-                        <option class="size14 redhat-semibold black-light-color" value="{{ hours }}"
+                        <option class="size14 redhat-medium black-light-color" value="{{ hours }}"
                           *ngFor="let hours of yatchHours">
                           {{ hours }}
                         </option>
@@ -158,36 +159,91 @@
                 </h3>
                 <div class="row">
                   <div class="col-6">
-                    <div class="position-relative">
-                      <!-- <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="pickupDate"
-                        [owlDateTime]="pickupDate" [(ngModel)]="selelctedstartDate"  (click)="onSelectPickupLocation($event)" [ngModelOptions]="{ standalone: true }"/>
-                      <owl-date-time #pickupDate [pickerType]="'calendar'"></owl-date-time> -->
-                      <span [class.d-none]="selelctedstartDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span>
-                      <input type="date" id="startDate" [min]="pickuptoday" [(ngModel)]="selelctedstartDate"
-                        (ngModelChange)="onSelectPickupDate()" name="selelctedstartDate"
-                        class="form-control size14 redhat-semibold input-margin black-light-color" required />
+                    <div class="date-selector pickup-date-selector position-relative"
+                      (click)="$event.stopPropagation()">
+                      <input type="text" [value]="selectedStartDate ? (selectedStartDate | date: 'dd MMM yyyy') : ''" readonly
+                        placeholder="Select Date"
+                        class="form-control custom-date-input size14 redhat-medium input-margin black-light-color"
+                        (click)="toggleCalendar($event)" />
+                      <div class="calendar-dropdown card p-3 shadow" *ngIf="showCalendar" [ngClass]="{'show': showCalendar}"
+                        (click)="$event.stopPropagation()">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                          <button type="button" class="btn btn-sm btn-light" (click)="prevMonth()">‹</button>
+                          <strong class="size14 redhat-medium black-light-color">{{ currentMonth | date: 'MMMM yyyy' }}</strong>
+                          <button type="button" class="btn btn-sm btn-light" (click)="nextMonth()">›</button>
+                        </div>
+                        <div class="calendar-grid">
+                          <div class="day-name" *ngFor="let day of dayNames">{{ day }}</div>
+                          <div class="day-cell" *ngFor="let date of calendarDates" [class.today]="isToday(date)"
+                            [class.selected]="isSelectedStartDate(date)"
+                            [class.disabled]="!isCurrentMonth(date) || isBeforeToday(date)"
+                            (click)="!isBeforeToday(date) && isCurrentMonth(date) && selectDate(date)">
+                            {{ date.getDate() }}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="position-relative">
-                      <!-- <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="pickupTime"
-                        [owlDateTime]="pickupTime" [(ngModel)]="selectedstartTime" [ngModelOptions]="{ standalone: true }"/>
-                      <owl-date-time #pickupTime [pickerType]="'timer'"></owl-date-time> -->
-                      <span [class.d-none]="selectedstartTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span>
-                    <input type="time" id="startTime" [(ngModel)]="selectedstartTime" name="selectedstartTime"
-                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time"
-                      required />
+                    <div class="time-selector pickup-time-selector position-relative"
+                      (click)="$event.stopPropagation()">
+                      <input type="text" [value]="selectedStartTime ? selectedStartTime : 'Select Time'" readonly placeholder="Select time"
+                        class="form-control custom-time-input size14 redhat-medium input-margin black-light-color"
+                        (click)="toggleStartTimePicker($event)" />
+
+                      <div class="time-picker-dropdown card p-3 shadow" *ngIf="showStartTimePicker" [ngClass]="{'show': showStartTimePicker}"   
+                        (click)="$event.stopPropagation()">
+                        <div class="time-picker-header">
+                          <!-- <div class="selected-time-display size14 redhat-semibold"
+                            *ngIf="selectedHour && selectedMinute">
+                            {{selectedHour}}:{{selectedMinute}} {{isPM ? 'PM' : 'AM'}}
+                          </div> -->
+                          <div class="time-format-tabs">
+                            <button class="format-tab size14 redhat-medium gray-color" [class.active]="!isPM"
+                              (click)="setAM()">AM</button>
+                            <button class="format-tab size14 redhat-medium gray-color" [class.active]="isPM"
+                              (click)="setPM()">PM</button>
+                          </div>
+                        </div>
+
+                        <div class="time-picker-container">
+                          <div class="time-section">
+                            <div class="time-options hours">
+                              <div *ngFor="let hour of displayHours" class="time-option size14 redhat-medium"
+                                [class.selected]="isSelectedHour(hour)" (click)="selectHour(hour)">
+                                {{ hour }}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="time-section">
+                            <div class="time-options minutes">
+                              <div *ngFor="let minute of minutes" class="time-option size14 redhat-medium"
+                                [class.selected]="selectedMinute === minute" (click)="selectMinute(minute)">
+                                {{ minute }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="time-picker-actions mt-3">
+                          <button type="button" class="btn format-tab size14 redhat-medium gray-color"
+                            (click)="cancelTimeSelection()">
+                            Cancel
+                          </button>
+                          <button type="button" class="btn format-tab size14 redhat-medium gray-color"
+                            [disabled]="!selectedHour || !selectedMinute" (click)="confirmTime()">
+                            OK
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-12 label-margin">
                     <ng-container *ngIf="!isVehicleYacht;">
                       <div class="position-relative">
                         <input type="text" [(ngModel)]="selectedpickaddress" name="selectedpickaddress" id="pickup"
-                          class="form-control size14 redhat-semibold black-light-color" placeholder="Pickup location"
+                          class="form-control size14 redhat-medium black-light-color" placeholder="Enter Pickup location"
                           required>
 
                         <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectPickupLocation($event)"
@@ -225,63 +281,114 @@
                 </h3>
                 <div class="row" *ngIf="!isVehicleYacht;">
                   <div class="col-6">
-                    <div class="position-relative">
-                      <!-- <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="dropDate"
-                        [owlDateTime]="dropDate" [(ngModel)]="selelctedendDate" [ngModelOptions]="{ standalone: true }"/>
+                    <!-- <div class="position-relative"> -->
+                    <!-- <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select date" [owlDateTimeTrigger]="dropDate"
+                        [owlDateTime]="dropDate" [(ngModel)]="selelctedendDate"  (click)="onSelectDropLocation($event)" [ngModelOptions]="{ standalone: true }"/>
                       <owl-date-time #dropDate [pickerType]="'calendar'"></owl-date-time> -->
-                      <span [class.d-none]="selelctedendDate"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Date</span>
+                    <!-- <span [class.d-none]="selelctedendDate"
+                        class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
+                        style="pointer-events: none">Date</span>
                       <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate"
-                        name="selelctedendDate" class="form-control size14 redhat-semibold input-margin black-light-color"
-                        (ngModelChange)="onSelectDropDate()" placeholder="Date" required />
+                        name="selelctedendDate"
+                        class="form-control size14 redhat-semibold input-margin black-light-color"
+                        (ngModelChange)="onSelectDropDate()" placeholder="Date" required /> -->
+                    <!-- DROP DATE PICKER -->
+                    <div class="date-selector drop-date-selector position-relative" (click)="$event.stopPropagation()">
+                      <input type="text" [value]="selectedEndDate ? (selectedEndDate | date: 'dd MMM yyyy') : ''"
+                        readonly placeholder="Select Date"
+                        class="form-control custom-date-input size14 redhat-medium input-margin black-light-color"
+                        (click)="toggleEndCalendar($event)" />
+
+                      <div class="calendar-dropdown card p-3 shadow" *ngIf="showEndCalendar"  [ngClass]="{'show': showEndCalendar}"
+                        (click)="$event.stopPropagation()">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                          <button type="button" class="btn btn-sm btn-light" (click)="prevMonth()">‹</button>
+                          <strong class="size14 redhat-medium black-light-color">{{ currentMonth | date: 'MMMM yyyy' }}</strong>
+                          <button type="button" class="btn btn-sm btn-light" (click)="nextMonth()">›</button>
+                        </div>
+                        <div class="calendar-grid">
+                          <div class="day-name" *ngFor="let day of dayNames">{{ day }}</div>
+                          <div class="day-cell" *ngFor="let date of endCalendarDates" [class.today]="isToday(date)"
+                            [class.selected]="isSelectedEndDate(date)"
+                            [class.disabled]="!isEndMonth(date) || isBeforePickupDate(date)"
+                            (click)="!isBeforePickupDate(date) && isEndMonth(date) && selectEndDate(date)">
+                            {{ date.getDate() }}
+                          </div>
+
+                          <!-- <div *ngFor="let date of endCalendarDates" [class.disabled]="isBeforePickupDate(date)"
+                            [class.selected]="isSelectedEndDate(date)"
+                            (click)="!isBeforePickupDate(date) && selectEndDate(date)">
+                            {{ date.getDate() }}
+                          </div> -->
+                        </div>
+                      </div>
                     </div>
+
+
+
                   </div>
                   <div class="col-6">
-                    <div class="position-relative">
-                      <!-- <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="dropTime"
+                    <!-- <div class="position-relative">
+                    <input class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Select time" [owlDateTimeTrigger]="dropTime"
                         [owlDateTime]="dropTime" [(ngModel)]="selectedendTime" [ngModelOptions]="{ standalone: true }"/>
-                      <owl-date-time #dropTime [pickerType]="'timer'"></owl-date-time> -->
-                      <span [class.d-none]="selectedendTime"
-                      class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
-                      style="pointer-events: none">Time</span>
-                    <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
-                      class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time" required />
+                      <owl-date-time #dropTime [pickerType]="'timer'"></owl-date-time>
+                    <span [class.d-none]="selectedendTime"
+                        class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
+                        style="pointer-events: none">Time</span>
+                      <input type="time" id="endTime" [(ngModel)]="selectedendTime" name="selectedendTime"
+                        class="form-control size14 redhat-semibold input-margin black-light-color" placeholder="Time"
+                        required />
+                    </div> -->
+                    <!-- DROP TIME PICKER -->
+                    <div class="time-selector drop-time-selector position-relative" (click)="$event.stopPropagation()">
+                      <input type="text" [value]="selectedEndTime? selectedEndTime : 'Select time'" readonly placeholder="Select time"
+                        class="form-control custom-time-input size14 redhat-medium input-margin black-light-color"
+                        (click)="toggleEndTimePicker($event)" />
+
+                      <div class="time-picker-dropdown card p-3 shadow" *ngIf="showEndTimePicker"
+                        (click)="$event.stopPropagation()" [ngClass]="{'show': showEndTimePicker}" >
+                        <div class="time-picker-header">
+                          <div class="time-format-tabs">
+                            <button class="format-tab" [class.active]="!isEndPM" (click)="setEndAM()">AM</button>
+                            <button class="format-tab" [class.active]="isEndPM" (click)="setEndPM()">PM</button>
+                          </div>
+                        </div>
+                        <div class="time-picker-container">
+                          <div class="time-section">
+                            <div class="time-options hours">
+                              <div *ngFor="let hour of displayHours" class="time-option"
+                                [class.selected]="isSelectedEndHour(hour)" (click)="selectEndHour(hour)">
+                                {{ hour }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="time-section">
+                            <div class="time-options minutes">
+                              <div *ngFor="let minute of minutes" class="time-option"
+                                [class.selected]="selectedEndMinute === minute" (click)="selectEndMinute(minute)">
+                                {{ minute }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="time-picker-actions mt-3">
+                          <button type="button" class="btn format-tab"
+                            (click)="cancelEndTimeSelection()">Cancel</button>
+                          <button type="button" class="btn format-tab"
+                            [disabled]="!selectedEndHour || !selectedEndMinute" (click)="confirmEndTime()">OK</button>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
                   <div class="col-12 type-margin">
                     <ng-container *ngIf="!isVehicleYacht;">
                       <div class="position-relative">
                         <input type="text" [(ngModel)]="selecteddropaddress" name="selecteddropaddress" id="drop"
-                          class="form-control size14 redhat-semibold black-light-color" placeholder="Drop location"
+                          class="form-control size14 redhat-medium black-light-color" placeholder="Enter Drop location"
                           required>
-
-                        <!-- <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
-                        required>
-                        <option value="" disabled selected>
-                          Choose Drop Location *
-                        </option>
-                        <option *ngFor="let location of dropLocations">
-                          {{ location.name }}
-                        </option>
-                      </select>
-                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" /> -->
                       </div>
                     </ng-container>
-                    <!-- <ng-template #yachtReturn>
-                    <div class="position-relative">
-                      <select class="form-select size14 redhat-semibold" (change)="onSelectDropLocation($event)"
-                        required>
-                        <option value="" disabled selected>
-                          Choose Drop Marine *
-                        </option>
-                        <option *ngFor="let location of dropLocations">
-                          {{ location.name }}
-                        </option>
-                      </select>
-                      <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="" class="down-arrow" />
-                    </div>
-                  </ng-template> -->
                   </div>
                 </div>
                 <div class="row">
@@ -289,24 +396,8 @@
                     <h3 class="section-title size18 redhat-bold label-margin text-capitalize black-light-color">
                       Special Add-ons
                     </h3>
-
-                    <!-- <ng-select class="form-select size14 redhat-semibold position-relative" [items]="filteredFeatures" bindLabel="name" placeholder="" appendTo="body"
-                    [multiple]="true" [addTag]="true" [(ngModel)]="selectedYatchAddOns" name="selectedYatchAddOns"
-                    placeholder="Choose Special Add-ons" [hideSelected]="true">
-
-                    <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                      <span class="ng-value-label"> {{item.name}}</span>
-                      <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true" style="cursor: pointer;">
-                        <lucide-icon name="x" class="close-arrow"/>
-                      </span>
-                    </ng-template>
-
-                    <lucide-icon name="x" />
-                  </ng-select> -->
-
-                    <!-- new dropdown -->
                     <div class="position-relative">
-                      <div class="form-select d-flex align-items-center size14 redhat-semibold "
+                      <div class="form-select d-flex align-items-center size14 redhat-medium "
                         (click)="toggleDropdown($event)">
                         <span class="selected-items black-light-color">
                           {{ getSelectedAddonsLabel() }}
@@ -315,14 +406,14 @@
                           class="down-arrow ms-auto" />
                       </div>
 
-                      <div class="dropdown-menu size14 redhat-semibold black-light-color" [class.show]="isDropdownOpen">
+                      <div class="dropdown-menu size14 redhat-medium black-light-color" [class.show]="isDropdownOpen">
                         <div *ngFor="let addon of filteredFeatures"
-                          class=" mb-2 size14 redhat-semibold d-flex align-items-center black-light-color"
+                          class=" mb-2 size14 redhat-medium d-flex align-items-center black-light-color"
                           style="gap: 5px">
                           <input type="checkbox" class="form-check-box" [id]="'addon-' + addon.url_key"
                             [checked]="isSelected(addon)" (click)="$event.stopPropagation()"
                             (change)="toggleSelection(addon, $event)" />
-                          <label class="form-check-label size14 redhat-semibold black-light-color"
+                          <label class="form-check-label size14 redhat-medium black-light-color"
                             [for]="'addon-' + addon.url_key">
                             {{ addon.name }}
                           </label>
@@ -348,14 +439,15 @@
                 <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" class="whatsappicon" />
                 <span>book now</span>
               </button> -->
-                <button type="submit" (click)="openPopup()"
-                  class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize"
-                  data-text="Book On Whatsapp" (mouseenter)="setIsHovered(true)" (mouseleave)="setIsHovered(false)">
+                <a type="submit" (click)="openPopup()" (mouseenter)="setIsHovered(true)"
+                  (mouseleave)="setIsHovered(false)" (touchstart)="setIsHovered(true)" (touchend)="setIsHovered(false)"
+                  data-text="Book on WhatsApp"
+                  class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize">
                   <span>
                     <img src="{{ imageURL }}/images/icons/whatsapp-white.svg" alt="whatsapp" className="whatsappicon" />
                     Book On Whatsapp
                   </span>
-                </button>
+                </a>
               </form>
             </div>
           </div>
@@ -458,6 +550,7 @@
         data-aos="fade-up" data-aos-duration="1500">
         <a href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
+          <span class="size22 redhat-semibold text-center type-margin text-capitalize black-light-color"> {{ car.name }}</span>
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
           <p class="redhat-semibold text-center type-margin text-capitalize black-light-color"
@@ -533,7 +626,7 @@
             <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Car Rental Services
             </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
+            <p class="size18 redhat-medium color-card-p mb-xl-4 mb-md-3 mb-2" style="letter-spacing: .5px;">
               Find the best Luxury Car Rentals in Dubai with Ghost Rentals.
               Choose Rolls-Royce, Lamborghini & Range Rover with free UAE
               delivery.
@@ -553,7 +646,7 @@
             <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Yacht Rental Services
             </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
+            <p class="size18 redhat-medium color-card-p mb-xl-4 mb-md-3 mb-2" style="letter-spacing: .5px;">
               Sail by Dubai's famous landmarks such as Palm Jumeirah, Burj Al
               Arab, and Atlantis on our crewed and catered Luxury Yachts.
             </p>
@@ -572,7 +665,7 @@
             <h4 class="size26 redhat-semibold text-capitalize gray-color mb-2 mb-md-3">
               Luxury Chauffeur Services
             </h4>
-            <p class="size18 redhat-semibold color-card-p mb-xl-4 mb-md-3 mb-2">
+            <p class="size18 redhat-medium color-card-p mb-xl-4 mb-md-3 mb-2" style="letter-spacing: .5px;">
               At Ghost Rentals, we excel at Luxury travel. Our top- notch Luxury
               chauffeur services in Dubai provide unparalleled elegance for
               every trip.
@@ -619,7 +712,7 @@
                   <div class="card-content">
                     <div class="car-info  d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
-                        <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
+                        <h4 class="car-name mb-1 size22 redhat-semibold gray-color">
                           <!-- {{ car.name.substring(0, 18) }}... -->
                           {{ car.name }}
                         </h4>
@@ -721,7 +814,7 @@
                     <div class="card-content">
                       <div class="car-info  d-flex justify-content-between position-relative">
                         <div class="car-header margin15">
-                          <h4 class="car-name mb-1 size26 redhat-semibold gray-color">
+                          <h4 class="car-name mb-1 size22 redhat-semibold gray-color">
                             {{ yacht.name }}
                           </h4>
                           <h6 class="transmission size18 redhat-semibold text-capitalize m-0 color-card-p">
