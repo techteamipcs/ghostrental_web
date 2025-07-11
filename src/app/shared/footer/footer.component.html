@@ -9,9 +9,9 @@
         </div>
       </div>
 
-      <div class="col-lg-8 pe-">
+      <div class="col-lg-8">
         <div
-          class="footer-gap d-flex justify-content-lg-end justify-content-center flex-lg-row flex-column text-center text-lg-start">
+          class="footer-gap d-flex justify-content-lg-end justify-content-around  text-start">
           <div class="">
             <h4 class="redhat-bold size22 white-color text-capitalize margin10">company</h4>
             <ul class="nav d-flex flex-column footer-menu">
@@ -60,9 +60,9 @@
               </li>
             </ul>
           </div>
-          <div class="social-section d-flex flex-column align-items-center">
-            <h4 class="redhat-bold size22 white-color text-capitalize margin10">get social</h4>
-            <ul class=" nav d-flex flex-column justify-content-center">
+          <div class="social-section d-flex flex-column align-items-center d-none d-lg-block">
+            <h4 class="redhat-bold size22 white-color text-capitalize margin10">Connect With Us</h4>
+            <ul class=" nav d-flex flex-md-column justify-content-center ">
               <li class="nav-item ">
                 <a href="https://www.instagram.com/ghost.rentals/?hl=en"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">
@@ -99,17 +99,48 @@
                   <h4 class="size16 redhat-regular text-capitalize mb-0">Youtube</h4>
                 </a>
               </li>
-              <!-- <li class="nav-item list-style-none">
-                <a href="#"
-                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
-                  <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/images/icons/telegram.svg" alt="Telegram" class="footer-social-icon ">
-                  </div>
-                  <h4 class="size16 redhat-regular text-capitalize mb-0">Telegram</h4>
-                </a>
-              </li> -->
             </ul>
           </div>
+          
+        </div>
+
+        <div class="social-section d-flex flex-column align-items-center mt-2 d-block d-lg-none">
+          <h4 class="redhat-bold size22 white-color text-capitalize margin10">Connect With Us</h4>
+          <ul class=" nav d-flex  justify-content-center align-items-center">
+            <li class="nav-item ">
+              <a href="https://www.instagram.com/ghost.rentals/?hl=en"
+                class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">
+                <div class="social-icon-div me-2">
+                  <img src="{{ imageURL }}/images/icons/instagram.svg" alt="Instagram" class="footer-social-icon ">
+                </div>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="https://www.facebook.com/Ghostrentalsdubai"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+                <div class="social-icon-div me-2">
+                  <img src="{{ imageURL }}/images/icons/facebook.svg" alt="Facebook" class="footer-social-icon ">
+                </div>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="https://www.tiktok.com/@ghostrentals"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+                <div class="social-icon-div me-2">
+                    <img src="{{ imageURL }}/images/icons/tiktok.svg" alt="TikTok" class="footer-social-icon tiktok">
+                </div>  
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+                <div class="social-icon-div me-2">
+                    <img src="{{ imageURL }}/images/icons/youtube.svg" alt="Youtube" class="footer-social-icon youtube">
+                </div>
+              </a>
+            </li>
+          
+          </ul>
         </div>
       </div>
     </div>
@@ -135,7 +166,6 @@
     </div>
   </div>
 </section>
-
 <!-- Scroller car image on scroll 100px from top -->
 
 <!-- <a href="javascript:void(0)" (click)="scrollToTop()" class="back-to-top d-flex align-items-center justify-content-center active" [class.active]="isImageVisible">

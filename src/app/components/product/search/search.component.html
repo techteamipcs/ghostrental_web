@@ -243,14 +243,14 @@
           <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
         </div>
         </div>
-        <div class="products"     >
+        <div class="products" *ngIf="vehicleData && vehicleData.length > 0">
           <!-- <h6 class="mb-0 size28 redhat-bold gray-color text-capitalize text-center"
             *ngIf="vehicleData && vehicleData.length == 0">
             Coming soon...
           </h6> -->
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer;"
-              *ngFor="let car of vehicleData">
+              *ngFor="let car of vehicleData" >
               <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock" tabindex="0"
               role="link">
                 <!-- [routerLink]="['/product', car.url_key]" -->

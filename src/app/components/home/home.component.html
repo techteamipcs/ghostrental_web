@@ -165,7 +165,7 @@
                         placeholder="Select Date"
                         class="form-control custom-date-input size14 redhat-medium input-margin black-light-color"
                         (click)="toggleCalendar($event)" />
-                      <div class="calendar-dropdown card p-3 shadow" *ngIf="showCalendar" [ngClass]="{'show': showCalendar}"
+                      <div class="calendar-dropdown card shadow" *ngIf="showCalendar" [ngClass]="{'show': showCalendar}"
                         (click)="$event.stopPropagation()">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                           <button type="button" class="btn btn-sm btn-light" (click)="prevMonth()">‹</button>
@@ -185,19 +185,19 @@
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="time-selector pickup-time-selector position-relative"
-                      (click)="$event.stopPropagation()">
-                      <input type="text" [value]="selectedStartTime ? selectedStartTime : 'Select Time'" readonly placeholder="Select time"
+                    <div class="time-selector pickup-time-selector position-relative" (click)="$event.stopPropagation()">
+                      <input type="text" 
+                        [value]="selectedStartTime ? selectedStartTime : 'Select Time'" 
+                        readonly 
+                        placeholder="Select time"
                         class="form-control custom-time-input size14 redhat-medium input-margin black-light-color"
                         (click)="toggleStartTimePicker($event)" />
 
-                      <div class="time-picker-dropdown card p-3 shadow" *ngIf="showStartTimePicker" [ngClass]="{'show': showStartTimePicker}"   
+                      <div class="time-picker-dropdown card shadow position-absolute z-3" 
+                        *ngIf="showStartTimePicker" 
+                        [ngClass]="{'show': showStartTimePicker}"
                         (click)="$event.stopPropagation()">
                         <div class="time-picker-header">
-                          <!-- <div class="selected-time-display size14 redhat-semibold"
-                            *ngIf="selectedHour && selectedMinute">
-                            {{selectedHour}}:{{selectedMinute}} {{isPM ? 'PM' : 'AM'}}
-                          </div> -->
                           <div class="time-format-tabs">
                             <button class="format-tab size14 redhat-medium gray-color" [class.active]="!isPM"
                               (click)="setAM()">AM</button>
@@ -206,11 +206,13 @@
                           </div>
                         </div>
 
-                        <div class="time-picker-container">
+                        <div class="time-picker-container d-flex">
                           <div class="time-section">
                             <div class="time-options hours">
-                              <div *ngFor="let hour of displayHours" class="time-option size14 redhat-medium"
-                                [class.selected]="isSelectedHour(hour)" (click)="selectHour(hour)">
+                              <div *ngFor="let hour of displayHours" 
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="isSelectedHour(hour)" 
+                                (click)="selectHour(hour)">
                                 {{ hour }}
                               </div>
                             </div>
@@ -218,8 +220,10 @@
 
                           <div class="time-section">
                             <div class="time-options minutes">
-                              <div *ngFor="let minute of minutes" class="time-option size14 redhat-medium"
-                                [class.selected]="selectedMinute === minute" (click)="selectMinute(minute)">
+                              <div *ngFor="let minute of minutes" 
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="selectedMinute === minute" 
+                                (click)="selectMinute(minute)">
                                 {{ minute }}
                               </div>
                             </div>
@@ -227,11 +231,11 @@
                         </div>
 
                         <div class="time-picker-actions mt-3">
-                          <button type="button" class="btn format-tab size14 redhat-medium gray-color"
+                          <button type="button" class="format-tab size14 redhat-medium gray-color"
                             (click)="cancelTimeSelection()">
                             Cancel
                           </button>
-                          <button type="button" class="btn format-tab size14 redhat-medium gray-color"
+                          <button type="button" class=" format-tab size14 redhat-medium gray-color"
                             [disabled]="!selectedHour || !selectedMinute" (click)="confirmTime()">
                             OK
                           </button>
@@ -288,7 +292,7 @@
                     <!-- <span [class.d-none]="selelctedendDate"
                         class="size14 redhat-semibold position-absolute text-capitalize span-holder black-light-color"
                         style="pointer-events: none">Date</span>
-                      <input type="date" id="endDate" [min]="dropofftoday" [(ngModel)]="selelctedendDate"
+                      <input type="date" id="endDate" [(ngModel)]="selelctedendDate"
                         name="selelctedendDate"
                         class="form-control size14 redhat-semibold input-margin black-light-color"
                         (ngModelChange)="onSelectDropDate()" placeholder="Date" required /> -->
@@ -341,22 +345,22 @@
                     </div> -->
                     <!-- DROP TIME PICKER -->
                     <div class="time-selector drop-time-selector position-relative" (click)="$event.stopPropagation()">
-                      <input type="text" [value]="selectedEndTime? selectedEndTime : 'Select time'" readonly placeholder="Select time"
+                      <input type="text" [value]="selectedEndTime? selectedEndTime : 'Select Time'" readonly placeholder="Select Time"
                         class="form-control custom-time-input size14 redhat-medium input-margin black-light-color"
                         (click)="toggleEndTimePicker($event)" />
 
-                      <div class="time-picker-dropdown card p-3 shadow" *ngIf="showEndTimePicker"
-                        (click)="$event.stopPropagation()" [ngClass]="{'show': showEndTimePicker}" >
+                      <div class="time-picker-dropdown card shadow position-absolute z-3" *ngIf="showEndTimePicker"
+                        (click)="$event.stopPropagation()" [ngClass]="{'show': showEndTimePicker}" (click)="$event.stopPropagation()">
                         <div class="time-picker-header">
                           <div class="time-format-tabs">
-                            <button class="format-tab" [class.active]="!isEndPM" (click)="setEndAM()">AM</button>
-                            <button class="format-tab" [class.active]="isEndPM" (click)="setEndPM()">PM</button>
+                            <button class="format-tab size14 redhat-medium gray-color" [class.active]="!isEndPM" (click)="setEndAM()">AM</button>
+                            <button class="format-tab size14 redhat-medium gray-color" [class.active]="isEndPM" (click)="setEndPM()">PM</button>
                           </div>
                         </div>
-                        <div class="time-picker-container">
+                        <div class="time-picker-container d-flex">
                           <div class="time-section">
                             <div class="time-options hours">
-                              <div *ngFor="let hour of displayHours" class="time-option"
+                              <div *ngFor="let hour of displayHours" class="time-option size14 redhat-medium text-center mb-1 rounded"
                                 [class.selected]="isSelectedEndHour(hour)" (click)="selectEndHour(hour)">
                                 {{ hour }}
                               </div>
@@ -364,7 +368,7 @@
                           </div>
                           <div class="time-section">
                             <div class="time-options minutes">
-                              <div *ngFor="let minute of minutes" class="time-option"
+                              <div *ngFor="let minute of minutes" class="time-option size14 redhat-medium text-center mb-1 rounded"
                                 [class.selected]="selectedEndMinute === minute" (click)="selectEndMinute(minute)">
                                 {{ minute }}
                               </div>
@@ -372,9 +376,9 @@
                           </div>
                         </div>
                         <div class="time-picker-actions mt-3">
-                          <button type="button" class="btn format-tab"
+                          <button type="button" class=" format-tab size14 redhat-medium gray-color"
                             (click)="cancelEndTimeSelection()">Cancel</button>
-                          <button type="button" class="btn format-tab"
+                          <button type="button" class=" format-tab size14 redhat-medium gray-color"
                             [disabled]="!selectedEndHour || !selectedEndMinute" (click)="confirmEndTime()">OK</button>
                         </div>
                       </div>
@@ -539,7 +543,7 @@
 </section>
 
 <section class="car-types-section d-xl-block d-none">
-  <h3 class="text-center mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up"
+  <h3 class="text-center mb-md-5 mb-3 size22 redhat-bold text-capitalize gray-color" data-aos="fade-up"
     data-aos-duration="1000">
     Browse by Car Type
   </h3>
@@ -549,8 +553,8 @@
         class="position-relative d-flex flex-column align-items-center justify-content-center" style="cursor: pointer"
         data-aos="fade-up" data-aos-duration="1500">
         <a href="/product/list/{{ car.url_key }}"
-          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize">
-          <span class="size22 redhat-semibold text-center type-margin text-capitalize black-light-color"> {{ car.name }}</span>
+          class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize hover-a">
+          <!-- <span class="size32 redhat-bold hover-span"> {{ car.name }}</span> -->
           <img src="{{ backendURl }}/cartype/{{ car.image[0].src }}" [alt]="car.name" class="category-image"
             [routerLink]="['/product/list', car.url_key]" routerLinkActive="router-link-active" />
           <p class="redhat-semibold text-center type-margin text-capitalize black-light-color"

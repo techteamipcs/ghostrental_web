@@ -683,18 +683,33 @@ export class HomeComponent implements OnInit {
   toggleVehicle() {
     this.selectedYatchAddOns = [];
     this.selectedAddons = [];
+    
+    // Reset time inputs to placeholders
+    this.selectedStartTime = '';
+    this.selectedEndTime = '';
+    this.selectedHour = '';
+    this.selectedMinute = '';
+    this.selectedEndHour = '';
+    this.selectedEndMinute = '';
+    this.selectedStartDate = '';
+    this.selectedEndDate = '';
+    this.isPM = false;
+    this.isEndPM = false;
+    
     // Reset dropdown states
     this.isDropdownOpen = false;
     this.showStartTimePicker = false;
     this.showEndTimePicker = false;
     this.showCalendar = false;
     this.showEndCalendar = false;
+    
     this.isVehicleYacht = !this.isVehicleYacht;
     if (!this.isVehicleYacht) {
       this.vehicletype = "Car";
     } else {
       this.vehicletype = "Yachts";
     }
+    
     if (this.listBodytype && this.listBodytype.length > 0) {
       this.filteredBodytype = this.listBodytype.filter((bodytype) => bodytype.type == this.vehicletype);
     }
@@ -707,7 +722,6 @@ export class HomeComponent implements OnInit {
     if (this.featuresList && this.featuresList.length > 0) {
       this.filteredFeatures = this.featuresList.filter((feature) => feature.vehicle_type == this.vehicletype);
     }
-
   }
 
   selectData(type, event) {
@@ -1220,6 +1234,13 @@ export class HomeComponent implements OnInit {
       const time = new Date();
       time.setHours(hour, parseInt(this.selectedMinute, 10));
       this.formData.pickupTime = time;
+      
+      // Save the current time selection
+      this.previousStartTime = {
+        hour: this.selectedHour,
+        minute: this.selectedMinute,
+        isPM: this.isPM
+      };
     }
   }
   // Add this method to check if a time is in the past
@@ -1284,10 +1305,13 @@ selectMinute(minute: string) {
     const inEnd = target.closest('.end-date-selector');
     const inTime = target.closest('.time-selector');
     const inEndTime = target.closest('.end-time-selector');
+    const inTimePicker = target.closest('.time-picker-dropdown');
+    const inTimeInput = target.closest('.time-selector input');
 
+    // Only close pickers if the click is outside all relevant elements
     if (!inStart) this.showCalendar = false;
     if (!inEnd) this.showEndCalendar = false;
-    if (!inTime) this.showStartTimePicker = false;
+    if (!inTime && !inTimePicker && !inTimeInput) this.showStartTimePicker = false;
     if (!inEndTime) this.showEndTimePicker = false;
   }
 
@@ -1344,16 +1368,24 @@ selectMinute(minute: string) {
 
   toggleStartTimePicker(event: MouseEvent) {
     event.stopPropagation();
-    this.closeAllPickers();
+    
+    // Toggle the time picker
     this.showStartTimePicker = !this.showStartTimePicker;
-
+    
+    // Initialize time if not set
     if (this.showStartTimePicker && !this.selectedStartTime) {
       const now = new Date();
       const hours = now.getHours();
       this.isPM = hours >= 12;
       this.selectedHour = String(hours % 12 || 12).padStart(2, '0');
       this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
-      // this.updateselectedStartTime();
+    }
+    
+    // Close other pickers if opening this one
+    if (this.showStartTimePicker) {
+      this.showEndTimePicker = false;
+      this.showCalendar = false;
+      this.showEndCalendar = false;
     }
   }
 
@@ -1392,12 +1424,17 @@ selectMinute(minute: string) {
   // }
 
   cancelTimeSelection() {
-    this.showStartTimePicker = false;
-    if (!this.selectedStartTime) {
+    // Restore previous time if it exists
+    if (this.previousStartTime) {
+      this.selectedHour = this.previousStartTime.hour;
+      this.selectedMinute = this.previousStartTime.minute;
+      this.isPM = this.previousStartTime.isPM;
+    } else {
+      // If no previous time, clear the selection
       this.selectedHour = '';
       this.selectedMinute = '';
-      this.isPM = false;
     }
+    this.showStartTimePicker = false;
   }
 
   
