@@ -653,8 +653,8 @@ body {
   z-index: 1;
   box-shadow: inset 0 0 0 2px white;
   transition: color 0.4s ease;
-  padding: 18px 66px;
   isolation: isolate;
+  padding: 18px 66px;
 
   @media (max-width: 1600px) {
     padding: 16px 60px;
@@ -841,22 +841,22 @@ body {
   padding: 18px 66px;
 
   @media (max-width: 1600px) {
-    padding: 16px 60px;
+    padding: 10px 60px;
   }
 
   @media (max-width: 1440px) {
-    padding: 9px 40px;
+    padding: 10px 40px;
   }
 
   @media (max-width: 1280px) {
-    padding: 8px 35px;
+    padding: 10px 35px;
   }
 
   @media (max-width: 430px) {
-    padding: 12px 25px;
+    padding: 10px 25px;
   }
   @media (max-width: 384px) {
-    padding: 4px 25px;
+    padding: 12px 25px;
   }
 
   &:hover, &:active, &:focus {
@@ -1065,6 +1065,26 @@ body {
 
 }
 
+// .whatsappbtn{
+//   @media (max-width:1600px) {
+//     padding: 16px 60px;
+//   }
+
+//   @media (max-width:1440px) {
+//     padding: 9px 40px;
+//   }
+
+//   @media (max-width:1280px) {
+//     padding: 8px 35px;
+//   }
+
+//   @media (max-width:430px) {
+//     padding: 12px 25px;
+//   }
+//   @media (max-width: 384px) {
+//     padding: 4px 25px;
+//   }
+//  }
 
 
 img {

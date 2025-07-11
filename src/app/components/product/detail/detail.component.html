@@ -1,6 +1,6 @@
 <section class="product-detail" *ngIf="vehicleData">
   <div class="container-fluid" style="height: auto">
-    <div class="product-header mb-4" data-aos="fade-up" data-aos-duration="1000">
+    <div class="product-header mb-4">
       <h3 *ngIf="
           vehicleData.bodytype_data && vehicleData.bodytype_data.length > 0
         " class="size22 redhat-semibold text-uppercase mb-2 color-card-p ">
@@ -11,7 +11,7 @@
       </h1>
     </div>
 
-    <div class="container-fluid gallery-height" data-aos="fade-up" data-aos-duration="1500">
+    <div class="container-fluid gallery-height">
       <div class="row h-100">
         <div class="col-xl-9 col-lg-12 mb-xl-0 mb-md-3 mb-2 pad-right h-100">
           <div class="main-image-wrapper position-relative" >
@@ -372,7 +372,7 @@
           <div class="btns">
             <div class="w-100 mb-3 text-center" *ngIf="vehicleData">
               <button [routerLink]="['/contact/product', vehicleData.name]"
-                class="size18 redhat-semibold text-decoration-none black-button text-capitalize whatsappbtn w-100"
+                class="size18 redhat-semibold text-decoration-none black-button text-capitalize w-100"
                 data-text="Send a Mail">
                 <span>Send a Mail</span>
               </button>
@@ -408,7 +408,7 @@
              -->
              <div class="w-100 text-center">
               <button (click)="openPopup()"
-                class="size18 redhat-semibold green-button text-decoration-none w-100 text-capitalize" role="button"
+                class="size18 redhat-semibold green-button  text-decoration-none w-100 text-capitalize" role="button"
                 tabindex="0">
                 <div class="whatsappicon-container">
                   <span class="icon-wrapper green-icon">
