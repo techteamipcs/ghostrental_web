@@ -423,6 +423,20 @@ export class HomeComponent implements OnInit {
       this.isReservationFilled = false;
       return;
     }
+    if(this.selectedStartDate){
+      const today = new Date(this.selectedStartDate);
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      this.selectedStartDate = `${yyyy}-${mm}-${dd}`;
+    }
+     if(this.selectedEndDate){
+      const today = new Date(this.selectedEndDate);
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      this.selectedEndDate = `${yyyy}-${mm}-${dd}`;
+    }
     // this.showPopup = true;
     // this.isReservationFilled = true;
     // if (isPlatformBrowser(this.platformId)) {
