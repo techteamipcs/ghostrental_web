@@ -1411,6 +1411,9 @@
     gap: 7rem;
     justify-content: center;
 
+    @media screen and (max-width: 2048px) {
+      gap: 4rem;
+    }
     @media screen and (max-width: 1920px) {
       gap: 3rem;
     }
@@ -1595,6 +1598,9 @@
   .service-para-width {
     width: 47%;
 
+    @media screen and (max-width: 2048px) {
+      width: 62%;
+    }
     @media screen and (max-width: 1920px) {
       width: 65%;
     }
@@ -2127,6 +2133,9 @@
     align-items: center;
     max-width: 995px;
 
+    @media screen and (max-width: 2048px) {
+      max-width: 1064px;
+    }
     @media screen and (max-width: 1536px) {
       // max-width: 814px;
       max-width: 833px;
@@ -2153,8 +2162,8 @@
     .heading-width {
       width: 59%;
 
-      @media screen and (max-width: 1920px) {
-        width: 59%;
+      @media screen and (max-width: 2048px) {
+        width: 56%;
       }
 
       @media screen and (max-width: 1600px) {
