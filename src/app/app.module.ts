@@ -21,6 +21,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { LocationComponent } from './location/location.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
     ServicesComponent,
+    LocationComponent,
     
     // BookingComponent
   ],

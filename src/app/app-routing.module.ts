@@ -7,6 +7,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { ServicesComponent } from './components/services/services.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { LocationComponent } from './location/location.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,42 @@ const routes: Routes = [
   {
     path: 'terms',
     component: TermsAndConditionsComponent
+  },
+  {
+    path: 'Location',
+    component: LocationComponent
+  },
+  {
+    path: 'Review',
+    component: LocationComponent
+  },
+  {
+    path: 'Instagram',
+    component: LocationComponent
+  },
+  {
+    path: 'Facebook',
+    component: LocationComponent
+  },
+  {
+    path: 'Linkedin',
+    component: LocationComponent
+  },
+  {
+    path: 'Tiktok',
+    component: LocationComponent
+  },
+  {
+    path: 'YouTube',
+    component: LocationComponent
+  },
+  {
+    path: 'ViewYachts',
+    component: LocationComponent
+  },
+  {
+    path: 'ViewCars',
+    component: LocationComponent
   },
   {
     path: '**',

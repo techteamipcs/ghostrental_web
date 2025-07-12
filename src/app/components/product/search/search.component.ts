@@ -169,6 +169,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.processQueryParams(params);
         const type = params['type'];
         if (type) {
+          this.vehicleType = type;
           this.setVehicleType();
           this.SearchItems();
         }
