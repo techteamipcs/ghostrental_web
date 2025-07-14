@@ -20,58 +20,81 @@ export class LocationComponent {
     private metaTagService: Meta,
     private titleService: Title,
   ) {
-  }
-  ngOnInit() {
     this.get_PageMeta();
-    if (isPlatformBrowser(this.platformId)) {
-      this.url = this.router.url;
-      if(this.url.includes('Location')){
-        let waUrl = 'https://maps.app.goo.gl/2AxX5kQzyzKzHCc26';
-        window.location.href = waUrl;
-      } else if(this.url.includes('Review')){
-        let waUrl = 'https://g.page/r/CYLV9IPjYTZLEBM/review';
-        window.location.href = waUrl;
-      } else if(this.url.includes('Instagram')){
-        let waUrl = 'https://www.instagram.com/ghost.rentals/?hl=en';
-        window.location.href = waUrl;
-      } else if(this.url.includes('Facebook')){
-        let waUrl = 'https://www.facebook.com/Ghostrentalsdubai';
-        window.location.href = waUrl;
-      } else if(this.url.includes('Tiktok')){
-        let waUrl = 'https://www.tiktok.com/@ghostrentals';
-        window.location.href = waUrl;
-      } else if(this.url.includes('Linkedin')){
-        let waUrl = 'https://ae.linkedin.com/company/ghostrentals';
-        window.location.href = waUrl;
-      } else if(this.url.includes('YouTube')){
-        let waUrl = 'https://www.youtube.com/@GhostRentalsDXB?app=desktop';
-        window.location.href = waUrl;
-      } else if(this.url.includes('ViewYachts')){
-        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Yachts';
-        window.location.href = waUrl;
-      } else if(this.url.includes('ViewCars')){
-        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Car';
-        window.location.href = waUrl;
-      }
-    }
+  }
+
+  ngOnInit() {
+    
   }
 
    get_PageMeta() {
-    let obj = { pageName: 'home' };
-    this.pageservice.getpageWithName(obj).subscribe((response) => {
-      if (response.body.code == 200) {
-        this.titleService.setTitle(response?.body.result.meta_title);
-        this.metaTagService.updateTag({
-          name: 'description',
-          content: response?.body.result.meta_description,
-        });
-        this.metaTagService.updateTag({
-          name: 'keywords',
-          content: response?.body.result.meta_keywords,
-        });
-      } else if (response.code == 400) {
-      } else {
+    let url = this.router.url;
+    if(url){
+      url = url.split('/')[1];
+      let obj = { pageName: url };
+      this.pageservice.getpageWithName(obj).subscribe((response) => {
+        if (response.body.code == 200) {
+          this.titleService.setTitle(response?.body.result.meta_title);
+          this.metaTagService.updateTag({
+            name: 'description',
+            content: response?.body.result.meta_description,
+          });
+          this.metaTagService.updateTag({
+            name: 'keywords',
+            content: response?.body.result.meta_keywords,
+          });
+          this.metaTagService.updateTag({
+            property: 'og:title',
+            content: response?.body.result.meta_title,
+          });
+          this.metaTagService.updateTag({
+            property: 'og:description',
+            content: response?.body.result.meta_description,
+          });
+          this.getLoadURL();
+        } else if (response.code == 400) {
+          this.getLoadURL();
+        } else {
+          this.getLoadURL();
+        }
+      });
+    }
+  }
+
+  getLoadURL(){
+    if (isPlatformBrowser(this.platformId)) {
+      this.url = this.router.url;
+      if(this.url.includes('Locations')){
+        let waUrl = 'https://maps.app.goo.gl/2AxX5kQzyzKzHCc26';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('Reviews')){
+        let waUrl = 'https://g.page/r/CYLV9IPjYTZLEBM/review';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('Instagrams')){
+        let waUrl = 'https://www.instagram.com/ghost.rentals/?hl=en';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('Facebooks')){
+        let waUrl = 'https://www.facebook.com/Ghostrentalsdubai';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('TikToks')){
+        let waUrl = 'https://www.tiktok.com/@ghostrentals';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('Linkedins')){
+        let waUrl = 'https://ae.linkedin.com/company/ghostrentals';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('YouTubes')){
+        let waUrl = 'https://www.youtube.com/@GhostRentalsDXB?app=desktop';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('ViewYachts')){
+        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Yachts';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('ViewCars')){
+        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Car';
+        window.open(waUrl,"_self");
+      } else if(this.url.includes('ContactUs')){
+        let waUrl = 'https://www.ghostrentals.ae/contact';
+        window.open(waUrl,"_self");
       }
-    });
+    }
   }
 }

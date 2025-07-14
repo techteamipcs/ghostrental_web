@@ -15,6 +15,46 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'Locations',
+    component: LocationComponent
+  },
+  {
+    path: 'Reviews',
+    component: LocationComponent
+  },
+  {
+    path: 'Instagrams',
+    component: LocationComponent
+  },
+  {
+    path: 'Facebooks',
+    component: LocationComponent
+  },
+  {
+    path: 'Linkedins',
+    component: LocationComponent
+  },
+  {
+    path: 'ContactUs',
+    component: LocationComponent
+  },
+  {
+    path: 'TikToks',
+    component: LocationComponent
+  },
+  {
+    path: 'YouTubes',
+    component: LocationComponent
+  },
+  {
+    path: 'ViewYachts',
+    component: LocationComponent
+  },
+  {
+    path: 'ViewCars',
+    component: LocationComponent
+  },
+  {
     path: 'about',
     component: AboutComponent
   },
@@ -45,42 +85,6 @@ const routes: Routes = [
   {
     path: 'terms',
     component: TermsAndConditionsComponent
-  },
-  {
-    path: 'Location',
-    component: LocationComponent
-  },
-  {
-    path: 'Review',
-    component: LocationComponent
-  },
-  {
-    path: 'Instagram',
-    component: LocationComponent
-  },
-  {
-    path: 'Facebook',
-    component: LocationComponent
-  },
-  {
-    path: 'Linkedin',
-    component: LocationComponent
-  },
-  {
-    path: 'Tiktok',
-    component: LocationComponent
-  },
-  {
-    path: 'YouTube',
-    component: LocationComponent
-  },
-  {
-    path: 'ViewYachts',
-    component: LocationComponent
-  },
-  {
-    path: 'ViewCars',
-    component: LocationComponent
   },
   {
     path: '**',

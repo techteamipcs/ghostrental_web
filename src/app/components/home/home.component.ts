@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit {
     if (!this.selectedStartDate) {
       isValid = false;
     }
-    if (!this.selectedEndDate) {
+    if (this.vehicletype == 'Car' && !this.selectedEndDate) {
       isValid = false;
     }
     if (!isValid) {
