@@ -462,7 +462,7 @@
 
       &.active {
         &::before {
-          transform: translateX(35px);
+          transform: translateX(45px);
 
           @media (max-width: 1536px) {
             transform: translateX(19px);

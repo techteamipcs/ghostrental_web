@@ -2,44 +2,56 @@
   <div class="container-fluid position-relative p-0 h-100">
     <div class="overlay"></div>
 
-    <img *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='image'"
+    <img
+      *ngIf="
+        bannerData &&
+        bannerData.media_data.length > 0 &&
+        bannerData.media_data[0].file_type == 'image'
+      "
       src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
       alt="Limousine on road"
       class="w-100 h-100 bannerImage"
       loading="lazy"
       decoding="async"
     />
-<video *ngIf="bannerData && bannerData.media_data.length > 0 && bannerData.media_data[0].file_type=='video'"
-						#myVideo
-						width="100%"
-						muted
-						autoplay
-            loop
-            playsinline
-						style="cursor: pointer; height:100%; width:100%;  object-fit: cover;    border-radius: 20px; "
-					>
-						<source
-							src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
-							type="video/mp4"
-						/>
-						<source
-							src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
-							type="video/ogg"
-						/>
-						Your browser does not support the video tag.
-					</video>
+    <video
+      *ngIf="
+        bannerData &&
+        bannerData.media_data.length > 0 &&
+        bannerData.media_data[0].file_type == 'video'
+      "
+      #myVideo
+      width="100%"
+      muted
+      autoplay
+      loop
+      playsinline
+      style="
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      "
+    >
+      <source
+        src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
+        type="video/mp4"
+      />
+      <source
+        src="{{ backendURl }}/banner/{{ bannerData.media_data[0].src }}"
+        type="video/ogg"
+      />
+      Your browser does not support the video tag.
+    </video>
     <div class="content zindex2">
-      <h1
-        class="size88 performa-thin white-color heading-width"
-      >
-         Driven By Luxury 
+      <h1 class="size88 performa-thin white-color heading-width">
+        Driven By Luxury
         <span class="d-block">Fueled By Experience</span>
       </h1>
-      <p
-        class="size20 redhat-regular beige-color"
-      >
+      <p class="size20 redhat-regular beige-color">
         Ghost Rentals delivers Luxury Car, Yacht, and Chauffeur Services in
-            Dubai and across the UAE.
+        Dubai and across the UAE.
       </p>
       <!-- <button class="size18 redhat-bold white-border-button">book now</button> -->
     </div>
@@ -119,7 +131,7 @@
           class="story-content d-flex flex-column justify-content-center h-100"
         >
           <h4
-            class="text-capitalize size18 redhat-semibold gray-color "
+            class="text-capitalize size18 redhat-semibold gray-color"
             data-aos="fade-up"
             data-aos-duration="1000"
           >
@@ -185,7 +197,7 @@
     </h3>
     <div class="row justify-content-around mt-xl-3 mt-2">
       <div
-        class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2 "
+        class="col-xl-3 col-md-6 col-9 mb-md-4 mb-2"
         *ngFor="let feature of features"
         data-aos="fade-up"
         data-aos-duration="1500"
@@ -198,7 +210,9 @@
         <h4 class="size26 redhat-semibold gray-color text-center margin12">
           {{ feature.title }}
         </h4>
-        <p class="size18 redhat-semibold gray-color text-center line-height30 about-pad">
+        <p
+          class="size18 redhat-semibold gray-color text-center line-height30 about-pad"
+        >
           {{ feature.description }}
         </p>
       </div>
@@ -233,7 +247,7 @@
                 data-aos-duration="1000"
               >
                 <h2
-                  class="size60 performa-light text-capitalize white-color margin26 "
+                  class="size60 performa-light text-capitalize white-color margin26"
                 >
                   Our Signature Services
                 </h2>
@@ -270,7 +284,7 @@
                   </p>
                   <button
                     routerLink="/product/search"
-                    class="white-button size18 redhat-bold text-decoration-none gray-color text-capitalize"
+                    class="white-button size18 redhat-bold text-decoration-none gray-color"
                     data-text="Hire a Chauffeur"
                   >
                     <span>Hire a Chauffeur</span>
@@ -332,7 +346,6 @@
                 >
                   <h4
                     class="size26 redhat-semibold white-color text-capitalize margin10"
-                    
                   >
                     Luxury Yacht Rental Services
                   </h4>
@@ -378,10 +391,14 @@
               </p>
             </div>
           </div>
-          <div class="col-xl-12 col-lg-12 mt-auto" data-aos="fade-up" data-aos-duration="1000">
+          <div
+            class="col-xl-12 col-lg-12 mt-auto"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <button
               routerLink="/product/search"
-              class="white-button size18 redhat-bold text-decoration-none gray-color text-capitalize"
+              class="white-button size18 redhat-bold text-decoration-none gray-color"
               data-text="Hire a Chauffeur"
             >
               <span>Hire a Chauffeur</span>

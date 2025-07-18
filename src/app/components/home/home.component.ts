@@ -88,6 +88,8 @@ export class HomeComponent implements OnInit {
   selectedYatchHours: any;
   selectedYatchAddOns: any = [];
   selectedAddons: Array<{ url_key: string, name: string }> = [];
+  isDropdownOpen = false;
+
 
 
   Toast = Swal.mixin({
@@ -720,6 +722,7 @@ export class HomeComponent implements OnInit {
     this.showCalendar = false;
     this.showEndCalendar = false;
     
+    
     this.isVehicleYacht = !this.isVehicleYacht;
     if (!this.isVehicleYacht) {
       this.vehicletype = "Car";
@@ -1058,17 +1061,23 @@ export class HomeComponent implements OnInit {
   // }
 
 
-  toggleDropdown(event?: Event): void {
-    if (event) {
-      event.stopPropagation();
+  // toggleAddonsDropdown(event?: Event): void {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  // }
+
+  toggleAddonsDropdown(event?: Event): void {
+    event?.stopPropagation();
+    event?.preventDefault();
+    
+    if (!this.isDropdownOpen) {
+      this.closeAllPickers();
     }
+    
     this.isDropdownOpen = !this.isDropdownOpen;
   }
-
   toggleSelection(addon: { url_key: string, name: string }, event: Event): void {
     event.stopPropagation();
 
-    // Create a new array to trigger change detection
     const updatedAddons = [...this.selectedAddons];
     const index = updatedAddons.findIndex(a => a.url_key === addon.url_key);
 
@@ -1112,7 +1121,6 @@ export class HomeComponent implements OnInit {
   // dropofftoday: string;
   
   // date functionality
-  isDropdownOpen = false;
   // selectedStartDate: Date | null = null;
   // selectedEndDate: Date | null = null;
   showEndCalendar = false;
@@ -1137,6 +1145,7 @@ export class HomeComponent implements OnInit {
   selectedEndHour: string = '';
   selectedEndMinute: string = '';
   showEndTimePicker = false;
+  showAddOnsDropdown = false;
   isEndPM: boolean = false;
   showStartTimePicker: boolean = false;
   selectedStartTime: string = '';
@@ -1330,6 +1339,7 @@ selectMinute(minute: string) {
     if (!inEnd) this.showEndCalendar = false;
     if (!inTime && !inTimePicker && !inTimeInput) this.showStartTimePicker = false;
     if (!inEndTime) this.showEndTimePicker = false;
+    this.isDropdownOpen = false;
   }
 
   toggleCalendar(event?: MouseEvent) {
@@ -1381,6 +1391,7 @@ selectMinute(minute: string) {
     this.showEndCalendar = false;
     this.showStartTimePicker = false;
     this.showEndTimePicker = false;
+    this.isDropdownOpen = false;
   }
 
   toggleStartTimePicker(event: MouseEvent) {
