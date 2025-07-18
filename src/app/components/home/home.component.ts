@@ -1099,11 +1099,11 @@ export class HomeComponent implements OnInit {
 
   getSelectedAddonsLabel(): string {
     if (!this.selectedAddons || this.selectedAddons.length === 0) {
-      return 'Choose Special Add-ons';
+      return 'Choose Add-Ons';
     } else if (this.selectedAddons.length === 1) {
       return this.selectedAddons[0].name;
     } else {
-      return `${this.selectedAddons.length} add-ons selected`;
+      return `${this.selectedAddons.length} Add-Ons Selected`;
     }
   }
 
