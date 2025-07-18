@@ -467,13 +467,13 @@ export class HomeComponent implements OnInit {
       tempspladdons = JSON.stringify(tempspl).replace(/"/g, '');
     }
     if (this.vehicletype == 'Car') {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype}\nBrand: ${this.selelctedbrand}\nPickup Address: ${this.selectedpickaddress}\nDrop Address: ${this.selecteddropaddress}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\nDrop Date: ${this.selectedEndDate} ${!this.selectedEndTime ? '' : this.selectedEndTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selelctedbodytype}\nBrand: ${this.selelctedbrand}\nPickup Address: ${this.selectedpickaddress}\nDrop Address: ${this.selecteddropaddress}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\nDrop Date: ${this.selectedEndDate} ${!this.selectedEndTime ? '' : this.selectedEndTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     } else {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nService Type: ${this.vehicletype}\nSize: ${this.selectedYatchSize}\nPax: ${this.selectedYatchSeats}\nHours: ${this.selectedYatchHours}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selelctedbodytype}\nSize: ${this.selectedYatchSize}\nPax: ${this.selectedYatchSeats}\nHours: ${this.selectedYatchHours}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
