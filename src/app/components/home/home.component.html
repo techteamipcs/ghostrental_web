@@ -1022,7 +1022,7 @@
           href="/product/list/{{ car.url_key }}"
           class="color-card-p p-0 mt-auto text-decoration-none size16 redhat-semibold text-capitalize hover-a"
         >
-          <!-- <span class="size32 redhat-bold hover-span"> {{ car.name }}</span> -->
+          <span class="size32 redhat-bold hover-span"> {{ car.name }}</span>
           <img
             src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
             [alt]="car.name"
@@ -1062,8 +1062,9 @@
       >
         <a
           href="/product/list/{{ car.url_key }}"
-          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize"
+          class="color-card-p p-0 text-decoration-none size16 redhat-semibold text-capitalize hover-a"
         >
+          <span class="size32 redhat-bold hover-span"> {{ car.name }}</span>
           <img
             src="{{ backendURl }}/cartype/{{ car.image[0].src }}"
             [alt]="car.name"
@@ -1641,8 +1642,8 @@
           provide UAE's safest, fastest Luxury services through real attention
           to detail that creates stunning relationships with every customer.
         </p>
-        <a href="/about"
-           
+        <a
+          href="/about"
           class="white-button size18 redhat-bold text-capitalize"
           data-aos="fade-up"
           data-aos-duration="2500"

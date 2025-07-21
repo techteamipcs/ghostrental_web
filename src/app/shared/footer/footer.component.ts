@@ -52,39 +52,44 @@ export class FooterComponent {
   setActiveFromUrl() {
     if (typeof window === 'undefined') return;
     const currentUrl = window.location.pathname;
+    const searchParams = new URLSearchParams(window.location.search);
+    const type = searchParams.get('type');
+
     if (currentUrl.includes('about')) {
       this.activeLink = 'about';
     } else if (currentUrl.includes('services')) {
       this.activeLink = 'services';
-    }
-    else if (currentUrl.includes('privacy')) {
+    } else if (currentUrl.includes('privacy')) {
       this.activeLink = 'privacy';
-    }
-    else if (currentUrl.includes('contact')) {
+    } else if (currentUrl.includes('contact')) {
       this.activeLink = 'contact';
-    }
-    else if (currentUrl.includes('terms')) {
+    } else if (currentUrl.includes('terms')) {
       this.activeLink = 'terms';
+    } else if (currentUrl.includes('product/search')) {
+      if (type === 'Car') {
+        this.activeLink = 'cars';
+      } else if (type === 'Yachts') {
+        this.activeLink = 'yachts';
+      }
     }
-    // Add more conditions as needed
   }
-  scrollToFAQ(event: Event): void {
-    if (!this.isBrowser) return;
+  // scrollToFAQ(event: Event): void {
+  //   if (!this.isBrowser) return;
 
-    event.preventDefault();
+  //   event.preventDefault();
 
-    // Get current route without query params or fragment
-    const currentRoute = this.router.url.split('?')[0].split('#')[0];
+  //   // Get current route without query params or fragment
+  //   const currentRoute = this.router.url.split('?')[0].split('#')[0];
 
-    // If already on the current page with the fragment, just scroll
-    if (this.router.url.includes('faq')) {
-      this.scrollToElement('faq');
-      return;
-    }
+  //   // If already on the current page with the fragment, just scroll
+  //   if (this.router.url.includes('faq')) {
+  //     this.scrollToElement('faq');
+  //     return;
+  //   }
 
-    // Navigate to current page with fragment
-    this.router.navigate([currentRoute], { fragment: 'faq' });
-  }
+  //   // Navigate to current page with fragment
+  //   this.router.navigate([currentRoute], { fragment: 'faq' });
+  // }
 
   private scrollToElement(id: string): void {
     if (!this.isBrowser) return;

@@ -63,10 +63,14 @@
         <a
           routerLink="/product/search"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
+          [routerLinkActiveOptions]="{
+            paths: 'subset',
+            queryParams: 'subset',
+            matrixParams: 'ignored',
+            fragment: 'ignored'
+          }"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
-          [class.active]="router.isActive('/product/', false)"
           >Our Fleets</a
         >
       </li>
@@ -153,8 +157,14 @@
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                href="/product/search"
-                [class.active]="router.isActive('/product/search', false)"
+                routerLink="/product/search"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{
+                  paths: 'subset',
+                  queryParams: 'subset',
+                  matrixParams: 'ignored',
+                  fragment: 'ignored'
+                }"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
                 <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
@@ -225,7 +235,7 @@
               </ul> -->
             </div>
             <p class="copyright text-center redhat-medium size16">
-              © 2025, All Rights Reserved Ghost Rentals
+              2025, All Rights Reserved Ghost Rentals
             </p>
           </div>
         </nav>

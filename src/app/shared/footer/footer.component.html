@@ -1,44 +1,88 @@
-<section class="footer" style="background-color: #1D1D1D;">
+<section class="footer" style="background-color: #1d1d1d">
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-4">
-        <div class="d-flex align-items-center justify-content-lg-start justify-content-center mb-lg-0 mb-4">
+        <div
+          class="d-flex align-items-center justify-content-lg-start justify-content-center mb-lg-0 mb-4"
+        >
           <a href="/" class="text-decoration-none">
-            <img src="{{ imageURL }}/images/logo/footer_logo.png" alt="" class="footer-logo" />
+            <img
+              src="{{ imageURL }}/images/logo/footer_logo.png"
+              alt=""
+              class="footer-logo"
+            />
           </a>
         </div>
       </div>
 
       <div class="col-lg-8">
         <div
-          class="footer-gap d-flex justify-content-lg-end justify-content-around  text-start">
+          class="footer-gap d-flex justify-content-lg-end justify-content-around text-start"
+        >
           <div class="">
-            <h4 class="redhat-bold size22 white-color text-capitalize margin10">company</h4>
+            <h4 class="redhat-bold size22 white-color text-capitalize margin10">
+              company
+            </h4>
             <ul class="nav d-flex flex-column footer-menu">
-              <li class="nav-item ">
-                <a href=" " (click)="setActivemenu(' ')" [ngClass]="{ 'active': activeLink === '' }"
-                  class="text-decoration-none white-color size16  redhat-regular text-capitalize">Home</a>
+              <li class="nav-item">
+                <a
+                  href=" "
+                  (click)="setActivemenu(' ')"
+                  [ngClass]="{ active: activeLink === '' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >Home</a
+                >
               </li>
-              <li class="nav-item ">
-                <a href="/about" (click)="setActivemenu('about')" [ngClass]="{ 'active': activeLink === 'about' }"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize">about us</a>
+              <li class="nav-item">
+                <a
+                  href="/about"
+                  (click)="setActivemenu('about')"
+                  [ngClass]="{ active: activeLink === 'about' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >about us</a
+                >
               </li>
-              <li class="nav-item ">
-                <a href="/services" (click)="setActivemenu('services')" [ngClass]="{ 'active': activeLink === 'services' }"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize">services</a>
+              <li class="nav-item">
+                <a
+                  href="/services"
+                  (click)="setActivemenu('services')"
+                  [ngClass]="{ active: activeLink === 'services' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >services</a
+                >
               </li>
-              <li class="nav-item ">
+              <!-- <li class="nav-item ">
                 <a href="/product/search?type=Car" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">Our cars</a>
               </li>
               <li class="nav-item ">
                 <a href="/product/search?type=Yachts" (click)="setActivemenu('search')" [ngClass]="{ 'active': activeLink === 'search' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize">our yachts</a>
+              </li> -->
+              <li class="nav-item">
+                <a
+                  href="/product/search?type=Car"
+                  (click)="setActivemenu('cars')"
+                  [ngClass]="{ active: activeLink === 'cars' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >Our cars</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="/product/search?type=Yachts"
+                  (click)="setActivemenu('yachts')"
+                  [ngClass]="{ active: activeLink === 'yachts' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >our yachts</a
+                >
               </li>
             </ul>
           </div>
           <div class="">
-            <h4 class="redhat-bold size22 white-color text-capitalize margin10">Support</h4>
+            <h4 class="redhat-bold size22 white-color text-capitalize margin10">
+              Support
+            </h4>
             <ul class="nav d-flex flex-column footer-menu supportlinks">
               <!-- <li class="nav-item">
                 <a href="/#faq" fragment="faq"
@@ -46,100 +90,177 @@
                   >FAQ</a>
               </li> -->
               <li class="nav-item faq-link">
-                <a href="/privacy" (click)="setActivemenu('privacy')" [ngClass]="{ 'active': activeLink === 'privacy' }"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize">privacy policy</a>
+                <a
+                  href="/privacy"
+                  (click)="setActivemenu('privacy')"
+                  [ngClass]="{ active: activeLink === 'privacy' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >privacy policy</a
+                >
               </li>
 
-              <li class="nav-item ">
-                <a href="/terms" class="text-decoration-none white-color size16 redhat-regular text-capitalize" (click)="setActivemenu('terms')" [ngClass]="{ 'active': activeLink === 'terms' }">terms &
-                  conditions</a>
+              <li class="nav-item">
+                <a
+                  href="/terms"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  (click)="setActivemenu('terms')"
+                  [ngClass]="{ active: activeLink === 'terms' }"
+                  >terms & conditions</a
+                >
               </li>
-              <li class="nav-item ">
-                <a href="/contact" (click)="setActivemenu('contact')" [ngClass]="{ 'active': activeLink === 'contact' }"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize">contact us</a>
-              </li>
-            </ul>
-          </div>
-          <div class="social-section d-flex flex-column align-items-center d-none d-lg-block">
-            <h4 class="redhat-bold size22 white-color text-capitalize margin10">Connect With Us</h4>
-            <ul class=" nav d-flex flex-md-column justify-content-center ">
-              <li class="nav-item ">
-                <a href="https://www.instagram.com/ghost.rentals/?hl=en"
-                  class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">
-                  <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/images/icons/instagram.svg" alt="Instagram" class="footer-social-icon ">
-                  </div>
-                  <h4 class="size16 redhat-regular text-capitalize mb-0">Instagram</h4>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="https://www.facebook.com/Ghostrentalsdubai"
-                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
-                  <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/images/icons/facebook.svg" alt="Facebook" class="footer-social-icon ">
-                  </div>
-                  <h4 class="size16 redhat-regular text-capitalize mb-0">Facebook</h4>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="https://www.tiktok.com/@ghostrentals"
-                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
-                  <div class="social-icon-div me-2">
-                      <img src="{{ imageURL }}/images/icons/tiktok.svg" alt="TikTok" class="footer-social-icon tiktok">
-                  </div>  
-                  <h4 class="size16 redhat-regular text-capitalize mb-0">TikTok</h4>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
-                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
-                  <div class="social-icon-div me-2">
-                      <img src="{{ imageURL }}/images/icons/youtube.svg" alt="Youtube" class="footer-social-icon youtube">
-                  </div>
-                  <h4 class="size16 redhat-regular text-capitalize mb-0">Youtube</h4>
-                </a>
+              <li class="nav-item">
+                <a
+                  href="/contact"
+                  (click)="setActivemenu('contact')"
+                  [ngClass]="{ active: activeLink === 'contact' }"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize"
+                  >contact us</a
+                >
               </li>
             </ul>
           </div>
-          
+          <div
+            class="social-section d-flex flex-column align-items-center d-none d-lg-block"
+          >
+            <h4 class="redhat-bold size22 white-color text-capitalize margin10">
+              Connect With Us
+            </h4>
+            <ul class="nav d-flex flex-md-column justify-content-center">
+              <li class="nav-item">
+                <a
+                  href="https://www.instagram.com/ghost.rentals/?hl=en"
+                  class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center"
+                >
+                  <div class="social-icon-div me-2">
+                    <img
+                      src="{{ imageURL }}/images/icons/instagram.svg"
+                      alt="Instagram"
+                      class="footer-social-icon"
+                    />
+                  </div>
+                  <h4 class="size16 redhat-regular text-capitalize mb-0">
+                    Instagram
+                  </h4>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.facebook.com/Ghostrentalsdubai"
+                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+                >
+                  <div class="social-icon-div me-2">
+                    <img
+                      src="{{ imageURL }}/images/icons/facebook.svg"
+                      alt="Facebook"
+                      class="footer-social-icon"
+                    />
+                  </div>
+                  <h4 class="size16 redhat-regular text-capitalize mb-0">
+                    Facebook
+                  </h4>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.tiktok.com/@ghostrentals"
+                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+                >
+                  <div class="social-icon-div me-2">
+                    <img
+                      src="{{ imageURL }}/images/icons/tiktok.svg"
+                      alt="TikTok"
+                      class="footer-social-icon tiktok"
+                    />
+                  </div>
+                  <h4 class="size16 redhat-regular text-capitalize mb-0">
+                    TikTok
+                  </h4>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
+                  class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+                >
+                  <div class="social-icon-div me-2">
+                    <img
+                      src="{{ imageURL }}/images/icons/youtube.svg"
+                      alt="Youtube"
+                      class="footer-social-icon youtube"
+                    />
+                  </div>
+                  <h4 class="size16 redhat-regular text-capitalize mb-0">
+                    Youtube
+                  </h4>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="social-section d-flex flex-column align-items-center mt-2 d-block d-lg-none">
-          <h4 class="redhat-bold size22 white-color text-capitalize margin10">Connect With Us</h4>
-          <ul class=" nav d-flex  justify-content-center align-items-center">
-            <li class="nav-item ">
-              <a href="https://www.instagram.com/ghost.rentals/?hl=en"
-                class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center">
+        <div
+          class="social-section d-flex flex-column align-items-center mt-2 d-block d-lg-none"
+        >
+          <h4 class="redhat-bold size22 white-color text-capitalize margin10">
+            Connect With Us
+          </h4>
+          <ul class="nav d-flex justify-content-center align-items-center">
+            <li class="nav-item">
+              <a
+                href="https://www.instagram.com/ghost.rentals/?hl=en"
+                class="text-decoration-none white-color size16 redhat-regular text-capitalize d-flex align-items-center"
+              >
                 <div class="social-icon-div me-2">
-                  <img src="{{ imageURL }}/images/icons/instagram.svg" alt="Instagram" class="footer-social-icon ">
+                  <img
+                    src="{{ imageURL }}/images/icons/instagram.svg"
+                    alt="Instagram"
+                    class="footer-social-icon"
+                  />
                 </div>
               </a>
             </li>
-            <li class="nav-item ">
-              <a href="https://www.facebook.com/Ghostrentalsdubai"
-                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+            <li class="nav-item">
+              <a
+                href="https://www.facebook.com/Ghostrentalsdubai"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+              >
                 <div class="social-icon-div me-2">
-                  <img src="{{ imageURL }}/images/icons/facebook.svg" alt="Facebook" class="footer-social-icon ">
+                  <img
+                    src="{{ imageURL }}/images/icons/facebook.svg"
+                    alt="Facebook"
+                    class="footer-social-icon"
+                  />
                 </div>
               </a>
             </li>
-            <li class="nav-item ">
-              <a href="https://www.tiktok.com/@ghostrentals"
-                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
+            <li class="nav-item">
+              <a
+                href="https://www.tiktok.com/@ghostrentals"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+              >
                 <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/images/icons/tiktok.svg" alt="TikTok" class="footer-social-icon tiktok">
-                </div>  
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
-                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize">
-                <div class="social-icon-div me-2">
-                    <img src="{{ imageURL }}/images/icons/youtube.svg" alt="Youtube" class="footer-social-icon youtube">
+                  <img
+                    src="{{ imageURL }}/images/icons/tiktok.svg"
+                    alt="TikTok"
+                    class="footer-social-icon tiktok"
+                  />
                 </div>
               </a>
             </li>
-          
+            <li class="nav-item">
+              <a
+                href="https://www.youtube.com/@GhostRentalsDXB?app=desktop"
+                class="text-decoration-none white-color d-flex align-items-center size16 redhat-regular text-capitalize"
+              >
+                <div class="social-icon-div me-2">
+                  <img
+                    src="{{ imageURL }}/images/icons/youtube.svg"
+                    alt="Youtube"
+                    class="footer-social-icon youtube"
+                  />
+                </div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -149,18 +270,39 @@
   <div class="container-fluid marginTop128">
     <div class="row">
       <div class="col-lg-4">
-        <p class="copyright text-center redhat-regular size16 white-color text-lg-start text-center mb-lg-0 mb-3">©
-          2025, All Rights Reserved Ghost Rentals</p>
+        <p
+          class="copyright text-center redhat-regular size16 white-color text-lg-start text-center mb-lg-0 mb-3"
+        >
+          © 2025, All Rights Reserved Ghost Rentals
+        </p>
       </div>
       <div class="col-lg-8">
         <p
-          class="copyright text-center redhat-regular size16 white-color text-lg-end text-center mb-0 d-flex justify-content-lg-end justify-content-center align-items-center gap-1">
+          class="copyright text-center redhat-regular size16 white-color text-lg-end text-center mb-0 d-flex justify-content-lg-end justify-content-center align-items-center gap-1"
+        >
           Design and Developed With
-          <img #heartIcon class="heart" width="18" height="16" loading="lazy" [src]="getImagePath()"
-            (mouseenter)="setActive(true)" (mouseleave)="setActive(false)" style="width:18px;">
-          By <strong> <a href="https://www.pixtar.ae" class="customlink mb-0 " target="_blank"
+          <img
+            #heartIcon
+            class="heart"
+            width="18"
+            height="16"
+            loading="lazy"
+            [src]="getImagePath()"
+            (mouseenter)="setActive(true)"
+            (mouseleave)="setActive(false)"
+            style="width: 18px"
+          />
+          By
+          <strong>
+            <a
+              href="https://www.pixtar.ae"
+              class="customlink mb-0"
+              target="_blank"
               class="text-decoration-none white-color size16 redhat-semibold"
-              style="font-weight:normal;">Pixtar</a></strong>
+              style="font-weight: normal"
+              >Pixtar</a
+            ></strong
+          >
         </p>
       </div>
     </div>
