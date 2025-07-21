@@ -166,16 +166,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.getBodyTypes()
     ]).then(() => {
       this.route.queryParams.subscribe(params => {
-        this.processQueryParams(params);
         const type = params['type'];
         if (type) {
           this.vehicleType = type;
-          this.setVehicleType();
-          this.SearchItems();
+          if(this.isMobile){
+            this.SearchItems();
+          } else {
+            this.setVehicleType();
+          }
+        } else {
+          this.processQueryParams(params);
         }
       });
     });
   }
+  
   get_PageMeta() {
 		let obj = { pageName: 'products' };
 		this.pageservice.getpageWithName(obj).subscribe((response) => {

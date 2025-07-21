@@ -330,7 +330,7 @@
                     Free UAE Delivery.
                   </p>
                   <button
-                    routerLink="/product/search"
+                    [routerLink]="['/product/search']" [queryParams]="{ type: 'Car' }"
                     class="white-button size18 redhat-bold text-capitalize"
                     data-text="Explore Cars"
                   >
@@ -357,7 +357,7 @@
                     Yachts.
                   </p>
                   <button
-                    routerLink="/product/search"
+                    [routerLink]="['/product/search']" [queryParams]="{ type: 'Yachts' }"
                     class="white-button size18 redhat-bold text-capitalize"
                     data-text="Explore Yachts"
                   >
@@ -397,7 +397,7 @@
             data-aos-duration="1000"
           >
             <button
-              routerLink="/product/search"
+              (click)="sendWhatsAppMsgs()"
               class="white-button size18 redhat-bold text-decoration-none gray-color"
               data-text="Hire a Chauffeur"
             >

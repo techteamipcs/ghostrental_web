@@ -98,4 +98,12 @@ export class AboutComponent  {
     });
   }
 
+  sendWhatsAppMsgs() {
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking your Chauffeur Services\n\nCould you please help me with:\n - Is the pricing based on the number of hours or the kilometers driven?\n - What's included in the services?\n - Cars available for my dates?\n\nThank you!`;
+      const encodedMsg = encodeURIComponent(message);
+      const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+  }
+
 }
