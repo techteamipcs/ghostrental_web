@@ -4,12 +4,20 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://localhost:5014',
-  // url:'http://localhost:4214',
   isBrowser: true, // Add a flag
-  baseUrl: 'https://dev.pixtar.ae:5014',
-  url: 'https://dev.pixtar.ae',
   recaptcha_key: '6LdVAeAqAAAAANRiCTIwsrPp7DwcP3jSOpzVk0wi',
+
+  // live
+  baseUrl: 'https://www.ghostrentals.ae:5013',
+  url: 'https://www.ghostrentals.ae',
+
+  // dev
+  // baseUrl: 'https://dev.pixtar.ae:5013',
+  // url: 'https://dev.pixtar.ae',
+
+  // local
+  // baseUrl: 'http://localhost:5013',
+  // url:'http://localhost:4213',
 };
 
 /*

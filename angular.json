@@ -78,7 +78,7 @@
             },
             "development": {
               "buildTarget": "ghost-rental:build:development",
-              "port":4214
+              "port": 4213
             }
           },
           "defaultConfiguration": "development"
