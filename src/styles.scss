@@ -1413,7 +1413,11 @@ nav {
     }
   }
 
+  li a.active {
+    font-family: $redhat-bold;
+  }
 }
+
 
 .special-number {
   position: absolute;

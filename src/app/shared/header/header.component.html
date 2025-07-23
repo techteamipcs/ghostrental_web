@@ -124,34 +124,34 @@
           <ul class="nav-menu">
             <li class="nav-item" (click)="closeMenu()">
               <a
-                href="/"
-                [class.active]="router.isActive('/', true)"
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
-                <!-- <lucide-icon name="home" class="nav-icon"></lucide-icon> -->
-                <span>Home</span>
+                Home
               </a>
             </li>
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                href="/about"
-                [class.active]="router.isActive('/about', false)"
+                routerLink="/about"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
-                <!-- <lucide-icon name="users" class="nav-icon"></lucide-icon> -->
-                <span>About Us</span>
+                About Us
               </a>
             </li>
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                href="/services"
-                [class.active]="router.isActive('/services', false)"
+                routerLink="/services"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
-                <!-- <lucide-icon name="settings" class="nav-icon"></lucide-icon> -->
-                <span>Our Services</span>
+                Our Services
               </a>
             </li>
 
@@ -167,8 +167,7 @@
                 }"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
-                <!-- <lucide-icon name="car" class="nav-icon"></lucide-icon> -->
-                <span>Our Fleets</span>
+                Our Fleets
               </a>
             </li>
 
