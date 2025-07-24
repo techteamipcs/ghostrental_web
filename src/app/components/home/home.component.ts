@@ -1356,15 +1356,37 @@ selectMinute(minute: string) {
 
 
 
-
   private initializeTimePicker() {
+    // Set hours from 1 to 12
+    this.displayHours = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
+    
+    // Set minutes in 10-minute intervals (00, 10, 20, 30, 40, 50)
+    this.minutes = ['00', '15', '30', '45'];
+    
+    // Initialize with default values if not set
+    if (!this.selectedHour) {
+      this.selectedHour = '12';
+    }
+    if (!this.selectedMinute) {
+      this.selectedMinute = '00';
+    }
+    if (!this.selectedEndHour) {
+      this.selectedEndHour = '12';
+    }
+    if (!this.selectedEndMinute) {
+      this.selectedEndMinute = '00';
+    }
+    
     this.updateDisplayHours();
-    const now = new Date();
-    this.isPM = now.getHours() >= 12;
-    this.selectedHour = String(now.getHours() % 12 || 12).padStart(2, '0');
-    this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
-    // this.updateselectedStartTime();
   }
+  // private initializeTimePicker() {
+  //   this.updateDisplayHours();
+  //   const now = new Date();
+  //   this.isPM = now.getHours() >= 12;
+  //   this.selectedHour = String(now.getHours() % 12 || 12).padStart(2, '0');
+  //   this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
+  //   // this.updateselectedStartTime();
+  // }
 
   updateDisplayHours() {
     this.displayHours = Array.from({ length: 12 }, (_, i) => {

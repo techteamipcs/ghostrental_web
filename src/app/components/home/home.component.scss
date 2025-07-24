@@ -914,7 +914,6 @@
 
   // contact popup
   .form-container {
-
     input:focus,
     textarea:focus {
       outline: none;
@@ -927,7 +926,6 @@
     }
 
     ::ng-deep {
-
       .intl-tel-input.allow-dropdown input,
       .intl-tel-input.allow-dropdown input[type="text"],
       .intl-tel-input.allow-dropdown input[type="tel"],
@@ -971,10 +969,14 @@
         margin-left: 0;
       }
 
-      .iti.separate-dial-code[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406],
-      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4[_ngcontent-ng-c2444536406] input[_ngcontent-ng-c2444536406] {
+      .iti.separate-dial-code[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406],
+      .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4[_ngcontent-ng-c2444536406]
+        input[_ngcontent-ng-c2444536406] {
         width: 100%;
         border: none;
         padding-left: 0;
@@ -1270,6 +1272,312 @@
   }
 }
 
+// timer css
+.form-glass {
+  .time-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 16px;
+    margin-top: 4px;
+    min-width: 280px;
+    scrollbar-width: none;
+
+    @media (max-width: 768px) {
+      min-width: 250px;
+      padding: 12px;
+    }
+
+    @media (max-width: 430px) {
+      min-width: 220px;
+      padding: 10px;
+    }
+
+    &.show {
+      display: block;
+    }
+
+    .time-picker-header {
+      margin-bottom: 16px;
+
+      @media (max-width: 430px) {
+        margin-bottom: 12px;
+      }
+
+      .time-format-tabs {
+        display: flex;
+        border-radius: 6px;
+        padding: 2px;
+
+        .format-tab {
+          background: transparent;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          padding: 5px 12px;
+
+          @media (max-width: 430px) {
+            padding: 6px 12px;
+          }
+
+          &.active {
+            background: #000;
+            color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+
+          &:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+    }
+
+    .time-picker-container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+
+      @media (max-width: 430px) {
+        gap: 12px;
+      }
+
+      .time-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .time-section-label {
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #666;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+
+          @media (max-width: 430px) {
+            margin-bottom: 6px;
+            font-size: 11px;
+          }
+        }
+
+        .time-options {
+          display: flex;
+          flex-direction: column;
+          max-height: 160px;
+          overflow-y: auto;
+          width: 100%;
+          padding: 4px;
+          border-radius: 6px;
+          background: #f8f9fa;
+
+          // Custom scrollbar
+          &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+          }
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+
+          @media (max-width: 768px) {
+            max-height: 140px;
+          }
+
+          @media (max-width: 430px) {
+            max-height: 120px;
+          }
+
+          .time-option {
+            padding: 8px 12px;
+            margin: 2px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-align: center;
+            min-height: 36px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            @media (max-width: 768px) {
+              padding: 6px 10px;
+              min-height: 32px;
+            }
+
+            @media (max-width: 430px) {
+              padding: 5px 8px;
+              min-height: 28px;
+            }
+
+            &:hover {
+              background: #000;
+              color: #fff;
+              transform: translateY(-1px);
+            }
+
+            &.selected {
+              background: #000000;
+              color: white;
+              font-weight: 600;
+              box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+
+              border: 2px solid #fff;
+
+              &:hover {
+                background: #000000;
+                transform: none;
+              }
+            }
+
+            &.selected.scroll-to {
+              animation: highlightSelection 0.3s ease-in-out;
+            }
+          }
+        }
+
+        &.hours-section .time-options .time-option.selected {
+          background: #000;
+          border-color: #000;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        &.minutes-section .time-options .time-option.selected {
+          background: #000;
+          border-color: #000;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+
+    .time-picker-actions {
+      justify-content: space-evenly;
+      width: 100%;
+      display: flex;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #e0e0e0;
+
+      @media (max-width: 430px) {
+        margin-top: 12px;
+        padding-top: 12px;
+        gap: 8px;
+      }
+
+      &:last-child:not(:disabled) {
+        background: transparent;
+        color: white;
+        border-color: #000;
+      }
+    }
+  }
+}
+
+// Animation for highlighting selected time
+@keyframes highlightSelection {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(33, 150, 243, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+  }
+}
+
+// Ensure the calendar dropdown also has proper z-index
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 16px;
+  margin-top: 4px;
+
+  @media (max-width: 430px) {
+    padding: 12px;
+  }
+
+  &.show {
+    display: block;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-top: 8px;
+
+    .day-name {
+      padding: 8px 4px;
+      text-align: center;
+      font-weight: 600;
+      color: #666;
+      font-size: 12px;
+
+      @media (max-width: 430px) {
+        padding: 6px 2px;
+        font-size: 11px;
+      }
+    }
+
+    .day-cell {
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 430px) {
+        padding: 6px 2px;
+        min-height: 28px;
+      }
+
+      &:hover:not(.disabled) {
+        background: #e3f2fd;
+      }
+
+      &.today {
+        background: #fff3e0;
+        font-weight: 600;
+      }
+
+      &.selected {
+        background: #000;
+        color: white;
+        font-weight: 600;
+      }
+
+      &.disabled {
+        color: #ccc;
+        cursor: not-allowed;
+        background: #f9f9f9;
+      }
+    }
+  }
+}
 // category section
 .car-types-section {
   padding: 161px 197px 182px;
@@ -1446,41 +1754,41 @@
       font-size: 14px;
     }
   }
-  
-.hover-a {
-  position: relative;
-  display: inline-block;
-  
-  .hover-span {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    color: transparent;
-    -webkit-text-stroke: 1px #000;
-    opacity: 0;
-    width: max-content;
-    text-transform: uppercase;
-    transition: all 0.6s ease;
-  }
 
-  &:hover {
+  .hover-a {
+    position: relative;
+    display: inline-block;
+
     .hover-span {
-      // top: -10%;
-      top: 100%;
-      opacity: 1;
-    }
-    .type-margin {
-      z-index: -1;
-      opacity: 0;
+      position: absolute;
+      left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      left: 50%;
-      bottom: auto;
+      z-index: -1;
+      color: transparent;
+      -webkit-text-stroke: 1px #000;
+      opacity: 0;
+      width: max-content;
+      text-transform: uppercase;
+      transition: all 0.6s ease;
+    }
+
+    &:hover {
+      .hover-span {
+        // top: -10%;
+        top: 100%;
+        opacity: 1;
+      }
+      .type-margin {
+        z-index: -1;
+        opacity: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        bottom: auto;
+      }
     }
   }
-}
 }
 
 .services {
@@ -2633,10 +2941,12 @@ input {
     background: grey;
     padding: 0 5px;
     border-radius: 5px;
-
   }
 
-  .ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-value-container .ng-placeholder {
+  .ng-select.ng-select-multiple
+    .ng-select-container.ng-has-value
+    .ng-value-container
+    .ng-placeholder {
     opacity: 0;
     display: none;
   }
@@ -2649,10 +2959,8 @@ input {
     font-size: 24px !important;
     line-height: normal !important;
     cursor: pointer;
-
   }
 }
-
 
 .close-arrow {
   cursor: pointer;
@@ -2795,8 +3103,6 @@ input {
   }
 }
 
-
-
 .size28 {
   font-size: 28px;
 
@@ -2811,7 +3117,6 @@ input {
   @media (max-width: 384px) {
     font-size: 16px;
   }
-
 }
 
 .size20 {
@@ -2828,7 +3133,6 @@ input {
   @media (max-width: 384px) {
     font-size: 12px;
   }
-
 }
 
 .size18 {
@@ -2845,7 +3149,6 @@ input {
   @media (max-width: 384px) {
     font-size: 10px;
   }
-
 }
 
 .date-selector {
@@ -2885,7 +3188,6 @@ input {
       max-width: 100%;
       min-width: 100%;
     }
-
 
     &.show {
       opacity: 1;
@@ -2981,8 +3283,8 @@ input {
     transition: all 0.3s ease, height 0.2s ease;
     transform-origin: top;
     width: 100%;
-    max-width: 300px;
-    min-width: 200px;
+    max-width: 100%;
+    min-width: 100%;
     overflow: hidden;
     padding: 16px;
 
@@ -3001,6 +3303,9 @@ input {
       max-height: 30vh;
       overflow-y: auto;
 
+      @media (max-width: 1536px) {
+        max-height: 30vh;
+      }
       @media (max-width: 1024px) {
         max-height: 22vh;
       }
@@ -3025,7 +3330,6 @@ input {
       margin-bottom: 6px;
       transform-origin: bottom;
     }
-
   }
 
   .time-picker-header {
@@ -3042,8 +3346,6 @@ input {
       justify-content: center;
       gap: 8px;
       width: 100%;
-
-
     }
   }
 
@@ -3136,17 +3438,7 @@ input {
       }
     }
   }
-
-  .time-picker-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-
-    .btn {}
-  }
 }
-
 
 // Disabled state for time options
 .time-option.disabled {
@@ -3155,10 +3447,7 @@ input {
   cursor: not-allowed;
 }
 
-
-
-
-// cartypes 
+// cartypes
 // .hover-a:hover{
 //   .hover-span{
 //     position: absolute;
