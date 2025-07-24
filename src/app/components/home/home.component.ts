@@ -1418,7 +1418,7 @@ selectMinute(minute: string) {
 
   toggleStartTimePicker(event: MouseEvent) {
     event.stopPropagation();
-    
+    this.closeAllPickers();
     // Toggle the time picker
     this.showStartTimePicker = !this.showStartTimePicker;
     
