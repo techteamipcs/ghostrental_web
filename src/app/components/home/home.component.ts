@@ -125,22 +125,22 @@ export class HomeComponent implements OnInit {
     {
       image: 'images/icons/cars.png',
       title: 'Premium Yachts and Cars',
-      description: 'Premium Cars and Yacht Rentals Suitable for Family Use.',
+      description: 'Premium Cars and Yacht rentals suitable for family use.',
     },
     {
       image: 'images/icons/hand.png',
       title: 'Family-First Service',
-      description: 'Building Lasting Relationships Through Exceptional Service.',
+      description: 'Building lasting relationships through exceptional service.',
     },
     {
       image: 'images/icons/247-white.svg',
       title: 'Booking Experience',
-      description: 'Instant Booking With 24/7 Service Assistance.',
+      description: 'Instant booking with 24/7 service assistance.',
     },
     {
       image: 'images/icons/map-white.svg',
       title: 'UAE Coverage',
-      description: 'Our Services Will Arrive At Your Doorstep Across Every UAE Emirate.',
+      description: 'Enjoy seamless doorstep delivery across the UAE.',
     }
   ];
 
