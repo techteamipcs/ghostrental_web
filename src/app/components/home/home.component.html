@@ -327,6 +327,7 @@
                             : ''
                         "
                         readonly
+                        name="selectedStartDate"
                         placeholder="Select Date"
                         class="form-control custom-date-input size14 redhat-medium input-margin black-light-color"
                         (click)="toggleCalendar($event)"
@@ -384,6 +385,11 @@
                           </div>
                         </div>
                       </div>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
                     </div>
                   </div>
                   <!-- <div class="col-6">
@@ -498,7 +504,7 @@
                         [ngClass]="{ show: showStartTimePicker }"
                         (click)="$event.stopPropagation()"
                       >
-                        <div class="time-picker-header">
+                        <!-- <div class="time-picker-header">
                           <div class="time-format-tabs">
                             <button
                               type="button"
@@ -517,7 +523,7 @@
                               PM
                             </button>
                           </div>
-                        </div>
+                        </div> -->
 
                         <div class="time-picker-container d-flex">
                           <div class="time-section hours-section">
@@ -527,13 +533,27 @@
                               Hours
                             </div>
                             <div class="time-options hours" #hoursContainer>
-                              <div
+                              <!-- <div
                                 *ngFor="let hour of displayHours"
                                 class="time-option size14 redhat-medium text-center mb-1 rounded"
                                 [class.selected]="isSelectedHour(hour)"
                                 [class.scroll-to]="isSelectedHour(hour)"
                                 (click)="selectHour(hour)"
                                 [attr.data-hour]="hour"
+                              >
+                                {{ hour }}
+                              </div> -->
+                              <div
+                                *ngFor="let hour of displayHours"
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="isSelectedHour(hour)"
+                                [class.disabled]="
+                                  isPastTime(hour, selectedMinute || '00')
+                                "
+                                (click)="
+                                  !isPastTime(hour, selectedMinute || '00') &&
+                                    selectHour(hour)
+                                "
                               >
                                 {{ hour }}
                               </div>
@@ -547,7 +567,7 @@
                               Minutes
                             </div>
                             <div class="time-options minutes" #minutesContainer>
-                              <div
+                              <!-- <div
                                 *ngFor="let minute of minutes"
                                 class="time-option size14 redhat-medium text-center mb-1 rounded"
                                 [class.selected]="selectedMinute === minute"
@@ -556,12 +576,26 @@
                                 [attr.data-minute]="minute"
                               >
                                 {{ minute }}
+                              </div> -->
+                              <div
+                                *ngFor="let minute of minutes"
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="selectedMinute === minute"
+                                [class.disabled]="
+                                  isPastTime(selectedHour || '00', minute)
+                                "
+                                (click)="
+                                  !isPastTime(selectedHour || '00', minute) &&
+                                    selectMinute(minute)
+                                "
+                              >
+                                {{ minute }}
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        <div class="time-picker-actions mt-3">
+                        <div class="time-picker-actions mt-1">
                           <button
                             type="button"
                             class="format-tab size14 redhat-medium gray-color"
@@ -579,6 +613,11 @@
                           </button>
                         </div>
                       </div>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
                     </div>
                   </div>
                   <div class="col-12 label-margin">
@@ -719,9 +758,14 @@
                           </div> -->
                         </div>
                       </div>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
                     </div>
                   </div>
-                  <div class="col-6">
+                  <!-- <div class="col-6">
                     <div
                       class="time-selector drop-time-selector position-relative"
                       (click)="$event.stopPropagation()"
@@ -743,27 +787,6 @@
                         (click)="$event.stopPropagation()"
                         [ngClass]="{ show: showEndTimePicker }"
                       >
-                        <div class="time-picker-header">
-                          <div class="time-format-tabs">
-                            <button
-                              type="button"
-                              class="format-tab size14 redhat-medium gray-color"
-                              [class.active]="!isEndPM"
-                              (click)="setEndAM()"
-                            >
-                              AM
-                            </button>
-                            <button
-                              type="button"
-                              class="format-tab size14 redhat-medium gray-color"
-                              [class.active]="isEndPM"
-                              (click)="setEndPM()"
-                            >
-                              PM
-                            </button>
-                          </div>
-                        </div>
-
                         <div class="time-picker-container d-flex">
                           <div class="time-section hours-section">
                             <div
@@ -809,7 +832,7 @@
                           </div>
                         </div>
 
-                        <div class="time-picker-actions mt-3">
+                        <div class="time-picker-actions mt-1">
                           <button
                             type="button"
                             class="format-tab size14 redhat-medium gray-color"
@@ -827,8 +850,118 @@
                           </button>
                         </div>
                       </div>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
+                    </div>
+                  </div> -->
+                  <div class="col-6">
+                    <div
+                      class="time-selector drop-time-selector position-relative"
+                      (click)="$event.stopPropagation()"
+                    >
+                      <input
+                        type="text"
+                        [value]="
+                          selectedEndTime ? selectedEndTime : 'Select Time'
+                        "
+                        readonly
+                        placeholder="Select Time"
+                        class="form-control custom-time-input size14 redhat-medium input-margin black-light-color"
+                        (click)="toggleEndTimePicker($event)"
+                      />
+
+                      <div
+                        class="time-picker-dropdown card shadow position-absolute z-3"
+                        *ngIf="showEndTimePicker"
+                        (click)="$event.stopPropagation()"
+                        [ngClass]="{ show: showEndTimePicker }"
+                      >
+                        <div class="time-picker-container d-flex">
+                          <div class="time-section hours-section">
+                            <div
+                              class="time-section-label my-1 size12 redhat-regular"
+                            >
+                              Hours
+                            </div>
+                            <div class="time-options hours" #endHoursContainer>
+                              <div
+                                *ngFor="let hour of displayHours"
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="isSelectedEndHour(hour)"
+                                [class.disabled]="
+                                  isPastEndTime(hour, selectedEndMinute || '00')
+                                "
+                                (click)="
+                                  !isPastEndTime(
+                                    hour,
+                                    selectedEndMinute || '00'
+                                  ) && selectEndHour(hour)
+                                "
+                              >
+                                {{ hour }}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="time-section minutes-section">
+                            <div
+                              class="time-section-label my-1 size12 redhat-regular"
+                            >
+                              Minutes
+                            </div>
+                            <div
+                              class="time-options minutes"
+                              #endMinutesContainer
+                            >
+                              <div
+                                *ngFor="let minute of minutes"
+                                class="time-option size14 redhat-medium text-center mb-1 rounded"
+                                [class.selected]="selectedEndMinute === minute"
+                                [class.disabled]="
+                                  isPastEndTime(selectedEndHour || '00', minute)
+                                "
+                                (click)="
+                                  !isPastEndTime(
+                                    selectedEndHour || '00',
+                                    minute
+                                  ) && selectEndMinute(minute)
+                                "
+                              >
+                                {{ minute }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="time-picker-actions mt-1">
+                          <button
+                            type="button"
+                            class="format-tab size14 redhat-medium gray-color"
+                            (click)="cancelEndTimeSelection()"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            class="format-tab size14 redhat-medium gray-color"
+                            [disabled]="!selectedEndHour || !selectedEndMinute"
+                            (click)="confirmEndTime()"
+                          >
+                            OK
+                          </button>
+                        </div>
+                      </div>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
                     </div>
                   </div>
+
                   <div class="col-12 type-margin">
                     <ng-container *ngIf="!isVehicleYacht">
                       <div class="position-relative">
@@ -1256,13 +1389,12 @@
     </div>
     <div class="row topMargin justify-content-evenly">
       <div class="col-xl-4 col-lg-4 col-md-10 padding-x margin-x">
-        <div
+        <a
           class="card h-100 position-relative"
           style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="1000"
-          [routerLink]="['/services']"
-          [fragment]="'car-service'"
+          href="/services#car-service"
         >
           <img
             src="{{ imageURL }}/home/services/car-rental.png"
@@ -1283,23 +1415,21 @@
               Choose Rolls-Royce, Lamborghini & Range Rover with free UAE
               delivery.
             </p>
-            <a
-              href="/services#car-service"
+            <span
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-10 padding-x margin-x">
-        <div
+        <a
           class="card rounded-4 h-100 position-relative"
           style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="1500"
-          [routerLink]="['/services']"
-          [fragment]="'yacht-service'"
+          href="/services#yacht-service"
         >
           <img
             src="{{ imageURL }}/home/services/yacht_rental.png"
@@ -1319,23 +1449,21 @@
               Sail by Dubai's famous landmarks such as Palm Jumeirah, Burj Al
               Arab, and Atlantis on our crewed and catered Luxury Yachts.
             </p>
-            <a
-              href="/services#yacht-service"
+            <span
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-xl-4 col-lg-4 col-md-10 margin-x padding-x">
-        <div
+        <a
           class="card rounded-4 h-100 position-relative"
           style="cursor: pointer"
           data-aos="fade-up"
           data-aos-duration="2000"
-          [routerLink]="['/services']"
-          [fragment]="'chauffeur-service'"
+          href="/services#chauffeur-service"
         >
           <img
             src="{{ imageURL }}/home/services/chauffeur.png"
@@ -1356,14 +1484,13 @@
               chauffeur services in Dubai provide unparalleled elegance for
               every trip.
             </p>
-            <a
-              href="/services#chauffeur-service"
+            <span
               class="size16 redhat-semibold text-capitalize text-decoration-none color-card-p mt-auto"
             >
               know more
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1494,8 +1621,13 @@
                         >
                           AED {{ car.regularRateDaily }}
                         </h6>
-                        <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ car.dailyRate }}
+                        <h5
+                          class="mb-0 size26 redhat-semibold gray-color d-flex align-items-center"
+                        >
+                          AED {{ car.dailyRate }}/<span
+                            class="size18 redhat-semibold"
+                            >day</span
+                          >
                         </h5>
                       </div>
                       <a
@@ -1664,8 +1796,13 @@
                         >
                           AED {{ yacht.regularRateHourly }}
                         </h6>
-                        <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ yacht.hourlyRate }}
+                        <h5
+                          class="mb-0 size26 redhat-semibold gray-color d-flex align-items-center"
+                        >
+                          AED {{ yacht.hourlyRate }}/
+                          <span class="size18 redhat-semibold gray-color"
+                            >hr</span
+                          >
                         </h5>
                       </div>
                       <a
@@ -1854,7 +1991,7 @@
                   >
                     <div class="car-header margin27">
                       <h4
-                        class="car-name mb-1 size35 redhat-semibold beige-color"
+                        class="car-name mb-1 size30 redhat-semibold beige-color"
                       >
                         <!-- {{ car.name.substring(0, 18) }}... -->
                         {{ car.name }}
@@ -1881,9 +2018,12 @@
                         >AED {{ car.regularRateDaily }}</span
                       >
                       <span
-                        class="discounted-price size35 redhat-semibold beige-color"
-                        >AED {{ car.dailyRate }}</span
-                      >
+                        class="discounted-price size35 redhat-semibold beige-color d-flex align-items-center"
+                        >AED {{ car.dailyRate }}/<span
+                          class="size18 redhat-semibold"
+                          >day</span
+                        >
+                      </span>
                     </div>
                     <a
                       [routerLink]="['/product', car.url_key]"
@@ -1963,7 +2103,7 @@
                     >
                       <div class="car-header margin15">
                         <h4
-                          class="car-name mb-1 size35 redhat-semibold beige-color"
+                          class="car-name mb-1 size30 redhat-semibold beige-color"
                         >
                           {{ car.name }}
                         </h4>
@@ -1988,9 +2128,12 @@
                           >AED {{ car.regularRateDaily }}</span
                         >
                         <span
-                          class="discounted-price size35 redhat-semibold beige-color"
-                          >AED {{ car.dailyRate }}</span
-                        >
+                          class="discounted-price size35 redhat-semibold beige-color d-flex align-items-center"
+                          >AED {{ car.dailyRate }}/<span
+                            class="size18 redhat-semibold"
+                            >day</span
+                          >
+                        </span>
                       </div>
                       <a
                         [routerLink]="['/product', car.url_key]"
