@@ -684,9 +684,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
     const target = event.target as HTMLSelectElement;
     const selectedId = target.value;
     this.selectedBodyTypeId = selectedId;
-    this.selectedBodytype = [selectedId]; // 👈 Update for search filter
+    this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.selectedBrand = []; // Reset brand and model when body changes
+    this.selectedModel = [];
     this.filterBrandsByBodyType();
-    this.getCarData(); // 👈 Search immediately
+    this.filteredModel = []; // Reset model list
+    this.getCarData();
   }
 
 
@@ -697,22 +700,24 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changeBrand(data) {
-    if (data?.target?.value) {
-      this.selectedBrand = [data.target.value];
-      this.selectedModel = []; // Reset model
-      if (this.modelData?.length > 0) {
-        this.filteredModel = this.modelData.filter((item) => item.brand === data.target.value);
-      }
-      this.getCarData(); // 👈 Trigger search
+  changeBrand(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedId = target.value;
+    this.selectedBrand = selectedId ? [selectedId] : [];
+    this.selectedModel = [];
+    if (selectedId && this.modelData.length > 0) {
+      this.filteredModel = this.modelData.filter(item => item.brand === selectedId);
+    } else {
+      this.filteredModel = [];
     }
+    this.getCarData();
   }
 
-  changeModel(data) {
-    if (data?.target?.value) {
-      this.selectedModel = [data.target.value];
-      this.getCarData(); // 👈 Trigger search
-    }
+  changeModel(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedId = target.value;
+    this.selectedModel = selectedId ? [selectedId] : [];
+    this.getCarData();
   }
 
   changeCartype(data) {
