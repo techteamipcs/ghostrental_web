@@ -1385,6 +1385,11 @@ select:focus {
   outline: none;
   border: none;
 }
+select{
+  appearance: none;            /* Chrome, Firefox */
+  -webkit-appearance: none;    /* Safari */
+  -moz-appearance: none;  
+}
 
 a {
   text-decoration: none !important;
