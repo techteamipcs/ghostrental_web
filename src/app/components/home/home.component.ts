@@ -1138,8 +1138,8 @@ export class HomeComponent implements OnInit {
  
   // time functionality
   minDate: any;
-  hours: string[] = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
-  minutes: string[] = Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, '0'));
+  hours: string[] = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
+  minutes: string[] = ['00','15','30','45'];
   selectedHour: string = '';
   selectedMinute: string = '';
   selectedEndHour: string = '';
@@ -1154,8 +1154,7 @@ export class HomeComponent implements OnInit {
   // selectedStartTime: any;
   // selectedEndTime: any;
   isPM: boolean = false;
-  displayHours: string[] = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
-
+  displayHours: string[] =["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
   // Time picker state management
   private previousStartTime: { hour: string, minute: string, isPM: boolean } | null = null;
   private previousEndTime: { hour: string, minute: string, isPM: boolean } | null = null;
@@ -1254,7 +1253,7 @@ export class HomeComponent implements OnInit {
       if (this.isPM && hour < 12) hour += 12;
       if (!this.isPM && hour === 12) hour = 0;
   
-      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute} ${this.isPM ? 'PM' : 'AM'}`;
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
       this.showStartTimePicker = false;
   
       const time = new Date();
@@ -1270,34 +1269,81 @@ export class HomeComponent implements OnInit {
     }
   }
   // Add this method to check if a time is in the past
-isPastTime(hour: number, minute: number): boolean {
-  if (!this.selectedStartDate) return false;
+// isPastTime(hour: number, minute: number): boolean {
+//   if (!this.selectedStartDate) return false;
   
+//   const now = new Date();
+//   const selectedTime = new Date(this.selectedStartDate);
+//   selectedTime.setHours(hour, minute, 0, 0);
+  
+//   // If the selected date is today, check if time is in the past
+//   if (this.isToday(this.selectedStartDate)) {
+//     return selectedTime < now;
+//   }
+//   return false;
+// }
+
+isPastTime(hour: string, minute: string): boolean {
+  if (!this.selectedStartDate) return false;
+
   const now = new Date();
   const selectedTime = new Date(this.selectedStartDate);
-  selectedTime.setHours(hour, minute, 0, 0);
-  
-  // If the selected date is today, check if time is in the past
+
+  const h = parseInt(hour, 10);  
+  const m = parseInt(minute, 10);
+
+  selectedTime.setHours(h, m, 0, 0);
+
   if (this.isToday(this.selectedStartDate)) {
     return selectedTime < now;
   }
   return false;
 }
 
+isSameDay(date1: Date, date2: Date): boolean {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
+}
+
+
+isPastEndTime(hour: string, minute: string): boolean {
+  if (!this.selectedEndDate) return false;
+
+  const h = parseInt(hour, 10);
+  const m = parseInt(minute, 10);
+  const selectedTime = new Date(this.selectedEndDate);
+  selectedTime.setHours(h, m, 0, 0);
+
+  // If drop date = pickup date, ensure drop time > pickup time
+  if (this.selectedStartDate && this.isSameDay(this.selectedStartDate, this.selectedEndDate)) {
+    if (this.selectedStartTime) {
+      const [pickupHour, pickupMinute] = this.selectedStartTime.split(':').map(Number);
+      const pickupTime = new Date(this.selectedStartDate);
+      pickupTime.setHours(pickupHour, pickupMinute, 0, 0);
+      return selectedTime <= pickupTime;  // disable times before pickup
+    }
+  }
+
+  return false;
+}
+
+
 selectHour(hour: string) {
   const hourNum = parseInt(hour, 10);
   const minute = parseInt(this.selectedMinute || '0', 10);
   
-  if (this.isPastTime(hourNum, minute)) {
-    this.Toast.fire({ 
-      icon: 'warning', 
-      title: 'Please select a future time' 
-    });
-    return;
-  }
+  // if (this.isPastTime(hourNum, minute)) {
+  //   this.Toast.fire({ 
+  //     icon: 'warning', 
+  //     title: 'Please select a future time' 
+  //   });
+  //   return;
+  // }
   
   this.selectedHour = hour;
-  // this.updateselectedStartTime();
 }
 
 selectMinute(minute: string) {
@@ -1312,13 +1358,13 @@ selectMinute(minute: string) {
   const hourNum = parseInt(this.selectedHour, 10);
   const minuteNum = parseInt(minute, 10);
   
-  if (this.isPastTime(hourNum, minuteNum)) {
-    this.Toast.fire({ 
-      icon: 'warning', 
-      title: 'Please select a future time' 
-    });
-    return;
-  }
+  // if (this.isPastTime(hourNum, minuteNum)) {
+  //   this.Toast.fire({ 
+  //     icon: 'warning', 
+  //     title: 'Please select a future time' 
+  //   });
+  //   return;
+  // }
   
   this.selectedMinute = minute;
   // this.updateselectedStartTime();
@@ -1349,6 +1395,13 @@ selectMinute(minute: string) {
   }
 
   toggleEndCalendar(event?: MouseEvent) {
+    if (!this.selectedStartDate) {
+      this.Toast.fire({
+        icon: 'warning',
+        title: 'Please Select Pickup Date First'
+      });
+      return;
+    }
     event?.stopPropagation();
     this.closeAllPickers();
     this.showEndCalendar = !this.showEndCalendar;
@@ -1358,12 +1411,10 @@ selectMinute(minute: string) {
 
   private initializeTimePicker() {
     // Set hours from 1 to 12
-    this.displayHours = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
+    this.displayHours = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
     
-    // Set minutes in 10-minute intervals (00, 10, 20, 30, 40, 50)
-    this.minutes = ['00', '15', '30', '45'];
+    this.minutes = ['00','15','30','45'];
     
-    // Initialize with default values if not set
     if (!this.selectedHour) {
       this.selectedHour = '12';
     }
@@ -1389,24 +1440,14 @@ selectMinute(minute: string) {
   // }
 
   updateDisplayHours() {
-    this.displayHours = Array.from({ length: 12 }, (_, i) => {
-      return String(i + 1).padStart(2, '0');
-    });
+    this.displayHours = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
+    
   }
 
   isSelectedHour(hour: string): boolean {
     return this.selectedHour === hour;
   }
 
-  setAM() {
-    this.isPM = false;
-    // this.updateselectedStartTime();
-  }
-
-  setPM() {
-    this.isPM = true;
-    // this.updateselectedStartTime();
-  }
 
   private closeAllPickers() {
     this.showCalendar = false;
@@ -1417,6 +1458,14 @@ selectMinute(minute: string) {
   }
 
   toggleStartTimePicker(event: MouseEvent) {
+    if (!this.selectedStartDate ) {
+      this.Toast.fire({
+        icon: 'warning',
+        title: 'Please Select Pickup Date First'
+      });
+      this.showStartTimePicker = false;
+      return;
+    }
     event.stopPropagation();
     this.closeAllPickers();
     // Toggle the time picker
@@ -1440,6 +1489,15 @@ selectMinute(minute: string) {
   }
 
   toggleEndTimePicker(event: MouseEvent) {
+    
+    if (!this.selectedStartTime || !this.selectedEndDate || !this.selectedStartDate) {
+      this.Toast.fire({
+        icon: 'warning',
+        title: 'Please Select Pickup Date and Time First'
+      });
+      this.showEndTimePicker = false;
+      return;
+    }
     event.stopPropagation();
     this.closeAllPickers();
     this.showEndTimePicker = !this.showEndTimePicker;
@@ -1547,7 +1605,7 @@ selectMinute(minute: string) {
       if (this.isEndPM && hour < 12) hour += 12;
       if (!this.isEndPM && hour === 12) hour = 0;
 
-      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute} ${this.isEndPM ? 'PM' : 'AM'}`;
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
       this.showEndTimePicker = false;
 
       const time = new Date();
@@ -1613,14 +1671,7 @@ selectMinute(minute: string) {
   }
 
   selectEndDate(date: Date) {
-    if (!this.selectedStartDate) {
-      this.Toast.fire({
-        icon: 'warning',
-        title: 'Please Select Pickup Date First'
-      });
-      this.showEndCalendar = false;
-      return;
-    }
+ 
   
     const pickup = new Date(this.selectedStartDate);
     pickup.setHours(0, 0, 0, 0);
@@ -1628,13 +1679,7 @@ selectMinute(minute: string) {
     const selected = new Date(date);
     selected.setHours(0, 0, 0, 0);
   
-    if (selected < pickup) {
-      this.Toast.fire({
-        icon: 'warning',
-        title: 'Please Select Pickup Date First'
-      });
-      return;
-    }
+
   
     this.selectedEndDate = selected;
     this.showEndCalendar = false;

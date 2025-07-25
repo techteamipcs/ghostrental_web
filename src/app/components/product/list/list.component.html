@@ -89,7 +89,7 @@
                 disabled
                 class="text-muted size14 redhat-semibold text-capitalize bg-white color-card-p"
               >
-                Sort by any makes &nbsp; &nbsp;
+                Sort by
                 <!-- <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt=""> -->
               </option>
               <!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
@@ -97,7 +97,7 @@
               </option> -->
               <option
                 value="H-L"
-                class="size14 redhat-semibold text-capitalize"
+                class="size14 redhat-semibold text-capitalize bg-transparent"
               >
                 Price: High to Low
               </option>
@@ -288,8 +288,13 @@
                       >
                         AED {{ car.regularRateDaily }}
                       </h6>
-                      <h5 class="mb-0 size26 redhat-semibold gray-color">
-                        AED {{ car.dailyRate }}
+                      <h5
+                        class="mb-0 size26 redhat-semibold gray-color d-flex align-items-center"
+                      >
+                        AED {{ car.dailyRate }}/<span
+                          class="size18 redhat-semibold"
+                          >day</span
+                        >
                       </h5>
                     </div>
                     <a

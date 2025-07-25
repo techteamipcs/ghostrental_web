@@ -1364,14 +1364,9 @@
           border-radius: 6px;
           background: #f8f9fa;
 
-          // Custom scrollbar
-          &::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
+          @media (max-width: 1366px) {
+            max-height: 130px;
           }
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-
           @media (max-width: 768px) {
             max-height: 140px;
           }
@@ -1380,9 +1375,18 @@
             max-height: 120px;
           }
 
+          // Custom scrollbar
+          &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+          }
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+
+          
           .time-option {
             padding: 5px;
-            margin: 2px 0;
+            margin: 2px auto;
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.2s ease;
@@ -1392,6 +1396,8 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            width: max-content;
+            text-transform: capitalize;
 
             &:focus-visible {
               border: none !important;
@@ -1409,7 +1415,6 @@
               background: #000000;
               color: white;
               font-weight: 600;
-              border: 2px solid #fff;
 
               &:hover {
                 background: #000000;
@@ -1423,13 +1428,11 @@
         &.hours-section .time-options .time-option.selected {
           background: #000;
           border-color: #000;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         &.minutes-section .time-options .time-option.selected {
           background: #000;
           border-color: #000;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
       }
     }
@@ -1620,14 +1623,12 @@
   .category-image {
     width: auto;
     height: auto;
-    // transform: scale(1.25);
     object-fit: contain;
     display: block;
 
     @media screen and (max-width: 1920px) {
       width: auto;
-      height: auto;
-      // transform: scale(1);
+        height: auto;
     }
 
     @media screen and (max-width: 1680px) {
@@ -2176,12 +2177,15 @@
     position: relative;
 
     .swiper-wrapper {
-      align-items: stretch;
+      // align-items: stretch;
       display: flex;
+      flex-direction: row;
       width: 100%;
     }
 
     .swiper-slide {
+      flex-shrink: 0;
+      width: auto;
       height: auto;
       display: flex;
       align-items: stretch;
@@ -2224,9 +2228,10 @@
   .car-card {
     border: 1px solid #d1d1d1;
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    // width: 500px;
     border-radius: 15px;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -2292,6 +2297,49 @@
     @media screen and (max-width: 430px) {
       margin-top: 30px;
     }
+  }
+
+  .car-collection-splide {
+    .splide__slide {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 10px;
+    }
+  .car-card {
+    border: 1px solid #d1d1d1;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    padding: 12px;
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+  }
+
+  .splide__arrow {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      background: black;
+      color: white;
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
   }
 }
 
@@ -2698,6 +2746,7 @@
 
     .swiper-slide {
       max-width: 100%;
+      padding: 15px;
     }
 
     .margin-right {
@@ -3237,8 +3286,6 @@ input {
   }
 
   .time-picker-dropdown {
-   
-
     @media (max-width: 1440px) {
       padding: 10px;
       width: 100%;
@@ -3251,27 +3298,27 @@ input {
       transform: translateY(0);
       pointer-events: auto;
       height: auto;
-      max-height: 30vh;
+      max-height: max-content;
       overflow-y: auto;
 
-      @media (max-width: 1536px) {
-        max-height: 30vh;
-      }
-      @media (max-width: 1024px) {
-        max-height: 22vh;
-      }
+      // @media (max-width: 1536px) {
+      //   max-height: 30vh;
+      // }
+      // @media (max-width: 1024px) {
+      //   max-height: 22vh;
+      // }
 
-      @media (max-width: 768px) {
-        max-height: 20vh;
-      }
+      // @media (max-width: 768px) {
+      //   max-height: 20vh;
+      // }
 
-      @media (max-width: 576px) {
-        max-height: 22vh;
-      }
+      // @media (max-width: 576px) {
+      //   max-height: 22vh;
+      // }
 
-      @media (max-width: 360px) {
-        max-height: 24vh;
-      }
+      // @media (max-width: 360px) {
+      //   max-height: 24vh;
+      // }
     }
 
     &.drop-up {
@@ -3340,6 +3387,9 @@ input {
     overflow-y: auto;
     width: max-content;
     margin: 0 auto;
+    @media (max-width: 1366px) {
+      max-height: 130px;
+    }
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -3382,7 +3432,6 @@ input {
           &.selected {
             background: #212529;
             color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           }
         }
       }
