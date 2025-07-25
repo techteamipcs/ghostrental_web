@@ -78,15 +78,16 @@
               <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Body
                 Type</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select class="form-selection size16 redhat-semibold bg-white gray-color" name="bodytype" #selbodyType
-                  (change)="changeBodyType($event)" (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
+                <select class="form-selection size16 redhat-semibold bg-white gray-color" name="bodytype" [value]="selectedBodytype[0]"
+                (change)="onBodyTypeSelect($event)" (click)="
+                  $event.stopPropagation(); toggleSelectDropdown($event)
                   " (blur)="onSelectBlur($event)">
                   <option value="">Select Body Type</option>
-                  <option *ngFor="let item of bodyTypeData" value="{{ item._id }}">
+                  <option *ngFor="let item of bodyTypeData" [value]="item._id">
                     {{ item.name }}
                   </option>
                 </select>
+
                 <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
               <!-- Car Brand -->
