@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   dropofftoday: string;
   selectedRentalType: any;
   minPrice: any = 0;
-  maxPrice: any = 20000; 
+  maxPrice: any = 20000;
   // price_type: any = 'dailyRate';
   filteredModel: any = [];
   price_type: any = '';
@@ -98,10 +98,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     floor: 0,
     ceil: 20000,
   };
-  sliderVisible:any = false;
+  sliderVisible: any = false;
 
 
-  
+
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
@@ -169,7 +169,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         const type = params['type'];
         if (type) {
           this.vehicleType = type;
-          if(this.isMobile){
+          if (this.isMobile) {
             this.SearchItems();
           } else {
             this.setVehicleType();
@@ -180,35 +180,35 @@ export class SearchComponent implements OnInit, AfterViewInit {
       });
     });
   }
-  
+
   get_PageMeta() {
-		let obj = { pageName: 'products' };
-		this.pageservice.getpageWithName(obj).subscribe((response) => {
-			if (response.body.code == 200) {
-				this.titleService.setTitle(response?.body.result.meta_title);
-				this.metaTagService.updateTag({
-					name: 'description',
-					content: response?.body.result.meta_description,
-				});
-				this.metaTagService.updateTag({
-					name: 'keywords',
-					content: response?.body.result.meta_keywords,
-				});
-			} else if (response.code == 400) {
-			} else {
-			}
-		});
-	}
-  
+    let obj = { pageName: 'products' };
+    this.pageservice.getpageWithName(obj).subscribe((response) => {
+      if (response.body.code == 200) {
+        this.titleService.setTitle(response?.body.result.meta_title);
+        this.metaTagService.updateTag({
+          name: 'description',
+          content: response?.body.result.meta_description,
+        });
+        this.metaTagService.updateTag({
+          name: 'keywords',
+          content: response?.body.result.meta_keywords,
+        });
+      } else if (response.code == 400) {
+      } else {
+      }
+    });
+  }
+
   setVehicleType() {
-    if(this.vehicleType=='Car'){
+    if (this.vehicleType == 'Car') {
       this.maxPrice = 10000;
       this.currentLimit = 12;
       this.currentPage = 1;
       this.itemsPerPage = 12;
       this.price_type = 'dailyRate';
     }
-    if(this.vehicleType == 'Yachts'){
+    if (this.vehicleType == 'Yachts') {
       this.maxPrice = 20000;
       this.currentLimit = 12;
       this.currentPage = 1;
@@ -552,9 +552,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
     }
-		window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
-  
+
 
   resetFilter() {
     this.vehicleType = '';
@@ -581,7 +581,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.currentPage = 1;
       this.previousVehicleType = this.vehicleType;
     }
-  
+
     let obj = {
       limit: this.currentLimit,
       page: this.currentPage,
@@ -761,9 +761,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getFirstTwoWords(name:string) : string{
-    if(!name) return "";
-    return name.split(' ').slice(0,2).join(' ');
+  getFirstTwoWords(name: string): string {
+    if (!name) return "";
+    return name.split(' ').slice(0, 2).join(' ');
   }
 
 

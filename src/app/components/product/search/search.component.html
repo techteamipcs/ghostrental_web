@@ -3,107 +3,60 @@
     <div class="row">
       <!-- filter section -->
       <div class="col-xl-3 col-lg-5 filter-section">
-        <div
-          class="border border-2 p-xl-4 p-md-3 p-3 filter-container"
-          #filterContainer
-          [ngClass]="{
+        <div class="border border-2 p-xl-4 p-md-3 p-3 filter-container" #filterContainer [ngClass]="{
             'position-sticky': true,
             'position-relative': isMobileFilterVisible && isMobile
-          }"
-        >
+          }">
           <div class="filter">
             <div class="d-flex align-items-center justify-content-between">
               <div class="d-flex align-items-center gap-2">
-                <img
-                  src="{{ imageURL }}/images/icons/filter.svg"
-                  alt="Filter"
-                  class="img-fluid"
-                  style="width: 20px"
-                />
+                <img src="{{ imageURL }}/images/icons/filter.svg" alt="Filter" class="img-fluid" style="width: 20px" />
                 <h6 class="mb-0 size18 redhat-semibold gray-color">Filter</h6>
               </div>
               <div class="d-flex align-items-center gap-2">
-                <button
-                  class="size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent gray-color"
-                  type="button"
-                  (click)="resetFilter()"
-                >
+                <button class="size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent gray-color"
+                  type="button" (click)="resetFilter()">
                   reset
                 </button>
-                <button
-                  class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
-                  (click)="toggleFilter()"
-                  type="button"
-                  [attr.aria-expanded]="isMobileFilterVisible"
-                  aria-controls="filter-options"
-                >
-                  <lucide-icon
-                    [name]="isMobileFilterVisible ? 'minus' : 'plus'"
-                    size="20"
-                    style="display: flex"
-                  />
+                <button class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
+                  (click)="toggleFilter()" type="button" [attr.aria-expanded]="isMobileFilterVisible"
+                  aria-controls="filter-options">
+                  <lucide-icon [name]="isMobileFilterVisible ? 'minus' : 'plus'" size="20" style="display: flex" />
                 </button>
               </div>
             </div>
 
-            <div
-              id="filter-options"
-              *ngIf="!isMobile || isMobileFilterVisible"
-              class="filter"
-              [ngClass]="{
+            <div id="filter-options" *ngIf="!isMobile || isMobileFilterVisible" class="filter" [ngClass]="{
                 'position-absolute top-100 start-0 w-100 shadow bg-white  border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3':
                   isMobile
-              }"
-            >
+              }">
               <!-- Vehicle Type -->
-              <label
-                class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
-                >Vehicle Type</label
-              >
+              <label class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0">Vehicle
+                Type</label>
               <div class="filter-section">
-                <select
-                  [(ngModel)]="vehicleType"
-                  class="form-selection size16 redhat-semibold bg-white gray-color"
+                <select [(ngModel)]="vehicleType" class="form-selection size16 redhat-semibold bg-white gray-color"
                   (click)="
                     $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                  (change)="setVehicleType()"
-                >
+                  " (blur)="onSelectBlur($event)" (change)="setVehicleType()">
                   <option value="">Select Vehicle Type</option>
                   <option value="Car">Car</option>
                   <option value="Yachts">Yachts</option>
                 </select>
-                <img
-                  src="{{ imageURL }}/images/icons/down-arrow.svg"
-                  alt="Arrow Down"
-                  class="down-arrow"
-                />
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
               <!-- Special Number Plate -->
-              <label
-                *ngIf="vehicleType == 'Car'"
-                class="form-label gray-light-color size14 redhat-semibold mb-1"
-                >Special Number Plate</label
-              >
+              <label *ngIf="vehicleType == 'Car'"
+                class="form-label gray-light-color size14 redhat-semibold mb-1">Special Number Plate</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold bg-white gray-color"
-                  (change)="onChangeSpecialNumber($event)"
-                  (click)="
+                <select class="form-selection size16 redhat-semibold bg-white gray-color"
+                  (change)="onChangeSpecialNumber($event)" (click)="
                     $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                  " (blur)="onSelectBlur($event)">
                   <option value="">Select Special Number Plate</option>
                   <option value="true">VIP Number Plate</option>
                   <!-- <option value="false">Disable</option> -->
                 </select>
-                <img
-                  src="{{ imageURL }}/images/icons/down-arrow.svg"
-                  alt="Arrow Down"
-                  class="down-arrow"
-                />
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
 
               <!-- Rental Type -->
@@ -122,138 +75,73 @@
                    />
               </div> -->
               <!-- Body Type -->
-              <label
-                *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Body Type</label
-              >
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Body
+                Type</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold bg-white gray-color"
-                  name="bodytype"
-                  #selbodyType
-                  (change)="changeBodyType($event)"
-                  (click)="
+                <select class="form-selection size16 redhat-semibold bg-white gray-color" name="bodytype" #selbodyType
+                  (change)="changeBodyType($event)" (click)="
                     $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                  " (blur)="onSelectBlur($event)">
                   <option value="">Select Body Type</option>
-                  <option
-                    *ngFor="let item of bodyTypeData"
-                    value="{{ item._id }}"
-                  >
+                  <option *ngFor="let item of bodyTypeData" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
                 </select>
-                <img
-                  src="{{ imageURL }}/images/icons/down-arrow.svg"
-                  alt="Arrow Down"
-                  class="down-arrow"
-                />
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
               <!-- Car Brand -->
-              <label
-                *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Car Brand</label
-              >
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
+                Brand</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold bg-white gray-color"
-                  #selBrand
-                  name="brand"
-                  (change)="changeBrand($event)"
-                  (click)="
+                <select class="form-selection size16 redhat-semibold bg-white gray-color" #selBrand name="brand"
+                  (change)="changeBrand($event)" (click)="
                     $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                  " (blur)="onSelectBlur($event)">
                   <option value="">Select Car Brand</option>
                   <option *ngFor="let item of brandData" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
                 </select>
-                <img
-                  src="{{ imageURL }}/images/icons/down-arrow.svg"
-                  alt="Arrow Down"
-                  class="down-arrow"
-                />
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
               <!-- Car Model -->
-              <label
-                *ngIf="vehicleType == 'Car'"
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Car Model</label
-              >
+              <label *ngIf="vehicleType == 'Car'" class="form-label size14 redhat-semibold mb-1 gray-light-color">Car
+                Model</label>
               <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select
-                  class="form-selection size16 redhat-semibold bg-white gray-color"
-                  #selctModel
-                  name="model"
-                  (change)="changeModel($event)"
-                  (click)="
+                <select class="form-selection size16 redhat-semibold bg-white gray-color" #selctModel name="model"
+                  (change)="changeModel($event)" (click)="
                     $event.stopPropagation(); toggleSelectDropdown($event)
-                  "
-                  (blur)="onSelectBlur($event)"
-                >
+                  " (blur)="onSelectBlur($event)">
                   <option value="">Select Car Model</option>
-                  <option
-                    *ngFor="let item of filteredModel"
-                    value="{{ item._id }}"
-                  >
+                  <option *ngFor="let item of filteredModel" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
                 </select>
-                <img
-                  src="{{ imageURL }}/images/icons/down-arrow.svg"
-                  alt="Arrow Down"
-                  class="down-arrow"
-                />
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
               <!-- Date From -->
-              <label
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Date From</label
-              >
+              <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date From</label>
               <div class="filter-section">
-                <span
-                  *ngIf="!selectedStartDate"
+                <span *ngIf="!selectedStartDate"
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-                  style="pointer-events: none"
-                  >Start date</span
-                >
+                  style="pointer-events: none">Start date</span>
 
-                <input
-                  type="datetime-local"
+                <input type="datetime-local"
                   class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-                  [(ngModel)]="selectedStartDate"
-                  [min]="pickuptoday"
-                  (ngModelChange)="onSelectPickupDate()"
-                />
+                  [(ngModel)]="selectedStartDate" [min]="pickuptoday" (ngModelChange)="onSelectPickupDate()" />
 
                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
               <!-- Date To -->
-              <label
-                class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                >Date To</label
-              >
+              <label class="form-label size14 redhat-semibold mb-1 gray-light-color">Date To</label>
               <div class="filter-section">
-                <span
-                  *ngIf="!selectedEndDate"
+                <span *ngIf="!selectedEndDate"
                   class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-                  style="pointer-events: none"
-                  >End date</span
-                >
+                  style="pointer-events: none">End date</span>
 
-                <input
-                  type="datetime-local"
+                <input type="datetime-local"
                   class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-                  [min]="dropofftoday"
-                  [(ngModel)]="selectedEndDate"
-                  (ngModelChange)="onSelectDropDate()"
-                />
+                  [min]="dropofftoday" [(ngModel)]="selectedEndDate" (ngModelChange)="onSelectDropDate()" />
                 <lucide-icon name="calendar-days" size="20"></lucide-icon>
               </div>
 
@@ -262,57 +150,29 @@
                 <!-- Price Inputs -->
                 <div class="row g-2 mb-4">
                   <div class="col-6">
-                    <label
-                      for="minPrice"
-                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                      >Min</label
-                    >
+                    <label for="minPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Min</label>
                     <div class="position-relative">
-                      <input
-                        type="number"
-                        id="minPrice"
-                        [(ngModel)]="minPrice"
-                        (click)="onPriceInputChange('min')"
-                        min="0"
-                        [max]="maxPrice - 500"
-                        class="form-controls size16 redhat-semibold bg-white gray-color w-100"
-                      />
-                      <span
-                        class="position-absolute size14 redhat-semibold color-card-p"
-                        style="
+                      <input type="number" id="minPrice" [(ngModel)]="minPrice" (click)="onPriceInputChange('min')"
+                        min="0" [max]="maxPrice - 500"
+                        class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
+                      <span class="position-absolute size14 redhat-semibold color-card-p" style="
                           right: 10px;
                           top: 50%;
                           transform: translateY(-50%);
-                        "
-                        >AED</span
-                      >
+                        ">AED</span>
                     </div>
                   </div>
                   <div class="col-6">
-                    <label
-                      for="maxPrice"
-                      class="form-label size14 redhat-semibold mb-1 gray-light-color"
-                      >Max</label
-                    >
+                    <label for="maxPrice" class="form-label size14 redhat-semibold mb-1 gray-light-color">Max</label>
                     <div class="position-relative">
-                      <input
-                        type="number"
-                        id="maxPrice"
-                        [(ngModel)]="maxPrice"
-                        (click)="onPriceInputChange('max')"
-                        [min]="minPrice + 500"
-                        max="150000"
-                        class="form-controls size16 redhat-semibold bg-white gray-color w-100"
-                      />
-                      <span
-                        class="position-absolute size14 redhat-semibold color-card-p"
-                        style="
+                      <input type="number" id="maxPrice" [(ngModel)]="maxPrice" (click)="onPriceInputChange('max')"
+                        [min]="minPrice + 500" max="150000"
+                        class="form-controls size16 redhat-semibold bg-white gray-color w-100" />
+                      <span class="position-absolute size14 redhat-semibold color-card-p" style="
                           right: 10px;
                           top: 50%;
                           transform: translateY(-50%);
-                        "
-                        >AED</span
-                      >
+                        ">AED</span>
                     </div>
                   </div>
                 </div>
@@ -326,22 +186,14 @@
                     [attr.aria-valuenow]="maxPrice" tabindex="0"></div>
                 </div> -->
                 <div *ngIf="sliderVisible" class="my-2">
-                  <ngx-slider
-                    class="ngxslider"
-                    *ngIf="sliderVisible"
-                    [(value)]="minPrice"
-                    [(highValue)]="maxPrice"
-                    [options]="options"
-                  ></ngx-slider>
+                  <ngx-slider class="ngxslider" *ngIf="sliderVisible" [(value)]="minPrice" [(highValue)]="maxPrice"
+                    [options]="options"></ngx-slider>
                 </div>
               </div>
 
               <!-- Search Button -->
-              <button
-                class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0 text-capitalize"
-                (click)="SearchItems()"
-                data-text="Search"
-              >
+              <button class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0 text-capitalize"
+                (click)="SearchItems()" data-text="Search">
                 <span>Search</span>
               </button>
             </div>
@@ -349,82 +201,49 @@
         </div>
       </div>
       <!-- results section -->
-      <div
-        class="results-section col-xl-9 col-lg-9 col-md-12 col-12 position-relative"
-        #resultsSection
-        [ngClass]="{
+      <div class="results-section col-xl-9 col-lg-9 col-md-12 col-12 position-relative" #resultsSection [ngClass]="{
           'col-xl-12 col-lg-12 col-md-12 col-12': isFilterCollapsed,
           'col-xl-9 col-lg-12 col-md-12 col-12': !isFilterCollapsed
-        }"
-      >
+        }">
         <!-- <div class="container-fluid"> -->
         <div
-          class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section"
-        >
-          <h6
-            class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1"
-            style="font-size: 14px"
-            *ngIf="vehicleData && vehicleData.length > 0"
-          >
+          class="d-flex justify-content-md-between justify-content-end align-items-center margin34 margin60 sort-section">
+          <h6 class="mb-0 redhat-bold d-md-block d-none color-card-p ms-1" style="font-size: 14px"
+            *ngIf="vehicleData && vehicleData.length > 0">
             Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
             {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
             {{ totalItems }} Vehicles
           </h6>
-          <h6
-            class="mb-0 size22 redhat-bold color-card-p text-capitalize"
-            *ngIf="vehicleData && vehicleData.length == 0"
-          >
+          <h6 class="mb-0 size22 redhat-bold color-card-p text-capitalize"
+            *ngIf="vehicleData && vehicleData.length == 0">
             No Data Found
           </h6>
 
-          <div
-            class="d-flex align-items-center position-relative sort cdrop"
-            style="cursor: pointer"
-            *ngIf="vehicleData && vehicleData.length > 0"
-          >
-            <select
-              class="border-0 outline-none redhat-semibold text-capitalize bg-transparent color-card-p cselect"
-              (change)="onChangeSort($event)"
-              style="font-size: 14px"
-            >
-              <option
-                selected
-                disabled
-                class="text-muted size14 redhat-semibold text-capitalize"
-              >
-                Sort by  &nbsp;
+          <div class="d-flex align-items-center position-relative sort cdrop" style="cursor: pointer"
+            *ngIf="vehicleData && vehicleData.length > 0">
+            <select class="border-0 outline-none redhat-semibold text-capitalize bg-transparent color-card-p cselect"
+              (change)="onChangeSort($event)" style="font-size: 14px">
+              <option selected disabled class="text-muted size14 redhat-semibold text-capitalize">
+                Sort by &nbsp;
               </option>
               <!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
               Sort by A - Z
             </option> -->
-              <option
-                value="H-L"
-                class="size14 redhat-semibold text-capitalize color-card-p"
-              >
+              <option value="H-L" class="size14 redhat-semibold text-capitalize color-card-p">
                 Price: High to Low
               </option>
-              <option
-                value="L-H"
-                class="size14 redhat-semibold text-capitalize color-card-p"
-              >
+              <option value="L-H" class="size14 redhat-semibold text-capitalize color-card-p">
                 Price: Low to High
               </option>
               <!-- <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
               Old to New
             </option> -->
-              <option
-                value="relevance"
-                class="size14 redhat-semibold text-capitalize color-card-p"
-              >
+              <option value="relevance" class="size14 redhat-semibold text-capitalize color-card-p">
                 Relevance
               </option>
             </select>
 
-            <img
-              src="{{ imageURL }}/images/icons/down-arrow.svg"
-              class="img-fluid down-arrow"
-              alt=""
-            />
+            <img src="{{ imageURL }}/images/icons/down-arrow.svg" class="img-fluid down-arrow" alt="" />
           </div>
         </div>
         <div class="products" *ngIf="vehicleData && vehicleData.length > 0">
@@ -433,25 +252,14 @@
             Coming soon...
           </h6> -->
           <div class="row">
-            <div
-              class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4"
-              style="cursor: pointer"
-              *ngFor="let car of vehicleData"
-            >
-              <a
-                href="/product/{{ car.url_key }}"
-                class="text-decoration-none cardblock"
-                tabindex="0"
-                role="link"
-              >
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-xl-5 mb-lg-4 mb-md-4 mb-sm-3 mb-4" style="cursor: pointer"
+              *ngFor="let car of vehicleData">
+              <a href="/product/{{ car.url_key }}" class="text-decoration-none cardblock" tabindex="0" role="link">
                 <!-- [routerLink]="['/product', car.url_key]" -->
                 <div class="car-card">
                   <div class="thumbnail-image-container">
-                    <img
-                      [src]="backendURl + '/media/' + car.media_data[0].src"
-                      [alt]="car.name"
-                      class="img-fluid w-100 h-100 thumbnail-image"
-                    />
+                    <img [src]="backendURl + '/media/' + car.media_data[0].src" [alt]="car.name"
+                      class="img-fluid w-100 h-100 thumbnail-image" />
                   </div>
                   <!-- <div class="position-relative special-number-wrapper">
                   <lucide-icon name="crown" size="20"></lucide-icon>
@@ -462,7 +270,7 @@
                   >
                     special number plate
                   </span>
-                
+
                   <img
                     [src]="backendURl + '/media/' + car.media_data[0].src"
                     [alt]="car.name"
@@ -472,167 +280,103 @@
 
                   <!-- <div class="card-content h-100 d-flex flex-column justify-content-center"> -->
                   <div class="card-content">
-                    <div
-                      class="car-info d-flex justify-content-between position-relative"
-                    >
+                    <div class="car-info d-flex justify-content-between position-relative">
                       <div class="car-header margin15">
-                        <h4
-                          class="car-name mb-1 size22 redhat-semibold gray-color"
-                        >
+                        <h4 class="car-name mb-1 size22 redhat-semibold gray-color">
                           <!-- {{ car.name.substring(0, 18) }}... -->
                           {{ car.name }}
                         </h4>
-                        <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
-                          *ngIf="car.vehicle_type == 'Car'"
-                        >
+                        <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                          *ngIf="car.vehicle_type == 'Car'">
                           {{ car.transmission }}
                         </h6>
-                        <h6
-                          class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
-                          *ngIf="car.vehicle_type == 'Yachts'"
-                        >
+                        <h6 class="transmission text-muted size18 redhat-semibold text-capitalize color-card-p"
+                          *ngIf="car.vehicle_type == 'Yachts'">
                           {{ car.bodytype_data[0].name }}
                         </h6>
                       </div>
-                      <span
-                        *ngIf="car && car.isvipNumberPlate"
-                        class="size12 redhat-bold text-capitalize special-number px-2 py-1"
-                        >special number plate</span
-                      >
+                      <span *ngIf="car && car.isvipNumberPlate"
+                        class="size12 redhat-bold text-capitalize special-number px-2 py-1">special number plate</span>
                     </div>
 
                     <!-- Car Information -->
-                    <div
-                      class="d-flex justify-content-between border-top border-bottom collection-padding"
-                      *ngIf="car.vehicle_type == 'Car'"
-                    >
+                    <div class="d-flex justify-content-between border-top border-bottom collection-padding"
+                      *ngIf="car.vehicle_type == 'Car'">
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/fuel.svg"
-                          class="img-fluid collection_image"
-                          alt="Fuel Type"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                        >
+                        <img src="{{ imageURL }}/images/icons/fuel.svg" class="img-fluid collection_image"
+                          alt="Fuel Type" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.fuelType || "N/A" }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/mileage.svg"
-                          class="img-fluid collection_image"
-                          alt="Mileage"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize"
-                        >
+                        <img src="{{ imageURL }}/images/icons/mileage.svg" class="img-fluid collection_image"
+                          alt="Mileage" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize">
                           {{ car.mileage || "N/A" }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/seats.svg"
-                          class="img-fluid collection_image"
-                          alt="Seats"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                        >
+                        <img src="{{ imageURL }}/images/icons/seats.svg" class="img-fluid collection_image"
+                          alt="Seats" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.seating_capacity || "N/A" }} Seats
                         </h6>
                       </div>
                     </div>
 
                     <!-- Yacht Information -->
-                    <div
-                      class="d-flex justify-content-between border-top border-bottom collection-padding"
-                      *ngIf="car.vehicle_type === 'Yachts'"
-                    >
+                    <div class="d-flex justify-content-between border-top border-bottom collection-padding"
+                      *ngIf="car.vehicle_type === 'Yachts'">
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/length.svg"
-                          class="img-fluid collection_image"
-                          alt="Length"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                        >
+                        <img src="{{ imageURL }}/images/icons/length.svg" class="img-fluid collection_image"
+                          alt="Length" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.length || "N/A" }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/year.svg"
-                          class="img-fluid collection_image"
-                          alt="Year"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                        >
+                        <img src="{{ imageURL }}/images/icons/year.svg" class="img-fluid collection_image" alt="Year" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.year || "N/A" }}
                         </h6>
                       </div>
                       <div class="text-center">
-                        <img
-                          src="{{ imageURL }}/images/icons/guests.svg"
-                          class="img-fluid collection_image"
-                          alt="Capacity"
-                        />
-                        <h6
-                          class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
-                        >
+                        <img src="{{ imageURL }}/images/icons/guests.svg" class="img-fluid collection_image"
+                          alt="Capacity" />
+                        <h6 class="mb-0 mt-md-2 size16 redhat-semibold color-card-p">
                           {{ car.guest_capacity || "N/A" }} Guests
                         </h6>
                       </div>
                     </div>
 
-                    <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                      *ngIf="car.vehicle_type === 'Car'"
-                    >
+                    <div class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                      *ngIf="car.vehicle_type === 'Car'">
                       <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                        >
+                        <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                           AED {{ car.regularRateDaily }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ car.dailyRate }}/<span
-                            class="size18 redhat-semibold"
-                            >day</span
-                          >
+                          AED {{ car.dailyRate }}/<span class="size18 redhat-semibold">day</span>
                         </h5>
                       </div>
-                      <button
-                        routerLink="/product/{{ car.url_key }}"
-                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt"
-                      >
+                      <button routerLink="/product/{{ car.url_key }}"
+                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt">
                         View details
                       </button>
                     </div>
-                    <div
-                      class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
-                      *ngIf="car.vehicle_type === 'Yachts'"
-                    >
+                    <div class="cash-container d-flex justify-content-between align-items-center pt-md-3 pt-2"
+                      *ngIf="car.vehicle_type === 'Yachts'">
                       <div class="cash">
-                        <h6
-                          class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through"
-                        >
+                        <h6 class="text-muted mb-0 size18 redhat-semibold color-card-p text-decoration-line-through">
                           AED {{ car.regularRateHourly }}
                         </h6>
                         <h5 class="mb-0 size26 redhat-semibold gray-color">
-                          AED {{ car.hourlyRate }}/<span
-                            class="size18 redhat-semibold"
-                            >hr</span
-                          >
+                          AED {{ car.hourlyRate }}/<span class="size18 redhat-semibold">hr</span>
                         </h5>
                       </div>
-                      <button
-                        routerLink="/product/{{ car.url_key }}"
-                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt"
-                      >
+                      <button routerLink="/product/{{ car.url_key }}"
+                        class="p-0 mt-auto text-decoration-none color-card-p size16 redhat-semibold text-capitalize viewbt">
                         View details
                       </button>
                     </div>
@@ -642,38 +386,26 @@
             </div>
           </div>
           <nav aria-label="Page navigation" class="mt-4" *ngIf="totalPages > 1">
-            <ul
-              class="pagination justify-content-center align-items-center gap-2"
-            >
+            <ul class="pagination justify-content-center align-items-center gap-2">
               <!-- Previous -->
               <li [class.disabled]="currentPage === 1">
-                <button
-                  class="circle-btn filled"
-                  [disabled]="currentPage === 1"
-                  (click)="onPageChange(currentPage - 1)"
-                >
+                <button class="circle-btn filled" [disabled]="currentPage === 1"
+                  (click)="onPageChange(currentPage - 1)">
                   <lucide-icon name="arrow-left" />
                 </button>
               </li>
 
               <!-- Page Numbers -->
               <li *ngFor="let page of getPages()">
-                <button
-                  class="number-btn"
-                  [class.active-page]="page === currentPage"
-                  (click)="onPageChange(page)"
-                >
+                <button class="number-btn" [class.active-page]="page === currentPage" (click)="onPageChange(page)">
                   {{ page }}
                 </button>
               </li>
 
               <!-- Next -->
               <li [class.disabled]="currentPage === totalPages">
-                <button
-                  class="circle-btn filled"
-                  [disabled]="currentPage === totalPages"
-                  (click)="onPageChange(currentPage + 1)"
-                >
+                <button class="circle-btn filled" [disabled]="currentPage === totalPages"
+                  (click)="onPageChange(currentPage + 1)">
                   <lucide-icon name="arrow-right" />
                 </button>
               </li>
