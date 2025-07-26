@@ -46,6 +46,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   isMobile: boolean = false;
   isFilterCollapsed: boolean = false;
   isMobileFilterVisible: boolean = false;
+  selectedLength: string | null = null;
+  yachtLengthOptions: string[] = [];
 
   // Pagination properties
   currentLimit = 12;
@@ -579,13 +581,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 
   getCarData() {
-    // Reset to first page whenever vehicle type changes
     if (this.previousVehicleType !== this.vehicleType) {
       this.currentPage = 1;
       this.previousVehicleType = this.vehicleType;
     }
 
-    let obj = {
+    const obj: any = {
       limit: this.currentLimit,
       page: this.currentPage,
       availabilityStatus: 'available',
@@ -603,6 +604,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
       sort: this.sort,
       isvipNumberPlate: this.vipNumberPlate
     };
+
+    if (this.vehicleType == 'Yachts') {
+      if (this.selectedLength) {
+        obj.length = this.selectedLength;
+      }
+    }
+
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
         this.totolvehicle = response.count;
@@ -610,9 +618,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.totalItems = response.count;
         if (response.result && response.result.length > 0) {
           this.vehicleData = response.result;
+          if (this.vehicleType == 'Yachts') {
+            this.extractYachtLengths(response.result);
+          }
           this.updatePagedCars();
         } else {
           this.vehicleData = [];
+          this.yachtLengthOptions = [];
         }
       }
     });
@@ -725,6 +737,81 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.selectedCartype = [data.target.value];
     }
   }
+
+  // Additional filters for Yachts
+  onYachtBodyTypeSelect(event: Event) {
+    const selectedId = (event.target as HTMLSelectElement).value;
+    this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.selectedLength = null;
+    this.getFilteredVehicles();
+  }
+
+  onYachtLengthSelect(event: Event) {
+    const selectedLength = (event.target as HTMLSelectElement).value;
+    this.selectedLength = selectedLength || null;
+    this.getFilteredVehicles();
+  }
+
+  getFilteredVehicles() {
+    const obj: any = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      availabilityStatus: 'available',
+      vehicle_type: this.vehicleType,
+      bodyTypeId: this.selectedBodytype,
+      brandId: this.selectedBrand,
+      modelId: this.selectedModel,
+      rental_type: this.selectedRentalType,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      price_type: this.price_type,
+      startDate: this.selectedStartDate,
+      endDate: this.selectedEndDate,
+      sort: this.sort,
+      isvipNumberPlate: this.vipNumberPlate
+    };
+
+    if (this.vehicleType === 'Yachts') {
+      if (this.selectedLength) {
+        obj.length = this.selectedLength.trim();
+      }
+    }
+
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code === 200) {
+        this.vehicleData = response.result || [];
+        this.totalItems = response.count || 0;
+
+        // yachtLengthOptions should always reflect only available yachts in result
+        if (this.vehicleType === 'Yachts') {
+          this.extractYachtLengths(this.vehicleData);
+          if (this.selectedLength) {
+            this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
+            this.totalItems = this.vehicleData.length;
+          }
+        }
+
+        if (this.vehicleData.length > 0) {
+          this.updatePagedCars();
+        } else {
+          if (this.vehicleType === 'Yachts') {
+            this.yachtLengthOptions = [];
+          }
+        }
+      }
+    });
+  }
+
+  extractYachtLengths(data: any[]) {
+    const allLengths = data.map(y => (y.length ?? '').trim()).filter(Boolean);
+    const uniqueSorted = Array.from(new Set(allLengths)).sort((a, b) => {
+      const aNum = parseInt(a);
+      const bNum = parseInt(b);
+      return isNaN(aNum) || isNaN(bNum) ? a.localeCompare(b) : aNum - bNum;
+    });
+    this.yachtLengthOptions = uniqueSorted;
+  }
+
 
   changeRentalType(data) {
     if (data?.target?.value) {
