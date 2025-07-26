@@ -102,7 +102,12 @@
                   class="d-flex justify-content-center align-items-center gap-2 toggle"
                 >
                   <span
-                    class="redhat-bold text-capitalize m-0 black-light-color"
+                    class="redhat-bold text-capitalize m-0"
+                    [ngClass]="{
+                      'black-light-color': !isVehicleYacht,
+                      'opacity-50': isVehicleYacht
+                    }"
+                    style="transition: all 0.3s ease-in-out"
                     >cars</span
                   >
                   <div
@@ -125,7 +130,12 @@
                     >
                   </div>
                   <span
-                    class="redhat-bold text-capitalize m-0 black-light-color"
+                    class="redhat-bold text-capitalize m-0"
+                    style="transition: all 0.3s ease-in-out"
+                    [ngClass]="{
+                      'black-light-color': isVehicleYacht,
+                      'opacity-50': !isVehicleYacht
+                    }"
                     >yachts</span
                   >
                 </div>
