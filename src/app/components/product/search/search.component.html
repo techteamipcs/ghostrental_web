@@ -44,20 +44,6 @@
                 </select>
                 <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
-              <!-- Special Number Plate -->
-              <label *ngIf="vehicleType == 'Car'"
-                class="form-label gray-light-color size14 redhat-semibold mb-1">Special Number Plate</label>
-              <div class="filter-section" *ngIf="vehicleType == 'Car'">
-                <select class="form-selection size16 redhat-semibold bg-white gray-color"
-                  (change)="onChangeSpecialNumber($event)" (click)="
-                    $event.stopPropagation(); toggleSelectDropdown($event)
-                  " (blur)="onSelectBlur($event)">
-                  <option value="">Select Special Number Plate</option>
-                  <option value="true">VIP Number Plate</option>
-                  <!-- <option value="false">Disable</option> -->
-                </select>
-                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
-              </div>
 
               <!-- Rental Type -->
               <!-- <label class="form-label gray-light-color size14 redhat-semibold mb-1">Rental Type</label>
@@ -144,6 +130,20 @@
                   <option *ngFor="let item of filteredModel" value="{{ item._id }}">
                     {{ item.name }}
                   </option>
+                </select>
+                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
+              </div>
+              <!-- Special Number Plate -->
+              <label *ngIf="vehicleType == 'Car'"
+                class="form-label gray-light-color size14 redhat-semibold mb-1">Special Number Plate</label>
+              <div class="filter-section" *ngIf="vehicleType == 'Car'">
+                <select class="form-selection size16 redhat-semibold bg-white gray-color"
+                  (change)="onChangeSpecialNumber($event)" (click)="
+                    $event.stopPropagation(); toggleSelectDropdown($event)
+                  " (blur)="onSelectBlur($event)">
+                  <option value="">Select Special Number Plate</option>
+                  <option value="true">Opt for Special Number Plate</option>
+                  <option value="false">Do Not Opt</option>
                 </select>
                 <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow" />
               </div>
