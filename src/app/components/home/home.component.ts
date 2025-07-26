@@ -35,6 +35,7 @@ const Toast = Swal.mixin({
 export class HomeComponent implements OnInit {
   private carSwiper: Swiper | null = null;
   private yachtSwiper: Swiper | null = null;
+  
   private trendingSwiper: Swiper | null = null;
   bannerData: any;
   imageURL: string = `${environment.url}/assets`;
@@ -498,6 +499,9 @@ export class HomeComponent implements OnInit {
 
 
   public initCarSwiper() {
+    if (this.carSwiper) {
+      this.carSwiper.destroy(true, true); 
+    }
     if (isPlatformBrowser(this.platformId)) {
       const swiper = new Swiper('.car-collection-swiper', {
         loop: true,
@@ -556,6 +560,9 @@ export class HomeComponent implements OnInit {
     }
   }
   public initYachtSwiper() {
+    if (this.yachtSwiper) {
+      this.yachtSwiper.destroy(true, true); 
+    }
     if (isPlatformBrowser(this.platformId)) {
       const swiper = new Swiper('.yacht-collection-swiper', {
         loop: true,
@@ -613,6 +620,9 @@ export class HomeComponent implements OnInit {
   }
 
   public initTrendingSwiper() {
+    if (this.trendingSwiper) {
+      this.trendingSwiper.destroy(true, true); 
+    }
     if (isPlatformBrowser(this.platformId)) {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
         slidesPerView: 'auto',
@@ -841,6 +851,7 @@ export class HomeComponent implements OnInit {
             });
           }
         }
+        setTimeout(() => this.initCarSwiper(), 0);
       }
     });
   }
@@ -858,6 +869,7 @@ export class HomeComponent implements OnInit {
         if (response.result && response.result.length > 0) {
           this.ouryatchsCollections = response.result;
         }
+        setTimeout(() => this.initYachtSwiper(), 0);
       }
     });
   }
