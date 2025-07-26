@@ -1383,16 +1383,50 @@ a {
 .thumbnail-image {
   border-radius: 10px;
 }
-
+::ng-deep{
+    /* Gray placeholder (simulated for time inputs) */
+.time-selector,
+.pickup-time-selector input{
+  color: #999 !important;
+}
+/* When a time is selected, switch to black */
+.time-selector:valid,
+.pickup-time-selector:valid input {
+  color: #212522 !important;
+}
+}
 select:focus {
   outline: none;
   border: none;
 }
 select{
+  color: #999  !important;
   appearance: none;            /* Chrome, Firefox */
   -webkit-appearance: none;    /* Safari */
   -moz-appearance: none;  
+  &:focus, &:active{
+    color: #212522 !important;
+  }
 }
+.form-select{
+  color: #999 !important;
+   appearance: none;            /* Chrome, Firefox */
+  -webkit-appearance: none;    /* Safari */
+  -moz-appearance: none; 
+  &:focus, &:active{
+    color: #212522 !important;
+  }
+}
+select:valid {
+  color: #212522 !important; /* dark black when option selected */
+}
+
+ input::placeholder , .custom-time-input::placeholder{
+  color: #999 !important;
+ }
+ input, .custom-time-input{
+  color: #212522 !important;
+ }
 
 a {
   text-decoration: none !important;
