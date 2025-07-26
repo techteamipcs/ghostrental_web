@@ -21,11 +21,10 @@ const Toast = Swal.mixin({
   timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
   }
 });
-
 
 @Component({
   selector: 'app-home',
@@ -1229,8 +1228,31 @@ export class HomeComponent implements OnInit {
   }
 
   selectDate(date: Date) {
-    this.selectedStartDate = new Date(date);
+    const newDate = new Date(date);
+    this.selectedStartDate = newDate;
     this.showCalendar = false;
+
+    // Check if the month or year has changed
+    const prevMonth = this.selectedStartDate ? this.selectedStartDate.getMonth() : -1;
+    const prevYear = this.selectedStartDate ? this.selectedStartDate.getFullYear() : -1;
+
+    // Reset all time-related fields when pickup date changes
+    this.selectedStartTime = '';
+    this.selectedHour = '';
+    this.selectedMinute = '';
+    this.isPM = false;
+
+    // Reset end date and time if month or year changes, or if the new pickup date is after the current drop date
+    if (newDate.getMonth() !== prevMonth || 
+        newDate.getFullYear() !== prevYear ||
+        (this.selectedEndDate && newDate > this.selectedEndDate)) {
+      this.selectedEndDate = null;
+      this.selectedEndTime = '';
+      this.selectedEndHour = '';
+      this.selectedEndMinute = '';
+      this.isEndPM = false;
+    }
+
     // Update the form control if needed
     if (this.formData) {
       this.formData.pickupDate = this.selectedStartDate;
@@ -1564,27 +1586,31 @@ selectMinute(minute: string) {
     const start = new Date(this.selectedStartDate);
     const end = new Date(this.selectedEndDate);
 
-    const [startHour, startMin] = this.selectedStartTime.split(/:| /);
-    const [endHour, endMin] = this.selectedEndTime.split(/:| /);
+    const [startHourStr, startMinStr] = this.selectedStartTime.split(':');
+    const [endHourStr, endMinStr] = this.selectedEndTime.split(':');
 
-    let startH = parseInt(startHour, 10);
-    if (this.selectedStartTime.includes('PM') && startH < 12) startH += 12;
-    if (this.selectedStartTime.includes('AM') && startH === 12) startH = 0;
-    start.setHours(startH, parseInt(startMin, 10));
+    const startHour = parseInt(startHourStr, 10);
+    const startMin = parseInt(startMinStr, 10);
+    const endHour = parseInt(endHourStr, 10);
+    const endMin = parseInt(endMinStr, 10);
 
-    let endH = parseInt(endHour, 10);
-    if (this.selectedEndTime.includes('PM') && endH < 12) endH += 12;
-    if (this.selectedEndTime.includes('AM') && endH === 12) endH = 0;
-    end.setHours(endH, parseInt(endMin, 10));
+    // Handle AM/PM conversion
+    let startH = this.isPM && startHour < 12 ? startHour + 12 : startHour;
+    if (!this.isPM && startHour === 12) startH = 0;
+  
+    let endH = this.isEndPM && endHour < 12 ? endHour + 12 : endHour;
+    if (!this.isEndPM && endHour === 12) endH = 0;
+
+    start.setHours(startH, startMin);
+    end.setHours(endH, endMin);
 
     if (end < start) {
       this.Toast.fire({
         icon: 'warning',
-        title: 'please select pickup time first'
+        title: 'Please select a valid end time after the start time'
       });
       return false;
     }
-
     return true;
   }
 
@@ -1656,13 +1682,21 @@ selectMinute(minute: string) {
     this.endCalendarDates = dates;
   }
 
-  prevEndMonth() {
-    this.endMonth.setMonth(this.endMonth.getMonth() - 1);
+  nextEndMonth() {
+    this.endMonth = new Date(
+      this.endMonth.getFullYear(),
+      this.endMonth.getMonth() + 1,
+      1
+    );
     this.generateEndCalendar();
   }
 
-  nextEndMonth() {
-    this.endMonth.setMonth(this.endMonth.getMonth() + 1);
+  prevEndMonth() {
+    this.endMonth = new Date(
+      this.endMonth.getFullYear(),
+      this.endMonth.getMonth() - 1,
+      1
+    );
     this.generateEndCalendar();
   }
 
@@ -1695,6 +1729,11 @@ selectMinute(minute: string) {
   
     this.selectedEndDate = selected;
     this.showEndCalendar = false;
+    // Reset end time values when date changes
+    this.selectedEndTime = '';
+    this.selectedEndHour = '';
+    this.selectedEndMinute = '';
+    this.isEndPM = false;
   }
   
 

@@ -725,18 +725,18 @@
                           <button
                             type="button"
                             class="btn btn-sm btn-light"
-                            (click)="prevMonth()"
+                            (click)="prevEndMonth()"
                           >
                             ‹
                           </button>
                           <strong
                             class="size14 redhat-medium black-light-color"
-                            >{{ currentMonth | date : "MMMM yyyy" }}</strong
+                            >{{ endMonth | date : "MMMM yyyy" }}</strong
                           >
                           <button
                             type="button"
                             class="btn btn-sm btn-light"
-                            (click)="nextMonth()"
+                            (click)="nextEndMonth()"
                           >
                             ›
                           </button>
@@ -753,13 +753,9 @@
                             *ngFor="let date of endCalendarDates"
                             [class.today]="isToday(date)"
                             [class.selected]="isSelectedEndDate(date)"
-                            [class.disabled]="
-                              !isEndMonth(date) || isBeforePickupDate(date)
-                            "
+                            [class.disabled]="isBeforePickupDate(date)"
                             (click)="
-                              !isBeforePickupDate(date) &&
-                                isEndMonth(date) &&
-                                selectEndDate(date)
+                              !isBeforePickupDate(date) && selectEndDate(date)
                             "
                           >
                             {{ date.getDate() }}
