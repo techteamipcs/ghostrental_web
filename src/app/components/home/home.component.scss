@@ -1272,6 +1272,11 @@
   }
 }
 
+.selected-items.default-label {
+  color: #999999; // Your desired color for "Choose Add-Ons"
+}
+
+
 // timer css
 .form-glass {
   .time-picker-dropdown {
@@ -3271,6 +3276,7 @@ input {
 
   .custom-time-input {
     cursor: pointer;
+    color: #000;
     background-color: #fff;
     padding: 10px 12px;
     border-radius: 8px;
@@ -3283,6 +3289,9 @@ input {
       border-color: #11191f;
       outline: none;
     }
+  }
+  .placeholder-color {
+    color: #999 !important;
   }
 
   .time-picker-dropdown {
