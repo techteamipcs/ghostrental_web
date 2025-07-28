@@ -785,7 +785,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
       if (response.code === 200) {
         this.vehicleData = response.result || [];
         this.totalItems = response.count || 0;
-
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
         // yachtLengthOptions should always reflect only available yachts in result
         if (this.vehicleType === 'Yachts') {
           this.extractYachtLengths(this.vehicleData);
