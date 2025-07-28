@@ -14,17 +14,6 @@ import { Meta, Title } from '@angular/platform-browser';
 
 Swiper.use([Navigation]);
 
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer);
-    toast.addEventListener('mouseleave', Swal.resumeTimer);
-  }
-});
 
 @Component({
   selector: 'app-home',
@@ -1174,8 +1163,8 @@ export class HomeComponent implements OnInit {
   isPM: boolean = false;
   displayHours: string[] =["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
   // Time picker state management
-  private previousStartTime: { hour: string, minute: string, isPM: boolean } | null = null;
-  private previousEndTime: { hour: string, minute: string, isPM: boolean } | null = null;
+  private previousStartTime: { hour: string, minute: string } | null = null;
+  private previousEndTime: { hour: string, minute: string } | null = null;
 
 
   generateCalendar() {
@@ -1234,6 +1223,13 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  isCurrentEndMonth(date: Date): boolean {
+    return (
+      date.getMonth() === this.endMonth.getMonth() &&
+      date.getFullYear() === this.endMonth.getFullYear()
+    );
+  }
+
   selectDate(date: Date) {
     const newDate = new Date(date);
     this.selectedStartDate = newDate;
@@ -1283,46 +1279,39 @@ export class HomeComponent implements OnInit {
       date.getFullYear() === this.selectedStartDate.getFullYear()
     );
   }
-  // private updateselectedStartTime() {
-  //   if (this.selectedHour && this.selectedMinute) {
-  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-  //   }
-  // }
   confirmTime() {
-    if (this.selectedHour && this.selectedMinute) {
-      let hour = parseInt(this.selectedHour, 10);
-      if (this.isPM && hour < 12) hour += 12;
-      if (!this.isPM && hour === 12) hour = 0;
-  
-      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-      this.showStartTimePicker = false;
-  
-      const time = new Date();
-      time.setHours(hour, parseInt(this.selectedMinute, 10));
-      this.formData.pickupTime = time;
-      
-      // Save the current time selection
-      this.previousStartTime = {
-        hour: this.selectedHour,
-        minute: this.selectedMinute,
-        isPM: this.isPM
-      };
+    if (!this.selectedHour && !this.selectedMinute) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select both hour and minute'
+      });
+      return;
     }
+    
+    if (!this.selectedHour) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select an hour'
+      });
+      return;
+    }
+
+    if (!this.selectedMinute) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select minutes'
+      });
+      return;
+    }
+
+    this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+    this.showStartTimePicker = false;
+   
+    this.previousStartTime = {
+      hour: this.selectedHour,
+      minute: this.selectedMinute,
+    };
   }
-  // Add this method to check if a time is in the past
-// isPastTime(hour: number, minute: number): boolean {
-//   if (!this.selectedStartDate) return false;
-  
-//   const now = new Date();
-//   const selectedTime = new Date(this.selectedStartDate);
-//   selectedTime.setHours(hour, minute, 0, 0);
-  
-//   // If the selected date is today, check if time is in the past
-//   if (this.isToday(this.selectedStartDate)) {
-//     return selectedTime < now;
-//   }
-//   return false;
-// }
 
 isPastTime(hour: string, minute: string): boolean {
   if (!this.selectedStartDate) return false;
@@ -1372,20 +1361,14 @@ isPastEndTime(hour: string, minute: string): boolean {
 }
 
 
+
 selectHour(hour: string) {
   const hourNum = parseInt(hour, 10);
-  const minute = parseInt(this.selectedMinute || '0', 10);
-  
-  // if (this.isPastTime(hourNum, minute)) {
-  //   this.Toast.fire({ 
-  //     icon: 'warning', 
-  //     title: 'Please select a future time' 
-  //   });
-  //   return;
-  // }
-  
   this.selectedHour = hour;
+  // this.selectedMinute = '00';
 }
+
+
 
 selectMinute(minute: string) {
   if (!this.selectedHour) {
@@ -1399,16 +1382,19 @@ selectMinute(minute: string) {
   const hourNum = parseInt(this.selectedHour, 10);
   const minuteNum = parseInt(minute, 10);
   
-  // if (this.isPastTime(hourNum, minuteNum)) {
-  //   this.Toast.fire({ 
-  //     icon: 'warning', 
-  //     title: 'Please select a future time' 
-  //   });
-  //   return;
-  // }
-  
   this.selectedMinute = minute;
-  // this.updateselectedStartTime();
+}
+
+selectEndHour(hour: string) {
+  const hourNum = parseInt(hour, 10);
+  
+  // this.selectedEndMinute = '00';
+  
+  this.selectedEndHour = hour;
+}
+
+selectEndMinute(minute: string) {
+  this.selectedEndMinute = minute;
 }
 
   @HostListener('document:click', ['$event'])
@@ -1439,7 +1425,7 @@ selectMinute(minute: string) {
     if (!this.selectedStartDate) {
       this.Toast.fire({
         icon: 'warning',
-        title: 'Please Select Pickup Date First'
+        title: 'Please select pickup date first'
       });
       return;
     }
@@ -1502,7 +1488,7 @@ selectMinute(minute: string) {
     if (!this.selectedStartDate ) {
       this.Toast.fire({
         icon: 'warning',
-        title: 'Please Select Pickup Date First'
+        title: 'Please select pickup date first'
       });
       this.showStartTimePicker = false;
       return;
@@ -1516,9 +1502,9 @@ selectMinute(minute: string) {
     if (this.showStartTimePicker && !this.selectedStartTime) {
       const now = new Date();
       const hours = now.getHours();
-      this.isPM = hours >= 12;
+      // this.isPM = hours >= 12;
       this.selectedHour = String(hours % 12 || 12).padStart(2, '0');
-      this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
+      // this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
     }
     
     // Close other pickers if opening this one
@@ -1534,7 +1520,7 @@ selectMinute(minute: string) {
     if (!this.selectedStartTime || !this.selectedEndDate || !this.selectedStartDate) {
       this.Toast.fire({
         icon: 'warning',
-        title: 'Please Select Pickup Date and Time First'
+        title: 'Please select drop date and pickup time first'
       });
       this.showEndTimePicker = false;
       return;
@@ -1546,9 +1532,9 @@ selectMinute(minute: string) {
     if (this.showEndTimePicker && !this.selectedEndTime) {
       const now = new Date();
       const hours = now.getHours();
-      this.isEndPM = hours >= 12;
+      // this.isEndPM = hours >= 12;
       this.selectedEndHour = String(hours % 12 || 12).padStart(2, '0');
-      this.selectedEndMinute = String(now.getMinutes()).padStart(2, '0');
+      // this.selectedEndMinute = String(now.getMinutes()).padStart(2, '0');
       // this.updateselectedStartTime();
     }
   }
@@ -1572,17 +1558,21 @@ selectMinute(minute: string) {
   //   }
   // }
 
-  cancelTimeSelection() {
-    // Restore previous time if it exists
-    if (this.previousStartTime) {
-      this.selectedHour = this.previousStartTime.hour;
-      this.selectedMinute = this.previousStartTime.minute;
-      this.isPM = this.previousStartTime.isPM;
-    } else {
-      // If no previous time, clear the selection
-      this.selectedHour = '';
-      this.selectedMinute = '';
-    }
+  // resetTimeSelection() {
+  //   if (this.previousStartTime) {
+  //     this.selectedHour = this.previousStartTime.hour;
+  //     this.selectedMinute = this.previousStartTime.minute;
+  //     this.isPM = this.previousStartTime.isPM;
+  //   } else {
+  //     this.selectedHour = '';
+  //     this.selectedMinute = '';
+  //   }
+  //   this.showStartTimePicker = false;
+  // }
+  resetTimeSelection() {
+    this.selectedHour = '';
+    this.selectedMinute = '';
+    this.selectedStartTime = '';
     this.showStartTimePicker = false;
   }
 
@@ -1622,46 +1612,69 @@ selectMinute(minute: string) {
   }
 
 
-  selectEndHour(hour: string) {
-    this.selectedEndHour = hour;
-  }
 
-  selectEndMinute(minute: string) {
-    this.selectedEndMinute = minute;
-  }
 
-  setEndAM() {
-    this.isEndPM = false;
-  }
 
-  setEndPM() {
-    this.isEndPM = true;
-  }
-
-  cancelEndTimeSelection() {
+  resetEndTimeSelection() {
     this.selectedEndHour = '';
     this.selectedEndMinute = '';
+    this.selectedEndTime = '';
     this.showEndTimePicker = false;
   }
 
+  // confirmEndTime() {
+  //   if (this.selectedEndHour && this.selectedEndMinute) {
+  //     let hour = parseInt(this.selectedEndHour, 10);
+  //     if (this.isEndPM && hour < 12) hour += 12;
+  //     if (!this.isEndPM && hour === 12) hour = 0;
+
+  //     this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+  //     this.showEndTimePicker = false;
+
+  //     const time = new Date();
+  //     time.setHours(hour, parseInt(this.selectedEndMinute, 10));
+
+  //     if (this.formData) {
+  //       this.formData.dropTime = time;
+  //     }
+
+  //     this.validateDateTimeSelection();
+  //   }
+    
+  // }
+
   confirmEndTime() {
-    if (this.selectedEndHour && this.selectedEndMinute) {
-      let hour = parseInt(this.selectedEndHour, 10);
-      if (this.isEndPM && hour < 12) hour += 12;
-      if (!this.isEndPM && hour === 12) hour = 0;
-
-      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
-      this.showEndTimePicker = false;
-
-      const time = new Date();
-      time.setHours(hour, parseInt(this.selectedEndMinute, 10));
-
-      if (this.formData) {
-        this.formData.dropTime = time;
-      }
-
-      this.validateDateTimeSelection();
+    if (!this.selectedEndHour && !this.selectedEndMinute) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select both hour and minute'
+      });
+      return;
     }
+    
+    if (!this.selectedEndHour) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select an hour'
+      });
+      return;
+    }
+
+    if (!this.selectedEndMinute) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Please select minutes'
+      });
+      return;
+    }
+
+    this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+    this.showEndTimePicker = false;
+   
+    this.previousEndTime = {
+      hour: this.selectedEndHour,
+      minute: this.selectedEndMinute,
+    };
     
   }
 

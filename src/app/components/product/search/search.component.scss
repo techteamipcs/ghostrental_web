@@ -82,11 +82,14 @@ select:focus {
 
   &.position-sticky {
     position: sticky;
-    top: 120px; /* Adjust this value based on your header height */
+    top: 110px; /* Adjust this value based on your header height */
     // max-height: calc(100vh - 140px); /* Adjust based on your needs */
     // overflow-y: auto;
     z-index: 10;
     background: white;
+    @media (max-width: 1440px) {
+      top: 85px;
+    }
     
     /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {
@@ -144,6 +147,7 @@ select:focus {
     }
 
     .label-text {
+      color: #999;
       top: 20%;
       left: 2.5%;
       width: 77%;
@@ -160,6 +164,10 @@ select:focus {
         left: 1.5%;
       }
     }
+
+
+    
+ 
 
     lucide-icon[name="chevron-down"] {
       position: absolute;
@@ -542,11 +550,11 @@ input[type="datetime-local"] {
 .down-arrow{
   width: 20px;
   height: auto;
-  position: absolute;
-  top: 50%;
-  right: 0;
+  // position: absolute;
+  // top: 50%;
+  // right: 0;
   background: #fff;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
   pointer-events: none;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -596,5 +604,48 @@ input[type="datetime-local"] {
     width: 100%;
     left: 0;
     top: 0;
+  }
+}
+
+select.form-selection option[value=""] {
+  color: #999 !important;
+}
+
+select.form-selection:not([data-selected="true"]) {
+  color: #999 !important;
+}
+
+select.form-selection option:not([value=""]) {
+  color: #000 !important;
+}
+
+
+.size26 {
+  font-size: 26px;
+
+  @media (max-width: 1600px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 1536px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
+
+}
+
+
+.size16 {
+  font-size: 16px;
+
+  @media (max-width: 1600px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 1366px) {
+    font-size: 12px;
   }
 }

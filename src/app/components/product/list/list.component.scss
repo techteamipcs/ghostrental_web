@@ -329,18 +329,18 @@
   }
 }
 
-.down-arrow {
-  width: 20px;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  background: #fff;
-  transform: translateY(-50%);
-  pointer-events: none;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
+// .down-arrow {
+//   width: 20px;
+//   height: auto;
+//   position: absolute;
+//   top: 50%;
+//   right: 0;
+//   background: #fff;
+//   transform: translateY(-50%);
+//   pointer-events: none;
+//   cursor: pointer;
+//   transition: transform 0.2s ease-in-out;
+// }
 
 .car-types-section {
   padding: 50px 197px 50px;
@@ -595,5 +595,23 @@
 
   .card-body {
     padding: 0;
+  }
+}
+
+.sort{
+  .down-arrow{
+    width: 20px;
+    height: auto;
+    // position: absolute;
+    // top: 50%;
+    // right: 0;
+    background: #fff;
+    // transform: translateY(-50%);
+    pointer-events: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    @media (max-width: 1366px) {
+      width: 16px;
+    }
   }
 }

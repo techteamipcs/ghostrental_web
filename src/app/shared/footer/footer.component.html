@@ -61,7 +61,9 @@
               </li> -->
               <li class="nav-item">
                 <a
-                  href="/product/search?type=Car"
+                  [routerLink]="['/product/search']"
+                  [queryParams]="{ type: 'Car' }"
+                  routerLinkActive="active"
                   (click)="setActivemenu('cars')"
                   [ngClass]="{ active: activeLink === 'cars' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize"
@@ -70,7 +72,9 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="/product/search?type=Yachts"
+                  [routerLink]="['/product/search']"
+                  [queryParams]="{ type: 'Yachts' }"
+                  routerLinkActive="active"
                   (click)="setActivemenu('yachts')"
                   [ngClass]="{ active: activeLink === 'yachts' }"
                   class="text-decoration-none white-color size16 redhat-regular text-capitalize"
