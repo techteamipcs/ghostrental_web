@@ -217,6 +217,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.price_type = 'hourlyRate';
     }
     this.filterBodyTypesByVehicleType(); // 👈 Filter data on vehicleType change
+    this.selectedBodytype = [];
+    this.selectedBrand = [];
+    this.selectedModel = [];
+    this.selectedStartDate = '';
+    this.selectedEndDate = '';
     this.getCarData();
   }
 
@@ -693,8 +698,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onBodyTypeSelect(event: Event) {
     const target = event.target as HTMLSelectElement;
     const selectedId = target.value;
-    // this.selectedBodyTypeId = selectedId;
-    // this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.selectedBodyTypeId = selectedId;
+    this.selectedBodytype = selectedId ? [selectedId] : [];
     // this.selectedBrand = []; 
     // this.selectedModel = [];
     // this.filterBrandsByBodyType();

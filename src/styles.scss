@@ -1011,7 +1011,7 @@ body {
     content: attr(data-text);
     position: absolute;
     top: 50%;
-    left: 55%;
+    left: 56%;
     transform: translate(-50%, -50%);
     color: white;
     z-index: 2;
@@ -1416,7 +1416,7 @@ select{
   }
 }
 select:valid {
-  color: $color-black !important; /* dark black when option selected */
+  color: $color-black !important; 
 }
 
  input::placeholder , .custom-time-input::placeholder{

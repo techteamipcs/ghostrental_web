@@ -1417,7 +1417,7 @@
             }
 
             &.selected {
-              background: #000000;
+              background: #1d1d1d;
               color: white;
               font-weight: 600;
 
@@ -1812,6 +1812,13 @@
 
     @media screen and (max-width: 1440px) {
       height: 420px;
+    }
+    @media screen and (max-width: 1366px) {
+      height: 354px;
+    }
+
+    @media screen and (max-width: 1280px) {
+      height: 354px;
     }
 
     @media screen and (max-width: 1199px) {

@@ -41,9 +41,8 @@
       </li>
       <li>
         <a
-          routerLink="/about"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
+          href="/about"
+          [class.active]="router.isActive('/about', true)"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
           >About Us</a
@@ -51,9 +50,8 @@
       </li>
       <li>
         <a
-          routerLink="/services"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
+          href="/services"
+          [class.active]="router.isActive('/services', true)"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
           >Our Services</a
@@ -61,14 +59,8 @@
       </li>
       <li>
         <a
-          routerLink="/product/search"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{
-            paths: 'subset',
-            queryParams: 'subset',
-            matrixParams: 'ignored',
-            fragment: 'ignored'
-          }"
+          [routerLink]="'/product/search'"
+          [class.active]="router.isActive('/product/search', { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored' })"
           class="size16 redhat-regular white text-decoration-none"
           [class.dark]="isScrolled"
           >Our Fleets</a
@@ -76,11 +68,9 @@
       </li>
       <li>
         <a
-          routerLink="/contact"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="d-block size18 redhat-bold contact-button white-button text-capitalize"
+          href="/contact"
           [class.active]="router.isActive('/contact', true)"
+          class="d-block size18 redhat-bold contact-button white-button text-capitalize"
           [class.dark]="isDarkText && !isScrolled"
           (click)="closeMenu()"
           data-text="Contact Us"
@@ -124,9 +114,8 @@
           <ul class="nav-menu">
             <li class="nav-item" (click)="closeMenu()">
               <a
-                routerLink="/"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
+                href="/"
+                [class.active]="router.isActive('/', true)"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
                 Home
@@ -135,9 +124,8 @@
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                routerLink="/about"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
+                href="/about"
+                [class.active]="router.isActive('/about', true)"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
                 About Us
@@ -146,9 +134,8 @@
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                routerLink="/services"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
+                href="/services"
+                [class.active]="router.isActive('/services', true)"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
                 Our Services
@@ -157,17 +144,21 @@
 
             <li class="nav-item" (click)="closeMenu()">
               <a
-                routerLink="/product/search"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{
-                  paths: 'subset',
-                  queryParams: 'subset',
-                  matrixParams: 'ignored',
-                  fragment: 'ignored'
-                }"
+                [routerLink]="'/product/search'"
+                [class.active]="router.isActive('/product/search', { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored' })"
                 class="size16 redhat-medium text-decoration-none gray-color"
               >
                 Our Fleets
+              </a>
+            </li>
+
+            <li class="nav-item" (click)="closeMenu()">
+              <a
+                href="/contact"
+                [class.active]="router.isActive('/contact', true)"
+                class="size16 redhat-medium text-decoration-none gray-color"
+              >
+                Contact Us
               </a>
             </li>
 
