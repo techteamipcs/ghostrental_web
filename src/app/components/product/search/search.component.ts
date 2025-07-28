@@ -217,6 +217,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.price_type = 'hourlyRate';
     }
     this.filterBodyTypesByVehicleType(); // 👈 Filter data on vehicleType change
+    this.selectedBodytype = [];
+    this.selectedBrand = [];
+    this.selectedModel = [];
+    this.selectedStartDate = '';
+    this.selectedEndDate = '';
     this.getCarData();
   }
 
