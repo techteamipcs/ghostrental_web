@@ -8,15 +8,15 @@ export const environment = {
   recaptcha_key: '6LdVAeAqAAAAANRiCTIwsrPp7DwcP3jSOpzVk0wi',
 
   // live
-  baseUrl: 'https://www.ghostrentals.ae:5013',
-  url: 'https://www.ghostrentals.ae',
+  baseUrl: 'https://www.ghostrentals.com:5014',
+  url: 'https://www.ghostrentals.com',
 
   // dev
-  // baseUrl: 'https://dev.pixtar.ae:5013',
+  // baseUrl: 'https://dev.pixtar.ae:5014',
   // url: 'https://dev.pixtar.ae',
 
   // local
-  // baseUrl: 'http://localhost:5013',
+  // baseUrl: 'http://localhost:5014',
   // url:'http://localhost:4213',
 };
 
