@@ -88,7 +88,7 @@ export class TestimonialsComponent implements AfterViewInit {
     {
       id: 'faq6',
       question: 'How do I book Car and Yacht rental with Ghost Rentals?',
-      answer: 'Booking with Ghost Rentals is simple: visit ghostrentals.ae, select your car, call us or email info@ghostrentals.ae. No deposit required* with lowest prices!'
+      answer: 'Booking with Ghost Rentals is simple: visit ghostrentals.com, select your car, call us or email info@ghostrentals.com. No deposit required* with lowest prices!'
     },
     {
       id: 'faq7',

@@ -104,9 +104,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     ceil: 20000,
   };
   sliderVisible: any = false;
-
-
-
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
@@ -612,21 +609,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
 
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-      if (response.code == 200) {
+      if (response.code == 200 && response.result.length > 0) {
         this.totolvehicle = response.count;
         this.vehicleData = response.result;
         this.totalItems = response.count;
-        if (response.result && response.result.length > 0) {
-          this.vehicleData = response.result;
-          if (this.vehicleType == 'Yachts') {
-            this.extractYachtLengths(response.result);
-          }
-          this.updatePagedCars();
-        } else {
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
+        if (this.vehicleType == 'Yachts') {
+          this.extractYachtLengths(response.result);
+        }
+        this.updatePagedCars();
+      } else {
           this.vehicleData = [];
           this.yachtLengthOptions = [];
         }
-      }
     });
   }
 
@@ -646,7 +643,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.dataservice.getBrands(obj).subscribe((response) => {
       if (response.code === 200 && response.result?.length > 0) {
         this.allBrands = response.result;
-        this.filterBrandsByBodyType(); // Initial filtering
+        this.brandData = response.result;
+        // this.filterBrandsByBodyType(); // Initial filtering
       }
     });
   }
@@ -695,12 +693,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onBodyTypeSelect(event: Event) {
     const target = event.target as HTMLSelectElement;
     const selectedId = target.value;
-    this.selectedBodyTypeId = selectedId;
-    this.selectedBodytype = selectedId ? [selectedId] : [];
-    this.selectedBrand = []; // Reset brand and model when body changes
-    this.selectedModel = [];
-    this.filterBrandsByBodyType();
-    this.filteredModel = []; // Reset model list
+    // this.selectedBodyTypeId = selectedId;
+    // this.selectedBodytype = selectedId ? [selectedId] : [];
+    // this.selectedBrand = []; 
+    // this.selectedModel = [];
+    // this.filterBrandsByBodyType();
+    // this.filteredModel = []; 
     this.getCarData();
   }
 
@@ -722,6 +720,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
     } else {
       this.filteredModel = [];
     }
+    let tempBrand = this.brandData.filter(
+      (item) => item._id === selectedId
+    );
+    if(tempBrand && tempBrand.length > 0){
+       this.bodyTypeData =  tempBrand[0].bodytype_data;
+    }   
     this.getCarData();
   }
 

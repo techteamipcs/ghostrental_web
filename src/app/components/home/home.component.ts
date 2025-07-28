@@ -758,6 +758,13 @@ export class HomeComponent implements OnInit {
       this.selelctedbodytype = event.target.value;
     } else if (type == 'brand') {
       this.selelctedbrand = event.target.value;
+      this.selelctedbodytype = '';
+        let tempBrand = this.filteredBrands.filter(
+        (item) => item.name === this.selelctedbrand
+      );
+      if(tempBrand && tempBrand.length > 0){
+        this.filteredBodytype =  tempBrand[0].bodytype_data;
+      }
     } else if (type == 'model') {
       this.selelctedmodel = event.target.value;
     } else if (type == 'feature') {

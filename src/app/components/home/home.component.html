@@ -20,7 +20,7 @@
         bannerData.media_data.length > 0 &&
         bannerData.media_data[0].file_type == 'video'
       "
-      #myVideo
+      #myBannervideo
       width="100%"
       muted
       autoplay
@@ -143,36 +143,6 @@
                   <div class="col-6" *ngIf="!isVehicleYacht">
                     <div class="position-relative">
                       <select
-                        class="form-select size14 redhat-semibold"
-                        required
-                        (change)="selectData('body_type', $event)"
-                      >
-                        <option
-                          value=""
-                          disabled
-                          selected
-                          class="size14 redhat-medium black-light-color"
-                        >
-                          Type of Cars*
-                        </option>
-                        <option
-                          value="{{ bodytype.name }}"
-                          class="size14 redhat-medium black-light-color"
-                          *ngFor="let bodytype of filteredBodytype"
-                        >
-                          {{ bodytype.name }}
-                        </option>
-                      </select>
-                      <img
-                        src="{{ imageURL }}/images/icons/down-arrow.svg"
-                        alt=""
-                        class="down-arrow"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-6" *ngIf="!isVehicleYacht">
-                    <div class="position-relative">
-                      <select
                         class="form-select size14 redhat-medium"
                         required
                         (change)="selectData('brand', $event)"
@@ -191,6 +161,36 @@
                           *ngFor="let brand of filteredBrands"
                         >
                           {{ brand.name }}
+                        </option>
+                      </select>
+                      <img
+                        src="{{ imageURL }}/images/icons/down-arrow.svg"
+                        alt=""
+                        class="down-arrow"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6" *ngIf="!isVehicleYacht">
+                    <div class="position-relative">
+                      <select
+                        class="form-select size14 redhat-semibold"
+                        required
+                        (change)="selectData('body_type', $event)"
+                      >
+                        <option
+                          value=""
+                          disabled
+                          selected
+                          class="size14 redhat-medium black-light-color"
+                        >
+                          Type of Cars*
+                        </option>
+                        <option
+                          value="{{ bodytype.name }}"
+                          class="size14 redhat-medium black-light-color"
+                          *ngFor="let bodytype of filteredBodytype"
+                        >
+                          {{ bodytype.name }}
                         </option>
                       </select>
                       <img

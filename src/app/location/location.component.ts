@@ -86,13 +86,13 @@ export class LocationComponent {
         let waUrl = 'https://www.youtube.com/@GhostRentalsDXB?app=desktop';
         window.open(waUrl,"_self");
       } else if(this.url.includes('ViewYachts')){
-        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Yachts';
+        let waUrl = 'https://www.ghostrentals.com/product/search?type=Yachts';
         window.open(waUrl,"_self");
       } else if(this.url.includes('ViewCars')){
-        let waUrl = 'https://www.ghostrentals.ae/product/search?type=Car';
+        let waUrl = 'https://www.ghostrentals.com/product/search?type=Car';
         window.open(waUrl,"_self");
       } else if(this.url.includes('ContactUs')){
-        let waUrl = 'https://www.ghostrentals.ae/contact';
+        let waUrl = 'https://www.ghostrentals.com/contact';
         window.open(waUrl,"_self");
       }
     }
