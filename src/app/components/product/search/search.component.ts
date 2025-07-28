@@ -613,13 +613,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.totolvehicle = response.count;
         this.vehicleData = response.result;
         this.totalItems = response.count;
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo(0, 0);
-        }
         if (this.vehicleType == 'Yachts') {
           this.extractYachtLengths(response.result);
         }
         this.updatePagedCars();
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
       } else {
           this.vehicleData = [];
           this.yachtLengthOptions = [];
@@ -785,9 +785,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       if (response.code === 200) {
         this.vehicleData = response.result || [];
         this.totalItems = response.count || 0;
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo(0, 0);
-        }
+        
         // yachtLengthOptions should always reflect only available yachts in result
         if (this.vehicleType === 'Yachts') {
           this.extractYachtLengths(this.vehicleData);
@@ -796,13 +794,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
             this.totalItems = this.vehicleData.length;
           }
         }
-
         if (this.vehicleData.length > 0) {
           this.updatePagedCars();
         } else {
           if (this.vehicleType === 'Yachts') {
             this.yachtLengthOptions = [];
           }
+        }
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
         }
       }
     });
