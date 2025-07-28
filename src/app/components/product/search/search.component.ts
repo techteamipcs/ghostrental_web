@@ -698,8 +698,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onBodyTypeSelect(event: Event) {
     const target = event.target as HTMLSelectElement;
     const selectedId = target.value;
-    // this.selectedBodyTypeId = selectedId;
-    // this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.selectedBodyTypeId = selectedId;
+    this.selectedBodytype = selectedId ? [selectedId] : [];
     // this.selectedBrand = []; 
     // this.selectedModel = [];
     // this.filterBrandsByBodyType();
