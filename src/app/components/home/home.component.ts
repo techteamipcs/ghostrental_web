@@ -1161,7 +1161,7 @@ export class HomeComponent implements OnInit {
   // selectedStartTime: any;
   // selectedEndTime: any;
   isPM: boolean = false;
-  displayHours: string[] =["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
+  displayHours: string[] =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
   // Time picker state management
   private previousStartTime: { hour: string, minute: string } | null = null;
   private previousEndTime: { hour: string, minute: string } | null = null;
@@ -1438,7 +1438,7 @@ selectEndMinute(minute: string) {
 
   private initializeTimePicker() {
     // Set hours from 1 to 12
-    this.displayHours = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
+    this.displayHours = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
     
     this.minutes = ['00','15','30','45'];
     
@@ -1467,7 +1467,7 @@ selectEndMinute(minute: string) {
   // }
 
   updateDisplayHours() {
-    this.displayHours = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
+    this.displayHours = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
     
   }
 
