@@ -1824,7 +1824,7 @@
 					</div>
 				</div>
 				<button
-					routerLink="/product/search?type=car"
+					(click)="goToVehiclePage('Car')"
 					data-aos="fade-up"
 					data-aos-duration="2000"
 					class="white-button d-flex mx-auto size18 redhat-bold text-capitalize mt-5"
@@ -1951,9 +1951,9 @@
 			</div>
 		</div>
 		<button
-			routerLink="/product/search"
+			(click)="goToVehiclePage('Car')"
 			data-aos="fade-up"
-			data-aos-duration="2000"
+			data-aos-duration="1500"
 			class="white-button d-flex mx-auto size18 redhat-bold text-capitalize my-xl-5 my-lg-4 my-1"
 			data-text="View All"
 		>
