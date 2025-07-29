@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   backendURl = `${environment.baseUrl}/public`;
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
   isMobile: boolean = false;
+  isTablate: boolean = false;
   isFilterCollapsed: boolean = false;
   isMobileFilterVisible: boolean = false;
   selectedLength: string | null = null;
@@ -185,6 +186,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 1199;
+      this.isTablate = window.innerWidth <= 2561 && window.innerWidth >= 1200;
       this.isMobileFilterVisible = !this.isMobile;
       setTimeout(() => {
         this.sliderVisible = true;

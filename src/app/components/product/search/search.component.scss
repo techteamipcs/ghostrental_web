@@ -969,6 +969,7 @@ select.form-selection option:not([value=""]) {
 }
 }
 .tabposition{
+  position: sticky;
   @media(max-width:1199px){
     width: 40%;
     position: absolute ;
