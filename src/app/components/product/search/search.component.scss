@@ -141,7 +141,7 @@ select:focus {
   .filter-section {
     position: relative;
     margin-bottom: 0.5rem;
-    z-index: 1; /* Add z-index to create stacking context */
+    // z-index: 1; /* Add z-index to create stacking context */
 
     /* Style for the select dropdown */
     select {
@@ -682,7 +682,7 @@ select.form-selection option:not([value=""]) {
 .datetime-selector {
 	position: relative;
 	width: 100%;
-	z-index: 1;
+	// z-index: 1;
 	&.active {
 		z-index: 1001;
 	}
@@ -849,7 +849,7 @@ select.form-selection option:not([value=""]) {
 		padding: 12px;
 		z-index: 1000;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
+    z-index: 1050 !important;
 		.datetime-inner {
 			display: flex;
 			gap: 12px;
