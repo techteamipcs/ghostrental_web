@@ -4,14 +4,15 @@
 			<!-- filter section -->
 			<div class="col-xl-3 col-lg-5 filter-section">
 				<div
-					class="border border-2 p-xl-4 p-md-3 p-3 filter-container"
+					class="border border-2 p-xl-4 p-md-3 p-3 filter-container tabposition"
 					#filterContainer
 					[ngClass]="{
-						'position-sticky': true,
-						'position-relative': isMobileFilterVisible && isMobile
+						'': true,
+						'cstposition': isMobileFilterVisible && isMobile
 					}"
 				>
-					<div class="filter">
+				<!-- position-sticky -->
+					<div class="filter" [ngClass]="vehicleType== 'Car' || vehicleType=='Yachts' ? 'cstheight' : ''">
 						<div
 							class="d-flex align-items-center justify-content-between"
 							(click)="toggleFilter()"
@@ -54,16 +55,16 @@
 							*ngIf="!isMobile || isMobileFilterVisible"
 							class="filter"
 							[ngClass]="{
-								'position-absolute top-100 start-0 w-100 shadow bg-white  border border-2 rounded-4 p-xl-4 p-md-3 p-2 px-3':
+								' p-xl-4 p-md-3 py-3 px-0':
 									isMobile
 							}"
 						>
-							<!-- Vehicle Type -->
+							<!-- Vehicle Type position-absolute start-0 w-100  top-100  shadow bg-white  border border-2 rounded-4 -->
 							<label
 								class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
 								>Vehicle Type</label
 							>
-							<div class="filter-section">
+							<div class="filter-section" >
 								<select
 									[(ngModel)]="vehicleType"
 									class="form-selection size16 redhat-semibold bg-white gray-color"
