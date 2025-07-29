@@ -141,9 +141,19 @@ select:focus {
   .filter-section {
     position: relative;
     margin-bottom: 0.5rem;
+    z-index: 1; /* Add z-index to create stacking context */
 
-    @media screen and (max-width: 768px) {
-      margin-bottom: 0.3rem;
+    /* Style for the select dropdown */
+    select {
+      position: relative;
+      background-color: white;
+      z-index: 2; /* Ensure select is above the arrow */
+    }
+
+    /* Style for the dropdown options */
+    select option {
+      position: relative;
+      z-index: 1000; /* Ensure options appear above other elements */
     }
 
     .label-text {
@@ -235,6 +245,26 @@ select:focus {
       }
     }
   }
+}
+
+/* Ensure the dropdown appears above other elements */
+select:focus, select:active {
+  position: relative;
+  z-index: 1001;
+}
+
+/* Style for the container that holds the dropdown options */
+::ng-deep .cdk-overlay-container {
+  z-index: 1002 !important; /* Ensure the overlay appears above everything */
+}
+
+/* Style for the dropdown panel */
+::ng-deep .mat-select-panel {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  margin-top: 5px !important;
+  z-index: 1003 !important;
 }
 
 // Date inputs
@@ -648,4 +678,282 @@ select.form-selection option:not([value=""]) {
   @media (max-width: 1366px) {
     font-size: 12px;
   }
+}
+.datetime-selector {
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	&.active {
+		z-index: 1001;
+	}
+
+	.form-control {
+		cursor: pointer;
+		border: 1px solid #000;
+		color: #000;
+		background: #fff;
+		padding-right: 30px;
+	}
+
+	/* Time Picker Styles */
+	.time-picker-dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: white;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+		margin-top: 4px;
+		scrollbar-width: none;
+		z-index: 1050;
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+		transition: all 0.3s ease, height 0.2s ease;
+		transform-origin: top;
+		width: 100%;
+		max-width: 100%;
+		min-width: 100%;
+		overflow: hidden;
+		padding: 5px;
+
+		.time-picker-container {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			padding: 10px 0;
+
+			.time-section {
+				flex: 1;
+				text-align: center;
+
+				.time-options {
+					max-height: 160px;
+					overflow-y: auto;
+					scrollbar-width: none;
+					-ms-overflow-style: none;
+					margin-top: 5px;
+
+					&::-webkit-scrollbar {
+						display: none;
+					}
+
+					.time-option {
+						padding: 5px 0;
+						margin: 2px 0;
+						cursor: pointer;
+						border-radius: 4px;
+						transition: all 0.2s ease;
+
+						&:hover,
+						&.selected {
+							background: #000;
+							color: #fff;
+						}
+
+						&.selected {
+							font-weight: 600;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.down-arrow {
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 12px;
+		filter: invert(100%);
+	}
+
+	/* View Toggle Buttons */
+	.view-toggle-buttons {
+	  padding: 8px 16px;
+	  background: #f8f9fa;
+	  border-bottom: 1px solid #e9ecef;
+	  border-radius: 4px 4px 0 0;
+	  
+	  .toggle-btn {
+	    background: none;
+	    border: none;
+	    padding: 6px 16px;
+	    margin: 0 4px;
+	    border-radius: 4px;
+	    font-size: 13px;
+	    font-weight: 500;
+	    color: #6c757d;
+	    cursor: pointer;
+	    transition: all 0.2s ease;
+	    
+	    &:hover {
+	      background: #e9ecef;
+	      color: #495057;
+	    }
+	    
+	    &.active {
+	      background: #2f80ed;
+	      color: white;
+	      
+	      &:hover {
+	        background: darken(#2f80ed, 5%);
+	      }
+	    }
+	  }
+	}
+
+	/* Slide Animation */
+	.calendar-section, .time-picker-section {
+	  transition: transform 0.3s ease, opacity 0.3s ease;
+	  width: 100%;
+	  position: absolute;
+	  top: 50px;
+	  left: 0;
+	  right: 0;
+	  padding: 0 16px 16px;
+	  opacity: 1;
+	  
+	  &.slide-out {
+	    transform: translateX(-100%);
+	    opacity: 0;
+	    pointer-events: none;
+	  }
+	  
+	  &.slide-in {
+	    transform: translateX(0);
+	    opacity: 1;
+	    position: relative;
+	    top: 0;
+	  }
+	}
+
+	.datetime-inner {
+	  position: relative;
+	  min-height: 100%;
+	  overflow: hidden;
+	}
+
+	/* Date Time Dropdown */
+	.datetime-dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		border: 1px solid #000;
+		border-radius: 6px;
+		padding: 12px;
+		z-index: 1000;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+		.datetime-inner {
+			display: flex;
+			gap: 12px;
+		}
+
+		/* --- Calendar Section --- */
+		.calendar-section {
+			flex: 1;
+			.btn-nav {
+				border: none;
+				background: none;
+				cursor: pointer;
+				color: #000;
+				padding: 0 5px;
+			}
+
+			.calendar-grid {
+				display: grid;
+				grid-template-columns: repeat(7, 1fr);
+				gap: 2px;
+				text-align: center;
+
+				.day-name {
+					color: #000;
+				}
+
+				.day-cell {
+					padding: 4px 0;
+					cursor: pointer;
+					border-radius: 4px;
+					&.today {
+						border: 1px solid #000;
+					}
+					&.selected {
+						background: #000;
+						color: #fff;
+					}
+					&.disabled {
+						color: #999;
+						pointer-events: none;
+					}
+					&:hover:not(.disabled) {
+						background: #000;
+						color: #fff;
+					}
+				}
+			}
+		}
+
+		/* --- Time Picker Section --- */
+		.time-picker-section {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 0 10px;
+
+			.time-section {
+				margin-bottom: 8px;
+				
+				.time-section-label {
+					margin-bottom: 4px;
+				}
+
+				.time-options {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					gap: 5px;
+          height: 25vh;
+				overflow-y: scroll;
+				scrollbar-width: none;
+
+					.time-option {
+						padding: 4px 6px;
+						border: 1px solid #000;
+						border-radius: 4px;
+						cursor: pointer;
+						&.selected {
+							background: #000;
+							color: #fff;
+						}
+						&.disabled {
+							color: #999;
+							border-color: #999;
+							pointer-events: none;
+						}
+						&:hover:not(.disabled) {
+							background: #000;
+							color: #fff;
+						}
+					}
+				}
+			}
+
+			.time-actions {
+				display: flex;
+				justify-content: space-between;
+				gap: 8px;
+			}
+			.black-button {
+				padding: 5px !important;
+			}
+		}
+	}
 }

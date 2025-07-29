@@ -1318,15 +1318,23 @@ isPastTime(hour: string, minute: string): boolean {
 
   const now = new Date();
   const selectedTime = new Date(this.selectedStartDate);
-
-  const h = parseInt(hour, 10);  
-  const m = parseInt(minute, 10);
-
-  selectedTime.setHours(h, m, 0, 0);
-
+  
+  // If the selected date is today, check if the time has passed
   if (this.isToday(this.selectedStartDate)) {
-    return selectedTime < now;
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const selectedHour = parseInt(hour, 10);
+    const selectedMinute = parseInt(minute, 10);
+    
+    // If the hour is less than current hour, it's in the past
+    if (selectedHour < currentHour) return true;
+    
+    // If it's the same hour, check minutes
+    if (selectedHour === currentHour) {
+      return selectedMinute < currentMinute;
+    }
   }
+  
   return false;
 }
 
@@ -1342,18 +1350,33 @@ isSameDay(date1: Date, date2: Date): boolean {
 isPastEndTime(hour: string, minute: string): boolean {
   if (!this.selectedEndDate) return false;
 
-  const h = parseInt(hour, 10);
-  const m = parseInt(minute, 10);
+  const selectedHour = parseInt(hour, 10);
+  const selectedMinute = parseInt(minute, 10);
   const selectedTime = new Date(this.selectedEndDate);
-  selectedTime.setHours(h, m, 0, 0);
+  selectedTime.setHours(selectedHour, selectedMinute, 0, 0);
+
+  // If it's today, check if the time has passed
+  if (this.isToday(this.selectedEndDate)) {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    
+    if (selectedHour < currentHour) return true;
+    if (selectedHour === currentHour && selectedMinute <= currentMinute) return true;
+  }
 
   // If drop date = pickup date, ensure drop time > pickup time
-  if (this.selectedStartDate && this.isSameDay(this.selectedStartDate, this.selectedEndDate)) {
-    if (this.selectedStartTime) {
-      const [pickupHour, pickupMinute] = this.selectedStartTime.split(':').map(Number);
-      const pickupTime = new Date(this.selectedStartDate);
-      pickupTime.setHours(pickupHour, pickupMinute, 0, 0);
-      return selectedTime <= pickupTime;  // disable times before pickup
+  if (this.selectedStartDate && this.selectedStartTime && this.isSameDay(this.selectedStartDate, this.selectedEndDate)) {
+    const [pickupHour, pickupMinute] = this.selectedStartTime.split(':').map(Number);
+    
+    // If same hour, check minutes
+    if (selectedHour === pickupHour) {
+      return selectedMinute <= pickupMinute;
+    }
+    
+    // If selected hour is before pickup hour, it's invalid
+    if (selectedHour < pickupHour) {
+      return true;
     }
   }
 
@@ -1737,8 +1760,6 @@ selectEndMinute(minute: string) {
   }
 
   selectEndDate(date: Date) {
- 
-  
     const pickup = new Date(this.selectedStartDate);
     pickup.setHours(0, 0, 0, 0);
   
