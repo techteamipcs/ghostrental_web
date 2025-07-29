@@ -8,12 +8,17 @@
 					#filterContainer
 					[ngClass]="{
 						'': true,
-						'cstposition': isMobileFilterVisible && isMobile,
-						'position-sticky':isTablate
+						cstposition: isMobileFilterVisible && isMobile,
+						'position-sticky': isTablate
 					}"
 				>
-				<!-- position-sticky -->
-					<div class="filter" [ngClass]="vehicleType== 'Car' || vehicleType=='Yachts' ? 'cstheight' : ''">
+					<!-- position-sticky -->
+					<div
+						class="filter"
+						[ngClass]="
+							vehicleType == 'Car' || vehicleType == 'Yachts' ? 'cstheight' : ''
+						"
+					>
 						<div
 							class="d-flex align-items-center justify-content-between"
 							(click)="toggleFilter()"
@@ -56,8 +61,7 @@
 							*ngIf="!isMobile || isMobileFilterVisible"
 							class="filter"
 							[ngClass]="{
-								' p-xl-4 p-md-3 py-3 px-0':
-									isMobile
+								' p-xl-4 p-md-3 py-3 px-0': isMobile
 							}"
 						>
 							<!-- Vehicle Type position-absolute start-0 w-100  top-100  shadow bg-white  border border-2 rounded-4 -->
@@ -65,19 +69,19 @@
 								class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
 								>Vehicle Type</label
 							>
-							<div class="filter-section" >
+							<div class="filter-section">
 								<select
 									[(ngModel)]="vehicleType"
-									class="form-selection size16 redhat-semibold bg-white gray-color"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
+									class="form-selection size16 redhat-semibold bg-white"
+									(click)="$event.stopPropagation()"
 									(blur)="onSelectBlur($event)"
 									(change)="setVehicleType()"
 								>
-									<option value="">Select Vehicle Type</option>
-									<option value="Car">Car</option>
-									<option value="Yachts">Yachts</option>
+									<option value="" disabled selected>
+										Select Vehicle Type
+									</option>
+									<option value="Car" class="gray-color">Car</option>
+									<option value="Yachts" class="gray-color">Yachts</option>
 								</select>
 								<img
 									src="{{ imageURL }}/images/icons/down-arrow.svg"
@@ -112,17 +116,19 @@
 							>
 							<div class="filter-section" *ngIf="vehicleType == 'Car'">
 								<select
-									class="form-selection size16 redhat-semibold bg-white gray-color"
+									class="form-selection size16 redhat-semibold bg-white"
 									#selBrand
 									name="brand"
 									(change)="changeBrand($event)"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
+									(click)="$event.stopPropagation()"
 									(blur)="onSelectBlur($event)"
 								>
-									<option value="">Select Car Brand</option>
-									<option *ngFor="let item of brandData" value="{{ item._id }}">
+									<option value="" disabled selected>Select Car Brand</option>
+									<option
+										*ngFor="let item of brandData"
+										value="{{ item._id }}"
+										class="gray-color"
+									>
 										{{ item.name }}
 									</option>
 								</select>
@@ -140,19 +146,18 @@
 							>
 							<div class="filter-section" *ngIf="vehicleType == 'Car'">
 								<select
-									class="form-selection size16 redhat-semibold bg-white gray-color"
+									class="form-selection size16 redhat-semibold bg-white"
 									#selctModel
 									name="model"
 									(change)="changeModel($event)"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
+									(click)="$event.stopPropagation()"
 									(blur)="onSelectBlur($event)"
 								>
-									<option value="">Select Car Model</option>
+									<option value="" disabled selected>Select Car Model</option>
 									<option
 										*ngFor="let item of filteredModel"
 										value="{{ item._id }}"
+										class="gray-color"
 									>
 										{{ item.name }}
 									</option>
@@ -181,16 +186,18 @@
 									(blur)="onSelectBlur($event)"
 								> -->
 								<select
-									class="form-selection size16 redhat-semibold bg-white gray-color"
+									class="form-selection size16 redhat-semibold bg-white"
 									name="bodytype"
 									(change)="onBodyTypeSelect($event)"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
+									(click)="$event.stopPropagation()"
 									(blur)="onSelectBlur($event)"
 								>
-									<option value="">Select Body Type</option>
-									<option *ngFor="let item of bodyTypeData" [value]="item._id">
+									<option value="" disabled selected>Select Body Type</option>
+									<option
+										*ngFor="let item of bodyTypeData"
+										[value]="item._id"
+										class="gray-color"
+									>
 										{{ item.name }}
 									</option>
 								</select>
@@ -207,17 +214,18 @@
 								>
 								<div class="filter-section">
 									<select
-										class="form-selection size16 redhat-semibold bg-white gray-color"
+										class="form-selection size16 redhat-semibold bg-white"
 										(change)="onYachtBodyTypeSelect($event)"
-										(click)="
-											$event.stopPropagation(); toggleSelectDropdown($event)
-										"
+										(click)="$event.stopPropagation()"
 										(blur)="onSelectBlur($event)"
 									>
-										<option value="">Select Yacht Body Type</option>
+										<option value="" disabled selected>
+											Select Yacht Body Type
+										</option>
 										<option
 											*ngFor="let item of bodyTypeData"
 											[value]="item._id"
+											class="gray-color"
 										>
 											{{ item.name }}
 										</option>
@@ -234,17 +242,16 @@
 								>
 								<div class="filter-section">
 									<select
-										class="form-selection size16 redhat-semibold bg-white gray-color"
+										class="form-selection size16 redhat-semibold bg-white"
 										(change)="onYachtLengthSelect($event)"
-										(click)="
-											$event.stopPropagation(); toggleSelectDropdown($event)
-										"
+										(click)="$event.stopPropagation()"
 										(blur)="onSelectBlur($event)"
 									>
-										<option value="">Select Length</option>
+										<option value="" disabled selected>Select Length</option>
 										<option
 											*ngFor="let len of yachtLengthOptions"
 											[value]="len"
+											class="gray-color"
 										>
 											{{ len }}
 										</option>
@@ -264,11 +271,9 @@
 							>
 							<div class="filter-section" *ngIf="vehicleType == 'Car'">
 								<select
-									class="form-selection size16 redhat-semibold bg-white gray-color"
+									class="form-selection size16 redhat-semibold bg-white"
 									(change)="onChangeSpecialNumber($event)"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
+									(click)="$event.stopPropagation()"
 									(blur)="onSelectBlur($event)"
 								>
 									<option
@@ -279,8 +284,10 @@
 									>
 										Select Special Number Plate
 									</option>
-									<option value="true">Opt for Special Number Plate</option>
-									<option value="false">Do Not Opt</option>
+									<option value="true" class="gray-color">
+										Opt for Special Number Plate
+									</option>
+									<option value="false" class="gray-color">Do Not Opt</option>
 								</select>
 								<img
 									src="{{ imageURL }}/images/icons/down-arrow.svg"
@@ -461,27 +468,27 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="time-actions mx-auto">
-									<button
-										type="button"
-										class="black-button size18 redhat-bold text-capitalize"
-										(click)="resetDateTimeSelection()"
-										data-text="Reset"
-									>
-										<span>Reset</span>
-									</button>
-									<button
-										type="button"
-										class="black-button size18 redhat-bold text-capitalize"
-										[disabled]="
-											!selectedStartDate || !selectedHour || !selectedMinute
-										"
-										(click)="confirmDateTime()"
-										data-text="Confirm"
-									>
-										<span>Confirm</span>
-									</button>
-								</div> -->
+									<div class="time-actions mx-auto">
+										<button
+											type="button"
+											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+											(click)="resetDateTimeSelection()"
+											data-text="Reset"
+										>
+											<span>Reset</span>
+										</button>
+										<button
+											type="button"
+											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+											[disabled]="
+												!selectedStartDate || !selectedHour || !selectedMinute
+											"
+											(click)="confirmDateTime()"
+											data-text="Confirm"
+										>
+											<span>Confirm</span>
+										</button>
+									</div>
 								</div>
 							</div>
 							<!-- Date To -->
@@ -660,31 +667,31 @@
 													</div>
 												</div>
 											</div>
-											<!-- <div class="time-actions">
-											<button
-												type="button"
-												class="black-button size18 redhat-bold text-capitalize"
-												(click)="resetEndDateTimeSelection()"
-												data-text="Reset"
-											>
-												<span>Reset</span>
-											</button>
-											<button
-												type="button"
-												class="black-button size18 redhat-bold text-capitalize"
-												[disabled]="
-													!selectedEndDate ||
-													!selectedEndHour ||
-													!selectedEndMinute ||
-													isDropTimeBeforePickup()
-												"
-												(click)="confirmEndDateTime()"
-												data-text="Confirm"
-											>
-												<span>Confirm</span>
-											</button>
-										</div> -->
 										</div>
+									</div>
+									<div class="time-actions mx-auto">
+										<button
+											type="button"
+											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+											(click)="resetEndDateTimeSelection()"
+											data-text="Reset"
+										>
+											<span>Reset</span>
+										</button>
+										<button
+											type="button"
+											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+											[disabled]="
+												!selectedEndDate ||
+												!selectedEndHour ||
+												!selectedEndMinute ||
+												isDropTimeBeforePickup()
+											"
+											(click)="confirmEndDateTime()"
+											data-text="Confirm"
+										>
+											<span>Confirm</span>
+										</button>
 									</div>
 								</div>
 							</div>

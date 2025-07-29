@@ -140,12 +140,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   toggleSelectDropdown(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
+    const downArrow =select.parentElement?.querySelector('.down-arrow') as HTMLElement;
+    if (downArrow) {
       if (select.classList.contains('expanded')) {
-        chevron.style.transform = 'translateY(-50%)';
+        downArrow.style.transform = 'translateY(-50%)';
       } else {
-        chevron.style.transform = 'translateY(-50%) rotate(180deg)';
+        downArrow.style.transform = 'translateY(-50%) rotate(180deg)';
       }
     }
     select.classList.toggle('expanded');
@@ -153,9 +153,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   onSelectBlur(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
-      chevron.style.transform = 'translateY(-50%)';
+    const downArrow = select.parentElement?.querySelector('.down-arrow') as HTMLElement;
+    if (downArrow) {
+      downArrow.style.transform = 'translateY(-50%)';
     }
     select.classList.remove('expanded');
   }
@@ -938,7 +938,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         title: 'Please select pickup date first!',
         icon: 'warning',
       });
-      this.selectedEndDate = new Date();
+      this.selectedEndDate = null;
       this.availableEndDate = '';
     } else {
       this.availableEndDate = this.selectedEndDate;
@@ -983,7 +983,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   endCalendarDates: Date[] = [];
   
   
-  activeView: 'calendar' | 'time' = 'calendar'; // Track active view
+  activeView: 'calendar' | 'time' = 'calendar'; 
 
   formatDate(date: Date | null): string {
     if (!date) return '';
@@ -996,10 +996,18 @@ export class SearchComponent implements OnInit, AfterViewInit {
   
   
 
+  // selectHour(hour: string) {
+  //   this.selectedHour = hour;
+  //   if (this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //   }
+  // }
+
   selectHour(hour: string) {
     this.selectedHour = hour;
     if (this.selectedHour && this.selectedMinute) {
       this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
     }
   }
 
@@ -1007,8 +1015,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedMinute = minute;
     if (this.selectedHour && this.selectedMinute) {
       this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
     }
   }
+  
+  
+  // selectMinute(minute: string) {
+  //   this.selectedMinute = minute;
+  //   if (this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //   }
+  // }
 
   onHourScroll(event: Event) {
     event.stopPropagation();
@@ -1093,12 +1110,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   selectDate(date: Date) {
+    if (!this.selectedStartDate || this.selectedStartDate.getTime() !== new Date(date).getTime()) {
+      this.onStartDateTimeChange();
+    }
     this.selectedStartDate = new Date(date);
   }
-
-  /* ---------------------------
-   *   DROP DATE LOGIC
-   * ------------------------- */
   generateEndCalendar() {
     this.endCalendarDates = [];
     const startOfMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth(), 1);
@@ -1129,13 +1145,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.generateEndCalendar();
   }
 
-  selectEndDate(date: Date) {
-    this.selectedEndDate = new Date(date);
-  }
+  // selectEndDate(date: Date) {
+  //   this.selectedEndDate = new Date(date);
+  // }
 
-  /* ---------------------------
-   *   COMMON DATE HELPERS
-   * ------------------------- */
   isToday(date: Date): boolean {
     const today = new Date();
     return (
@@ -1209,9 +1222,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     );
   }
 
-  /* ---------------------------
-   *   TIME LOGIC (Pickup & Drop)
-   * ------------------------- */
   generateHours() {
     this.displayHours = [];
     for (let i = 0; i < 24; i++) {
@@ -1220,33 +1230,27 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
 
-
-  // isSelectedHour(hour: string): boolean {
-  //   return this.selectedHour === hour;
-  // }
-
-  // isPastTime(hour: string, minute: string): boolean {
-  //   if (!this.selectedStartDate || !this.isToday(this.selectedStartDate)) return false;
-  //   const now = new Date();
-  //   const selectedTime = new Date(
-  //     this.selectedStartDate.getFullYear(),
-  //     this.selectedStartDate.getMonth(),
-  //     this.selectedStartDate.getDate(),
-  //     parseInt(hour, 10),
-  // }
-
   selectEndHour(hour: string) {
     this.selectedEndHour = hour;
     if (this.selectedEndHour && this.selectedEndMinute) {
       this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
     }
   }
-
+  
   selectEndMinute(minute: string) {
     this.selectedEndMinute = minute;
     if (this.selectedEndHour && this.selectedEndMinute) {
       this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
     }
+  }
+  
+  selectEndDate(date: Date) {
+    if (!this.selectedEndDate || this.selectedEndDate.getTime() !== new Date(date).getTime()) {
+      this.onEndDateTimeChange();
+    }
+    this.selectedEndDate = new Date(date);
   }
 
   isSelectedHour(hour: string): boolean {
@@ -1283,36 +1287,65 @@ export class SearchComponent implements OnInit, AfterViewInit {
     return selectedTime < now;
   }
 
-  /* ---------------------------
-   *   CONFIRM & RESET
-   * ------------------------- */
+  // confirmDateTime() {
+  //   if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //     this.showDateTimeDropdown = false;
+  //   }
+  // }
   confirmDateTime() {
     if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
       this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
       this.showDateTimeDropdown = false;
+    } else {
+      this.Toast.fire({
+        title: 'Please select both date and time before confirming.',
+        icon: 'warning',
+      });
     }
-  }
-
-  resetDateTimeSelection() {
-    this.selectedStartDate = null;
-    this.selectedHour = null;
-    this.selectedMinute = null;
-    this.selectedStartTime = null;
   }
 
   confirmEndDateTime() {
     if (this.selectedEndDate && this.selectedEndHour && this.selectedEndMinute) {
       this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
       this.showEndDateTimeDropdown = false;
+    }else {
+      this.Toast.fire({
+        title: 'Please select both date and time before confirming.',
+        icon: 'warning',
+      });
     }
   }
 
-  resetEndDateTimeSelection() {
-    this.selectedEndDate = null;
-    this.selectedEndHour = null;
-    this.selectedEndMinute = null;
-    this.selectedEndTime = null;
+resetDateTimeSelection() {
+  // Reset both start and end
+  this.selectedStartDate = null;
+  this.selectedHour = '';
+  this.selectedMinute = '';
+  this.selectedStartTime = '';
+
+  this.selectedEndDate = null;
+  this.selectedEndHour = '';
+  this.selectedEndMinute = '';
+  this.selectedEndTime = '';
+}
+
+resetEndDateTimeSelection() {
+  // Reset only end
+  this.selectedEndDate = null;
+  this.selectedEndHour = '';
+  this.selectedEndMinute = '';
+  this.selectedEndTime = '';
+}
+
+  onStartDateTimeChange() {
+    // Reset end date/time if 'from' date or time changes
+    this.resetEndDateTimeSelection();
   }
 
+  onEndDateTimeChange() {
+    // Reset end time selection state when date or time changes
+    this.selectedEndTime = '';
+  }
 
 }
