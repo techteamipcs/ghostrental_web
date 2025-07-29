@@ -8,7 +8,8 @@ import {
   ElementRef,
   QueryList,
   PLATFORM_ID,
-  Inject
+  Inject,
+  ChangeDetectorRef
 } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
@@ -44,6 +45,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   backendURl = `${environment.baseUrl}/public`;
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
   isMobile: boolean = false;
+  isTablate: boolean = false;
   isFilterCollapsed: boolean = false;
   isMobileFilterVisible: boolean = false;
   selectedLength: string | null = null;
@@ -71,9 +73,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedBrand: any = [];
   selectedModel: any = [];
   selectedCartype: any = [];
-  today: string = '';
-  selectedStartDate: string = '';
-  selectedEndDate: string = '';
   pickuptoday: string;
   dropofftoday: string;
   selectedRentalType: any;
@@ -88,6 +87,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   sort: any = '';
   param_type: any;
   vehicleType: any = '';
+
   @ViewChild('minPriceInput') minPriceInput!: ElementRef;
   @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
   @ViewChild('rangeMin') rangeMin!: ElementRef;
@@ -97,6 +97,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('rangeMax') rangeMax!: ElementRef;
   @ViewChild('filterContainer') filterRef!: ElementRef;
   @ViewChild('resultsSection') resultsRef!: ElementRef;
+  @ViewChild('startDateTimePicker') startDateTimePicker: ElementRef;
+  @ViewChild('endDateTimePicker') endDateTimePicker: ElementRef;
   value: number = 40;
   highValue: number = 20000;
   options: Options = {
@@ -104,6 +106,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     ceil: 20000,
   };
   sliderVisible: any = false;
+
+
+  
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
@@ -111,6 +116,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     public pageservice: PageService,
     private metaTagService: Meta,
     private titleService: Title,
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Initialize mobile filter as closed
@@ -133,12 +140,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   toggleSelectDropdown(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
+    const downArrow =select.parentElement?.querySelector('.down-arrow') as HTMLElement;
+    if (downArrow) {
       if (select.classList.contains('expanded')) {
-        chevron.style.transform = 'translateY(-50%)';
+        downArrow.style.transform = 'translateY(-50%)';
       } else {
-        chevron.style.transform = 'translateY(-50%) rotate(180deg)';
+        downArrow.style.transform = 'translateY(-50%) rotate(180deg)';
       }
     }
     select.classList.toggle('expanded');
@@ -146,16 +153,40 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   onSelectBlur(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    const chevron = select.nextElementSibling as HTMLElement;
-    if (chevron) {
-      chevron.style.transform = 'translateY(-50%)';
+    const downArrow = select.parentElement?.querySelector('.down-arrow') as HTMLElement;
+    if (downArrow) {
+      downArrow.style.transform = 'translateY(-50%)';
     }
     select.classList.remove('expanded');
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    // Don't do anything if no dropdown is open
+    if (!this.showDateTimeDropdown && !this.showEndDateTimeDropdown) return;
+
+    const target = event.target as HTMLElement;
+
+    // Check if click is inside any datetime dropdown or its trigger
+    const isClickInside = Array.from(document.querySelectorAll('.datetime-selector, .datetime-selector *'))
+      .some(element => element.contains(target));
+
+    if (!isClickInside) {
+      // Close all dropdowns if click is outside
+      this.showDateTimeDropdown = false;
+      this.showEndDateTimeDropdown = false;
+
+      // Remove active class from all datetime selectors
+      document.querySelectorAll('.datetime-selector').forEach(el => {
+        el.classList.remove('active');
+      });
+    }
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = window.innerWidth <= 1199;
+      this.isTablate = window.innerWidth <= 2561 && window.innerWidth >= 1200;
       this.isMobileFilterVisible = !this.isMobile;
       setTimeout(() => {
         this.sliderVisible = true;
@@ -181,6 +212,22 @@ export class SearchComponent implements OnInit, AfterViewInit {
         }
       });
     });
+
+    this.generateCalendar();
+    this.generateEndCalendar();
+    this.generateHours();
+    // Set initial time to current time
+    const now = new Date();
+    this.selectedHour = String(now.getHours()).padStart(2, '0');
+    this.selectedMinute = String(Math.floor(now.getMinutes() / 15) * 15).padStart(2, '0');
+    this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+    
+    // Initialize end time to 1 hour after start time
+    const endTime = new Date(now);
+    endTime.setHours(now.getHours() + 1);
+    this.selectedEndHour = String(endTime.getHours()).padStart(2, '0');
+    this.selectedEndMinute = this.selectedMinute;
+    this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
   }
 
   get_PageMeta() {
@@ -216,12 +263,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.itemsPerPage = 12;
       this.price_type = 'hourlyRate';
     }
-    this.filterBodyTypesByVehicleType(); // 👈 Filter data on vehicleType change
+    this.filterBodyTypesByVehicleType(); 
     this.selectedBodytype = [];
     this.selectedBrand = [];
     this.selectedModel = [];
-    this.selectedStartDate = '';
-    this.selectedEndDate = '';
+    this.selectedStartDate = null;
+    this.selectedEndDate = null;
     this.getCarData();
   }
 
@@ -570,8 +617,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.selectedBrand = [];
     this.selectedModel = [];
     // this.selectedRentalType = 'Daily';
-    this.selectedStartDate = '';
-    this.selectedEndDate = '';
+    this.selectedStartDate = null;
+    this.selectedEndDate = null;
     this.selectedRentalType = null;
     this.minPrice = 0;
     this.maxPrice = 150000;
@@ -626,9 +673,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
           window.scrollTo(0, 0);
         }
       } else {
-          this.vehicleData = [];
-          this.yachtLengthOptions = [];
-        }
+        this.vehicleData = [];
+        this.yachtLengthOptions = [];
+      }
     });
   }
 
@@ -728,9 +775,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     let tempBrand = this.brandData.filter(
       (item) => item._id === selectedId
     );
-    if(tempBrand && tempBrand.length > 0){
-       this.bodyTypeData =  tempBrand[0].bodytype_data;
-    }   
+    if (tempBrand && tempBrand.length > 0) {
+      this.bodyTypeData = tempBrand[0].bodytype_data;
+    }
     this.getCarData();
   }
 
@@ -790,7 +837,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       if (response.code === 200) {
         this.vehicleData = response.result || [];
         this.totalItems = response.count || 0;
-        
+
         // yachtLengthOptions should always reflect only available yachts in result
         if (this.vehicleType === 'Yachts') {
           this.extractYachtLengths(this.vehicleData);
@@ -879,11 +926,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
 
-  onSelectPickupDate() {
-    if (this.selectedStartDate) {
-      this.dropofftoday = this.selectedStartDate;
-    }
-  }
+  // onSelectPickupDate() {
+  //   if (this.selectedStartDate) {
+  //     this.dropofftoday = this.selectedStartDate;
+  //   }
+  // }
 
   onSelectDropDate() {
     if (!this.selectedStartDate) {
@@ -891,7 +938,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         title: 'Please select pickup date first!',
         icon: 'warning',
       });
-      this.selectedEndDate = '';
+      this.selectedEndDate = null;
       this.availableEndDate = '';
     } else {
       this.availableEndDate = this.selectedEndDate;
@@ -903,5 +950,402 @@ export class SearchComponent implements OnInit, AfterViewInit {
     return name.split(' ').slice(0, 2).join(' ');
   }
 
+
+
+  // Date-Time Functionlity.
+  showEndDateTimeDropdown = false;
+  showDateTimeDropdown = false;
+  today: string = '';
+  // selectedStartDate: Date = new Date();
+  // selectedEndDate: Date = new Date();
+  showStartTimePicker = false;
+  showCalendar = false;
+  showEndCalendar = false;
+  showEndTimePicker = false;
+  showDateTimePicker = false;
+  selectedStartDate: Date | null = null;
+  selectedEndDate: Date | null = null;
+  selectedStartTime: string = '';
+  selectedEndTime: string | null = null;
+  selectedHour: string = '';
+  selectedEndHour: string | null = null;
+  selectedMinute: string = '';
+  selectedEndMinute: string | null = null;
+  displayHours: string[] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+  minutes: string[] = ['00', '15', '30', '45'];
+  currentMonth: Date = new Date();
+  calendarDates: Date[] = [];
+  dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  private previousStartTime: { hour: string, minute: string } | null = null;
+  private previousEndTime: { hour: string, minute: string } | null = null;
+  Toast: any; // Assuming you are using SweetAlert2 or similar
+  endMonth: Date = new Date();
+  endCalendarDates: Date[] = [];
+  
+  
+  activeView: 'calendar' | 'time' = 'calendar'; 
+
+  formatDate(date: Date | null): string {
+    if (!date) return '';
+    const day = String(date.getDate()).padStart(2, '0');
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  }
+  
+  
+
+  // selectHour(hour: string) {
+  //   this.selectedHour = hour;
+  //   if (this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //   }
+  // }
+
+  selectHour(hour: string) {
+    this.selectedHour = hour;
+    if (this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
+    }
+  }
+
+  selectMinute(minute: string) {
+    this.selectedMinute = minute;
+    if (this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
+    }
+  }
+  
+  
+  // selectMinute(minute: string) {
+  //   this.selectedMinute = minute;
+  //   if (this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //   }
+  // }
+
+  onHourScroll(event: Event) {
+    event.stopPropagation();
+  }
+
+  onMinuteScroll(event: Event) {
+    event.stopPropagation();
+  }
+
+  @HostListener('document:click')
+  closeDropdowns() {
+    this.showDateTimeDropdown = false;
+    this.showEndDateTimeDropdown = false;
+  }
+
+  showCalendarView() {
+    this.activeView = 'calendar';
+  }
+
+  showTimeView() {
+    this.activeView = 'time';
+  }
+
+  toggleDateTimeDropdown(event: Event) {
+    event.stopPropagation();
+    this.showDateTimeDropdown = !this.showDateTimeDropdown;
+    if (this.showDateTimeDropdown) {
+      this.activeView = 'calendar';
+    }
+    this.showEndDateTimeDropdown = false;
+  }
+
+  // toggleEndDateTimeDropdown(event: Event) {
+  //   event.stopPropagation();
+  //   this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
+  //   this.showDateTimeDropdown = false;
+  // }
+
+  toggleEndDateTimeDropdown(event: Event) {
+    event.stopPropagation();
+  
+    if (!this.selectedStartDate) {  
+      Toast.fire({
+        title: 'Please select the start date & time first.',
+        icon: 'warning',
+      });
+      return;
+    }
+  
+    this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
+    this.showDateTimeDropdown = false;
+  }
+  
+  generateCalendar() {
+    this.calendarDates = [];
+    const startOfMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
+    const endOfMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 0);
+
+    const startDay = startOfMonth.getDay();
+    for (let i = startDay; i > 0; i--) {
+      this.calendarDates.push(new Date(startOfMonth.getFullYear(), startOfMonth.getMonth(), 1 - i));
+    }
+
+    for (let i = 1; i <= endOfMonth.getDate(); i++) {
+      this.calendarDates.push(new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), i));
+    }
+
+    const endDay = endOfMonth.getDay();
+    for (let i = 1; i < 7 - endDay; i++) {
+      this.calendarDates.push(new Date(endOfMonth.getFullYear(), endOfMonth.getMonth() + 1, i));
+    }
+  }
+
+  prevMonth() {
+    this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() - 1, 1);
+    this.generateCalendar();
+  }
+
+  nextMonth() {
+    this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 1);
+    this.generateCalendar();
+  }
+
+  selectDate(date: Date) {
+    if (!this.selectedStartDate || this.selectedStartDate.getTime() !== new Date(date).getTime()) {
+      this.onStartDateTimeChange();
+    }
+    this.selectedStartDate = new Date(date);
+  }
+  generateEndCalendar() {
+    this.endCalendarDates = [];
+    const startOfMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth(), 1);
+    const endOfMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth() + 1, 0);
+
+    const startDay = startOfMonth.getDay();
+    for (let i = startDay; i > 0; i--) {
+      this.endCalendarDates.push(new Date(startOfMonth.getFullYear(), startOfMonth.getMonth(), 1 - i));
+    }
+
+    for (let i = 1; i <= endOfMonth.getDate(); i++) {
+      this.endCalendarDates.push(new Date(this.endMonth.getFullYear(), this.endMonth.getMonth(), i));
+    }
+
+    const endDay = endOfMonth.getDay();
+    for (let i = 1; i < 7 - endDay; i++) {
+      this.endCalendarDates.push(new Date(endOfMonth.getFullYear(), endOfMonth.getMonth() + 1, i));
+    }
+  }
+
+  prevEndMonth() {
+    this.endMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth() - 1, 1);
+    this.generateEndCalendar();
+  }
+
+  nextEndMonth() {
+    this.endMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth() + 1, 1);
+    this.generateEndCalendar();
+  }
+
+  // selectEndDate(date: Date) {
+  //   this.selectedEndDate = new Date(date);
+  // }
+
+  isToday(date: Date): boolean {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
+  isCurrentMonth(date: Date): boolean {
+    return date.getMonth() === this.currentMonth.getMonth();
+  }
+
+  isCurrentEndMonth(date: Date): boolean {
+    return date.getMonth() === this.endMonth.getMonth();
+  }
+
+  isBeforeToday(date: Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
+  }
+
+  isBeforePickupDate(date: Date): boolean {
+    if (!this.selectedStartDate) return false;
+    return date < this.selectedStartDate;
+  }
+  
+  isDropTimeBeforePickup(): boolean {
+    if (!this.selectedStartDate || !this.selectedEndDate) return false;
+  
+    const pickup = new Date(
+      this.selectedStartDate.getFullYear(),
+      this.selectedStartDate.getMonth(),
+      this.selectedStartDate.getDate(),
+      parseInt(this.selectedHour || '0', 10),
+      parseInt(this.selectedMinute || '0', 10)
+    );
+  
+    const drop = new Date(
+      this.selectedEndDate.getFullYear(),
+      this.selectedEndDate.getMonth(),
+      this.selectedEndDate.getDate(),
+      parseInt(this.selectedEndHour || '0', 10),
+      parseInt(this.selectedEndMinute || '0', 10)
+    );
+  
+    return drop <= pickup;
+  }
+  canGoPrevMonth(): boolean {
+    const today = new Date();
+    return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
+  }
+    
+
+  isSelectedStartDate(date: Date): boolean {
+    return (
+      this.selectedStartDate &&
+      date.getDate() === this.selectedStartDate.getDate() &&
+      date.getMonth() === this.selectedStartDate.getMonth() &&
+      date.getFullYear() === this.selectedStartDate.getFullYear()
+    );
+  }
+
+  isSelectedEndDate(date: Date): boolean {
+    return (
+      this.selectedEndDate &&
+      date.getDate() === this.selectedEndDate.getDate() &&
+      date.getMonth() === this.selectedEndDate.getMonth() &&
+      date.getFullYear() === this.selectedEndDate.getFullYear()
+    );
+  }
+
+  generateHours() {
+    this.displayHours = [];
+    for (let i = 0; i < 24; i++) {
+      this.displayHours.push(i.toString().padStart(2, '0'));
+    }
+  }
+
+
+  selectEndHour(hour: string) {
+    this.selectedEndHour = hour;
+    if (this.selectedEndHour && this.selectedEndMinute) {
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
+    }
+  }
+  
+  selectEndMinute(minute: string) {
+    this.selectedEndMinute = minute;
+    if (this.selectedEndHour && this.selectedEndMinute) {
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
+    }
+  }
+  
+  selectEndDate(date: Date) {
+    if (!this.selectedEndDate || this.selectedEndDate.getTime() !== new Date(date).getTime()) {
+      this.onEndDateTimeChange();
+    }
+    this.selectedEndDate = new Date(date);
+  }
+
+  isSelectedHour(hour: string): boolean {
+    return this.selectedHour === hour;
+  }
+
+  isSelectedEndHour(hour: string): boolean {
+    return this.selectedEndHour === hour;
+  }
+
+  isPastTime(hour: string, minute: string): boolean {
+    if (!this.selectedStartDate || !this.isToday(this.selectedStartDate)) return false;
+    const now = new Date();
+    const selectedTime = new Date(
+      this.selectedStartDate.getFullYear(),
+      this.selectedStartDate.getMonth(),
+      this.selectedStartDate.getDate(),
+      parseInt(hour, 10),
+      parseInt(minute, 10)
+    );
+    return selectedTime < now;
+  }
+
+  isPastEndTime(hour: string, minute: string): boolean {
+    if (!this.selectedEndDate || !this.isToday(this.selectedEndDate)) return false;
+    const now = new Date();
+    const selectedTime = new Date(
+      this.selectedEndDate.getFullYear(),
+      this.selectedEndDate.getMonth(),
+      this.selectedEndDate.getDate(),
+      parseInt(hour, 10),
+      parseInt(minute, 10)
+    );
+    return selectedTime < now;
+  }
+
+  // confirmDateTime() {
+  //   if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
+  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+  //     this.showDateTimeDropdown = false;
+  //   }
+  // }
+  confirmDateTime() {
+    if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.showDateTimeDropdown = false;
+    } else {
+      this.Toast.fire({
+        title: 'Please select both date and time before confirming.',
+        icon: 'warning',
+      });
+    }
+  }
+
+  confirmEndDateTime() {
+    if (this.selectedEndDate && this.selectedEndHour && this.selectedEndMinute) {
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.showEndDateTimeDropdown = false;
+    }else {
+      this.Toast.fire({
+        title: 'Please select both date and time before confirming.',
+        icon: 'warning',
+      });
+    }
+  }
+
+resetDateTimeSelection() {
+  // Reset both start and end
+  this.selectedStartDate = null;
+  this.selectedHour = '';
+  this.selectedMinute = '';
+  this.selectedStartTime = '';
+
+  this.selectedEndDate = null;
+  this.selectedEndHour = '';
+  this.selectedEndMinute = '';
+  this.selectedEndTime = '';
+}
+
+resetEndDateTimeSelection() {
+  // Reset only end
+  this.selectedEndDate = null;
+  this.selectedEndHour = '';
+  this.selectedEndMinute = '';
+  this.selectedEndTime = '';
+}
+
+  onStartDateTimeChange() {
+    // Reset end date/time if 'from' date or time changes
+    this.resetEndDateTimeSelection();
+  }
+
+  onEndDateTimeChange() {
+    // Reset end time selection state when date or time changes
+    this.selectedEndTime = '';
+  }
 
 }
