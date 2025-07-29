@@ -1039,15 +1039,27 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.showEndDateTimeDropdown = false;
   }
 
+  // toggleEndDateTimeDropdown(event: Event) {
+  //   event.stopPropagation();
+  //   this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
+  //   this.showDateTimeDropdown = false;
+  // }
+
   toggleEndDateTimeDropdown(event: Event) {
     event.stopPropagation();
+  
+    if (!this.selectedStartDate) {  
+      Toast.fire({
+        title: 'Please select the start date & time first.',
+        icon: 'warning',
+      });
+      return;
+    }
+  
     this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
     this.showDateTimeDropdown = false;
   }
-
-  /* ---------------------------
-   *   PICKUP DATE LOGIC
-   * ------------------------- */
+  
   generateCalendar() {
     this.calendarDates = [];
     const startOfMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
