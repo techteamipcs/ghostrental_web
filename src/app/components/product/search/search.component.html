@@ -291,7 +291,10 @@
 								class="form-label size14 redhat-semibold mb-1 gray-light-color"
 								>Date From</label
 							>
-							<div class="filter-section">
+							<div
+								class="filter-section datetime-selector"
+								(click)="$event.stopPropagation()"
+							>
 								<!-- <span
 									*ngIf="!selectedStartDate"
 									class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
@@ -310,159 +313,153 @@
 								<lucide-icon name="calendar-days" size="20"></lucide-icon> -->
 
 								<!-- start date time -->
+								<input
+									type="text"
+									[value]="
+										selectedStartDate && selectedStartTime
+											? formatDate(selectedStartDate) + ' ' + selectedStartTime
+											: ''
+									"
+									readonly
+									placeholder="Select Pickup Date & Time"
+									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
+									(click)="toggleDateTimeDropdown($event)"
+								/>
+
+								<img
+									src="{{ imageURL }}/images/icons/down-arrow.svg"
+									alt=""
+									class="down-arrow"
+								/>
+
 								<div
-									class="datetime-selector position-relative"
+									class="datetime-dropdown card"
+									*ngIf="showDateTimeDropdown"
 									(click)="$event.stopPropagation()"
 								>
-									<input
-										type="text"
-										[value]="
-											selectedStartDate && selectedStartTime
-												? formatDate(selectedStartDate) +
-												  ' ' +
-												  selectedStartTime
-												: ''
-										"
-										readonly
-										placeholder="Select Pickup Date & Time"
-										class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-										(click)="toggleDateTimeDropdown($event)"
-									/>
-
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt=""
-										class="down-arrow"
-									/>
-
 									<div
-										class="datetime-dropdown card"
-										*ngIf="showDateTimeDropdown"
-										(click)="$event.stopPropagation()"
+										class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
 									>
-										<div
-											class="view-toggle-buttons d-flex justify-content-center mb-2"
+										<button
+											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+											[class.active]="activeView === 'calendar'"
+											(click)="showCalendarView()"
+											data-text="Calendar"
 										>
-											<button
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'calendar'"
-												(click)="showCalendarView()"
-												data-text="Calendar"
-											>
-												<span>Calendar</span>
-											</button>
-											<button
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'time'"
-												(click)="showTimeView()"
-												data-text="Time"
-											>
-												<span>Time</span>
-											</button>
-										</div>
+											<span>Calendar</span>
+										</button>
+										<button
+											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+											[class.active]="activeView === 'time'"
+											(click)="showTimeView()"
+											data-text="Time"
+										>
+											<span>Time</span>
+										</button>
+									</div>
 
-										<div class="datetime-inner d-flex">
+									<div class="datetime-inner d-flex">
+										<div
+											class="calendar-section"
+											[class.slide-in]="activeView === 'calendar'"
+											[class.slide-out]="activeView !== 'calendar'"
+										>
 											<div
-												class="calendar-section"
-												[class.slide-in]="activeView === 'calendar'"
-												[class.slide-out]="activeView !== 'calendar'"
+												class="d-flex justify-content-between align-items-center mb-2"
 											>
-												<div
-													class="d-flex justify-content-between align-items-center mb-2"
+												<button
+													type="button"
+													class="btn-nav"
+													(click)="prevMonth()"
+													[disabled]="!canGoPrevMonth()"
 												>
-													<button
-														type="button"
-														class="btn-nav"
-														(click)="prevMonth()"
-														[disabled]="!canGoPrevMonth()"
-													>
-														‹
-													</button>
+													‹
+												</button>
 
-													<strong class="size14">{{
-														currentMonth | date : "MMMM yyyy"
-													}}</strong>
-													<button
-														type="button"
-														class="btn-nav"
-														(click)="nextMonth()"
-													>
-														›
-													</button>
+												<strong class="size14">{{
+													currentMonth | date : "MMMM yyyy"
+												}}</strong>
+												<button
+													type="button"
+													class="btn-nav"
+													(click)="nextMonth()"
+												>
+													›
+												</button>
+											</div>
+											<div class="calendar-grid">
+												<div class="day-name" *ngFor="let day of dayNames">
+													{{ day }}
 												</div>
-												<div class="calendar-grid">
-													<div class="day-name" *ngFor="let day of dayNames">
-														{{ day }}
-													</div>
-													<div
-														class="day-cell"
-														*ngFor="let date of calendarDates"
-														[class.today]="isToday(date)"
-														[class.selected]="isSelectedStartDate(date)"
-														[class.disabled]="
-															!isCurrentMonth(date) || isBeforeToday(date)
-														"
-														(click)="
-															!isBeforeToday(date) &&
-																isCurrentMonth(date) &&
-																selectDate(date)
-														"
-													>
-														{{ date.getDate() }}
-													</div>
+												<div
+													class="day-cell"
+													*ngFor="let date of calendarDates"
+													[class.today]="isToday(date)"
+													[class.selected]="isSelectedStartDate(date)"
+													[class.disabled]="
+														!isCurrentMonth(date) || isBeforeToday(date)
+													"
+													(click)="
+														!isBeforeToday(date) &&
+															isCurrentMonth(date) &&
+															selectDate(date)
+													"
+												>
+													{{ date.getDate() }}
 												</div>
 											</div>
+										</div>
 
-											<!-- Time View -->
-											<div
-												class="time-picker-section"
-												[class.slide-in]="activeView === 'time'"
-												[class.slide-out]="activeView !== 'time'"
-											>
-												<div class="d-flex">
-													<div class="time-section">
-														<div class="time-section-label">Hours</div>
-														<div class="time-options">
-															<div
-																*ngFor="let hour of displayHours"
-																class="time-option"
-																[class.selected]="isSelectedHour(hour)"
-																[class.disabled]="
-																	isPastTime(hour, selectedMinute || '00')
-																"
-																(click)="
-																	!isPastTime(hour, selectedMinute || '00') &&
-																		selectHour(hour)
-																"
-															>
-																{{ hour }}
-															</div>
-														</div>
+										<!-- Time View -->
+										<div
+											class="time-picker-section"
+											[class.slide-in]="activeView === 'time'"
+											[class.slide-out]="activeView !== 'time'"
+										>
+											<div class="d-flex gap-2">
+												<div class="time-section">
+													<div class="time-section-label">Hours</div>
+													<div class="time-options">
+														<span
+															*ngFor="let hour of displayHours"
+															class="time-option"
+															[class.selected]="isSelectedHour(hour)"
+															[class.disabled]="
+																isPastTime(hour, selectedMinute || '00')
+															"
+															(click)="
+																!isPastTime(hour, selectedMinute || '00') &&
+																	selectHour(hour)
+															"
+														>
+															{{ hour }}
+														</span>
 													</div>
+												</div>
 
-													<div class="time-section">
-														<div class="time-section-label">Minutes</div>
-														<div class="time-options">
-															<div
-																*ngFor="let minute of minutes"
-																class="time-option"
-																[class.selected]="selectedMinute === minute"
-																[class.disabled]="
-																	isPastTime(selectedHour || '00', minute)
-																"
-																(click)="
-																	!isPastTime(selectedHour || '00', minute) &&
-																		selectMinute(minute)
-																"
-															>
-																{{ minute }}
-															</div>
+												<div class="time-section">
+													<div class="time-section-label">Minutes</div>
+													<div class="time-options">
+														<div
+															*ngFor="let minute of minutes"
+															class="time-option"
+															[class.selected]="selectedMinute === minute"
+															[class.disabled]="
+																isPastTime(selectedHour || '00', minute)
+															"
+															(click)="
+																!isPastTime(selectedHour || '00', minute) &&
+																	selectMinute(minute)
+															"
+														>
+															{{ minute }}
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<!-- <div class="time-actions mx-auto">
+									</div>
+									<!-- <div class="time-actions mx-auto">
 									<button
 										type="button"
 										class="black-button size18 redhat-bold text-capitalize"
@@ -483,7 +480,6 @@
 										<span>Confirm</span>
 									</button>
 								</div> -->
-									</div>
 								</div>
 							</div>
 							<!-- Date To -->
@@ -491,7 +487,10 @@
 								class="form-label size14 redhat-semibold mb-1 gray-light-color"
 								>Date To</label
 							>
-							<div class="filter-section">
+							<div
+								class="filter-section datetime-selector"
+								(click)="$event.stopPropagation()"
+							>
 								<!-- <span
 									*ngIf="!selectedEndDate"
 									class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
@@ -510,161 +509,156 @@
 
 								<!-- drop date and time -->
 
+								<input
+									type="text"
+									[value]="
+										selectedEndDate && selectedEndTime
+											? formatDate(selectedEndDate) + ' ' + selectedEndTime
+											: ''
+									"
+									readonly
+									placeholder="Select Drop Date & Time"
+									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
+									(click)="toggleEndDateTimeDropdown($event)"
+								/>
+
+								<img
+									src="{{ imageURL }}/images/icons/down-arrow.svg"
+									alt=""
+									class="down-arrow"
+								/>
+
+								<!-- Drop Combined Dropdown -->
 								<div
-									class="datetime-selector position-relative"
+									class="datetime-dropdown card"
+									*ngIf="showEndDateTimeDropdown"
 									(click)="$event.stopPropagation()"
 								>
-									<input
-										type="text"
-										[value]="
-											selectedEndDate && selectedEndTime
-												? formatDate(selectedEndDate) + ' ' + selectedEndTime
-												: ''
-										"
-										readonly
-										placeholder="Select Drop Date & Time"
-										class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-										(click)="toggleEndDateTimeDropdown($event)"
-									/>
-
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt=""
-										class="down-arrow"
-									/>
-
-									<!-- Drop Combined Dropdown -->
 									<div
-										class="datetime-dropdown card"
-										*ngIf="showEndDateTimeDropdown"
-										(click)="$event.stopPropagation()"
+										class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
 									>
-										<div
-											class="view-toggle-buttons d-flex justify-content-center mb-2"
+										<button
+											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+											[class.active]="activeView === 'calendar'"
+											(click)="showCalendarView()"
+											data-text="Calendar"
 										>
-											<button
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'calendar'"
-												(click)="showCalendarView()"
-												data-text="Calendar"
-											>
-												<span>Calendar</span>
-											</button>
-											<button
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'time'"
-												(click)="showTimeView()"
-												data-text="Time"
-											>
-												<span>Time</span>
-											</button>
-										</div>
-										<div class="datetime-inner d-flex">
-											<!-- Drop Date -->
+											<span>Calendar</span>
+										</button>
+										<button
+											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+											[class.active]="activeView === 'time'"
+											(click)="showTimeView()"
+											data-text="Time"
+										>
+											<span>Time</span>
+										</button>
+									</div>
+									<div class="datetime-inner d-flex">
+										<!-- Drop Date -->
+										<div
+											class="calendar-section"
+											[class.slide-in]="activeView === 'calendar'"
+											[class.slide-out]="activeView !== 'calendar'"
+										>
 											<div
-												class="calendar-section"
-												[class.slide-in]="activeView === 'calendar'"
-												[class.slide-out]="activeView !== 'calendar'"
+												class="d-flex justify-content-between align-items-center mb-2"
 											>
-												<div
-													class="d-flex justify-content-between align-items-center mb-2"
+												<button
+													type="button"
+													class="btn-nav"
+													(click)="prevEndMonth()"
+													[disabled]="!canGoPrevMonth()"
 												>
-													<button
-														type="button"
-														class="btn-nav"
-														(click)="prevEndMonth()"
-														[disabled]="!canGoPrevMonth()"
-													>
-														‹
-													</button>
+													‹
+												</button>
 
-													<strong class="size14">{{
-														endMonth | date : "MMMM yyyy"
-													}}</strong>
-													<button
-														type="button"
-														class="btn-nav"
-														(click)="nextEndMonth()"
-													>
-														›
-													</button>
+												<strong class="size14">{{
+													endMonth | date : "MMMM yyyy"
+												}}</strong>
+												<button
+													type="button"
+													class="btn-nav"
+													(click)="nextEndMonth()"
+												>
+													›
+												</button>
+											</div>
+											<div class="calendar-grid">
+												<div class="day-name" *ngFor="let day of dayNames">
+													{{ day }}
 												</div>
-												<div class="calendar-grid">
-													<div class="day-name" *ngFor="let day of dayNames">
-														{{ day }}
+												<div
+													class="day-cell"
+													*ngFor="let date of endCalendarDates"
+													[class.today]="isToday(date)"
+													[class.selected]="isSelectedEndDate(date)"
+													[class.disabled]="
+														!isCurrentEndMonth(date) || isBeforePickupDate(date)
+													"
+													(click)="
+														!isBeforePickupDate(date) &&
+															isCurrentEndMonth(date) &&
+															selectEndDate(date)
+													"
+												>
+													{{ date.getDate() }}
+												</div>
+											</div>
+										</div>
+
+										<!-- Drop Time -->
+										<div
+											class="time-picker-section"
+											[class.slide-in]="activeView === 'time'"
+											[class.slide-out]="activeView !== 'time'"
+										>
+											<div class="d-flex">
+												<div class="time-section">
+													<div class="time-section-label">Hours</div>
+													<div class="time-options">
+														<div
+															*ngFor="let hour of displayHours"
+															class="time-option"
+															[class.selected]="isSelectedEndHour(hour)"
+															[class.disabled]="
+																isPastEndTime(hour, selectedEndMinute || '00')
+															"
+															(click)="
+																!isPastEndTime(
+																	hour,
+																	selectedEndMinute || '00'
+																) && selectEndHour(hour)
+															"
+														>
+															{{ hour }}
+														</div>
 													</div>
-													<div
-														class="day-cell"
-														*ngFor="let date of endCalendarDates"
-														[class.today]="isToday(date)"
-														[class.selected]="isSelectedEndDate(date)"
-														[class.disabled]="
-															!isCurrentEndMonth(date) ||
-															isBeforePickupDate(date)
-														"
-														(click)="
-															!isBeforePickupDate(date) &&
-																isCurrentEndMonth(date) &&
-																selectEndDate(date)
-														"
-													>
-														{{ date.getDate() }}
+												</div>
+
+												<div class="time-section">
+													<div class="time-section-label">Minutes</div>
+													<div class="time-options">
+														<div
+															*ngFor="let minute of minutes"
+															class="time-option"
+															[class.selected]="selectedEndMinute === minute"
+															[class.disabled]="
+																isPastEndTime(selectedEndHour || '00', minute)
+															"
+															(click)="
+																!isPastEndTime(
+																	selectedEndHour || '00',
+																	minute
+																) && selectEndMinute(minute)
+															"
+														>
+															{{ minute }}
+														</div>
 													</div>
 												</div>
 											</div>
-
-											<!-- Drop Time -->
-											<div
-												class="time-picker-section"
-												[class.slide-in]="activeView === 'time'"
-												[class.slide-out]="activeView !== 'time'"
-											>
-												<div class="d-flex">
-													<div class="time-section">
-														<div class="time-section-label">Hours</div>
-														<div class="time-options">
-															<div
-																*ngFor="let hour of displayHours"
-																class="time-option"
-																[class.selected]="isSelectedEndHour(hour)"
-																[class.disabled]="
-																	isPastEndTime(hour, selectedEndMinute || '00')
-																"
-																(click)="
-																	!isPastEndTime(
-																		hour,
-																		selectedEndMinute || '00'
-																	) && selectEndHour(hour)
-																"
-															>
-																{{ hour }}
-															</div>
-														</div>
-													</div>
-
-													<div class="time-section">
-														<div class="time-section-label">Minutes</div>
-														<div class="time-options">
-															<div
-																*ngFor="let minute of minutes"
-																class="time-option"
-																[class.selected]="selectedEndMinute === minute"
-																[class.disabled]="
-																	isPastEndTime(selectedEndHour || '00', minute)
-																"
-																(click)="
-																	!isPastEndTime(
-																		selectedEndHour || '00',
-																		minute
-																	) && selectEndMinute(minute)
-																"
-															>
-																{{ minute }}
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- <div class="time-actions">
+											<!-- <div class="time-actions">
 											<button
 												type="button"
 												class="black-button size18 redhat-bold text-capitalize"
@@ -688,7 +682,6 @@
 												<span>Confirm</span>
 											</button>
 										</div> -->
-											</div>
 										</div>
 									</div>
 								</div>

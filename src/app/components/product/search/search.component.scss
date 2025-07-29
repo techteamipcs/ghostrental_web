@@ -82,9 +82,9 @@ select:focus {
 
   &.position-sticky {
     position: sticky;
-    top: 110px; /* Adjust this value based on your header height */
-    // max-height: calc(100vh - 140px); /* Adjust based on your needs */
-    // overflow-y: auto;
+    top: 110px; 
+    max-height: 100vh;
+    overflow-y: visible;
     z-index: 10;
     background: white;
     @media (max-width: 1440px) {
@@ -175,10 +175,6 @@ select:focus {
       }
     }
 
-
-    
- 
-
     lucide-icon[name="chevron-down"] {
       position: absolute;
       top: 50%;
@@ -197,6 +193,7 @@ select:focus {
       transform: translateY(-50%);
       pointer-events: none;
       transition: transform 0.2s ease-in-out;
+      z-index: 4;
     }
 
     lucide-icon[name="calendar-days"] {
@@ -762,14 +759,7 @@ select.form-selection option:not([value=""]) {
 		}
 	}
 
-	.down-arrow {
-		position: absolute;
-		right: 12px;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 12px;
-		filter: invert(100%);
-	}
+	
 
 	/* View Toggle Buttons */
 	.view-toggle-buttons {
@@ -784,9 +774,6 @@ select.form-selection option:not([value=""]) {
 	    padding: 6px 16px;
 	    margin: 0 4px;
 	    border-radius: 4px;
-	    font-size: 13px;
-	    font-weight: 500;
-	    color: #6c757d;
 	    cursor: pointer;
 	    transition: all 0.2s ease;
 	    
@@ -915,14 +902,19 @@ select.form-selection option:not([value=""]) {
 				}
 
 				.time-options {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					gap: 5px;
-          height: 25vh;
-				overflow-y: scroll;
-				scrollbar-width: none;
+					height: 200px;
+          overflow-y: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          margin-top: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 5px;
+
+          &::-webkit-scrollbar {
+            display: none;
+        }
 
 					.time-option {
 						padding: 4px 6px;
