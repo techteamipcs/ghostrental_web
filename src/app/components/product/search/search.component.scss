@@ -138,112 +138,112 @@ select:focus {
 		}
 	}
 
-	.filter-section {
+	
+}
+.filter-section {
+	position: relative;
+	margin-bottom: 0.5rem;
+	// z-index: 1; /* Add z-index to create stacking context */
+
+	/* Style for the select dropdown */
+	select {
 		position: relative;
-		margin-bottom: 0.5rem;
-		// z-index: 1; /* Add z-index to create stacking context */
+		background-color: white;
+		z-index: 2; /* Ensure select is above the arrow */
+	}
 
-		/* Style for the select dropdown */
-		select {
-			position: relative;
-			background-color: white;
-			z-index: 2; /* Ensure select is above the arrow */
+	/* Style for the dropdown options */
+	select option {
+		position: relative;
+		z-index: 1000; /* Ensure options appear above other elements */
+	}
+
+	.label-text {
+		color: #999;
+		top: 20%;
+		left: 2.5%;
+		width: 77%;
+		@media screen and (max-width: 2048px) {
+			left: 3.5%;
+		}
+		@media screen and (max-width: 1920px) {
+			left: 3.5%;
+		}
+		@media screen and (max-width: 1199px) {
+			left: 2%;
+		}
+		@media screen and (max-width: 1024px) {
+			left: 1.5%;
+		}
+	}
+
+	lucide-icon[name="chevron-down"] {
+		position: absolute;
+		top: 50%;
+		right: 12px;
+		transform: translateY(-50%);
+		pointer-events: none;
+		transition: transform 0.2s ease-in-out;
+	}
+
+	.down-arrow {
+		width: 14px;
+		height: auto;
+		position: absolute;
+		top: 50%;
+		right: 12px;
+		transform: translateY(-50%);
+		pointer-events: none;
+		transition: transform 0.2s ease-in-out;
+		z-index: 4;
+	}
+
+	lucide-icon[name="calendar-days"] {
+		position: absolute;
+		top: 14%;
+		right: 12px;
+		pointer-events: none;
+		transition: transform 0.2s ease-in-out;
+
+		@media screen and (max-width: 1536px) {
+			top: 11%;
 		}
 
-		/* Style for the dropdown options */
-		select option {
-			position: relative;
-			z-index: 1000; /* Ensure options appear above other elements */
+		@media screen and (max-width: 1199px) {
+			top: 9%;
 		}
 
-		.label-text {
-			color: #999;
-			top: 20%;
-			left: 2.5%;
-			width: 77%;
-			@media screen and (max-width: 2048px) {
-				left: 3.5%;
-			}
-			@media screen and (max-width: 1920px) {
-				left: 3.5%;
-			}
-			@media screen and (max-width: 1199px) {
-				left: 2%;
-			}
-			@media screen and (max-width: 1024px) {
-				left: 1.5%;
-			}
+		@media screen and (max-width: 768px) {
+			top: 9%;
 		}
 
-		lucide-icon[name="chevron-down"] {
-			position: absolute;
-			top: 50%;
-			right: 12px;
-			transform: translateY(-50%);
-			pointer-events: none;
-			transition: transform 0.2s ease-in-out;
-		}
-
-		.down-arrow {
-			width: 14px;
-			height: auto;
-			position: absolute;
-			top: 50%;
-			right: 12px;
-			transform: translateY(-50%);
-			pointer-events: none;
-			transition: transform 0.2s ease-in-out;
-			z-index: 4;
-		}
-
-		lucide-icon[name="calendar-days"] {
-			position: absolute;
-			top: 14%;
-			right: 12px;
-			pointer-events: none;
-			transition: transform 0.2s ease-in-out;
-
-			@media screen and (max-width: 1536px) {
-				top: 11%;
-			}
-
-			@media screen and (max-width: 1199px) {
-				top: 9%;
-			}
-
-			@media screen and (max-width: 768px) {
-				top: 9%;
-			}
-
-			:ng-deep {
-				svg {
-					width: 15px;
-					height: auto;
-				}
-			}
-		}
-
-		.form-selection:focus + lucide-icon[name="chevron-down"],
-		.form-controls:focus + lucide-icon[name="chevron-down"],
-		.form-selection.expanded + lucide-icon[name="chevron-down"],
-		.form-controls.expanded + lucide-icon[name="chevron-down"],
-		.form-selection:focus + .down-arrow,
-		.form-controls:focus + .down-arrow,
-		.form-selection.expanded + .down-arrow,
-		.form-controls.expanded + .down-arrow {
-			transform: translateY(-50%) rotate(180deg);
-		}
-
-		option {
-			padding: 8px 12px;
-
-			&[value=""] {
-				color: #6c757d;
+		:ng-deep {
+			svg {
+				width: 15px;
+				height: auto;
 			}
 		}
 	}
-}
 
+	.form-selection:focus + lucide-icon[name="chevron-down"],
+	.form-controls:focus + lucide-icon[name="chevron-down"],
+	.form-selection.expanded + lucide-icon[name="chevron-down"],
+	.form-controls.expanded + lucide-icon[name="chevron-down"],
+	.form-selection:focus + .down-arrow,
+	.form-controls:focus + .down-arrow,
+	.form-selection.expanded + .down-arrow,
+	.form-controls.expanded + .down-arrow {
+		transform: translateY(-50%) rotate(180deg);
+	}
+
+	option {
+		padding: 8px 12px;
+
+		&[value=""] {
+			color: #6c757d;
+		}
+	}
+}
 /* Ensure the dropdown appears above other elements */
 select:focus,
 select:active {

@@ -1,24 +1,10 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  HostListener,
-  ViewChild,
-  ViewChildren,
-  ElementRef,
-  QueryList,
-  PLATFORM_ID,
-  Inject,
-  ChangeDetectorRef
-} from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import Swal from 'sweetalert2';
 import { Options } from '@angular-slider/ngx-slider';
-import { PageService } from '../../../providers/page/page.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Params } from '@angular/router';
+import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -38,18 +24,21 @@ const Toast = Swal.mixin({
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit, AfterViewInit {
-
-  Math = Math;
+export class SearchComponent {
   imageURL: string = `${environment.url}/assets`;
   backendURl = `${environment.baseUrl}/public`;
-  mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
+
+
+  isMobileFilterVisible: boolean = false;
   isMobile: boolean = false;
+
+  Toast = Toast;
+
+  Math = Math;
+  mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
   isTablate: boolean = false;
   isFilterCollapsed: boolean = false;
-  isMobileFilterVisible: boolean = false;
-  selectedLength: string | null = null;
-  yachtLengthOptions: string[] = [];
+  
 
   // Pagination properties
   currentLimit = 12;
@@ -73,6 +62,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   selectedBrand: any = [];
   selectedModel: any = [];
   selectedCartype: any = [];
+  selectedLength: any = [];
+  yachtLengthOptions: string[] = [];
   pickuptoday: string;
   dropofftoday: string;
   selectedRentalType: any;
@@ -87,168 +78,132 @@ export class SearchComponent implements OnInit, AfterViewInit {
   sort: any = '';
   param_type: any;
   vehicleType: any = '';
-
-  @ViewChild('minPriceInput') minPriceInput!: ElementRef;
-  @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
-  @ViewChild('rangeMin') rangeMin!: ElementRef;
-  @ViewChildren('selctModel') selctModel: QueryList<ElementRef>;
-  @ViewChildren('specialNumberSelect') specialNumberSelect: QueryList<ElementRef>;
-  @ViewChildren('rentalTypeSelect') rentalTypeSelect: QueryList<ElementRef>;
-  @ViewChild('rangeMax') rangeMax!: ElementRef;
-  @ViewChild('filterContainer') filterRef!: ElementRef;
-  @ViewChild('resultsSection') resultsRef!: ElementRef;
-  @ViewChild('startDateTimePicker') startDateTimePicker: ElementRef;
-  @ViewChild('endDateTimePicker') endDateTimePicker: ElementRef;
+  sliderVisible: any = false;
   value: number = 40;
   highValue: number = 20000;
   options: Options = {
     floor: 0,
     ceil: 20000,
   };
-  sliderVisible: any = false;
+
+  // Date-Time Functionlity.
+  showEndDateTimeDropdown = false;
+  showDateTimeDropdown = false;
+  today: string = '';
+  showStartTimePicker = false;
+  showCalendar = false;
+  showEndCalendar = false;
+  showEndTimePicker = false;
+  showDateTimePicker = false;
+  selectedStartDate: Date | null = null;
+  selectedEndDate: Date | null = null;
+  selectedStartTime: string = '';
+  selectedEndTime: string | null = null;
+  selectedHour: string = '';
+  selectedEndHour: string | null = null;
+  selectedMinute: string = '';
+  selectedEndMinute: string | null = null;
+  displayHours: string[] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+  minutes: string[] = ['00', '15', '30', '45'];
+  currentMonth: Date = new Date();
+  calendarDates: Date[] = [];
+  dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  private previousStartTime: { hour: string, minute: string } | null = null;
+  private previousEndTime: { hour: string, minute: string } | null = null;
+  endMonth: Date = new Date();
+  endCalendarDates: Date[] = [];
+
+  activeView: 'calendar' | 'time' = 'calendar';
 
 
-  
+@ViewChild('minPriceInput') minPriceInput!: ElementRef;
+@ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
+@ViewChild('rangeMin') rangeMin!: ElementRef;
+@ViewChild('rangeMax') rangeMax!: ElementRef;
+@ViewChild('filterContainer') filterRef!: ElementRef;
+@ViewChild('resultsSection') resultsRef!: ElementRef;
+  @ViewChild('startDateTimePicker') startDateTimePicker: ElementRef;
+  @ViewChild('endDateTimePicker') endDateTimePicker: ElementRef;
+
+
   constructor(
     private dataservice: DataService,
     private route: ActivatedRoute,
-    private router: Router,
-    public pageservice: PageService,
-    private metaTagService: Meta,
-    private titleService: Title,
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
-    // Initialize mobile filter as closed
-    this.param_type = this.route.snapshot.paramMap.get('type');
-    if (this.param_type && this.param_type === 'vip') {
-      this.vipNumberPlate = true;
-    }
-    const todayDate = new Date();
-    // this.today = todayDate.toISOString().split('T')[0];
-    const year = todayDate.getFullYear();
-    const month = String(todayDate.getMonth() + 1).padStart(2, '0');
-    const day = String(todayDate.getDate()).padStart(2, '0');
-    const hours = String(todayDate.getHours()).padStart(2, '0');
-    const minutes = String(todayDate.getMinutes()).padStart(2, '0');
 
-    this.pickuptoday = `${year}-${month}-${day}T${hours}:${minutes}`;
-    this.dropofftoday = `${year}-${month}-${day}T${hours}:${minutes}`;
-    this.get_PageMeta();
   }
 
-  toggleSelectDropdown(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    const downArrow =select.parentElement?.querySelector('.down-arrow') as HTMLElement;
-    if (downArrow) {
-      if (select.classList.contains('expanded')) {
-        downArrow.style.transform = 'translateY(-50%)';
-      } else {
-        downArrow.style.transform = 'translateY(-50%) rotate(180deg)';
-      }
-    }
-    select.classList.toggle('expanded');
-  }
 
-  onSelectBlur(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    const downArrow = select.parentElement?.querySelector('.down-arrow') as HTMLElement;
-    if (downArrow) {
-      downArrow.style.transform = 'translateY(-50%)';
-    }
-    select.classList.remove('expanded');
-  }
-
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    // Don't do anything if no dropdown is open
-    if (!this.showDateTimeDropdown && !this.showEndDateTimeDropdown) return;
-
-    const target = event.target as HTMLElement;
-
-    // Check if click is inside any datetime dropdown or its trigger
-    const isClickInside = Array.from(document.querySelectorAll('.datetime-selector, .datetime-selector *'))
-      .some(element => element.contains(target));
-
-    if (!isClickInside) {
-      // Close all dropdowns if click is outside
-      this.showDateTimeDropdown = false;
-      this.showEndDateTimeDropdown = false;
-
-      // Remove active class from all datetime selectors
-      document.querySelectorAll('.datetime-selector').forEach(el => {
-        el.classList.remove('active');
-      });
-    }
-  }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 1199;
-      this.isTablate = window.innerWidth <= 2561 && window.innerWidth >= 1200;
-      this.isMobileFilterVisible = !this.isMobile;
-      setTimeout(() => {
-        this.sliderVisible = true;
-      }, 200);
-    }
-    Promise.all([
-      this.getBrands(),
-      this.getCarTypes(),
-      this.getModels(),
-      this.getBodyTypes()
-    ]).then(() => {
-      this.route.queryParams.subscribe(params => {
-        const type = params['type'];
-        if (type) {
-          this.vehicleType = type;
-          if (this.isMobile) {
-            this.SearchItems();
-          } else {
-            this.setVehicleType();
-          }
-        } else {
-          this.processQueryParams(params);
-        }
-      });
-    });
-
-    this.generateCalendar();
-    this.generateEndCalendar();
-    this.generateHours();
-    // Set initial time to current time
-    const now = new Date();
-    this.selectedHour = String(now.getHours()).padStart(2, '0');
-    this.selectedMinute = String(Math.floor(now.getMinutes() / 15) * 15).padStart(2, '0');
-    this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-    
-    // Initialize end time to 1 hour after start time
-    const endTime = new Date(now);
-    endTime.setHours(now.getHours() + 1);
-    this.selectedEndHour = String(endTime.getHours()).padStart(2, '0');
-    this.selectedEndMinute = this.selectedMinute;
-    this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
-  }
-
-  get_PageMeta() {
-    let obj = { pageName: 'products' };
-    this.pageservice.getpageWithName(obj).subscribe((response) => {
-      if (response.body.code == 200) {
-        this.titleService.setTitle(response?.body.result.meta_title);
-        this.metaTagService.updateTag({
-          name: 'description',
-          content: response?.body.result.meta_description,
-        });
-        this.metaTagService.updateTag({
-          name: 'keywords',
-          content: response?.body.result.meta_keywords,
-        });
-      } else if (response.code == 400) {
-      } else {
+      if (isPlatformBrowser(this.platformId)) {
+        this.isMobile = window.innerWidth <= 1199;
+        this.isTablate = window.innerWidth <= 2561 && window.innerWidth >= 1200;
+        this.isMobileFilterVisible = !this.isMobile;
+        setTimeout(() => {
+          this.sliderVisible = true;
+        }, 200);
       }
-    });
+      Promise.all([
+        this.getBrands(),
+        this.getCarTypes(),
+        this.getModels(),
+        this.getBodyTypes()
+      ]).then(() => {
+        this.route.queryParams.subscribe(params => {
+          const type = params['type'];
+          if (type) {
+            this.vehicleType = type;
+            if (this.isMobile) {
+              this.SearchItems();
+            } else {
+              this.setVehicleType();
+            }
+          } else {
+            this.processQueryParams(params);
+          }
+        });
+      });
+  
+      this.generateCalendar();
+      this.generateEndCalendar();
+      this.generateHours();
+      // Set initial time to current time
+      const now = new Date();
+      this.selectedHour = String(now.getHours()).padStart(2, '0');
+      this.selectedMinute = String(Math.floor(now.getMinutes() / 15) * 15).padStart(2, '0');
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      
+      // Initialize end time to 1 hour after start time
+      const endTime = new Date(now);
+      endTime.setHours(now.getHours() + 1);
+      this.selectedEndHour = String(endTime.getHours()).padStart(2, '0');
+      this.selectedEndMinute = this.selectedMinute;
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+    }
+  toggleFilter(): void {
+    this.isMobileFilterVisible = !this.isMobileFilterVisible;
   }
 
+  resetFilter() {
+    this.vehicleType = '';
+    this.carTypes = '';
+    this.selectedBodytype = [];
+    this.selectedBrand = [];
+    this.selectedModel = [];
+    this.selectedLength = '';
+    // this.selectedRentalType = 'Daily';
+    this.selectedStartDate = null;
+    this.selectedEndDate = null;
+    this.selectedRentalType = null;
+    this.minPrice = 0;
+    this.maxPrice = 150000;
+    this.vipNumberPlate = '';
+    this.sort = null;
+    this.updateSlider();
+    this.getCarData();
+  }
   setVehicleType() {
     if (this.vehicleType === 'Car') {
       this.maxPrice = 10000;
@@ -272,10 +227,373 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.getCarData();
   }
 
-  ngAfterViewInit(): void {
-    this.onScroll();
+
+   private processQueryParams(params: Params) {
+      // Update component state from query params
+      if (params['bodyType']) {
+        this.selectedBodytype = [params['bodyType']];
+      }
+      if (params['brand']) {
+        this.selectedBrand = [params['brand']];
+        // Update filtered models based on selected brand
+        if (this.modelData?.length) {
+          this.filteredModel = this.modelData.filter(item => item.brand === params['brand']);
+        }
+      }
+      if (params['model']) {
+        this.selectedModel = [params['model']];
+      }
+      if (params['rentalType']) {
+        this.selectedRentalType = params['rentalType'];
+        this.changeRentalType({ target: { value: params['rentalType'] } });
+      }
+      if (params['minPrice']) {
+        this.minPrice = +params['minPrice'];
+      }
+      if (params['maxPrice']) {
+        this.maxPrice = +params['maxPrice'];
+      }
+      if (params['vip']) {
+        this.vipNumberPlate = params['vip'] === 'true';
+      }
+      if (params['sort']) {
+        this.sort = params['sort'];
+      }
+  
+      // Fetch data after processing all params
+      this.getCarData();
+    }
+
+  getCarData() {
+    if (this.previousVehicleType !== this.vehicleType) {
+      this.currentPage = 1;
+      this.previousVehicleType = this.vehicleType;
+    }
+
+    const obj: any = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      availabilityStatus: 'available',
+      vehicle_type: this.vehicleType,
+      car_type: this.carTypes,
+      bodyTypeId: this.selectedBodytype,
+      brandId: this.selectedBrand,
+      modelId: this.selectedModel,
+      rental_type: this.selectedRentalType,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      price_type: this.price_type,
+      startDate: this.selectedStartDate,
+      endDate: this.selectedEndDate,
+      sort: this.sort,
+      isvipNumberPlate: this.vipNumberPlate
+    };
+
+    if (this.vehicleType == 'Yachts') {
+      if (this.selectedLength) {
+        obj.length = this.selectedLength;
+      }
+    }
+
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code == 200 && response.result.length > 0) {
+        this.totolvehicle = response.count;
+        this.vehicleData = response.result;
+        this.totalItems = response.count;
+        if (this.vehicleType == 'Yachts') {
+          this.extractYachtLengths(response.result);
+        }
+        this.updatePagedCars();
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
+      } else {
+        this.vehicleData = [];
+        this.yachtLengthOptions = [];
+      }
+    });
   }
 
+
+  getCarTypes() {
+    let obj = {};
+    this.dataservice.getCarTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.cartypeData = response.result;
+        }
+      }
+    });
+  }
+
+  getBrands() {
+    const obj = {};
+    this.dataservice.getBrands(obj).subscribe((response) => {
+      if (response.code === 200 && response.result?.length > 0) {
+        this.allBrands = response.result;
+        this.brandData = response.result;
+        // this.filterBrandsByBodyType(); // Initial filtering
+      }
+    });
+  }
+
+  getModels() {
+    let obj = {};
+    this.dataservice.getAllModels(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.modelData = response.result;
+        }
+      }
+    });
+  }
+
+  getBodyTypes() {
+    let obj = {};
+    this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
+      if (response.code == 200) {
+        if (response.result && response.result.length > 0) {
+          this.allBodyTypes = response.result;
+          this.filterBodyTypesByVehicleType();
+
+        }
+      }
+    });
+  }
+  filterBodyTypesByVehicleType() {
+    this.bodyTypeData = this.allBodyTypes.filter(
+      (item) => item.type === this.vehicleType
+    );
+  }
+
+  filterBrandsByBodyType() {
+    if (!this.selectedBodyTypeId) {
+      this.brandData = [];
+      return;
+    }
+    this.brandData = this.allBrands.filter(
+      (brand) => brand.bodytype === this.selectedBodyTypeId
+    );
+  }
+
+
+  extractYachtLengths(data: any[]) {
+    const allLengths = data.map(y => (y.length ?? '').trim()).filter(Boolean);
+    const uniqueSorted = Array.from(new Set(allLengths)).sort((a, b) => {
+      const aNum = parseInt(a);
+      const bNum = parseInt(b);
+      return isNaN(aNum) || isNaN(bNum) ? a.localeCompare(b) : aNum - bNum;
+    });
+    this.yachtLengthOptions = uniqueSorted;
+  }
+
+  changeModel(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedId = target.value;
+    this.selectedModel = selectedId ? [selectedId] : [];
+    this.getCarData();
+  }
+
+  changeCartype(data) {
+    if (data?.target?.value) {
+      this.selectedCartype = [data.target.value];
+    }
+  }
+  changeRentalType(data) {
+    if (data?.target?.value) {
+      this.selectedRentalType = data.target.value;
+      if (data.target.value === 'Daily') {
+        this.price_type = 'dailyRate';
+        this.maxPrice = 150000;
+      } else if (data.target.value === 'Hourly') {
+        this.price_type = 'hourlyRate';
+        this.maxPrice = 20000;
+      } else if (data.target.value === 'Weekly') {
+        this.price_type = 'weeklyRate';
+      } else if (data.target.value === 'Monthly') {
+        this.price_type = 'monthlyRate';
+      }
+    }
+  }
+  changeBrand(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedId = target.value;
+    this.selectedBrand = selectedId ? [selectedId] : [];
+    this.selectedModel = [];
+    if (selectedId && this.modelData.length > 0) {
+      this.filteredModel = this.modelData.filter(item => item.brand === selectedId);
+    } else {
+      this.filteredModel = [];
+    }
+    let tempBrand = this.brandData.filter(
+      (item) => item._id === selectedId
+    );
+    if (tempBrand && tempBrand.length > 0) {
+      this.bodyTypeData = tempBrand[0].bodytype_data;
+    }
+    this.getCarData();
+  }
+
+
+  onSelectBlur(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const downArrow = select.parentElement?.querySelector('.down-arrow') as HTMLElement;
+    if (downArrow) {
+      downArrow.style.transform = 'translateY(-50%)';
+    }
+    select.classList.remove('expanded');
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totolvehicle / this.itemsPerPage);
+  }
+
+  updatePagedCars() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.pagedCars = this.vehicleData.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onPageChange(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.getCarData();
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
+    }
+  }
+
+  getPages(): number[] {
+    return Array(this.totalPages).fill(0).map((_, i) => i + 1);
+  }
+
+  onChangeSpecialNumber(data) {
+    if (data?.target?.value) {
+      this.vipNumberPlate = data.target.value === 'true';
+    } else {
+      this.vipNumberPlate = false;
+    }
+  }
+
+
+  onBodyTypeSelect(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedId = target.value;
+    this.selectedBodyTypeId = selectedId;
+    this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.getCarData();
+  }
+
+  onYachtBodyTypeSelect(event: Event) {
+    const selectedId = (event.target as HTMLSelectElement).value;
+    this.selectedBodytype = selectedId ? [selectedId] : [];
+    this.selectedLength = '';
+    this.getFilteredVehicles();
+  }
+
+  onYachtLengthSelect(event: Event) {
+    const selectedLength = (event.target as HTMLSelectElement).value;
+    this.selectedLength = selectedLength || '';
+    this.getFilteredVehicles();
+  }
+
+  getFilteredVehicles() {
+    const obj: any = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      availabilityStatus: 'available',
+      vehicle_type: this.vehicleType,
+      bodyTypeId: this.selectedBodytype,
+      brandId: this.selectedBrand,
+      modelId: this.selectedModel,
+      rental_type: this.selectedRentalType,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      price_type: this.price_type,
+      startDate: this.selectedStartDate,
+      endDate: this.selectedEndDate,
+      sort: this.sort,
+      isvipNumberPlate: this.vipNumberPlate
+    };
+
+    if (this.vehicleType === 'Yachts') {
+      if (this.selectedLength) {
+        obj.length = this.selectedLength.trim();
+      }
+    }
+
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code === 200) {
+        this.vehicleData = response.result || [];
+        this.totalItems = response.count || 0;
+
+        // yachtLengthOptions should always reflect only available yachts in result
+        if (this.vehicleType === 'Yachts') {
+          this.extractYachtLengths(this.vehicleData);
+          if (this.selectedLength) {
+            this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
+            this.totalItems = this.vehicleData.length;
+          }
+        }
+        if (this.vehicleData.length > 0) {
+          this.updatePagedCars();
+        } else {
+          if (this.vehicleType === 'Yachts') {
+            this.yachtLengthOptions = [];
+          }
+        }
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
+      }
+    });
+  }
+
+  onChangeSort(data) {
+    if (data?.target?.value) {
+      this.sort = data.target.value;
+      this.getCarData();
+    }
+  }
+
+  SearchItems() {
+    this.getCarData();
+    if (this.isMobile) {
+      this.isMobileFilterVisible = false;
+    }
+    window.scrollTo(0, 0);
+  }
+
+
+  onPriceInputChange(type: 'min' | 'max') {
+    // Ensure values are numbers
+    this.minPrice = Number(this.minPrice) || 0;
+    this.maxPrice = Number(this.maxPrice) || 200000;
+
+    // Ensure min and max are within bounds
+    if (this.minPrice < 0) this.minPrice = 0;
+    if (this.maxPrice > 200000) this.maxPrice = 200000;
+
+    // Ensure minimum gap between min and max
+    const minGap = 500;
+    if (this.maxPrice - this.minPrice < minGap) {
+      if (type === 'min') {
+        this.maxPrice = this.minPrice + minGap;
+        if (this.maxPrice > 20000) {
+          this.maxPrice = 20000;
+          this.minPrice = 20000 - minGap;
+        }
+      } else {
+        this.minPrice = this.maxPrice - minGap;
+        if (this.minPrice < 0) {
+          this.minPrice = 0;
+          this.maxPrice = minGap;
+        }
+      }
+    }
+
+    this.updateSlider();
+  }
 
   initializeSlider() {
     this.updateSlider();
@@ -430,39 +748,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     range.style.width = `${maxPos - minPos}px`;
   }
 
-  // Handle price input changes from the number inputs
-  onPriceInputChange(type: 'min' | 'max') {
-    // Ensure values are numbers
-    this.minPrice = Number(this.minPrice) || 0;
-    this.maxPrice = Number(this.maxPrice) || 200000;
-
-    // Ensure min and max are within bounds
-    if (this.minPrice < 0) this.minPrice = 0;
-    if (this.maxPrice > 200000) this.maxPrice = 200000;
-
-    // Ensure minimum gap between min and max
-    const minGap = 500;
-    if (this.maxPrice - this.minPrice < minGap) {
-      if (type === 'min') {
-        this.maxPrice = this.minPrice + minGap;
-        if (this.maxPrice > 20000) {
-          this.maxPrice = 20000;
-          this.minPrice = 20000 - minGap;
-        }
-      } else {
-        this.minPrice = this.maxPrice - minGap;
-        if (this.minPrice < 0) {
-          this.minPrice = 0;
-          this.maxPrice = minGap;
-        }
-      }
-    }
-
-    // Update the slider UI
-    this.updateSlider();
-    // this.filterUpdate.next();
-  }
-
   updatePricesFromSlider() {
     const minThumb = document.getElementById('thumb-min');
     const maxThumb = document.getElementById('thumb-max');
@@ -492,498 +777,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  get totalPages(): number {
-    return Math.ceil(this.totolvehicle / this.itemsPerPage);
-  }
 
-  updatePagedCars() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    this.pagedCars = this.vehicleData.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  onPageChange(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.getCarData();
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo(0, 0);
-      }
-    }
-  }
-
-  getPages(): number[] {
-    return Array(this.totalPages).fill(0).map((_, i) => i + 1);
-  }
-  @HostListener('window:scroll', ['$event'])
-  onScroll(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 10) {
-        this.mobileFilterHeight = 'calc(100vh - 5rem)';
-      } else {
-        this.mobileFilterHeight = 'calc(100vh - 7.5rem)';
-      }
-
-      const filter = this.filterRef.nativeElement;
-      const results = this.resultsRef.nativeElement;
-
-      const filterHeight = filter.offsetHeight;
-      // const filterTop = filter.getBoundingClientRect().top;
-      // const resultsBottom = results.getBoundingClientRect().bottom;
-
-      // if (resultsBottom <= filterHeight + filterTop) {
-      //   filter.style.position = 'relative';
-      //   filter.style.bottom = '0';
-      // } else {
-      //   filter.style.position = 'sticky';
-      //   filter.style.top = '8rem';
-      // }
-    }
-  }
-
-  // Process query parameters and update component state
-  private processQueryParams(params: Params) {
-    // Update component state from query params
-    if (params['bodyType']) {
-      this.selectedBodytype = [params['bodyType']];
-    }
-    if (params['brand']) {
-      this.selectedBrand = [params['brand']];
-      // Update filtered models based on selected brand
-      if (this.modelData?.length) {
-        this.filteredModel = this.modelData.filter(item => item.brand === params['brand']);
-      }
-    }
-    if (params['model']) {
-      this.selectedModel = [params['model']];
-    }
-    if (params['rentalType']) {
-      this.selectedRentalType = params['rentalType'];
-      this.changeRentalType({ target: { value: params['rentalType'] } });
-    }
-    if (params['minPrice']) {
-      this.minPrice = +params['minPrice'];
-    }
-    if (params['maxPrice']) {
-      this.maxPrice = +params['maxPrice'];
-    }
-    if (params['vip']) {
-      this.vipNumberPlate = params['vip'] === 'true';
-    }
-    if (params['sort']) {
-      this.sort = params['sort'];
-    }
-
-    // Fetch data after processing all params
-    this.getCarData();
-  }
-
-  // Update query parameters based on current filters
-  private updateQueryParams() {
-    const queryParams: any = {};
-
-    if (this.selectedBodytype?.length) queryParams.bodyType = this.selectedBodytype[0];
-    if (this.selectedBrand?.length) queryParams.brand = this.selectedBrand[0];
-    if (this.selectedModel?.length) queryParams.model = this.selectedModel[0];
-    if (this.selectedRentalType) queryParams.rentalType = this.selectedRentalType;
-    if (this.minPrice > 0) queryParams.minPrice = this.minPrice;
-    if (this.maxPrice < 10000) queryParams.maxPrice = this.maxPrice;
-    if (this.vipNumberPlate) queryParams.vip = this.vipNumberPlate;
-    if (this.sort) queryParams.sort = this.sort;
-
-    // Update URL without triggering navigation
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams,
-      queryParamsHandling: 'merge',
-      replaceUrl: true
-    });
-  }
-
-  // Public method to trigger search (can be called from template)
-  SearchItems() {
-    this.getCarData();
-    if (this.isMobile) {
-      this.isMobileFilterVisible = false;
-    }
-    window.scrollTo(0, 0);
-  }
-
-
-  resetFilter() {
-    this.vehicleType = '';
-    this.carTypes = '';
-    this.selectedBodytype = [];
-    this.selectedBrand = [];
-    this.selectedModel = [];
-    // this.selectedRentalType = 'Daily';
-    this.selectedStartDate = null;
-    this.selectedEndDate = null;
-    this.selectedRentalType = null;
-    this.minPrice = 0;
-    this.maxPrice = 150000;
-    this.vipNumberPlate = false;
-    this.sort = null;
-    this.updateSlider();
-    this.getCarData();
-  }
-
-
-  getCarData() {
-    if (this.previousVehicleType !== this.vehicleType) {
-      this.currentPage = 1;
-      this.previousVehicleType = this.vehicleType;
-    }
-
-    const obj: any = {
-      limit: this.currentLimit,
-      page: this.currentPage,
-      availabilityStatus: 'available',
-      vehicle_type: this.vehicleType,
-      car_type: this.carTypes,
-      bodyTypeId: this.selectedBodytype,
-      brandId: this.selectedBrand,
-      modelId: this.selectedModel,
-      rental_type: this.selectedRentalType,
-      minPrice: this.minPrice,
-      maxPrice: this.maxPrice,
-      price_type: this.price_type,
-      startDate: this.selectedStartDate,
-      endDate: this.selectedEndDate,
-      sort: this.sort,
-      isvipNumberPlate: this.vipNumberPlate
-    };
-
-    if (this.vehicleType == 'Yachts') {
-      if (this.selectedLength) {
-        obj.length = this.selectedLength;
-      }
-    }
-
-    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-      if (response.code == 200 && response.result.length > 0) {
-        this.totolvehicle = response.count;
-        this.vehicleData = response.result;
-        this.totalItems = response.count;
-        if (this.vehicleType == 'Yachts') {
-          this.extractYachtLengths(response.result);
-        }
-        this.updatePagedCars();
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo(0, 0);
-        }
-      } else {
-        this.vehicleData = [];
-        this.yachtLengthOptions = [];
-      }
-    });
-  }
-
-  getCarTypes() {
-    let obj = {};
-    this.dataservice.getCarTypes(obj).subscribe((response) => {
-      if (response.code == 200) {
-        if (response.result && response.result.length > 0) {
-          this.cartypeData = response.result;
-        }
-      }
-    });
-  }
-
-  getBrands() {
-    const obj = {};
-    this.dataservice.getBrands(obj).subscribe((response) => {
-      if (response.code === 200 && response.result?.length > 0) {
-        this.allBrands = response.result;
-        this.brandData = response.result;
-        // this.filterBrandsByBodyType(); // Initial filtering
-      }
-    });
-  }
-
-  getModels() {
-    let obj = {};
-    this.dataservice.getAllModels(obj).subscribe((response) => {
-      if (response.code == 200) {
-        if (response.result && response.result.length > 0) {
-          this.modelData = response.result;
-        }
-      }
-    });
-  }
-
-  getBodyTypes() {
-    let obj = {};
-    this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
-      if (response.code == 200) {
-        if (response.result && response.result.length > 0) {
-          this.allBodyTypes = response.result;
-          this.filterBodyTypesByVehicleType();
-
-        }
-      }
-    });
-  }
-
-  filterBodyTypesByVehicleType() {
-    this.bodyTypeData = this.allBodyTypes.filter(
-      (item) => item.type === this.vehicleType
-    );
-  }
-
-  filterBrandsByBodyType() {
-    if (!this.selectedBodyTypeId) {
-      this.brandData = [];
-      return;
-    }
-    this.brandData = this.allBrands.filter(
-      (brand) => brand.bodytype === this.selectedBodyTypeId
-    );
-  }
-
-  // Call this when user selects a body type from UI
-  onBodyTypeSelect(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    const selectedId = target.value;
-    this.selectedBodyTypeId = selectedId;
-    this.selectedBodytype = selectedId ? [selectedId] : [];
-    // this.selectedBrand = []; 
-    // this.selectedModel = [];
-    // this.filterBrandsByBodyType();
-    // this.filteredModel = []; 
-    this.getCarData();
-  }
-
-
-
-  changeBodyType(data) {
-    if (data?.target?.value) {
-      this.selectedBodytype = [data.target.value];
-    }
-  }
-
-  changeBrand(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    const selectedId = target.value;
-    this.selectedBrand = selectedId ? [selectedId] : [];
-    this.selectedModel = [];
-    if (selectedId && this.modelData.length > 0) {
-      this.filteredModel = this.modelData.filter(item => item.brand === selectedId);
-    } else {
-      this.filteredModel = [];
-    }
-    let tempBrand = this.brandData.filter(
-      (item) => item._id === selectedId
-    );
-    if (tempBrand && tempBrand.length > 0) {
-      this.bodyTypeData = tempBrand[0].bodytype_data;
-    }
-    this.getCarData();
-  }
-
-  changeModel(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    const selectedId = target.value;
-    this.selectedModel = selectedId ? [selectedId] : [];
-    this.getCarData();
-  }
-
-  changeCartype(data) {
-    if (data?.target?.value) {
-      this.selectedCartype = [data.target.value];
-    }
-  }
-
-  // Additional filters for Yachts
-  onYachtBodyTypeSelect(event: Event) {
-    const selectedId = (event.target as HTMLSelectElement).value;
-    this.selectedBodytype = selectedId ? [selectedId] : [];
-    this.selectedLength = null;
-    this.getFilteredVehicles();
-  }
-
-  onYachtLengthSelect(event: Event) {
-    const selectedLength = (event.target as HTMLSelectElement).value;
-    this.selectedLength = selectedLength || null;
-    this.getFilteredVehicles();
-  }
-
-  getFilteredVehicles() {
-    const obj: any = {
-      limit: this.currentLimit,
-      page: this.currentPage,
-      availabilityStatus: 'available',
-      vehicle_type: this.vehicleType,
-      bodyTypeId: this.selectedBodytype,
-      brandId: this.selectedBrand,
-      modelId: this.selectedModel,
-      rental_type: this.selectedRentalType,
-      minPrice: this.minPrice,
-      maxPrice: this.maxPrice,
-      price_type: this.price_type,
-      startDate: this.selectedStartDate,
-      endDate: this.selectedEndDate,
-      sort: this.sort,
-      isvipNumberPlate: this.vipNumberPlate
-    };
-
-    if (this.vehicleType === 'Yachts') {
-      if (this.selectedLength) {
-        obj.length = this.selectedLength.trim();
-      }
-    }
-
-    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-      if (response.code === 200) {
-        this.vehicleData = response.result || [];
-        this.totalItems = response.count || 0;
-
-        // yachtLengthOptions should always reflect only available yachts in result
-        if (this.vehicleType === 'Yachts') {
-          this.extractYachtLengths(this.vehicleData);
-          if (this.selectedLength) {
-            this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
-            this.totalItems = this.vehicleData.length;
-          }
-        }
-        if (this.vehicleData.length > 0) {
-          this.updatePagedCars();
-        } else {
-          if (this.vehicleType === 'Yachts') {
-            this.yachtLengthOptions = [];
-          }
-        }
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo(0, 0);
-        }
-      }
-    });
-  }
-
-  extractYachtLengths(data: any[]) {
-    const allLengths = data.map(y => (y.length ?? '').trim()).filter(Boolean);
-    const uniqueSorted = Array.from(new Set(allLengths)).sort((a, b) => {
-      const aNum = parseInt(a);
-      const bNum = parseInt(b);
-      return isNaN(aNum) || isNaN(bNum) ? a.localeCompare(b) : aNum - bNum;
-    });
-    this.yachtLengthOptions = uniqueSorted;
-  }
-
-
-  changeRentalType(data) {
-    if (data?.target?.value) {
-      this.selectedRentalType = data.target.value;
-      if (data.target.value === 'Daily') {
-        this.price_type = 'dailyRate';
-        this.maxPrice = 150000;
-      } else if (data.target.value === 'Hourly') {
-        this.price_type = 'hourlyRate';
-        this.maxPrice = 20000;
-      } else if (data.target.value === 'Weekly') {
-        this.price_type = 'weeklyRate';
-      } else if (data.target.value === 'Monthly') {
-        this.price_type = 'monthlyRate';
-      }
-    }
-  }
-
-  onChangeSort(data) {
-    if (data?.target?.value) {
-      this.sort = data.target.value;
-      this.getCarData();
-    }
-  }
-
-  onChangeSpecialNumber(data) {
-    if (data?.target?.value) {
-      this.vipNumberPlate = data.target.value === 'true';
-    } else {
-      this.vipNumberPlate = false;
-    }
-  }
-
-  // onChangevehicleType(data) {
-  //   if (data?.target?.value) {
-  //     this.vehicleType = data.target.value;
-  //   } else {
-  //     this.vehicleType = false;
-  //   }
-  //   if(this.vehicleType=='Yachts'){
-  //     this.maxPrice = 1000000;
-  //   }
-  // }
-
-  toggleFilter(): void {
-    this.isMobileFilterVisible = !this.isMobileFilterVisible;
-  }
-  @HostListener('window:resize', [])
-  onResize(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth <= 1199;
-      this.isMobileFilterVisible = !this.isMobile;
-    }
-  }
-
-
-  // onSelectPickupDate() {
-  //   if (this.selectedStartDate) {
-  //     this.dropofftoday = this.selectedStartDate;
-  //   }
-  // }
-
-  onSelectDropDate() {
-    if (!this.selectedStartDate) {
-      Toast.fire({
-        title: 'Please select pickup date first!',
-        icon: 'warning',
-      });
-      this.selectedEndDate = null;
-      this.availableEndDate = '';
-    } else {
-      this.availableEndDate = this.selectedEndDate;
-    }
-  }
-
-  getFirstTwoWords(name: string): string {
-    if (!name) return "";
-    return name.split(' ').slice(0, 2).join(' ');
-  }
-
-
-
-  // Date-Time Functionlity.
-  showEndDateTimeDropdown = false;
-  showDateTimeDropdown = false;
-  today: string = '';
-  // selectedStartDate: Date = new Date();
-  // selectedEndDate: Date = new Date();
-  showStartTimePicker = false;
-  showCalendar = false;
-  showEndCalendar = false;
-  showEndTimePicker = false;
-  showDateTimePicker = false;
-  selectedStartDate: Date | null = null;
-  selectedEndDate: Date | null = null;
-  selectedStartTime: string = '';
-  selectedEndTime: string | null = null;
-  selectedHour: string = '';
-  selectedEndHour: string | null = null;
-  selectedMinute: string = '';
-  selectedEndMinute: string | null = null;
-  displayHours: string[] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
-  minutes: string[] = ['00', '15', '30', '45'];
-  currentMonth: Date = new Date();
-  calendarDates: Date[] = [];
-  dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  private previousStartTime: { hour: string, minute: string } | null = null;
-  private previousEndTime: { hour: string, minute: string } | null = null;
-  Toast: any; // Assuming you are using SweetAlert2 or similar
-  endMonth: Date = new Date();
-  endCalendarDates: Date[] = [];
-  
-  
-  activeView: 'calendar' | 'time' = 'calendar'; 
 
   formatDate(date: Date | null): string {
     if (!date) return '';
@@ -993,62 +787,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     const year = date.getFullYear();
     return `${day} ${month} ${year}`;
   }
-  
-  
-
-  // selectHour(hour: string) {
-  //   this.selectedHour = hour;
-  //   if (this.selectedHour && this.selectedMinute) {
-  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-  //   }
-  // }
-
-  selectHour(hour: string) {
-    this.selectedHour = hour;
-    if (this.selectedHour && this.selectedMinute) {
-      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-      this.onStartDateTimeChange();
-    }
-  }
-
-  selectMinute(minute: string) {
-    this.selectedMinute = minute;
-    if (this.selectedHour && this.selectedMinute) {
-      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-      this.onStartDateTimeChange();
-    }
-  }
-  
-  
-  // selectMinute(minute: string) {
-  //   this.selectedMinute = minute;
-  //   if (this.selectedHour && this.selectedMinute) {
-  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-  //   }
-  // }
-
-  onHourScroll(event: Event) {
-    event.stopPropagation();
-  }
-
-  onMinuteScroll(event: Event) {
-    event.stopPropagation();
-  }
-
-  @HostListener('document:click')
-  closeDropdowns() {
-    this.showDateTimeDropdown = false;
-    this.showEndDateTimeDropdown = false;
-  }
-
-  showCalendarView() {
-    this.activeView = 'calendar';
-  }
-
-  showTimeView() {
-    this.activeView = 'time';
-  }
-
   toggleDateTimeDropdown(event: Event) {
     event.stopPropagation();
     this.showDateTimeDropdown = !this.showDateTimeDropdown;
@@ -1058,11 +796,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.showEndDateTimeDropdown = false;
   }
 
-  // toggleEndDateTimeDropdown(event: Event) {
-  //   event.stopPropagation();
-  //   this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
-  //   this.showDateTimeDropdown = false;
-  // }
 
   toggleEndDateTimeDropdown(event: Event) {
     event.stopPropagation();
@@ -1079,6 +812,20 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.showDateTimeDropdown = false;
   }
   
+  showCalendarView() {
+    this.activeView = 'calendar';
+  }
+
+  showTimeView() {
+    this.activeView = 'time';
+  }
+
+  canGoPrevMonth(): boolean {
+    const today = new Date();
+    return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
+  }
+
+  // calendaer
   generateCalendar() {
     this.calendarDates = [];
     const startOfMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
@@ -1099,6 +846,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
+  isCurrentMonth(date: Date): boolean {
+    return date.getMonth() === this.currentMonth.getMonth();
+  }
+
   prevMonth() {
     this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() - 1, 1);
     this.generateCalendar();
@@ -1109,12 +860,110 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.generateCalendar();
   }
 
+  isToday(date: Date): boolean {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
+  isBeforeToday(date: Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
+  }
+
+
+  selectHour(hour: string) {
+    this.selectedHour = hour;
+    if (this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
+    }
+  }
+
+  isSelectedHour(hour: string): boolean {
+    return this.selectedHour === hour;
+  }
+
+
+  selectMinute(minute: string) {
+    this.selectedMinute = minute;
+    if (this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
+    }
+  }
+
+  isPastTime(hour: string, minute: string): boolean {
+    if (!this.selectedStartDate || !this.isToday(this.selectedStartDate)) return false;
+    const now = new Date();
+    const selectedTime = new Date(
+      this.selectedStartDate.getFullYear(),
+      this.selectedStartDate.getMonth(),
+      this.selectedStartDate.getDate(),
+      parseInt(hour, 10),
+      parseInt(minute, 10)
+    );
+    return selectedTime < now;
+  }
+  generateHours() {
+    this.displayHours = [];
+    for (let i = 0; i < 24; i++) {
+      this.displayHours.push(i.toString().padStart(2, '0'));
+    }
+  }
   selectDate(date: Date) {
     if (!this.selectedStartDate || this.selectedStartDate.getTime() !== new Date(date).getTime()) {
       this.onStartDateTimeChange();
     }
     this.selectedStartDate = new Date(date);
   }
+
+  isSelectedStartDate(date: Date): boolean {
+    return (
+      this.selectedStartDate &&
+      date.getDate() === this.selectedStartDate.getDate() &&
+      date.getMonth() === this.selectedStartDate.getMonth() &&
+      date.getFullYear() === this.selectedStartDate.getFullYear()
+    );
+  }
+
+  onStartDateTimeChange() {
+    // Reset end date/time if 'from' date or time changes
+    this.resetEndDateTimeSelection();
+  }
+
+  resetDateTimeSelection() {
+    // Reset both start and end
+    this.selectedStartDate = null;
+    this.selectedHour = '';
+    this.selectedMinute = '';
+    this.selectedStartTime = '';
+  
+    this.selectedEndDate = null;
+    this.selectedEndHour = '';
+    this.selectedEndMinute = '';
+    this.selectedEndTime = '';
+  }
+  
+  confirmDateTime() {
+    if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.showDateTimeDropdown = false;
+    } else {
+      this.Toast.fire({
+        title: 'Please select both date and time before confirming.',
+        icon: 'warning',
+      });
+    }
+  }
+  
+
+
+  // end calender and time
   generateEndCalendar() {
     this.endCalendarDates = [];
     const startOfMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth(), 1);
@@ -1135,6 +984,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     }
   }
 
+  isCurrentEndMonth(date: Date): boolean {
+    return date.getMonth() === this.endMonth.getMonth();
+  }
+
   prevEndMonth() {
     this.endMonth = new Date(this.endMonth.getFullYear(), this.endMonth.getMonth() - 1, 1);
     this.generateEndCalendar();
@@ -1145,38 +998,51 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.generateEndCalendar();
   }
 
-  // selectEndDate(date: Date) {
-  //   this.selectedEndDate = new Date(date);
-  // }
+  selectEndHour(hour: string) {
+    this.selectedEndHour = hour;
+    if (this.selectedEndHour && this.selectedEndMinute) {
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
+    }
+  }
 
-  isToday(date: Date): boolean {
-    const today = new Date();
-    return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
+
+  isSelectedEndHour(hour: string): boolean {
+    return this.selectedEndHour === hour;
+  }
+
+  isPastEndTime(hour: string, minute: string): boolean {
+    if (!this.selectedEndDate || !this.isToday(this.selectedEndDate)) return false;
+    const now = new Date();
+    const selectedTime = new Date(
+      this.selectedEndDate.getFullYear(),
+      this.selectedEndDate.getMonth(),
+      this.selectedEndDate.getDate(),
+      parseInt(hour, 10),
+      parseInt(minute, 10)
     );
+    return selectedTime < now;
   }
-
-  isCurrentMonth(date: Date): boolean {
-    return date.getMonth() === this.currentMonth.getMonth();
+  selectEndMinute(minute: string) {
+    this.selectedEndMinute = minute;
+    if (this.selectedEndHour && this.selectedEndMinute) {
+      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+      this.onEndDateTimeChange();
+    }
   }
-
-  isCurrentEndMonth(date: Date): boolean {
-    return date.getMonth() === this.endMonth.getMonth();
-  }
-
-  isBeforeToday(date: Date): boolean {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return date < today;
+  
+  selectEndDate(date: Date) {
+    if (!this.selectedEndDate || this.selectedEndDate.getTime() !== new Date(date).getTime()) {
+      this.onEndDateTimeChange();
+    }
+    this.selectedEndDate = new Date(date);
   }
 
   isBeforePickupDate(date: Date): boolean {
     if (!this.selectedStartDate) return false;
     return date < this.selectedStartDate;
   }
-  
+
   isDropTimeBeforePickup(): boolean {
     if (!this.selectedStartDate || !this.selectedEndDate) return false;
   
@@ -1198,20 +1064,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   
     return drop <= pickup;
   }
-  canGoPrevMonth(): boolean {
-    const today = new Date();
-    return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
-  }
-    
-
-  isSelectedStartDate(date: Date): boolean {
-    return (
-      this.selectedStartDate &&
-      date.getDate() === this.selectedStartDate.getDate() &&
-      date.getMonth() === this.selectedStartDate.getMonth() &&
-      date.getFullYear() === this.selectedStartDate.getFullYear()
-    );
-  }
 
   isSelectedEndDate(date: Date): boolean {
     return (
@@ -1221,90 +1073,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
       date.getFullYear() === this.selectedEndDate.getFullYear()
     );
   }
-
-  generateHours() {
-    this.displayHours = [];
-    for (let i = 0; i < 24; i++) {
-      this.displayHours.push(i.toString().padStart(2, '0'));
-    }
+  resetEndDateTimeSelection() {
+    // Reset only end
+    this.selectedEndDate = null;
+    this.selectedEndHour = '';
+    this.selectedEndMinute = '';
+    this.selectedEndTime = '';
   }
-
-
-  selectEndHour(hour: string) {
-    this.selectedEndHour = hour;
-    if (this.selectedEndHour && this.selectedEndMinute) {
-      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
-      this.onEndDateTimeChange();
-    }
-  }
-  
-  selectEndMinute(minute: string) {
-    this.selectedEndMinute = minute;
-    if (this.selectedEndHour && this.selectedEndMinute) {
-      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
-      this.onEndDateTimeChange();
-    }
-  }
-  
-  selectEndDate(date: Date) {
-    if (!this.selectedEndDate || this.selectedEndDate.getTime() !== new Date(date).getTime()) {
-      this.onEndDateTimeChange();
-    }
-    this.selectedEndDate = new Date(date);
-  }
-
-  isSelectedHour(hour: string): boolean {
-    return this.selectedHour === hour;
-  }
-
-  isSelectedEndHour(hour: string): boolean {
-    return this.selectedEndHour === hour;
-  }
-
-  isPastTime(hour: string, minute: string): boolean {
-    if (!this.selectedStartDate || !this.isToday(this.selectedStartDate)) return false;
-    const now = new Date();
-    const selectedTime = new Date(
-      this.selectedStartDate.getFullYear(),
-      this.selectedStartDate.getMonth(),
-      this.selectedStartDate.getDate(),
-      parseInt(hour, 10),
-      parseInt(minute, 10)
-    );
-    return selectedTime < now;
-  }
-
-  isPastEndTime(hour: string, minute: string): boolean {
-    if (!this.selectedEndDate || !this.isToday(this.selectedEndDate)) return false;
-    const now = new Date();
-    const selectedTime = new Date(
-      this.selectedEndDate.getFullYear(),
-      this.selectedEndDate.getMonth(),
-      this.selectedEndDate.getDate(),
-      parseInt(hour, 10),
-      parseInt(minute, 10)
-    );
-    return selectedTime < now;
-  }
-
-  // confirmDateTime() {
-  //   if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
-  //     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-  //     this.showDateTimeDropdown = false;
-  //   }
-  // }
-  confirmDateTime() {
-    if (this.selectedStartDate && this.selectedHour && this.selectedMinute) {
-      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
-      this.showDateTimeDropdown = false;
-    } else {
-      this.Toast.fire({
-        title: 'Please select both date and time before confirming.',
-        icon: 'warning',
-      });
-    }
-  }
-
   confirmEndDateTime() {
     if (this.selectedEndDate && this.selectedEndHour && this.selectedEndMinute) {
       this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
@@ -1316,36 +1091,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
-resetDateTimeSelection() {
-  // Reset both start and end
-  this.selectedStartDate = null;
-  this.selectedHour = '';
-  this.selectedMinute = '';
-  this.selectedStartTime = '';
-
-  this.selectedEndDate = null;
-  this.selectedEndHour = '';
-  this.selectedEndMinute = '';
-  this.selectedEndTime = '';
-}
-
-resetEndDateTimeSelection() {
-  // Reset only end
-  this.selectedEndDate = null;
-  this.selectedEndHour = '';
-  this.selectedEndMinute = '';
-  this.selectedEndTime = '';
-}
-
-  onStartDateTimeChange() {
-    // Reset end date/time if 'from' date or time changes
-    this.resetEndDateTimeSelection();
-  }
-
   onEndDateTimeChange() {
-    // Reset end time selection state when date or time changes
+    // Reset end time selection stzate when date or time changes
     this.selectedEndTime = '';
   }
-
 }
