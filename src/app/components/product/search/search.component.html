@@ -1,7 +1,6 @@
 <section class="min-h-100 sectionPadding search-container">
 	<div class="container-fluid">
 		<div class="row">
-			<!-- filter section -->
 			<div class="col-xl-3 col-lg-5 filter-section">
 				<div
 					class="border border-2 p-xl-4 p-md-3 p-3 filter-container tabposition"
@@ -12,17 +11,14 @@
 						'position-sticky': isTablate
 					}"
 				>
-					<!-- position-sticky -->
 					<div
 						class="filter"
 						[ngClass]="
 							vehicleType == 'Car' || vehicleType == 'Yachts' ? 'cstheight' : ''
 						"
 					>
-						<div
-							class="d-flex align-items-center justify-content-between"
-							(click)="toggleFilter()"
-						>
+						<!-- toggler to filter open -->
+						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-flex align-items-center gap-2">
 								<img
 									src="{{ imageURL }}/images/icons/filter.svg"
@@ -42,12 +38,12 @@
 								</button>
 								<button
 									class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
-									(click)="toggleFilter()"
 									type="button"
 									[attr.aria-expanded]="isMobileFilterVisible"
 									aria-controls="filter-options"
 								>
 									<lucide-icon
+										(click)="toggleFilter()"
 										[name]="isMobileFilterVisible ? 'minus' : 'plus'"
 										size="20"
 										style="display: flex"
@@ -56,172 +52,132 @@
 							</div>
 						</div>
 
+						<!-- filter options -->
+
 						<div
 							id="filter-options"
-							*ngIf="!isMobile || isMobileFilterVisible"
+							[hidden]="isMobile && !isMobileFilterVisible"
 							class="filter"
 							[ngClass]="{
-								' p-xl-4 p-md-3 py-3 px-0': isMobile
+								expanded: isMobile && isMobileFilterVisible,
+								'p-xl-4 p-md-3 py-3 px-0': isMobile
 							}"
 						>
-							<!-- Vehicle Type position-absolute start-0 w-100  top-100  shadow bg-white  border border-2 rounded-4 -->
-							<label
-								class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
-								>Vehicle Type</label
-							>
-							<div class="filter-section">
-								<select
-									[(ngModel)]="vehicleType"
-									class="form-selection size16 redhat-semibold bg-white"
-									(click)="$event.stopPropagation()"
-									(blur)="onSelectBlur($event)"
-									(change)="setVehicleType()"
-								>
-									<option value="" disabled selected>
-										Select Vehicle Type
-									</option>
-									<option value="Car" class="gray-color">Car</option>
-									<option value="Yachts" class="gray-color">Yachts</option>
-								</select>
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt="Arrow Down"
-									class="down-arrow"
-								/>
-							</div>
-
-							<!-- Rental Type -->
-							<!-- <label class="form-label gray-light-color size14 redhat-semibold mb-1">Rental Type</label>
-              <div class="filter-section">
-                <select class="form-selection size16 redhat-semibold bg-white gray-color" (change)="changeRentalType($event)" (click)="
-              $event.stopPropagation(); toggleSelectDropdown($event)
-            " (blur)="onSelectBlur($event)">
-                  <option value="">Select Rental Type</option>
-                  <option value="Daily">Daily</option>
-                  <option value="Hourly">Hourly</option>
-                  <option value="Weekly" *ngIf="vehicleType=='Car'">Weekly</option>
-                  <option value="Monthly" *ngIf="vehicleType=='Car'">Monthly</option>
-                </select>
-                <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt="Arrow Down" class="down-arrow"
-                   />
-              </div> -->
-
-							<!-- Yacht Filters -->
-
-							<!-- Car Brand -->
-							<label
-								*ngIf="vehicleType == 'Car'"
-								class="form-label size14 redhat-semibold mb-1 gray-light-color"
-								>Car Brand</label
-							>
-							<div class="filter-section" *ngIf="vehicleType == 'Car'">
-								<select
-									class="form-selection size16 redhat-semibold bg-white"
-									#selBrand
-									name="brand"
-									(change)="changeBrand($event)"
-									(click)="$event.stopPropagation()"
-									(blur)="onSelectBlur($event)"
-								>
-									<option value="" disabled selected>Select Car Brand</option>
-									<option
-										*ngFor="let item of brandData"
-										value="{{ item._id }}"
-										class="gray-color"
-									>
-										{{ item.name }}
-									</option>
-								</select>
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt="Arrow Down"
-									class="down-arrow"
-								/>
-							</div>
-							<!-- Car Model -->
-							<label
-								*ngIf="vehicleType == 'Car'"
-								class="form-label size14 redhat-semibold mb-1 gray-light-color"
-								>Car Model</label
-							>
-							<div class="filter-section" *ngIf="vehicleType == 'Car'">
-								<select
-									class="form-selection size16 redhat-semibold bg-white"
-									#selctModel
-									name="model"
-									(change)="changeModel($event)"
-									(click)="$event.stopPropagation()"
-									(blur)="onSelectBlur($event)"
-								>
-									<option value="" disabled selected>Select Car Model</option>
-									<option
-										*ngFor="let item of filteredModel"
-										value="{{ item._id }}"
-										class="gray-color"
-									>
-										{{ item.name }}
-									</option>
-								</select>
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt="Arrow Down"
-									class="down-arrow"
-								/>
-							</div>
-							<!-- Body Type -->
-							<label
-								*ngIf="vehicleType == 'Car'"
-								class="form-label size14 redhat-semibold mb-1 gray-light-color"
-								>Body Type</label
-							>
-							<div class="filter-section" *ngIf="vehicleType == 'Car'">
-								<!-- <select
-									class="form-selection size16 redhat-semibold bg-white gray-color"
-									name="bodytype"
-									[value]="selectedBodytype[0]"
-									(change)="onBodyTypeSelect($event)"
-									(click)="
-										$event.stopPropagation(); toggleSelectDropdown($event)
-									"
-									(blur)="onSelectBlur($event)"
-								> -->
-								<select
-									class="form-selection size16 redhat-semibold bg-white"
-									name="bodytype"
-									(change)="onBodyTypeSelect($event)"
-									(click)="$event.stopPropagation()"
-									(blur)="onSelectBlur($event)"
-								>
-									<option value="" disabled selected>Select Body Type</option>
-									<option
-										*ngFor="let item of bodyTypeData"
-										[value]="item._id"
-										class="gray-color"
-									>
-										{{ item.name }}
-									</option>
-								</select>
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt="Arrow Down"
-									class="down-arrow"
-								/>
-							</div>
-							<div *ngIf="vehicleType === 'Yachts'">
+							<ng-container *ngIf="isMobileFilterVisible">
 								<label
-									class="form-label size14 redhat-semibold mb-1 gray-light-color"
-									>Yacht Body Type</label
+									class="form-label gray-light-color size14 redhat-semibold mb-1 mt-xl-3 mt-lg-3 mt-0"
+									>Vehicle Type</label
 								>
 								<div class="filter-section">
 									<select
+										[(ngModel)]="vehicleType"
 										class="form-selection size16 redhat-semibold bg-white"
-										(change)="onYachtBodyTypeSelect($event)"
+										(click)="$event.stopPropagation()"
+										(blur)="onSelectBlur($event)"
+										(change)="setVehicleType()"
+									>
+										<option value="" disabled selected>
+											Select Vehicle Type
+										</option>
+										<option value="Car" class="gray-color">Car</option>
+										<option value="Yachts" class="gray-color">Yachts</option>
+									</select>
+									<img
+										src="{{ imageURL }}/images/icons/down-arrow.svg"
+										alt="Arrow Down"
+										class="down-arrow"
+									/>
+								</div>
+								<!-- Car Brand -->
+								<label
+									*ngIf="vehicleType == 'Car'"
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Car Brand</label
+								>
+								<div class="filter-section" *ngIf="vehicleType == 'Car'">
+									<select
+										class="form-selection size16 redhat-semibold bg-white"
+										#selBrand
+										name="brand"
+										[(ngModel)]="selectedBrand"
+										(change)="changeBrand($event)"
 										(click)="$event.stopPropagation()"
 										(blur)="onSelectBlur($event)"
 									>
-										<option value="" disabled selected>
-											Select Yacht Body Type
+										<option value="" disabled selected>Select Car Brand</option>
+										<option
+											*ngFor="let item of brandData"
+											value="{{ item._id }}"
+											class="gray-color"
+										>
+											{{ item.name }}
 										</option>
+									</select>
+									<img
+										src="{{ imageURL }}/images/icons/down-arrow.svg"
+										alt="Arrow Down"
+										class="down-arrow"
+									/>
+								</div>
+								<!-- Car Model -->
+								<label
+									*ngIf="vehicleType == 'Car'"
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Car Model</label
+								>
+								<div class="filter-section" *ngIf="vehicleType == 'Car'">
+									<select
+										class="form-selection size16 redhat-semibold bg-white"
+										name="model"
+										#selctModel
+										[(ngModel)]="selectedModel"
+										(change)="changeModel($event)"
+										(click)="$event.stopPropagation()"
+										(blur)="onSelectBlur($event)"
+									>
+										<option value="" disabled selected>Select Car Model</option>
+										<option
+											*ngFor="let item of filteredModel"
+											value="{{ item._id }}"
+											class="gray-color"
+										>
+											{{ item.name }}
+										</option>
+									</select>
+									<img
+										src="{{ imageURL }}/images/icons/down-arrow.svg"
+										alt="Arrow Down"
+										class="down-arrow"
+									/>
+								</div>
+								<!-- Car Model -->
+
+								<!-- Body Type -->
+								<label
+									*ngIf="vehicleType == 'Car'"
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Body Type</label
+								>
+								<div class="filter-section" *ngIf="vehicleType == 'Car'">
+									<!-- <select
+								class="form-selection size16 redhat-semibold bg-white gray-color"
+								name="bodytype"
+								[value]="selectedBodytype[0]"
+								(change)="onBodyTypeSelect($event)"
+								(click)="
+									$event.stopPropagation(); toggleSelectDropdown($event)
+								"
+								(blur)="onSelectBlur($event)"
+							> -->
+									<select
+										class="form-selection size16 redhat-semibold bg-white"
+										name="bodytype"
+										[(ngModel)]="selectedBodytype"
+										(change)="onBodyTypeSelect($event)"
+										(click)="$event.stopPropagation()"
+										(blur)="onSelectBlur($event)"
+									>
+										<option value="" disabled selected>Select Body Type</option>
 										<option
 											*ngFor="let item of bodyTypeData"
 											[value]="item._id"
@@ -236,25 +192,94 @@
 										class="down-arrow"
 									/>
 								</div>
+
+								<div *ngIf="vehicleType === 'Yachts'">
+									<label
+										class="form-label size14 redhat-semibold mb-1 gray-light-color"
+										>Yacht Body Type</label
+									>
+									<div class="filter-section">
+										<select
+											class="form-selection size16 redhat-semibold bg-white"
+											(change)="onYachtBodyTypeSelect($event)"
+											[(ngModel)]="selectedBodytype"
+											(click)="$event.stopPropagation()"
+											(blur)="onSelectBlur($event)"
+										>
+											<option value="" disabled selected>
+												Select Yacht Body Type
+											</option>
+											<option
+												*ngFor="let item of bodyTypeData"
+												[value]="item._id"
+												class="gray-color"
+											>
+												{{ item.name }}
+											</option>
+										</select>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											alt="Arrow Down"
+											class="down-arrow"
+										/>
+									</div>
+									<label
+										class="form-label size14 redhat-semibold mb-1 gray-light-color"
+										>Length</label
+									>
+									<div class="filter-section">
+										<select
+											class="form-selection size16 redhat-semibold bg-white"
+											(change)="onYachtLengthSelect($event)"
+											[(ngModel)]="selectedLength"
+											(click)="$event.stopPropagation()"
+											(blur)="onSelectBlur($event)"
+										>
+											<option value="" disabled selected>Select Length</option>
+											<option
+												*ngFor="let len of yachtLengthOptions"
+												[value]="len"
+												class="gray-color"
+											>
+												{{ len }}
+											</option>
+										</select>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											alt="Arrow Down"
+											class="down-arrow"
+										/>
+									</div>
+								</div>
+
+								<!-- Body Type -->
+
+								<!-- Special Number Plate -->
 								<label
-									class="form-label size14 redhat-semibold mb-1 gray-light-color"
-									>Length</label
+									*ngIf="vehicleType == 'Car'"
+									class="form-label gray-light-color size14 redhat-semibold mb-1"
+									>Special Number Plate</label
 								>
-								<div class="filter-section">
+								<div class="filter-section" *ngIf="vehicleType == 'Car'">
 									<select
 										class="form-selection size16 redhat-semibold bg-white"
-										(change)="onYachtLengthSelect($event)"
+										(change)="onChangeSpecialNumber($event)"
+										[(ngModel)]="vipNumberPlate"
 										(click)="$event.stopPropagation()"
 										(blur)="onSelectBlur($event)"
 									>
-										<option value="" disabled selected>Select Length</option>
 										<option
-											*ngFor="let len of yachtLengthOptions"
-											[value]="len"
-											class="gray-color"
+											value=""
+											disabled
+											selected
+											class="size14 redhat-medium black-light-color"
 										>
-											{{ len }}
+											Select Special Number Plate
 										</option>
+										<option value="true" class="gray-color">
+											Opt for Special Number Plate
+										</option>
+										<option value="false" class="gray-color">Do Not Opt</option>
 									</select>
 									<img
 										src="{{ imageURL }}/images/icons/down-arrow.svg"
@@ -262,527 +287,474 @@
 										class="down-arrow"
 									/>
 								</div>
-							</div>
-							<!-- Special Number Plate -->
-							<label
-								*ngIf="vehicleType == 'Car'"
-								class="form-label gray-light-color size14 redhat-semibold mb-1"
-								>Special Number Plate</label
-							>
-							<div class="filter-section" *ngIf="vehicleType == 'Car'">
-								<select
-									class="form-selection size16 redhat-semibold bg-white"
-									(change)="onChangeSpecialNumber($event)"
-									(click)="$event.stopPropagation()"
-									(blur)="onSelectBlur($event)"
+								<!-- Special Number Plate -->
+
+								<!-- Date From -->
+								<label
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Date From</label
 								>
-									<option
-										value=""
-										disabled
-										selected
-										class="size14 redhat-medium black-light-color"
-									>
-										Select Special Number Plate
-									</option>
-									<option value="true" class="gray-color">
-										Opt for Special Number Plate
-									</option>
-									<option value="false" class="gray-color">Do Not Opt</option>
-								</select>
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt="Arrow Down"
-									class="down-arrow"
-								/>
-							</div>
-							<!-- Date From -->
-							<label
-								class="form-label size14 redhat-semibold mb-1 gray-light-color"
-								>Date From</label
-							>
-							<div
-								class="filter-section datetime-selector"
-								(click)="$event.stopPropagation()"
-							>
-								<!-- <span
-									*ngIf="!selectedStartDate"
-									class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-									style="pointer-events: none"
-									>Start date</span
-								>
-
-								<input
-									type="datetime-local"
-									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-									[(ngModel)]="selectedStartDate"
-									[min]="pickuptoday"
-									(ngModelChange)="onSelectPickupDate()"
-								/>
-
-								<lucide-icon name="calendar-days" size="20"></lucide-icon> -->
-
-								<!-- start date time -->
-								<input
-									type="text"
-									[value]="
-										selectedStartDate && selectedStartTime
-											? formatDate(selectedStartDate) + ' ' + selectedStartTime
-											: ''
-									"
-									readonly
-									placeholder="Select Pickup Date & Time"
-									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-									(click)="toggleDateTimeDropdown($event)"
-								/>
-
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt=""
-									class="down-arrow"
-								/>
-
 								<div
-									class="datetime-dropdown card"
-									*ngIf="showDateTimeDropdown"
+									class="filter-section datetime-selector"
 									(click)="$event.stopPropagation()"
 								>
+									<!-- start date time -->
+									<input
+										type="text"
+										[value]="
+											selectedStartDate && selectedStartTime
+												? formatDate(selectedStartDate) +
+												  ' ' +
+												  selectedStartTime
+												: ''
+										"
+										readonly
+										placeholder="Select Pickup Date & Time"
+										class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
+										(click)="toggleDateTimeDropdown($event)"
+									/>
+
+									<img
+										src="{{ imageURL }}/images/icons/down-arrow.svg"
+										alt=""
+										class="down-arrow"
+									/>
+
 									<div
-										class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
+										class="datetime-dropdown card"
+										*ngIf="showDateTimeDropdown"
+										(click)="$event.stopPropagation()"
 									>
-										<button
-											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-											[class.active]="activeView === 'calendar'"
-											(click)="showCalendarView()"
-											data-text="Calendar"
-										>
-											<span>Calendar</span>
-										</button>
-										<button
-											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-											[class.active]="activeView === 'time'"
-											(click)="showTimeView()"
-											data-text="Time"
-										>
-											<span>Time</span>
-										</button>
-									</div>
-
-									<div class="datetime-inner d-flex">
 										<div
-											class="calendar-section"
-											[class.slide-in]="activeView === 'calendar'"
-											[class.slide-out]="activeView !== 'calendar'"
+											class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
 										>
-											<div
-												class="d-flex justify-content-between align-items-center mb-2"
+											<button
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+												[class.active]="activeView === 'calendar'"
+												(click)="showCalendarView()"
+												data-text="Calendar"
 											>
-												<button
-													type="button"
-													class="btn-nav"
-													(click)="prevMonth()"
-													[disabled]="!canGoPrevMonth()"
-												>
-													‹
-												</button>
-
-												<strong class="size14">{{
-													currentMonth | date : "MMMM yyyy"
-												}}</strong>
-												<button
-													type="button"
-													class="btn-nav"
-													(click)="nextMonth()"
-												>
-													›
-												</button>
-											</div>
-											<div class="calendar-grid">
-												<div class="day-name" *ngFor="let day of dayNames">
-													{{ day }}
-												</div>
-												<div
-													class="day-cell"
-													*ngFor="let date of calendarDates"
-													[class.today]="isToday(date)"
-													[class.selected]="isSelectedStartDate(date)"
-													[class.disabled]="
-														!isCurrentMonth(date) || isBeforeToday(date)
-													"
-													(click)="
-														!isBeforeToday(date) &&
-															isCurrentMonth(date) &&
-															selectDate(date)
-													"
-												>
-													{{ date.getDate() }}
-												</div>
-											</div>
+												<span>Calendar</span>
+											</button>
+											<button
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+												[class.active]="activeView === 'time'"
+												(click)="showTimeView()"
+												data-text="Time"
+											>
+												<span>Time</span>
+											</button>
 										</div>
 
-										<!-- Time View -->
-										<div
-											class="time-picker-section"
-											[class.slide-in]="activeView === 'time'"
-											[class.slide-out]="activeView !== 'time'"
-										>
-											<div class="d-flex gap-2">
-												<div class="time-section">
-													<div class="time-section-label">Hours</div>
-													<div class="time-options">
-														<span
-															*ngFor="let hour of displayHours"
-															class="time-option"
-															[class.selected]="isSelectedHour(hour)"
-															[class.disabled]="
-																isPastTime(hour, selectedMinute || '00')
-															"
-															(click)="
-																!isPastTime(hour, selectedMinute || '00') &&
-																	selectHour(hour)
-															"
-														>
-															{{ hour }}
-														</span>
+										<div class="datetime-inner d-flex">
+											<div
+												class="calendar-section"
+												[class.slide-in]="activeView === 'calendar'"
+												[class.slide-out]="activeView !== 'calendar'"
+											>
+												<div
+													class="d-flex justify-content-between align-items-center mb-2"
+												>
+													<button
+														type="button"
+														class="btn-nav"
+														(click)="prevMonth()"
+														[disabled]="!canGoPrevMonth()"
+													>
+														‹
+													</button>
+
+													<strong class="size14">{{
+														currentMonth | date : "MMMM yyyy"
+													}}</strong>
+													<button
+														type="button"
+														class="btn-nav"
+														(click)="nextMonth()"
+													>
+														›
+													</button>
+												</div>
+												<div class="calendar-grid">
+													<div class="day-name" *ngFor="let day of dayNames">
+														{{ day }}
+													</div>
+													<div
+														class="day-cell"
+														*ngFor="let date of calendarDates"
+														[class.today]="isToday(date)"
+														[class.selected]="isSelectedStartDate(date)"
+														[class.disabled]="
+															!isCurrentMonth(date) || isBeforeToday(date)
+														"
+														(click)="
+															!isBeforeToday(date) &&
+																isCurrentMonth(date) &&
+																selectDate(date)
+														"
+													>
+														{{ date.getDate() }}
 													</div>
 												</div>
+											</div>
 
-												<div class="time-section">
-													<div class="time-section-label">Minutes</div>
-													<div class="time-options">
-														<div
-															*ngFor="let minute of minutes"
-															class="time-option"
-															[class.selected]="selectedMinute === minute"
-															[class.disabled]="
-																isPastTime(selectedHour || '00', minute)
-															"
-															(click)="
-																!isPastTime(selectedHour || '00', minute) &&
-																	selectMinute(minute)
-															"
-														>
-															{{ minute }}
+											<!-- Time View -->
+											<div
+												class="time-picker-section"
+												[class.slide-in]="activeView === 'time'"
+												[class.slide-out]="activeView !== 'time'"
+											>
+												<div class="d-flex gap-2">
+													<div class="time-section">
+														<div class="time-section-label">Hours</div>
+														<div class="time-options">
+															<span
+																*ngFor="let hour of displayHours"
+																class="time-option"
+																[class.selected]="isSelectedHour(hour)"
+																[class.disabled]="
+																	isPastTime(hour, selectedMinute || '00')
+																"
+																(click)="
+																	!isPastTime(hour, selectedMinute || '00') &&
+																		selectHour(hour)
+																"
+															>
+																{{ hour }}
+															</span>
+														</div>
+													</div>
+
+													<div class="time-section">
+														<div class="time-section-label">Minutes</div>
+														<div class="time-options">
+															<div
+																*ngFor="let minute of minutes"
+																class="time-option"
+																[class.selected]="selectedMinute === minute"
+																[class.disabled]="
+																	isPastTime(selectedHour || '00', minute)
+																"
+																(click)="
+																	!isPastTime(selectedHour || '00', minute) &&
+																		selectMinute(minute)
+																"
+															>
+																{{ minute }}
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="time-actions mx-auto">
-										<button
-											type="button"
-											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-											(click)="resetDateTimeSelection()"
-											data-text="Reset"
-										>
-											<span>Reset</span>
-										</button>
-										<button
-											type="button"
-											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-											[disabled]="
-												!selectedStartDate || !selectedHour || !selectedMinute
-											"
-											(click)="confirmDateTime()"
-											data-text="Confirm"
-										>
-											<span>Confirm</span>
-										</button>
+										<div class="time-actions mx-auto">
+											<button
+												type="button"
+												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												(click)="resetDateTimeSelection()"
+												data-text="Reset"
+											>
+												<span>Reset</span>
+											</button>
+											<button
+												type="button"
+												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												[disabled]="
+													!selectedStartDate || !selectedHour || !selectedMinute
+												"
+												(click)="confirmDateTime()"
+												data-text="Confirm"
+											>
+												<span>Confirm</span>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
-							<!-- Date To -->
-							<label
-								class="form-label size14 redhat-semibold mb-1 gray-light-color"
-								>Date To</label
-							>
-							<div
-								class="filter-section datetime-selector"
-								(click)="$event.stopPropagation()"
-							>
-								<!-- <span
-									*ngIf="!selectedEndDate"
-									class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
-									style="pointer-events: none"
-									>End date</span
+								<!-- Date To -->
+								<label
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Date To</label
 								>
-
-								<input
-									type="datetime-local"
-									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-									[min]="dropofftoday"
-									[(ngModel)]="selectedEndDate"
-									(ngModelChange)="onSelectDropDate()"
-								/>
-								<lucide-icon name="calendar-days" size="20"></lucide-icon> -->
-
-								<!-- drop date and time -->
-
-								<input
-									type="text"
-									[value]="
-										selectedEndDate && selectedEndTime
-											? formatDate(selectedEndDate) + ' ' + selectedEndTime
-											: ''
-									"
-									readonly
-									placeholder="Select Drop Date & Time"
-									class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
-									(click)="toggleEndDateTimeDropdown($event)"
-								/>
-
-								<img
-									src="{{ imageURL }}/images/icons/down-arrow.svg"
-									alt=""
-									class="down-arrow"
-								/>
-
-								<!-- Drop Combined Dropdown -->
 								<div
-									class="datetime-dropdown card"
-									*ngIf="showEndDateTimeDropdown"
+									class="filter-section datetime-selector"
 									(click)="$event.stopPropagation()"
 								>
-									<div
-										class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
-									>
-										<button
-											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-											[class.active]="activeView === 'calendar'"
-											(click)="showCalendarView()"
-											data-text="Calendar"
-										>
-											<span>Calendar</span>
-										</button>
-										<button
-											class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-											[class.active]="activeView === 'time'"
-											(click)="showTimeView()"
-											data-text="Time"
-										>
-											<span>Time</span>
-										</button>
-									</div>
-									<div class="datetime-inner d-flex">
-										<!-- Drop Date -->
-										<div
-											class="calendar-section"
-											[class.slide-in]="activeView === 'calendar'"
-											[class.slide-out]="activeView !== 'calendar'"
-										>
-											<div
-												class="d-flex justify-content-between align-items-center mb-2"
-											>
-												<button
-													type="button"
-													class="btn-nav"
-													(click)="prevEndMonth()"
-													[disabled]="!canGoPrevMonth()"
-												>
-													‹
-												</button>
-
-												<strong class="size14">{{
-													endMonth | date : "MMMM yyyy"
-												}}</strong>
-												<button
-													type="button"
-													class="btn-nav"
-													(click)="nextEndMonth()"
-												>
-													›
-												</button>
-											</div>
-											<div class="calendar-grid">
-												<div class="day-name" *ngFor="let day of dayNames">
-													{{ day }}
-												</div>
-												<div
-													class="day-cell"
-													*ngFor="let date of endCalendarDates"
-													[class.today]="isToday(date)"
-													[class.selected]="isSelectedEndDate(date)"
-													[class.disabled]="
-														!isCurrentEndMonth(date) || isBeforePickupDate(date)
-													"
-													(click)="
-														!isBeforePickupDate(date) &&
-															isCurrentEndMonth(date) &&
-															selectEndDate(date)
-													"
-												>
-													{{ date.getDate() }}
-												</div>
-											</div>
-										</div>
-
-										<!-- Drop Time -->
-										<div
-											class="time-picker-section"
-											[class.slide-in]="activeView === 'time'"
-											[class.slide-out]="activeView !== 'time'"
-										>
-											<div class="d-flex">
-												<div class="time-section">
-													<div class="time-section-label">Hours</div>
-													<div class="time-options">
-														<div
-															*ngFor="let hour of displayHours"
-															class="time-option"
-															[class.selected]="isSelectedEndHour(hour)"
-															[class.disabled]="
-																isPastEndTime(hour, selectedEndMinute || '00')
-															"
-															(click)="
-																!isPastEndTime(
-																	hour,
-																	selectedEndMinute || '00'
-																) && selectEndHour(hour)
-															"
-														>
-															{{ hour }}
-														</div>
-													</div>
-												</div>
-
-												<div class="time-section">
-													<div class="time-section-label">Minutes</div>
-													<div class="time-options">
-														<div
-															*ngFor="let minute of minutes"
-															class="time-option"
-															[class.selected]="selectedEndMinute === minute"
-															[class.disabled]="
-																isPastEndTime(selectedEndHour || '00', minute)
-															"
-															(click)="
-																!isPastEndTime(
-																	selectedEndHour || '00',
-																	minute
-																) && selectEndMinute(minute)
-															"
-														>
-															{{ minute }}
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="time-actions mx-auto">
-										<button
-											type="button"
-											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-											(click)="resetEndDateTimeSelection()"
-											data-text="Reset"
-										>
-											<span>Reset</span>
-										</button>
-										<button
-											type="button"
-											class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-											[disabled]="
-												!selectedEndDate ||
-												!selectedEndHour ||
-												!selectedEndMinute ||
-												isDropTimeBeforePickup()
-											"
-											(click)="confirmEndDateTime()"
-											data-text="Confirm"
-										>
-											<span>Confirm</span>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Price Range -->
-							<div class="price-wrapper" *ngIf="vehicleType">
-								<!-- Price Inputs -->
-								<div class="row g-2 mb-4">
-									<div class="col-6">
-										<label
-											for="minPrice"
-											class="form-label size14 redhat-semibold mb-1 gray-light-color"
-											>Min</label
-										>
-										<div class="position-relative">
-											<input
-												type="number"
-												id="minPrice"
-												[(ngModel)]="minPrice"
-												(click)="onPriceInputChange('min')"
-												min="0"
-												[max]="maxPrice - 500"
-												class="form-controls size16 redhat-semibold bg-white gray-color w-100"
-											/>
-											<span
-												class="position-absolute size14 redhat-semibold color-card-p"
-												style="
-													right: 10px;
-													top: 50%;
-													transform: translateY(-50%);
-												"
-												>AED</span
-											>
-										</div>
-									</div>
-									<div class="col-6">
-										<label
-											for="maxPrice"
-											class="form-label size14 redhat-semibold mb-1 gray-light-color"
-											>Max</label
-										>
-										<div class="position-relative">
-											<input
-												type="number"
-												id="maxPrice"
-												[(ngModel)]="maxPrice"
-												(click)="onPriceInputChange('max')"
-												[min]="minPrice + 500"
-												max="150000"
-												class="form-controls size16 redhat-semibold bg-white gray-color w-100"
-											/>
-											<span
-												class="position-absolute size14 redhat-semibold color-card-p"
-												style="
-													right: 10px;
-													top: 50%;
-													transform: translateY(-50%);
-												"
-												>AED</span
-											>
-										</div>
-									</div>
-								</div>
-
-								<!-- Slider -->
-								<!-- <div class="slider" id="slider">
-                  <div class="slider-range" id="slider-range"></div>
-                  <div class="slider-thumb" id="thumb-min" role="slider" aria-valuemin="0" aria-valuemax="10000"
-                    [attr.aria-valuenow]="minPrice" tabindex="0"></div>
-                  <div class="slider-thumb" id="thumb-max" role="slider" aria-valuemin="0" aria-valuemax="10000"
-                    [attr.aria-valuenow]="maxPrice" tabindex="0"></div>
-                </div> -->
-								<div *ngIf="sliderVisible" class="my-2">
-									<ngx-slider
-										class="ngxslider"
-										*ngIf="sliderVisible"
-										[(value)]="minPrice"
-										[(highValue)]="maxPrice"
-										[options]="options"
-									></ngx-slider>
-								</div>
-							</div>
-
-							<!-- Search Button -->
-							<button
-								class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0 text-capitalize"
-								(click)="SearchItems()"
-								data-text="Search"
+									<!-- <span
+								*ngIf="!selectedEndDate"
+								class="size16 redhat-semibold position-absolute text-capitalize bg-white label-text"
+								style="pointer-events: none"
+								>End date</span
 							>
-								<span>Search</span>
-							</button>
+
+							<input
+								type="datetime-local"
+								class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
+								[min]="dropofftoday"
+								[(ngModel)]="selectedEndDate"
+								(ngModelChange)="onSelectDropDate()"
+							/>
+							<lucide-icon name="calendar-days" size="20"></lucide-icon> -->
+
+									<!-- drop date and time -->
+
+									<input
+										type="text"
+										[value]="
+											selectedEndDate && selectedEndTime
+												? formatDate(selectedEndDate) + ' ' + selectedEndTime
+												: ''
+										"
+										readonly
+										placeholder="Select Drop Date & Time"
+										class="form-controls size16 redhat-semibold bg-transparent gray-color date-height"
+										(click)="toggleEndDateTimeDropdown($event)"
+									/>
+
+									<img
+										src="{{ imageURL }}/images/icons/down-arrow.svg"
+										alt=""
+										class="down-arrow"
+									/>
+
+									<!-- Drop Combined Dropdown -->
+									<div
+										class="datetime-dropdown card"
+										*ngIf="showEndDateTimeDropdown"
+										(click)="$event.stopPropagation()"
+									>
+										<div
+											class="view-toggle-buttons d-flex justify-content-center mb-2 gap-2"
+										>
+											<button
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+												[class.active]="activeView === 'calendar'"
+												(click)="showCalendarView()"
+												data-text="Calendar"
+											>
+												<span>Calendar</span>
+											</button>
+											<button
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
+												[class.active]="activeView === 'time'"
+												(click)="showTimeView()"
+												data-text="Time"
+											>
+												<span>Time</span>
+											</button>
+										</div>
+										<div class="datetime-inner d-flex">
+											<!-- Drop Date -->
+											<div
+												class="calendar-section"
+												[class.slide-in]="activeView === 'calendar'"
+												[class.slide-out]="activeView !== 'calendar'"
+											>
+												<div
+													class="d-flex justify-content-between align-items-center mb-2"
+												>
+													<button
+														type="button"
+														class="btn-nav"
+														(click)="prevEndMonth()"
+														[disabled]="!canGoPrevMonth()"
+													>
+														‹
+													</button>
+
+													<strong class="size14">{{
+														endMonth | date : "MMMM yyyy"
+													}}</strong>
+													<button
+														type="button"
+														class="btn-nav"
+														(click)="nextEndMonth()"
+													>
+														›
+													</button>
+												</div>
+												<div class="calendar-grid">
+													<div class="day-name" *ngFor="let day of dayNames">
+														{{ day }}
+													</div>
+													<div
+														class="day-cell"
+														*ngFor="let date of endCalendarDates"
+														[class.today]="isToday(date)"
+														[class.selected]="isSelectedEndDate(date)"
+														[class.disabled]="
+															!isCurrentEndMonth(date) ||
+															isBeforePickupDate(date)
+														"
+														(click)="
+															!isBeforePickupDate(date) &&
+																isCurrentEndMonth(date) &&
+																selectEndDate(date)
+														"
+													>
+														{{ date.getDate() }}
+													</div>
+												</div>
+											</div>
+
+											<!-- Drop Time -->
+											<div
+												class="time-picker-section"
+												[class.slide-in]="activeView === 'time'"
+												[class.slide-out]="activeView !== 'time'"
+											>
+												<div class="d-flex">
+													<div class="time-section">
+														<div class="time-section-label">Hours</div>
+														<div class="time-options">
+															<div
+																*ngFor="let hour of displayHours"
+																class="time-option"
+																[class.selected]="isSelectedEndHour(hour)"
+																[class.disabled]="
+																	isPastEndTime(hour, selectedEndMinute || '00')
+																"
+																(click)="
+																	!isPastEndTime(
+																		hour,
+																		selectedEndMinute || '00'
+																	) && selectEndHour(hour)
+																"
+															>
+																{{ hour }}
+															</div>
+														</div>
+													</div>
+
+													<div class="time-section">
+														<div class="time-section-label">Minutes</div>
+														<div class="time-options">
+															<div
+																*ngFor="let minute of minutes"
+																class="time-option"
+																[class.selected]="selectedEndMinute === minute"
+																[class.disabled]="
+																	isPastEndTime(selectedEndHour || '00', minute)
+																"
+																(click)="
+																	!isPastEndTime(
+																		selectedEndHour || '00',
+																		minute
+																	) && selectEndMinute(minute)
+																"
+															>
+																{{ minute }}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="time-actions mx-auto">
+											<button
+												type="button"
+												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												(click)="resetEndDateTimeSelection()"
+												data-text="Reset"
+											>
+												<span>Reset</span>
+											</button>
+											<button
+												type="button"
+												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												[disabled]="
+													!selectedEndDate ||
+													!selectedEndHour ||
+													!selectedEndMinute ||
+													isDropTimeBeforePickup()
+												"
+												(click)="confirmEndDateTime()"
+												data-text="Confirm"
+											>
+												<span>Confirm</span>
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<!-- Price Range -->
+								<div class="price-wrapper" *ngIf="vehicleType">
+									<div class="row g-2 mb-4">
+										<div class="col-6">
+											<label
+												for="minPrice"
+												class="form-label size14 redhat-semibold mb-1 gray-light-color"
+												>Min</label
+											>
+											<div class="position-relative">
+												<input
+													type="number"
+													id="minPrice"
+													[(ngModel)]="minPrice"
+													(click)="onPriceInputChange('min')"
+													min="0"
+													[max]="maxPrice - 500"
+													class="form-controls size16 redhat-semibold bg-white gray-color w-100"
+												/>
+												<span
+													class="position-absolute size14 redhat-semibold color-card-p"
+													style="
+														right: 10px;
+														top: 50%;
+														transform: translateY(-50%);
+													"
+													>AED</span
+												>
+											</div>
+										</div>
+										<div class="col-6">
+											<label
+												for="maxPrice"
+												class="form-label size14 redhat-semibold mb-1 gray-light-color"
+												>Max</label
+											>
+											<div class="position-relative">
+												<input
+													type="number"
+													id="maxPrice"
+													[(ngModel)]="maxPrice"
+													(click)="onPriceInputChange('max')"
+													[min]="minPrice + 500"
+													max="150000"
+													class="form-controls size16 redhat-semibold bg-white gray-color w-100"
+												/>
+												<span
+													class="position-absolute size14 redhat-semibold color-card-p"
+													style="
+														right: 10px;
+														top: 50%;
+														transform: translateY(-50%);
+													"
+													>AED</span
+												>
+											</div>
+										</div>
+									</div>
+									<div *ngIf="sliderVisible" class="my-2">
+										<ngx-slider
+											class="ngxslider"
+											*ngIf="sliderVisible"
+											[(value)]="minPrice"
+											[(highValue)]="maxPrice"
+											[options]="options"
+										></ngx-slider>
+									</div>
+								</div>
+								<!-- Price Range -->
+
+								<!-- Search Button -->
+								<button
+									class="black-button w-100 size16 redhat-semibold mt-md-4 mt-0 text-capitalize"
+									(click)="SearchItems()"
+									data-text="Search"
+								>
+									<span>Search</span>
+								</button>
+							</ng-container>
 						</div>
 					</div>
 				</div>
