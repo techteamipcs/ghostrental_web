@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, PLATFORM_ID, Inject, HostListener } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -177,4 +177,35 @@ export class ListComponent implements OnInit {
     if(!name) return "";
     return name.split(' ').slice(0,2).join(' ');
   }
+
+ 
+  // sort dropdown
+  dropdownOpen = false;
+selectedSortLabel: string | null = null;
+
+sortOptions = [
+	{ value: 'H-L', label: 'Price: High to Low' },
+	{ value: 'L-H', label: 'Price: Low to High' },
+	{ value: 'relevance', label: 'Reset' }
+];
+
+toggleDropdown() {
+	this.dropdownOpen = !this.dropdownOpen;
+}
+
+selectSort(option: { value: string; label: string }) {
+	this.selectedSortLabel = option.label;
+	this.sort = option.value; 
+	this.dropdownOpen = false;
+	this.getCarData(); 
+}
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: Event) {
+	const target = event.target as HTMLElement;
+	if (!target.closest('.cdrop')) {
+		this.dropdownOpen = false;
+	}
+}
+
 }

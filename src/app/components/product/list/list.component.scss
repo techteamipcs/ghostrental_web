@@ -615,3 +615,32 @@
     }
   }
 }
+
+
+
+// sort dropdown
+
+.dropdown-toggle{
+	&::after{
+		display: none;
+	}
+}
+
+.dropdown-menu-custom{
+	width: max-content;
+	right: 0;
+  z-index: 9;
+}
+.dropdown-item-custom{
+	list-style: none;
+	cursor: pointer;
+	border-bottom: 1px solid #1d1d1d;
+
+	&:last-child{
+		border-bottom: none;
+	}
+	&:hover{
+		background-color: #000;
+		color: #fff;
+	}
+}

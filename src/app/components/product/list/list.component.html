@@ -74,7 +74,7 @@
             No Data Found
           </h6> -->
 
-					<div
+					<!-- <div
 						class="d-flex align-items-center gap-2 position-relative sort"
 						style="cursor: pointer"
 						*ngIf="vehicleData && vehicleData.length > 0"
@@ -90,11 +90,7 @@
 								class="text-muted size14 redhat-semibold text-capitalize bg-white color-card-p"
 							>
 								Sort by
-								<!-- <img src="{{ imageURL }}/images/icons/down-arrow.svg" alt=""> -->
 							</option>
-							<!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
-                Sort by A - Z
-              </option> -->
 							<option
 								value="H-L"
 								class="size14 redhat-semibold text-capitalize bg-transparent"
@@ -107,9 +103,6 @@
 							>
 								Price: Low to High
 							</option>
-							<!-- <option value="old" class="size14 redhat-semibold text-capitalize">
-                Old to New
-              </option> -->
 							<option
 								value="relevance"
 								class="size14 redhat-semibold text-capitalize"
@@ -123,6 +116,43 @@
 							class="img-fluid down-arrow"
 							alt=""
 						/>
+					</div> -->
+
+					<div
+						class="d-flex align-items-center position-relative sort cdrop"
+						style="cursor: pointer"
+						*ngIf="vehicleData && vehicleData.length > 0"
+					>
+						<div
+							class="dropdown-toggle custom-dropdown"
+							(click)="toggleDropdown()"
+						>
+							<span
+								class="selected-text size14 redhat-semibold text-capitalize bg-transparent color-card-p cselect"
+							>
+								{{ selectedSortLabel || "Sort by" }}
+							</span>
+							<img
+								src="{{ imageURL }}/images/icons/down-arrow.svg"
+								class="img-fluid down-arrow ms-2"
+								[ngClass]="{ rotate: dropdownOpen }"
+								alt="arrow"
+							/>
+						</div>
+
+						<!-- Dropdown menu -->
+						<ul
+							class="dropdown-menu-custom border border-2 position-absolute mt-2 p-0 top-100 list-style-none z-index-5 bg-white gray-color"
+							*ngIf="dropdownOpen"
+						>
+							<li
+								*ngFor="let option of sortOptions"
+								(click)="selectSort(option)"
+								class="dropdown-item-custom px-3 py-2 cursor-pointer size14 redhat-semibold text-capitalize color-card-p"
+							>
+								{{ option.label }}
+							</li>
+						</ul>
 					</div>
 				</div>
 				<h6

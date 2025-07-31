@@ -17,8 +17,45 @@
 							vehicleType == 'Car' || vehicleType == 'Yachts' ? 'cstheight' : ''
 						"
 					>
-						<!-- toggler to filter open -->
-						<div class="d-flex align-items-center justify-content-between">
+						<div
+							class="d-xl-flex d-none align-items-center justify-content-between"
+						>
+							<div class="d-flex align-items-center gap-2">
+								<img
+									src="{{ imageURL }}/images/icons/filter.svg"
+									alt="Filter"
+									class="img-fluid"
+									style="width: 20px"
+								/>
+								<h6 class="mb-0 size18 redhat-semibold gray-color">Filter</h6>
+							</div>
+							<div class="d-flex align-items-center gap-2">
+								<button
+									class="size16 redhat-semibold text-capitalize border-0 outline-none bg-transparent gray-color"
+									type="button"
+									(click)="resetFilter()"
+								>
+									reset
+								</button>
+								<button
+									class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
+									type="button"
+									[attr.aria-expanded]="isMobileFilterVisible"
+									aria-controls="filter-options"
+								>
+									<lucide-icon
+										(click)="toggleFilter()"
+										[name]="isMobileFilterVisible ? 'minus' : 'plus'"
+										size="20"
+										style="display: flex"
+									/>
+								</button>
+							</div>
+						</div>
+						<div
+							class="d-xl-none d-flex align-items-center justify-content-between"
+							(click)="toggleFilter()"
+						>
 							<div class="d-flex align-items-center gap-2">
 								<img
 									src="{{ imageURL }}/images/icons/filter.svg"
@@ -788,7 +825,7 @@
 						No Data Found
 					</h6>
 
-					<div
+					<!-- <div
 						class="d-flex align-items-center position-relative sort cdrop"
 						style="cursor: pointer"
 						*ngIf="vehicleData && vehicleData.length > 0"
@@ -803,11 +840,8 @@
 								disabled
 								class="text-muted size14 redhat-semibold text-capitalize"
 							>
-								Sort by &nbsp;
+								Sort by
 							</option>
-							<!-- <option value="A-Z" class="size14 redhat-semibold text-capitalize">
-              Sort by A - Z
-            </option> -->
 							<option
 								value="H-L"
 								class="size14 redhat-semibold text-capitalize color-card-p"
@@ -820,9 +854,6 @@
 							>
 								Price: Low to High
 							</option>
-							<!-- <option value="old" class="size14 redhat-semibold text-capitalize color-card-p">
-              Old to New
-            </option> -->
 							<option
 								value="relevance"
 								class="size14 redhat-semibold text-capitalize color-card-p"
@@ -836,6 +867,43 @@
 							class="img-fluid down-arrow"
 							alt=""
 						/>
+					</div> -->
+
+					<div
+						class="d-flex align-items-center position-relative sort cdrop"
+						style="cursor: pointer"
+						*ngIf="vehicleData && vehicleData.length > 0"
+					>
+						<div
+							class="dropdown-toggle custom-dropdown"
+							(click)="toggleDropdown()"
+						>
+							<span
+								class="selected-text size14 redhat-semibold text-capitalize bg-transparent color-card-p cselect"
+							>
+								{{ selectedSortLabel || "Sort by" }}
+							</span>
+							<img
+								src="{{ imageURL }}/images/icons/down-arrow.svg"
+								class="img-fluid down-arrow ms-2"
+								[ngClass]="{ rotate: dropdownOpen }"
+								alt="arrow"
+							/>
+						</div>
+
+						<!-- Dropdown menu -->
+						<ul
+							class="dropdown-menu-custom border border-2 position-absolute mt-2 p-0 top-100 list-style-none z-index-5 bg-white gray-color"
+							*ngIf="dropdownOpen"
+						>
+							<li
+								*ngFor="let option of sortOptions"
+								(click)="selectSort(option)"
+								class="dropdown-item-custom px-3 py-2 cursor-pointer size14 redhat-semibold text-capitalize color-card-p"
+							>
+								{{ option.label }}
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="products" *ngIf="vehicleData && vehicleData.length > 0">

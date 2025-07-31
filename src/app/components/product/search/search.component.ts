@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { DataService } from '../../../providers/data/data.service';
 import { isPlatformBrowser } from '@angular/common';
@@ -1095,4 +1095,35 @@ export class SearchComponent {
     // Reset end time selection stzate when date or time changes
     this.selectedEndTime = '';
   }
+
+
+  // sort dropdown
+  dropdownOpen = false;
+selectedSortLabel: string | null = null;
+
+sortOptions = [
+	{ value: 'H-L', label: 'Price: High to Low' },
+	{ value: 'L-H', label: 'Price: Low to High' },
+	{ value: 'relevance', label: 'Reset' }
+];
+
+toggleDropdown() {
+	this.dropdownOpen = !this.dropdownOpen;
+}
+
+selectSort(option: { value: string; label: string }) {
+	this.selectedSortLabel = option.label;
+	this.sort = option.value; 
+	this.dropdownOpen = false;
+	this.getCarData(); 
+}
+
+@HostListener('document:click', ['$event'])
+onClickOutside(event: Event) {
+	const target = event.target as HTMLElement;
+	if (!target.closest('.cdrop')) {
+		this.dropdownOpen = false;
+	}
+}
+
 }
