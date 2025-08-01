@@ -6,17 +6,17 @@ import { Options } from '@angular-slider/ngx-slider';
 import { ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
-  }
-});
+// const Toast = Swal.mixin({
+//   toast: true,
+//   position: 'top-end',
+//   showConfirmButton: false,
+//   timer: 3000,
+//   timerProgressBar: true,
+//   didOpen: (toast) => {
+//     toast.onmouseenter = Swal.stopTimer;
+//     toast.onmouseleave = Swal.resumeTimer;
+//   }
+// });
 
 
 @Component({
@@ -32,7 +32,7 @@ export class SearchComponent {
   isMobileFilterVisible: boolean = false;
   isMobile: boolean = false;
 
-  Toast = Toast;
+  
 
   Math = Math;
   mobileFilterHeight: string = 'calc(100vh - 7.5rem)';
@@ -115,6 +115,19 @@ export class SearchComponent {
 
   activeView: 'calendar' | 'time' = 'calendar';
 
+
+    Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+  
 
 @ViewChild('minPriceInput') minPriceInput!: ElementRef;
 @ViewChild('maxPriceInput') maxPriceInput!: ElementRef;
@@ -801,7 +814,7 @@ export class SearchComponent {
     event.stopPropagation();
   
     if (!this.selectedStartDate) {  
-      Toast.fire({
+      this.Toast.fire({
         title: 'Please select the start date & time first.',
         icon: 'warning',
       });
