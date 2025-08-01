@@ -724,7 +724,7 @@ export class HomeComponent implements OnInit {
     this.selectedbrand = '';
     this.selectedbodytype = '';
     
-    this.isReservationFilled = !this.isReservationFilled;
+    this.isReservationFilled = true;
 
 
     // Reset dropdown states
