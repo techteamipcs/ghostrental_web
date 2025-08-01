@@ -557,7 +557,7 @@ export class SearchComponent {
   }
 
   SearchItems() {
-    this.getCarData();
+    this.getFilteredVehicles();
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
     }
