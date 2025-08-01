@@ -567,6 +567,52 @@
       }
     }
 
+    .down-arrow.rotate {
+      transform: rotate(180deg);
+    }
+
+
+// sort dropdown
+.dropdown-toggle {
+  cursor: pointer;
+  user-select: none;
+  &:after {
+    display: none;
+  }
+}
+
+.dropdown-menu-custom {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-height: 200px;
+  overflow: auto;
+  border-radius: 15px;
+  right: 0;
+  z-index: 9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  @media (max-width: 430px) {
+    max-height: 150px;
+  }
+}
+
+
+.dropdown-item-custom {
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+
+
     lucide-icon[name="calendar-days"],
     lucide-icon[name="clock"] {
       top: 50%;
@@ -1273,7 +1319,7 @@
 }
 
 .selected-items.default-label {
-  color: #999999; // Your desired color for "Choose Add-Ons"
+  color: #999999; 
 }
 
 
@@ -1754,6 +1800,9 @@
         // top: -10%;
         top: 100%;
         opacity: 1;
+        @media (max-width: 1440px) {
+          top: 90%;
+        }
       }
       .type-margin {
         z-index: -1;
@@ -2539,7 +2588,7 @@
       }
 
       @media screen and (max-width: 430px) {
-        width: 54%;
+        width: 55%;
       }
 
       @media screen and (max-width: 384px) {
@@ -3473,3 +3522,18 @@ input {
 //     justify-content: center;
 //     z-index: -1;
 // }
+
+
+
+
+.size30 {
+  font-size: 30px;
+
+  @media (max-width: 1600px) {
+    font-size: 26px;
+  }
+
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+}

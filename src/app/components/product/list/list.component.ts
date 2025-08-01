@@ -16,9 +16,9 @@ export class ListComponent implements OnInit {
   backendURl = `${environment.baseUrl}/public`;
 
   // Pagination properties
-  currentLimit = 6;
+  currentLimit = 8;
   currentPage = 1;
-  itemsPerPage = 6;
+  itemsPerPage = 8;
   totalItems = 0;
   totolvehicle = 0;
   pagedCars: any = [];

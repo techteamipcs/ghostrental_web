@@ -140,8 +140,8 @@
 									>
 								</div>
 								<div class="row type-margin">
-									<div class="col-6" *ngIf="!isVehicleYacht">
-										<div class="position-relative">
+									<div class="col-6 position-relative" *ngIf="!isVehicleYacht">
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-medium"
 												required
@@ -168,10 +168,50 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													brandControl.invalid && brandControl.touched,
+												'is-valid': brandControl.valid
+											}"
+											(click)="toggleDropdown('brand')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedbrand,
+													'gray-color': selectedbrand
+												}"
+											>
+												{{ selectedbrand || "Car Brands*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectBrandOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectBrandOpen"
+										>
+											<li
+												*ngFor="let brand of filteredBrands"
+												(click)="selectBrand(brand)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ brand.name }}
+											</li>
+										</ul>
 									</div>
-									<div class="col-6" *ngIf="!isVehicleYacht">
-										<div class="position-relative">
+									<div class="col-6 position-relative" *ngIf="!isVehicleYacht">
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-semibold"
 												required
@@ -198,10 +238,53 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													brandControl.invalid && brandControl.touched,
+												'is-valid': brandControl.valid
+											}"
+											(click)="toggleDropdown('bodytype')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedbodytype,
+													'gray-color': selectedbodytype
+												}"
+											>
+												{{ selectedbodytype || "Type of Cars*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectBodyTypeOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectBodyTypeOpen"
+										>
+											<li
+												*ngFor="let bodytype of filteredBodytype"
+												(click)="selectBodytype(bodytype)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ bodytype.name }}
+											</li>
+										</ul>
 									</div>
-									<div class="col-6 label-margin" *ngIf="isVehicleYacht">
-										<div class="position-relative">
+									<div
+										class="col-6 label-margin position-relative"
+										*ngIf="isVehicleYacht"
+									>
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-semibold"
 												(change)="selectData('body_type', $event)"
@@ -228,10 +311,53 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													bodyTypeControl.invalid && bodyTypeControl.touched,
+												'is-valid': bodyTypeControl.valid
+											}"
+											(click)="toggleDropdown('bodytype')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedbodytype,
+													'gray-color': selectedbodytype
+												}"
+											>
+												{{ selectedbodytype || "Type of Yachts*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectBodyTypeOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectBodyTypeOpen"
+										>
+											<li
+												*ngFor="let bodytype of filteredBodytype"
+												(click)="selectBodytype(bodytype)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ bodytype.name }}
+											</li>
+										</ul>
 									</div>
-									<div class="col-6 label-margin" *ngIf="isVehicleYacht">
-										<div class="position-relative">
+									<div
+										class="col-6 label-margin position-relative"
+										*ngIf="isVehicleYacht"
+									>
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-medium"
 												(change)="selectData('size', $event)"
@@ -248,7 +374,7 @@
 												<option
 													class="size14 redhat-medium black-light-color"
 													value="{{ size }}"
-													*ngFor="let size of yatchSizes"
+													*ngFor="let size of YachtSizes"
 												>
 													{{ size }}
 												</option>
@@ -258,10 +384,51 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													yachtSizeControl.invalid && yachtSizeControl.touched,
+												'is-valid': yachtSizeControl.valid
+											}"
+											(click)="toggleDropdown('size')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedYachtSize,
+													'gray-color': selectedYachtSize
+												}"
+											>
+												{{ selectedYachtSize || "Yacht Length*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectYachtSizeOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectYachtSizeOpen"
+										>
+											<li
+												*ngFor="let size of YachtSizes"
+												(click)="selectYachtSize(size)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ size }}
+											</li>
+										</ul>
 									</div>
-									<div class="col-6" *ngIf="isVehicleYacht">
-										<div class="position-relative">
+									<div class="col-6 position-relative" *ngIf="isVehicleYacht">
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-medium"
 												(change)="selectData('seats', $event)"
@@ -278,7 +445,7 @@
 												<option
 													class="size14 redhat-medium black-light-color"
 													value="{{ seat }}"
-													*ngFor="let seat of yatchSeats"
+													*ngFor="let seat of YachtSeats"
 												>
 													{{ seat }}
 												</option>
@@ -288,10 +455,52 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													yachtSeatsControl.invalid &&
+													yachtSeatsControl.touched,
+												'is-valid': yachtSeatsControl.valid
+											}"
+											(click)="toggleDropdown('seats')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedYachtSeats,
+													'gray-color': selectedYachtSeats
+												}"
+											>
+												{{ selectedYachtSeats || "Guests*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectYachtSeatsOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectYachtSeatsOpen"
+										>
+											<li
+												*ngFor="let seat of YachtSeats"
+												(click)="selectYachtSeats(seat)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ seat }}
+											</li>
+										</ul>
 									</div>
-									<div class="col-6" *ngIf="isVehicleYacht">
-										<div class="position-relative">
+									<div class="col-6 position-relative" *ngIf="isVehicleYacht">
+										<!-- <div class="position-relative">
 											<select
 												class="form-select size14 redhat-medium"
 												(change)="selectData('hours', $event)"
@@ -308,7 +517,7 @@
 												<option
 													class="size14 redhat-medium black-light-color"
 													value="{{ hours }}"
-													*ngFor="let hours of yatchHours"
+													*ngFor="let hours of YachtHours"
 												>
 													{{ hours }}
 												</option>
@@ -318,7 +527,48 @@
 												alt=""
 												class="down-arrow"
 											/>
+										</div> -->
+										<div
+											class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+											[ngClass]="{
+												'is-invalid':
+													yachtHoursControl.invalid &&
+													yachtHoursControl.touched,
+												'is-valid': yachtHoursControl.valid
+											}"
+											(click)="toggleDropdown('hours')"
+											tabindex="0"
+										>
+											<span
+												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedYachtHours,
+													'gray-color': selectedYachtHours
+												}"
+											>
+												{{ selectedYachtHours || "Hours*" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: selectYachtHoursOpen }"
+												alt="arrow"
+											/>
 										</div>
+
+										<!-- Dropdown menu -->
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="selectYachtHoursOpen"
+										>
+											<li
+												*ngFor="let hours of YachtHours"
+												(click)="selectYachtHours(hours)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color"
+											>
+												{{ hours }}
+											</li>
+										</ul>
 									</div>
 								</div>
 								<h3
@@ -819,7 +1069,7 @@
 									</div>
 								</div>
 								<span
-									*ngIf="!isReservationFilled && myForm.invalid"
+									*ngIf="!isReservationFilled"
 									class="alert-danger position-relative redhat-regular size14 mt-2 text-center"
 									>Please select all required details correctly to
 									continue</span
@@ -843,7 +1093,7 @@
 									(touchstart)="setIsHovered(true)"
 									(touchend)="setIsHovered(false)"
 									data-text="Book on WhatsApp"
-									class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin text-capitalize"
+									class="form-black-button d-flex mx-auto size18 redhat-semibold btn-margin"
 								>
 									<span>
 										<img
@@ -851,7 +1101,7 @@
 											alt="whatsapp"
 											className="whatsappicon"
 										/>
-										Book On Whatsapp
+										Book on Whatsapp
 									</span>
 								</a>
 							</form>
@@ -1380,7 +1630,7 @@
 													alt=""
 												/>
 												<h6
-													class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
+													class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-lowercase color-card-p"
 												>
 													{{ car.mileage }}
 												</h6>
@@ -1455,7 +1705,7 @@
 
 <section
 	class="collection yacht-padding"
-	*ngIf="ouryatchsCollections && ouryatchsCollections.length > 0"
+	*ngIf="ourYachtsCollections && ourYachtsCollections.length > 0"
 >
 	<div class="container-fluid">
 		<div class="row">
@@ -1490,7 +1740,7 @@
 						<div class="swiper-wrapper">
 							<div
 								class="swiper-slide"
-								*ngFor="let yacht of ouryatchsCollections"
+								*ngFor="let yacht of ourYachtsCollections"
 							>
 								<div
 									class="car-card"
@@ -1552,7 +1802,7 @@
 														alt=""
 													/>
 													<h6
-														class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-capitalize color-card-p"
+														class="mb-0 mt-xl-2 mt-1 size16 redhat-semibold text-lowercase color-card-p"
 													>
 														{{ yacht.length }}
 													</h6>

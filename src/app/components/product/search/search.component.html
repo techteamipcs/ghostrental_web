@@ -37,19 +37,19 @@
 								>
 									reset
 								</button>
-								<button
+								<!-- <button
 									class="bg-transparent gray-color p-0 border-0 d-xl-none d-block ms-auto"
 									type="button"
 									[attr.aria-expanded]="isMobileFilterVisible"
 									aria-controls="filter-options"
+									(click)="toggleFilter()"
 								>
 									<lucide-icon
-										(click)="toggleFilter()"
 										[name]="isMobileFilterVisible ? 'minus' : 'plus'"
 										size="20"
 										style="display: flex"
 									/>
-								</button>
+								</button> -->
 							</div>
 						</div>
 						<div
@@ -80,7 +80,6 @@
 									aria-controls="filter-options"
 								>
 									<lucide-icon
-										(click)="toggleFilter()"
 										[name]="isMobileFilterVisible ? 'minus' : 'plus'"
 										size="20"
 										style="display: flex"
@@ -116,7 +115,7 @@
 										<option value="" disabled selected>
 											Select Vehicle Type
 										</option>
-										<option value="Car" class="gray-color">Car</option>
+										<option value="Car" class="gray-color">Cars</option>
 										<option value="Yachts" class="gray-color">Yachts</option>
 									</select>
 									<img
@@ -124,6 +123,45 @@
 										alt="Arrow Down"
 										class="down-arrow"
 									/>
+									<!-- <div
+										class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+										(click)="toggleOptionsDropdown('vehicleType')"
+										tabindex="0"
+									>
+										<span
+											class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedVehicleType,
+												'gray-color': selectedVehicleType
+											}"
+										>
+											{{ selectedVehicleType || "Select Vehicle Type" }}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: selectVehicleTypeOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="selectVehicleTypeOpen"
+									>
+										<li
+											(click)="selectVehicleType('Cars')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											cars
+										</li>
+										<li
+											(click)="selectVehicleType('Yachts')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											yachts
+										</li>
+									</ul> -->
 								</div>
 								<!-- Car Brand -->
 								<label
@@ -155,6 +193,45 @@
 										alt="Arrow Down"
 										class="down-arrow"
 									/>
+									<!-- <div
+										class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
+										(click)="toggleOptionsDropdown('brand')"
+										tabindex="0"
+									>
+										<span
+											class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedVehicleType,
+												'gray-color': selectedVehicleType
+											}"
+										>
+											{{ selectedVehicleType || "Select Vehicle Type" }}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: selectVehicleTypeOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="selectVehicleTypeOpen"
+									>
+										<li
+											(click)="selectVehicleType('Car')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											cars
+										</li>
+										<li
+											(click)="selectVehicleType('Yachts')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											yachts
+										</li>
+									</ul> -->
 								</div>
 								<!-- Car Model -->
 								<label
@@ -443,11 +520,16 @@
 											>
 												<div class="d-flex gap-2">
 													<div class="time-section">
-														<div class="time-section-label">Hours</div>
+														<div
+															class="time-section-label my-1 redhat-regular"
+															style="font-size: 12px"
+														>
+															Hours
+														</div>
 														<div class="time-options">
 															<span
 																*ngFor="let hour of displayHours"
-																class="time-option"
+																class="time-option size14 redhat-medium text-center mb-1 rounded"
 																[class.selected]="isSelectedHour(hour)"
 																[class.disabled]="
 																	isPastTime(hour, selectedMinute || '00')
@@ -463,11 +545,16 @@
 													</div>
 
 													<div class="time-section">
-														<div class="time-section-label">Minutes</div>
+														<div
+															class="time-section-label my-1 redhat-regular"
+															style="font-size: 12px"
+														>
+															Minutes
+														</div>
 														<div class="time-options">
 															<div
 																*ngFor="let minute of minutes"
-																class="time-option"
+																class="time-option size14 redhat-medium text-center mb-1 rounded"
 																[class.selected]="selectedMinute === minute"
 																[class.disabled]="
 																	isPastTime(selectedHour || '00', minute)
@@ -487,7 +574,7 @@
 										<div class="time-actions mx-auto">
 											<button
 												type="button"
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
 												(click)="resetDateTimeSelection()"
 												data-text="Reset"
 											>
@@ -495,7 +582,7 @@
 											</button>
 											<button
 												type="button"
-												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
 												[disabled]="
 													!selectedStartDate || !selectedHour || !selectedMinute
 												"
@@ -1005,7 +1092,7 @@
 													alt="Mileage"
 												/>
 												<h6
-													class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-capitalize"
+													class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-lowercase"
 												>
 													{{ car.mileage || "N/A" }}
 												</h6>
@@ -1014,12 +1101,12 @@
 												<img
 													src="{{ imageURL }}/images/icons/seats.svg"
 													class="img-fluid collection_image"
-													alt="Seats"
+													alt="Pax"
 												/>
 												<h6
 													class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
 												>
-													{{ car.seating_capacity || "N/A" }} Seats
+													{{ car.seating_capacity || "N/A" }} Pax
 												</h6>
 											</div>
 										</div>
@@ -1036,7 +1123,7 @@
 													alt="Length"
 												/>
 												<h6
-													class="mb-0 mt-md-2 size16 redhat-semibold color-card-p"
+													class="mb-0 mt-md-2 size16 redhat-semibold color-card-p text-lowercase"
 												>
 													{{ car.length || "N/A" }}
 												</h6>

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from '../../../environments/environment';
@@ -23,7 +23,7 @@ Swiper.use([Navigation]);
 export class HomeComponent implements OnInit {
   private carSwiper: Swiper | null = null;
   private yachtSwiper: Swiper | null = null;
-  
+
   private trendingSwiper: Swiper | null = null;
   bannerData: any;
   imageURL: string = `${environment.url}/assets`;
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   reservationForm!: FormGroup;
   isVehicleYacht = false;
   ourCarCollections: any = [];
-  ouryatchsCollections: any = [];
+  ourYachtsCollections: any = [];
   trendingRentalCars: any = [];
   vehicleData: any = [];
   vehicletype: any = "Car";
@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit {
   filteredModels: any = [];
   listBrands: any = [];
   filteredBrands: any = [];
-  selelctedbodytype: any;
-  selelctedbrand: any;
+  selectedbodytype: any;
+  selectedbrand: any;
   selelctedmodel: any;
   locationData: any = [];
   pickupLocations: any = [];
@@ -68,14 +68,14 @@ export class HomeComponent implements OnInit {
   isHovered = false;
   featuresList: any = [];
   filteredFeatures: any = [];
-  yatchSizes = ['Up To 30 ft', '31-49 ft', '50-69 ft', '70-99 ft', '100-149 ft', '> 150 ft'];
-  yatchSeats = ['8', '10', '12', '20', '25', '40', '100'];
-  yatchHours = ['4', '8', '12', '16', '24'];
+  YachtSizes = ['Up To 30 ft', '31-49 ft', '50-69 ft', '70-99 ft', '100-149 ft', '> 150 ft'];
+  YachtSeats = ['8', '10', '12', '20', '25', '40', '100'];
+  YachtHours = ['4', '8', '12', '16', '24'];
   @ViewChild('trendingCarsCarousel', { static: false }) carousel!: ElementRef;
-  selectedYatchSize: any;
-  selectedYatchSeats: any;
-  selectedYatchHours: any;
-  selectedYatchAddOns: any = [];
+  selectedYachtSize: any;
+  selectedYachtSeats: any;
+  selectedYachtHours: any;
+  selectedYachtAddOns: any = [];
   selectedAddons: Array<{ url_key: string, name: string }> = [];
   isDropdownOpen = false;
 
@@ -92,6 +92,8 @@ export class HomeComponent implements OnInit {
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     }
   });
+
+
 
   onDateChange(event: any) {
     // This method is triggered when the date input changes
@@ -177,7 +179,7 @@ export class HomeComponent implements OnInit {
     this.getBannerData();
     this.getCarTypes();
     this.getCarData();
-    this.getYatchsData();
+    this.getYachtsData();
     this.getBodyTypes();
     this.getModels();
     this.getBrands();
@@ -227,11 +229,11 @@ export class HomeComponent implements OnInit {
     if (this.vehicletype) {
       tempData['Vehicle'] = this.vehicletype;
     }
-    if (this.selelctedbrand) {
-      tempData['Brand'] = this.selelctedbrand;
+    if (this.selectedbrand) {
+      tempData['Brand'] = this.selectedbrand;
     }
-    if (this.selelctedbodytype) {
-      tempData['Type'] = this.selelctedbodytype;
+    if (this.selectedbodytype) {
+      tempData['Type'] = this.selectedbodytype;
     }
     if (this.selelctedmodel) {
       tempData['Model'] = this.selelctedmodel;
@@ -254,18 +256,18 @@ export class HomeComponent implements OnInit {
     if (this.selectedEndTime) {
       tempData['Drop Time'] = this.selectedEndTime;
     }
-    if (this.selectedYatchSize) {
+    if (this.selectedYachtSize) {
       tempData['Size'] = this.vehicletype;
     }
-    if (this.selectedYatchSeats) {
-      tempData['Seats'] = this.selectedYatchSeats;
+    if (this.selectedYachtSeats) {
+      tempData['Seats'] = this.selectedYachtSeats;
     }
-    if (this.selectedYatchHours) {
-      tempData['Hours'] = this.selectedYatchHours;
+    if (this.selectedYachtHours) {
+      tempData['Hours'] = this.selectedYachtHours;
     }
-    if (this.selectedYatchAddOns && this.selectedYatchAddOns.length > 0) {
+    if (this.selectedYachtAddOns && this.selectedYachtAddOns.length > 0) {
       let tempspl = [];
-      this.selectedYatchAddOns.forEach((spladds) => {
+      this.selectedYachtAddOns.forEach((spladds) => {
         tempspl.push(spladds.name)
       });
       tempData['Special Add-ons'] = tempspl;
@@ -389,22 +391,22 @@ export class HomeComponent implements OnInit {
     if (this.vehicletype == 'Car' && !this.selecteddropaddress) {
       isValid = false;
     }
-    if (this.vehicletype == 'Car' && !this.selelctedbrand) {
+    if (this.vehicletype == 'Car' && !this.selectedbrand) {
       isValid = false;
     }
-    if (this.vehicletype == 'Car' && !this.selelctedbodytype) {
+    if (this.vehicletype == 'Car' && !this.selectedbodytype) {
       isValid = false;
     }
-    if (this.vehicletype == 'Yachts' && !this.selelctedbodytype) {
+    if (this.vehicletype == 'Yachts' && !this.selectedbodytype) {
       isValid = false;
     }
-    if (this.vehicletype == 'Yachts' && !this.selectedYatchSize) {
+    if (this.vehicletype == 'Yachts' && !this.selectedYachtSize) {
       isValid = false;
     }
-    if (this.vehicletype == 'Yachts' && !this.selectedYatchSeats) {
+    if (this.vehicletype == 'Yachts' && !this.selectedYachtSeats) {
       isValid = false;
     }
-    if (this.vehicletype == 'Yachts' && !this.selectedYatchHours) {
+    if (this.vehicletype == 'Yachts' && !this.selectedYachtHours) {
       isValid = false;
     }
     if (!this.selectedStartDate) {
@@ -417,14 +419,14 @@ export class HomeComponent implements OnInit {
       this.isReservationFilled = false;
       return;
     }
-    if(this.selectedStartDate){
+    if (this.selectedStartDate) {
       const today = new Date(this.selectedStartDate);
       const yyyy = today.getFullYear();
       const mm = String(today.getMonth() + 1).padStart(2, '0');
       const dd = String(today.getDate()).padStart(2, '0');
       this.selectedStartDate = `${yyyy}-${mm}-${dd}`;
     }
-     if(this.selectedEndDate){
+    if (this.selectedEndDate) {
       const today = new Date(this.selectedEndDate);
       const yyyy = today.getFullYear();
       const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -451,23 +453,27 @@ export class HomeComponent implements OnInit {
         tempvar += index + '. ' + spladds.name + '\n';
       });
     }
+    setTimeout(()=>{
+      window.location.reload();
+    },2000)
     let tempspladdons
     if (tempspl && tempspl.length > 0) {
       tempspladdons = JSON.stringify(tempspl).replace(/"/g, '');
     }
     if (this.vehicletype == 'Car') {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selelctedbodytype}\nBrand: ${this.selelctedbrand}\nPickup Address: ${this.selectedpickaddress}\nDrop Address: ${this.selecteddropaddress}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\nDrop Date: ${this.selectedEndDate} ${!this.selectedEndTime ? '' : this.selectedEndTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selectedbodytype}\nBrand: ${this.selectedbrand}\nPickup Address: ${this.selectedpickaddress}\nDrop Address: ${this.selecteddropaddress}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\nDrop Date: ${this.selectedEndDate} ${!this.selectedEndTime ? '' : this.selectedEndTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     } else {
-      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selelctedbodytype}\nSize: ${this.selectedYatchSize}\nPax: ${this.selectedYatchSeats}\nHours: ${this.selectedYatchHours}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
+      const message = `Hello Ghost Rentals!\n\nI'm interested in booking through your website and would like assistance with:\n\nVehicle: ${this.vehicletype}\nType: ${this.selectedbodytype}\nSize: ${this.selectedYachtSize}\nPax: ${this.selectedYachtSeats}\nHours: ${this.selectedYachtHours}\nPickup Date: ${this.selectedStartDate} ${!this.selectedStartTime ? '' : this.selectedStartTime}\n${!tempspladdons ? '' : 'Special Add-ons: \n' + tempvar}\nThank you!`;
       const encodedMsg = encodeURIComponent(message);
       const phoneNumber = "+97180044678"; // With country code, no "+" or "-"
       const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
     }
+
   }
 
   closePopup(event: MouseEvent) {
@@ -488,7 +494,7 @@ export class HomeComponent implements OnInit {
 
   public initCarSwiper() {
     if (this.carSwiper) {
-      this.carSwiper.destroy(true, true); 
+      this.carSwiper.destroy(true, true);
     }
     if (isPlatformBrowser(this.platformId)) {
       const swiper = new Swiper('.car-collection-swiper', {
@@ -549,7 +555,7 @@ export class HomeComponent implements OnInit {
   }
   public initYachtSwiper() {
     if (this.yachtSwiper) {
-      this.yachtSwiper.destroy(true, true); 
+      this.yachtSwiper.destroy(true, true);
     }
     if (isPlatformBrowser(this.platformId)) {
       const swiper = new Swiper('.yacht-collection-swiper', {
@@ -609,7 +615,7 @@ export class HomeComponent implements OnInit {
 
   public initTrendingSwiper() {
     if (this.trendingSwiper) {
-      this.trendingSwiper.destroy(true, true); 
+      this.trendingSwiper.destroy(true, true);
     }
     if (isPlatformBrowser(this.platformId)) {
       this.trendingSwiper = new Swiper('.trending-cars-swiper', {
@@ -636,7 +642,7 @@ export class HomeComponent implements OnInit {
             slidesPerView: 1.5,
             spaceBetween: 15
           },
-          768: {
+          790: {
             slidesPerView: 2.5,
             spaceBetween: 20
           },
@@ -698,9 +704,9 @@ export class HomeComponent implements OnInit {
   }
 
   toggleVehicle() {
-    this.selectedYatchAddOns = [];
+    this.selectedYachtAddOns = [];
     this.selectedAddons = [];
-    
+
     // Reset time inputs to placeholders
     this.selectedStartTime = '';
     this.selectedEndTime = '';
@@ -710,24 +716,32 @@ export class HomeComponent implements OnInit {
     this.selectedEndMinute = '';
     this.selectedStartDate = '';
     this.selectedEndDate = '';
-    this.isPM = false;
-    this.isEndPM = false;
+    this.selectedpickaddress = '';
+    this.selecteddropaddress = '';
+    this.selectedYachtSize = '';
+    this.selectedYachtSeats = '';
+    this.selectedYachtHours = '';
+    this.selectedbrand = '';
+    this.selectedbodytype = '';
     
+    
+
+
     // Reset dropdown states
     this.isDropdownOpen = false;
     this.showStartTimePicker = false;
     this.showEndTimePicker = false;
     this.showCalendar = false;
     this.showEndCalendar = false;
-    
-    
+
+
     this.isVehicleYacht = !this.isVehicleYacht;
     if (!this.isVehicleYacht) {
       this.vehicletype = "Car";
     } else {
       this.vehicletype = "Yachts";
     }
-    
+
     if (this.listBodytype && this.listBodytype.length > 0) {
       this.filteredBodytype = this.listBodytype.filter((bodytype) => bodytype.type == this.vehicletype);
     }
@@ -744,26 +758,26 @@ export class HomeComponent implements OnInit {
 
   selectData(type, event) {
     if (type == 'body_type') {
-      this.selelctedbodytype = event.target.value;
+      this.selectedbodytype = event.target.value;
     } else if (type == 'brand') {
-      this.selelctedbrand = event.target.value;
-      this.selelctedbodytype = '';
-        let tempBrand = this.filteredBrands.filter(
-        (item) => item.name === this.selelctedbrand
+      this.selectedbrand = event.target.value;
+      this.selectedbodytype = '';
+      let tempBrand = this.filteredBrands.filter(
+        (item) => item.name === this.selectedbrand
       );
-      if(tempBrand && tempBrand.length > 0){
-        this.filteredBodytype =  tempBrand[0].bodytype_data;
+      if (tempBrand && tempBrand.length > 0) {
+        this.filteredBodytype = tempBrand[0].bodytype_data;
       }
     } else if (type == 'model') {
       this.selelctedmodel = event.target.value;
     } else if (type == 'feature') {
-      this.selectedYatchAddOns.push(event.target.value);
+      this.selectedYachtAddOns.push(event.target.value);
     } else if (type == 'size') {
-      this.selectedYatchSize = event.target.value;
+      this.selectedYachtSize = event.target.value;
     } else if (type == 'seats') {
-      this.selectedYatchSeats = event.target.value;
+      this.selectedYachtSeats = event.target.value;
     } else if (type == 'hours') {
-      this.selectedYatchHours = event.target.value;
+      this.selectedYachtHours = event.target.value;
     }
   }
 
@@ -771,8 +785,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/booking'], {
       queryParams: {
         vehicle: this.vehicletype,
-        body_type: this.selelctedbodytype,
-        brand: this.selelctedbrand,
+        body_type: this.selectedbodytype,
+        brand: this.selectedbrand,
         model: this.selelctedmodel,
         startDate: this.mergeDateTime(this.selectedStartTime, this.selectedStartDate),
         endDate: this.mergeDateTime(this.selectedEndTime, this.selectedEndDate),
@@ -851,7 +865,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getYatchsData() {
+  getYachtsData() {
     let obj = {
       limit: 10,
       page: 1,
@@ -862,7 +876,7 @@ export class HomeComponent implements OnInit {
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.ouryatchsCollections = response.result;
+          this.ourYachtsCollections = response.result;
         }
         setTimeout(() => this.initYachtSwiper(), 0);
       }
@@ -1075,11 +1089,11 @@ export class HomeComponent implements OnInit {
   toggleAddonsDropdown(event?: Event): void {
     event?.stopPropagation();
     event?.preventDefault();
-    
+
     if (!this.isDropdownOpen) {
       this.closeAllPickers();
     }
-    
+
     this.isDropdownOpen = !this.isDropdownOpen;
   }
   toggleSelection(addon: { url_key: string, name: string }, event: Event): void {
@@ -1096,7 +1110,7 @@ export class HomeComponent implements OnInit {
 
     this.selectedAddons = updatedAddons;
     if (event) {
-      this.selectedYatchAddOns.push(event.target);
+      this.selectedYachtAddOns.push(event.target);
     }
   }
 
@@ -1106,7 +1120,7 @@ export class HomeComponent implements OnInit {
 
   getSelectedAddonsLabel(): string {
     if (!this.selectedAddons || this.selectedAddons.length === 0) {
-      return 'Choose Add-Ons';
+      return 'Choose Add-Ons*';
     } else if (this.selectedAddons.length === 1) {
       return this.selectedAddons[0].name;
     } else {
@@ -1121,12 +1135,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  
+
 
   // today: string;
   // pickuptoday: string;
   // dropofftoday: string;
-  
+
   // date functionality
   // selectedStartDate: Date | null = null;
   // selectedEndDate: Date | null = null;
@@ -1142,11 +1156,11 @@ export class HomeComponent implements OnInit {
   calendarDates: Date[] = [];
   endCalendarDates: Date[] = [];
   dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
- 
+
   // time functionality
   minDate: any;
-  hours: string[] = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
-  minutes: string[] = ['00','15','30','45'];
+  hours: string[] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
+  minutes: string[] = ['00', '15', '30', '45'];
   selectedHour: string = '';
   selectedMinute: string = '';
   selectedEndHour: string = '';
@@ -1161,7 +1175,7 @@ export class HomeComponent implements OnInit {
   // selectedStartTime: any;
   // selectedEndTime: any;
   isPM: boolean = false;
-  displayHours: string[] =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
+  displayHours: string[] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
   // Time picker state management
   private previousStartTime: { hour: string, minute: string } | null = null;
   private previousEndTime: { hour: string, minute: string } | null = null;
@@ -1196,7 +1210,7 @@ export class HomeComponent implements OnInit {
     target.setHours(0, 0, 0, 0);
     return target < pickup;
   }
-  
+
   prevMonth() {
     this.currentMonth = new Date(
       this.currentMonth.getFullYear(),
@@ -1205,7 +1219,7 @@ export class HomeComponent implements OnInit {
     );
     this.generateCalendar();
   }
-  
+
   nextMonth() {
     this.currentMonth = new Date(
       this.currentMonth.getFullYear(),
@@ -1214,7 +1228,7 @@ export class HomeComponent implements OnInit {
     );
     this.generateCalendar();
   }
-  
+
 
   isCurrentMonth(date: Date): boolean {
     return (
@@ -1246,9 +1260,9 @@ export class HomeComponent implements OnInit {
     this.isPM = false;
 
     // Reset end date and time if month or year changes, or if the new pickup date is after the current drop date
-    if (newDate.getMonth() !== prevMonth || 
-        newDate.getFullYear() !== prevYear ||
-        (this.selectedEndDate && newDate > this.selectedEndDate)) {
+    if (newDate.getMonth() !== prevMonth ||
+      newDate.getFullYear() !== prevYear ||
+      (this.selectedEndDate && newDate > this.selectedEndDate)) {
       this.selectedEndDate = null;
       this.selectedEndTime = '';
       this.selectedEndHour = '';
@@ -1287,7 +1301,7 @@ export class HomeComponent implements OnInit {
       });
       return;
     }
-    
+
     if (!this.selectedHour) {
       this.Toast.fire({
         icon: 'error',
@@ -1306,119 +1320,238 @@ export class HomeComponent implements OnInit {
 
     this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
     this.showStartTimePicker = false;
-   
+
     this.previousStartTime = {
       hour: this.selectedHour,
       minute: this.selectedMinute,
     };
   }
+  isPastTime(hour: string, minute: string): boolean {
+    if (!this.selectedStartDate || !this.isToday(this.selectedStartDate)) return false;
+    const now = new Date();
+    const selectedTime = new Date(
+      this.selectedStartDate.getFullYear(),
+      this.selectedStartDate.getMonth(),
+      this.selectedStartDate.getDate(),
+      parseInt(hour, 10),
+      parseInt(minute, 10)
+    );
+    return selectedTime < now;
+  }
 
-isPastTime(hour: string, minute: string): boolean {
-  if (!this.selectedStartDate) return false;
+  isSameDay(date1: Date, date2: Date): boolean {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
+  }
 
-  const now = new Date();
-  const selectedTime = new Date(this.selectedStartDate);
-  
-  // If the selected date is today, check if the time has passed
-  if (this.isToday(this.selectedStartDate)) {
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+
+  isPastEndTime(hour: string, minute: string): boolean {
+    if (!this.selectedEndDate) return false;
+
     const selectedHour = parseInt(hour, 10);
     const selectedMinute = parseInt(minute, 10);
-    
-    // If the hour is less than current hour, it's in the past
-    if (selectedHour < currentHour) return true;
-    
-    // If it's the same hour, check minutes
-    if (selectedHour === currentHour) {
-      return selectedMinute < currentMinute;
+    const selectedTime = new Date(this.selectedEndDate);
+    selectedTime.setHours(selectedHour, selectedMinute, 0, 0);
+
+    // If it's today, check if the time has passed
+    if (this.isToday(this.selectedEndDate)) {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
+      if (selectedHour < currentHour) return true;
+      if (selectedHour === currentHour && selectedMinute <= currentMinute) return true;
+    }
+
+    // If drop date = pickup date, ensure drop time > pickup time
+    if (this.selectedStartDate && this.selectedStartTime && this.isSameDay(this.selectedStartDate, this.selectedEndDate)) {
+      const [pickupHour, pickupMinute] = this.selectedStartTime.split(':').map(Number);
+
+      // If same hour, check minutes
+      if (selectedHour === pickupHour) {
+        return selectedMinute <= pickupMinute;
+      }
+
+      // If selected hour is before pickup hour, it's invalid
+      if (selectedHour < pickupHour) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
+
+  // selectHour(hour: string) {
+  //   const hourNum = parseInt(hour, 10);
+  //   this.selectedHour = hour;
+  //   // this.selectedMinute = '00';
+  // }
+  onStartDateTimeChange() {
+    // Reset end date/time if 'from' date or time changes
+    this.resetEndDateTimeSelection();
+  }
+  resetEndDateTimeSelection() {
+    // Reset only end
+    this.selectedEndDate = null;
+    this.selectedEndHour = '';
+    this.selectedEndMinute = '';
+    this.selectedEndTime = '';
+  }
+  selectHour(hour: string) {
+    this.selectedHour = hour;
+    if (this.selectedHour && this.selectedMinute) {
+      this.selectedStartTime = `${this.selectedHour}:${this.selectedMinute}`;
+      this.onStartDateTimeChange();
     }
   }
-  
-  return false;
-}
-
-isSameDay(date1: Date, date2: Date): boolean {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
-}
 
 
-isPastEndTime(hour: string, minute: string): boolean {
-  if (!this.selectedEndDate) return false;
-
-  const selectedHour = parseInt(hour, 10);
-  const selectedMinute = parseInt(minute, 10);
-  const selectedTime = new Date(this.selectedEndDate);
-  selectedTime.setHours(selectedHour, selectedMinute, 0, 0);
-
-  // If it's today, check if the time has passed
-  if (this.isToday(this.selectedEndDate)) {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    
-    if (selectedHour < currentHour) return true;
-    if (selectedHour === currentHour && selectedMinute <= currentMinute) return true;
-  }
-
-  // If drop date = pickup date, ensure drop time > pickup time
-  if (this.selectedStartDate && this.selectedStartTime && this.isSameDay(this.selectedStartDate, this.selectedEndDate)) {
-    const [pickupHour, pickupMinute] = this.selectedStartTime.split(':').map(Number);
-    
-    // If same hour, check minutes
-    if (selectedHour === pickupHour) {
-      return selectedMinute <= pickupMinute;
+  selectMinute(minute: string) {
+    if (!this.selectedHour) {
+      this.Toast.fire({
+        icon: 'warning',
+        title: 'Please select an hour first'
+      });
+      return;
     }
-    
-    // If selected hour is before pickup hour, it's invalid
-    if (selectedHour < pickupHour) {
-      return true;
+
+    const hourNum = parseInt(this.selectedHour, 10);
+    const minuteNum = parseInt(minute, 10);
+
+    this.selectedMinute = minute;
+  }
+
+  selectEndHour(hour: string) {
+    const hourNum = parseInt(hour, 10);
+
+    // this.selectedEndMinute = '00';
+
+    this.selectedEndHour = hour;
+  }
+
+  selectEndMinute(minute: string) {
+    this.selectedEndMinute = minute;
+  }
+
+
+  // arrow rotation
+  selectBrandOpen = false;
+  selectBodyTypeOpen = false;
+  selectYachtSizeOpen = false;
+  selectYachtSeatsOpen = false;
+  selectYachtHoursOpen = false;
+  brandControl = new FormControl('', Validators.required);
+  bodyTypeControl = new FormControl('', Validators.required);
+  yachtSizeControl = new FormControl('', Validators.required);
+  yachtSeatsControl = new FormControl('', Validators.required);
+  yachtHoursControl = new FormControl('', Validators.required);
+  toggleDropdown(type: 'brand' | 'bodytype' | 'size' | 'seats' | 'hours') {
+    this.showCalendar = false;
+    this.showEndCalendar = false;
+    this.showStartTimePicker = false;
+    this.showEndTimePicker = false;
+    if (type === 'brand') {
+      this.selectBrandOpen = !this.selectBrandOpen;
+      this.selectBodyTypeOpen = false;
+      this.selectYachtSizeOpen = false;
+      this.selectYachtSeatsOpen = false;
+      this.selectYachtHoursOpen = false;
+    } else if (type === 'bodytype') {
+      this.selectBrandOpen = false;
+      this.selectBodyTypeOpen = !this.selectBodyTypeOpen;
+      this.selectYachtSizeOpen = false;
+      this.selectYachtSeatsOpen = false;
+      this.selectYachtHoursOpen = false;
+    } else if (type === 'size') {
+      this.selectBrandOpen = false;
+      this.selectBodyTypeOpen = false;
+      this.selectYachtSizeOpen = !this.selectYachtSizeOpen;
+      this.selectYachtSeatsOpen = false;
+      this.selectYachtHoursOpen = false;
+    } else if (type === 'seats') {
+      this.selectBrandOpen = false;
+      this.selectBodyTypeOpen = false;
+      this.selectYachtSizeOpen = false;
+      this.selectYachtSeatsOpen = !this.selectYachtSeatsOpen;
+      this.selectYachtHoursOpen = false;
+    } else if (type === 'hours') {
+      this.selectBrandOpen = false;
+      this.selectBodyTypeOpen = false;
+      this.selectYachtSizeOpen = false;
+      this.selectYachtSeatsOpen = false;
+      this.selectYachtHoursOpen = !this.selectYachtHoursOpen;
     }
   }
 
-  return false;
-}
 
+  selectBrand(brand: any) {
+    this.selectedbrand = brand.name;
+    this.brandControl.setValue(brand.name);
+    this.brandControl.markAsTouched();
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
 
-
-selectHour(hour: string) {
-  const hourNum = parseInt(hour, 10);
-  this.selectedHour = hour;
-  // this.selectedMinute = '00';
-}
-
-
-
-selectMinute(minute: string) {
-  if (!this.selectedHour) {
-    this.Toast.fire({ 
-      icon: 'warning', 
-      title: 'Please select an hour first' 
-    });
-    return;
+    this.selectData('brand', { target: { value: brand.name } });
+    this.getCarData();
   }
 
-  const hourNum = parseInt(this.selectedHour, 10);
-  const minuteNum = parseInt(minute, 10);
-  
-  this.selectedMinute = minute;
-}
+  selectBodytype(bodytype: any) {
+    this.selectedbodytype = bodytype.name;
+    this.bodyTypeControl.setValue(bodytype.name);
+    this.bodyTypeControl.markAsTouched();
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
 
-selectEndHour(hour: string) {
-  const hourNum = parseInt(hour, 10);
-  
-  // this.selectedEndMinute = '00';
-  
-  this.selectedEndHour = hour;
-}
+    this.selectData('body_type', { target: { value: bodytype.name } });
+    this.getCarData();
+  }
 
-selectEndMinute(minute: string) {
-  this.selectedEndMinute = minute;
-}
+  selectYachtSize(size: string) {
+    this.selectedYachtSize = size;
+    this.yachtSizeControl.setValue(size);
+    this.yachtSizeControl.markAsTouched();
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
+    this.selectYachtSizeOpen = false;
+    this.selectYachtSeatsOpen = false;
+    this.selectYachtHoursOpen = false;
+
+    this.selectData('size', { target: { value: size } });
+    this.getCarData();
+  }
+
+  selectYachtSeats(seats: string) {
+    this.selectedYachtSeats = seats;
+    this.yachtSeatsControl.setValue(seats);
+    this.yachtSeatsControl.markAsTouched();
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
+    this.selectYachtSizeOpen = false;
+    this.selectYachtSeatsOpen = false;
+    this.selectYachtHoursOpen = false;
+
+    this.selectData('seats', { target: { value: seats } });
+    this.getCarData();
+  }
+
+  selectYachtHours(hours: string) {
+    this.selectedYachtHours = hours;
+    this.yachtHoursControl.setValue(hours);
+    this.yachtHoursControl.markAsTouched();
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
+    this.selectYachtSizeOpen = false;
+    this.selectYachtSeatsOpen = false;
+    this.selectYachtHoursOpen = false;
+
+    this.selectData('hours', { target: { value: hours } });
+    this.getCarData();
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -1436,7 +1569,18 @@ selectEndMinute(minute: string) {
     if (!inTime && !inTimePicker && !inTimeInput) this.showStartTimePicker = false;
     if (!inEndTime) this.showEndTimePicker = false;
     this.isDropdownOpen = false;
+    const clickedInside = target.closest('.custom-dropdown') || target.closest('.dropdown-menu-custom');
+    if (!clickedInside) {
+      this.selectBrandOpen = false;
+      this.selectBodyTypeOpen = false;
+      this.selectYachtSizeOpen = false;
+      this.selectYachtSeatsOpen = false;
+      this.selectYachtHoursOpen = false;
+
+    }
   }
+
+
 
   toggleCalendar(event?: MouseEvent) {
     event?.stopPropagation();
@@ -1461,10 +1605,10 @@ selectEndMinute(minute: string) {
 
   private initializeTimePicker() {
     // Set hours from 1 to 12
-    this.displayHours = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
-    
-    this.minutes = ['00','15','30','45'];
-    
+    this.displayHours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+
+    this.minutes = ['00', '15', '30', '45'];
+
     if (!this.selectedHour) {
       this.selectedHour = '12';
     }
@@ -1477,7 +1621,7 @@ selectEndMinute(minute: string) {
     if (!this.selectedEndMinute) {
       this.selectedEndMinute = '00';
     }
-    
+
     this.updateDisplayHours();
   }
   // private initializeTimePicker() {
@@ -1490,8 +1634,8 @@ selectEndMinute(minute: string) {
   // }
 
   updateDisplayHours() {
-    this.displayHours = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
-    
+    this.displayHours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+
   }
 
   isSelectedHour(hour: string): boolean {
@@ -1505,10 +1649,15 @@ selectEndMinute(minute: string) {
     this.showStartTimePicker = false;
     this.showEndTimePicker = false;
     this.isDropdownOpen = false;
+    this.selectBrandOpen = false;
+    this.selectBodyTypeOpen = false;
+    this.selectYachtSizeOpen = false;
+    this.selectYachtSeatsOpen = false;
+    this.selectYachtHoursOpen = false;
   }
 
   toggleStartTimePicker(event: MouseEvent) {
-    if (!this.selectedStartDate ) {
+    if (!this.selectedStartDate) {
       this.Toast.fire({
         icon: 'warning',
         title: 'Please select pickup date first'
@@ -1518,32 +1667,24 @@ selectEndMinute(minute: string) {
     }
     event.stopPropagation();
     this.closeAllPickers();
-    // Toggle the time picker
     this.showStartTimePicker = !this.showStartTimePicker;
-    
-    // Initialize time if not set
+  
     if (this.showStartTimePicker && !this.selectedStartTime) {
       const now = new Date();
-      const hours = now.getHours();
-      // this.isPM = hours >= 12;
-      this.selectedHour = String(hours % 12 || 12).padStart(2, '0');
-      // this.selectedMinute = String(now.getMinutes()).padStart(2, '0');
+      this.selectedHour = String(now.getHours()).padStart(2, '0');
     }
-    
-    // Close other pickers if opening this one
+  
     if (this.showStartTimePicker) {
       this.showEndTimePicker = false;
       this.showCalendar = false;
       this.showEndCalendar = false;
     }
   }
-
   toggleEndTimePicker(event: MouseEvent) {
-    
-    if (!this.selectedStartTime || !this.selectedEndDate || !this.selectedStartDate) {
+    if (!this.selectedEndDate) {
       this.Toast.fire({
         icon: 'warning',
-        title: 'Please select drop date and pickup time first'
+        title: 'Please select return date first'
       });
       this.showEndTimePicker = false;
       return;
@@ -1551,19 +1692,21 @@ selectEndMinute(minute: string) {
     event.stopPropagation();
     this.closeAllPickers();
     this.showEndTimePicker = !this.showEndTimePicker;
-
+  
     if (this.showEndTimePicker && !this.selectedEndTime) {
       const now = new Date();
-      const hours = now.getHours();
-      // this.isEndPM = hours >= 12;
-      this.selectedEndHour = String(hours % 12 || 12).padStart(2, '0');
-      // this.selectedEndMinute = String(now.getMinutes()).padStart(2, '0');
-      // this.updateselectedStartTime();
+      this.selectedEndHour = String(now.getHours()).padStart(2, '0');
+    }
+  
+    if (this.showEndTimePicker) {
+      this.showStartTimePicker = false;
+      this.showCalendar = false;
+      this.showEndCalendar = false;
     }
   }
 
 
-  
+
 
   // cancelTimeSelection() {
   //   this.showStartTimePicker = false;
@@ -1599,7 +1742,7 @@ selectEndMinute(minute: string) {
     this.showStartTimePicker = false;
   }
 
-  
+
   validateDateTimeSelection() {
     if (!this.selectedStartDate || !this.selectedEndDate || !this.selectedStartTime || !this.selectedEndTime) return true;
 
@@ -1617,7 +1760,7 @@ selectEndMinute(minute: string) {
     // Handle AM/PM conversion
     let startH = this.isPM && startHour < 12 ? startHour + 12 : startHour;
     if (!this.isPM && startHour === 12) startH = 0;
-  
+
     let endH = this.isEndPM && endHour < 12 ? endHour + 12 : endHour;
     if (!this.isEndPM && endHour === 12) endH = 0;
 
@@ -1663,7 +1806,7 @@ selectEndMinute(minute: string) {
 
   //     this.validateDateTimeSelection();
   //   }
-    
+
   // }
 
   confirmEndTime() {
@@ -1674,7 +1817,7 @@ selectEndMinute(minute: string) {
       });
       return;
     }
-    
+
     if (!this.selectedEndHour) {
       this.Toast.fire({
         icon: 'error',
@@ -1693,12 +1836,12 @@ selectEndMinute(minute: string) {
 
     this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
     this.showEndTimePicker = false;
-   
+
     this.previousEndTime = {
       hour: this.selectedEndHour,
       minute: this.selectedEndMinute,
     };
-    
+
   }
 
 
@@ -1762,12 +1905,12 @@ selectEndMinute(minute: string) {
   selectEndDate(date: Date) {
     const pickup = new Date(this.selectedStartDate);
     pickup.setHours(0, 0, 0, 0);
-  
+
     const selected = new Date(date);
     selected.setHours(0, 0, 0, 0);
-  
 
-  
+
+
     this.selectedEndDate = selected;
     this.showEndCalendar = false;
     // Reset end time values when date changes
@@ -1776,6 +1919,6 @@ selectEndMinute(minute: string) {
     this.selectedEndMinute = '';
     this.isEndPM = false;
   }
-  
+
 
 }

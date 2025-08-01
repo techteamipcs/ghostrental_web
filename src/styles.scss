@@ -198,6 +198,9 @@ body {
   @media (max-width: 1536px) {
     font-size: 20px;
   }
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
 
   // @media (max-width: 1440px) {
   //   font-size: 21px;
@@ -639,6 +642,11 @@ body {
 .color-card-p {
   // #48494B
   color: $color-card-p;
+}
+
+.placeholder-color {
+  // #99999
+  color: $placeholder-color;
 }
 
 // common button styles
