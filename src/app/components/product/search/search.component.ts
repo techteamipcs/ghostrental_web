@@ -1134,6 +1134,15 @@ selectSort(option: { value: string; label: string }) {
 @HostListener('document:click', ['$event'])
 onClickOutside(event: Event) {
 	const target = event.target as HTMLElement;
+  const clickedInsideStart = this.startDateTimePicker?.nativeElement.contains(target);
+  const clickedInsideEnd = this.endDateTimePicker?.nativeElement.contains(target);
+  if (!clickedInsideStart) {
+    this.showDateTimeDropdown = false;
+  }
+
+  if (!clickedInsideEnd) {
+    this.showEndDateTimeDropdown = false;
+  }
 	if (!target.closest('.cdrop')) {
 		this.dropdownOpen = false;
 	}
