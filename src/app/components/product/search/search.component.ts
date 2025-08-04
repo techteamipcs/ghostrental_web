@@ -277,6 +277,57 @@ export class SearchComponent {
   //   this.getCarData();
   // }
 
+  getCarData() {
+    if (this.previousVehicleType !== this.vehicleType) {
+      this.currentPage = 1;
+      this.previousVehicleType = this.vehicleType;
+    }
+
+    const obj: any = {
+      limit: this.currentLimit,
+      page: this.currentPage,
+      availabilityStatus: 'available',
+      vehicle_type: this.vehicleType,
+      car_type: this.carTypes,
+      bodyTypeId: this.selectedBodytype,
+      brandId: this.selectedBrand,
+      modelId: this.selectedModel,
+      rental_type: this.selectedRentalType,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      price_type: this.price_type,
+      startDate: this.selectedStartDate,
+      endDate: this.selectedEndDate,
+      sort: this.sort,
+      isvipNumberPlate: this.vipNumberPlate
+    };
+
+    if (this.vehicleType == 'Yachts') {
+      if (this.selectedLength) {
+        obj.length = this.selectedLength;
+      }
+    }
+
+    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+      if (response.code == 200 && response.result.length > 0) {
+        this.totolvehicle = response.count;
+        this.vehicleData = response.result;
+        this.totalItems = response.count;
+        if (this.vehicleType == 'Yachts') {
+          this.extractYachtLengths(response.result);
+        }
+        this.updatePagedCars();
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
+      } else {
+        this.vehicleData = [];
+        this.yachtLengthOptions = [];
+      }
+    });
+  }
+
+  // new one 
   // getCarData() {
   //   if (this.previousVehicleType !== this.vehicleType) {
   //     this.currentPage = 1;
@@ -289,9 +340,9 @@ export class SearchComponent {
   //     availabilityStatus: 'available',
   //     vehicle_type: this.vehicleType,
   //     car_type: this.carTypes,
-  //     bodyTypeId: this.selectedBodytype,
-  //     brandId: this.selectedBrand,
-  //     modelId: this.selectedModel,
+  //     bodyTypeId: this.selectedBodytype ? [this.selectedBodytype] : [],
+  //     brandId: this.selectedBrand ? [this.selectedBrand] : [],
+  //     modelId: this.selectedModel ? [this.selectedModel] : [],
   //     rental_type: this.selectedRentalType,
   //     minPrice: this.minPrice,
   //     maxPrice: this.maxPrice,
@@ -309,7 +360,7 @@ export class SearchComponent {
   //   }
 
   //   this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-  //     if (response.code == 200 && response.result.length > 0) {
+  //     if (response.code == 200 && response.result && response.result.length > 0) {
   //       this.totolvehicle = response.count;
   //       this.vehicleData = response.result;
   //       this.totalItems = response.count;
@@ -322,8 +373,16 @@ export class SearchComponent {
   //       }
   //     } else {
   //       this.vehicleData = [];
+  //       this.totolvehicle = 0;
+  //       this.totalItems = 0;
   //       this.yachtLengthOptions = [];
   //     }
+  //   }, (error) => {
+  //     console.error('Error fetching vehicle data:', error);
+  //     this.vehicleData = [];
+  //     this.totolvehicle = 0;
+  //     this.totalItems = 0;
+  //     this.yachtLengthOptions = [];
   //   });
   // }
 
@@ -366,17 +425,20 @@ export class SearchComponent {
     this.dataservice.getAllBodyTypes(obj).subscribe((response) => {
       if (response.code == 200) {
         if (response.result && response.result.length > 0) {
-          this.allBodyTypes = response.result;
-          this.filterBodyTypesByVehicleType();
-
+          this.allBodyTypes = response.result; // Store all body types
+          this.filterBodyTypesByVehicleType(); // Filter based on current vehicle type
         }
       }
     });
   }
   filterBodyTypesByVehicleType() {
-    this.bodyTypeData = this.allBodyTypes.filter(
-      (item) => item.type === this.vehicleType
-    );
+    if (this.vehicleType) {
+      this.bodyTypeData = this.allBodyTypes.filter(
+        (item) => item.type === this.vehicleType
+      );
+    } else {
+      this.bodyTypeData = [];
+    }
   }
 
   filterBrandsByBodyType() {
@@ -802,6 +864,8 @@ export class SearchComponent {
   }
   toggleDateTimeDropdown(event: Event) {
     event.stopPropagation();
+
+    this.closeAllDropdowns();
     this.showDateTimeDropdown = !this.showDateTimeDropdown;
     if (this.showDateTimeDropdown) {
       this.activeView = 'calendar';
@@ -812,7 +876,7 @@ export class SearchComponent {
 
   toggleEndDateTimeDropdown(event: Event) {
     event.stopPropagation();
-
+    
     if (!this.selectedStartDate) {
       this.Toast.fire({
         title: 'Please select the start date & time first.',
@@ -820,17 +884,21 @@ export class SearchComponent {
       });
       return;
     }
-
+  
+    this.closeAllDropdowns();
     this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
-    this.showDateTimeDropdown = false;
   }
 
   showCalendarView() {
+    this.closeAllDropdowns();
     this.activeView = 'calendar';
+    this.showDateTimeDropdown = true;
   }
-
+  
   showTimeView() {
+    this.closeAllDropdowns();
     this.activeView = 'time';
+    this.showDateTimeDropdown = true;
   }
 
   canGoPrevMonth(): boolean {
@@ -1121,9 +1189,9 @@ export class SearchComponent {
   ];
 
   toggleDropdown() {
+    this.closeAllDropdowns();
     this.dropdownOpen = !this.dropdownOpen;
   }
-
 
 
   selectSort(option: { value: string; label: string }) {
@@ -1159,69 +1227,34 @@ export class SearchComponent {
   specialnumberOpen = false;
   yachtLengthOpen = false;
   selectedSpecialNumber: string | null = null;
+
+  
   toggleFilterDropdown(type: 'vehicleType' | 'brand' | 'model' | 'bodytype' | 'yachtbodytype' | 'specialnumber' | 'yachtlength') {
+    this.closeAllDropdowns();
+    
     if (type === 'vehicleType') {
       this.vehicleTypeOpen = !this.vehicleTypeOpen;
-      this.brandOpen = false;
-      this.modelOpen = false;
     } else if (type === 'brand') {
       this.brandOpen = !this.brandOpen;
-      this.vehicleTypeOpen = false;
-      this.modelOpen = false;
     } else if (type === 'model') {
-      // Check if brand is selected before allowing model selection
       if (!this.selectedBrand) {
         this.Toast.fire({
           icon: 'warning',
           title: 'Please select a brand first',
           timer: 2000
         });
-        this.modelOpen = false;
-        this.brandOpen = true;
+        this.brandOpen = !this.brandOpen;
       } else {
         this.modelOpen = !this.modelOpen;
       }
-      this.vehicleTypeOpen = false;
-      this.yachtBodytypeOpen = false;
     } else if (type === 'bodytype') {
-      // Check if model is selected before allowing body type selection
-      if (!this.selectedModel) {
-        this.Toast.fire({
-          icon: 'warning',
-          title: 'Please select a model first',
-          timer: 2000
-        });
-        this.bodytypeOpen = false;
-        this.modelOpen = true; 
-        this.brandOpen = false;
-      } else {
-        this.bodytypeOpen = !this.bodytypeOpen;
-      }
-      this.vehicleTypeOpen = false;
-      this.yachtBodytypeOpen = false;
-    }
-    else if (type === 'yachtbodytype') {
+      this.bodytypeOpen = !this.bodytypeOpen;
+    } else if (type === 'yachtbodytype') {
       this.yachtBodytypeOpen = !this.yachtBodytypeOpen;
-      this.vehicleTypeOpen = false;
-      this.brandOpen = false;
-      this.modelOpen = false;
-      this.bodytypeOpen = false;
-    }
-    else if (type === 'specialnumber') {
+    } else if (type === 'specialnumber') {
       this.specialnumberOpen = !this.specialnumberOpen;
-      this.vehicleTypeOpen = false;
-      this.brandOpen = false;
-      this.modelOpen = false;
-      this.bodytypeOpen = false;
-      this.yachtBodytypeOpen = false;
-    }
-    else if (type === 'yachtlength') {
+    } else if (type === 'yachtlength') {
       this.yachtLengthOpen = !this.yachtLengthOpen;
-      this.vehicleTypeOpen = false;
-      this.brandOpen = false;
-      this.modelOpen = false;
-      this.bodytypeOpen = false;
-      this.yachtBodytypeOpen = false;
     }
   }
   // Display text mapping for vehicle types
@@ -1237,9 +1270,11 @@ export class SearchComponent {
 
   selectVehicleType(vehicleType: string) {
     this.vehicleType = vehicleType;
+    this.selectedBodytype = ''; 
     this.vehicleTypeOpen = false;
+    this.filterBodyTypesByVehicleType(); 
     this.getCarData();
-  }
+  } 
   // selectBrand(name: string): void {
   //   this.selectedBrand = name;
   //   console.log(this.selectedBrand);
@@ -1278,132 +1313,9 @@ export class SearchComponent {
   // }
 
 
-  // Add these methods to your component class
 
-// Helper methods to get selected item names for display
-getSelectedBrandName(): string {
-  if (!this.selectedBrand || !this.brandData) return '';
-  const brand = this.brandData.find(item => item._id === this.selectedBrand);
-  return brand ? brand.name : '';
-}
-
-getSelectedModelName(): string {
-  if (!this.selectedModel || !this.filteredModel) return '';
-  const model = this.filteredModel.find(item => item._id === this.selectedModel);
-  return model ? model.name : '';
-}
-
-getSelectedBodyTypeName(): string {
-  if (!this.selectedBodytype || !this.bodyTypeData) return '';
-  const bodyType = this.bodyTypeData.find(item => item._id === this.selectedBodytype);
-  return bodyType ? bodyType.name : '';
-}
-
-// Fixed selection methods
-selectBrand(brand: any): void {
-  this.selectedBrand = brand._id;
-  // Filter models based on selected brand
-  this.filteredModel = this.modelData.filter((item: any) => item.brand === brand._id);
-  // Reset selected model when brand changes
-  this.selectedModel = '';
-  this.brandOpen = false;
-  this.getCarData();
-}
-
-selectModel(model: any): void {
-  this.selectedModel = model._id;
-  this.modelOpen = false;
-  this.getCarData();
-}
-
-selectBodyType(bodyType: any): void {
-  this.selectedBodytype = bodyType._id;
-  this.bodytypeOpen = false;
-  this.yachtBodytypeOpen = false; // Close yacht body type dropdown too
-  this.getCarData();
-}
-
-selectSpecialNumber(value: string): void {
-  this.vipNumberPlate = value === 'true';
-  this.selectedSpecialNumber = value === 'true' ? 'Opt for Special Number Plate' : 'Do Not Opt';
-  this.specialnumberOpen = false;
-  this.getCarData();
-}
-
-selectYachtLength(value: string): void {
-  this.selectedLength = value;
-  this.yachtLengthOpen = false;
-  this.getCarData();
-}
-
-// Fixed resetFilter method
-resetFilter() {
-  this.vehicleType = '';
-  this.carTypes = '';
-  this.selectedBodytype = '';
-  this.selectedBrand = '';
-  this.selectedModel = '';
-  this.selectedLength = '';
-  this.selectedStartDate = null;
-  this.selectedEndDate = null;
-  this.selectedRentalType = null;
-  this.minPrice = 0;
-  this.maxPrice = 150000;
-  this.vipNumberPlate = '';
-  this.selectedSpecialNumber = '';
-  this.sort = null;
-  this.filteredModel = [];
-  this.updateSlider();
-  this.getCarData();
-}
-
-// Fixed setVehicleType method
-setVehicleType() {
-  if (this.vehicleType === 'Car') {
-    this.maxPrice = 10000;
-    this.currentLimit = 12;
-    this.currentPage = 1;
-    this.itemsPerPage = 12;
-    this.price_type = 'dailyRate';
-  } else if (this.vehicleType === 'Yachts') {
-    this.maxPrice = 20000;
-    this.currentLimit = 12;
-    this.currentPage = 1;
-    this.itemsPerPage = 12;
-    this.price_type = 'hourlyRate';
-  }
-  this.filterBodyTypesByVehicleType();
-  this.selectedBodytype = '';
-  this.selectedBrand = '';
-  this.selectedModel = '';
-  this.selectedLength = '';
-  this.selectedStartDate = null;
-  this.selectedEndDate = null;
-  this.filteredModel = [];
-  this.getCarData();
-}
-
-// Add click outside handler for dropdowns
-@HostListener('document:click', ['$event'])
-onClickOutside(event: Event) {
-  const target = event.target as HTMLElement;
-  const clickedInsideStart = this.startDateTimePicker?.nativeElement.contains(target);
-  const clickedInsideEnd = this.endDateTimePicker?.nativeElement.contains(target);
-  
-  if (!clickedInsideStart) {
-    this.showDateTimeDropdown = false;
-  }
-
-  if (!clickedInsideEnd) {
-    this.showEndDateTimeDropdown = false;
-  }
-  
-  if (!target.closest('.cdrop')) {
+  closeAllDropdowns() {
     this.dropdownOpen = false;
-  }
-
-  // Close filter dropdowns when clicking outside
-  if (!target.closest('.filter-section')) {
     this.vehicleTypeOpen = false;
     this.brandOpen = false;
     this.modelOpen = false;
@@ -1411,103 +1323,177 @@ onClickOutside(event: Event) {
     this.yachtBodytypeOpen = false;
     this.specialnumberOpen = false;
     this.yachtLengthOpen = false;
+    this.showDateTimeDropdown = false;
+    this.showEndDateTimeDropdown = false;
   }
-}
+  // Add these methods to your component class
 
-// Updated processQueryParams method
-private processQueryParams(params: Params) {
-  // Update component state from query params
-  if (params['bodyType']) {
-    this.selectedBodytype = params['bodyType'];
-  }
-  if (params['brand']) {
-    this.selectedBrand = params['brand'];
-    // Update filtered models based on selected brand
-    if (this.modelData?.length) {
-      this.filteredModel = this.modelData.filter(item => item.brand === params['brand']);
+  // Helper methods to get selected item names for display
+  getSelectedBrandName(): string {
+    if (!this.selectedBrand || this.selectedBrand.length === 0) {
+      return '';
     }
-  }
-  if (params['model']) {
-    this.selectedModel = params['model'];
-  }
-  if (params['rentalType']) {
-    this.selectedRentalType = params['rentalType'];
-    this.changeRentalType({ target: { value: params['rentalType'] } });
-  }
-  if (params['minPrice']) {
-    this.minPrice = +params['minPrice'];
-  }
-  if (params['maxPrice']) {
-    this.maxPrice = +params['maxPrice'];
-  }
-  if (params['vip']) {
-    this.vipNumberPlate = params['vip'] === 'true';
-    this.selectedSpecialNumber = params['vip'] === 'true' ? 'Opt for Special Number Plate' : 'Do Not Opt';
-  }
-  if (params['sort']) {
-    this.sort = params['sort'];
+    const selectedBrand = this.brandData.find(item => item._id === this.selectedBrand[0]);
+    return selectedBrand ? selectedBrand.name : '';
   }
 
-  // Fetch data after processing all params
-  this.getCarData();
-}
 
-// Updated getCarData method with better error handling
-getCarData() {
-  if (this.previousVehicleType !== this.vehicleType) {
-    this.currentPage = 1;
-    this.previousVehicleType = this.vehicleType;
+  getSelectedModelName(): string {
+    if (!this.selectedModel || !this.filteredModel) return '';
+    const model = this.filteredModel.find(item => item._id === this.selectedModel);
+    return model ? model.name : '';
   }
 
-  const obj: any = {
-    limit: this.currentLimit,
-    page: this.currentPage,
-    availabilityStatus: 'available',
-    vehicle_type: this.vehicleType,
-    car_type: this.carTypes,
-    bodyTypeId: this.selectedBodytype ? [this.selectedBodytype] : [],
-    brandId: this.selectedBrand ? [this.selectedBrand] : [],
-    modelId: this.selectedModel ? [this.selectedModel] : [],
-    rental_type: this.selectedRentalType,
-    minPrice: this.minPrice,
-    maxPrice: this.maxPrice,
-    price_type: this.price_type,
-    startDate: this.selectedStartDate,
-    endDate: this.selectedEndDate,
-    sort: this.sort,
-    isvipNumberPlate: this.vipNumberPlate
-  };
-
-  if (this.vehicleType == 'Yachts') {
-    if (this.selectedLength) {
-      obj.length = this.selectedLength;
-    }
+  getSelectedBodyTypeName(): string {
+    if (!this.selectedBodytype || !this.allBodyTypes) return '';
+    const bodyType = this.allBodyTypes.find(item => item._id === this.selectedBodytype);
+    return bodyType ? bodyType.name : '';
   }
 
-  this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-    if (response.code == 200 && response.result && response.result.length > 0) {
-      this.totolvehicle = response.count;
-      this.vehicleData = response.result;
-      this.totalItems = response.count;
-      if (this.vehicleType == 'Yachts') {
-        this.extractYachtLengths(response.result);
-      }
-      this.updatePagedCars();
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo(0, 0);
-      }
+  selectBrand(item: any): void {
+    this.selectedBrand = item._id ? [item._id] : [];
+    this.selectedModel = [];
+
+    if (item._id && this.modelData.length > 0) {
+      this.filteredModel = this.modelData.filter(model => model.brand === item._id);
     } else {
-      this.vehicleData = [];
-      this.totolvehicle = 0;
-      this.totalItems = 0;
-      this.yachtLengthOptions = [];
+      this.filteredModel = [];
     }
-  }, (error) => {
-    console.error('Error fetching vehicle data:', error);
-    this.vehicleData = [];
-    this.totolvehicle = 0;
-    this.totalItems = 0;
-    this.yachtLengthOptions = [];
-  });
-}
+
+    if (item.bodytype_data) {
+      this.bodyTypeData = item.bodytype_data;
+    } else {
+      this.bodyTypeData = [];
+    }
+
+    this.brandOpen = false;
+    this.getCarData();
+  }
+
+  selectModel(model: any): void {
+    this.selectedModel = model._id;
+    this.modelOpen = false;
+    this.getCarData();
+  }
+
+  selectBodyType(bodyType: any): void {
+    this.selectedBodytype = bodyType._id;
+    this.bodytypeOpen = false;
+    this.yachtBodytypeOpen = false; // Close yacht body type dropdown too
+    this.getCarData();
+  }
+
+  selectSpecialNumber(value: string): void {
+    this.vipNumberPlate = value === 'true';
+    this.selectedSpecialNumber = value === 'true' ? 'Opt for Special Number Plate' : 'Do Not Opt';
+    this.specialnumberOpen = false;
+    this.getCarData();
+  }
+
+  selectYachtLength(value: string): void {
+    this.selectedLength = value;
+    this.yachtLengthOpen = false;
+    this.getCarData();
+  }
+
+  resetFilter() {
+    this.vehicleType = '';
+    this.carTypes = '';
+    this.selectedBodytype = '';
+    this.selectedBrand = '';
+    this.selectedModel = '';
+    this.selectedLength = '';
+    this.selectedStartDate = null;
+    this.selectedEndDate = null;
+    this.selectedRentalType = null;
+    this.minPrice = 0;
+    this.maxPrice = 150000;
+    this.vipNumberPlate = '';
+    this.selectedSpecialNumber = '';
+    this.sort = null;
+    this.filteredModel = [];
+    this.bodyTypeData = []; 
+    this.updateSlider();
+    this.getCarData();
+  }
+  setVehicleType() {
+    if (this.vehicleType === 'Car') {
+      this.maxPrice = 10000;
+      this.currentLimit = 12;
+      this.currentPage = 1;
+      this.itemsPerPage = 12;
+      this.price_type = 'dailyRate';
+    } else if (this.vehicleType === 'Yachts') {
+      this.maxPrice = 20000;
+      this.currentLimit = 12;
+      this.currentPage = 1;
+      this.itemsPerPage = 12;
+      this.price_type = 'hourlyRate';
+    }
+    
+    // Reset and filter body types
+    this.selectedBodytype = ''; // Reset the selected body type
+    this.filterBodyTypesByVehicleType();
+    
+    this.selectedBrand = '';
+    this.selectedModel = '';
+    this.selectedLength = '';
+    this.selectedStartDate = null;
+    this.selectedEndDate = null;
+    this.filteredModel = [];
+    this.getCarData();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const target = event.target as HTMLElement;
+    
+    // Check if click was inside any dropdown container
+    const clickedInsideDateTime = this.startDateTimePicker?.nativeElement.contains(target);
+    const clickedInsideEndDateTime = this.endDateTimePicker?.nativeElement.contains(target);
+    const clickedInsideDropdown = target.closest('.cdrop') || 
+                                target.closest('.filter-section') ||
+                                target.closest('.sort-dropdown'); // Add other dropdown classes as needed
+  
+    // If clicked outside all dropdown containers, close all dropdowns
+    if (!clickedInsideDateTime && !clickedInsideEndDateTime && !clickedInsideDropdown) {
+      this.closeAllDropdowns();
+    }
+  }
+
+  private processQueryParams(params: Params) {
+    if (params['bodyType']) {
+      this.selectedBodytype = params['bodyType'];
+      
+    }
+    if (params['brand']) {
+      this.selectedBrand = params['brand'];
+      if (this.modelData?.length) {
+        this.filteredModel = this.modelData.filter(item => item.brand === params['brand']);
+      }
+    }
+    if (params['model']) {
+      this.selectedModel = params['model'];
+    }
+    if (params['rentalType']) {
+      this.selectedRentalType = params['rentalType'];
+      this.changeRentalType({ target: { value: params['rentalType'] } });
+    }
+    if (params['minPrice']) {
+      this.minPrice = +params['minPrice'];
+    }
+    if (params['maxPrice']) {
+      this.maxPrice = +params['maxPrice'];
+    }
+    if (params['vip']) {
+      this.vipNumberPlate = params['vip'] === 'true';
+      this.selectedSpecialNumber = params['vip'] === 'true' ? 'Opt for Special Number Plate' : 'Do Not Opt';
+    }
+    if (params['sort']) {
+      this.sort = params['sort'];
+    }
+
+    this.getCarData();
+  }
+
 }
