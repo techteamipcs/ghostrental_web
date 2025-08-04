@@ -105,7 +105,7 @@
 									>Vehicle Type</label
 								>
 								<div class="filter-section">
-									<select
+									<!-- <select
 										[(ngModel)]="vehicleType"
 										class="form-selection size16 redhat-semibold bg-white"
 										(click)="$event.stopPropagation()"
@@ -122,102 +122,32 @@
 										src="{{ imageURL }}/images/icons/down-arrow.svg"
 										alt="Arrow Down"
 										class="down-arrow"
-									/>
-									<!-- <div
-										class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
-										(click)="toggleOptionsDropdown('vehicleType')"
+									/> -->
+									<div
+										class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+										(click)="toggleFilterDropdown('vehicleType')"
 										tabindex="0"
 									>
 										<span
-											class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+											class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
 											[ngClass]="{
-												'placeholder-color': !selectedVehicleType,
-												'gray-color': selectedVehicleType
+												'placeholder-color': !vehicleType,
+												'gray-color': vehicleType
 											}"
 										>
-											{{ selectedVehicleType || "Select Vehicle Type" }}
+											{{ getVehicleTypeDisplay() }}
 										</span>
 										<img
 											src="{{ imageURL }}/images/icons/down-arrow.svg"
 											class="img-fluid down-arrow ms-2"
-											[ngClass]="{ rotate: selectVehicleTypeOpen }"
+											[ngClass]="{ rotate: vehicleTypeOpen }"
 											alt="arrow"
 										/>
 									</div>
 
 									<ul
 										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
-										*ngIf="selectVehicleTypeOpen"
-									>
-										<li
-											(click)="selectVehicleType('Cars')"
-											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
-										>
-											cars
-										</li>
-										<li
-											(click)="selectVehicleType('Yachts')"
-											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
-										>
-											yachts
-										</li>
-									</ul> -->
-								</div>
-								<!-- Car Brand -->
-								<label
-									*ngIf="vehicleType == 'Car'"
-									class="form-label size14 redhat-semibold mb-1 gray-light-color"
-									>Car Brand</label
-								>
-								<div class="filter-section" *ngIf="vehicleType == 'Car'">
-									<select
-										class="form-selection size16 redhat-semibold bg-white"
-										#selBrand
-										name="brand"
-										[(ngModel)]="selectedBrand"
-										(change)="changeBrand($event)"
-										(click)="$event.stopPropagation()"
-										(blur)="onSelectBlur($event)"
-									>
-										<option value="" disabled selected>Select Car Brand</option>
-										<option
-											*ngFor="let item of brandData"
-											value="{{ item._id }}"
-											class="gray-color"
-										>
-											{{ item.name }}
-										</option>
-									</select>
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt="Arrow Down"
-										class="down-arrow"
-									/>
-									<!-- <div
-										class="dropdown-toggle custom-dropdown form-select size14 redhat-medium"
-										(click)="toggleOptionsDropdown('brand')"
-										tabindex="0"
-									>
-										<span
-											class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
-											[ngClass]="{
-												'placeholder-color': !selectedVehicleType,
-												'gray-color': selectedVehicleType
-											}"
-										>
-											{{ selectedVehicleType || "Select Vehicle Type" }}
-										</span>
-										<img
-											src="{{ imageURL }}/images/icons/down-arrow.svg"
-											class="img-fluid down-arrow ms-2"
-											[ngClass]="{ rotate: selectVehicleTypeOpen }"
-											alt="arrow"
-										/>
-									</div>
-
-									<ul
-										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
-										*ngIf="selectVehicleTypeOpen"
+										*ngIf="vehicleTypeOpen"
 									>
 										<li
 											(click)="selectVehicleType('Car')"
@@ -231,7 +161,49 @@
 										>
 											yachts
 										</li>
-									</ul> -->
+									</ul>
+								</div>
+								<!-- Car Brand -->
+								<label
+									*ngIf="vehicleType == 'Car'"
+									class="form-label size14 redhat-semibold mb-1 gray-light-color"
+									>Car Brand</label
+								>
+								<div class="filter-section" *ngIf="vehicleType == 'Car'">
+									<div
+										class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+										(click)="toggleFilterDropdown('brand')"
+										tabindex="0"
+									>
+										<span
+											class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedBrand,
+												'gray-color': selectedBrand
+											}"
+										>
+											{{ getSelectedBrandName() || "Select Brand" }}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: brandOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="brandOpen"
+									>
+										<li
+											*ngFor="let item of brandData"
+											(click)="selectBrand(item)"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											{{ item.name }}
+										</li>
+									</ul>
 								</div>
 								<!-- Car Model -->
 								<label
@@ -240,29 +212,40 @@
 									>Car Model</label
 								>
 								<div class="filter-section" *ngIf="vehicleType == 'Car'">
-									<select
-										class="form-selection size16 redhat-semibold bg-white"
-										name="model"
-										#selctModel
-										[(ngModel)]="selectedModel"
-										(change)="changeModel($event)"
-										(click)="$event.stopPropagation()"
-										(blur)="onSelectBlur($event)"
+									<div
+										class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+										(click)="toggleFilterDropdown('model')"
+										tabindex="0"
 									>
-										<option value="" disabled selected>Select Car Model</option>
-										<option
+										<span
+											class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedModel,
+												'gray-color': selectedModel
+											}"
+										>
+											{{ getSelectedModelName() || "Select Model" }}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: modelOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="modelOpen"
+									>
+										<li
 											*ngFor="let item of filteredModel"
-											value="{{ item._id }}"
-											class="gray-color"
+											(click)="selectModel(item)"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
 										>
 											{{ item.name }}
-										</option>
-									</select>
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt="Arrow Down"
-										class="down-arrow"
-									/>
+										</li>
+									</ul>
 								</div>
 								<!-- Car Model -->
 
@@ -273,38 +256,47 @@
 									>Body Type</label
 								>
 								<div class="filter-section" *ngIf="vehicleType == 'Car'">
-									<!-- <select
-								class="form-selection size16 redhat-semibold bg-white gray-color"
-								name="bodytype"
-								[value]="selectedBodytype[0]"
-								(change)="onBodyTypeSelect($event)"
-								(click)="
-									$event.stopPropagation(); toggleSelectDropdown($event)
-								"
-								(blur)="onSelectBlur($event)"
-							> -->
-									<select
-										class="form-selection size16 redhat-semibold bg-white"
-										name="bodytype"
-										[(ngModel)]="selectedBodytype"
-										(change)="onBodyTypeSelect($event)"
-										(click)="$event.stopPropagation()"
-										(blur)="onSelectBlur($event)"
+									<div
+										class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+										(click)="toggleFilterDropdown('bodytype')"
+										tabindex="0"
 									>
-										<option value="" disabled selected>Select Body Type</option>
-										<option
+										<span
+											class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedBodytype,
+												'gray-color': selectedBodytype
+											}"
+										>
+											{{ getSelectedBodyTypeName() || "Select Body Type" }}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: bodytypeOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="bodytypeOpen"
+									>
+										<li
+											*ngIf="bodyTypeData?.length === 0"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+											style="color: #999"
+										>
+											No body types available
+										</li>
+										<li
 											*ngFor="let item of bodyTypeData"
-											[value]="item._id"
-											class="gray-color"
+											(click)="selectBodyType(item)"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
 										>
 											{{ item.name }}
-										</option>
-									</select>
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt="Arrow Down"
-										class="down-arrow"
-									/>
+										</li>
+									</ul>
 								</div>
 
 								<div *ngIf="vehicleType === 'Yachts'">
@@ -313,56 +305,87 @@
 										>Yacht Body Type</label
 									>
 									<div class="filter-section">
-										<select
-											class="form-selection size16 redhat-semibold bg-white"
-											(change)="onYachtBodyTypeSelect($event)"
-											[(ngModel)]="selectedBodytype"
-											(click)="$event.stopPropagation()"
-											(blur)="onSelectBlur($event)"
+										<div
+											class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+											(click)="toggleFilterDropdown('yachtbodytype')"
+											tabindex="0"
 										>
-											<option value="" disabled selected>
-												Select Yacht Body Type
-											</option>
-											<option
+											<span
+												class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedBodytype,
+													'gray-color': selectedBodytype
+												}"
+											>
+												{{ getSelectedBodyTypeName() || "Select Body Type" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: yachtBodytypeOpen }"
+												alt="arrow"
+											/>
+										</div>
+
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="yachtBodytypeOpen"
+										>
+											<li
+												*ngIf="bodyTypeData?.length === 0"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+												style="color: #999"
+											>
+												No body types available
+											</li>
+											<li
 												*ngFor="let item of bodyTypeData"
-												[value]="item._id"
-												class="gray-color"
+												(click)="selectBodyType(item)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
 											>
 												{{ item.name }}
-											</option>
-										</select>
-										<img
-											src="{{ imageURL }}/images/icons/down-arrow.svg"
-											alt="Arrow Down"
-											class="down-arrow"
-										/>
+											</li>
+										</ul>
 									</div>
 									<label
 										class="form-label size14 redhat-semibold mb-1 gray-light-color"
 										>Length</label
 									>
 									<div class="filter-section">
-										<select
-											class="form-selection size16 redhat-semibold bg-white"
-											(change)="onYachtLengthSelect($event)"
-											[(ngModel)]="selectedLength"
-											(click)="$event.stopPropagation()"
-											(blur)="onSelectBlur($event)"
+										<div
+											class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+											(click)="toggleFilterDropdown('yachtlength')"
+											tabindex="0"
 										>
-											<option value="" disabled selected>Select Length</option>
-											<option
-												*ngFor="let len of yachtLengthOptions"
-												[value]="len"
-												class="gray-color"
+											<span
+												class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+												[ngClass]="{
+													'placeholder-color': !selectedLength,
+													'gray-color': selectedLength
+												}"
 											>
-												{{ len }}
-											</option>
-										</select>
-										<img
-											src="{{ imageURL }}/images/icons/down-arrow.svg"
-											alt="Arrow Down"
-											class="down-arrow"
-										/>
+												{{ selectedLength || "Select Length" }}
+											</span>
+											<img
+												src="{{ imageURL }}/images/icons/down-arrow.svg"
+												class="img-fluid down-arrow ms-2"
+												[ngClass]="{ rotate: yachtLengthOpen }"
+												alt="arrow"
+											/>
+										</div>
+
+										<ul
+											class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+											*ngIf="yachtLengthOpen"
+										>
+											<li
+												*ngFor="let item of yachtLengthOptions"
+												(click)="selectYachtLength(item)"
+												class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+											>
+												{{ item }}
+											</li>
+										</ul>
 									</div>
 								</div>
 
@@ -375,31 +398,47 @@
 									>Special Number Plate</label
 								>
 								<div class="filter-section" *ngIf="vehicleType == 'Car'">
-									<select
-										class="form-selection size16 redhat-semibold bg-white"
-										(change)="onChangeSpecialNumber($event)"
-										[(ngModel)]="vipNumberPlate"
-										(click)="$event.stopPropagation()"
-										(blur)="onSelectBlur($event)"
+									<div
+										class="dropdown-toggle custom-dropdown form-select size16 redhat-medium"
+										(click)="toggleFilterDropdown('specialnumber')"
+										tabindex="0"
 									>
-										<option
-											value=""
-											disabled
-											selected
-											class="size14 redhat-medium black-light-color"
+										<span
+											class="selected-text size16 redhat-semibold text-capitalize bg-transparent cselect"
+											[ngClass]="{
+												'placeholder-color': !selectedSpecialNumber,
+												'gray-color': selectedSpecialNumber
+											}"
 										>
-											Select Special Number Plate
-										</option>
-										<option value="true" class="gray-color">
+											{{
+												selectedSpecialNumber || "Select Special Number Plate"
+											}}
+										</span>
+										<img
+											src="{{ imageURL }}/images/icons/down-arrow.svg"
+											class="img-fluid down-arrow ms-2"
+											[ngClass]="{ rotate: specialnumberOpen }"
+											alt="arrow"
+										/>
+									</div>
+
+									<ul
+										class="dropdown-menu-custom position-absolute mt-1 p-0 top-100 list-style-none bg-white"
+										*ngIf="specialnumberOpen"
+									>
+										<li
+											(click)="selectSpecialNumber('true')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
 											Opt for Special Number Plate
-										</option>
-										<option value="false" class="gray-color">Do Not Opt</option>
-									</select>
-									<img
-										src="{{ imageURL }}/images/icons/down-arrow.svg"
-										alt="Arrow Down"
-										class="down-arrow"
-									/>
+										</li>
+										<li
+											(click)="selectSpecialNumber('false')"
+											class="dropdown-item-custom px-3 py-2 size14 redhat-medium black-light-color text-capitalize"
+										>
+											Do Not Opt
+										</li>
+									</ul>
 								</div>
 								<!-- Special Number Plate -->
 

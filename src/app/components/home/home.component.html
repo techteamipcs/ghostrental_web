@@ -250,7 +250,7 @@
 											tabindex="0"
 										>
 											<span
-												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												class="selected-text size14 redhat-semibold bg-transparent cselect"
 												[ngClass]="{
 													'placeholder-color': !selectedbodytype,
 													'gray-color': selectedbodytype
@@ -323,7 +323,7 @@
 											tabindex="0"
 										>
 											<span
-												class="selected-text size14 redhat-semibold text-capitalize bg-transparent cselect"
+												class="selected-text size14 redhat-semibold bg-transparent cselect"
 												[ngClass]="{
 													'placeholder-color': !selectedbodytype,
 													'gray-color': selectedbodytype
@@ -572,9 +572,9 @@
 									</div>
 								</div>
 								<h3
-									class="section-title size18 redhat-bold label-margin text-capitalize black-light-color"
+									class="section-title size18 redhat-bold label-margin black-light-color"
 								>
-									Pickup
+									Pick-up
 								</h3>
 								<div class="row">
 									<div class="col-6">
@@ -784,7 +784,7 @@
 													name="selectedpickaddress"
 													id="pickup"
 													class="form-control size14 redhat-medium black-light-color"
-													placeholder="Enter pick-up location*"
+													placeholder="Enter Pick-up location*"
 													required
 												/>
 											</div>
@@ -793,10 +793,10 @@
 								</div>
 
 								<h3
-									class="section-title size18 redhat-bold label-margin text-capitalize black-light-color"
+									class="section-title size18 redhat-bold label-margin black-light-color"
 									*ngIf="!isVehicleYacht"
 								>
-									Drop
+									Drop-off
 								</h3>
 								<div class="row" *ngIf="!isVehicleYacht">
 									<div class="col-6">
@@ -1048,14 +1048,14 @@
 													*ngFor="let addon of filteredFeatures"
 													class="mb-2 size14 redhat-medium d-flex align-items-center black-light-color"
 													style="gap: 5px"
+													(click)="$event.stopPropagation()"
+													(change)="toggleSelection(addon, $event)"
 												>
 													<input
 														type="checkbox"
 														class="form-check-box"
 														[id]="'addon-' + addon.url_key"
 														[checked]="isSelected(addon)"
-														(click)="$event.stopPropagation()"
-														(change)="toggleSelection(addon, $event)"
 													/>
 													<label
 														class="form-check-label size14 redhat-medium black-light-color"
