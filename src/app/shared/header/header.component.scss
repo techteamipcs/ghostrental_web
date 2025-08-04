@@ -77,9 +77,9 @@ nav {
     &.dark {
       color: #000000;
 
-      &:hover {
-        opacity: 0.8;
-      }
+      // &:hover {
+      //   opacity: 0.8;
+      // }
     }
 
     .scrolled &,
@@ -265,11 +265,11 @@ nav {
       padding: 0;
 
       a {
-        transition: color 0.3s ease;
+        transition: all .5s ease;
 
-        // &:hover {
-        //   opacity: 0.8;
-        // }
+        &:hover {
+          font-family: 'RedHat Bold';
+        }
       }
       
       .contact-button{

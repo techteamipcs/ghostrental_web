@@ -262,6 +262,7 @@
 						<button
 							[routerLink]="['/contact/product', vehicleData.name]"
 							class="size18 redhat-semibold text-decoration-none black-button w-100"
+							style="text-transform: none !important"
 							data-text="Send an Email"
 						>
 							<span>Send an Email</span>
@@ -296,7 +297,7 @@
 									/>
 									<h3
 										class="mb-0 size18 redhat-semibold"
-										style="color: #25d366"
+										style="color: #25d366; text-transform: none !important"
 									>
 										Book on WhatsApp
 									</h3>
@@ -307,7 +308,10 @@
 										alt="WhatsApp"
 										class="whatsappicon"
 									/>
-									<h3 class="mb-0 size18 redhat-semibold" style="color: white">
+									<h3
+										class="mb-0 size18 redhat-semibold"
+										style="color: white; text-transform: none !important"
+									>
 										Book on WhatsApp
 									</h3>
 								</span>
@@ -564,6 +568,7 @@
 							<button
 								[routerLink]="['/contact/product', vehicleData.name]"
 								class="size18 redhat-semibold text-decoration-none black-button text-capitalize w-100"
+								style="text-transform: none !important"
 								data-text="Send an Email"
 							>
 								<span>Send an Email</span>
@@ -614,7 +619,7 @@
 										/>
 										<h3
 											class="mb-0 size18 redhat-semibold"
-											style="color: #25d366"
+											style="color: #25d366; text-transform: none !important"
 										>
 											Book on WhatsApp
 										</h3>
@@ -627,7 +632,7 @@
 										/>
 										<h3
 											class="mb-0 size18 redhat-semibold"
-											style="color: white"
+											style="color: white; text-transform: none !important"
 										>
 											Book on WhatsApp
 										</h3>
@@ -1193,9 +1198,9 @@
 											<h5
 												class="mb-0 size26 redhat-semibold gray-color d-flex align-items-center"
 											>
-												AED {{ car.dailyRate }}/<span
-													class="size18 redhat-semibold"
-													>day</span
+												AED {{ car.dailyRate
+												}}<span class="size18 redhat-regular gray-color"
+													>/day</span
 												>
 											</h5>
 										</div>
@@ -1218,9 +1223,9 @@
 											<h5
 												class="mb-0 size26 redhat-semibold gray-color d-flex align-items-center"
 											>
-												AED {{ car.hourlyRate }}/<span
-													class="size18 redhat-semibold"
-													>hr</span
+												AED {{ car.hourlyRate
+												}}<span class="size18 redhat-regular gray-color"
+													>/hr</span
 												>
 											</h5>
 										</div>

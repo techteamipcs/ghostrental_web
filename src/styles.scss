@@ -1451,9 +1451,9 @@ nav {
     &.dark {
       color: #000000;
 
-      &:hover {
-        opacity: 0.8;
-      }
+      // &:hover {
+      //   opacity: 0.8;
+      // }
 
       &.active {
         font-family: $redhat-bold;
