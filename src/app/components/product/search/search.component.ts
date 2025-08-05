@@ -278,10 +278,48 @@ export class SearchComponent {
   //   this.getCarData();
   // }
 
+  formatDateTime(date: Date, hour: string, minute: string): string {
+    if (!date) return '';
+    
+    const pad = (num: number) => num < 10 ? '0' + num : num;
+    
+    // Format date as YYYY-MM-DD
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    
+    // Use provided hour/minute or default to 00:00
+    const timeHour = hour || '00';
+    const timeMinute = minute || '00';
+    
+    // Return ISO string format: YYYY-MM-DDTHH:MM:SS
+    return `${year}-${month}-${day}T${timeHour}:${timeMinute}:00`;
+  }
+
   getCarData() {
     if (this.previousVehicleType !== this.vehicleType) {
       this.currentPage = 1;
       this.previousVehicleType = this.vehicleType;
+    }
+
+    // Format start date with time
+    let startDate = '';
+    if (this.selectedStartDate) {
+      startDate = this.formatDateTime(
+        this.selectedStartDate,
+        this.selectedHour || '00',
+        this.selectedMinute || '00'
+      );
+    }
+
+    // Format end date with time
+    let endDate = '';
+    if (this.selectedEndDate) {
+      endDate = this.formatDateTime(
+        this.selectedEndDate,
+        this.selectedEndHour || '23',
+        this.selectedEndMinute || '59'
+      );
     }
 
     const obj: any = {
@@ -297,34 +335,45 @@ export class SearchComponent {
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
       price_type: this.price_type,
-      startDate: this.selectedStartDate,
-      endDate: this.selectedEndDate,
+      startDate: startDate || null,
+      endDate: endDate || null,
       sort: this.sort,
       isvipNumberPlate: this.vipNumberPlate
     };
 
-    if (this.vehicleType == 'Yachts') {
-      if (this.selectedLength) {
-        obj.length = this.selectedLength;
-      }
+    if (this.vehicleType == 'Yachts' && this.selectedLength) {
+      obj.length = this.selectedLength;
     }
 
+    console.log('API Request:', JSON.stringify(obj, null, 2)); // Debug log
+
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-      if (response.code == 200 && response.result.length > 0) {
-        this.totolvehicle = response.count;
-        this.vehicleData = response.result;
-        this.totalItems = response.count;
+      if (response.code == 200) {
+        this.totolvehicle = response.count || 0;
+        this.vehicleData = response.result || [];
+        this.totalItems = response.count || 0;
+        
         if (this.vehicleType == 'Yachts') {
-          this.extractYachtLengths(response.result);
+          this.extractYachtLengths(this.vehicleData);
         }
+        
         this.updatePagedCars();
+        
         if (isPlatformBrowser(this.platformId)) {
           window.scrollTo(0, 0);
         }
       } else {
         this.vehicleData = [];
+        this.totolvehicle = 0;
+        this.totalItems = 0;
         this.yachtLengthOptions = [];
       }
+    }, (error) => {
+      console.error('Error fetching vehicles:', error);
+      this.vehicleData = [];
+      this.totolvehicle = 0;
+      this.totalItems = 0;
+      this.yachtLengthOptions = [];
     });
   }
 
