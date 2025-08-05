@@ -29,7 +29,10 @@
   }
 
   .gallery-height {
-    height: 900px;
+    height: 68vh;
+    @media(max-width:2048px){
+      height: 60vh;
+    }
     @media(max-width:1920px){
       height: 692px;
     }
@@ -62,7 +65,7 @@
     height: 100%;
     overflow: hidden;
     // border-radius: 8px;
-    background: #f5f5f5;
+    // background: #f5f5f5;
 
     img {
       // position: absolute;

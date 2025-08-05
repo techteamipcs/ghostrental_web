@@ -87,7 +87,7 @@ export class TestimonialsComponent implements AfterViewInit {
     },
     {
       id: 'faq6',
-      question: 'How do I book Car and Yacht rental with Ghost Rentals?',
+      question: 'How do I book a car and yacht rental with Ghost Rentals?',
       answer: 'Booking with Ghost Rentals is simple: visit ghostrentals.com, select your car, call us or email info@ghostrentals.com. No deposit required* with lowest prices!'
     },
     {

@@ -113,8 +113,9 @@ export class SearchComponent {
   endMonth: Date = new Date();
   endCalendarDates: Date[] = [];
 
-  activeView: 'calendar' | 'time' = 'calendar';
-
+  activeStartView: 'calendar' | 'time' = 'calendar';
+  activeEndView: 'calendar' | 'time' = 'calendar';
+  
 
   Toast = Swal.mixin({
     toast: true,
@@ -864,43 +865,55 @@ export class SearchComponent {
   }
   toggleDateTimeDropdown(event: Event) {
     event.stopPropagation();
-
     this.closeAllDropdowns();
     this.showDateTimeDropdown = !this.showDateTimeDropdown;
     if (this.showDateTimeDropdown) {
-      this.activeView = 'calendar';
+      this.activeStartView = 'calendar';
     }
-    this.showEndDateTimeDropdown = false;
   }
 
 
   toggleEndDateTimeDropdown(event: Event) {
     event.stopPropagation();
-    
     if (!this.selectedStartDate) {
-      this.Toast.fire({
-        title: 'Please select the start date & time first.',
-        icon: 'warning',
-      });
+      this.Toast.fire({ title: 'Please select the start date & time first.', icon: 'warning' });
       return;
     }
-  
     this.closeAllDropdowns();
     this.showEndDateTimeDropdown = !this.showEndDateTimeDropdown;
+    if (this.showEndDateTimeDropdown) {
+      this.activeEndView = 'calendar';
+    }
   }
 
-  showCalendarView() {
-    this.closeAllDropdowns();
-    this.activeView = 'calendar';
-    this.showDateTimeDropdown = true;
+  // showCalendarView() {
+  //   this.closeAllDropdowns();
+  //   this.activeView = 'calendar';
+  //   this.showDateTimeDropdown = true;
+  // }
+  
+  // showTimeView() {
+  //   this.closeAllDropdowns();
+  //   this.activeView = 'time';
+  //   this.showDateTimeDropdown = true;
+  // }
+
+  showCalendarView(context: 'start' | 'end') {
+    if (context === 'start') {
+      this.activeStartView = 'calendar';
+    } else {
+      this.activeEndView = 'calendar';
+    }
   }
   
-  showTimeView() {
-    this.closeAllDropdowns();
-    this.activeView = 'time';
-    this.showDateTimeDropdown = true;
+  showTimeView(context: 'start' | 'end') {
+    if (context === 'start') {
+      this.activeStartView = 'time';
+    } else {
+      this.activeEndView = 'time';
+    }
   }
-
+  
   canGoPrevMonth(): boolean {
     const today = new Date();
     return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
@@ -1201,22 +1214,6 @@ export class SearchComponent {
     this.getCarData();
   }
 
-  // @HostListener('document:click', ['$event'])
-  // onClickOutside(event: Event) {
-  //   const target = event.target as HTMLElement;
-  //   const clickedInsideStart = this.startDateTimePicker?.nativeElement.contains(target);
-  //   const clickedInsideEnd = this.endDateTimePicker?.nativeElement.contains(target);
-  //   if (!clickedInsideStart) {
-  //     this.showDateTimeDropdown = false;
-  //   }
-
-  //   if (!clickedInsideEnd) {
-  //     this.showEndDateTimeDropdown = false;
-  //   }
-  //   if (!target.closest('.cdrop')) {
-  //     this.dropdownOpen = false;
-  //   }
-  // }
 
 
   vehicleTypeOpen = false;

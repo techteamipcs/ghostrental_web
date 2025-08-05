@@ -483,16 +483,16 @@
 										>
 											<button
 												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'calendar'"
-												(click)="showCalendarView()"
+												[class.active]="activeStartView === 'calendar'"
+												(click)="showCalendarView('start')"
 												data-text="Calendar"
 											>
 												<span>Calendar</span>
 											</button>
 											<button
 												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'time'"
-												(click)="showTimeView()"
+												[class.active]="activeStartView === 'time'"
+												(click)="showTimeView('start')"
 												data-text="Time"
 											>
 												<span>Time</span>
@@ -502,8 +502,8 @@
 										<div class="datetime-inner d-flex">
 											<div
 												class="calendar-section"
-												[class.slide-in]="activeView === 'calendar'"
-												[class.slide-out]="activeView !== 'calendar'"
+												[class.slide-in]="activeStartView === 'calendar'"
+												[class.slide-out]="activeStartView !== 'calendar'"
 											>
 												<div
 													class="d-flex justify-content-between align-items-center mb-2"
@@ -554,8 +554,8 @@
 											<!-- Time View -->
 											<div
 												class="time-picker-section"
-												[class.slide-in]="activeView === 'time'"
-												[class.slide-out]="activeView !== 'time'"
+												[class.slide-in]="activeStartView === 'time'"
+												[class.slide-out]="activeStartView !== 'time'"
 											>
 												<div class="d-flex gap-2">
 													<div class="time-section">
@@ -690,16 +690,16 @@
 										>
 											<button
 												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'calendar'"
-												(click)="showCalendarView()"
+												[class.active]="activeEndView === 'calendar'"
+												(click)="showCalendarView('end')"
 												data-text="Calendar"
 											>
 												<span>Calendar</span>
 											</button>
 											<button
 												class="black-button size16 redhat-bold text-capitalize px-2 py-1"
-												[class.active]="activeView === 'time'"
-												(click)="showTimeView()"
+												[class.active]="activeEndView === 'time'"
+												(click)="showTimeView('end')"
 												data-text="Time"
 											>
 												<span>Time</span>
@@ -709,8 +709,8 @@
 											<!-- Drop Date -->
 											<div
 												class="calendar-section"
-												[class.slide-in]="activeView === 'calendar'"
-												[class.slide-out]="activeView !== 'calendar'"
+												[class.slide-in]="activeEndView === 'calendar'"
+												[class.slide-out]="activeEndView !== 'calendar'"
 											>
 												<div
 													class="d-flex justify-content-between align-items-center mb-2"
@@ -762,8 +762,8 @@
 											<!-- Drop Time -->
 											<div
 												class="time-picker-section"
-												[class.slide-in]="activeView === 'time'"
-												[class.slide-out]="activeView !== 'time'"
+												[class.slide-in]="activeEndView === 'time'"
+												[class.slide-out]="activeEndView !== 'time'"
 											>
 												<div class="d-flex">
 													<div class="time-section">
