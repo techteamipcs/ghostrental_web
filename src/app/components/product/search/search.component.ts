@@ -115,7 +115,7 @@ export class SearchComponent {
 
   activeStartView: 'calendar' | 'time' = 'calendar';
   activeEndView: 'calendar' | 'time' = 'calendar';
-  
+
 
   Toast = Swal.mixin({
     toast: true,
@@ -280,18 +280,18 @@ export class SearchComponent {
 
   formatDateTime(date: Date, hour: string, minute: string): string {
     if (!date) return '';
-    
+
     const pad = (num: number) => num < 10 ? '0' + num : num;
-    
+
     // Format date as YYYY-MM-DD
     const year = date.getFullYear();
     const month = pad(date.getMonth() + 1);
     const day = pad(date.getDate());
-    
+
     // Use provided hour/minute or default to 00:00
     const timeHour = hour || '00';
     const timeMinute = minute || '00';
-    
+
     // Return ISO string format: YYYY-MM-DDTHH:MM:SS
     return `${year}-${month}-${day}T${timeHour}:${timeMinute}:00`;
   }
@@ -329,8 +329,8 @@ export class SearchComponent {
       vehicle_type: this.vehicleType,
       car_type: this.carTypes,
       bodyTypeId: this.selectedBodytype || [],
-  brandId: this.selectedBrand || [],
-  modelId: this.selectedModel || [],
+      brandId: this.selectedBrand || [],
+      modelId: this.selectedModel || [],
       rental_type: this.selectedRentalType,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
@@ -341,10 +341,9 @@ export class SearchComponent {
       isvipNumberPlate: this.vipNumberPlate
     };
 
-    if (this.vehicleType == 'Yachts' && this.selectedLength) {
-      obj.length = this.selectedLength;
+    if (this.vehicleType === 'Yachts' && this.selectedLength) {
+      obj.length = this.selectedLength.trim(); // send as string
     }
-
     // console.log('API Request:', JSON.stringify(obj, null, 2)); // Debug log
 
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
@@ -358,10 +357,21 @@ export class SearchComponent {
 
         if (this.vehicleType == 'Yachts') {
           this.extractYachtLengths(this.vehicleData);
+          if (this.selectedLength) {
+            this.vehicleData = this.vehicleData.filter(
+              item => (item.length ?? '').trim() === this.selectedLength
+            );
+            this.totalItems = this.vehicleData.length;
+          }
+          if (this.vehicleData.length === 0) {
+            this.yachtLengthOptions = [];
+          }
         }
-        
-        this.updatePagedCars();
-        
+
+        if (this.vehicleData.length > 0) {
+          this.updatePagedCars();
+        }
+
         if (isPlatformBrowser(this.platformId)) {
           window.scrollTo(0, 0);
         }
@@ -514,6 +524,7 @@ export class SearchComponent {
       return isNaN(aNum) || isNaN(bNum) ? a.localeCompare(b) : aNum - bNum;
     });
     this.yachtLengthOptions = uniqueSorted;
+    
   }
 
   changeModel(event: Event) {
@@ -930,7 +941,7 @@ export class SearchComponent {
 
   toggleEndDateTimeDropdown(event: Event) {
     event.stopPropagation();
-  
+
     if (!this.selectedStartDate) {
       this.Toast.fire({
         title: 'Please select the start date & time first.',
@@ -938,13 +949,13 @@ export class SearchComponent {
       });
       return;
     }
-  
+
     if (this.showEndDateTimeDropdown) {
       // If already open, just close it
       this.showEndDateTimeDropdown = false;
       return;
     }
-  
+
     this.closeAllDropdowns();
     this.showEndDateTimeDropdown = true;
     this.activeEndView = 'calendar';
@@ -967,7 +978,7 @@ export class SearchComponent {
   //   this.activeView = 'calendar';
   //   this.showDateTimeDropdown = true;
   // }
-  
+
   // showTimeView() {
   //   this.closeAllDropdowns();
   //   this.activeView = 'time';
@@ -981,7 +992,7 @@ export class SearchComponent {
       this.activeEndView = 'calendar';
     }
   }
-  
+
   showTimeView(context: 'start' | 'end') {
     if (context === 'start') {
       this.activeStartView = 'time';
@@ -989,11 +1000,25 @@ export class SearchComponent {
       this.activeEndView = 'time';
     }
   }
-  
+
+  // canGoPrevMonth(): boolean {
+  //   const today = new Date();
+  //   return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
+  // }
+
+
   canGoPrevMonth(): boolean {
     const today = new Date();
-    return this.currentMonth > new Date(today.getFullYear(), today.getMonth(), 1);
+    const minDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    return this.currentMonth > minDate;
   }
+
+  canGoPrevEndMonth(): boolean {
+    if (!this.selectedStartDate) return false;
+    const minDate = new Date(this.selectedStartDate.getFullYear(), this.selectedStartDate.getMonth(), 1);
+    return this.endMonth > minDate;
+  }
+
 
   // calendaer
   generateCalendar() {
@@ -1181,18 +1206,61 @@ export class SearchComponent {
     return this.selectedEndHour === hour;
   }
 
+  // isPastEndTime(hour: string, minute: string): boolean {
+  //   if (!this.selectedEndDate || !this.isToday(this.selectedEndDate)) return false;
+  //   const now = new Date();
+  //   const selectedTime = new Date(
+  //     this.selectedEndDate.getFullYear(),
+  //     this.selectedEndDate.getMonth(),
+  //     this.selectedEndDate.getDate(),
+  //     parseInt(hour, 10),
+  //     parseInt(minute, 10)
+  //   );
+  //   return selectedTime < now;
+  // }
+
   isPastEndTime(hour: string, minute: string): boolean {
-    if (!this.selectedEndDate || !this.isToday(this.selectedEndDate)) return false;
-    const now = new Date();
-    const selectedTime = new Date(
-      this.selectedEndDate.getFullYear(),
-      this.selectedEndDate.getMonth(),
-      this.selectedEndDate.getDate(),
-      parseInt(hour, 10),
-      parseInt(minute, 10)
-    );
-    return selectedTime < now;
+    if (!this.selectedEndDate) return false;
+
+    // Case 1: Drop date is today → disable before current time
+    if (this.isToday(this.selectedEndDate)) {
+      const now = new Date();
+      const selectedTime = new Date(
+        this.selectedEndDate.getFullYear(),
+        this.selectedEndDate.getMonth(),
+        this.selectedEndDate.getDate(),
+        parseInt(hour, 10),
+        parseInt(minute, 10)
+      );
+      if (selectedTime < now) return true;
+    }
+
+    // Case 2: Drop date is same as pickup date → disable before pickup time
+    if (
+      this.selectedStartDate &&
+      this.selectedEndDate &&
+      this.selectedStartDate.getTime() === this.selectedEndDate.getTime()
+    ) {
+      const pickupTime = new Date(
+        this.selectedStartDate.getFullYear(),
+        this.selectedStartDate.getMonth(),
+        this.selectedStartDate.getDate(),
+        parseInt(this.selectedHour || '0', 10),
+        parseInt(this.selectedMinute || '0', 10)
+      );
+      const dropTime = new Date(
+        this.selectedEndDate.getFullYear(),
+        this.selectedEndDate.getMonth(),
+        this.selectedEndDate.getDate(),
+        parseInt(hour, 10),
+        parseInt(minute, 10)
+      );
+      return dropTime <= pickupTime;
+    }
+
+    return false;
   }
+
   selectEndMinute(minute: string) {
     this.selectedEndMinute = minute;
     if (this.selectedEndHour && this.selectedEndMinute) {
@@ -1208,9 +1276,18 @@ export class SearchComponent {
     this.selectedEndDate = new Date(date);
   }
 
+  // isBeforePickupDate(date: Date): boolean {
+  //   if (!this.selectedStartDate) return false;
+  //   return date < this.selectedStartDate;
+  // }
+
   isBeforePickupDate(date: Date): boolean {
     if (!this.selectedStartDate) return false;
-    return date < this.selectedStartDate;
+    const pickupMidnight = new Date(this.selectedStartDate);
+    pickupMidnight.setHours(0, 0, 0, 0);
+    const checkDate = new Date(date);
+    checkDate.setHours(0, 0, 0, 0);
+    return checkDate < pickupMidnight;
   }
 
   isDropTimeBeforePickup(): boolean {
@@ -1301,7 +1378,7 @@ export class SearchComponent {
   yachtLengthOpen = false;
   selectedSpecialNumber: string | null = null;
 
-  
+
   toggleFilterDropdown(
     type: 'vehicleType' | 'brand' | 'model' | 'bodytype' | 'yachtbodytype' | 'specialnumber' | 'yachtlength'
   ) {
@@ -1313,21 +1390,21 @@ export class SearchComponent {
       (type === 'yachtbodytype' && this.yachtBodytypeOpen) ||
       (type === 'specialnumber' && this.specialnumberOpen) ||
       (type === 'yachtlength' && this.yachtLengthOpen);
-  
+
     // Close all dropdowns before opening the new one
     this.closeAllDropdowns();
-  
+
     if (isSameDropdown) return; // Toggle off if clicking the same
-  
+
     switch (type) {
       case 'vehicleType':
         this.vehicleTypeOpen = true;
         break;
-  
+
       case 'brand':
         this.brandOpen = true;
         break;
-  
+
       case 'model':
         if (!this.selectedBrand?.length) {
           this.Toast.fire({
@@ -1340,7 +1417,7 @@ export class SearchComponent {
         }
         this.modelOpen = true;
         break;
-  
+
       case 'bodytype':
         if (this.vehicleType === 'Car') {
           if (!this.selectedBrand?.length) {
@@ -1364,21 +1441,32 @@ export class SearchComponent {
           this.bodytypeOpen = true;
         }
         break;
-  
+
       case 'yachtbodytype':
+
         this.yachtBodytypeOpen = true;
         break;
-  
+
       case 'specialnumber':
         this.specialnumberOpen = true;
         break;
-  
-      case 'yachtlength':
-        this.yachtLengthOpen = true;
-        break;
+
+        case 'yachtlength':
+          if (!this.selectedBodytype) {
+            this.Toast.fire({
+              icon: 'warning',
+              title: 'Please select a body type first',
+              timer: 2000
+            });
+            this.yachtBodytypeOpen = true;
+            return;
+          }
+          this.yachtLengthOpen = true;
+          break;
+        
     }
   }
-  
+
   // Display text mapping for vehicle types
   vehicleTypeDisplayText: { [key: string]: string } = {
     'Car': 'Cars',
@@ -1393,11 +1481,11 @@ export class SearchComponent {
   selectVehicleType(vehicleType: string) {
     this.vehicleType = vehicleType;
     this.vehicleTypeOpen = false;
-  
+
 
     this.currentLimit = 12;
-      this.currentPage = 1;
-      this.itemsPerPage = 12;
+    this.currentPage = 1;
+    this.itemsPerPage = 12;
 
 
     if (this.vehicleType === 'Car') {
@@ -1409,7 +1497,7 @@ export class SearchComponent {
       this.price_type = 'hourlyRate';
       this.vipNumberPlate = false;
     }
-  
+
     // Reset filters
     this.selectedBodytype = '';
     this.selectedBrand = '';
@@ -1418,17 +1506,17 @@ export class SearchComponent {
     this.selectedStartDate = null;
     this.selectedEndDate = null;
     this.minPrice = 0;
-  this.filteredModel = [];
-  this.bodyTypeData = [];
-  
+    this.filteredModel = [];
+    this.bodyTypeData = [];
+
     // Filter body types based on vehicle type
     this.filterBodyTypesByVehicleType();
-  
+
     // Fetch data
     this.updateSlider();
     this.getCarData();
   }
-  
+
   // selectBrand(name: string): void {
   //   this.selectedBrand = name;
   //   console.log(this.selectedBrand);
@@ -1494,7 +1582,7 @@ export class SearchComponent {
     const model = this.filteredModel.find(item => item._id === modelId);
     return model ? model.name : '';
   }
-  
+
   getSelectedBodyTypeName(): string {
     if (!this.selectedBodytype?.length || !this.allBodyTypes) return '';
     const bodyTypeId = Array.isArray(this.selectedBodytype) ? this.selectedBodytype[0] : this.selectedBodytype;
@@ -1505,7 +1593,7 @@ export class SearchComponent {
 
   selectBrand(item: any): void {
     this.selectedModel = '';
-  this.selectedBodytype = '';
+    this.selectedBodytype = '';
     this.selectedBrand = item._id ? [item._id] : [];
     this.selectedModel = [];
 
@@ -1544,14 +1632,15 @@ export class SearchComponent {
     this.modelOpen = false;
     this.getCarData();
   }
-  
+
   selectBodyType(bodyType: any): void {
+    this.selectedLength = '';
     this.selectedBodytype = bodyType._id ? [bodyType._id] : [];
     this.bodytypeOpen = false;
     this.yachtBodytypeOpen = false;
     this.getCarData();
   }
-  
+
   selectSpecialNumber(value: string): void {
     this.vipNumberPlate = value === 'true';
     this.selectedSpecialNumber = value === 'true' ? 'Opt for Special Number Plate' : 'Do Not Opt';
@@ -1559,11 +1648,13 @@ export class SearchComponent {
     this.getCarData();
   }
 
-  selectYachtLength(value: string): void {
-    this.selectedLength = value;
+  selectYachtLength(item: string): void {
+    this.selectedLength = item;
+    console.log('Selected Length:', this.selectedLength);
     this.yachtLengthOpen = false;
     this.getCarData();
   }
+  
 
   resetFilter() {
     this.vehicleType = '';
@@ -1581,31 +1672,31 @@ export class SearchComponent {
     this.selectedSpecialNumber = '';
     this.sort = null;
     this.filteredModel = [];
-    this.bodyTypeData = []; 
+    this.bodyTypeData = [];
     this.updateSlider();
     this.getCarData();
   }
   setVehicleType() {
     if (this.vehicleType === 'Car') {
-    // console.log('Cars selected');
+      // console.log('Cars selected');
       this.maxPrice = 10000;
       this.currentLimit = 12;
       this.currentPage = 1;
       this.itemsPerPage = 12;
       this.price_type = 'dailyRate';
     } else if (this.vehicleType === 'Yachts') {
-    // console.log('Yachts selected');
+      // console.log('Yachts selected');
       this.maxPrice = 20000;
       this.currentLimit = 12;
       this.currentPage = 1;
       this.itemsPerPage = 12;
       this.price_type = 'hourlyRate';
     }
-    
+
     // Reset and filter body types
     this.selectedBodytype = ''; // Reset the selected body type
     this.filterBodyTypesByVehicleType();
-    
+
     this.selectedBrand = '';
     this.selectedModel = '';
     this.selectedLength = '';
@@ -1618,14 +1709,14 @@ export class SearchComponent {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;
-    
+
     // Check if click was inside any dropdown container
     const clickedInsideDateTime = this.startDateTimePicker?.nativeElement.contains(target);
     const clickedInsideEndDateTime = this.endDateTimePicker?.nativeElement.contains(target);
-    const clickedInsideDropdown = target.closest('.cdrop') || 
-                                target.closest('.filter-section') ||
-                                target.closest('.sort-dropdown'); // Add other dropdown classes as needed
-  
+    const clickedInsideDropdown = target.closest('.cdrop') ||
+      target.closest('.filter-section') ||
+      target.closest('.sort-dropdown'); // Add other dropdown classes as needed
+
     // If clicked outside all dropdown containers, close all dropdowns
     if (!clickedInsideDateTime && !clickedInsideEndDateTime && !clickedInsideDropdown) {
       this.closeAllDropdowns();
@@ -1635,7 +1726,7 @@ export class SearchComponent {
   private processQueryParams(params: Params) {
     if (params['bodyType']) {
       this.selectedBodytype = params['bodyType'];
-      
+
     }
     if (params['brand']) {
       this.selectedBrand = params['brand'];
