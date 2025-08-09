@@ -341,9 +341,11 @@ export class SearchComponent {
       isvipNumberPlate: this.vipNumberPlate
     };
 
-    if (this.vehicleType === 'Yachts' && this.selectedLength) {
-      obj.length = this.selectedLength.trim(); // send as string
+    if (this.vehicleType == 'Yachts' && this.selectedLength) {
+      this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
     }
+    
+    
     // console.log('API Request:', JSON.stringify(obj, null, 2)); // Debug log
 
     this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
@@ -388,6 +390,8 @@ export class SearchComponent {
       this.totalItems = 0;
       this.yachtLengthOptions = [];
     });
+
+    // console.log('Filtering from', startDate, 'to', endDate);
 
   }
 
@@ -628,66 +632,76 @@ export class SearchComponent {
     const selectedId = (event.target as HTMLSelectElement).value;
     this.selectedBodytype = selectedId ? [selectedId] : [];
     this.selectedLength = '';
-    this.getFilteredVehicles();
+    this.getCarData();
   }
 
   onYachtLengthSelect(event: Event) {
     const selectedLength = (event.target as HTMLSelectElement).value;
     this.selectedLength = selectedLength || '';
-    this.getFilteredVehicles();
+    this.getCarData();
   }
 
-  getFilteredVehicles() {
-    const obj: any = {
-      limit: this.currentLimit,
-      page: this.currentPage,
-      availabilityStatus: 'available',
-      vehicle_type: this.vehicleType,
-      bodyTypeId: this.selectedBodytype,
-      brandId: this.selectedBrand,
-      modelId: this.selectedModel,
-      rental_type: this.selectedRentalType,
-      minPrice: this.minPrice,
-      maxPrice: this.maxPrice,
-      price_type: this.price_type,
-      startDate: this.selectedStartDate,
-      endDate: this.selectedEndDate,
-      sort: this.sort,
-      isvipNumberPlate: this.vipNumberPlate
-    };
-
-    if (this.vehicleType === 'Yachts') {
-      if (this.selectedLength) {
-        obj.length = this.selectedLength.trim();
-      }
-    }
-
-    this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
-      if (response.code === 200) {
-        this.vehicleData = response.result || [];
-        this.totalItems = response.count || 0;
-
-        // yachtLengthOptions should always reflect only available yachts in result
-        if (this.vehicleType === 'Yachts') {
-          this.extractYachtLengths(this.vehicleData);
-          if (this.selectedLength) {
-            this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
-            this.totalItems = this.vehicleData.length;
-          }
-        }
-        if (this.vehicleData.length > 0) {
-          this.updatePagedCars();
-        } else {
-          if (this.vehicleType === 'Yachts') {
-            this.yachtLengthOptions = [];
-          }
-        }
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo(0, 0);
-        }
-      }
-    });
-  }
+  // getFilteredVehicles() {
+  //   const startDateStr = this.selectedStartDate
+  //     ? this.formatDateTime(this.selectedStartDate, this.selectedHour || '00', this.selectedMinute || '00')
+  //     : null;
+  
+  //   const endDateStr = this.selectedEndDate
+  //     ? this.formatDateTime(this.selectedEndDate, this.selectedEndHour || '00', this.selectedEndMinute || '00')
+  //     : null;
+  
+  //   const obj: any = {
+  //     limit: this.currentLimit,
+  //     page: this.currentPage,
+  //     availabilityStatus: 'available',
+  //   };
+  
+  //   if (this.vehicleType) obj.vehicle_type = this.vehicleType;
+  //   if (this.selectedBodytype) obj.bodyTypeId = this.selectedBodytype;
+  //   if (this.selectedBrand) obj.brandId = this.selectedBrand;
+  //   if (this.selectedModel) obj.modelId = this.selectedModel;
+  //   if (this.selectedRentalType) obj.rental_type = this.selectedRentalType;
+  //   if (this.minPrice !== null && this.minPrice !== undefined) obj.minPrice = this.minPrice;
+  //   if (this.maxPrice !== null && this.maxPrice !== undefined) obj.maxPrice = this.maxPrice;
+  //   if (this.price_type) obj.price_type = this.price_type;
+  //   if (startDateStr) obj.startDate = startDateStr;
+  //   if (endDateStr) obj.endDate = endDateStr;
+  //   if (this.sort) obj.sort = this.sort;
+  //   if (this.vipNumberPlate) obj.isvipNumberPlate = this.vipNumberPlate;
+  
+  //   if (this.vehicleType === 'Yachts' && this.selectedLength) {
+  //     obj.length = this.selectedLength.trim();
+  //   }
+  
+  //   console.log("Search Payload (clean):", obj);
+  
+  //   this.dataservice.getFilterdVehicles(obj).subscribe((response) => {
+  //     if (response.code === 200) {
+  //       this.vehicleData = response.result || [];
+  //       this.totalItems = response.count || 0;
+  
+  //       if (this.vehicleType === 'Yachts') {
+  //         this.extractYachtLengths(this.vehicleData);
+  //         if (this.selectedLength) {
+  //           this.vehicleData = this.vehicleData.filter(item => (item.length ?? '').trim() === this.selectedLength);
+  //           this.totalItems = this.vehicleData.length;
+  //         }
+  //       }
+  
+  //       if (this.vehicleData.length > 0) {
+  //         this.updatePagedCars();
+  //       } else if (this.vehicleType === 'Yachts') {
+  //         this.yachtLengthOptions = [];
+  //       }
+  
+  //       if (isPlatformBrowser(this.platformId)) {
+  //         window.scrollTo(0, 0);
+  //       }
+  //     }
+  //   });
+  // }
+  
+  
 
   onChangeSort(data) {
     if (data?.target?.value) {
@@ -697,7 +711,7 @@ export class SearchComponent {
   }
 
   SearchItems() {
-    this.getFilteredVehicles();
+    this.getCarData();
     if (this.isMobile) {
       this.isMobileFilterVisible = false;
     }
@@ -1111,6 +1125,7 @@ export class SearchComponent {
     }
   }
   selectDate(date: Date) {
+    console.log('Selected Date:', date);
     if (!this.selectedStartDate || this.selectedStartDate.getTime() !== new Date(date).getTime()) {
       this.onStartDateTimeChange();
     }
@@ -1270,6 +1285,7 @@ export class SearchComponent {
   }
 
   selectEndDate(date: Date) {
+    console.log('Selected End Date:', date);
     if (!this.selectedEndDate || this.selectedEndDate.getTime() !== new Date(date).getTime()) {
       this.onEndDateTimeChange();
     }
