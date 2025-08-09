@@ -967,6 +967,11 @@ select.form-selection:has(option:checked:disabled) {
 		padding-right: 0;
 	}
 }
+
+.cstheight2{
+	scrollbar-width: thin;
+	overflow-y: auto;
+}
 .tabposition {
 	position: sticky;
 	@media (max-width: 1199px) {

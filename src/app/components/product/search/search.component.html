@@ -14,7 +14,9 @@
 					<div
 						class="filter"
 						[ngClass]="
-							vehicleType == 'Car' || vehicleType == 'Yachts' ? 'cstheight' : ''
+							vehicleType == 'Car' || vehicleType == 'Yachts'
+								? 'cstheight'
+								: 'cstheight2'
 						"
 					>
 						<div
@@ -470,6 +472,7 @@
 									<img
 										src="{{ imageURL }}/images/icons/down-arrow.svg"
 										alt=""
+										[ngClass]="{ rotate: showDateTimeDropdown }"
 										class="down-arrow"
 									/>
 
@@ -676,6 +679,7 @@
 									<img
 										src="{{ imageURL }}/images/icons/down-arrow.svg"
 										alt=""
+										[ngClass]="{ rotate: showEndDateTimeDropdown }"
 										class="down-arrow"
 									/>
 

@@ -1691,6 +1691,7 @@ export class SearchComponent {
     this.bodyTypeData = [];
     this.updateSlider();
     this.getCarData();
+    this.closeAllDropdowns();
   }
   setVehicleType() {
     if (this.vehicleType === 'Car') {
