@@ -1344,16 +1344,54 @@ export class SearchComponent {
     this.selectedEndTime = '';
   }
   confirmEndDateTime() {
-    if (this.selectedEndDate && this.selectedEndHour && this.selectedEndMinute) {
-      this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
-      this.showEndDateTimeDropdown = false;
-    } else {
+    if (!this.selectedEndDate && !this.selectedEndHour && !this.selectedEndMinute) {
+      console.log("Please select both date and time.");
       this.Toast.fire({
         title: 'Please select both date and time before confirming.',
         icon: 'warning',
       });
+      return;
     }
+  
+    if (!this.selectedEndDate) {
+      console.log("Please select date.");
+      this.Toast.fire({
+        title: 'Please select a date before confirming.',
+        icon: 'warning',
+      });
+      return;
+    }
+  
+    // if (!this.selectedEndHour  || !this.selectedEndMinute){
+    //   console.log("Please select time.");
+    //   this.Toast.fire({
+    //     title: 'Please select a time before confirming.',
+    //     icon: 'warning',
+    //   });
+    //   return;
+    // }
+    if (!this.selectedEndHour ) {
+      console.log("Please select hour.");
+      this.Toast.fire({
+        title: 'Please select a hour before confirming.',
+        icon: 'warning',
+      });
+      return;
+    }
+    if (!this.selectedEndMinute ) {
+      console.log("Please select minute.");
+      this.Toast.fire({
+        title: 'Please select a minute before confirming.',
+        icon: 'warning',
+      });
+      return;
+    }
+  
+    // If both date & time exist
+    this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
+    this.showEndDateTimeDropdown = false;
   }
+  
   onEndDateTimeChange() {
     // Reset end time selection stzate when date or time changes
     this.selectedEndTime = '';

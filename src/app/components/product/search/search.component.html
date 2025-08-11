@@ -825,15 +825,18 @@
 											>
 												<span>Reset</span>
 											</button>
+											<!-- <button
+												type="button"
+												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
+												[disabled]="isDropTimeBeforePickup()"
+												(click)="confirmEndDateTime()"
+												data-text="Confirm"
+											>
+												<span>Confirm</span>
+											</button> -->
 											<button
 												type="button"
 												class="black-button size18 redhat-bold text-capitalize px-2 py-1"
-												[disabled]="
-													!selectedEndDate ||
-													!selectedEndHour ||
-													!selectedEndMinute ||
-													isDropTimeBeforePickup()
-												"
 												(click)="confirmEndDateTime()"
 												data-text="Confirm"
 											>
