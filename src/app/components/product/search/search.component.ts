@@ -1362,30 +1362,30 @@ export class SearchComponent {
       return;
     }
   
-    // if (!this.selectedEndHour  || !this.selectedEndMinute){
-    //   console.log("Please select time.");
+    if (!this.selectedEndHour  || !this.selectedEndMinute){
+      console.log("Please select time.");
+      this.Toast.fire({
+        title: 'Please select a time before confirming.',
+        icon: 'warning',
+      });
+      return;
+    }
+    // if (!this.selectedEndHour ) {
+    //   console.log("Please select hour.");
     //   this.Toast.fire({
-    //     title: 'Please select a time before confirming.',
+    //     title: 'Please select a hour before confirming.',
     //     icon: 'warning',
     //   });
     //   return;
     // }
-    if (!this.selectedEndHour ) {
-      console.log("Please select hour.");
-      this.Toast.fire({
-        title: 'Please select a hour before confirming.',
-        icon: 'warning',
-      });
-      return;
-    }
-    if (!this.selectedEndMinute ) {
-      console.log("Please select minute.");
-      this.Toast.fire({
-        title: 'Please select a minute before confirming.',
-        icon: 'warning',
-      });
-      return;
-    }
+    // if (!this.selectedEndMinute ) {
+    //   console.log("Please select minute.");
+    //   this.Toast.fire({
+    //     title: 'Please select a minute before confirming.',
+    //     icon: 'warning',
+    //   });
+    //   return;
+    // }
   
     // If both date & time exist
     this.selectedEndTime = `${this.selectedEndHour}:${this.selectedEndMinute}`;
